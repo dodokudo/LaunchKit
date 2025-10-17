@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>LaunchKit Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      background: #f5f7fb;
+      color: #222;
+    }
+    aside {
+      width: 260px;
+      border-right: 1px solid #e2e6f0;
+      background: #fff;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { margin-bottom: 10px; }
+    .project-item {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e9edf5;
+      border-radius: 8px;
+      padding: 10px;
+      gap: 4px;
+      background: #fbfcff;
+    }
+    .project-item button {
+      align-self: flex-start;
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid #d0d7e6;
+      background: #fff;
+      cursor: pointer;
+    }
+    main {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .toolbar button, .toolbar a {
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 6px;
+      border: 1px solid #d0d7e6;
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .status { font-size: 12px; color: #0b7285; }
+    .editor-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      gap: 12px;
+      flex: 1;
+      overflow: hidden;
+    }
+    .panel {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      overflow: auto;
+      border: 1px solid #e7ebf5;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .panel h2 {
+      font-size: 16px;
+      margin: 0 0 6px;
+    }
+    label { display: block; font-size: 12px; margin-bottom: 4px; color: #555; }
+    input[type="text"], input[type="url"], select, textarea {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #ccd2e3;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    textarea[readonly] { background: #f2f4f9; }
+    .inline { display: flex; gap: 8px; }
+    .inline > div { flex: 1; }
+    .sections-list { display: flex; flex-direction: column; gap: 12px; }
+    .section-item {
+      border: 1px solid #dbe2f1;
+      border-radius: 10px;
+      padding: 12px;
+      background: #fdfdff;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .section-item.dragging { opacity: 0.4; }
+    .section-item.drag-over { outline: 2px dashed #5b8def; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; }
+    .section-header strong { font-size: 14px; }
+    .section-actions { display: flex; gap: 6px; }
+    .section-actions button {
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid #cbd4e6;
+      cursor: pointer;
+      background: #fff;
+    }
+    .add-section { display: flex; gap: 8px; align-items: center; }
+    .note { font-size: 11px; color: #777; }
+    #configEditor { height: 240px; font-family: 'SFMono-Regular', monospace; font-size: 12px; }
+    iframe { flex: 1; border: 1px solid #d0d7e6; border-radius: 6px; min-height: 280px; }
+    @media (max-width: 1024px) {
+      .editor-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h1>Projects</h1>
+    <button id="reloadProjects" style="margin-bottom:10px">再読み込み</button>
+    <ul id="projectList"></ul>
+  </aside>
+  <main>
+    <div class="toolbar">
+      <span id="currentSlug">選択してください</span>
+      <button id="saveBtn" disabled>保存</button>
+      <button id="buildBtn" disabled>ビルド</button>
+      <button id="archiveBtn" disabled>バックアップ</button>
+      <button id="applyJsonBtn" disabled>JSONを反映</button>
+      <a id="previewLink" target="previewFrame" rel="noopener">プレビュー</a>
+      <span id="status" class="status"></span>
+    </div>
+    <div class="editor-grid">
+      <section class="panel" id="formsPanel">
+        <div>
+          <h2>メタ情報</h2>
+          <label for="metaTitle">タイトル</label>
+          <input type="text" id="metaTitle" placeholder="LPタイトル">
+          <label for="metaDescription">ディスクリプション</label>
+          <textarea id="metaDescription" rows="3"></textarea>
+          <label for="templatePath">テンプレート</label>
+          <input type="text" id="templatePath" placeholder="例: optin/base.njk">
+          <div id="rawHtmlControls" style="display:none; margin-top:8px;">
+            <label for="rawHtmlPath">raw_html_file</label>
+            <div class="inline">
+              <div>
+                <input type="text" id="rawHtmlPath" placeholder="content/.../*.html">
+              </div>
+              <div style="flex:0 0 auto; display:flex; align-items:center;">
+                <button type="button" id="rawHtmlPlaceholderBtn">プレースホルダー作成</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>カウントダウン</h2>
+          <label><input type="checkbox" id="countdownEnabled"> 有効</label>
+          <label for="countdownDeadline">締切 (ISO)</label>
+          <input type="text" id="countdownDeadline" placeholder="2025-03-31T23:59:59+09:00">
+          <label for="countdownLabel">ラベル</label>
+          <input type="text" id="countdownLabel" placeholder="締切まで残り">
+        </div>
+        <div>
+          <h2>Sticky CTA</h2>
+          <label><input type="checkbox" id="stickyEnabled"> 有効</label>
+          <label for="stickyLabel">ラベル</label>
+          <input type="text" id="stickyLabel" placeholder="例: 今なら3大特典が無料">
+          <div class="inline">
+            <div>
+              <label for="stickyText">ボタン文言</label>
+              <input type="text" id="stickyText" placeholder="例: LINEに登録する">
+            </div>
+            <div>
+              <label for="stickyUrl">リンク先</label>
+              <input type="text" id="stickyUrl" placeholder="https://">
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>セクション</h2>
+          <div class="note">ドラッグ＆ドロップで並び替え可能</div>
+          <div id="sectionsList" class="sections-list"></div>
+          <div class="add-section">
+            <select id="newSectionType">
+              <option value="html">HTML</option>
+              <option value="list">リスト</option>
+              <option value="faq">FAQ</option>
+              <option value="testimonials">実績</option>
+              <option value="cta">CTA</option>
+            </select>
+            <button id="addSectionBtn" disabled>セクション追加</button>
+          </div>
+        </div>
+      </section>
+      <section class="panel">
+        <div>
+          <h2>JSON</h2>
+          <div class="note">直接編集→「JSONを反映」でフォームに同期</div>
+          <textarea id="configEditor" spellcheck="false" disabled></textarea>
+        </div>
+        <div>
+          <h2>プレビュー</h2>
+          <iframe name="previewFrame" src="about:blank"></iframe>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const projectListEl = document.getElementById('projectList');
+    const reloadProjectsBtn = document.getElementById('reloadProjects');
+    const metaTitleInput = document.getElementById('metaTitle');
+    const metaDescriptionInput = document.getElementById('metaDescription');
+    const templatePathInput = document.getElementById('templatePath');
+    const rawHtmlControls = document.getElementById('rawHtmlControls');
+    const rawHtmlPathInput = document.getElementById('rawHtmlPath');
+    const rawHtmlPlaceholderBtn = document.getElementById('rawHtmlPlaceholderBtn');
+    const countdownEnabledInput = document.getElementById('countdownEnabled');
+    const countdownDeadlineInput = document.getElementById('countdownDeadline');
+    const countdownLabelInput = document.getElementById('countdownLabel');
+    const stickyEnabledInput = document.getElementById('stickyEnabled');
+    const stickyLabelInput = document.getElementById('stickyLabel');
+    const stickyTextInput = document.getElementById('stickyText');
+    const stickyUrlInput = document.getElementById('stickyUrl');
+    const sectionsListEl = document.getElementById('sectionsList');
+    const addSectionBtn = document.getElementById('addSectionBtn');
+    const newSectionTypeSelect = document.getElementById('newSectionType');
+    const configEditor = document.getElementById('configEditor');
+    const saveBtn = document.getElementById('saveBtn');
+    const buildBtn = document.getElementById('buildBtn');
+    const archiveBtn = document.getElementById('archiveBtn');
+    const applyJsonBtn = document.getElementById('applyJsonBtn');
+    const previewLink = document.getElementById('previewLink');
+    const currentSlugEl = document.getElementById('currentSlug');
+    const statusEl = document.getElementById('status');
+
+    let currentSlug = null;
+    let currentConfig = null;
+    let dragIndex = null;
+
+    const defaultSectionFactories = {
+      html: () => ({
+        class: 'text',
+        type: 'html',
+        wrapper_class: 'wrap_text',
+        html_file: currentSlug ? `content/${currentSlug}/section-${Date.now()}.html` : ''
+      }),
+      list: () => ({
+        class: 'naiyou',
+        type: 'list',
+        wrapper_class: 'wrap_naiyou',
+        list_class: 'con_naiyou',
+        items: []
+      }),
+      faq: () => ({
+        class: 'faq',
+        type: 'faq',
+        wrapper_class: 'wrap_faq',
+        items: []
+      }),
+      testimonials: () => ({
+        class: 'voice',
+        type: 'testimonials',
+        wrapper_class: 'wrap_voice',
+        items: []
+      }),
+      cta: () => ({
+        class: 'cta',
+        type: 'cta',
+        button: { text: '詳しく見る', url: '#' }
+      })
+    };
+
+    function setStatus(message, ms = 2000) {
+      statusEl.textContent = message;
+      if (ms) {
+        setTimeout(() => {
+          if (statusEl.textContent === message) statusEl.textContent = '';
+        }, ms);
+      }
+    }
+
+    async function loadProjects() {
+      const res = await fetch('/api/projects');
+      const data = await res.json();
+      projectListEl.innerHTML = '';
+      data.forEach((project) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="project-item">
+            <strong>${project.title}</strong>
+            <span style="font-size:12px;color:#777">${project.slug}</span>
+            <button data-slug="${project.slug}">開く</button>
+          </div>
+        `;
+        li.querySelector('button').addEventListener('click', () => selectProject(project.slug));
+        projectListEl.appendChild(li);
+      });
+    }
+
+    function ensureConfigShape() {
+      if (!currentConfig.meta) currentConfig.meta = {};
+      if (!currentConfig.countdown) currentConfig.countdown = {};
+      if (!currentConfig.sticky_cta) currentConfig.sticky_cta = {};
+      if (!Array.isArray(currentConfig.sections)) currentConfig.sections = [];
+    }
+
+    function syncJsonEditor() {
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    }
+
+    function renderMeta() {
+      metaTitleInput.value = currentConfig.meta.title || '';
+      metaDescriptionInput.value = currentConfig.meta.description || '';
+      templatePathInput.value = currentConfig.template || '';
+      const showRaw = currentConfig.raw_html_file !== undefined || (currentConfig.template && currentConfig.template.includes('optin/'));
+      rawHtmlControls.style.display = showRaw ? 'block' : 'none';
+      rawHtmlPathInput.value = currentConfig.raw_html_file || '';
+      rawHtmlPlaceholderBtn.disabled = !rawHtmlPathInput.value;
+    }
+
+    function renderCountdown() {
+      countdownEnabledInput.checked = Boolean(currentConfig.countdown.enabled);
+      countdownDeadlineInput.value = currentConfig.countdown.deadline || '';
+      countdownLabelInput.value = currentConfig.countdown.label || '';
+    }
+
+    function renderSticky() {
+      stickyEnabledInput.checked = Boolean(currentConfig.sticky_cta.enabled);
+      stickyLabelInput.value = currentConfig.sticky_cta.label || '';
+      stickyTextInput.value = currentConfig.sticky_cta.text || '';
+      stickyUrlInput.value = currentConfig.sticky_cta.url || '';
+    }
+
+    function cleanupHeading(section) {
+      if (section.heading_image) {
+        if (!section.heading_image.src && !section.heading_image.alt) {
+          delete section.heading_image;
+        }
+      }
+    }
+
+    function labeled(labelText, element) {
+      const wrapper = document.createElement('div');
+      const label = document.createElement('label');
+      label.textContent = labelText;
+      wrapper.appendChild(label);
+      wrapper.appendChild(element);
+      return wrapper;
+    }
+
+    async function createPlaceholder(filePath) {
+      try {
+        const res = await fetch('/api/files', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: filePath, content: '<div class="container">プレースホルダーです。内容を編集してください。</div>\n' })
+        });
+        if (!res.ok) throw new Error();
+        setStatus('プレースホルダーを作成しました');
+      } catch (error) {
+        alert('ファイルの作成に失敗しました');
+      }
+    }
+
+    function renderSections() {
+      sectionsListEl.innerHTML = '';
+      currentConfig.sections.forEach((section, index) => {
+        const item = document.createElement('div');
+        item.className = 'section-item';
+        item.draggable = true;
+        item.dataset.index = index;
+
+        item.addEventListener('dragstart', (e) => {
+          dragIndex = index;
+          item.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        item.addEventListener('dragend', () => {
+          dragIndex = null;
+          item.classList.remove('dragging');
+        });
+        item.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          item.classList.add('drag-over');
+        });
+        item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+        item.addEventListener('drop', (e) => {
+          e.preventDefault();
+          item.classList.remove('drag-over');
+          const targetIndex = Number(item.dataset.index);
+          if (dragIndex === null || targetIndex === dragIndex) return;
+          const moved = currentConfig.sections.splice(dragIndex, 1)[0];
+          currentConfig.sections.splice(targetIndex, 0, moved);
+          renderSections();
+          syncJsonEditor();
+        });
+
+        const header = document.createElement('div');
+        header.className = 'section-header';
+        header.innerHTML = `<strong>${index + 1}. ${section.type || 'section'}</strong>`;
+        const actions = document.createElement('div');
+        actions.className = 'section-actions';
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '削除';
+        removeBtn.addEventListener('click', () => {
+          currentConfig.sections.splice(index, 1);
+          renderSections();
+          syncJsonEditor();
+        });
+        actions.appendChild(removeBtn);
+        header.appendChild(actions);
+        item.appendChild(header);
+
+        const typeInput = document.createElement('input');
+        typeInput.type = 'text';
+        typeInput.value = section.type || '';
+        typeInput.addEventListener('input', () => {
+          section.type = typeInput.value;
+          renderSections();
+          syncJsonEditor();
+        });
+        item.appendChild(labeled('タイプ', typeInput));
+
+        const classInput = document.createElement('input');
+        classInput.type = 'text';
+        classInput.value = section.class || '';
+        classInput.addEventListener('input', () => {
+          section.class = classInput.value;
+          syncJsonEditor();
+        });
+        item.appendChild(labeled('クラス', classInput));
+
+        if (section.wrapper_class !== undefined) {
+          const wrapperInput = document.createElement('input');
+          wrapperInput.type = 'text';
+          wrapperInput.value = section.wrapper_class || '';
+          wrapperInput.addEventListener('input', () => {
+            section.wrapper_class = wrapperInput.value;
+            syncJsonEditor();
+          });
+          item.appendChild(labeled('ラッパークラス', wrapperInput));
+        }
+
+        if (section.heading_image || ['image-gallery', 'faq', 'testimonials'].includes(section.type)) {
+          section.heading_image = section.heading_image || { src: '', alt: '' };
+          const headingSrc = document.createElement('input');
+          headingSrc.type = 'text';
+          headingSrc.value = section.heading_image.src || '';
+          headingSrc.addEventListener('input', () => {
+            section.heading_image.src = headingSrc.value;
+            cleanupHeading(section);
+            syncJsonEditor();
+          });
+          const headingAlt = document.createElement('input');
+          headingAlt.type = 'text';
+          headingAlt.value = section.heading_image.alt || '';
+          headingAlt.addEventListener('input', () => {
+            section.heading_image.alt = headingAlt.value;
+            cleanupHeading(section);
+            syncJsonEditor();
+          });
+          const wrap = document.createElement('div');
+          wrap.className = 'inline';
+          wrap.appendChild(labeled('見出し画像 src', headingSrc));
+          wrap.appendChild(labeled('alt', headingAlt));
+          item.appendChild(wrap);
+        }
+
+        if (section.html_file !== undefined) {
+          const htmlInput = document.createElement('input');
+          htmlInput.type = 'text';
+          htmlInput.value = section.html_file || '';
+          htmlInput.addEventListener('input', () => {
+            section.html_file = htmlInput.value;
+            syncJsonEditor();
+          });
+          const wrapper = document.createElement('div');
+          wrapper.appendChild(labeled('HTMLファイル', htmlInput));
+          if (section.html_file) {
+            const createBtn = document.createElement('button');
+            createBtn.textContent = 'プレースホルダー作成';
+            createBtn.addEventListener('click', () => createPlaceholder(section.html_file));
+            wrapper.appendChild(createBtn);
+          }
+          item.appendChild(wrapper);
+        }
+
+        if (section.items && Array.isArray(section.items)) {
+          if (section.type === 'list' || section.type === 'image-gallery' || section.type === 'bonus') {
+            const itemsArea = document.createElement('textarea');
+            itemsArea.rows = 3;
+            if (section.type === 'list') {
+              itemsArea.value = section.items.join('\n');
+              itemsArea.addEventListener('input', () => {
+                section.items = itemsArea.value.split('\n').map((v) => v.trim()).filter(Boolean);
+                syncJsonEditor();
+              });
+              item.appendChild(labeled('リスト項目 (改行区切り)', itemsArea));
+            } else {
+              itemsArea.value = section.items.map((v) => `${v.src || ''}|${v.alt || ''}`).join('\n');
+              itemsArea.addEventListener('input', () => {
+                section.items = itemsArea.value.split('\n').filter(Boolean).map((line) => {
+                  const [src = '', alt = ''] = line.split('|');
+                  return { src: src.trim(), alt: alt.trim() };
+                });
+                syncJsonEditor();
+              });
+              item.appendChild(labeled('画像リスト (src|alt)', itemsArea));
+            }
+          } else if (section.type === 'faq') {
+            const faqArea = document.createElement('textarea');
+            faqArea.rows = 4;
+            faqArea.value = section.items.map((it) => `${it.question || ''}::${it.answer || ''}`).join('\n');
+            faqArea.addEventListener('input', () => {
+              section.items = faqArea.value.split('\n').filter(Boolean).map((line) => {
+                const [q = '', a = ''] = line.split('::');
+                return { question: q.trim(), answer: a.trim() };
+              });
+              syncJsonEditor();
+            });
+            item.appendChild(labeled('FAQ (質問::回答)', faqArea));
+          } else if (section.type === 'testimonials') {
+            const voiceArea = document.createElement('textarea');
+            voiceArea.rows = 4;
+            voiceArea.value = section.items.map((it) => `${it.name || ''}::${it.title || ''}::${it.quote || ''}`).join('\n');
+            voiceArea.addEventListener('input', () => {
+              section.items = voiceArea.value.split('\n').filter(Boolean).map((line) => {
+                const [name = '', title = '', quote = ''] = line.split('::');
+                return { name: name.trim(), title: title.trim(), quote: quote.trim() };
+              });
+              syncJsonEditor();
+            });
+            item.appendChild(labeled('実績 (名前::肩書::引用)', voiceArea));
+          }
+        }
+
+        if (section.button) {
+          const btnWrap = document.createElement('div');
+          btnWrap.className = 'inline';
+          const btnText = document.createElement('input');
+          btnText.type = 'text';
+          btnText.value = section.button.text || '';
+          btnText.addEventListener('input', () => {
+            section.button.text = btnText.value;
+            syncJsonEditor();
+          });
+          const btnUrl = document.createElement('input');
+          btnUrl.type = 'text';
+          btnUrl.value = section.button.url || '';
+          btnUrl.addEventListener('input', () => {
+            section.button.url = btnUrl.value;
+            syncJsonEditor();
+          });
+          btnWrap.appendChild(labeled('ボタン文言', btnText));
+          btnWrap.appendChild(labeled('リンク先', btnUrl));
+          item.appendChild(btnWrap);
+        }
+
+        sectionsListEl.appendChild(item);
+      });
+    }
+
+    async function selectProject(slug) {
+      const res = await fetch(`/api/projects/${slug}/config`);
+      if (!res.ok) {
+        alert('設定の読み込みに失敗しました');
+        return;
+      }
+      currentSlug = slug;
+      currentConfig = await res.json();
+      ensureConfigShape();
+      renderAll();
+      configEditor.disabled = false;
+      saveBtn.disabled = false;
+      buildBtn.disabled = false;
+      archiveBtn.disabled = false;
+      applyJsonBtn.disabled = false;
+      addSectionBtn.disabled = false;
+      previewLink.href = `/preview/${slug}/index.html`;
+      currentSlugEl.textContent = slug;
+      setStatus('設定を読み込みました');
+    }
+
+    function renderAll() {
+      ensureConfigShape();
+      renderMeta();
+      renderCountdown();
+      renderSticky();
+      renderSections();
+      syncJsonEditor();
+    }
+
+    function bindMetaListeners() {
+      metaTitleInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.meta.title = metaTitleInput.value;
+        syncJsonEditor();
+      });
+      metaDescriptionInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.meta.description = metaDescriptionInput.value;
+        syncJsonEditor();
+      });
+      templatePathInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.template = templatePathInput.value || undefined;
+        syncJsonEditor();
+        renderMeta();
+      });
+      countdownEnabledInput.addEventListener('change', () => {
+        if (!currentConfig) return;
+        currentConfig.countdown.enabled = countdownEnabledInput.checked;
+        syncJsonEditor();
+      });
+      countdownDeadlineInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.countdown.deadline = countdownDeadlineInput.value;
+        syncJsonEditor();
+      });
+      countdownLabelInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.countdown.label = countdownLabelInput.value;
+        syncJsonEditor();
+      });
+      stickyEnabledInput.addEventListener('change', () => {
+        if (!currentConfig) return;
+        currentConfig.sticky_cta.enabled = stickyEnabledInput.checked;
+        syncJsonEditor();
+      });
+      stickyLabelInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.sticky_cta.label = stickyLabelInput.value;
+        syncJsonEditor();
+      });
+      stickyTextInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.sticky_cta.text = stickyTextInput.value;
+        syncJsonEditor();
+      });
+      stickyUrlInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        currentConfig.sticky_cta.url = stickyUrlInput.value;
+        syncJsonEditor();
+      });
+      rawHtmlPathInput.addEventListener('input', () => {
+        if (!currentConfig) return;
+        const value = rawHtmlPathInput.value.trim();
+        if (value) {
+          currentConfig.raw_html_file = value;
+        } else {
+          delete currentConfig.raw_html_file;
+        }
+        renderMeta();
+        syncJsonEditor();
+      });
+      rawHtmlPlaceholderBtn.addEventListener('click', () => {
+        if (!currentConfig || !rawHtmlPathInput.value) {
+          alert('ファイルパスを入力してください');
+          return;
+        }
+        createPlaceholder(rawHtmlPathInput.value);
+      });
+    }
+
+    saveBtn.addEventListener('click', async () => {
+      if (!currentSlug) return;
+      const payload = JSON.parse(JSON.stringify(currentConfig));
+      payload.slug = currentSlug;
+      const res = await fetch(`/api/projects/${currentSlug}/config`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        setStatus('保存しました');
+      } else {
+        alert('保存に失敗しました');
+      }
+    });
+
+    buildBtn.addEventListener('click', async () => {
+      if (!currentSlug) return;
+      setStatus('ビルド中...');
+      const res = await fetch(`/api/projects/${currentSlug}/build`, { method: 'POST' });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus('ビルド完了');
+        document.querySelector('iframe').src = `/preview/${currentSlug}/index.html?ts=${Date.now()}`;
+      } else {
+        setStatus('ビルド失敗', 4000);
+        alert(data.detail || 'ビルドに失敗しました');
+      }
+    });
+
+    archiveBtn.addEventListener('click', async () => {
+      if (!currentSlug) return;
+      setStatus('バックアップ中...');
+      const res = await fetch(`/api/projects/${currentSlug}/archive`, { method: 'POST' });
+      const data = await res.json();
+      if (res.ok) {
+        const buildRes = await fetch(`/api/projects/${currentSlug}/build`, { method: 'POST' });
+        if (buildRes.ok) {
+          document.querySelector('iframe').src = `/preview/${currentSlug}/index.html?ts=${Date.now()}`;
+          setStatus('バックアップ完了＆ビルド完了');
+        } else {
+          setStatus('バックアップ完了（ビルド失敗）', 4000);
+        }
+      } else {
+        setStatus('バックアップ失敗', 4000);
+        alert(data.detail || 'バックアップに失敗しました');
+      }
+    });
+
+    applyJsonBtn.addEventListener('click', () => {
+      try {
+        const parsed = JSON.parse(configEditor.value);
+        parsed.slug = currentSlug;
+        currentConfig = parsed;
+        renderAll();
+        setStatus('JSONを反映しました');
+      } catch (error) {
+        alert('JSONの解析に失敗しました');
+      }
+    });
+
+    addSectionBtn.addEventListener('click', () => {
+      if (!currentConfig) return;
+      const type = newSectionTypeSelect.value;
+      const factory = defaultSectionFactories[type];
+      if (!factory) return;
+      const section = factory();
+      currentConfig.sections.push(section);
+      renderSections();
+      syncJsonEditor();
+    });
+
+    reloadProjectsBtn.addEventListener('click', loadProjects);
+
+    bindMetaListeners();
+    loadProjects();
+  </script>
+</body>
+</html>

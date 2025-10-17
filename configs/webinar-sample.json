@@ -1,0 +1,103 @@
+{
+  "slug": "webinar-sample",
+  "template": "seminar/index.njk",
+  "paths": { "assets": "./assets" },
+  "meta": {
+    "title": "AI×SNS 集客ウェビナー",
+    "description": "90分で売上導線を一緒に作り上げる限定ウェビナーのご案内"
+  },
+  "video": {
+    "type": "youtube",
+    "id": "UU0AHErermo",
+    "title": "ウェビナー紹介動画"
+  },
+  "countdown": {
+    "enabled": true,
+    "deadline": "2025-03-20T20:00:00+09:00"
+  },
+  "caution": {
+    "image": "images/img_caution.png",
+    "alt": "ウェビナー開始までの残り時間が表示されます"
+  },
+  "sections": [
+    {
+      "class": "seminar",
+      "type": "image-gallery",
+      "heading_image": {
+        "src": "images/img_seminar.png",
+        "alt": "ウェビナー概要"
+      },
+      "wrapper_class": "wrap_seminar",
+      "images": [
+        { "src": "images/txt_seminar.png", "alt": "最新の導線設計をライブで公開" },
+        { "src": "images/img_jirei.png", "alt": "実績者の声" }
+      ]
+    },
+    {
+      "class": "naiyou",
+      "type": "list",
+      "heading_image": {
+        "src": "images/hd_seminar.png",
+        "alt": "ウェビナーで学べること"
+      },
+      "wrapper_class": "wrap_naiyou",
+      "list_class": "con_naiyou",
+      "items": [
+        "AIを使った高速コンテンツ生成フロー",
+        "フォロワー数に依存しないマネタイズ導線",
+        "リードから成約までを自動化するステップ",
+        "翌日から試せるテンプレートとチェックリスト"
+      ]
+    },
+    {
+      "class": "text",
+      "type": "html",
+      "heading_image": {
+        "src": "images/subhead01.png",
+        "alt": "ウェビナーに参加する理由"
+      },
+      "wrapper_class": "wrap_text",
+      "html_file": "content/webinar/sample/story.html"
+    },
+    {
+      "class": "faq",
+      "type": "faq",
+      "wrapper_class": "wrap_faq",
+      "heading_image": {
+        "src": "images/subhead02.png",
+        "alt": "よくある質問"
+      },
+      "items": [
+        {
+          "question": "参加費はかかりますか？",
+          "answer": "ウェビナーは完全無料です。参加後に限定オファーをご案内する場合があります。"
+        },
+        {
+          "question": "アーカイブ視聴はできますか？",
+          "answer": "開催後7日間はアーカイブURLをご案内します。リアルタイム参加が難しい方もご安心ください。"
+        }
+      ]
+    },
+    {
+      "class": "voice",
+      "type": "testimonials",
+      "wrapper_class": "wrap_voice",
+      "heading_image": {
+        "src": "images/subhead03.png",
+        "alt": "参加者の声"
+      },
+      "items": [
+        {
+          "name": "安藤さん",
+          "title": "美容サロンオーナー",
+          "quote": "ウェビナーで学んだ導線に切り替えてから、LINE登録数が3倍になりました。"
+        },
+        {
+          "name": "小林さん",
+          "title": "オンライン講師",
+          "quote": "テンプレートを活用しただけで初開催のウェビナーから5件成約が出ました。"
+        }
+      ]
+    }
+  ]
+}

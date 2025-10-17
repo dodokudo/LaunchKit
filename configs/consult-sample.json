@@ -1,0 +1,17 @@
+{
+  "slug": "consult-sample",
+  "template": "optin/base.njk",
+  "paths": { "assets": "./assets" },
+  "meta": {
+    "title": "個別相談フォーム",
+    "description": "売上導線の課題を30分で棚卸しする無料相談会"
+  },
+  "raw_html_file": "content/consult/sample/landing.html",
+  "assets_source": "seminar/assets",
+  "sticky_cta": {
+    "enabled": true,
+    "label": "まずはヒアリングから",
+    "text": "相談日程をリクエスト",
+    "url": "https://example.com/consult"
+  }
+}

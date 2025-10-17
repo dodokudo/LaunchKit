@@ -31,11 +31,22 @@
    npm run build:seminar
    npm run build:optin
    npm run build:optin:enhanced
+   npm run build:webinar
+   npm run build:consult
+   npm run build:all
    ```
 
-   `dist/seminar-sample/index.html`、`dist/optin-sample/index.html`、`dist/optin-enhanced/index.html`（および各 `assets/`）が生成されます。ブラウザで `index.html` を開けばテンプレ確認が可能です。
+   `dist/seminar-sample/index.html`、`dist/optin-sample/index.html`、`dist/optin-enhanced/index.html`、`dist/webinar-sample/index.html`、`dist/consult-sample/index.html`（および各 `assets/`）が生成されます。ブラウザで `index.html` を開けばテンプレ確認が可能です。
 
-3. 新しい案件用に `configs/*.json` と `content/*.html` をコピーして編集
+3. 雛形を作成（例：Opt-in）
+
+   ```bash
+   npm run scaffold -- --type=optin --slug=new-campaign --title="新キャンペーン"
+   ```
+
+   `configs/new-campaign.json` と関連HTMLが生成されます。
+
+4. 新しい案件用に `configs/*.json` と `content/*.html` をコピーして編集
 
    - `slug` … 出力先ディレクトリ名（`dist/<slug>/`）
    - `template` … 使用するテンプレートパス（`optin/base.njk` を指定すると生HTMLをそのまま差し込めます）
@@ -74,6 +85,28 @@
 
 デフォルトでGFM（テーブルやチェックリスト等）の記法に対応しており、改行は`<br>`として扱われます。
 
+## 管理サーバー（プレビュー＆編集 UI）
+
+```bash
+npm run start:admin
+```
+
+- http://localhost:3001/admin で設定ファイルの閲覧・編集、ビルド、プレビューが可能です。
+- `/api/projects` 経由でテンプレ／設定の自動取得、`/preview/<slug>/index.html` でビルド済みファイルを参照します。
+
+## 運用サポートスクリプト
+
+- `npm run scaffold -- --type=optin --slug=new-campaign --title="タイトル"` … テンプレから設定・HTMLを複製
+- `node scripts/archive.js <slug>` … 設定とHTMLを `history/<slug>/` にタイムスタンプ付きで保存
+- `node scripts/set-deadline.js <slug> [days]` … カウントダウンの締切を現在時刻から指定日数後に更新
+- `node scripts/add-analytics.js <slug> <gtm|fb>` … 設定ファイルに測定タグを追記
+- `node scripts/deploy-static.js <slug>` … `dist/<slug>` を `deploy/<slug>` にコピー（ホスティングへアップロード）
+
+## GitHub Pages デプロイ
+
+- `.github/workflows/deploy.yml` で `main` ブランチへ push すると `npm run build:all` を実行し、`dist/` を GitHub Pages にデプロイします。
+- ワークフローは手動実行（workflow_dispatch）にも対応しているので、任意のタイミングでビルド／公開が可能です。
+
 ## セクション定義の考え方
 
 `sections` 配列は上から順に描画され、`type` に応じてテンプレ側のレンダリングが切り替わります。
@@ -85,6 +118,8 @@
 - `list` … 箇条書きリスト
   - `items` はHTML文字列を許可（太字・装飾向け）
 - `bonus` … 特典一覧＋CTAボタン。`button` を省けばボタンなしで表示
+- `faq` … `items` に {question, answer} の配列を指定し、Q&Aを表示
+- `testimonials` … `items` に {name, title, quote} の配列を指定し、実績/お客様の声を表示
 - `cta` … シンプルなボタン表示のみ
 - `html` … 自由入力ブロック
   - `html_file` にスニペットファイルを指定するとビルド時に読み込み、`wrap_text` など好みのラッパークラスをあてられます
@@ -98,9 +133,9 @@
 
 ## 今後の拡張ポイント
 
-- `templates/optin/index.njk` を追加し、メールフォームやLINE友だち追加ボタン特化のテンプレを同じ仕組みで量産
-- `sections` の`type`に `voice`（動画埋め込み）や `faq`（Q&Aリスト）などを拡充
-- 設定ファイルをCSVやスプレッドシートから生成するスクリプトを追加し、非エンジニアでも更新できるフローを整備
-- Claude出力を整形するCLI（`scripts/import-claude.js` など）を追加し、構造化→テーマ適用を自動化
+- 認証・権限管理やチームでの承認フロー
+- Markdown/HTML プレビュー付き WYSIWYG 編集やライブプレビューの強化
+- Google スプレッドシート／Notion など外部データソースとの連携による原稿同期
+- テンプレート／コンポーネントの管理画面化（バージョン管理・マーケットプレイス化）
 
 オプトイン型のテンプレも同様の構造で追加可能です。必要な要素・想定セクションが固まったら `templates/optin/` とサンプル設定を作成します。

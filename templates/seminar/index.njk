@@ -106,6 +106,29 @@
         <div class="wrap_cta">
           <a class="btn" href="{{ section.button.url }}">{{ section.button.text }}</a>
         </div>
+        {% elif section.type == 'faq' %}
+        <div class="{{ section.wrapper_class or 'wrap_faq' }}">
+          <dl class="faq_list">
+            {% for item in section.items %}
+            <div class="faq_item">
+              <dt>{{ item.question }}</dt>
+              <dd>{{ item.answer | safe }}</dd>
+            </div>
+            {% endfor %}
+          </dl>
+        </div>
+        {% elif section.type == 'testimonials' %}
+        <div class="{{ section.wrapper_class or 'wrap_voice' }}">
+          {% for item in section.items %}
+          <div class="voice_card">
+            <p class="voice_quote">“{{ item.quote | safe }}”</p>
+            <p class="voice_name">
+              {{ item.name }}
+              {% if item.title %}<span>{{ item.title }}</span>{% endif %}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
         {% elif section.type == 'html' %}
         <div class="{{ section.wrapper_class }}">
           {{ section.html | safe }}
