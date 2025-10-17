@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build:seminar",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/seminar-sample/index.html"
+    }
+  ]
+}
