@@ -65,8 +65,27 @@ async function main() {
     caution: config.caution || {},
     video: config.video || null,
     sections: preparedSections,
-    client_state: config.client_state
+    client_state: config.client_state,
+    raw_html: null,
+    footer_scripts: config.footer_scripts || [],
+    sticky_cta: config.sticky_cta || { enabled: false }
   };
+
+  if (config.raw_html_file) {
+    const rawPathCandidates = [
+      path.resolve(projectRoot, config.raw_html_file),
+      path.resolve(path.dirname(configPath), config.raw_html_file)
+    ];
+    for (const candidate of rawPathCandidates) {
+      if (await fs.pathExists(candidate)) {
+        context.raw_html = await fs.readFile(candidate, 'utf8');
+        break;
+      }
+    }
+    if (!context.raw_html) {
+      throw new Error(`raw_html_file not found: ${config.raw_html_file}`);
+    }
+  }
 
   const html = env.render(templateRel, context);
   await fs.outputFile(path.join(distDir, 'index.html'), html);

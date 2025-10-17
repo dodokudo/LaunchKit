@@ -1,0 +1,24 @@
+{
+  "slug": "optin-enhanced",
+  "template": "optin/base.njk",
+  "paths": {
+    "assets": "./assets"
+  },
+  "meta": {
+    "title": "無料特典プレゼント | AI×Threads集客",
+    "description": "Threads集客メソッドと3大特典を期間限定で無料公開。LINE登録で今すぐ受け取り。"
+  },
+  "raw_html_file": "content/optin/sample.html",
+  "assets_source": "seminar/assets",
+  "countdown": {
+    "enabled": true,
+    "deadline": "2025-03-31T23:59:59+09:00",
+    "label": "締切まで残り"
+  },
+  "sticky_cta": {
+    "enabled": true,
+    "label": "今なら3大特典が無料",
+    "text": "LINEに登録する",
+    "url": "https://example.com/line"
+  }
+}

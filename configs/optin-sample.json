@@ -1,0 +1,13 @@
+{
+  "slug": "optin-sample",
+  "template": "optin/base.njk",
+  "paths": {
+    "assets": "./assets"
+  },
+  "meta": {
+    "title": "無料特典プレゼント",
+    "description": "Threads集客の最新メソッドと限定特典を無料公開"
+  },
+  "raw_html_file": "content/optin/sample.html",
+  "assets_source": "seminar/assets"
+}

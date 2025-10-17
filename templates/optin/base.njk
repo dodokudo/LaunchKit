@@ -1,0 +1,40 @@
+{% set assets = paths.assets %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ meta.title }}</title>
+  <meta name="description" content="{{ meta.description }}">
+  <link rel="stylesheet" href="{{ assets }}/css/optin.css">
+</head>
+<body class="optin-body">
+  {% if countdown.enabled and countdown.deadline %}
+  <div class="countdown-banner" data-deadline="{{ countdown.deadline }}">
+    {% if countdown.label %}<span class="countdown__label">{{ countdown.label }}</span>{% endif %}
+    <span class="countdown__value" data-deadline="{{ countdown.deadline }}"></span>
+  </div>
+  {% endif %}
+
+  {% if raw_html %}
+  {{ raw_html | safe }}
+  {% else %}
+  <div class="container empty">
+    <p>opt-inテンプレート用のHTMLが設定されていません。</p>
+  </div>
+  {% endif %}
+
+  {% if sticky_cta.enabled and sticky_cta.text and sticky_cta.url %}
+  <div class="sticky-cta" data-sticky-cta>
+    {% if sticky_cta.label %}<span class="sticky-cta__label">{{ sticky_cta.label }}</span>{% endif %}
+    <a class="sticky-cta__link" href="{{ sticky_cta.url }}">{{ sticky_cta.text }}</a>
+  </div>
+  <div class="sticky-cta__spacer" aria-hidden="true"></div>
+  {% endif %}
+
+  <script src="{{ assets }}/js/optin.js"></script>
+  {% for script in footer_scripts %}
+  {{ script | safe }}
+  {% endfor %}
+</body>
+</html>

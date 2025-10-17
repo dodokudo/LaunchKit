@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:seminar": "node scripts/build.js configs/seminar-sample.json"
+    "build:seminar": "node scripts/build.js configs/seminar-sample.json",
+    "build:optin": "node scripts/build.js configs/optin-sample.json",
+    "build:optin:enhanced": "node scripts/build.js configs/optin-enhanced.json"
   },
   "dependencies": {
+    "cheerio": "^1.0.0",
     "fs-extra": "^11.2.0",
+    "marked": "^16.4.1",
     "nunjucks": "^3.2.4"
   }
 }
