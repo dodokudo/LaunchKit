@@ -62,6 +62,8 @@
 
 ## Claudeからの原稿を取り込む
 
+管理UIでは、左のプロジェクト一覧から案件を開き、画面上部の「HTMLファイルの保存先」欄にパスを入力してから下のテキストエリアにClaude生成のHTMLを貼り付け、`HTMLを保存` → `ビルド` と進めれば即座に反映されます。
+
 1. Claudeに対して、セクションごとに `data-block`（例：`hero`, `section`, `problem-list`, `results`, `highlight`, `gift-box`, `urgency`, `ps` など）と役割ごとに `data-role`（例：`lead`, `catch`, `cta-copy`, `gift-item`, `gift-title`, `gift-value`, `gift-total`, `primary-cta`, `secondary-cta`, `sticky-cta-label`, `sticky-cta-link`, `countdown-label`, `urgency-alert`, `ps-title` 等）を付けたHTMLを出力してもらう。
 2. 生成されたHTMLを `content/optin/raw-*.html` などに保存。
 3. 変換スクリプトでLaunchKit向けのマークアップへ整形。
@@ -93,6 +95,9 @@ npm run start:admin
 
 - http://localhost:3001/admin で設定ファイルの閲覧・編集、ビルド、プレビューが可能です。
 - `/api/projects` 経由でテンプレ／設定の自動取得、`/preview/<slug>/index.html` でビルド済みファイルを参照します。
+
+- 左上の「◀︎ 隠す」ボタンでプロジェクト一覧を折りたたみ、プレビュー領域を広く使えます。
+- プレビュー欄右上の「PC表示/スマホ表示」でデバイス表示を切り替えて確認できます。
 
 ## 運用サポートスクリプト
 

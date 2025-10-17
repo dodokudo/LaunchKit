@@ -145,6 +145,45 @@ app.post('/api/files', async (req, res) => {
   }
 });
 
+app.post('/api/projects/:slug/html', async (req, res) => {
+  try {
+    const { path: htmlPath, content = '' } = req.body || {};
+    if (!htmlPath || typeof htmlPath !== 'string') {
+      return res.status(400).json({ error: 'invalid_path' });
+    }
+    const resolved = path.resolve(projectRoot, htmlPath);
+    if (!resolved.startsWith(projectRoot)) {
+      return res.status(400).json({ error: 'invalid_path_scope' });
+    }
+    await fs.outputFile(resolved, content, 'utf8');
+    res.json({ ok: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_write_html' });
+  }
+});
+
+app.get('/api/html', async (req, res) => {
+  try {
+    const targetPath = req.query.path;
+    if (!targetPath || typeof targetPath !== 'string') {
+      return res.status(400).json({ error: 'invalid_path' });
+    }
+    const resolved = path.resolve(projectRoot, targetPath);
+    if (!resolved.startsWith(projectRoot)) {
+      return res.status(400).json({ error: 'invalid_path_scope' });
+    }
+    if (!(await fs.pathExists(resolved))) {
+      return res.json({ exists: false, content: '' });
+    }
+    const content = await fs.readFile(resolved, 'utf8');
+    res.json({ exists: true, content });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_read_html' });
+  }
+});
+
 app.use('/admin', express.static(path.join(projectRoot, 'admin')));
 app.use('/preview', express.static(distDir));
 
