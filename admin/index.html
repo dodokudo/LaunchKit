@@ -307,24 +307,33 @@
     }
 
     async function loadProjects() {
-      const res = await fetch('/api/projects');
-      const data = await res.json();
-      projectListEl.innerHTML = '';
-      data.forEach((project) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
+      try {
+        const res = await fetch('/api/projects');
+        if (!res.ok) {
+          throw new Error(`Failed to load projects: ${res.status}`);
+        }
+        const data = await res.json();
+        projectListEl.innerHTML = '';
+        data.forEach((project) => {
+          const li = document.createElement('li');
+          li.innerHTML = `
           <div class="project-item">
             <strong>${project.title}</strong>
             <span style="font-size:12px;color:#777">${project.slug}</span>
             <button data-slug="${project.slug}">開く</button>
           </div>
         `;
-        li.querySelector('button').addEventListener('click', () => selectProject(project.slug));
-        projectListEl.appendChild(li);
-      });
+          li.querySelector('button').addEventListener('click', () => selectProject(project.slug));
+          projectListEl.appendChild(li);
+        });
+      } catch (error) {
+        console.error(error);
+        setStatus('プロジェクト一覧の取得に失敗しました', 4000);
+        projectListEl.innerHTML = '<li style="color:#c92a2a;font-size:12px;">読み込みに失敗しました。サーバーのログを確認してください。</li>';
+      }
     }
 
-    function ensureConfigShape() {
+function ensureConfigShape() {
       if (!currentConfig.meta) currentConfig.meta = {};
       if (!currentConfig.countdown) currentConfig.countdown = {};
       if (!currentConfig.sticky_cta) currentConfig.sticky_cta = {};
@@ -588,24 +597,28 @@
     }
 
     async function selectProject(slug) {
-      const res = await fetch(`/api/projects/${slug}/config`);
-      if (!res.ok) {
+      try {
+        const res = await fetch(`/api/projects/${slug}/config`);
+        if (!res.ok) {
+          throw new Error(`Failed to load config: ${res.status}`);
+        }
+        currentSlug = slug;
+        currentConfig = await res.json();
+        ensureConfigShape();
+        renderAll();
+        configEditor.disabled = false;
+        saveBtn.disabled = false;
+        buildBtn.disabled = false;
+        archiveBtn.disabled = false;
+        applyJsonBtn.disabled = false;
+        addSectionBtn.disabled = false;
+        previewLink.href = `/preview/${slug}/index.html`;
+        currentSlugEl.textContent = slug;
+        setStatus('設定を読み込みました');
+      } catch (error) {
+        console.error(error);
         alert('設定の読み込みに失敗しました');
-        return;
       }
-      currentSlug = slug;
-      currentConfig = await res.json();
-      ensureConfigShape();
-      renderAll();
-      configEditor.disabled = false;
-      saveBtn.disabled = false;
-      buildBtn.disabled = false;
-      archiveBtn.disabled = false;
-      applyJsonBtn.disabled = false;
-      addSectionBtn.disabled = false;
-      previewLink.href = `/preview/${slug}/index.html`;
-      currentSlugEl.textContent = slug;
-      setStatus('設定を読み込みました');
     }
 
     function renderAll() {
