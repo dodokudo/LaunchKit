@@ -1,0 +1,12 @@
+{
+  "name": "launchkit",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:seminar": "node scripts/build.js configs/seminar-sample.json"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "nunjucks": "^3.2.4"
+  }
+}

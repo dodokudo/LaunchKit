@@ -1,0 +1,146 @@
+{
+  "slug": "seminar-sample",
+  "template": "seminar/index.njk",
+  "paths": {
+    "assets": "./assets"
+  },
+  "meta": {
+    "title": "【3日間限定】少ないフォロワー数・顔出し無し・副業でも出来る「SNS×LINE高単価商品販売」プレミアム動画講座",
+    "description": "",
+    "keywords": "",
+    "og": {
+      "title": "",
+      "type": "website",
+      "url": "",
+      "image": "",
+      "site_name": "",
+      "description": "",
+      "locale": "ja_JP"
+    },
+    "fb_app_id": "",
+    "twitter_card": "summary_large_image"
+  },
+  "tag_manager": {
+    "head": [],
+    "body": []
+  },
+  "countdown": {
+    "enabled": true,
+    "deadline": ""
+  },
+  "caution": {
+    "image": "images/img_caution.png",
+    "alt": "重要：無料プレミアム動画の公開は【3日間限定】です。再公開はいたしませんので、期限内にご視聴ください"
+  },
+  "video": {
+    "type": "youtube",
+    "id": "UU0AHErermo",
+    "title": "YouTube video player"
+  },
+  "sections": [
+    {
+      "class": "seminar",
+      "type": "image-gallery",
+      "heading_image": {
+        "src": "images/img_seminar.png",
+        "alt": "無料プレゼント２ 少フォロワー・顔出し無し・副業でも出来る「SNS×LINE高単価商品販売」シークレットオンラインセミナーへ招待いたします"
+      },
+      "wrapper_class": "wrap_seminar",
+      "images": [
+        {
+          "src": "images/txt_seminar.png",
+          "alt": "僕が、月収100万円越えを18ヶ月連続で達成 最高月商738万円を達成し2ヶ月で1018万円 たったの2年で3000万円以上を稼ぎだした方法 そして、たくさんの受講生が収益を右肩あがりに増やし続けている秘密をあなた自身の眼で確かめられる今回限りの機会です"
+        },
+        {
+          "src": "images/img_jirei.png",
+          "alt": "",
+          "class": "img_jirei"
+        }
+      ]
+    },
+    {
+      "class": "naiyou",
+      "type": "list",
+      "heading_image": {
+        "src": "images/hd_seminar.png",
+        "alt": "シークレットオンラインセミナー内容"
+      },
+      "wrapper_class": "wrap_naiyou",
+      "list_class": "con_naiyou",
+      "items": [
+        "後発組・少フォロワーでも売れる6000万円を稼ぎ出したInstagram×LINE２ステップ集客術のロードマップ",
+        "<strong class=\"red\">【2025年最新版】</strong>インスタ運用攻略の３つのポイント",
+        "継続的に売れ続ける商品を作成するための<strong class=\"red\">具体的な５ステップ</strong>",
+        "頑張らなくても自然と売れてしまう<strong class=\"red\">売れるコンセプトの作り方</strong>",
+        "<strong class=\"red\">悪用厳禁！5日で700万円</strong>を販売した LINEマーケティングの裏側",
+        "これだけ押さえればOK！6000万円以上を売上た<strong class=\"red\">初心者でも成約できる</strong>セールス手法"
+      ]
+    },
+    {
+      "class": "cta",
+      "type": "bonus",
+      "heading_image": {
+        "src": "images/hd_bonus02.png",
+        "alt": "参加者限定8大プレゼント付き"
+      },
+      "wrapper_class": "bonus02",
+      "item_class": "con_bonus",
+      "items": [
+        {
+          "src": "images/shd_bonus01.png",
+          "alt": "特典1：閲覧20%を超えるストーリーズ攻略　電子書籍"
+        },
+        {
+          "src": "images/shd_bonus02.png",
+          "alt": "特典2：即ファン化できるライブ配信のテンプレート"
+        },
+        {
+          "src": "images/shd_bonus03.png",
+          "alt": "特典3：初心者でも商品作成ができる5ステップを徹底解説した高単価商品作成マニュアル スライド50枚"
+        },
+        {
+          "src": "images/shd_bonus04.png",
+          "alt": "特典4：5日で700万円売り上げたLINE配信のテンプレート"
+        },
+        {
+          "src": "images/shd_bonus05.png",
+          "alt": "期間限定募集 Instagram×LINE２ステップ集客術 完全マスター講座 参加インビテーション＆特別割引権利 ～成果を飛躍的に上げるマル秘10大特典付き～ セミナー受講者にのみ、講座参加権利を解放します！"
+        }
+      ],
+      "button": {
+        "url": "https://liff.line.me/2005642913-aYVe6A2W?unique_key=TFoDXf&ts=1737206642",
+        "text": "今すぐシークレットセミナーへ申し込む"
+      }
+    },
+    {
+      "class": "text",
+      "type": "html",
+      "heading_image": {
+        "src": "images/subhead01.png",
+        "alt": "月収100万円越えを18ヶ月連続で達成 最高月商738万円を達成し2ヶ月で1018万円 たったの2年で3000万円以上を稼ぎだした方法とは？"
+      },
+      "wrapper_class": "wrap_text",
+      "html_file": "content/seminar/sample/text01.html"
+    },
+    {
+      "class": "text",
+      "type": "html",
+      "heading_image": {
+        "src": "images/subhead02.png",
+        "alt": "初心者でも出来るといっても一部の優秀な方だけじゃないんですか？"
+      },
+      "wrapper_class": "wrap_text",
+      "html_file": "content/seminar/sample/text02.html"
+    },
+    {
+      "class": "text",
+      "type": "html",
+      "heading_image": {
+        "src": "images/subhead03.png",
+        "alt": "1回で600万円以上の価値を手に入れられるX集客"
+      },
+      "wrapper_class": "wrap_text",
+      "html_file": "content/seminar/sample/text03.html"
+    }
+  ]
+}
