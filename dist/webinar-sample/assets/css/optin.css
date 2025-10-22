@@ -1,0 +1,376 @@
+:root {
+  --main-color: #000000;
+  --accent-color: #ffd700;
+  --text-color: #333333;
+  --bg-color: #fafafa;
+  --gray-bg: #f5f5f5;
+  --red-color: #d32f2f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 50%, #cccccc 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 40px auto 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+}
+
+.hero .sub-title {
+  font-size: 18px;
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+.section {
+  background: white;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--main-color);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--main-color);
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--main-color);
+  margin: 25px 0 15px 0;
+}
+
+p {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.lead {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.catch {
+  font-size: 18px;
+}
+
+.cta-copy {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.problem-list {
+  background: var(--gray-bg);
+  padding: 30px;
+  border-radius: 8px;
+  margin: 30px 0;
+}
+
+.problem-list p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding-left: 35px;
+  position: relative;
+}
+
+.problem-list p::before {
+  content: "❌";
+  position: absolute;
+  left: 0;
+  font-size: 22px;
+}
+
+.results {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+  padding: 30px;
+  border-radius: 8px;
+  margin: 30px 0;
+}
+
+.results p {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 15px 0;
+  padding-left: 40px;
+  position: relative;
+}
+
+.results p::before {
+  content: "✅";
+  position: absolute;
+  left: 0;
+  font-size: 26px;
+}
+
+.highlight-box {
+  background: var(--main-color);
+  color: white;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 30px 0;
+  text-align: center;
+}
+
+.highlight-box h3 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.gift-box {
+  background: #fff9e6;
+  border: 3px solid var(--accent-color);
+  padding: 30px;
+  border-radius: 12px;
+  margin: 30px 0;
+}
+
+.gift-box h2 {
+  text-align: center;
+  border: none;
+  margin-bottom: 30px;
+}
+
+.gift-item {
+  margin: 20px 0;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.gift-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
+.gift-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--red-color);
+  margin-top: 10px;
+}
+
+.gift-total {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--red-color);
+  margin-top: 30px;
+}
+
+.countdown-banner {
+  max-width: 800px;
+  margin: 20px auto 0;
+  background: #111;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+  font-weight: 600;
+}
+
+.countdown__label {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.countdown__value {
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
+
+.cta-button {
+  display: block;
+  background: var(--main-color);
+  color: white;
+  padding: 25px 50px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 40px auto;
+  max-width: 500px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.cta-button:hover {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.cta-button::before {
+  content: "▼ ";
+}
+
+.cta-button::after {
+  content: " ▼";
+}
+
+.urgency {
+  background: #ffebee;
+  padding: 30px;
+  border-radius: 8px;
+  border-left: 5px solid var(--red-color);
+  margin: 30px 0;
+  text-align: center;
+}
+
+.urgency p {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--red-color);
+  margin: 10px 0;
+}
+
+.urgency .alert {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.ps {
+  background: var(--gray-bg);
+  padding: 25px;
+  border-left: 4px solid var(--main-color);
+  margin: 30px 0;
+  font-size: 16px;
+}
+
+.ps-title {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.center {
+  text-align: center;
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.note {
+  margin-top: 30px;
+}
+
+.highlight {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 999;
+  backdrop-filter: blur(6px);
+}
+
+.sticky-cta__label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.sticky-cta__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--accent-color);
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sticky-cta__link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.sticky-cta__spacer {
+  height: 72px;
+}
+
+.divider {
+  height: 3px;
+  background: linear-gradient(to right, transparent, #000, transparent);
+  margin: 50px 0;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .cta-button {
+    font-size: 20px;
+    padding: 20px 30px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .sticky-cta {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

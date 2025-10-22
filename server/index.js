@@ -95,6 +95,94 @@ app.post('/api/projects/:slug/build', async (req, res) => {
   }
 });
 
+app.post('/api/projects/:slug/deploy', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const distPath = path.join(distDir, slug);
+
+    if (!(await fs.pathExists(distPath))) {
+      return res.status(400).json({ error: 'not_built', message: '先にビルドしてください' });
+    }
+
+    const { spawn } = require('child_process');
+
+    // Use Vercel (requires prior 'vercel link' in dist folder)
+    const deployProcess = spawn('npx', ['vercel', '--prod', '--yes'], {
+      cwd: distPath,
+      env: { ...process.env }
+    });
+
+    let stdout = '';
+    let stderr = '';
+    let finished = false;
+
+    deployProcess.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+
+    deployProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+
+    deployProcess.on('close', async (code) => {
+      if (finished) return;
+      finished = true;
+
+      if (code !== 0) {
+        console.error('Deploy error:', stderr);
+        return res.status(500).json({ error: 'deploy_failed', detail: stderr });
+      }
+
+      try {
+        // Extract URL from output
+        const urlMatch = stdout.match(/https:\/\/[^\s]+\.vercel\.app/);
+        const deployUrl = urlMatch ? urlMatch[0] : null;
+
+        if (!deployUrl) {
+          return res.status(500).json({ error: 'url_not_found', detail: 'デプロイURLが見つかりませんでした' });
+        }
+
+        // Save deploy URL to config
+        const configPath = path.join(configsDir, `${slug}.json`);
+        const config = await fs.readJson(configPath);
+        config.deploy_url = deployUrl;
+        await fs.outputJson(configPath, config, { spaces: 2 });
+
+        res.json({ ok: true, url: deployUrl, output: stdout });
+      } catch (error) {
+        console.error('Error saving config:', error);
+        res.status(500).json({ error: 'failed_to_save_config' });
+      }
+    });
+
+    // Set timeout
+    setTimeout(() => {
+      if (finished) return;
+      finished = true;
+      deployProcess.kill();
+      res.status(500).json({ error: 'deploy_timeout', detail: 'デプロイがタイムアウトしました' });
+    }, 120000); // 2 minutes
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_deploy' });
+  }
+});
+
+app.get('/api/projects/:slug/url', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const config = await readConfig(slug);
+    if (!config) {
+      return res.status(404).json({ error: 'not_found' });
+    }
+    res.json({ url: config.json.deploy_url || null });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_get_url' });
+  }
+});
+
 app.post('/api/projects/:slug/archive', async (req, res) => {
   try {
     const { slug } = req.params;
@@ -181,6 +269,25 @@ app.get('/api/html', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'failed_to_read_html' });
+  }
+});
+
+app.post('/api/projects/:slug/save-html-direct', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const { html } = req.body;
+
+    if (!html) {
+      return res.status(400).json({ error: 'invalid_html' });
+    }
+
+    const distPath = path.join(distDir, slug, 'index.html');
+    await fs.writeFile(distPath, html, 'utf8');
+
+    res.json({ ok: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_save_html' });
   }
 });
 

@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threads×AI勉強会</title>
+  <meta name="description" content="">
+  <link rel="stylesheet" href="./assets/css/optin.css">
+  
+  <style id="custom-edit-styles">
+.hero h1 { font-size: 28px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important }
+  
+.hero h1 { font-size: 28px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important }
+@media (max-width: 768px) { .hero h1 { font-size: 26px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .hero h1 { font-size: 20px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .hero h1 { font-size: 20px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .subtitle { font-size: 14px !important; color: #dddddd !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .wrap p { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .text-large.text-bold.mt-20 { font-size: 16px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .mt-20 { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .mt-20 { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .section h2 { font-size: 19px !important; color: #222222 !important; background-color: #f5f5f5 !important; font-weight: bold !important; padding: 23.4px 0px !important; margin: 0px 0px 23.4px !important } }
+@media (max-width: 768px) { .testimonial p { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .bonus-title { font-size: 18px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 10px !important } }
+@media (max-width: 768px) { .bonus-title { font-size: 18px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 10px !important } }
+@media (max-width: 768px) { .urgency-box h3 { font-size: 22px !important; color: #000000 !important; font-weight: bold !important; padding: 0px !important; margin: 25px 0px 15px !important } }
+@media (max-width: 768px) { strong { font-size: 16px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 0px !important } }
+@media (max-width: 768px) { .urgency-box p { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .urgency-box p { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .urgency-box p { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .text-center.mt-20 { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .qualification-item { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 12px 0px !important; margin: 0px !important } }
+@media (max-width: 768px) { .qualification-item { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 12px 0px !important; margin: 0px !important } }
+@media (max-width: 768px) { .qualification-item { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 12px 0px !important; margin: 0px !important } }
+@media (max-width: 768px) { .mt-20 { font-size: 16px !important; color: #222222 !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .text-large.text-bold.mt-20 { font-size: 16px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 0px 0px 15px !important } }
+@media (max-width: 768px) { .cta-heading { font-size: 20px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px 0px 10px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .cta-heading { font-size: 20px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px 0px 10px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .cta-section p { font-size: 16px !important; color: #ffffff !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .cta-note { font-size: 16px !important; color: #ffffff !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .cta-note { font-size: 10px !important; color: #ffffff !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .cta-note { font-size: 10px !important; color: #ffffff !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 20px !important } }
+@media (max-width: 768px) { .cta-note { font-size: 16px !important; color: #ffffff !important; font-weight: normal !important; padding: 0px !important; margin: 0px 0px 20px !important } }
+  </style>
+  
+</head>
+<body class="optin-body">
+  
+  <div class="countdown-banner" >
+    <span class="countdown__label">募集終了まで　あと</span>
+    <span class="countdown__value" data-deadline="2025-10-18T23:59:49+09:00"></span>
+  </div>
+  
+
+
+  <div data-raw-html-root>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", "Yu Gothic", sans-serif;
+            font-size: 125%;
+            line-height: 1.7;
+            background: #f5f5f5;
+            color: #222;
+            text-align: justify;
+        }
+
+        #wrapper {
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        /* Countdown */
+        .countdown-banner {
+            padding: 0.5em 0 0.3em;
+            background: #000;
+            color: #fff;
+            line-height: 1.5;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .countdown__label {
+            display: inline-block;
+            margin-right: 0.3em;
+        }
+
+        .countdown__value {
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3em 0;
+            background: #222;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(20px, 5vw, 28px);
+            font-weight: 900;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(14px, 3.5vw, 16px);
+            color: #ddd;
+            line-height: 1.7;
+        }
+
+        /* Section */
+        .section {
+            padding: 0;
+            background: #fff;
+        }
+
+        .section h2 {
+            position: relative;
+            margin: 0 auto 2.5em;
+            padding: 2em 0;
+            width: 980px;
+            max-width: 100%;
+            border-top: 2px solid #222;
+            border-bottom: 2px solid #222;
+            background: #f5f5f5;
+            font-size: clamp(19px, 4.5vw, 24px);
+            font-weight: 900;
+            text-align: center;
+            color: #222;
+        }
+
+        .section h2::before {
+            position: absolute;
+            content: "";
+            margin: 3px 0;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+        }
+
+        .wrap {
+            margin: 0 auto;
+            width: 820px;
+            max-width: 96%;
+        }
+
+        .section p {
+            font-size: 16px;
+            line-height: 1.85;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        /* Check items */
+        .check-item {
+            display: inline-block;
+            margin-bottom: 0.5em;
+            padding-left: 2em;
+            background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23222%22%20d%3D%22M7.629%2014.566l-4.242-4.243L2%2011.71l5.629%205.629L18.5%206.468l-1.387-1.387z%22%2F%3E%3C%2Fsvg%3E) left 0.3em / 1.2em auto no-repeat;
+            font-weight: bold;
+        }
+
+        /* Problem Section */
+        .problem-text {
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .problem-text strong {
+            font-weight: 700;
+        }
+
+        .problem-arrow {
+            color: #666;
+            font-size: 14px;
+            margin-left: 8px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Emphasize */
+        .emphasize {
+            background: #222;
+            color: #fff;
+            padding: 22px 20px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.6;
+            margin: 22px 0;
+        }
+
+        /* Results List */
+        .results-list {
+            margin: 20px 0;
+        }
+
+        .results-item {
+            font-size: 16px;
+            line-height: 1.85;
+            padding: 10px 0 10px 2.2em;
+            margin-bottom: 0.8em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid #DDD;
+            background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23222%22%20d%3D%22M7.629%2014.566l-4.242-4.243L2%2011.71l5.629%205.629L18.5%206.468l-1.387-1.387z%22%2F%3E%3C%2Fsvg%3E) left 0.3em / 1.2em 1.2em no-repeat;
+            font-weight: bold;
+        }
+
+        .results-item:last-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+
+        /* Zero List */
+        .zero-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .zero-item {
+            background: #f5f5f5;
+            padding: 18px 12px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid #DDD;
+        }
+
+        /* Reason Box */
+        .reason-box {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #DDD;
+        }
+
+        .reason-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .reason-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: #f5f5f5;
+            padding: 25px 20px;
+            margin: 22px 0;
+            border: 1px solid #DDD;
+        }
+
+        .testimonial-profile {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .testimonial p {
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-highlight {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        /* Schedule */
+        .schedule-box {
+            background: #f5f5f5;
+            border: 2px solid #222;
+            padding: 22px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .schedule-date {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .schedule-time {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Content List */
+        .content-list {
+            margin-top: 20px;
+        }
+
+        .content-item {
+            font-size: 16px;
+            line-height: 1.8;
+            padding: 12px 0 12px 2.2em;
+            margin-bottom: 0.8em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid #DDD;
+            background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23222%22%20d%3D%22M7.629%2014.566l-4.242-4.243L2%2011.71l5.629%205.629L18.5%206.468l-1.387-1.387z%22%2F%3E%3C%2Fsvg%3E) left 0.3em / 1.2em 1.2em no-repeat;
+            font-weight: bold;
+        }
+
+        .content-item:last-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+
+        /* Bonus */
+        .bonus-box {
+            background: #f5f5f5;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #DDD;
+        }
+
+        .bonus-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .bonus-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .bonus-value {
+            font-size: 20px;
+            font-weight: 900;
+            text-align: right;
+        }
+
+        .total-value {
+            background: #222;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .total-price {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .total-free {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Urgency */
+        .urgency-box {
+            background: #f5f5f5;
+            padding: 25px 20px;
+            text-align: center;
+            border: 2px solid #222;
+            margin: 22px 0;
+        }
+
+        .urgency-box h3 {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .urgency-box p {
+            font-size: 16px;
+            line-height: 1.85;
+            margin-bottom: 12px;
+        }
+
+        /* Qualification */
+        .qualification-item {
+            font-size: 16px;
+            line-height: 1.85;
+            padding: 12px 0;
+            border-bottom: 1px solid #DDD;
+        }
+
+        .qualification-item:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: #222;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .cta-heading {
+            font-size: clamp(20px, 5vw, 26px);
+            font-weight: 900;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #222;
+            padding: 18px 45px;
+            font-size: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            margin: 20px 0;
+            transition: all 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background: #f5f5f5;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        .cta-note {
+            font-size: 14px;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        /* Text Utilities */
+        .text-bold {
+            font-weight: 700;
+        }
+
+        .text-large {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            body {
+                font-size: 4.5vw;
+            }
+
+            .countdown-banner {
+                font-size: 1em;
+            }
+
+            .hero {
+                padding: 2em 18px;
+            }
+
+            .section {
+                padding: 0;
+            }
+
+            .section h2 {
+                margin: 0 auto 6vw;
+                padding: 6vw 0;
+            }
+
+            .zero-list {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 16px;
+                width: 90%;
+            }
+        }
+    </style>
+
+    <div id="wrapper">
+        <div class="hero">
+            <h1>「Instagram1年やって売上ゼロ」の<br>50代女性がThreadsで<br>月商100万円を突破した理由</h1>
+            <p class="subtitle">毎日5時間の投稿作業から解放され<br>LINE登録が自動発生する仕組みとは？</p>
+        </div>
+
+        <div class="section">
+            <h2>こんな悩み、ありませんか?</h2>
+            <div class="wrap">
+                <p class="problem-text"><strong>毎日Instagram投稿に追われてる</strong><span class="problem-arrow">→ リール、ストーリー...でも売上ゼロ</span></p>
+                <p class="problem-text"><strong>収益に繋がらない</strong><span class="problem-arrow">→ フォロワーは増えても、商品は売れない</span></p>
+                <p class="problem-text"><strong>投稿ネタが尽きてSNSが苦痛</strong><span class="problem-arrow">→ 毎日「何を投稿しよう...」と悩む日々</span></p>
+                <p class="problem-text"><strong>40代・50代だから、若い世代に勝てない</strong><span class="problem-arrow">→ 「今さら始めても遅い」と思っている</span></p>
+                <div class="emphasize">1つでも当てはまるなら<br>戦う場所を間違えています。</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>実は僕も、全く同じでした。</h2>
+            <div class="wrap">
+                <p>正直に告白します。<br>僕も以前は、毎日5時間かけて<br>Instagram投稿を作っていました。<br><br>でも、売上は満足できず...<br>「こんなに頑張ってるのに...」<br>何度もSNSを辞めようと思いました。</p>
+                <p class="text-large text-bold mt-20">そんな時、気づいたんです。<br>「戦う場所を、間違えていた」</p>
+                <div class="emphasize mt-20">Instagramはもう飽和してる。</div>
+                <p class="mt-20">今、Instagramでは、<br>・リール・ストーリー、トレンドのチェック<br>・撮影機材やリールの編集費用が必要です。<br><br>正直、お金と時間だけがかかり、<br>集客・収益には繋がらないです。</p>
+                <div class="emphasize mt-20">でも、Threadsは完全にブルーオーシャンです。</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>僕がThreadsで達成した実績</h2>
+            <div class="wrap">
+                <p style="color: rgb(102, 102, 102); margin-bottom: 20px;">AIを活用して運用した結果...</p>
+                <div class="results-list">
+                    <div class="results-item">30日間で101万インプレッション達成</div>
+                    <div class="results-item">フォロワー1日1000人増加</div>
+                    <div class="results-item">毎日LINE登録が自動で発生</div>
+                    <div class="results-item">1日10投稿を10分で完成</div>
+                </div>
+                <p class="text-large text-bold text-center mt-20">しかも、文章だけです。</p>
+                <div class="zero-list mt-20">
+                    <div class="zero-item">動画編集ゼロ</div>
+                    <div class="zero-item">画像作成ゼロ</div>
+                    <div class="zero-item">リール撮影ゼロ</div>
+                    <div class="zero-item">必要費用もゼロ</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>なぜ、Threadsは集客できるのか?</h2>
+            <div class="wrap">
+                <div class="reason-box">
+                    <h3>【理由①】圧倒的に工数が少ない</h3>
+                    <p>文章を書くだけ。しかも、AIが作ってくれます。リール撮影も動画編集も一切不要。スマホ1台でどこでも投稿できます。</p>
+                </div>
+                <div class="reason-box">
+                    <h3>【理由②】ライバルがほぼゼロ</h3>
+                    <p>今、Threadsユーザーの99%は「つぶやき」だけ。価値ある情報を発信すれば一瞬でトップに立てます。先行者利益を独占できる今がチャンスです。</p>
+                </div>
+                <div class="reason-box">
+                    <h3>【理由③】長文投稿が爆伸びする</h3>
+                    <p>Threadsは「滞在時間」を重視するアルゴリズム。みんな短文だけなので、価値ある長文を投稿すれば余裕で勝てるんです。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>実践者の声</h2>
+            <div class="wrap">
+                <div class="testimonial">
+                    <div class="testimonial-profile">【サロンコンサル・50代 女性】</div>
+                    <p>「Instagram1年やって売上ゼロ。もう諦めようと思っていました。でも工藤さんのアドバイス通りにThreadsに切り替えて3ヶ月後、<span class="testimonial-highlight">月商100万円突破。</span></p>
+                    <p>個別相談会も申し込みが来て、<br>毎朝起きたらLINE登録通知が届いてます。<br>本当に人生が変わりました。<br>あの時諦めなくて良かったです。」</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>AI×Threads集客勉強会の詳細</h2>
+            <div class="wrap">
+                <div class="schedule-box">
+                    <div class="schedule-date">10月19日(土)・20日(日)</div>
+                    <div class="schedule-time">各日 20:00-22:00(2時間)</div>
+                </div>
+                <h3 style="font-size: 18px; font-weight: 700; margin: 25px 0px 15px;">【セミナーで学べる内容】</h3>
+                <div class="content-list">
+                    <div class="content-item">なぜThreadsはInstagramの10倍簡単に集客できるのか？</div>
+                    <div class="content-item">1日10投稿を10分で完成させるAI自動化の仕組み</div>
+                    <div class="content-item">10,000インプ超えを量産する「勝ちパターン」</div>
+                    <div class="content-item">ThreadsからLINE登録を自動発生させる導線設計</div>
+                    <div class="content-item">AI活用投稿作成ワーク</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>参加者限定3大特典🎁</h2>
+            <div class="wrap">
+                <div class="bonus-box">
+                    <div class="bonus-title">【特典1】Threads完全攻略ガイド(PDF25ページ)</div>
+                    <div class="bonus-desc">285投稿を分析した勝ちパターン完全マップ。これだけで即実践可能な濃密な内容です。</div>
+                    <div class="bonus-value">価値:29,800円</div>
+                </div>
+                <div class="bonus-box">
+                    <div class="bonus-title">【特典2】AI活用マニュアル<br>(スライド20枚)</div>
+                    <div class="bonus-desc">コピペで使えるプロンプト集50選。初心者でも今日から使える実践的なプロンプトを厳選。</div>
+                    <div class="bonus-value">価値:19,800円</div>
+                </div>
+                <div class="bonus-box">
+                    <div class="bonus-title">【特典3】1日で1000人フォロワーが<br>増えた投稿作成プロンプト</div>
+                    <div class="bonus-desc">実際に使っているプロンプトを配布。このプロンプトだけで月100万円の価値があります。</div>
+                    <div class="bonus-value">価値:149,800円</div>
+                </div>
+                <div class="total-value">
+                    <div class="total-price">合計:199,400円相当</div>
+                    <div class="total-free">無料プレゼント！！</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="wrap">
+                <div class="urgency-box">
+                    <h3>ただし、追加枠4名のみです。</h3>
+                    <p>これ以上は追加しません。</p>
+                    <p>①全員を個別サポートしたいから<br></p>
+                    <p>②ブルーオーシャンを守りたいから</p>
+                </div>
+                <p class="text-large text-bold text-center mt-20">このページは48時間後に閉鎖します。</p>
+                <p class="text-center mt-20" style="color: rgb(102, 102, 102);">Threadsで稼げることが広まれば、今<br>のブルーオーシャンは一瞬で終わるから。<br><br>このページを閉じた瞬間、<br>あなたのライバルが申し込むかもしれません。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>最後に、正直に言います</h2>
+            <div class="wrap">
+                <p class="text-large text-bold mb-20">このセミナーに参加できるのは、</p>
+                <div class="qualification-item">✅本気でThreads集客をやり続ける覚悟がある人</div>
+                <div class="qualification-item">✅AIを使いこなして人生を変える気合がある人</div>
+                <div class="qualification-item">✅月30〜100万円の売上を本気で作りたい人</div>
+                <p class="text-center mt-20 text-bold">こんな人だけです。</p>
+                <p class="mt-20">もし「ちょっと話を聞いてみたいだけ」<br>「無料だから、とりあえず参加」<br>そう思っているなら、<br><br>今すぐこのページを閉じてください。<br>お互いの時間を無駄にしたくありません。</p>
+                <p class="text-large text-bold mt-20">でも、あなたが<br>「本気で人生を変えたい」<br>そう思っているなら、<br>今すぐ申し込みをしてください。</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-heading">参加費は無料で追加4名のみ。</h2>
+            <p style="font-size: 16px; margin-bottom: 20px;">今すぐ下のボタンから<br>席を確保してください。</p>
+            <a href="https://lstep.app/OOuZMpx" class="cta-button">▶︎勉強会申込フォームはこちら</a>
+            <p class="cta-note">※クリックで申し込みフォームに移動します</p>
+        </div>
+    </div>
+  </div>
+
+
+  
+  <div class="sticky-cta" data-sticky-cta>
+    <span class="sticky-cta__label">＼【再募集】残り２枠のみ／</span>
+    <a class="sticky-cta__link" href="https://lstep.app/OOuZMpx">勉強会へいますぐ申し込む</a>
+  </div>
+  <div class="sticky-cta__spacer" aria-hidden="true"></div>
+  
+
+  <script src="./assets/js/optin.js"></script>
+  
+</body>
+</html>

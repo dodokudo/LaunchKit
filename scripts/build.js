@@ -4,6 +4,48 @@
 const fs = require('fs-extra');
 const path = require('path');
 const nunjucks = require('nunjucks');
+const cheerio = require('cheerio');
+
+// HTMLから<body>のコンテンツのみを抽出する関数
+function extractBodyContent(html) {
+  // <!DOCTYPE html>で始まる完全なHTMLドキュメントかチェック
+  if (html.trim().match(/^<!DOCTYPE\s+html/i)) {
+    const $ = cheerio.load(html);
+    $('[data-countdown-initialised]').removeAttr('data-countdown-initialised');
+    $('body [style]').each((_, el) => {
+      const style = $(el).attr('style');
+      if (!style) return;
+      const declarations = style
+        .split(';')
+        .map((part) => part.trim())
+        .filter(Boolean)
+        .filter((part) => {
+          const [prop] = part.split(':');
+          return prop && prop.trim().toLowerCase() !== 'outline';
+        });
+      if (declarations.length) {
+        $(el).attr('style', declarations.join('; ') + ';');
+      } else {
+        $(el).removeAttr('style');
+      }
+    });
+    const fragments = [];
+    const headStyles = $('head style')
+      .toArray()
+      .map((el) => $(el).toString().trim())
+      .filter(Boolean);
+    if (headStyles.length) {
+      fragments.push(headStyles.join('\n'));
+    }
+    const bodyHtml = $('body').html();
+    if (bodyHtml) {
+      fragments.push(bodyHtml);
+    }
+    const combined = fragments.join('\n').trim();
+    return combined || html;
+  }
+  return html;
+}
 
 async function main() {
   const [, , configArg] = process.argv;
@@ -47,7 +89,7 @@ async function main() {
       if (!htmlContent) {
         throw new Error(`HTML snippet not found for section: ${sectionCopy.html_file}`);
       }
-      sectionCopy.html = htmlContent;
+      sectionCopy.html = extractBodyContent(htmlContent);
       delete sectionCopy.html_file;
     }
     preparedSections.push(sectionCopy);
@@ -57,18 +99,25 @@ async function main() {
   const distDir = path.resolve(projectRoot, 'dist', slug);
   await fs.emptyDir(distDir);
 
+  const countdownConfig = { ...(config.countdown || {}) };
+  countdownConfig.enabled = Boolean(countdownConfig.enabled);
+  if (!countdownConfig.label) {
+    countdownConfig.label = '締切まで残り';
+  }
+
   const context = {
     meta: config.meta || {},
     paths: config.paths || { assets: './assets' },
     tag_manager: config.tag_manager || { head: [], body: [] },
-    countdown: config.countdown || { enabled: false },
+    countdown: countdownConfig,
     caution: config.caution || {},
     video: config.video || null,
     sections: preparedSections,
     client_state: config.client_state,
     raw_html: null,
     footer_scripts: config.footer_scripts || [],
-    sticky_cta: config.sticky_cta || { enabled: false }
+    sticky_cta: config.sticky_cta || { enabled: false },
+    custom_styles: config.custom_styles || null
   };
 
   if (config.raw_html_file) {
@@ -78,7 +127,8 @@ async function main() {
     ];
     for (const candidate of rawPathCandidates) {
       if (await fs.pathExists(candidate)) {
-        context.raw_html = await fs.readFile(candidate, 'utf8');
+        const rawHtml = await fs.readFile(candidate, 'utf8');
+        context.raw_html = extractBodyContent(rawHtml);
         break;
       }
     }

@@ -15,88 +15,231 @@
       height: 100vh;
       background: #f5f7fb;
       color: #222;
+      overflow: hidden;
     }
+
+    /* Left Sidebar */
     aside {
-      width: 260px;
+      width: 320px;
       border-right: 1px solid #e2e6f0;
       background: #fff;
-      padding: 16px;
-      overflow-y: auto;
-    }
-    h1 {
-      font-size: 18px;
-      margin: 0 0 12px;
-    }
-    ul { list-style: none; padding: 0; margin: 0; }
-    li { margin-bottom: 10px; }
-    .project-item {
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      transition: width 0.25s ease;
+      position: relative;
+    }
+    body.sidebar-collapsed aside {
+      width: 42px;
+    }
+    .sidebar-header {
+      padding: 16px;
+      border-bottom: 1px solid #e7ebf5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sidebar-header h1 {
+      font-size: 18px;
+      margin: 0;
+      transition: opacity 0.2s ease;
+    }
+    body.sidebar-collapsed .sidebar-header h1 {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .sidebar-toggle {
+      padding: 6px 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #cbd4e6;
+      background: #fff;
+      cursor: pointer;
+      position: absolute;
+      top: 12px;
+      right: 8px;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    .sidebar-toggle:hover {
+      background: #f0f4ff;
+      border-color: #5b8def;
+    }
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      transition: opacity 0.2s ease;
+    }
+    body.sidebar-collapsed .sidebar-content {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .section-group {
+      margin-bottom: 20px;
+    }
+    .section-group h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      color: #555;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-group h2:hover {
+      color: #1c7ed6;
+    }
+    .section-group.collapsed .section-content {
+      display: none;
+    }
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .project-item {
       border: 1px solid #e9edf5;
       border-radius: 8px;
       padding: 10px;
-      gap: 4px;
       background: #fbfcff;
+      cursor: pointer;
+      transition: all 0.15s;
     }
-    .project-item button {
-      align-self: flex-start;
+    .project-item:hover {
+      background: #f0f4ff;
+      border-color: #5b8def;
+    }
+    .project-item.active {
+      background: #e7f0ff;
+      border-color: #1c7ed6;
+    }
+    .project-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .project-item span {
+      display: block;
+      font-size: 11px;
+      color: #777;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #555;
+    }
+    input[type="text"],
+    input[type="url"],
+    input[type="datetime-local"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #ccd2e3;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    textarea {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 11px;
+      min-height: 120px;
+      resize: vertical;
+    }
+    button, .btn {
       padding: 6px 12px;
       font-size: 12px;
       border-radius: 6px;
       border: 1px solid #d0d7e6;
       background: #fff;
       cursor: pointer;
+      transition: all 0.15s;
     }
-    aside {
-      position: relative;
-      transition: width 0.25s ease, padding 0.25s ease;
+    button:hover, .btn:hover {
+      background: #e8edf7;
+      border-color: #a0aac5;
     }
-    .sidebar-toggle {
-      position: absolute;
-      top: 12px;
-      right: -12px;
-      z-index: 10;
-      padding: 6px 12px;
-      font-size: 12px;
-      border-radius: 999px;
-      border: 1px solid #cbd4e6;
-      background: #fff;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(15, 23, 58, 0.12);
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
-    .sidebar-content {
-      transition: opacity 0.2s ease;
+    .inline {
+      display: flex;
+      gap: 8px;
     }
-    body.sidebar-collapsed aside {
-      width: 42px;
-      padding: 16px 6px;
-      border-right: none;
+    .inline > div {
+      flex: 1;
     }
-    body.sidebar-collapsed .sidebar-content {
-      opacity: 0;
-      pointer-events: none;
-      height: 0;
-      overflow: hidden;
-    }
-    body.sidebar-collapsed .sidebar-toggle {
-      right: -12px;
-      transform: rotate(180deg);
+    .note {
+      font-size: 11px;
+      color: #777;
+      margin-top: 4px;
     }
 
-    .preview-box {
+    /* Main Area */
+    main {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      flex: 1;
-      min-height: 360px;
+      overflow: hidden;
     }
-    .preview-toolbar {
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 16px;
+      background: #fff;
+      border-bottom: 1px solid #e7ebf5;
+    }
+    .toolbar button {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .toolbar .status {
+      margin-left: auto;
+      font-size: 12px;
+      color: #0b7285;
+    }
+
+    /* Preview Area */
+    .preview-area {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+    .preview-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #f3f5ff;
+      overflow: hidden;
+    }
+    .preview-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 12px 16px;
+      background: #fff;
+      border-bottom: 1px solid #e7ebf5;
     }
-    .preview-buttons {
+    .preview-device-buttons {
       display: flex;
       gap: 8px;
     }
@@ -115,236 +258,272 @@
     }
     .preview-wrapper {
       flex: 1;
-      background: #f3f5ff;
-      border-radius: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      padding: 20px;
       overflow: auto;
     }
     .preview-wrapper iframe {
       width: 100%;
       height: 100%;
-      min-height: 440px;
+      min-height: 600px;
       border: 0;
       border-radius: 14px;
       background: #fff;
       box-shadow: 0 12px 38px rgba(15, 23, 58, 0.18);
     }
-    .preview-wrapper.preview-mobile {
-      justify-content: center;
-    }
     .preview-wrapper.preview-mobile iframe {
       width: 390px;
       height: 844px;
+      min-width: 390px;
+      min-height: 844px;
       border-radius: 28px;
-      box-shadow: 0 18px 46px rgba(15, 23, 58, 0.28);
     }
-    @media (max-width: 1024px) {
-      body.sidebar-collapsed aside {
-        width: 36px;
-      }
-      .preview-wrapper iframe {
-        min-height: 360px;
-      }
-    }
-    main {
-      flex: 1;
-      padding: 16px;
-      display: flex;
+
+    /* Edit Panel */
+    .edit-panel {
+      width: 340px;
+      background: #fff;
+      border-left: 1px solid #e7ebf5;
+      display: none;
       flex-direction: column;
       overflow: hidden;
     }
-    .toolbar {
+    .edit-panel.active {
       display: flex;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 12px;
     }
-    .toolbar button, .toolbar a {
-      padding: 6px 12px;
-      font-size: 13px;
-      border-radius: 6px;
-      border: 1px solid #d0d7e6;
-      background: #fff;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-    .status { font-size: 12px; color: #0b7285; }
-    .editor-grid {
-      display: grid;
-      grid-template-columns: minmax(320px, 420px) 1fr;
-      gap: 12px;
-      flex: 1;
-      overflow: hidden;
-    }
-    .panel {
-      background: #fff;
-      border-radius: 12px;
+    .edit-panel-header {
       padding: 16px;
-      overflow: auto;
-      border: 1px solid #e7ebf5;
+      border-bottom: 1px solid #e7ebf5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .edit-panel-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .edit-panel-close {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+    .edit-panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
-    .panel h2 {
-      font-size: 16px;
-      margin: 0 0 6px;
-    }
-    label { display: block; font-size: 12px; margin-bottom: 4px; color: #555; }
-    input[type="text"], input[type="url"], select, textarea {
-      width: 100%;
-      padding: 6px 8px;
-      border: 1px solid #ccd2e3;
-      border-radius: 6px;
-      font-size: 13px;
-      font-family: inherit;
-      box-sizing: border-box;
-    }
-    textarea[readonly] { background: #f2f4f9; }
-    #rawHtmlTextarea { font-family: 'SFMono-Regular', monospace; font-size: 12px; min-height: 200px; }
-    .inline { display: flex; gap: 8px; }
-    .inline > div { flex: 1; }
-    .sections-list { display: flex; flex-direction: column; gap: 12px; }
-    .section-item {
-      border: 1px solid #dbe2f1;
-      border-radius: 10px;
-      padding: 12px;
-      background: #fdfdff;
+    .edit-panel-footer {
+      padding: 16px;
+      border-top: 1px solid #e7ebf5;
       display: flex;
-      flex-direction: column;
       gap: 8px;
+      justify-content: flex-end;
     }
-    .section-item.dragging { opacity: 0.4; }
-    .section-item.drag-over { outline: 2px dashed #5b8def; }
-    .section-header { display: flex; justify-content: space-between; align-items: center; }
-    .section-header strong { font-size: 14px; }
-    .section-actions { display: flex; gap: 6px; }
-    .section-actions button {
-      padding: 4px 8px;
-      font-size: 12px;
+
+    .element-info {
+      background: #f8f9fc;
+      padding: 12px;
       border-radius: 6px;
-      border: 1px solid #cbd4e6;
-      cursor: pointer;
-      background: #fff;
+      font-size: 11px;
+      color: #666;
     }
-    .add-section { display: flex; gap: 8px; align-items: center; }
-    .note { font-size: 11px; color: #777; }
-    #configEditor { height: 240px; font-family: 'SFMono-Regular', monospace; font-size: 12px; }
-    iframe { flex: 1; border: 1px solid #d0d7e6; border-radius: 6px; min-height: 280px; }
-    @media (max-width: 1024px) {
-      .editor-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-      }
+    .element-info code {
+      background: #e9ecf5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'SFMono-Regular', monospace;
+    }
+
+    /* Overlay for iframe editing */
+    .iframe-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+    body.edit-mode .iframe-overlay {
+      pointer-events: auto;
+      background: rgba(0, 0, 0, 0.02);
     }
   </style>
 </head>
 <body>
   <aside>
-    <h1>Projects</h1>
-    <button id="reloadProjects" style="margin-bottom:10px">再読み込み</button>
-    <ul id="projectList"></ul>
-  </aside>
-  <main>
-    <div class="toolbar">
-      <span id="currentSlug">選択してください</span>
-      <button id="saveBtn" disabled>保存</button>
-      <button id="buildBtn" disabled>ビルド</button>
-      <button id="archiveBtn" disabled>バックアップ</button>
-      <button id="applyJsonBtn" disabled>JSONを反映</button>
-      <a id="previewLink" target="previewFrame" rel="noopener">プレビュー</a>
-      <span id="status" class="status"></span>
+    <div class="sidebar-header">
+      <h1>LaunchKit</h1>
+      <button class="sidebar-toggle" id="toggleSidebar">◀︎</button>
     </div>
-    <div class="editor-grid">
-      <section class="panel" id="formsPanel">
-        <div>
-          <h2>メタ情報</h2>
-          <label for="metaTitle">タイトル</label>
-          <input type="text" id="metaTitle" placeholder="LPタイトル">
-          <label for="metaDescription">ディスクリプション</label>
-          <textarea id="metaDescription" rows="3"></textarea>
-          <label for="templatePath">テンプレート</label>
-          <input type="text" id="templatePath" placeholder="例: optin/base.njk">
-          <div id="rawHtmlControls" style="display:none; margin-top:12px;">
-            <label for="rawHtmlPath">HTMLファイルの保存先（raw_html_file）</label>
-            <div class="inline">
-              <div>
-                <input type="text" id="rawHtmlPath" placeholder="content/optin/sample.html">
-              </div>
-              <div style="flex:0 0 auto; display:flex; gap:8px; align-items:center;">
-                <button type="button" id="rawHtmlPlaceholderBtn">空ファイル作成</button>
-              </div>
-            </div>
-            <p class="note">Claudeなどで生成したHTMLを下の欄に貼り付けて「HTMLを保存」を押すとテンプレートに反映されます。</p>
-            <textarea id="rawHtmlTextarea" rows="12" placeholder="ここにHTMLを貼り付けてください" disabled></textarea>
-            <div style="display:flex; justify-content:flex-end; gap:8px;">
-              <button type="button" id="rawHtmlSaveBtn" disabled>HTMLを保存</button>
-            </div>
+    <div class="sidebar-content">
+      <div class="section-group">
+        <h2>📁 プロジェクト</h2>
+        <div class="section-content">
+          <button id="reloadProjects" style="width:100%; margin-bottom:8px;">再読み込み</button>
+          <ul class="project-list" id="projectList"></ul>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <h2 onclick="this.parentElement.classList.toggle('collapsed')">⚙️ 設定 <span style="font-size:10px;">▼</span></h2>
+        <div class="section-content">
+          <div>
+            <label for="metaTitle">タイトル</label>
+            <input type="text" id="metaTitle">
           </div>
-        </div>
-        <div>
-          <h2>カウントダウン</h2>
-          <label><input type="checkbox" id="countdownEnabled"> 有効</label>
-          <label for="countdownDeadline">締切 (ISO)</label>
-          <input type="text" id="countdownDeadline" placeholder="2025-03-31T23:59:59+09:00">
-          <label for="countdownLabel">ラベル</label>
-          <input type="text" id="countdownLabel" placeholder="締切まで残り">
-        </div>
-        <div>
-          <h2>Sticky CTA</h2>
-          <label><input type="checkbox" id="stickyEnabled"> 有効</label>
-          <label for="stickyLabel">ラベル</label>
-          <input type="text" id="stickyLabel" placeholder="例: 今なら3大特典が無料">
+          <div>
+            <label for="metaDescription">説明</label>
+            <textarea id="metaDescription" rows="2"></textarea>
+          </div>
+          <div>
+            <label for="countdownLabel">カウントダウンラベル</label>
+            <input type="text" id="countdownLabel" placeholder="募集終了まで　あと">
+          </div>
+          <div>
+            <label for="countdownDeadline">締切</label>
+            <input type="datetime-local" id="countdownDeadline">
+          </div>
+          <div>
+            <label><input type="checkbox" id="countdownEnabled"> カウントダウン有効</label>
+          </div>
           <div class="inline">
             <div>
-              <label for="stickyText">ボタン文言</label>
-              <input type="text" id="stickyText" placeholder="例: LINEに登録する">
+              <label for="countdownBgColor">背景色</label>
+              <input type="text" id="countdownBgColor" placeholder="#000000">
             </div>
             <div>
-              <label for="stickyUrl">リンク先</label>
-              <input type="text" id="stickyUrl" placeholder="https://">
+              <label for="countdownTextColor">文字色</label>
+              <input type="text" id="countdownTextColor" placeholder="#ffffff">
             </div>
           </div>
-        </div>
-        <div>
-          <h2>セクション</h2>
-          <div class="note">ドラッグ＆ドロップで並び替え可能</div>
-          <div id="sectionsList" class="sections-list"></div>
-          <div class="add-section">
-            <select id="newSectionType">
-              <option value="html">HTML</option>
-              <option value="list">リスト</option>
-              <option value="faq">FAQ</option>
-              <option value="testimonials">実績</option>
-              <option value="cta">CTA</option>
-            </select>
-            <button id="addSectionBtn" disabled>セクション追加</button>
+          <div>
+            <label for="stickyLabel">Sticky CTAラベル</label>
+            <input type="text" id="stickyLabel" placeholder="残り2枠のみ">
+          </div>
+          <div>
+            <label for="stickyText">Sticky CTAボタン文言</label>
+            <input type="text" id="stickyText" placeholder="いますぐ申し込む">
+          </div>
+          <div>
+            <label for="stickyUrl">Sticky CTAリンク先</label>
+            <input type="text" id="stickyUrl" placeholder="https://example.com">
+          </div>
+          <div>
+            <label><input type="checkbox" id="stickyEnabled"> Sticky CTA有効</label>
           </div>
         </div>
-      </section>
-      <section class="panel">
-        <div>
-          <h2>設定のJSON</h2>
-          <div class="note">直接編集→「JSONを反映」でフォームに同期</div>
-          <textarea id="configEditor" spellcheck="false" disabled></textarea>
-        </div>
-        <div class="preview-box">
-          <div class="preview-toolbar">
-            <h2>プレビュー</h2>
-            <div class="preview-buttons">
-              <button type="button" data-preview-device="desktop" class="preview-device-button active">PC表示</button>
-              <button type="button" data-preview-device="mobile" class="preview-device-button">スマホ表示</button>
-            </div>
+      </div>
+
+      <div class="section-group collapsed">
+        <h2 onclick="this.parentElement.classList.toggle('collapsed')">📄 HTML編集 <span style="font-size:10px;">▼</span></h2>
+        <div class="section-content">
+          <div>
+            <label for="rawHtmlPath">HTMLファイルパス</label>
+            <input type="text" id="rawHtmlPath" placeholder="content/consult/sample/landing.html">
+            <p class="note">raw_html_fileに指定されているパス</p>
           </div>
-          <div id="previewWrapper" class="preview-wrapper preview-desktop">
-            <iframe id="previewFrame" name="previewFrame" src="about:blank"></iframe>
+          <div>
+            <label for="rawHtmlTextarea">HTMLコード</label>
+            <textarea id="rawHtmlTextarea" rows="8" disabled spellcheck="false" placeholder="HTMLを貼り付けてください"></textarea>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button id="rawHtmlLoadBtn" disabled style="flex:1;">読み込み</button>
+            <button id="rawHtmlSaveBtn" disabled style="flex:1;">保存</button>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div class="section-group collapsed">
+        <h2 onclick="this.parentElement.classList.toggle('collapsed')">📝 JSON <span style="font-size:10px;">▼</span></h2>
+        <div class="section-content">
+          <textarea id="configEditor" disabled spellcheck="false"></textarea>
+          <button id="applyJsonBtn" disabled style="width:100%;">JSONを反映</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="toolbar">
+      <span id="currentSlug" style="font-weight:600;">プロジェクトを選択</span>
+      <button id="saveBtn" disabled>保存</button>
+      <button id="buildBtn" disabled>ビルド</button>
+      <button id="deployBtn" disabled>デプロイ</button>
+      <button id="editModeBtn" disabled>編集モード</button>
+      <a id="deployUrl" href="#" target="_blank" style="display:none; color:#1c7ed6; text-decoration:none; font-size:13px; margin-left:10px;">🌐 公開URL</a>
+      <span class="status" id="status"></span>
+    </div>
+
+    <div class="preview-area">
+      <div class="preview-main">
+        <div class="preview-header">
+          <h2 style="margin:0; font-size:16px;">プレビュー</h2>
+          <div class="preview-device-buttons">
+            <button class="preview-device-button active" data-device="desktop">PC表示</button>
+            <button class="preview-device-button" data-device="mobile">スマホ表示</button>
+          </div>
+        </div>
+        <div class="preview-wrapper preview-desktop">
+          <iframe id="previewFrame" src="about:blank"></iframe>
+        </div>
+      </div>
+
+      <div class="edit-panel" id="editPanel">
+        <div class="edit-panel-header">
+          <h3>要素を編集</h3>
+          <button class="edit-panel-close" id="closeEditPanel">✕</button>
+        </div>
+        <div class="edit-panel-content">
+          <div class="element-info">
+            <div>選択中: <code id="selectedTag">-</code></div>
+            <div style="margin-top:4px;">クラス: <code id="selectedClass">-</code></div>
+          </div>
+
+          <div>
+            <label for="editText">テキスト</label>
+            <textarea id="editText" rows="4"></textarea>
+          </div>
+
+          <div>
+            <label for="editFontSize">フォントサイズ (px)</label>
+            <input type="number" id="editFontSize" min="8" max="72" step="1">
+          </div>
+
+          <div>
+            <label for="editColor">文字色</label>
+            <input type="text" id="editColor" placeholder="#000000">
+          </div>
+
+          <div>
+            <label for="editBgColor">背景色</label>
+            <input type="text" id="editBgColor" placeholder="#ffffff">
+          </div>
+
+          <div>
+            <label><input type="checkbox" id="editBold"> 太字</label>
+          </div>
+
+          <div>
+            <label for="editPadding">余白 (padding)</label>
+            <input type="text" id="editPadding" placeholder="10px 20px">
+          </div>
+
+          <div>
+            <label for="editMargin">外側余白 (margin)</label>
+            <input type="text" id="editMargin" placeholder="10px 0">
+          </div>
+        </div>
+        <div class="edit-panel-footer">
+          <button id="undoEditBtn" disabled>元に戻す</button>
+          <button id="cancelEditBtn">キャンセル</button>
+          <button id="applyEditBtn" style="background:#1c7ed6; color:#fff; border-color:#1c7ed6;">適用</button>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -354,77 +533,43 @@
     const toggleSidebarBtn = document.getElementById('toggleSidebar');
     const metaTitleInput = document.getElementById('metaTitle');
     const metaDescriptionInput = document.getElementById('metaDescription');
-    const templatePathInput = document.getElementById('templatePath');
-    const rawHtmlControls = document.getElementById('rawHtmlControls');
-    const rawHtmlPathInput = document.getElementById('rawHtmlPath');
-    const rawHtmlPlaceholderBtn = document.getElementById('rawHtmlPlaceholderBtn');
-    const rawHtmlTextarea = document.getElementById('rawHtmlTextarea');
-    const rawHtmlSaveBtn = document.getElementById('rawHtmlSaveBtn');
-    const countdownEnabledInput = document.getElementById('countdownEnabled');
-    const previewFrame = document.getElementById('previewFrame');
-    const previewWrapper = document.getElementById('previewWrapper');
-    const previewButtons = document.querySelectorAll('[data-preview-device]');
-    rawHtmlTextarea.value = '';
-    rawHtmlTextarea.disabled = true;
-    rawHtmlSaveBtn.disabled = true;
-    rawHtmlPlaceholderBtn.disabled = true;
-    const countdownDeadlineInput = document.getElementById('countdownDeadline');
     const countdownLabelInput = document.getElementById('countdownLabel');
-    const stickyEnabledInput = document.getElementById('stickyEnabled');
+    const countdownDeadlineInput = document.getElementById('countdownDeadline');
+    const countdownEnabledInput = document.getElementById('countdownEnabled');
+    const countdownBgColorInput = document.getElementById('countdownBgColor');
+    const countdownTextColorInput = document.getElementById('countdownTextColor');
     const stickyLabelInput = document.getElementById('stickyLabel');
     const stickyTextInput = document.getElementById('stickyText');
     const stickyUrlInput = document.getElementById('stickyUrl');
-    const sectionsListEl = document.getElementById('sectionsList');
-    const addSectionBtn = document.getElementById('addSectionBtn');
-    const newSectionTypeSelect = document.getElementById('newSectionType');
+    const stickyEnabledInput = document.getElementById('stickyEnabled');
     const configEditor = document.getElementById('configEditor');
     const saveBtn = document.getElementById('saveBtn');
     const buildBtn = document.getElementById('buildBtn');
-    const archiveBtn = document.getElementById('archiveBtn');
+    const deployBtn = document.getElementById('deployBtn');
+    const editModeBtn = document.getElementById('editModeBtn');
     const applyJsonBtn = document.getElementById('applyJsonBtn');
-    const previewLink = document.getElementById('previewLink');
     const currentSlugEl = document.getElementById('currentSlug');
     const statusEl = document.getElementById('status');
+    const previewFrame = document.getElementById('previewFrame');
+    const previewWrapper = document.querySelector('.preview-wrapper');
+    const previewDeviceButtons = document.querySelectorAll('.preview-device-button');
+    const editPanel = document.getElementById('editPanel');
+    const closeEditPanel = document.getElementById('closeEditPanel');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const applyEditBtn = document.getElementById('applyEditBtn');
+    const undoEditBtn = document.getElementById('undoEditBtn');
+    const rawHtmlPath = document.getElementById('rawHtmlPath');
+    const rawHtmlTextarea = document.getElementById('rawHtmlTextarea');
+    const rawHtmlLoadBtn = document.getElementById('rawHtmlLoadBtn');
+    const rawHtmlSaveBtn = document.getElementById('rawHtmlSaveBtn');
+    const deployUrlLink = document.getElementById('deployUrl');
 
     let currentSlug = null;
     let currentConfig = null;
-    let dragIndex = null;
-    let rawHtmlLoadedPath = null;
-    let rawHtmlLoadTimer = null;
+    let editMode = false;
+    let selectedElement = null;
     let previewDevice = 'desktop';
-
-    const defaultSectionFactories = {
-      html: () => ({
-        class: 'text',
-        type: 'html',
-        wrapper_class: 'wrap_text',
-        html_file: currentSlug ? `content/${currentSlug}/section-${Date.now()}.html` : ''
-      }),
-      list: () => ({
-        class: 'naiyou',
-        type: 'list',
-        wrapper_class: 'wrap_naiyou',
-        list_class: 'con_naiyou',
-        items: []
-      }),
-      faq: () => ({
-        class: 'faq',
-        type: 'faq',
-        wrapper_class: 'wrap_faq',
-        items: []
-      }),
-      testimonials: () => ({
-        class: 'voice',
-        type: 'testimonials',
-        wrapper_class: 'wrap_voice',
-        items: []
-      }),
-      cta: () => ({
-        class: 'cta',
-        type: 'cta',
-        button: { text: '詳しく見る', url: '#' }
-      })
-    };
+    let editHistory = [];
 
     function setStatus(message, ms = 2000) {
       statusEl.textContent = message;
@@ -435,543 +580,380 @@
       }
     }
 
-    if (toggleSidebarBtn) {
-      toggleSidebarBtn.addEventListener('click', () => {
-        const collapsed = document.body.classList.toggle('sidebar-collapsed');
-        toggleSidebarBtn.textContent = collapsed ? '▶︎ 表示' : '◀︎ 隠す';
-      });
-    }
-
-    function setPreviewDevice(mode) {
-      previewDevice = mode === 'mobile' ? 'mobile' : 'desktop';
-      previewWrapper.classList.toggle('preview-mobile', previewDevice === 'mobile');
-      previewWrapper.classList.toggle('preview-desktop', previewDevice !== 'mobile');
-      previewButtons.forEach((btn) => {
-        btn.classList.toggle('active', btn.dataset.previewDevice === previewDevice);
-      });
-    }
-
-    previewButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        setPreviewDevice(btn.dataset.previewDevice || 'desktop');
-      });
+    toggleSidebarBtn.addEventListener('click', () => {
+      const collapsed = document.body.classList.toggle('sidebar-collapsed');
+      toggleSidebarBtn.textContent = collapsed ? '▶︎' : '◀︎';
     });
 
-    setPreviewDevice('desktop');
+    previewDeviceButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const device = btn.dataset.device;
+        previewDevice = device;
+        previewWrapper.classList.toggle('preview-mobile', device === 'mobile');
+        previewWrapper.classList.toggle('preview-desktop', device === 'desktop');
+        previewDeviceButtons.forEach(b => b.classList.toggle('active', b === btn));
+      });
+    });
 
     async function loadProjects() {
       try {
         const res = await fetch('/api/projects');
-        if (!res.ok) {
-          throw new Error(`Failed to load projects: ${res.status}`);
-        }
+        if (!res.ok) throw new Error();
         const data = await res.json();
         projectListEl.innerHTML = '';
-        data.forEach((project) => {
+        data.forEach(project => {
           const li = document.createElement('li');
-          li.innerHTML = `
-          <div class="project-item">
-            <strong>${project.title}</strong>
-            <span style="font-size:12px;color:#777">${project.slug}</span>
-            <button data-slug="${project.slug}">開く</button>
-          </div>
-        `;
-          li.querySelector('button').addEventListener('click', () => selectProject(project.slug));
+          li.className = 'project-item';
+          li.innerHTML = `<strong>${project.title}</strong><span>${project.slug}</span>`;
+          li.addEventListener('click', () => selectProject(project.slug));
           projectListEl.appendChild(li);
         });
       } catch (error) {
         console.error(error);
-        setStatus('プロジェクト一覧の取得に失敗しました', 4000);
-        projectListEl.innerHTML = '<li style="color:#c92a2a;font-size:12px;">読み込みに失敗しました。サーバーのログを確認してください。</li>';
+        setStatus('プロジェクト一覧の取得に失敗', 4000);
       }
-    }
-
-function ensureConfigShape() {
-      if (!currentConfig.meta) currentConfig.meta = {};
-      if (!currentConfig.countdown) currentConfig.countdown = {};
-      if (!currentConfig.sticky_cta) currentConfig.sticky_cta = {};
-      if (!Array.isArray(currentConfig.sections)) currentConfig.sections = [];
-    }
-
-    function syncJsonEditor() {
-      configEditor.value = JSON.stringify(currentConfig, null, 2);
-    }
-
-    function renderMeta() {
-      metaTitleInput.value = currentConfig.meta.title || '';
-      metaDescriptionInput.value = currentConfig.meta.description || '';
-      templatePathInput.value = currentConfig.template || '';
-      const showRaw = currentConfig.raw_html_file !== undefined || (currentConfig.template && currentConfig.template.includes('optin/'));
-      rawHtmlControls.style.display = showRaw ? 'block' : 'none';
-      const pathValue = currentConfig.raw_html_file || '';
-      rawHtmlPathInput.value = pathValue;
-      const hasPath = Boolean(pathValue);
-      rawHtmlPlaceholderBtn.disabled = !hasPath;
-      rawHtmlTextarea.disabled = !hasPath;
-      rawHtmlSaveBtn.disabled = !hasPath;
-      if (!hasPath) {
-        rawHtmlTextarea.value = '';
-        rawHtmlLoadedPath = null;
-      } else if (pathValue && pathValue !== rawHtmlLoadedPath) {
-        loadRawHtmlContent(pathValue);
-      }
-    }
-
-    function renderCountdown() {
-      countdownEnabledInput.checked = Boolean(currentConfig.countdown.enabled);
-      countdownDeadlineInput.value = currentConfig.countdown.deadline || '';
-      countdownLabelInput.value = currentConfig.countdown.label || '';
-    }
-
-    function renderSticky() {
-      stickyEnabledInput.checked = Boolean(currentConfig.sticky_cta.enabled);
-      stickyLabelInput.value = currentConfig.sticky_cta.label || '';
-      stickyTextInput.value = currentConfig.sticky_cta.text || '';
-      stickyUrlInput.value = currentConfig.sticky_cta.url || '';
-    }
-
-    function cleanupHeading(section) {
-      if (section.heading_image) {
-        if (!section.heading_image.src && !section.heading_image.alt) {
-          delete section.heading_image;
-        }
-      }
-    }
-
-    function labeled(labelText, element) {
-      const wrapper = document.createElement('div');
-      const label = document.createElement('label');
-      label.textContent = labelText;
-      wrapper.appendChild(label);
-      wrapper.appendChild(element);
-      return wrapper;
-    }
-
-    async function createPlaceholder(filePath) {
-      try {
-        const res = await fetch('/api/files', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ path: filePath, content: '<div class="container">プレースホルダーです。内容を編集してください。</div>\n' })
-        });
-        if (!res.ok) throw new Error();
-        setStatus('プレースホルダーを作成しました');
-        rawHtmlLoadedPath = null;
-        loadRawHtmlContent(filePath);
-      } catch (error) {
-        alert('ファイルの作成に失敗しました');
-      }
-    }
-
-    async function loadRawHtmlContent(filePath) {
-      try {
-        rawHtmlLoadedPath = filePath;
-        rawHtmlTextarea.value = '読み込み中...';
-        const res = await fetch(`/api/html?path=${encodeURIComponent(filePath)}`);
-        if (!res.ok) {
-          throw new Error('failed');
-        }
-        const data = await res.json();
-        rawHtmlTextarea.value = data.content || '';
-        if (!data.exists) {
-          setStatus('新しいHTMLファイルです。内容を貼り付けて保存してください。', 4000);
-        }
-      } catch (error) {
-        console.error(error);
-        rawHtmlTextarea.value = '';
-        setStatus('HTMLの読み込みに失敗しました', 3000);
-      }
-    }
-
-    function renderSections() {
-      sectionsListEl.innerHTML = '';
-      currentConfig.sections.forEach((section, index) => {
-        const item = document.createElement('div');
-        item.className = 'section-item';
-        item.draggable = true;
-        item.dataset.index = index;
-
-        item.addEventListener('dragstart', (e) => {
-          dragIndex = index;
-          item.classList.add('dragging');
-          e.dataTransfer.effectAllowed = 'move';
-        });
-        item.addEventListener('dragend', () => {
-          dragIndex = null;
-          item.classList.remove('dragging');
-        });
-        item.addEventListener('dragover', (e) => {
-          e.preventDefault();
-          item.classList.add('drag-over');
-        });
-        item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
-        item.addEventListener('drop', (e) => {
-          e.preventDefault();
-          item.classList.remove('drag-over');
-          const targetIndex = Number(item.dataset.index);
-          if (dragIndex === null || targetIndex === dragIndex) return;
-          const moved = currentConfig.sections.splice(dragIndex, 1)[0];
-          currentConfig.sections.splice(targetIndex, 0, moved);
-          renderSections();
-          syncJsonEditor();
-        });
-
-        const header = document.createElement('div');
-        header.className = 'section-header';
-        header.innerHTML = `<strong>${index + 1}. ${section.type || 'section'}</strong>`;
-        const actions = document.createElement('div');
-        actions.className = 'section-actions';
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = '削除';
-        removeBtn.addEventListener('click', () => {
-          currentConfig.sections.splice(index, 1);
-          renderSections();
-          syncJsonEditor();
-        });
-        actions.appendChild(removeBtn);
-        header.appendChild(actions);
-        item.appendChild(header);
-
-        const typeInput = document.createElement('input');
-        typeInput.type = 'text';
-        typeInput.value = section.type || '';
-        typeInput.addEventListener('input', () => {
-          section.type = typeInput.value;
-          renderSections();
-          syncJsonEditor();
-        });
-        item.appendChild(labeled('タイプ', typeInput));
-
-        const classInput = document.createElement('input');
-        classInput.type = 'text';
-        classInput.value = section.class || '';
-        classInput.addEventListener('input', () => {
-          section.class = classInput.value;
-          syncJsonEditor();
-        });
-        item.appendChild(labeled('クラス', classInput));
-
-        if (section.wrapper_class !== undefined) {
-          const wrapperInput = document.createElement('input');
-          wrapperInput.type = 'text';
-          wrapperInput.value = section.wrapper_class || '';
-          wrapperInput.addEventListener('input', () => {
-            section.wrapper_class = wrapperInput.value;
-            syncJsonEditor();
-          });
-          item.appendChild(labeled('ラッパークラス', wrapperInput));
-        }
-
-        if (section.heading_image || ['image-gallery', 'faq', 'testimonials'].includes(section.type)) {
-          section.heading_image = section.heading_image || { src: '', alt: '' };
-          const headingSrc = document.createElement('input');
-          headingSrc.type = 'text';
-          headingSrc.value = section.heading_image.src || '';
-          headingSrc.addEventListener('input', () => {
-            section.heading_image.src = headingSrc.value;
-            cleanupHeading(section);
-            syncJsonEditor();
-          });
-          const headingAlt = document.createElement('input');
-          headingAlt.type = 'text';
-          headingAlt.value = section.heading_image.alt || '';
-          headingAlt.addEventListener('input', () => {
-            section.heading_image.alt = headingAlt.value;
-            cleanupHeading(section);
-            syncJsonEditor();
-          });
-          const wrap = document.createElement('div');
-          wrap.className = 'inline';
-          wrap.appendChild(labeled('見出し画像 src', headingSrc));
-          wrap.appendChild(labeled('alt', headingAlt));
-          item.appendChild(wrap);
-        }
-
-        if (section.html_file !== undefined) {
-          const htmlInput = document.createElement('input');
-          htmlInput.type = 'text';
-          htmlInput.value = section.html_file || '';
-          htmlInput.addEventListener('input', () => {
-            section.html_file = htmlInput.value;
-            syncJsonEditor();
-          });
-          const wrapper = document.createElement('div');
-          wrapper.appendChild(labeled('HTMLファイル', htmlInput));
-          if (section.html_file) {
-            const createBtn = document.createElement('button');
-            createBtn.textContent = 'プレースホルダー作成';
-            createBtn.addEventListener('click', () => createPlaceholder(section.html_file));
-            wrapper.appendChild(createBtn);
-          }
-          item.appendChild(wrapper);
-        }
-
-        if (section.items && Array.isArray(section.items)) {
-          if (section.type === 'list' || section.type === 'image-gallery' || section.type === 'bonus') {
-            const itemsArea = document.createElement('textarea');
-            itemsArea.rows = 3;
-            if (section.type === 'list') {
-              itemsArea.value = section.items.join('\n');
-              itemsArea.addEventListener('input', () => {
-                section.items = itemsArea.value.split('\n').map((v) => v.trim()).filter(Boolean);
-                syncJsonEditor();
-              });
-              item.appendChild(labeled('リスト項目 (改行区切り)', itemsArea));
-            } else {
-              itemsArea.value = section.items.map((v) => `${v.src || ''}|${v.alt || ''}`).join('\n');
-              itemsArea.addEventListener('input', () => {
-                section.items = itemsArea.value.split('\n').filter(Boolean).map((line) => {
-                  const [src = '', alt = ''] = line.split('|');
-                  return { src: src.trim(), alt: alt.trim() };
-                });
-                syncJsonEditor();
-              });
-              item.appendChild(labeled('画像リスト (src|alt)', itemsArea));
-            }
-          } else if (section.type === 'faq') {
-            const faqArea = document.createElement('textarea');
-            faqArea.rows = 4;
-            faqArea.value = section.items.map((it) => `${it.question || ''}::${it.answer || ''}`).join('\n');
-            faqArea.addEventListener('input', () => {
-              section.items = faqArea.value.split('\n').filter(Boolean).map((line) => {
-                const [q = '', a = ''] = line.split('::');
-                return { question: q.trim(), answer: a.trim() };
-              });
-              syncJsonEditor();
-            });
-            item.appendChild(labeled('FAQ (質問::回答)', faqArea));
-          } else if (section.type === 'testimonials') {
-            const voiceArea = document.createElement('textarea');
-            voiceArea.rows = 4;
-            voiceArea.value = section.items.map((it) => `${it.name || ''}::${it.title || ''}::${it.quote || ''}`).join('\n');
-            voiceArea.addEventListener('input', () => {
-              section.items = voiceArea.value.split('\n').filter(Boolean).map((line) => {
-                const [name = '', title = '', quote = ''] = line.split('::');
-                return { name: name.trim(), title: title.trim(), quote: quote.trim() };
-              });
-              syncJsonEditor();
-            });
-            item.appendChild(labeled('実績 (名前::肩書::引用)', voiceArea));
-          }
-        }
-
-        if (section.button) {
-          const btnWrap = document.createElement('div');
-          btnWrap.className = 'inline';
-          const btnText = document.createElement('input');
-          btnText.type = 'text';
-          btnText.value = section.button.text || '';
-          btnText.addEventListener('input', () => {
-            section.button.text = btnText.value;
-            syncJsonEditor();
-          });
-          const btnUrl = document.createElement('input');
-          btnUrl.type = 'text';
-          btnUrl.value = section.button.url || '';
-          btnUrl.addEventListener('input', () => {
-            section.button.url = btnUrl.value;
-            syncJsonEditor();
-          });
-          btnWrap.appendChild(labeled('ボタン文言', btnText));
-          btnWrap.appendChild(labeled('リンク先', btnUrl));
-          item.appendChild(btnWrap);
-        }
-
-        sectionsListEl.appendChild(item);
-      });
     }
 
     async function selectProject(slug) {
       try {
         const res = await fetch(`/api/projects/${slug}/config`);
-        if (!res.ok) {
-          throw new Error(`Failed to load config: ${res.status}`);
-        }
+        if (!res.ok) throw new Error();
         currentSlug = slug;
         currentConfig = await res.json();
-        ensureConfigShape();
-        renderAll();
+        renderConfig();
         configEditor.disabled = false;
         saveBtn.disabled = false;
         buildBtn.disabled = false;
-        archiveBtn.disabled = false;
+        deployBtn.disabled = false;
+        editModeBtn.disabled = false;
         applyJsonBtn.disabled = false;
-        addSectionBtn.disabled = false;
-        previewLink.href = `/preview/${slug}/index.html`;
         currentSlugEl.textContent = slug;
-        setStatus('設定を読み込みました');
+        previewFrame.src = `/preview/${slug}/index.html?ts=${Date.now()}`;
+
+        document.querySelectorAll('.project-item').forEach(item => {
+          item.classList.toggle('active', item.textContent.includes(slug));
+        });
+
+        // Load deploy URL
+        loadDeployUrl(slug);
+
+        setStatus('プロジェクトを読み込みました');
       } catch (error) {
         console.error(error);
-        alert('設定の読み込みに失敗しました');
+        alert('プロジェクトの読み込みに失敗しました');
       }
     }
 
-    function renderAll() {
-      ensureConfigShape();
-      if (rawHtmlLoadTimer) {
-        clearTimeout(rawHtmlLoadTimer);
-        rawHtmlLoadTimer = null;
+    async function loadDeployUrl(slug) {
+      try {
+        const res = await fetch(`/api/projects/${slug}/url`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.url) {
+            deployUrlLink.href = data.url;
+            deployUrlLink.style.display = 'inline';
+          } else {
+            deployUrlLink.style.display = 'none';
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load deploy URL:', error);
       }
-      rawHtmlLoadedPath = null;
-      renderMeta();
-      renderCountdown();
-      renderSticky();
-      renderSections();
-      syncJsonEditor();
-      setPreviewDevice(previewDevice);
     }
 
-    function bindMetaListeners() {
-      metaTitleInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.meta.title = metaTitleInput.value;
-        syncJsonEditor();
-      });
-      metaDescriptionInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.meta.description = metaDescriptionInput.value;
-        syncJsonEditor();
-      });
-      templatePathInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.template = templatePathInput.value || undefined;
-        syncJsonEditor();
-        renderMeta();
-      });
-      countdownEnabledInput.addEventListener('change', () => {
-        if (!currentConfig) return;
-        currentConfig.countdown.enabled = countdownEnabledInput.checked;
-        syncJsonEditor();
-      });
-      countdownDeadlineInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.countdown.deadline = countdownDeadlineInput.value;
-        syncJsonEditor();
-      });
-      countdownLabelInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.countdown.label = countdownLabelInput.value;
-        syncJsonEditor();
-      });
-      stickyEnabledInput.addEventListener('change', () => {
-        if (!currentConfig) return;
-        currentConfig.sticky_cta.enabled = stickyEnabledInput.checked;
-        syncJsonEditor();
-      });
-      stickyLabelInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.sticky_cta.label = stickyLabelInput.value;
-        syncJsonEditor();
-      });
-      stickyTextInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.sticky_cta.text = stickyTextInput.value;
-        syncJsonEditor();
-      });
-      stickyUrlInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        currentConfig.sticky_cta.url = stickyUrlInput.value;
-        syncJsonEditor();
-      });
-      rawHtmlPathInput.addEventListener('input', () => {
-        if (!currentConfig) return;
-        const value = rawHtmlPathInput.value.trim();
-        if (value) {
-          currentConfig.raw_html_file = value;
-        } else {
-          delete currentConfig.raw_html_file;
+    function renderConfig() {
+      if (!currentConfig) return;
+      if (!currentConfig.meta) currentConfig.meta = {};
+      if (!currentConfig.countdown) currentConfig.countdown = {};
+      if (!currentConfig.sticky_cta) currentConfig.sticky_cta = {};
+
+      metaTitleInput.value = currentConfig.meta.title || '';
+      metaDescriptionInput.value = currentConfig.meta.description || '';
+      countdownLabelInput.value = currentConfig.countdown.label || '';
+      countdownDeadlineInput.value = isoToLocalDatetime(currentConfig.countdown.deadline);
+      countdownEnabledInput.checked = Boolean(currentConfig.countdown.enabled);
+      countdownBgColorInput.value = currentConfig.countdown.background_color || '';
+      countdownTextColorInput.value = currentConfig.countdown.text_color || '';
+      stickyLabelInput.value = currentConfig.sticky_cta.label || '';
+      stickyTextInput.value = currentConfig.sticky_cta.text || '';
+      stickyUrlInput.value = currentConfig.sticky_cta.url || '';
+      stickyEnabledInput.checked = Boolean(currentConfig.sticky_cta.enabled);
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+
+      // HTML編集の初期化
+      const htmlFilePath = currentConfig.raw_html_file || '';
+      rawHtmlPath.value = htmlFilePath;
+      rawHtmlTextarea.disabled = !htmlFilePath;
+      rawHtmlLoadBtn.disabled = !htmlFilePath;
+      rawHtmlSaveBtn.disabled = !htmlFilePath;
+
+      if (htmlFilePath) {
+        loadHtmlFile(htmlFilePath);
+      } else {
+        rawHtmlTextarea.value = '';
+      }
+    }
+
+    async function loadHtmlFile(filePath) {
+      try {
+        rawHtmlTextarea.value = '読み込み中...';
+        const res = await fetch(`/api/html?path=${encodeURIComponent(filePath)}`);
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        rawHtmlTextarea.value = data.content || '';
+        if (!data.exists) {
+          setStatus('HTMLファイルが見つかりません', 3000);
         }
-        rawHtmlLoadedPath = null;
-        const hasPath = Boolean(value);
-        rawHtmlTextarea.value = hasPath ? '' : '';
-        rawHtmlTextarea.disabled = !hasPath;
-        rawHtmlSaveBtn.disabled = !hasPath;
-        rawHtmlPlaceholderBtn.disabled = !hasPath;
-        if (rawHtmlLoadTimer) clearTimeout(rawHtmlLoadTimer);
-        if (hasPath) {
-          rawHtmlLoadTimer = setTimeout(() => loadRawHtmlContent(value), 500);
+      } catch (error) {
+        console.error(error);
+        rawHtmlTextarea.value = '';
+        setStatus('HTMLの読み込みに失敗', 3000);
+      }
+    }
+
+    function isoToLocalDatetime(isoString) {
+      if (!isoString) return '';
+      const date = new Date(isoString);
+      if (Number.isNaN(date.getTime())) return '';
+      const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+      return local.toISOString().slice(0, 19);
+    }
+
+    function localDatetimeToIso(localValue) {
+      if (!localValue) return '';
+      const date = new Date(localValue);
+      if (Number.isNaN(date.getTime())) return '';
+      const [datePart, timePartRaw] = localValue.split('T');
+      const timePart = (timePartRaw || '').split('.')[0];
+      if (!datePart || !timePart) return '';
+      const [hour = '00', minute = '00', second = '00'] = timePart.split(':');
+      const offsetMinutes = -date.getTimezoneOffset();
+      const sign = offsetMinutes >= 0 ? '+' : '-';
+      const absMinutes = Math.abs(offsetMinutes);
+      const offsetHours = String(Math.floor(absMinutes / 60)).padStart(2, '0');
+      const offsetRemain = String(absMinutes % 60).padStart(2, '0');
+      return `${datePart}T${hour}:${minute}:${second}${sign}${offsetHours}:${offsetRemain}`;
+    }
+
+    function cleanupNodeForSave(root) {
+      const nodes = [root, ...root.querySelectorAll('*')];
+      nodes.forEach((el) => {
+        if (el.hasAttribute('data-countdown-initialised')) {
+          el.removeAttribute('data-countdown-initialised');
         }
-        syncJsonEditor();
-      });
-      rawHtmlPlaceholderBtn.addEventListener('click', () => {
-        if (!currentConfig || !rawHtmlPathInput.value) {
-          alert('ファイルパスを入力してください');
-          return;
-        }
-        createPlaceholder(rawHtmlPathInput.value);
-      });
-      rawHtmlSaveBtn.addEventListener('click', async () => {
-        if (!currentSlug) {
-          alert('プロジェクトを選択してください');
-          return;
-        }
-        const filePath = rawHtmlPathInput.value.trim();
-        if (!filePath) {
-          alert('ファイルパスを入力してください');
-          return;
-        }
-        try {
-          const res = await fetch(`/api/projects/${currentSlug}/html`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ path: filePath, content: rawHtmlTextarea.value })
+        if (!el.hasAttribute('style')) return;
+        const filtered = el
+          .getAttribute('style')
+          .split(';')
+          .map((part) => part.trim())
+          .filter(Boolean)
+          .filter((part) => {
+            const [prop] = part.split(':');
+            return prop && prop.trim().toLowerCase() !== 'outline';
           });
-          if (!res.ok) throw new Error('failed');
-          rawHtmlLoadedPath = filePath;
-          setStatus('HTMLを保存しました');
-        } catch (error) {
-          console.error(error);
-          alert('HTMLの保存に失敗しました');
+        if (filtered.length) {
+          el.setAttribute('style', filtered.join('; ') + ';');
+        } else {
+          el.removeAttribute('style');
         }
       });
     }
+
+    async function persistPreviewEdits(options = {}) {
+      if (!currentSlug || !currentConfig) return true;
+      try {
+        const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+        const styleTag = iframeDoc.getElementById('custom-edit-styles');
+        const styleContent = styleTag ? styleTag.textContent.trim() : '';
+        if (styleContent) {
+          currentConfig.custom_styles = styleContent;
+        } else {
+          delete currentConfig.custom_styles;
+        }
+
+        if (!currentConfig.raw_html_file) {
+          configEditor.value = JSON.stringify(currentConfig, null, 2);
+          return true;
+        }
+
+        const rawRoot = iframeDoc.querySelector('[data-raw-html-root]');
+        if (!rawRoot) {
+          throw new Error('raw_html_root_not_found');
+        }
+        const clone = rawRoot.cloneNode(true);
+        cleanupNodeForSave(clone);
+        const htmlContent = clone.innerHTML.trim();
+        rawHtmlTextarea.value = htmlContent;
+
+        const res = await fetch(`/api/projects/${currentSlug}/html`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: currentConfig.raw_html_file, content: htmlContent })
+        });
+        if (!res.ok) {
+          throw new Error('html_save_failed');
+        }
+        configEditor.value = JSON.stringify(currentConfig, null, 2);
+        return true;
+      } catch (error) {
+        console.error('persistPreviewEdits error:', error);
+        if (!options.silent) {
+          setStatus('HTMLの保存に失敗しました。再度お試しください。', 4000);
+        }
+        return false;
+      }
+    }
+
+    metaTitleInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      currentConfig.meta.title = metaTitleInput.value;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    metaDescriptionInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      currentConfig.meta.description = metaDescriptionInput.value;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    countdownLabelInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      currentConfig.countdown.label = countdownLabelInput.value;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    countdownDeadlineInput.addEventListener('change', () => {
+      if (!currentConfig) return;
+      currentConfig.countdown.deadline = localDatetimeToIso(countdownDeadlineInput.value);
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    countdownEnabledInput.addEventListener('change', () => {
+      if (!currentConfig) return;
+      currentConfig.countdown.enabled = countdownEnabledInput.checked;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    countdownBgColorInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      const value = countdownBgColorInput.value.trim();
+      if (value) {
+        currentConfig.countdown.background_color = value;
+      } else {
+        delete currentConfig.countdown.background_color;
+      }
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    countdownTextColorInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      const value = countdownTextColorInput.value.trim();
+      if (value) {
+        currentConfig.countdown.text_color = value;
+      } else {
+        delete currentConfig.countdown.text_color;
+      }
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    stickyLabelInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      currentConfig.sticky_cta.label = stickyLabelInput.value;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    stickyTextInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      currentConfig.sticky_cta.text = stickyTextInput.value;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    stickyUrlInput.addEventListener('input', () => {
+      if (!currentConfig) return;
+      currentConfig.sticky_cta.url = stickyUrlInput.value;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    stickyEnabledInput.addEventListener('change', () => {
+      if (!currentConfig) return;
+      currentConfig.sticky_cta.enabled = stickyEnabledInput.checked;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
 
     saveBtn.addEventListener('click', async () => {
-      if (!currentSlug) return;
-      const payload = JSON.parse(JSON.stringify(currentConfig));
-      payload.slug = currentSlug;
-      const res = await fetch(`/api/projects/${currentSlug}/config`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (res.ok) {
-        setStatus('保存しました');
-      } else {
-        alert('保存に失敗しました');
+      if (!currentSlug || !currentConfig) return;
+      const htmlSaved = await persistPreviewEdits();
+      if (!htmlSaved) return;
+      try {
+        const configRes = await fetch(`/api/projects/${currentSlug}/config`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(currentConfig)
+        });
+        if (!configRes.ok) {
+          throw new Error('設定の保存に失敗しました');
+        }
+        setStatus('設定とHTMLを保存しました ✅', 3000);
+      } catch (error) {
+        console.error(error);
+        alert(error.message || '保存に失敗しました');
       }
     });
 
     buildBtn.addEventListener('click', async () => {
       if (!currentSlug) return;
-      setStatus('ビルド中...');
-      const res = await fetch(`/api/projects/${currentSlug}/build`, { method: 'POST' });
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('ビルド完了');
+      setStatus('ビルド準備中...', 0);
+      const htmlSaved = await persistPreviewEdits({ silent: true });
+      if (!htmlSaved) {
+        setStatus('HTMLの保存に失敗しました', 4000);
+        return;
+      }
+      try {
+        const configRes = await fetch(`/api/projects/${currentSlug}/config`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(currentConfig)
+        });
+        if (!configRes.ok) {
+          throw new Error('設定の保存に失敗しました');
+        }
+
+        setStatus('ビルド中...', 0);
+        const buildRes = await fetch(`/api/projects/${currentSlug}/build`, { method: 'POST' });
+        if (!buildRes.ok) {
+          throw new Error('ビルドに失敗しました');
+        }
+        setStatus('ビルド完了', 3000);
         previewFrame.src = `/preview/${currentSlug}/index.html?ts=${Date.now()}`;
-      } else {
-        setStatus('ビルド失敗', 4000);
-        alert(data.detail || 'ビルドに失敗しました');
+      } catch (error) {
+        console.error(error);
+        alert(error.message || 'ビルドに失敗しました');
+        setStatus('ビルド失敗', 3000);
       }
     });
 
-    archiveBtn.addEventListener('click', async () => {
+    deployBtn.addEventListener('click', async () => {
       if (!currentSlug) return;
-      setStatus('バックアップ中...');
-      const res = await fetch(`/api/projects/${currentSlug}/archive`, { method: 'POST' });
-      const data = await res.json();
-      if (res.ok) {
-        const buildRes = await fetch(`/api/projects/${currentSlug}/build`, { method: 'POST' });
-        if (buildRes.ok) {
-          previewFrame.src = `/preview/${currentSlug}/index.html?ts=${Date.now()}`;
-          setStatus('バックアップ完了＆ビルド完了');
-        } else {
-          setStatus('バックアップ完了（ビルド失敗）', 4000);
+      setStatus('デプロイ中...', 0);
+      try {
+        const deployRes = await fetch(`/api/projects/${currentSlug}/deploy`, { method: 'POST' });
+        if (!deployRes.ok) {
+          const error = await deployRes.json();
+          throw new Error(error.message || 'デプロイに失敗しました');
         }
-      } else {
-        setStatus('バックアップ失敗', 4000);
-        alert(data.detail || 'バックアップに失敗しました');
+
+        const deployData = await deployRes.json();
+        if (deployData.url) {
+          deployUrlLink.href = deployData.url;
+          deployUrlLink.style.display = 'inline';
+          setStatus(`デプロイ完了！ 🎉`, 4000);
+        } else {
+          setStatus('デプロイ完了（URL取得失敗）', 3000);
+        }
+      } catch (error) {
+        console.error(error);
+        alert(error.message || 'デプロイに失敗しました');
+        setStatus('デプロイ失敗', 3000);
       }
     });
 
@@ -980,27 +962,282 @@ function ensureConfigShape() {
         const parsed = JSON.parse(configEditor.value);
         parsed.slug = currentSlug;
         currentConfig = parsed;
-        renderAll();
+        renderConfig();
         setStatus('JSONを反映しました');
       } catch (error) {
         alert('JSONの解析に失敗しました');
       }
     });
 
-    addSectionBtn.addEventListener('click', () => {
+    editModeBtn.addEventListener('click', () => {
+      editMode = !editMode;
+      document.body.classList.toggle('edit-mode', editMode);
+      editModeBtn.textContent = editMode ? '編集モード終了' : '編集モード';
+      editModeBtn.style.background = editMode ? '#1c7ed6' : '';
+      editModeBtn.style.color = editMode ? '#fff' : '';
+      editModeBtn.style.borderColor = editMode ? '#1c7ed6' : '';
+
+      if (editMode) {
+        setupEditMode();
+      } else {
+        teardownEditMode();
+      }
+    });
+
+    function setupEditMode() {
+      try {
+        const iframe = previewFrame;
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        iframeDoc.addEventListener('click', handleIframeClick);
+        iframeDoc.body.style.cursor = 'pointer';
+
+        const allElements = iframeDoc.querySelectorAll('h1, h2, h3, p, div, span, a, button, li, .sticky-cta__label, .sticky-cta__link, .countdown__label, .countdown__value');
+        allElements.forEach(el => {
+          el.style.outline = '1px dashed rgba(28, 126, 214, 0.3)';
+          el.addEventListener('mouseover', (e) => {
+            e.stopPropagation();
+            el.style.outline = '2px solid #1c7ed6';
+          });
+          el.addEventListener('mouseout', (e) => {
+            e.stopPropagation();
+            if (selectedElement !== el) {
+              el.style.outline = '1px dashed rgba(28, 126, 214, 0.3)';
+            }
+          });
+        });
+
+        setStatus('編集モード: 要素をクリックして編集', 0);
+      } catch (error) {
+        console.error('Edit mode setup error:', error);
+        setStatus('編集モードの初期化に失敗', 3000);
+      }
+    }
+
+    function teardownEditMode() {
+      try {
+        const iframe = previewFrame;
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.removeEventListener('click', handleIframeClick);
+        iframeDoc.body.style.cursor = '';
+
+        const allElements = iframeDoc.querySelectorAll('*');
+        allElements.forEach(el => {
+          el.style.outline = '';
+        });
+
+        editPanel.classList.remove('active');
+        selectedElement = null;
+        editHistory = [];
+        undoEditBtn.disabled = true;
+        setStatus('');
+      } catch (error) {
+        console.error('Edit mode teardown error:', error);
+      }
+    }
+
+    function handleIframeClick(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      selectedElement = e.target;
+      showEditPanel(selectedElement);
+    }
+
+    function getCssSelector(element) {
+      // Generate a unique CSS selector for the element
+      if (element.id) {
+        return '#' + element.id;
+      }
+
+      // Use class if available
+      if (element.className && typeof element.className === 'string') {
+        const classes = element.className.trim().split(/\s+/).filter(c => !c.startsWith('desktop-custom-edit') && !c.startsWith('mobile-custom-edit'));
+        if (classes.length > 0) {
+          return '.' + classes.join('.');
+        }
+      }
+
+      // Use tag name with parent context
+      let path = element.tagName.toLowerCase();
+      let parent = element.parentElement;
+
+      if (parent && parent.className && typeof parent.className === 'string') {
+        const parentClasses = parent.className.trim().split(/\s+/).filter(c => !c.startsWith('desktop-custom-edit') && !c.startsWith('mobile-custom-edit'));
+        if (parentClasses.length > 0) {
+          path = '.' + parentClasses[0] + ' ' + path;
+        }
+      }
+
+      return path;
+    }
+
+    function showEditPanel(element) {
+      editPanel.classList.add('active');
+
+      // 編集前の状態を保存
+      const beforeState = {
+        element: element,
+        innerHTML: element.innerHTML,
+        styles: {
+          fontSize: element.style.fontSize,
+          color: element.style.color,
+          backgroundColor: element.style.backgroundColor,
+          fontWeight: element.style.fontWeight,
+          padding: element.style.padding,
+          margin: element.style.margin
+        }
+      };
+      editHistory.push(beforeState);
+      undoEditBtn.disabled = false;
+
+      const selector = getCssSelector(element);
+      document.getElementById('selectedTag').textContent = element.tagName.toLowerCase();
+      document.getElementById('selectedClass').textContent = selector;
+
+      // innerHTMLを使って改行も含めて取得
+      document.getElementById('editText').value = element.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '');
+
+      const computedStyle = window.getComputedStyle(element);
+      document.getElementById('editFontSize').value = parseInt(computedStyle.fontSize) || '';
+      document.getElementById('editColor').value = rgbToHex(computedStyle.color) || '';
+      document.getElementById('editBgColor').value = rgbToHex(computedStyle.backgroundColor) || '';
+      document.getElementById('editBold').checked = computedStyle.fontWeight === 'bold' || parseInt(computedStyle.fontWeight) >= 600;
+      document.getElementById('editPadding').value = computedStyle.padding || '';
+      document.getElementById('editMargin').value = computedStyle.margin || '';
+    }
+
+    function rgbToHex(rgb) {
+      if (!rgb || rgb === 'rgba(0, 0, 0, 0)' || rgb === 'transparent') return '';
+      const match = rgb.match(/\d+/g);
+      if (!match || match.length < 3) return '';
+      const [r, g, b] = match;
+      return '#' + [r, g, b].map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+    }
+
+    closeEditPanel.addEventListener('click', () => {
+      editPanel.classList.remove('active');
+    });
+
+    undoEditBtn.addEventListener('click', () => {
+      if (editHistory.length === 0) return;
+
+      const lastState = editHistory.pop();
+      const element = lastState.element;
+
+      // 元の状態に戻す
+      element.innerHTML = lastState.innerHTML;
+      element.style.fontSize = lastState.styles.fontSize;
+      element.style.color = lastState.styles.color;
+      element.style.backgroundColor = lastState.styles.backgroundColor;
+      element.style.fontWeight = lastState.styles.fontWeight;
+      element.style.padding = lastState.styles.padding;
+      element.style.margin = lastState.styles.margin;
+
+      undoEditBtn.disabled = editHistory.length === 0;
+      setStatus('元に戻しました', 2000);
+    });
+
+    cancelEditBtn.addEventListener('click', () => {
+      editPanel.classList.remove('active');
+    });
+
+    applyEditBtn.addEventListener('click', async () => {
+      if (!selectedElement || !currentSlug) return;
+
+      const newText = document.getElementById('editText').value;
+      const fontSize = document.getElementById('editFontSize').value;
+      const color = document.getElementById('editColor').value;
+      const bgColor = document.getElementById('editBgColor').value;
+      const bold = document.getElementById('editBold').checked;
+      const padding = document.getElementById('editPadding').value;
+      const margin = document.getElementById('editMargin').value;
+
+      // 改行を<br>タグに変換してinnerHTMLを使用
+      selectedElement.innerHTML = newText.replace(/\n/g, '<br>');
+
+      const iframe = previewFrame;
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+      // スタイルタグを取得または作成
+      let styleTag = iframeDoc.getElementById('custom-edit-styles');
+      if (!styleTag) {
+        styleTag = iframeDoc.createElement('style');
+        styleTag.id = 'custom-edit-styles';
+        iframeDoc.head.appendChild(styleTag);
+      }
+
+      // 要素のCSSセレクタを取得
+      const baseSelector = getCssSelector(selectedElement);
+
+      // デバイスごとのスタイルを追加
+      const styles = [];
+      if (fontSize) styles.push(`font-size: ${fontSize}px !important`);
+      if (color) styles.push(`color: ${color} !important`);
+      if (bgColor) styles.push(`background-color: ${bgColor} !important`);
+      styles.push(`font-weight: ${bold ? 'bold' : 'normal'} !important`);
+      if (padding) styles.push(`padding: ${padding} !important`);
+      if (margin) styles.push(`margin: ${margin} !important`);
+
+      if (styles.length > 0) {
+        let cssRule = '';
+        if (previewDevice === 'mobile') {
+          cssRule = `@media (max-width: 768px) { ${baseSelector} { ${styles.join('; ')} } }`;
+        } else {
+          cssRule = `${baseSelector} { ${styles.join('; ')} }`;
+        }
+        styleTag.textContent += '\n' + cssRule;
+      }
+
+      const deviceName = previewDevice === 'mobile' ? 'スマホ版' : 'PC版';
+      setStatus(`${deviceName}の変更を適用しました。「保存」ボタンを押してHTMLに保存してください。`, 5000);
+      editPanel.classList.remove('active');
+    });
+
+    rawHtmlPath.addEventListener('input', () => {
       if (!currentConfig) return;
-      const type = newSectionTypeSelect.value;
-      const factory = defaultSectionFactories[type];
-      if (!factory) return;
-      const section = factory();
-      currentConfig.sections.push(section);
-      renderSections();
-      syncJsonEditor();
+      const value = rawHtmlPath.value.trim();
+      if (value) {
+        currentConfig.raw_html_file = value;
+      } else {
+        delete currentConfig.raw_html_file;
+      }
+      const hasPath = Boolean(value);
+      rawHtmlTextarea.disabled = !hasPath;
+      rawHtmlLoadBtn.disabled = !hasPath;
+      rawHtmlSaveBtn.disabled = !hasPath;
+      configEditor.value = JSON.stringify(currentConfig, null, 2);
+    });
+
+    rawHtmlLoadBtn.addEventListener('click', () => {
+      const filePath = rawHtmlPath.value.trim();
+      if (filePath) {
+        loadHtmlFile(filePath);
+      }
+    });
+
+    rawHtmlSaveBtn.addEventListener('click', async () => {
+      if (!currentSlug) return;
+      const filePath = rawHtmlPath.value.trim();
+      if (!filePath) {
+        alert('HTMLファイルパスを入力してください');
+        return;
+      }
+      try {
+        const res = await fetch(`/api/projects/${currentSlug}/html`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: filePath, content: rawHtmlTextarea.value })
+        });
+        if (!res.ok) throw new Error();
+        setStatus('HTMLを保存しました');
+      } catch (error) {
+        console.error(error);
+        alert('HTMLの保存に失敗しました');
+      }
     });
 
     reloadProjectsBtn.addEventListener('click', loadProjects);
-
-    bindMetaListeners();
     loadProjects();
   </script>
 </body>

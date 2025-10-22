@@ -7,18 +7,25 @@
   <title>{{ meta.title }}</title>
   <meta name="description" content="{{ meta.description }}">
   <link rel="stylesheet" href="{{ assets }}/css/optin.css">
+  {% if custom_styles %}
+  <style id="custom-edit-styles">
+{{ custom_styles }}
+  </style>
+  {% endif %}
 </head>
 <body class="optin-body">
   {% if countdown.enabled and countdown.deadline %}
-  <div class="countdown-banner" data-deadline="{{ countdown.deadline }}">
+  <div class="countdown-banner" {% if countdown.background_color or countdown.text_color %}style="{% if countdown.background_color %}background: {{ countdown.background_color }};{% endif %}{% if countdown.text_color %} color: {{ countdown.text_color }};{% endif %}"{% endif %}>
     {% if countdown.label %}<span class="countdown__label">{{ countdown.label }}</span>{% endif %}
     <span class="countdown__value" data-deadline="{{ countdown.deadline }}"></span>
   </div>
   {% endif %}
 
-  {% if raw_html %}
+{% if raw_html %}
+  <div data-raw-html-root>
   {{ raw_html | safe }}
-  {% else %}
+  </div>
+{% else %}
   <div class="container empty">
     <p>opt-inテンプレート用のHTMLが設定されていません。</p>
   </div>
