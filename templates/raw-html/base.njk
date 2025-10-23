@@ -1,0 +1,95 @@
+{% set assets = paths.assets %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ meta.title }}</title>
+  <meta name="description" content="{{ meta.description }}">
+  {% if custom_styles %}
+  <style id="custom-edit-styles">
+{{ custom_styles }}
+  </style>
+  {% endif %}
+  <style>
+    @keyframes sticky-float {
+      0% {
+        transform: translateY(0.3em);
+      }
+      50% {
+        transform: translateY(-0.3em);
+      }
+      100% {
+        transform: translateY(0.3em);
+      }
+    }
+    .sticky-cta {
+      animation: sticky-float 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  {% if countdown.enabled and countdown.deadline %}
+  <div class="countdown-banner" style="background: #000; color: #fff; text-align: center; padding: 15px; font-size: 18px; font-weight: bold;" {% if countdown.background_color or countdown.text_color %}style="{% if countdown.background_color %}background: {{ countdown.background_color }};{% endif %}{% if countdown.text_color %} color: {{ countdown.text_color }};{% endif %}"{% endif %}>
+    {% if countdown.label %}<span class="countdown__label">{{ countdown.label }}</span>{% endif %}
+    <span class="countdown__value" data-deadline="{{ countdown.deadline }}"></span>
+  </div>
+  {% endif %}
+
+{% if raw_html %}
+  <div data-raw-html-root>
+  {{ raw_html | safe }}
+  </div>
+{% else %}
+  <div class="container empty">
+    <p>HTMLが設定されていません。</p>
+  </div>
+  {% endif %}
+
+  {% if sticky_cta.enabled and sticky_cta.text and sticky_cta.url %}
+  <div class="sticky-cta" data-sticky-cta style="position: fixed; bottom: 0; left: 0; right: 0; background: #00d084; padding: 15px; text-align: center; z-index: 1000;">
+    {% if sticky_cta.label %}<span class="sticky-cta__label" style="display: block; color: #fff; font-size: 12px;">{{ sticky_cta.label }}</span>{% endif %}
+    <a class="sticky-cta__link" href="{{ sticky_cta.url }}" style="color: #fff; text-decoration: none; font-weight: bold; font-size: 18px;">{{ sticky_cta.text }}</a>
+  </div>
+  <div class="sticky-cta__spacer" aria-hidden="true" style="height: 80px;"></div>
+  {% endif %}
+
+  <script>
+    // Countdown script
+    (function() {
+      const countdownEl = document.querySelector('.countdown__value');
+      if (!countdownEl) return;
+
+      const deadline = countdownEl.getAttribute('data-deadline');
+      if (!deadline) return;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const target = new Date(deadline).getTime();
+        const distance = target - now;
+
+        if (distance < 0) {
+          countdownEl.textContent = '終了しました';
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.textContent = days + '日 ' +
+          String(hours).padStart(2, '0') + ':' +
+          String(minutes).padStart(2, '0') + ':' +
+          String(seconds).padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+  </script>
+  {% for script in footer_scripts %}
+  {{ script | safe }}
+  {% endfor %}
+</body>
+</html>
