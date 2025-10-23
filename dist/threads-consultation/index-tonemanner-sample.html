@@ -27,13 +27,35 @@
 
         /* 警告バナー */
         .warning-banner {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            padding: 15px 20px;
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .warning-triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 43px solid #333;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .warning-triangle::after {
+            content: "!";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+            line-height: 1;
         }
 
         .warning-text {
@@ -47,11 +69,6 @@
             font-weight: bold;
             color: #333;
             line-height: 1.5;
-        }
-
-        .warning-text .warning-lead {
-            color: #e74c3c;
-            font-size: 18px;
         }
 
         .warning-text .highlight-red {
@@ -88,7 +105,7 @@
 
         /* 動画後セクション */
         .pre-video-section {
-            padding: 0.75em 0 0.4em;
+            padding: 0.75em 0 1em;
             text-align: center;
             background: #fff;
         }
@@ -466,10 +483,7 @@
         .cta-button-sub {
             font-size: 1em;
             font-weight: bold;
-            white-space: nowrap;
         }
-
-        /* Sticky CTA placeholder removed */
 
         /* 追伸 */
         .ps {
@@ -488,8 +502,19 @@
 
         /* 緊急性 */
         .urgency {
-            margin: 0;
-            padding: 0;
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 1em;
+            text-align: center;
+            margin: 0 0 1.5em 0;
+            width: 100%;
+        }
+
+        .urgency p {
+            color: #856404;
+            font-weight: bold;
+            font-size: 1.125em;
+            margin-bottom: 0.625em;
         }
 
         .note-box {
@@ -506,16 +531,15 @@
 
         /* 個別相談会セクション */
         .consultation-section {
-            margin: 1em auto 2.4em;
+            margin: 1em auto 2em;
             width: 820px;
             max-width: 96%;
             text-align: center;
             background: white;
-            padding-bottom: 1.5em;
         }
 
         .consultation-section-first {
-            margin-top: 0.3em;
+            margin-top: 1em;
         }
 
         .red-header {
@@ -527,7 +551,7 @@
         }
 
         .consultation-section-first .red-header {
-            font-size: 1.4em;
+            font-size: 1.6em;
             font-weight: 900;
         }
 
@@ -636,7 +660,7 @@
         }
 
         .consultation-section-first .consultation-title {
-            margin: 0.5em 0 1em;
+            margin: 0.5em 0 0.3em;
         }
 
         .consultation-section-first .title-en {
@@ -660,13 +684,13 @@
         .consultation-section-first .title-sub {
             font-size: 3em;
             font-weight: 900;
-            margin: 0 0 0.7em;
+            margin: 0;
             line-height: 1;
             color: #333;
         }
 
         .consultation-section-first .black-footer {
-            margin-top: 1.2em;
+            margin-top: 0.3em;
             font-size: 1.3em;
             padding: 1em;
         }
@@ -718,7 +742,7 @@
             }
 
             .pre-video-section {
-                padding: 0.6em 0 0.4em;
+                padding: 1em 0;
             }
 
             .tokuten h2 {
@@ -734,12 +758,38 @@
                 width: 100%;
                 padding: 3vw;
             }
-
         }
 
         @media screen and (max-width: 599px) {
             body {
                 font-size: 4vw;
+            }
+
+            .warning-banner {
+                padding: 3vw 4vw;
+                gap: 2.5vw;
+            }
+
+            .warning-triangle {
+                border-left: 4.5vw solid transparent;
+                border-right: 4.5vw solid transparent;
+                border-bottom: 7.75vw solid #333;
+            }
+
+            .warning-triangle::after {
+                font-size: 5.5vw;
+                top: 1.5vw;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .warning-text p {
+                font-size: 3.5vw;
+                line-height: 1.4;
+            }
+
+            .warning-text .highlight-red {
+                font-size: 3.5vw;
             }
 
             .header {
@@ -756,25 +806,16 @@
             }
 
             .pre-video-section {
-                padding: 2vw 0 2vw;
-            }
-
-            .consultation-section {
-                margin: 3.2vw auto;
-                padding-bottom: 2.8vw;
-            }
-
-            .consultation-section-first {
-                margin-top: 1vw;
+                padding: 2vw 0 3vw;
             }
 
             .consultation-section-first .merit-boxes {
-                margin: 1.2vw 0 0.6vw;
+                margin: 2vw 0 1vw;
             }
 
             .consultation-section-first .main-copy {
                 font-size: 4.2vw;
-                margin: 0.6vw 0;
+                margin: 1vw 0;
                 line-height: 1.5;
             }
 
@@ -794,54 +835,25 @@
 
             .consultation-section-first .title-sub {
                 font-size: 8.5vw;
-                margin: 0 0 1.8vw;
+                margin: 0;
                 line-height: 1.1;
             }
 
             .consultation-section-first .consultation-title {
-                margin: 3vw 0 3.2vw;
-            }
-
-            .consultation-section-first .red-header {
-                white-space: nowrap;
+                margin: 3vw 0 1vw;
             }
 
             .consultation-section-first .black-footer {
                 font-size: 4vw;
-                margin-top: 2.8vw;
+                margin-top: 1vw;
                 line-height: 1.4;
-                white-space: nowrap;
-            }
-
-            .warning-banner {
-                flex-direction: column;
-                gap: 2vw;
-                padding: 5vw 3.5vw;
-            }
-
-            .warning-banner p {
-                font-size: 3.2vw;
-                line-height: 1.5;
-                word-break: keep-all;
-            }
-
-            .warning-text br {
-                display: none;
-            }
-
-            .warning-text .warning-lead {
-                display: none;
-            }
-
-            .warning-text .highlight-red {
-                font-size: 3.4vw;
             }
 
             .content h2 {
-                margin: 7vw auto 5vw;
-                padding: 5vw 3vw;
-                font-size: 3.8vw;
-                line-height: 1.5;
+                margin: 6vw auto 4vw;
+                padding: 4vw 2vw;
+                font-size: 4.8vw;
+                line-height: 1.4;
             }
 
             .content h2:first-of-type {
@@ -898,18 +910,13 @@
             }
 
             .consultation-section {
-                margin: 5vw auto;
-                padding-bottom: 3.5vw;
-            }
-
-            .consultation-section-first {
-                margin-top: 2.5vw;
+                margin: 4vw auto;
             }
 
             .red-header {
-                font-size: 3.1vw;
+                font-size: 3.5vw;
                 padding: 3vw;
-                line-height: 1.35;
+                line-height: 1.4;
             }
 
             .arrow-down {
@@ -983,8 +990,9 @@
     <div class="container">
         <!-- 警告バナー -->
         <div class="warning-banner">
+            <div class="warning-triangle"></div>
             <div class="warning-text">
-                <p><span class="warning-lead">【期間限定】</span>このアーカイブ動画の公開は<span class="highlight-red">48時間限定</span>です！</p>
+                <p><span class="highlight-red">【期間限定】</span>このアーカイブ動画の公開は<span class="highlight-red">48時間限定</span>です！</p>
                 <p>再公開はいたしませんので、期間内に必ずご視聴ください</p>
             </div>
         </div>
@@ -1045,15 +1053,19 @@
                 </div>
 
                 <!-- CTAボタン -->
-                <a href="https://lstep.app/QHomIg5" class="cta-button" style="margin-top: 1.2em; margin-bottom: 1.1em;">
+                <a href="#" class="cta-button" style="margin-top: 2em;">
                     <div class="cta-button-inner">
                         <div class="cta-button-icon"></div>
                         <div class="cta-button-text">
-                            <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                            <span class="cta-button-sub">無料個別相談会に今すぐ申し込む</span>
                         </div>
                     </div>
                 </a>
 
+                <div class="urgency">
+                    <p>先着6名限定</p>
+                    <p>すでに3名が申込済み（残り3席）</p>
+                </div>
             </div>
 
             <div class="step-box">
@@ -1258,15 +1270,19 @@
                 </div>
 
                 <!-- CTAボタン -->
-                <a href="https://lstep.app/QHomIg5" class="cta-button" style="margin-top: 1.2em; margin-bottom: 1.1em;">
+                <a href="#" class="cta-button" style="margin-top: 2em;">
                     <div class="cta-button-inner">
                         <div class="cta-button-icon"></div>
                         <div class="cta-button-text">
-                            <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                            <span class="cta-button-sub">無料個別相談会に今すぐ申し込む</span>
                         </div>
                     </div>
                 </a>
 
+                <div class="urgency">
+                    <p>先着6名限定</p>
+                    <p>すでに3名が申込済み（残り3席）</p>
+                </div>
             </div>
 
             <h2>実際の受講生の成果をご覧ください</h2>
@@ -1522,15 +1538,19 @@
                 </div>
 
                 <!-- CTAボタン -->
-                <a href="https://lstep.app/QHomIg5" class="cta-button" style="margin-top: 1.6em; margin-bottom: 1.1em;">
+                <a href="#" class="cta-button" style="margin-top: 2em;">
                     <div class="cta-button-inner">
                         <div class="cta-button-icon"></div>
                         <div class="cta-button-text">
-                            <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                            <span class="cta-button-sub">無料個別相談会に今すぐ申し込む</span>
                         </div>
                     </div>
                 </a>
 
+                <div class="urgency">
+                    <p>先着6名限定</p>
+                    <p>すでに3名が申込済み（残り3席）</p>
+                </div>
             </div>
 
             <h2>よくある質問</h2>
@@ -1567,11 +1587,17 @@
                 </div>
             </div>
 
-            <a href="https://lstep.app/QHomIg5" class="cta-button" style="margin-top: 1.2em; margin-bottom: 1.1em;">
+            <div class="urgency">
+                <p>先着6名限定</p>
+                <p>すでに◯名が参加申込済み</p>
+                <p style="font-size: 24px; margin-top: 10px;">残り◯席</p>
+            </div>
+
+            <a href="#" class="cta-button">
                 <div class="cta-button-inner">
                     <div class="cta-button-icon"></div>
                     <div class="cta-button-text">
-                        <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                        <span class="cta-button-sub">個別相談会にいますぐ申し込む</span>
                     </div>
                 </div>
             </a>
@@ -1592,11 +1618,18 @@
             <p class="highlight" style="font-size: 24px;">次はあなたの番です。</p>
             <p>無料個別相談会であなた専用の戦略を一緒に作りましょう。</p>
 
-            <a href="https://lstep.app/QHomIg5" class="cta-button" style="margin-top: 1.2em;">
+            <div class="urgency">
+                <p>先着6名限定</p>
+                <p>48時間後に動画削除</p>
+                <p style="margin-top: 10px;">迷っている時間はありません。</p>
+                <p style="font-size: 20px; margin-top: 10px;">今すぐ、申し込んでください。</p>
+            </div>
+
+            <a href="#" class="cta-button">
                 <div class="cta-button-inner">
                     <div class="cta-button-icon"></div>
-                <div class="cta-button-text">
-                    <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                    <div class="cta-button-text">
+                        <span class="cta-button-sub">個別相談会にいますぐ申し込む</span>
                     </div>
                 </div>
             </a>
@@ -1628,11 +1661,18 @@
             <p>その本気に僕も本気で応えます。</p>
             <p>無料個別相談会で必ず結果が出る戦略を一緒に作りましょう。</p>
 
-            <a href="https://lstep.app/QHomIg5" class="cta-button" style="margin-top: 1.2em;">
+            <div class="urgency">
+                <p>先着6名限定</p>
+                <p>すでに◯名が参加済み</p>
+                <p>残り◯席です。</p>
+                <p style="font-size: 20px; margin-top: 10px;">今すぐ、決断してください。</p>
+            </div>
+
+            <a href="#" class="cta-button">
                 <div class="cta-button-inner">
                     <div class="cta-button-icon"></div>
-                <div class="cta-button-text">
-                    <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                    <div class="cta-button-text">
+                        <span class="cta-button-sub">個別相談会にいますぐ申し込む</span>
                     </div>
                 </div>
             </a>
@@ -1643,6 +1683,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>
