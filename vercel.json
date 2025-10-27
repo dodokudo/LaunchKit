@@ -1,11 +1,11 @@
 {
-  "buildCommand": "npm run build:seminar",
+  "buildCommand": "npm run build:threads-lp-green",
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/",
-      "destination": "/seminar-sample/index.html"
+      "destination": "/threads-lp-green/index.html"
     }
   ]
 }
