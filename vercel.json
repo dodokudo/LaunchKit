@@ -1,11 +1,5 @@
 {
   "buildCommand": "npm run build:threads-lp-green",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/threads-lp-green/index.html"
-    }
-  ]
+  "outputDirectory": "dist/threads-lp-green",
+  "installCommand": "npm install"
 }
