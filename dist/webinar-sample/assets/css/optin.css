@@ -199,27 +199,57 @@ p {
 }
 
 .countdown-banner {
-  max-width: 800px;
-  margin: 20px auto 0;
-  background: #111;
-  color: #fff;
-  padding: 16px 20px;
-  border-radius: 8px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 990;
+  margin: 0;
+  padding: 14px 18px;
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--countdown-bg, #0d1011);
+  color: var(--countdown-text, #ffffff);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .countdown__label {
-  font-size: 16px;
-  opacity: 0.85;
+  font-size: 17px;
+  opacity: 0.9;
+  text-transform: uppercase;
 }
 
 .countdown__value {
-  font-size: 20px;
-  letter-spacing: 0.08em;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+}
+
+body.has-countdown-banner {
+  padding-top: var(--countdown-height, 68px);
+}
+
+@media (max-width: 600px) {
+  .countdown-banner {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    padding: 12px 16px;
+  }
+  .countdown__label {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+  .countdown__value {
+    font-size: 20px;
+    letter-spacing: 0.08em;
+  }
+  body.has-countdown-banner {
+    padding-top: var(--countdown-height, 92px);
+  }
 }
 
 .cta-button {
@@ -244,13 +274,7 @@ p {
   box-shadow: 0 6px 16px rgba(0,0,0,0.4);
 }
 
-.cta-button::before {
-  content: "▼ ";
-}
-
-.cta-button::after {
-  content: " ▼";
-}
+/* Removed arrows from CTA button */
 
 .urgency {
   background: #ffebee;
@@ -309,44 +333,96 @@ p {
 
 .sticky-cta {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 16px 20px;
-  background: rgba(0, 0, 0, 0.92);
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 720px;
+  background: none;
   z-index: 999;
-  backdrop-filter: blur(6px);
+  pointer-events: none;
 }
 
 .sticky-cta__label {
-  color: #fff;
+  pointer-events: auto;
+  color: #0f4414;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .sticky-cta__link {
+  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 28px;
-  border-radius: 999px;
-  background: var(--accent-color);
-  color: #000;
-  font-weight: 700;
+  gap: 16px;
+  width: min(640px, 100%);
+  padding: 22px 48px;
+  border-radius: 24px;
+  background: linear-gradient(92deg, #00dd68 0%, #00b04f 52%, #008637 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(16px, 3.8vw, 22px);
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  white-space: normal;
+  box-shadow: 0 18px 48px rgba(0, 115, 32, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  animation: sticky-cta-bounce 2.6s ease-in-out infinite;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.18);
+}
+
+.sticky-cta__link::before {
+  content: '▶';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: none;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.25);
 }
 
 .sticky-cta__link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 54px rgba(0, 115, 32, 0.42);
+  filter: brightness(1.06);
+}
+
+@keyframes sticky-cta-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  32% {
+    transform: translateY(-4px) scale(1.04);
+  }
+  52% {
+    transform: translateY(1px) scale(0.99);
+  }
+  72% {
+    transform: translateY(-2px) scale(1.02);
+  }
 }
 
 .sticky-cta__spacer {
-  height: 72px;
+  height: 118px;
 }
 
 .divider {
@@ -370,7 +446,7 @@ p {
   }
 
   .sticky-cta {
-    flex-direction: column;
-    gap: 8px;
+    bottom: 16px;
+    max-width: 420px;
   }
 }

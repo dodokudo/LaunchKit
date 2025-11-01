@@ -36,12 +36,23 @@
     const elements = document.querySelectorAll('[data-deadline]');
     const timers = [];
     elements.forEach((el) => {
-      if (el.dataset.countdownInitialised) return;
       el.dataset.countdownInitialised = 'true';
       const timerId = initCountdown(el);
       if (timerId) timers.push(timerId);
     });
     return timers;
+  }
+
+  function setupCountdownBanner() {
+    const banner = document.querySelector('.countdown-banner');
+    if (!banner) return;
+    document.body.classList.add('has-countdown-banner');
+    const updateHeight = () => {
+      const height = banner.getBoundingClientRect().height;
+      document.body.style.setProperty('--countdown-height', `${Math.ceil(height)}px`);
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
   }
 
   function setupStickyCTA() {
@@ -59,6 +70,7 @@
   }
 
   onReady(function () {
+    setupCountdownBanner();
     setupCountdowns();
     setupStickyCTA();
   });
