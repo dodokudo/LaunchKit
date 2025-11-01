@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:threads-lp-green",
-  "outputDirectory": "dist/threads-lp-green",
+  "buildCommand": "npm run build:all",
+  "outputDirectory": "dist",
   "installCommand": "npm install"
 }

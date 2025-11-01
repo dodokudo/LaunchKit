@@ -9,6 +9,8 @@
     "build:webinar": "node scripts/build.js configs/webinar-sample.json",
     "build:consult": "node scripts/build.js configs/consult-sample.json",
     "build:threads-lp-green": "node scripts/build.js configs/threads-lp-green.json",
+    "build:threads-lp-green-v2": "node scripts/build.js configs/threads-lp-green-v2.json",
+    "build:threads-lp-v2": "node scripts/build.js configs/threads-lp-v2.json",
     "build:all": "node scripts/build-all.js",
     "scaffold": "node scripts/scaffold.js",
     "start:admin": "node server/index.js"
