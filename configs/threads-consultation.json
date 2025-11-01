@@ -1,0 +1,27 @@
+{
+  "slug": "threads-consultation",
+  "template": "raw-html/base.njk",
+  "paths": {
+    "assets": "./assets"
+  },
+  "meta": {
+    "title": "30日で101万インプレッション達成したThreads×AI集客術を完全公開",
+    "description": "Threads×AI高単価商品販売ロードマップ作成会"
+  },
+  "raw_html_file": "content/threads-consultation/landing.html",
+  "assets_source": "seminar/assets",
+  "sticky_cta": {
+    "enabled": true,
+    "text": "▶︎今すぐ作成会に申し込む！",
+    "url": "https://lstep.app/QHomIg5",
+    "label": "＼残り3枠のみ／"
+  },
+  "countdown": {
+    "enabled": true,
+    "label": "アーカイブ削除まで　あと",
+    "deadline": "2025-10-25T23:59:49+09:00"
+  },
+  "sections": [],
+  "deploy_url": "https://threads-consultation-fpbe6cgf0-kudos-projects-0bee12bb.vercel.app",
+  "custom_styles": "@media (max-width: 768px) { .header h1 { font-size: 21px !important; color: #ffffff !important; font-weight: bold !important; padding: 0px !important; margin: 0px !important } }\n  \n@media (max-width: 768px) { .content p { font-size: 15px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 30px 0px !important } }\n@media (max-width: 768px) { .content p { font-size: 15px !important; color: #222222 !important; font-weight: bold !important; padding: 0px !important; margin: 30px 0px !important } }"
+}
