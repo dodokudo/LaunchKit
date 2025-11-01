@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:threads-lp-green",
-  "outputDirectory": "dist/threads-lp-green",
+  "buildCommand": "npm run build:threads-lp-v2",
+  "outputDirectory": "dist/threads-lp-v2",
   "installCommand": "npm install"
 }
