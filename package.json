@@ -12,6 +12,7 @@
     "build:threads-lp-green-v2": "node scripts/build.js configs/threads-lp-green-v2.json",
     "build:threads-lp-v2": "node scripts/build.js configs/threads-lp-v2.json",
     "build:threads-lp-v3": "node scripts/build.js configs/threads-lp-v3.json",
+    "build:threads-lp-v4": "node scripts/build.js configs/threads-lp-v4.json",
     "build:all": "node scripts/build-all.js",
     "build:deploy": "node scripts/build-for-deploy.js",
     "scaffold": "node scripts/scaffold.js",
