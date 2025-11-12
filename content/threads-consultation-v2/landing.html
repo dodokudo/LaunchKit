@@ -1,0 +1,1608 @@
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+            font-size: 125%;
+            line-height: 1.7;
+            color: #222;
+            background: #f5f5f5;
+            font-feature-settings: "palt";
+            text-align: justify;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        /* 警告バナー */
+        .warning-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .warning-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .warning-text p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .warning-text .warning-lead {
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        .warning-text .highlight-red {
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: linear-gradient(135deg, #101075 0%, #1a1a9a 100%);
+            color: white;
+            text-align: center;
+            padding: 1.5em 1.25em;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+
+        /* 動画後セクション */
+        .pre-video-section {
+            padding: 0.75em 0 0.4em;
+            text-align: center;
+            background: #fff;
+        }
+
+        .pre-video-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .pre-video-section strong {
+            color: #101075;
+            font-size: 1.2em;
+        }
+
+        /* 動画エリア */
+        .video-section {
+            padding: 1.5em 0 0.5em;
+            background: #fff;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            width: 880px;
+            max-width: 96%;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1em;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* コンテンツセクション */
+        .content {
+            padding: 1.5em 0;
+            margin: 0 auto;
+            width: 820px;
+            max-width: 96%;
+        }
+
+        .content h2 {
+            position: relative;
+            margin: 2em 0 1.5em 0;
+            padding: 1.5em 0;
+            width: 100%;
+            border-top: 2px solid #101075;
+            border-bottom: 2px solid #101075;
+            background: #f5fbff;
+            font-size: 1.75em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .content h2::before {
+            position: absolute;
+            content: "";
+            margin: 3px 0;
+            border-top: 1px solid #101075;
+            border-bottom: 1px solid #101075;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+        }
+
+        .content h3 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 1.5em 0 1em 0;
+            width: 100%;
+            color: #101075;
+        }
+
+        .content h4 {
+            font-size: 1.25em;
+            font-weight: bold;
+            margin: 1.25em 0 0.75em;
+            width: 100%;
+            color: #101075;
+        }
+
+        .content p {
+            margin: 0 0 1em 0;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        .content ul, .content ol {
+            margin: 1em 0;
+            width: 100%;
+            padding-left: 1.875em;
+        }
+
+        .content li {
+            margin-bottom: 0.625em;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #D00;
+            background-color: #fff266;
+        }
+
+        /* チェックリスト */
+        .checklist {
+            background: #fff;
+            padding: 1.5em;
+            padding-bottom: 0;
+            margin: 1.5em 0;
+            width: 100%;
+            border: 1.5em solid #f5f5f5;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .checklist-item {
+            margin-bottom: 0.8em;
+            padding-left: 2.2em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid #DDD;
+            background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOSAxNi4xN0w0LjgzIDEybC0xLjQyIDEuNDFMOSAxOSAyMSA3bC0xLjQxLTEuNDFMOSAxNi4xN3oiIGZpbGw9IiMxMDEwNzUiLz48L3N2Zz4=) left top / 1.2em 1.2em no-repeat;
+            line-height: 1.3;
+        }
+
+        .checklist-item:last-of-type {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+
+        /* ボックス */
+        .box {
+            background: #fff;
+            padding: 1.5em;
+            margin: 1.5em 0;
+            width: 100%;
+            border: 1.5em solid #f5f5f5;
+        }
+
+        /* ステップ */
+        .step-box {
+            background: white;
+            padding: 1.5em;
+            margin: 1.5em 0;
+            width: 100%;
+            border: 2px solid #101075;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-box h3 {
+            margin-top: 0;
+            color: #101075;
+        }
+
+        /* 受講生の声 */
+        .testimonial {
+            margin: 1.5em 0;
+        }
+
+        .testimonial-item {
+            margin-bottom: 3em;
+        }
+
+        .testimonial-item:first-of-type {
+            margin-top: 0;
+        }
+
+        .testimonial-item:last-of-type {
+            margin-bottom: 2.5em;
+        }
+
+        .testimonial-title {
+            background: #101075;
+            color: white;
+            text-align: center;
+            padding: 0.75em;
+            font-size: 1.125em;
+            font-weight: bold;
+            margin-bottom: 0.625em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.938em;
+        }
+
+        .testimonial-desc {
+            text-align: center;
+            font-size: 1.125em;
+            font-weight: bold;
+            margin-bottom: 0.938em;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            margin: 1.5em auto 0;
+            width: 800px;
+            max-width: 96%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 特典セクション */
+        .tokuten {
+            background: #fff;
+            padding: 0;
+            margin: 1.5em auto;
+            width: 820px;
+            max-width: 96%;
+        }
+
+        .tokuten h2 {
+            position: relative;
+            margin: 0 0 1.5em 0;
+            padding: 1.5em 0;
+            width: 100%;
+            border-top: 3px solid #101075;
+            border-bottom: 3px solid #101075;
+            background: #fff9e6;
+            text-align: center;
+            font-size: 1.75em;
+        }
+
+        .tokuten h2::before {
+            position: absolute;
+            content: "";
+            margin: 3px 0;
+            border-top: 1px solid #101075;
+            border-bottom: 1px solid #101075;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+        }
+
+        .tokuten-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            margin: 0;
+            padding: 1.5em 0;
+            width: 100%;
+        }
+
+        .tokuten-item {
+            background: white;
+            padding: 1.5em;
+            margin: 0;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tokuten-item h4 {
+            color: #101075;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-bottom: 0.938em;
+            margin-top: 0;
+        }
+
+        .price-tag {
+            color: #D00;
+            font-weight: bold;
+            font-size: 1.125em;
+            margin-top: 0.625em;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 1.5em 0 0 0;
+            margin: 1.5em auto 0 auto;
+            width: 820px;
+            max-width: 96%;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.5em;
+            margin: 0;
+            width: 100%;
+            border-left: 1.5em solid #f5f5f5;
+            border-right: 1.5em solid #f5f5f5;
+            border-top: 1.5em solid #f5f5f5;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: 1.5em solid #f5f5f5;
+        }
+
+        .faq-item h4 {
+            color: #101075;
+            font-size: 1.125em;
+            margin-bottom: 0.938em;
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
+
+        /* CTAボタン */
+        .cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5em auto 3em;
+            width: 600px;
+            max-width: 96%;
+            height: 100px;
+            padding: 0;
+            background: linear-gradient(135deg, #00d084 0%, #00b873 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.25em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+            animation-name: btn-animation;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+
+        .cta-button:hover {
+            animation-duration: 0.8s;
+        }
+
+        .cta-button-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.938em;
+        }
+
+        .cta-button-icon {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0.6em 0 0.6em 1em;
+            border-color: transparent transparent transparent white;
+        }
+
+        .cta-button-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-button-main {
+            font-size: 1em;
+            color: #ffeb3b;
+        }
+
+        .cta-button-sub {
+            font-size: 1em;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* 追伸 */
+        .ps {
+            background: #fff;
+            padding: 1.5em;
+            margin: 1.5em 0;
+            width: 100%;
+            border: 1.5em solid #f5f5f5;
+        }
+
+        .ps h3 {
+            color: #101075;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .note-box {
+            text-align: center;
+            margin: 1.5em 0;
+            padding: 1em;
+            background: #f0f0f0;
+            width: 100%;
+        }
+
+        .note-box p {
+            margin-bottom: 0.313em;
+        }
+
+        /* ロードマップ作成会セクション */
+        .consultation-section {
+            margin: 1em auto 2.4em;
+            width: 820px;
+            max-width: 96%;
+            text-align: center;
+            background: white;
+            padding-bottom: 1.5em;
+        }
+
+        .content h2.section-divider {
+            margin: 1.6em 0 1.2em;
+            padding: 1.1em 0;
+        }
+
+        .consultation-section-first {
+            margin-top: 0.3em;
+        }
+
+        .red-header {
+            background: linear-gradient(135deg, #E60012 0%, #C50010 100%);
+            color: white;
+            padding: 1em;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .consultation-section-first .red-header {
+            font-size: 1.4em;
+            font-weight: 900;
+        }
+
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 1.5em solid transparent;
+            border-right: 1.5em solid transparent;
+            border-top: 1.2em solid #E60012;
+            margin: 0 auto;
+        }
+
+        .merit-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin: 1em 0 0.75em;
+            flex-wrap: wrap;
+            padding: 0 1em;
+        }
+
+        .merit-box {
+            background: #f0f0f0;
+            padding: 0.6em 1.25em;
+            font-size: 1.125em;
+            font-weight: bold;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .consultation-section-first .merit-box {
+            background: #f5f5f5;
+            border: 2px solid #aaa;
+            font-size: 1.2em;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-copy {
+            font-size: 1.375em;
+            font-weight: bold;
+            line-height: 1.6;
+            margin: 0.75em 0;
+            color: #333;
+            padding: 0 1em;
+        }
+
+        .consultation-title {
+            margin: 0.75em 0;
+            padding: 0 1em;
+        }
+
+        .title-en {
+            font-size: 3em;
+            font-weight: 900;
+            color: #000;
+            letter-spacing: 0.125em;
+            margin-bottom: 0.2em;
+        }
+
+        .title-line {
+            width: 12.5em;
+            height: 3px;
+            background: #101075;
+            margin: 0.625em auto;
+        }
+
+        .title-ja {
+            font-size: 2.625em;
+            font-weight: 900;
+            color: #101075;
+            margin: 0.2em 0;
+        }
+
+        .title-sub {
+            font-size: 2.25em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 0.2em;
+        }
+
+        .black-footer {
+            background: #000;
+            color: white;
+            padding: 0.9em;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-top: 0.75em;
+        }
+
+        /* 1番目のロードマップ作成会セクション専用スタイル */
+        .consultation-section-first .merit-boxes {
+            margin: 0.5em 0 0.3em;
+        }
+
+        .consultation-section-first .main-copy {
+            margin: 0.3em 0;
+            font-size: 1.6em;
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .main-copy-highlight {
+            background: linear-gradient(transparent 60%, #fff266 60%);
+            font-weight: 900;
+        }
+
+        .consultation-section-first .consultation-title {
+            margin: 0.5em 0 1em;
+        }
+
+        .consultation-section-first .title-en {
+            font-size: 3em;
+            font-weight: 900;
+            margin: 0;
+            margin-bottom: 0.15em;
+            line-height: 1;
+            color: #000;
+        }
+
+        .consultation-section-first .title-ja {
+            font-size: 3em;
+            font-weight: 900;
+            margin: 0;
+            margin-bottom: 0.15em;
+            line-height: 1;
+            color: #101075;
+        }
+
+        .consultation-section-first .title-sub {
+            font-size: 3em;
+            font-weight: 900;
+            margin: 0 0 0.7em;
+            line-height: 1;
+            color: #333;
+        }
+
+        .consultation-section-first .black-footer {
+            margin-top: 1.2em;
+            font-size: 1.3em;
+            padding: 1em;
+        }
+
+        /* プレースホルダーセクション（編集予定） */
+        .placeholder-section {
+            background: #fffbcc;
+            border: 3px dashed #ffaa00;
+            padding: 2em;
+            margin: 2em 0;
+            text-align: center;
+        }
+
+        .placeholder-section h2 {
+            color: #ff6600;
+            margin-bottom: 0.5em;
+        }
+
+        .placeholder-section p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* CTAボタンアニメーション */
+        @keyframes btn-animation {
+            0% {
+                transform: translateY(0.3em);
+            }
+            50% {
+                transform: translateY(-0.3em);
+            }
+            100% {
+                transform: translateY(0.3em);
+            }
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 96vw;
+        }
+
+        @media screen and (max-width: 1023px) {
+            .content h2 {
+                margin: 4vw auto 3vw;
+                padding: 4vw 0;
+            }
+
+            .tokuten h2 {
+                margin: 0 auto 3vw;
+                padding: 4vw 0;
+            }
+
+            .video-section {
+                padding: 1em 0 0.5em;
+            }
+
+            .consultation-section {
+                padding: 0;
+            }
+
+            .pre-video-section {
+                padding: 0.6em 0 0.4em;
+            }
+
+            .tokuten h2 {
+                font-size: 5vw;
+                padding: 3vw 2vw;
+            }
+
+            .tokuten-container {
+                gap: 3vw;
+            }
+
+            .tokuten-item {
+                width: 100%;
+                padding: 3vw;
+            }
+        }
+
+        @media screen and (max-width: 599px) {
+            body {
+                font-size: 4vw;
+            }
+
+            .header {
+                padding: 4vw 3vw;
+            }
+
+            .header h1 {
+                font-size: 5.5vw;
+                line-height: 1.4;
+            }
+
+            .pre-video-section {
+                padding: 2vw 0 2vw;
+            }
+
+            .consultation-section {
+                margin: 3.2vw auto;
+                padding-bottom: 2.8vw;
+            }
+
+            .consultation-section-first {
+                margin-top: 1vw;
+            }
+
+            .content h2.section-divider {
+                margin: 2.4vw 0 2vw;
+                padding: 2.6vw 0;
+            }
+
+            .consultation-section-first .merit-boxes {
+                margin: 1.2vw 0 0.6vw;
+            }
+
+            .consultation-section-first .main-copy {
+                font-size: 4.2vw;
+                margin: 0.6vw 0;
+                line-height: 1.5;
+            }
+
+            .consultation-section-first .title-en {
+                font-size: 8.5vw;
+                margin: 0;
+                margin-bottom: 0.15em;
+                line-height: 1.1;
+            }
+
+            .consultation-section-first .title-ja {
+                font-size: 8.5vw;
+                margin: 0;
+                margin-bottom: 0.15em;
+                line-height: 1.1;
+            }
+
+            .consultation-section-first .title-sub {
+                font-size: 8.5vw;
+                margin: 0 0 1.8vw;
+                line-height: 1.1;
+            }
+
+            .consultation-section-first .consultation-title {
+                margin: 3vw 0 3.2vw;
+            }
+
+            .consultation-section-first .red-header {
+                white-space: nowrap;
+            }
+
+            .consultation-section-first .black-footer {
+                font-size: 4vw;
+                margin-top: 2.8vw;
+                line-height: 1.4;
+                white-space: nowrap;
+            }
+
+            .warning-banner {
+                flex-direction: column;
+                gap: 2vw;
+                padding: 5vw 3.5vw;
+            }
+
+            .warning-banner p {
+                font-size: 3.2vw;
+                line-height: 1.5;
+                word-break: keep-all;
+            }
+
+            .warning-text br {
+                display: none;
+            }
+
+            .warning-text .warning-lead {
+                display: none;
+            }
+
+            .warning-text .highlight-red {
+                font-size: 3.4vw;
+            }
+
+            .content h2 {
+                margin: 7vw auto 5vw;
+                padding: 5vw 3vw;
+                font-size: 3.8vw;
+                line-height: 1.5;
+            }
+
+            .content h2:first-of-type {
+                margin-top: 0;
+            }
+
+            .content h3 {
+                font-size: 4.5vw;
+                line-height: 1.4;
+            }
+
+            .video-section {
+                padding: 3vw 0 1vw;
+            }
+
+            .pre-video-section {
+                padding: 2vw 0 3vw;
+            }
+
+            .cta-button {
+                margin: 4vw auto;
+                margin-bottom: 5vw;
+                height: 20vw;
+                font-size: 4vw;
+            }
+
+            .tokuten h2 {
+                margin: 0 auto 4vw;
+                padding: 4vw 2vw;
+                font-size: 5.5vw;
+            }
+
+            .tokuten-container {
+                gap: 4vw;
+                margin: 0;
+                padding: 4vw 0;
+            }
+
+            .tokuten-item {
+                width: 100%;
+                padding: 4vw;
+            }
+
+            .testimonial-item {
+                margin-bottom: 5vw;
+            }
+
+            .testimonial-item:last-of-type {
+                margin-bottom: 5vw;
+            }
+
+            .video-container {
+                margin-top: 3vw;
+            }
+
+            .consultation-section {
+                margin: 5vw auto;
+                padding-bottom: 3.5vw;
+            }
+
+            .consultation-section-first {
+                margin-top: 2.5vw;
+            }
+
+            .red-header {
+                font-size: 3.1vw;
+                padding: 3vw;
+                line-height: 1.35;
+            }
+
+            .arrow-down {
+                border-left: 4vw solid transparent;
+                border-right: 4vw solid transparent;
+                border-top: 3vw solid #E60012;
+            }
+
+            .merit-boxes {
+                flex-direction: row;
+                gap: 2vw;
+                margin: 2vw 0 1.5vw;
+                padding: 0 2vw;
+            }
+
+            .merit-box {
+                padding: 2vw 1.5vw;
+                font-size: 3.5vw;
+                flex: 1;
+            }
+
+            .main-copy {
+                font-size: 4.5vw;
+                margin: 1.5vw 0;
+                padding: 0 3vw;
+                line-height: 1.5;
+            }
+
+            .consultation-title {
+                margin: 2vw 0;
+                padding: 0 3vw;
+            }
+
+            .title-en {
+                font-size: 8vw;
+                margin-bottom: 0.5vw;
+            }
+
+            .title-ja {
+                font-size: 7vw;
+                margin: 0.5vw 0;
+            }
+
+            .title-sub {
+                font-size: 6vw;
+                margin-top: 0.5vw;
+            }
+
+            .black-footer {
+                font-size: 3.2vw;
+                padding: 2.5vw;
+                margin-top: 2vw;
+            }
+
+            @keyframes btn-animation {
+                0% {
+                    transform: translateY(0.5vw);
+                }
+                50% {
+                    transform: translateY(-0.5vw);
+                }
+                100% {
+                    transform: translateY(0.5vw);
+                }
+            }
+        }
+
+    </style>
+
+<div id="wrapper">
+    <div class="container">
+        <!-- 警告バナー -->
+        <div class="warning-banner">
+            <div class="warning-text">
+                <p><span class="warning-lead">【期間限定】</span>このアーカイブ動画の公開は<span class="highlight-red">48時間限定</span>です！</p>
+                <p>再公開はいたしませんので、期間内に必ずご視聴ください</p>
+            </div>
+        </div>
+
+        <!-- ヘッダー -->
+        <div class="header">
+            <h1>30日で101万インプを達成した<br>Threads×AI集客術を完全公開</h1>
+        </div>
+
+        <!-- 動画セクション -->
+        <div class="video-section">
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1LG9breEbAxhOH10jrjL8yl0CNe8FRSGC/preview" allow="autoplay" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
+        <!-- 動画後のターゲットコール -->
+        <div class="pre-video-section">
+            <p>
+                SNS集客に疲れていませんか？<br>
+                フォロワーは増えるのに売上がゼロ...<br>
+                <strong>そんなあなたに、これがおすすめです。</strong>
+            </p>
+        </div>
+
+        <!-- メインコンテンツ -->
+        <div class="content">
+            <!-- CTA 1回目 -->
+            <div class="consultation-section consultation-section-first">
+                <div class="red-header">
+                    参加者限定 豪華3大特典付き！
+                </div>
+                <div class="arrow-down"></div>
+
+                <div class="merit-boxes">
+                    <div class="merit-box">少フォロワーOK</div>
+                    <div class="merit-box">副業でも出来る</div>
+                </div>
+
+                <div class="main-copy">
+                    AIを活用して、<span class="main-copy-highlight">売れる商品・導線</span>を<br>
+                    <span class="main-copy-highlight">一緒に作り上げる！</span>
+                </div>
+
+                <div class="consultation-title">
+                    <div class="title-en">Threads × AI</div>
+                    <div class="title-ja">高単価商品販売</div>
+                    <div class="title-sub">ロードマップ作成会</div>
+                </div>
+
+                <div class="black-footer">
+                    SNSで8000万円稼いだノウハウを全て継承
+                </div>
+
+                <a href="https://lstep.app/rn86X1t" class="cta-button" style="margin-top: 1.2em; margin-bottom: 1.1em;">
+                    <div class="cta-button-inner">
+                        <div class="cta-button-icon"></div>
+                        <div class="cta-button-text">
+                            <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- こんなあなたにおすすめ -->
+            <h2>こんな方におすすめです</h2>
+            <div class="checklist">
+                <div class="checklist-item">SNS集客に時間を取られすぎている<br>→ AIで効率化し、1日10分で完結させたい</div>
+                <div class="checklist-item">フォロワーは増えるのに売上に繋がらない<br>→ 集客を売上に変える導線を作りたい</div>
+                <div class="checklist-item">売れる商品を持っていない<br>→ ゼロから高単価商品を設計したい</div>
+                <div class="checklist-item">安い商品ばかり売って疲弊している<br>→ 高単価商品で少ない顧客から大きな売上を作りたい</div>
+                <div class="checklist-item">何を売ればいいか分からない<br>→ 自分の強みを活かした商品を見つけたい</div>
+                <div class="checklist-item">マーケティング全体を最適化したい<br>→ 商品設計から販売までの導線を構築したい</div>
+                <div class="checklist-item">50代以上でもSNS集客を成功させたい<br>→ 年齢に関係なく結果を出したい</div>
+                <div class="checklist-item">AIを使いこなして収入を伸ばしたい<br>→ 最新のAIツールを実践的に活用したい</div>
+            </div>
+
+            <!-- 得られる未来 -->
+            <h2>参加することで得られる未来</h2>
+
+            <div class="box">
+                <h3 style="margin-top: 0px;">✅ 朝起きたらLINE登録通知が届いている</h3>
+                <p>Threads×AIで自動的に集客できる仕組みが完成。毎朝、スマホを見ると「LINE登録がありました」の通知。集客のために毎日投稿に追われることもありません。<span class="highlight">1日10分の作業で集客が完結します。</span></p>
+
+                <h3>✅ 高単価商品が売れるようになっている</h3>
+                <p>30万円、50万円の商品が自然に売れる。「高くて売れないかも...」という不安は完全に消えています。なぜなら、お客様が「これだけの価値があるなら安い」と思う商品を設計できているから。<span class="highlight">少ない顧客で大きな売上を作れます。</span></p>
+
+                <h3>✅ 月100万円の売上が現実になっている</h3>
+                <p>これは夢物語ではありません。実際に50代女性が3ヶ月で達成しています。月100万円 = 年間1,200万円。この売上があれば人生の選択肢が広がります。好きな場所で働ける、好きな時間に働ける、家族との時間も増える。<span class="highlight">経済的な自由と時間的な自由を同時に手に入れることができます。</span></p>
+
+                <h3>✅ AIが24時間あなたの代わりに働いている</h3>
+                <p>投稿を作るのに何時間もかける必要はありません。AIがあなたの代わりに質の高い投稿を量産してくれます。あなたがやることは10分だけ確認して投稿するだけ。<span class="highlight">時間に余裕ができるので、本当に大切なことに集中できます。</span></p>
+
+                <h3>✅ ビジネスの全体像が見えている</h3>
+                <p>「次に何をすればいいか分からない」そんな迷いは消えています。商品設計→マーケティング設計→集客。この全体像が明確に見えているので迷わず行動できます。<span class="highlight">自信を持ってビジネスを進められるようになります。</span></p>
+
+                <h3>✅ お客様から感謝される毎日</h3>
+                <p>安い商品を大量に売って疲弊する、そんな日々は終わりです。高単価で本当に価値のある商品を本気のお客様に届ける。「あなたのおかげで人生が変わりました」<span class="highlight">そんな言葉をもらえるやりがいのあるビジネスができます。</span></p>
+            </div>
+
+            <!-- 受講生の成果 -->
+            <h2>実際の受講生の成果をご覧ください</h2>
+
+            <!-- 受講生の声① -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績①</span>
+                    <span>じゅんさん</span>
+                </div>
+                <div class="testimonial-desc">会社員の副業で2000万円<br>法人の設立を達成！</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/appbeUXYJOs" title="じゅんさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声② -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績②</span>
+                    <span>えりさん</span>
+                </div>
+                <div class="testimonial-desc">1撃528万円の収益化達成</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ItV4c7BTCC8" title="えりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声③ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績③</span>
+                    <span>やんもさん</span>
+                </div>
+                <div class="testimonial-desc">未経験から1200万円の収益化<br>法人設立を達成</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/pt7LYe-VFj8" title="やんもさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声④ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績④</span>
+                    <span>ゆうきさん</span>
+                </div>
+                <div class="testimonial-desc">半年で320万円の収益化達成</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4" title="ゆうきさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声⑤ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績⑤</span>
+                    <span>かずみさん</span>
+                </div>
+                <div class="testimonial-desc">0→1から52万円の収益化達成</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Yfuoon5F774" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声⑥ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績⑥</span>
+                    <span>日高さん</span>
+                </div>
+                <div class="testimonial-desc">わずか2ヶ月で50万円の収益化！</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/V4hwO1roOXM" title="日高さんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声⑦ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績⑦</span>
+                    <span>おたさん</span>
+                </div>
+                <div class="testimonial-desc">副業で8ヶ月で250万円の収益化</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/shr1bcowliA" title="おたさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声⑧ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績⑧</span>
+                    <span>アネさん</span>
+                </div>
+                <div class="testimonial-desc">初挑戦で月170万円の収益化</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ftC7P9sAByk" title="アネさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声⑨ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績⑨</span>
+                    <span>あっぴさん</span>
+                </div>
+                <div class="testimonial-desc">未経験から開始2ヶ月で122万円の収益化</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/BUcjT7zmsKM" title="あっぴさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <!-- 受講生の声⑩ -->
+            <div class="testimonial-item">
+                <div class="testimonial-title">
+                    <span>受講生の実績⑩</span>
+                    <span>ねこさん</span>
+                </div>
+                <div class="testimonial-desc">住宅営業コーチというニッチジャンルで188万円</div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/jGbs31g8OTY" title="ねこさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 18px; font-weight: bold; margin: 30px 0px;"><br>                年齢も経験も関係ありません。<br>正しいノウハウを実践すれば誰でも結果が出ます。<br>            </p>
+
+            <!-- CTA 2回目 -->
+            <div class="consultation-section consultation-section-first">
+                <div class="red-header">
+                    参加者限定 豪華3大特典付き！
+                </div>
+                <div class="arrow-down"></div>
+
+                <div class="merit-boxes">
+                    <div class="merit-box">少フォロワーOK</div>
+                    <div class="merit-box">副業でも出来る</div>
+                </div>
+
+                <div class="main-copy">
+                    AIを活用して、<span class="main-copy-highlight">売れる商品・導線</span>を<br>
+                    <span class="main-copy-highlight">一緒に作り上げる！</span>
+                </div>
+
+                <div class="consultation-title">
+                    <div class="title-en">Threads × AI</div>
+                    <div class="title-ja">高単価商品販売</div>
+                    <div class="title-sub">ロードマップ作成会</div>
+                </div>
+
+                <div class="black-footer">
+                    SNSで8000万円稼いだノウハウを全て継承
+                </div>
+
+                <a href="https://lstep.app/rn86X1t" class="cta-button" style="margin-top: 1.2em; margin-bottom: 1.1em;">
+                    <div class="cta-button-inner">
+                        <div class="cta-button-icon"></div>
+                        <div class="cta-button-text">
+                            <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- こんな悩みありませんか？ -->
+            <h2>こんな悩み、ありませんか？</h2>
+
+            <div class="checklist">
+                <div class="checklist-item">フォロワーは増えたけど売上がゼロ...</div>
+                <div class="checklist-item">毎日投稿してるのに反応がない...</div>
+                <div class="checklist-item">売る商品が決まらない...</div>
+                <div class="checklist-item">高単価商品を作りたいけど方法が分からない...</div>
+                <div class="checklist-item">集客はできても売り方が分からない...</div>
+                <div class="checklist-item">40代でもSNS集客できるか不安...</div>
+            </div>
+
+            <!-- フォロワー1万人でも売上ゼロの現実 -->
+            <h2>フォロワー1万人でも売上ゼロの現実</h2>
+            <p>実は、多くの人が同じ間違いを犯しています。</p>
+            <p>それは...</p>
+            <p class="highlight">「集客さえできれば売上が作れる」</p>
+            <p>という勘違いです。</p>
+            <p>フォロワーが1万人いても、LINE登録が毎日来ても、売上がゼロ。</p>
+            <p>こんな人が山ほどいます。</p>
+            <p>なぜか？</p>
+            <p>答えは簡単です。</p>
+            <p class="highlight">売るものがないから。</p>
+            <p>正確に言えば「売れる商品」を持っていないから。</p>
+            <p>集客は、あくまで手段です。本当のゴールは「売上を作ること」</p>
+            <p>そして売上を作るには3つの要素が必要です。</p>
+
+            <!-- 売上を作る3つの要素 -->
+            <h2>売上を作る3つの要素</h2>
+
+            <div class="step-box">
+                <h3>【要素1】売れる商品を持っている</h3>
+                <p>高単価で売れる商品。お客様が「欲しい！」と思う商品。</p>
+                <p>これがなければどれだけ集客しても無意味です。</p>
+                <p>多くの人は商品設計を疎かにして集客ばかりに目を向けます。</p>
+                <p>でも、それは穴の空いたバケツに水を注ぎ続けるようなもの。</p>
+                <p>まず、売れる商品を作る。これが最優先です。</p>
+            </div>
+
+            <div class="step-box">
+                <h3>【要素2】適正価格で販売している</h3>
+                <p>「安くしないと売れない」</p>
+                <p>そう思っていませんか？</p>
+                <p>でも、それは大きな間違いです。</p>
+                <p>安い商品は、お客様の真剣度が低く、クレームも多い。</p>
+                <p>そして何より、あなた自身が疲弊します。</p>
+                <p>月10万円の売上を作るのに、1万円の商品なら10人、50万円の商品なら2人</p>
+                <p>どちらが楽ですか？</p>
+                <p>高単価で売れる商品を作り、少ない顧客で大きな売上を作る。</p>
+                <p>これが正解です。</p>
+            </div>
+
+            <div class="step-box">
+                <h3>【要素3】マーケティングファネルが設計されている</h3>
+                <p>商品があって価格が適正でも売れない人がいます。</p>
+                <p>理由は、マーケティング設計ができていないから。</p>
+                <p>集客→教育→販売</p>
+                <p>この導線がスムーズに設計されていないと売上は作れません。</p>
+                <p>Threadsで集客してどこに誘導するのか？</p>
+                <p>LINE登録後どう教育するのか？</p>
+                <p>どのタイミングで何を販売するのか？</p>
+                <p>この全体設計ができて初めて売上が作れるんです。</p>
+            </div>
+
+            <!-- 一人では難しい -->
+            <h2>でも、1人で全部やるのは難しい...</h2>
+            <p>ここまで読んで</p>
+            <p>「なるほど、3つの要素が必要なんだ」<br>
+            「でも、具体的にどうすればいいんだろう...」</p>
+            <p>そう思いませんでしたか？</p>
+            <p>実際、多くの人が知識として理解しても実践できずに終わります。</p>
+            <p>なぜなら...</p>
+            <ul>
+                <li>自分の強みが分からない</li>
+                <li>商品設計の方法が分からない</li>
+                <li>適正価格が分からない</li>
+                <li>マーケティング設計が分からない</li>
+                <li>AIの使い方が分からない</li>
+            </ul>
+            <p>こんな状態だからです。</p>
+            <p>でも、安心してください。</p>
+            <p>1人で悩む必要はありません。</p>
+
+            <!-- ロードマップ作成会の詳細 -->
+            <h2>ロードマップ作成会で行う内容</h2>
+            <div class="step-box">
+                <h3>STEP1：商品設計</h3>
+                <p>まず、あなたの強みを徹底的に分析します。</p>
+                <ul>
+                    <li>これまでの経験</li>
+                    <li>持っているスキル</li>
+                    <li>得意なこと</li>
+                    <li>情熱を持てること</li>
+                </ul>
+                <p>これらを洗い出して<strong>「誰に、何を、いくらで売るか」</strong>を明確にします。</p>
+                <p>例えば...</p>
+                <ul>
+                    <li>コーチングの経験がある → 50万円のコーチングプログラム</li>
+                    <li>美容の知識がある → 30万円の美容スクール</li>
+                    <li>ビジネス経験がある → 40万円のコンサルティング</li>
+                </ul>
+                <p><strong>「売る商品がない」という方も大丈夫です。</strong></p>
+                <p>あなたの経験やスキルを分析すれば必ず売れる商品は見つかります。</p>
+                <p>ゼロから一緒に作りましょう。</p>
+                <p>この段階で以下が全て明確になります：</p>
+                <ul>
+                    <li>商品名</li>
+                    <li>価格（30万〜50万円）</li>
+                    <li>誰に売るか（ターゲット）</li>
+                    <li>なぜその価格なのか（価値の根拠）</li>
+                    <li>競合との差別化ポイント</li>
+                </ul>
+                <p>商品設計が終われば、次はマーケティングです。</p>
+            </div>
+
+            <div class="step-box">
+                <h3>STEP2：マーケティング設計</h3>
+                <p>商品ができたら次は「売れる導線」を設計します。</p>
+                <p>具体的には...</p>
+
+                <h4>① Threadsで集客</h4>
+                <ul>
+                    <li>どんな投稿をするか（テーマ設定）</li>
+                    <li>どのタイミングで投稿するか（最適時間）</li>
+                    <li>AIをどう活用するか（効率化）</li>
+                    <li>フックの作り方（目を引く冒頭）</li>
+                    <li>長文投稿のテンプレート</li>
+                </ul>
+
+                <h4>② LINE登録への誘導</h4>
+                <ul>
+                    <li>どうやって誘導するか（CTA設計）</li>
+                    <li>登録特典は何にするか（価値提供）</li>
+                    <li>プロフィール設計</li>
+                </ul>
+
+                <h4>③ 教育フェーズ</h4>
+                <ul>
+                    <li>何を配信するか（コンテンツ設計）</li>
+                    <li>いつ配信するか（配信スケジュール）</li>
+                    <li>どう価値を感じてもらうか（信頼構築）</li>
+                </ul>
+
+                <h4>④ 販売フェーズ</h4>
+                <ul>
+                    <li>どのタイミングで売るか</li>
+                    <li>どう売るか（セールス設計）</li>
+                    <li>個別相談への誘導方法</li>
+                </ul>
+
+                <p>この<strong>集客 → 教育 → 販売</strong>の全体設計ができて初めて売上が作れます。</p>
+                <p>相談会では、あなた専用のマーケティングファネルを一緒に設計します。</p>
+            </div>
+
+            <div class="step-box">
+                <h3>STEP3：Threads×AI活用法</h3>
+                <p>最後に実際の運用方法を具体的に解説します。</p>
+
+                <h4>AIで投稿を10分で作る方法</h4>
+                <ul>
+                    <li>ChatGPTの使い方</li>
+                    <li>プロンプトテンプレート</li>
+                    <li>1日10投稿を量産する仕組み</li>
+                </ul>
+
+                <h4>伸びる投稿の型</h4>
+                <ul>
+                    <li>フックの5パターン</li>
+                    <li>構成テンプレート</li>
+                    <li>CTAの入れ方</li>
+                </ul>
+
+                <h4>投稿時間の最適化</h4>
+                <ul>
+                    <li>いつ投稿すれば伸びるか</li>
+                    <li>エンゲージメントを高める方法</li>
+                </ul>
+
+                <p>ここまでやれば、相談会が終わった瞬間からすぐに実践できます。</p>
+            </div>
+
+            <div class="box">
+                <h3 style="margin-top: 0px;">これが、個別相談会でやることです</h3>
+                <p>抽象的な話ではなく、<strong>具体的に、あなた専用の戦略を一緒に作ります。</strong></p>
+                <p>相談会が終わる頃には「何をすればいいか」が完全に明確になっています。</p>
+                <p>迷いはゼロ。あとは実践するだけ。</p>
+            </div>
+
+            <!-- 特典 -->
+            <div class="tokuten">
+                <h2>参加者限定で豪華特典をプレゼント</h2>
+                <div class="tokuten-container">
+                    <div class="tokuten-item">
+                        <h4>【特典1】Threads完全攻略ガイド（PDF25ページ）</h4>
+                        <p>285投稿を分析した勝ちパターン完全マップ。これだけで即実践可能な濃密な内容です。</p>
+                        <p class="price-tag">価値：29,800円</p>
+                    </div>
+
+                    <div class="tokuten-item">
+                        <h4>【特典2】SNS×AI活用プロンプト50選（スライド20枚）</h4>
+                        <p>コピペで使えるプロンプト集50選。初心者でも今日から使える実践的なプロンプトを厳選。</p>
+                        <p class="price-tag">価値：19,800円</p>
+                    </div>
+
+                    <div class="tokuten-item">
+                        <h4>【特典3】1日で1000人フォロワーが増えた投稿作成プロンプト</h4>
+                        <p>実際に使っているプロンプトを配布。このプロンプトだけで月100万円の価値があります。</p>
+                        <p class="price-tag">価値：149,800円</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; width: 100%; padding: 2em 0px 1em;">
+                    <p style="font-size: 1.5em; font-weight: bold; color: rgb(221, 0, 0); margin: 0px;">
+                        合計：199,400円相当を無料プレゼント！！
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA 3回目 -->
+            <div class="consultation-section consultation-section-first">
+                <div class="red-header">
+                    参加者限定 豪華3大特典付き！
+                </div>
+                <div class="arrow-down"></div>
+
+                <div class="merit-boxes">
+                    <div class="merit-box">少フォロワーOK</div>
+                    <div class="merit-box">副業でも出来る</div>
+                </div>
+
+                <div class="main-copy">
+                    AIを活用して、<span class="main-copy-highlight">売れる商品・導線</span>を<br>
+                    <span class="main-copy-highlight">一緒に作り上げる！</span>
+                </div>
+
+                <div class="consultation-title">
+                    <div class="title-en">Threads × AI</div>
+                    <div class="title-ja">高単価商品販売</div>
+                    <div class="title-sub">ロードマップ作成会</div>
+                </div>
+
+                <div class="black-footer">
+                    SNSで8000万円稼いだノウハウを全て継承
+                </div>
+
+                <a href="https://lstep.app/rn86X1t" class="cta-button" style="margin-top: 1.6em; margin-bottom: 1.1em;">
+                    <div class="cta-button-inner">
+                        <div class="cta-button-icon"></div>
+                        <div class="cta-button-text">
+                            <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- なぜ無料なのか？ -->
+            <h2>なぜこれほどの内容を無料で提供するのか？</h2>
+
+            <div style="background: rgb(255, 255, 255); padding: 1.5em; margin: 1.5em 0px; width: 100%;">
+                <h3 style="margin-top: 0px;">【理由1】本気の方にだけ価値を届けたい</h3>
+                <p>冷やかしや、ノウハウだけ盗んで実践しない方には興味がありません。</p>
+                <p>本気で売上を作りたい方、人生を変えたい方だけに次のステップをご案内したいのです。</p>
+
+                <h3>【理由2】あなたの成果が僕の実績になる</h3>
+                <p>あなたが結果を出せば、それが僕の実績になります。</p>
+                <p>Win-Winの関係を作りたいのです。</p>
+
+                <h3>【理由3】まずは信頼関係を築きたい</h3>
+                <p>いきなり高額商品を売りつけるのではなく、まずは無料で価値を提供し、信頼関係を築きたいと考えています。</p>
+            </div>
+
+            <div style="background: rgb(255, 255, 255); padding: 1.5em; margin: 1.5em 0px; width: 100%;">
+                <p style="text-align: center; font-size: 1.2em; font-weight: bold; margin: 0px 0px 1em;">ただし、1つだけ条件があります。</p>
+
+                <p style="text-align: center; font-size: 1.1em; margin-bottom: 0px;">「本気で実践する覚悟がある方」だけに参加していただきたいのです。<br><br>だから、無料相談会であなたの本気度を確認させてください。</p>
+            </div>
+
+            <div style="background: rgb(255, 255, 255); padding: 1.5em; margin: 1.5em 0px; width: 100%;">
+                <h3 style="margin-top: 0px; text-align: center;">安心してください</h3>
+                <div class="checklist">
+                    <div class="checklist-item">強引な勧誘は絶対にしません</div>
+                    <div class="checklist-item">満足いただけなければその場で終了できます</div>
+                </div>
+                <p style="text-align: center; font-size: 1.2em; font-weight: bold; margin-top: 1.5em; margin-bottom: 0px;">あなたのリスクはゼロです。</p>
+            </div>
+
+            <!-- Q&A -->
+            <h2>よくある質問</h2>
+
+            <div class="faq-section">
+                <div class="faq-item">
+                    <h4>Q1. 売る商品がないのですが、参加できますか？</h4>
+                    <p>A1. はい、大丈夫です。商品設計から一緒に行います。実際に受講生の多くが商品ゼロからスタートして3ヶ月で売上を作っています。あなたの強みを分析し、高単価で売れる商品を一緒に作りましょう。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q2. 50代以上でもSNS集客はできますか？</h4>
+                    <p>A2. はい、できます。実際に50代女性が3ヶ月で月100万達成、60代男性も初月から30万円の売上を作っています。年齢は関係ありません。正しいノウハウとツールがあれば誰でも結果が出せます。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q3. Threadsのアカウントを持っていないのですが...</h4>
+                    <p>A3. これから始める方も大歓迎です。アカウント作成から運用方法まで丁寧にサポートします。今から始める方が、変な癖がついていない分、正しいやり方で最短で結果を出せることも多いです。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q4. パソコンやAIが苦手なのですが大丈夫ですか？</h4>
+                    <p>A4. はい、大丈夫です。AIの使い方も初心者向けに丁寧に解説します。実際に受講生の多くがAI初心者からスタートしています。難しい専門知識は不要で、コピペだけでできる方法もお伝えします。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q5. 相談会ではどんなことを相談できますか？</h4>
+                    <p>A5. 商品設計、価格設定、マーケティング戦略、Threads運用、AI活用法など、ビジネス全般について何でも相談できます。あなたの状況に合わせて、最適な戦略を一緒に設計します。</p>
+                </div>
+            </div>
+
+            <!-- 追記系 -->
+            <h2>48時間後、この動画は削除されます</h2>
+            <p>この動画は本来29,800円で販売予定だった60分の濃密コンテンツです。</p>
+            <p>それを今回期間限定で無料公開しています。</p>
+            <p>でも、公開は<span class="highlight">48時間限定</span></p>
+            <p>それを過ぎれば、この動画は削除され二度と見ることはできません。</p>
+            <p>個別相談会も定員になり次第、即座に募集を終了します。</p>
+
+            <div class="ps">
+                <h3>追伸1：「売るものがない」という方へ</h3>
+                <p>「商品がないから参加できない」</p>
+                <p>そう思っていませんか？</p>
+                <p>大丈夫です。</p>
+                <p>商品設計から一緒にやりましょう。</p>
+                <p>あなたの強みを分析し高単価で売れる商品をゼロから作ります。</p>
+                <p>実際に受講生の多くが商品がない状態からスタートして3ヶ月で売上を作っています。</p>
+                <p>安心して参加してください。</p>
+            </div>
+
+            <div class="ps">
+                <h3>追伸2：「集客できるのに売上がない」という方へ</h3>
+                <p>これ、本当にもったいないです。</p>
+                <p>せっかくThreads×AIで効率的に集客できるのに売るものがなければ意味がありません。</p>
+                <p>フォロワーが増えても、LINE登録が来ても、売上がゼロならただの自己満足です。</p>
+                <p>この個別相談会で商品設計からマーケティング全体まであなた専用の戦略を作りましょう。</p>
+                <p>集客できる人が売上を作れるようになったら最強です。</p>
+            </div>
+
+            <h2>最後に</h2>
+            <p>ここまで読んでいただき、ありがとうございます。</p>
+            <p>あなたは本気で売上を作りたいと思っている。</p>
+            <p>だからここまで読んでくれたんですよね。</p>
+            <p>その本気に僕も本気で応えます。</p>
+            <p>無料個別相談会で必ず結果が出る戦略を一緒に作りましょう。</p>
+
+            <a href="https://lstep.app/rn86X1t" class="cta-button" style="margin-top: 1.2em;">
+                <div class="cta-button-inner">
+                    <div class="cta-button-icon"></div>
+                    <div class="cta-button-text">
+                        <span class="cta-button-sub">今すぐロードマップ作成会に申し込む！</span>
+                    </div>
+                </div>
+            </a>
+
+            <div class="note-box">
+                <p>※ この動画は48時間後に削除されます</p>
+                <p>※ 個別相談会は定員になり次第、募集終了</p>
+            </div>
+        </div>
+    </div>
+
+</div>
