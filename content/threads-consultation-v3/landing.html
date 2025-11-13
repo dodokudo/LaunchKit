@@ -1,0 +1,1019 @@
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        /* 警告バナー */
+        .warning-banner {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .warning-triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 43px solid #333;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .warning-triangle::after {
+            content: "!";
+            position: absolute;
+            top: 6px;
+            left: -7px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .warning-text {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .warning-text p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .warning-text .highlight-red {
+            color: #e74c3c;
+            font-size: 18px;
+        }
+        
+        /* ヘッダー */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        /* 動画エリア */
+        .video-section {
+            padding: 20px 20px 0px;
+            text-align: center;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* コンテンツセクション */
+        .content {
+            padding: 40px 20px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .content h3 {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 30px 0 15px;
+            color: #667eea;
+        }
+        
+        .content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .content strong {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .content ul {
+            margin: 20px 0 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .content li {
+            margin-bottom: 15px;
+            padding-left: 28px;
+            position: relative;
+            line-height: 1.8;
+        }
+        
+        .content .list li::before {
+            content: '・';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .content .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .content .status-list li::before {
+            content: '□';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* ボックス */
+        .box, .data-box {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .data-box {
+            background: white;
+        }
+        
+        /* 比較カード */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        .comparison-card p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        /* CTAボタン */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #00d084 0%, #00b873 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 208, 132, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 208, 132, 0.4);
+            background: linear-gradient(135deg, #00b873 0%, #009960 100%);
+        }
+        
+        /* 受講生実績セクション */
+        .student-results {
+            background: #ffffff;
+            padding: 50px 20px;
+            margin: 30px 0;
+        }
+        
+        .student-item {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .student-tag {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .student-tag-text {
+            font-size: 14px;
+            font-weight: 300;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+        
+        .student-achievement {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        /* 特典セクション */
+        .tokuten {
+            background: #fff9e6;
+            padding: 40px 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+        }
+        
+        /* 最終CTAセクション */
+        .final-block {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        
+        .final-block p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        /* スティッキーCTA */
+        .sticky-cta-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        .sticky-cta {
+            display: inline-block;
+            width: 450px;
+            max-width: 90%;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #00d084 0%, #00b873 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 17px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 208, 132, 0.5);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: sticky-float 2s infinite;
+        }
+        
+        .sticky-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 208, 132, 0.6);
+        }
+        
+        @keyframes sticky-float {
+            0% {
+                transform: translateY(0.3em);
+            }
+            50% {
+                transform: translateY(-0.3em);
+            }
+            100% {
+                transform: translateY(0.3em);
+            }
+        }
+        
+        /* CTAプレビューセクション */
+        .cta-preview-section {
+            background: white;
+            padding: 60px 20px 5px;
+            text-align: center;
+            margin: 50px 0 0;
+        }
+        
+        .red-banner {
+            background: #e53e3e;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .red-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #e53e3e;
+        }
+        
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0 40px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: #e2e8f0;
+            border: 2px solid #cbd5e0;
+            border-radius: 12px;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+        
+        .main-copy-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            line-height: 1.6;
+            color: #1a1a1a;
+        }
+        
+        .threads-ai-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin: 40px 0 10px;
+            letter-spacing: -0.02em;
+            color: #1a1a1a;
+        }
+        
+        .blue-underline {
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .blue-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #3b82f6;
+        }
+        
+        .high-price-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #3b82f6;
+            margin: 20px 0;
+        }
+        
+        .roadmap-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin: 10px 0 50px;
+        }
+        
+        .black-footer-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .red-banner {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .badge {
+                font-size: 14px;
+                padding: 12px 30px;
+            }
+
+            .main-copy-text {
+                font-size: 14px;
+            }
+
+            .threads-ai-title {
+                font-size: 28px;
+            }
+
+            .high-price-title {
+                font-size: 28px;
+            }
+
+            .roadmap-title {
+                font-size: 28px;
+                margin: 10px 0 10px;
+            }
+
+            .black-footer-bar {
+                font-size: 18px;
+                padding: 20px;
+            }
+
+            .warning-banner {
+                padding: 12px 15px;
+                flex-direction: column;
+            }
+
+            .header h1 {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .content h2 {
+                font-size: 24px;
+            }
+
+            .content h3 {
+                font-size: 20px;
+            }
+
+            .cta-button {
+                font-size: 14px;
+                padding: 16px 24px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-preview-section {
+                margin: 0px 0 0;
+                padding: 10px 20px 0px;
+            }
+
+            .video-section {
+                padding: 20px 5px 0px;
+            }
+
+            .video-wrapper {
+                border-radius: 8px;
+            }
+
+            .student-results {
+                padding: 50px 5px;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <!-- 警告バナー -->
+        <div class="warning-banner">
+            <div class="warning-text">
+                <p>
+                    <span class="highlight-red">先着10名限定・3日間限定募集</span><br>
+                    定員になり次第、予告なく募集を終了します
+                </p>
+            </div>
+        </div>
+
+        <!-- ヘッダー -->
+        <div class="header">
+            <p>リールを頑張ってるのに集客できないあなたへ</p>
+            <h1>Instagram"売上0円"の50代女性がThreadsで月商100万円を突破した理由</h1>
+            <p>↓まずは動画をご覧ください↓</p>
+        </div>
+
+        <!-- 動画セクション -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/PMCjUhArfi8" title="ロードマップ作成会ローンチ動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
+        <!-- CTAプレビューセクション -->
+        <div class="cta-preview-section">
+            <div class="red-banner">参加者限定 4大特典プレゼント付き<br>            </div>
+
+            <div class="threads-ai-title">
+                Threads × AI
+            </div>
+
+            <div class="roadmap-title">
+                <span class="blue-underline">ロードマップ作成会</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 5px 20px 10px;">
+            <a class="cta-button" href="https://lstep.app/rn86X1t" target="_blank" rel="noopener">今すぐロードマップ作成会に申し込む！</a>
+        </div>
+
+        <!-- メインコンテンツ -->
+        <div class="content">
+            <div id="benefits-trigger" style="position: relative; top: -80px; height: 1px;"></div>
+            
+            <h2>2025年こんな変化が起きています</h2>
+            <p>かつての<br>・「リールをバズらせれば売れる」<br>・「フォロワーが多ければOK」という<br>Instagram時代は、もう終わり。<br>にもかかわらず、まだ多くの人が<br>"Instagram"に縛られたまま、<br>伸び悩んでいるのが現状です。</p>
+            <p>フォロワーは増えた。<br>2,000人、3,000人、5,000人...</p>
+            <p>でも、売上は変わらない。<br>月商30万円のまま。<br>そんな時、ふと思うんです。<br>「私、何やってるんだろう...」</p>
+            <p>これまでのやり方を続けているだけで、<br>気づかないうちに結果が出なくなります。<br>実際に、こんなデータがあります。</p>
+
+            <div style="overflow-x: auto; margin: 30px 0px;">
+                <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <thead>
+                        <tr style="background: #f8f9fa;">
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; font-weight: bold; color: #667eea;">項目</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; font-weight: bold; color: #667eea;">Aさん:フォロワー1万人・月商30万円</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; font-weight: bold; color: #667eea;">工藤:フォロワー1万人以下・累計8,000万円</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">運用方法</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">Instagram中心／毎日リール投稿</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">Threads中心／テキスト投稿のみ</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">反応</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">反応はあるが成約に繋がらない</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">見込み客の質が高い</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">問い合わせ</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">DMは価格質問が中心／値引き要求が多い</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">問い合わせは「いつから始められますか?」</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">導線</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">LINE登録への導線弱い／教育が届かない</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">LINE→セミナー→個別→高単価の導線が機能</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">作業時間</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">投稿作成に1日2-3時間を費やす</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">投稿作成が1日5-10分で完結</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; font-weight: bold;">生活への影響</td>
+                            <td style="padding: 15px;">家族時間が削られストレス蓄積</td>
+                            <td style="padding: 15px;">時間が確保できる</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>何が違うと思いますか?<br>答えは簡単です。<br>集まる人の質です。<br><br>リールで集まる人は、「安く買いたい」と思ってる。<br>Threadsで集まる人は、「今すぐ解決したい」と思ってる。<br><br>だから、<br>・少フォロワーでも<br>・高単価でも<br>即決なので、売上が高いんです。</p>
+
+            <h2>だからロードマップ作成会に来てください</h2>
+            <p>今からでも間に合います。<br><br>この変化に乗るためのロードマップを、<br>一緒に作りましょう。</p>
+            <p>今回の動画とロードマップ作成会では、<br>僕がSNSで累計8,000万円を売り上げた<br>「売れる導線の流れ」を完全解説します。<br><br>さらに、動画の最後に紹介する<br><br>AI×Threads <br>無料ロードマップ作成会では、<br><br>✓ あなた専用のThreads戦略<br>✓ AI活用の具体的な手順<br>✓ 売上を上げる導線設計<br>これら全てを、Zoomで一緒に作り上げます。</p>
+
+            <h3>ロードマップ作成会で得られるもの</h3>
+            <ul class="list">
+                <li>①あなた専用のThreads戦略<br>理想の姿の言語化</li>
+                <li>②現状診断<br>なぜ今稼げてないのか診断</li>
+                <li>③目標達成までの具体的ステップ<br>90日ロードマップを作成</li>
+                <li>④プロフィール/CTA/導線の共同作成<br>実践的な集客導線を一緒に構築します</li>
+                <li>⑤投稿テンプレ/台本の提供<br>即実践できるテンプレートの配布</li>
+                <li>⑥質疑応答で不安を解消<br>状況に合わせたアドバイスを実施！</li>
+            </ul>
+
+            <h3>【参加者全員に豪華4大特典】</h3>
+            <p>①バズるThreads投稿作成プロンプト<br>1日で1,000人増やしたそのままコピペで使える最強プロンプト<br><br>②売れる商品作成マニュアル<br>未経験の会社員でも自分の高額商品を作り上げた方法 PDF49枚<br><br>③月商100万円LINE設計テンプレート<br>5日で700万円売ったそのまま使えるLINE配信テンプレート<br><br>④1ヶ月でフォロワー1,600名・126万インプを達成した運用データ</p>
+
+        </div>
+
+        <!-- CTAプレビューセクション2 -->
+        <div class="cta-preview-section">
+            <div class="red-banner">参加者限定 4大特典プレゼント付き</div>
+
+            <div class="threads-ai-title">
+                Threads × AI
+            </div>
+
+            <div class="roadmap-title">
+                <span class="blue-underline">ロードマップ作成会</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 5px 20px 10px;">
+            <a class="cta-button" href="https://lstep.app/rn86X1t" target="_blank" rel="noopener">今すぐロードマップ作成会に申し込む！</a>
+        </div>
+
+        <div class="content">
+            <h2>主催者紹介</h2>
+            <p>くどう | AI×Threads 売れるマーケ設計士</p>
+            <p>僕が提供する「Threads×AIマーケティング戦略」は、<br>そうした"今のSNS集客"で正しく成果を出すための、<br>2025年最新の設計図です。</p>
+            <p>僕の実績として</p>
+            <ul class="checklist">
+                <li>1ヶ月でフォロワー1,600名増</li>
+                <li>126万インプレッション達成</li>
+                <li>月150件のLINE登録を実現</li>
+                <li>SNS累計8,000万円のマネタイズ実績</li>
+            </ul>
+            <p>他にもマーケテイング支援事業で<br>✓ 年商3億の女性起業家支援<br>✓ 年商20億のIT企業支援<br>✓ テレビ出演女性起業家のマーケ支援実績</p>
+
+            <p>今回のロードマップ作成会では、<br>動画では語りきれなかった<br>"Threads×AIの裏側"をすべて公開します。<br>もし今モヤモヤを感じているなら、<br>まずは一度、「何がズレていたのか?」に<br>一緒に整理するところから始めましょう。<br>このロードマップ作成会が、<br>あなたの売上を飛躍的に伸ばすを<br>"きっかけ"になります。</p>
+
+            <h2>受講生の実績</h2>
+            <p>ここでは、実際に変化を起こした<br>受講生たちの"ビフォーアフター"を<br>一部ご紹介します。</p>
+
+            <!-- 受講生の実績セクション -->
+            <div class="student-results">
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績①　じゅんさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        会社員の副業で2,000万円<br>
+                        法人の設立を達成！
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/appbeUXYJOs" title="じゅんさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績②　えりさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        1撃528万円の収益化達成
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ItV4c7BTCC8" title="えりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績③　やんもさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        未経験から1,200万円の収益化<br>
+                        法人設立を達成
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/pt7LYe-VFj8" title="やんもさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績④　ゆうきさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        半年で320万円の収益化達成
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4" title="ゆうきさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績⑤　かずみさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        0→1から52万円の収益化達成
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Yfuoon5F774" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績⑥　日高さん</div>
+                    </div>
+                    <div class="student-achievement">
+                        わずか2ヶ月で50万円の収益化！
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/V4hwO1roOXM" title="日高さんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績⑦　おたさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        副業で8ヶ月で250万円の収益化
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/shr1bcowliA" title="おたさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績⑧　アネさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        初挑戦で月170万円の収益化
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ftC7P9sAByk" title="アネさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績⑨　あっぴさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        未経験から開始2ヶ月で122万円の収益化
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/BUcjT7zmsKM" title="あっぴさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="student-item">
+                    <div class="student-tag">
+                        <div class="student-tag-text">受講生の実績⑩　ねこさん</div>
+                    </div>
+                    <div class="student-achievement">
+                        住宅営業コーチというニッチジャンルで188万円
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/jGbs31g8OTY" title="ねこさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <h2>リール vs Threads</h2>
+            <p>あなたは今、こんな状況じゃないですか?</p>
+            <ul class="status-list">
+                <li>毎晩23時、家族就寝後にリール編集している</li>
+                <li>リサーチ・インフルエンサーの追いかけで時間消費</li>
+                <li>フォロワーは増えるけど売上30万円の壁</li>
+                <li>「ママ、遊ぼう」に「あと少し…」と答えてしまう罪悪感</li>
+                <li>問い合わせは「値段教えてください」ばかり</li>
+                <li>時間も心も削られて、成果がついてこない</li>
+                <li>ふとよぎる「私、何やってるんだろう…」</li>
+            </ul>
+            <p>ひとつでも当てはまることがあれば、<br>今の運用が成果につながりにくい方向に進んでいる可能性があります。</p>
+
+            <h3>【対比表】リール vs Threads</h3>
+            <div style="overflow-x: auto; margin: 30px 0px;">
+                <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <thead>
+                        <tr style="background: #f8f9fa;">
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; font-weight: bold; color: #667eea;">項目</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; font-weight: bold; color: #667eea;">リール</th>
+                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; font-weight: bold; color: #667eea;">Threads</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">視聴態度</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">ながら見・暇つぶし</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">集中して読む・目的意識高</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">工数</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">高（撮影/編集で1本2-4時間）</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">低（テキストのみ5-10分）</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">見込み客の質</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">価格重視・比較検討層</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">課題解決志向・本気層</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">再現性</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">バズ依存・不安定</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">型化しやすく安定</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">導線接続</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">弱（遷移率低め）</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">強（CTAが自然に馴染む）</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">高単価適正</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">低（値引き要求が多い）</td>
+                            <td style="padding: 15px; border-bottom: 1px solid #e2e8f0;">高（価値で判断する層）</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px; font-weight: bold;">生活との両立</td>
+                            <td style="padding: 15px;">夜型作業・疲弊しやすい</td>
+                            <td style="padding: 15px;">短時間で運用可能</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>実際、Instagramは今、目に見えない形で<br>"二極化"が進んでいて、<br>あるラインを超えると、<br>どれだけ頑張っても伸びにくい<br>状態に入ってしまうことも。<br>でも、今からThreadsに乗り換えれば<br>いくらでも挽回・逆転はできます。</p>
+
+            <h2>でも、Threadsだけでは意味がない</h2>
+            <p>ここまで聞いて、<br>「Threadsいいじゃん!」<br>「さっそく始めてみよう!」<br>そう思った方に、<br>めちゃくちゃ重要なことを言います。</p>
+            <p><strong>Threadsだけ頑張っても、売上は上がりません。</strong></p>
+            <p>実際、こんな人がいます。<br>フォロワー1万人。<br>毎日投稿。<br>反応も良い。<br>でも、月商30万円のまま。<br>なぜか?<br><strong>導線設計ができてないからです。</strong></p>
+
+            <h3>重要なのは売上導線の全体像</h3>
+            <p>Threadsで集客しても、<br>そこから売上に繋げる導線がないと、<br>ただの数字遊びで終わります。<br>大事なのは、こういう流れ。</p>
+
+            <div class="box">
+                <h3>【売上を上げる導線設計 全体像】</h3>
+                <p><strong>1. Threads：集客の入口</strong><br>見込み客の獲得</p>
+                <p><strong>2. LINE：関係構築・教育</strong><br>価値提供で信頼強化</p>
+                <p><strong>3. 特典閲覧：価値理解の促進</strong><br>解決の全体像提示</p>
+                <p><strong>4. 個別相談：診断・提案</strong><br>個別課題の深堀り</p>
+                <p><strong>5. 高単価商品：成約・継続</strong><br>売上が上がる</p>
+            </div>
+
+            <p>この5ステップを、あなたの状況に合わせて設計する。<br>それが、ロードマップ作成会であなた専用の導線を作ります。<br>・「Threadsで何を発信するか?」<br>・「LINEでどう教育するか?」<br>・「特典は何を作るのか?」<br>全部、一緒に設計します。<br>フォロワーを増やすだけじゃなく、<br><strong>売上を上げる導線を、一緒に作りましょう。</strong><br>これで、月商100万円〜300万円は安定します。</p>
+
+            <p>だから、ロードマップ作成会に来てください。<br>あなた専用のロードマップを一緒に作ります。</p>
+
+            <div class="box">
+                <h3>【対象者】</h3>
+                <ul class="checklist">
+                    <li>Threadsで本気で売上を上げたいと考えている方</li>
+                    <li>インスタ以外の方法で集客と売上を安定させたい方</li>
+                    <li>月商30万円から月商100万円を目指したい方</li>
+                    <li>低単価の単発商品ではなく、高単価な商品で収益を安定させたい方</li>
+                </ul>
+
+                <h3>【定員】</h3>
+                <p>先着10名限定。<br>理由は簡単。<br>僕が1人で対応するからです。<br>1人1人、丁寧にロードマップを作りたい。<br>だから、10名が限界なんです。<br><strong>先着順なので、お早めに。</strong></p>
+
+                <h3>【ロードマップ作成会の内容】</h3>
+                <p>あなたの現状と理想を明確にして、その理想の状態まで行くためのステップというのを明確にするためのことを行います。</p>
+                <p><strong>①あなたの理想の姿をヒアリング</strong><br>あなたが本当に手に入れたいものを、一緒に明確にします。</p>
+                <p><strong>②現状分析（なぜ今稼げてないのか診断）</strong><br>あなたの強みと弱みを可視化し、今の状況を客観的に見ることで、何が問題なのかが分かります。</p>
+                <p><strong>③目標達成までの具体的ステップを作成</strong><br>あなた専用のロードマップを作り上げます。</p>
+                <p>その他、質問があれば個別にお答えします。<br>あなたの不安を、全て解消します。</p>
+
+                <h3>【参加者全員に豪華4大特典】</h3>
+                <p>①バズるThreads投稿作成プロンプト<br>1日で1,000人増やしたそのままコピペで使える最強プロンプト</p>
+                <p>②売れる商品作成マニュアル<br>未経験の会社員でも自分の高額商品を作り上げた方法 PDF49枚</p>
+                <p>③月商100万円達成のLINE設計テンプレート<br>5日で700万円売ったそのまま使えるLINE配信テンプレート</p>
+                <p>④1ヶ月でフォロワー1,600名・126万インプを達成した運用データ<br>僕のThreadsの運用データを全てまるまる公開します。</p>
+                <p>これら全て、無料でプレゼントします。<br>正直、この特典だけでも5万円の価値があります。<br><strong>でも、全部無料です。</strong></p>
+            </div>
+
+        </div>
+
+        <!-- CTAプレビューセクション3 -->
+        <div class="cta-preview-section">
+            <div class="red-banner">参加者限定 4大特典プレゼント付き</div>
+
+            <div class="threads-ai-title">
+                Threads × AI
+            </div>
+
+            <div class="roadmap-title">
+                <span class="blue-underline">ロードマップ作成会</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 5px 20px 10px;">
+            <a class="cta-button" href="https://lstep.app/rn86X1t" target="_blank" rel="noopener">今すぐロードマップ作成会に申し込む！</a>
+        </div>
+
+        <div class="content">
+            <h2>なぜ無料?</h2>
+            <p>「なんで無料なの？怪しい...」<br>そう思いますよね。<br>理由は2つあります。</p>
+
+            <div class="box">
+                <h3>【①僕自身が、ロードマップ作成会に救われたから】</h3>
+                <p>僕自身実際に収益が上がったのは、とある方のロードマップ作成会に参加したり、講座に参加したことがきっかけなんです。</p>
+                <p>いずれにしてもそういった機会は僕自身が与えてもらったので、あなたにも与えたいと思ってます。</p>
+                <p>あとはその成果を出すというところに対して、やっぱり既に成果出てる人から直接フィードバックをもらうというのはすごく大事なんですよ。</p>
+                <p>ここが抜けている人が多く、独学で進めているがゆえに売上が上がっていない人がかなり多くてもったいないと思っています。</p>
+                <p>そういう人が離脱していくのをたくさん見てきました。あなたには遠回りして欲しくないんです。</p>
+
+                <h3>【②本気の人だけに、講座に参加して欲しいから】</h3>
+                <p>2つめの理由は「本気の人向け」として有料のプログラムを用意しているから</p>
+                <p>実際にロードマップ作成会に参加してを見て<br>もっと本気で学んで人生を変えたい！<br>自分も工藤さんから直接教わりたい！<br>正しく努力を行い、人生の選択肢を増やし自己実現を行いたい！<br>月100万円、300万、1000万円と右肩上がりに収入を上げたい！</p>
+                <p>そういった形で、本当に価値を感じていただけ方には、<br>僕の運営する講座にも参加して欲しいと考えています。</p>
+                <p>でも、押し売りはしません。<br>「もっと本気で学びたい！」と思った方だけ、参加してください。<br>もちろん、ロードマップ作成会だけの参加でも全然OK。<br><strong>無理に勧誘することは一切ありません。</strong></p>
+            </div>
+
+            <h2>最後に</h2>
+            <p><strong>ここでの判断が、6ヶ月後の未来を変えます</strong></p>
+            <p>6ヶ月後、あなたが家族と笑顔で過ごしてる姿を、<br>僕は見たいんです。<br>娘が「ママ、大好き!」って抱きついてくる瞬間。<br>夫が「最近、いい顔してるね」って褒めてくれる瞬間。<br>その瞬間を、あなたに味わって欲しい。<br>あなたには、その資格がある。<br>なぜなら、ここまで動画を最後まで見てくれたからです。<br>それは、あなたが本気で人生を変えたいと思ってる証拠。</p>
+            <p><strong>今こそ、方向修正のタイミングです</strong><br>…そう感じているなら、<br>ここで一度立ち止まって、整えましょう。<br>Threads×AI運用を立て直すための第一歩は、ここから。</p>
+            <p>迷っている時間が、いちばんもったいないです。<br><strong>先着10名限定・3日間限定</strong>となりますので、<br>気になる方は"今"お申し込みください。</p>
+
+            <div style="text-align: center; padding: 40px 20px;">
+                <a class="cta-button" href="https://lstep.app/rn86X1t" target="_blank" rel="noopener">今すぐロードマップ作成会に申し込む！</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- スティッキーCTA -->
+    <div class="sticky-cta-container" style="display: none;">
+        <a class="sticky-cta" href="https://lstep.app/rn86X1t" target="_blank" rel="noopener">
+            ロードマップ作成会に申し込む
+        </a>
+    </div>
+
+    <script>
+        // スティッキーCTAの表示制御
+        (function() {
+            const stickyCta = document.querySelector('.sticky-cta-container');
+            const trigger = document.getElementById('benefits-trigger');
+            
+            if (!stickyCta || !trigger) return;
+            
+            // Intersection Observerで監視
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // トリガーが画面より上にある（スクロールして通過した）場合のみ表示
+                    if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                        stickyCta.style.display = 'block';
+                    } else {
+                        // それ以外の場合は非表示（トリガーが見えている、またはまだ下にある）
+                        stickyCta.style.display = 'none';
+                    }
+                });
+            }, {
+                threshold: 0,
+                rootMargin: '0px 0px 0px 0px'
+            });
+            
+            observer.observe(trigger);
+        })();
+    </script>
