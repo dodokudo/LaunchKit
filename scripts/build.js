@@ -99,6 +99,27 @@ async function main() {
   const distDir = path.resolve(projectRoot, 'dist', slug);
   await fs.emptyDir(distDir);
 
+  // copy_raw: trueの場合、HTMLファイルをそのままコピーして終了
+  if (config.copy_raw && config.raw_html_file) {
+    const rawPath = path.resolve(projectRoot, config.raw_html_file);
+    if (await fs.pathExists(rawPath)) {
+      await fs.copy(rawPath, path.join(distDir, 'index.html'));
+      // assetsもコピー
+      if (config.assets_source) {
+        const assetsSource = path.resolve(projectRoot, config.assets_source);
+        const assetsDest = distDir;
+        const files = await fs.readdir(assetsSource);
+        for (const file of files) {
+          if (file !== 'landing.html') {
+            await fs.copy(path.join(assetsSource, file), path.join(assetsDest, file));
+          }
+        }
+      }
+      console.log(`Copied raw HTML to ${path.join('dist', slug, 'index.html')}`);
+      return;
+    }
+  }
+
   const countdownConfig = { ...(config.countdown || {}) };
   countdownConfig.enabled = Boolean(countdownConfig.enabled);
   if (!countdownConfig.label) {
