@@ -1,0 +1,13 @@
+{
+  "slug": "thread-ai-roadmap",
+  "template": "raw-html/base.njk",
+  "paths": {
+    "assets": "./assets"
+  },
+  "meta": {
+    "title": "AI×Threads ロードマップ作成会 | 特別なご案内",
+    "description": "AI×Threadsのロードマップを、あなたの状況に合わせて具体的に作成する個別相談会です。"
+  },
+  "raw_html_file": "content/thread-ai-roadmap/landing.html",
+  "assets_source": "content/thread-ai-roadmap"
+}
