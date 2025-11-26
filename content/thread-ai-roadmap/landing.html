@@ -14,10 +14,10 @@
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f4f4f4;
             color: #111;
-            line-height: 1.8;
+            line-height: 1.8; /* 行間を少し広げて読みやすく */
             -webkit-font-smoothing: antialiased;
             padding-bottom: 120px; 
-            font-feature-settings: "palt";
+            font-feature-settings: "palt"; /* 文字詰め */
         }
         img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -72,9 +72,11 @@
             background: #fff100;
             color: #000;
             text-align: center;
+            /* PC版の設定：サイズを大きく */
             padding: 20px 10px; 
             font-weight: 900;
-            font-size: 22px;
+            font-size: 22px; /* PC版のみ大きく変更 */
+            border-bottom: 3px solid #000;
             line-height: 1.4;
         }
         .emergency-bar i { margin-right: 5px; color: #d32f2f; }
@@ -91,10 +93,10 @@
             width: 100%;
             max-width: 740px;
             margin: 30px auto 0;
-            padding-top: 56.25%;
+            padding-top: 56.25%; /* 16:9 */
             background: #000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
             border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
         }
         .video-wrapper iframe {
@@ -117,22 +119,35 @@
             50% { opacity: 0.5; }
         }
 
-        /* --- 3. FV内 コンテンツエリア（共通） --- */
-        .fv-main-img {
-            width: 100%;
-            max-width: 740px;
-            margin: 30px auto 0;
-            display: block;
-            border-radius: 8px;
-        }
-
-        .fv-text-area {
+        /* --- 3. サンドイッチ型 CTAエリア --- */
+        .sandwich-cta {
+            margin: 50px auto 0;
             max-width: 700px;
-            margin: 0 auto;
-            padding: 20px 15px;
-            text-align: center;
+            padding: 0 15px;
         }
 
+        /* デザイン枠 */
+        .cta-design-box {
+            background: #fff;
+            border: 4px solid #bf2d2d;
+            border-radius: 15px; 
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: visible;
+        }
+
+        /* 埋め込み画像 */
+        .cta-embedded-img {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* ヘッドライン */
         .cta-headline {
             font-size: 24px;
             font-weight: 900;
@@ -147,21 +162,22 @@
         .cta-desc {
             font-size: 15px;
             color: #444;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-weight: 500;
             line-height: 1.8;
         }
 
+        /* マイクロコピー */
         .btn-micro-copy {
             font-size: 16px;
             font-weight: 900;
             color: #d32f2f; 
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: center;
         }
 
-        /* --- 共通ボタンデザイン --- */
+        /* --- 共通ボタンデザイン (CTA & Sticky) --- */
         .btn-common {
             display: flex;
             flex-direction: column;
@@ -175,7 +191,7 @@
             font-size: 20px;
             font-weight: 900;
             text-align: center;
-            padding: 18px 10px;
+            padding: 16px 10px;
             border-radius: 50px;
             border: 2px solid #fff;
             box-shadow: 0 4px 0 #038e3b, 0 8px 15px rgba(0,0,0,0.3);
@@ -189,7 +205,7 @@
             display: block;
             font-size: 13px;
             color: #fff;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             font-weight: 700;
         }
         .btn-common:active {
@@ -206,31 +222,6 @@
         }
 
 
-        /* --- 下部用CTA --- */
-        .sandwich-cta {
-            margin: 50px auto 0;
-            max-width: 700px;
-            padding: 0 15px;
-        }
-        .cta-design-box {
-            background: #fff;
-            border: 2px solid #06c755;
-            border-radius: 15px; 
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: visible;
-        }
-        .cta-design-box .cta-embedded-img {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto 20px;
-            border-radius: 8px;
-            display: block;
-        }
-
-
         /* --- 受講生の実績 --- */
         .voice-list {
             display: flex;
@@ -243,7 +234,7 @@
         }
         .voice-card {
             background: #fff;
-            border: 1px solid #eee;
+            border: 2px solid #eee;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             overflow: hidden;
@@ -256,15 +247,9 @@
         }
         .voice-video iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
         }
-        .voice-content { 
-            padding: 25px 20px; 
-            text-align: center; 
-        }
+        .voice-content { padding: 20px; text-align: center; }
         
         .voice-badge {
             background: #111;
@@ -293,7 +278,7 @@
             margin: 0 auto;
             font-size: 16px;
             line-height: 1.8;
-            text-align: left; 
+            text-align: left; /* スマホで読みやすくするため左揃え推奨 */
         }
         .change-section-text p { margin-bottom: 25px; }
         
@@ -302,7 +287,7 @@
             background: #f9f9f9;
             padding: 25px 20px;
             border-radius: 8px;
-            border-left: 4px solid #111;
+            border-left: 5px solid #111;
             margin: 30px 0;
         }
         .check-box-title {
@@ -336,7 +321,7 @@
         }
         .comparison-conclusion {
             background: #fff;
-            border: 2px solid #d32f2f;
+            border: 3px solid #d32f2f;
             border-radius: 8px;
             padding: 25px;
             text-align: center;
@@ -359,7 +344,7 @@
             width: 100%;
             border-collapse: collapse;
             background: #fff;
-            min-width: 600px;
+            min-width: 600px; /* スマホで崩れないように最小幅を設定 */
         }
         .comparison-table th, .comparison-table td {
             border: 1px solid #ddd;
@@ -386,7 +371,7 @@
         /* --- 特典セクション --- */
         .benefits-area {
             background: #fff;
-            border: 2px solid #111;
+            border: 4px solid #111;
             padding: 50px 20px 30px;
             margin-top: 40px;
             position: relative;
@@ -399,7 +384,7 @@
             background: #cc0000;
             color: #fff;
             padding: 12px 0;
-            width: 90%;
+            width: 90%; /* スマホ対応 */
             max-width: 400px;
             font-weight: 900;
             font-size: 20px;
@@ -427,7 +412,7 @@
         }
         .benefit-card {
             background: #fff8e1;
-            border: 1px solid #ffc107;
+            border: 2px solid #ffc107;
             border-radius: 10px;
             padding: 20px;
             display: flex;
@@ -456,7 +441,7 @@
             border-radius: 10px;
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid #d32f2f;
+            border-left: 5px solid #d32f2f;
         }
         .reason-box h3 {
             font-size: 18px;
@@ -501,34 +486,46 @@
            スマホ最適化 (max-width: 600px)
            ========================================= */
         @media (max-width: 600px) {
-            .emergency-bar { font-size: 14px; padding: 12px 10px; }
+            /* 緊急告知バーをスマホ向けサイズに戻す */
+            .emergency-bar {
+                font-size: 14px;
+                padding: 12px 10px;
+            }
+
+            /* 改行の切り替え */
             .pc-br { display: none; }
             .sp-br { display: block; }
+            
+            /* 全体の調整 */
             .section { padding: 50px 15px; }
             .section-gray { padding: 50px 15px; }
-            h2.section-title { font-size: 24px; margin-bottom: 30px; line-height: 1.5; }
             
-            /* CTA周りの調整 (画像フル幅) */
-            .fv-area { padding-bottom: 40px; }
-            
-            /* 画像調整 */
-            .fv-main-img {
-                width: 100%;
-                border-radius: 0; 
-                margin-top: 30px;
+            /* 見出し調整 */
+            h2.section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+                line-height: 1.5;
             }
             
-            /* テキストエリア */
-            .fv-text-area { padding: 25px 15px; }
+            /* CTA周り */
             .cta-headline { font-size: 20px; }
+            .cta-design-box { padding: 25px 15px; }
             .btn-cta { font-size: 18px; padding: 15px 10px; }
             .btn-micro-copy { font-size: 14px; }
-            .btn-common { font-size: 18px; padding: 14px 10px; }
+            
+            /* ボタン共通 */
+            .btn-common {
+                font-size: 18px; /* スマホでは少し文字を小さくして改行を防ぐ */
+                padding: 14px 10px;
+            }
             .btn-common small { font-size: 12px; }
 
+            /* テキスト調整 */
             .change-section-text { font-size: 15px; }
             .voice-result { font-size: 18px; }
             .comparison-conclusion { font-size: 16px; padding: 20px; }
+            
+            /* テーブルスクロールヒント */
             .table-wrapper::after {
                 content: '横にスクロールしてご覧ください →';
                 display: block;
@@ -538,7 +535,12 @@
                 padding: 5px;
                 background: #fdfdfd;
             }
-            .sticky-footer { bottom: 15px; padding: 0 10px; }
+            
+            /* Sticky位置微調整 */
+            .sticky-footer {
+                bottom: 15px;
+                padding: 0 10px;
+            }
         }
     </style>
 </head>
@@ -554,7 +556,7 @@
 
         <!-- 2. FVエリア -->
         <div class="fv-area">
-            
+
             <!-- メイン動画 -->
             <div class="video-wrapper">
                 <!-- ★ここにメイン動画のIDを入れてください -->
@@ -562,25 +564,26 @@
             </div>
             <p class="video-caption">▲ 今すぐ再生して「売れる秘密」を確認する ▲</p>
 
-            <!-- FVコンテンツ -->
-            <img src="./header-fv.png" alt="AI×Threads ロードマップ作成会" class="fv-main-img">
-            
-            <div class="fv-text-area">
-                <h2 class="cta-headline">
-                    あなたのための<br class="sp-br"><span>「売れる仕組み」</span>を<br>
-                    マンツーマンで設計します
-                </h2>
-                <p class="cta-desc">
-                    動画で解説した「AI×Threads」のロードマップを、<br class="pc-br">
-                    あなたの状況に合わせて<br class="sp-br">具体的に作成する個別相談会です。
-                </p>
-                <p class="btn-micro-copy">＼4大特典付き・1分で予約完了／</p>
-                <a href="https://lstep.app/rn86X1t" class="btn-common btn-animate">
-                    <small>先着10名限定</small>
-                    ロードマップ作成会に申し込む
-                </a>
+            <!-- 3. CTAエリア -->
+            <div class="sandwich-cta">
+                <div class="cta-design-box">
+                    <img src="./header-fv.png" alt="AI×Threads ロードマップ作成会" class="cta-embedded-img">
+                    <h2 class="cta-headline">
+                        あなたのための<br class="sp-br"><span>「売れる仕組み」</span>を<br>
+                        マンツーマンで設計します
+                    </h2>
+                    <p class="cta-desc">
+                        動画で解説した「AI×Threads」のロードマップを、<br class="pc-br">
+                        あなたの状況に合わせて<br class="sp-br">具体的に作成する個別相談会です。
+                    </p>
+                    <p class="btn-micro-copy">＼4大特典付き・1分で予約完了／</p>
+                    <!-- 共通デザインのボタンを適用 -->
+                    <a href="https://lstep.app/rn86X1t" class="btn-common btn-animate">
+                        <small>先着10名限定</small>
+                        ロードマップ作成会に申し込む
+                    </a>
+                </div>
             </div>
-
         </div>
 
         <!-- 4. 受講生の実績 -->
@@ -704,79 +707,6 @@
             </div>
         </section>
 
-        <!-- 7. 特典セクション -->
-        <section class="section">
-            <div class="benefits-area">
-                <div class="benefits-title">参加者限定 4大特典</div>
-                
-                <p class="benefits-intro-text">
-                    ロードマップ作成会に参加された方全員に<br class="pc-br">
-                    <span class="text-red">今すぐ使える豪華特典</span>をプレゼント！
-                </p>
-
-                <div class="benefit-grid">
-                    <!-- 特典1 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
-                            <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
-                        </div>
-                    </div>
-                    <!-- 特典2 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
-                            <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
-                        </div>
-                    </div>
-                    <!-- 特典3 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
-                            <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
-                        </div>
-                    </div>
-                    <!-- 特典4 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
-                            <p>実際のThreads運用データを全てまるまる公開します。</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center" style="margin-top: 25px; font-weight: bold; font-size: 15px;">
-                    これら全て、無料でプレゼントします。<br>
-                    <span class="text-marker">正直、この特典だけでも<br class="sp-br">5万円以上の価値があります。</span>
-                </p>
-            </div>
-        </section>
-
-        <!-- 追加CTAセクション (囲いなし・FVと同じスタイル) -->
-        <!-- ここではsectionタグではなく、FVと同じレイアウトのdivを使います -->
-        <div class="fv-area" style="padding-top: 0; padding-bottom: 60px;">
-            <img src="./header-fv.png" alt="AI×Threads ロードマップ作成会" class="fv-main-img">
-            
-            <div class="fv-text-area">
-                <h2 class="cta-headline">
-                    あなたのための<br class="sp-br"><span>「売れる仕組み」</span>を<br>
-                    マンツーマンで設計します
-                </h2>
-                <p class="cta-desc">
-                    動画で解説した「AI×Threads」のロードマップを、<br class="pc-br">
-                    あなたの状況に合わせて<br class="sp-br">具体的に作成する個別相談会です。
-                </p>
-                <p class="btn-micro-copy">＼4大特典付き・1分で予約完了／</p>
-                <a href="https://lstep.app/rn86X1t" class="btn-common btn-animate">
-                    <small>先着10名限定</small>
-                    ロードマップ作成会に申し込む
-                </a>
-            </div>
-        </div>
-
         <!-- 5. 新セクション: 2025年の変化 -->
         <section class="section">
             <h2 class="section-title">2025年、<br class="sp-br">こんな<span>変化</span>が<br class="pc-br">起きています</h2>
@@ -855,6 +785,57 @@
                 <div class="comparison-conclusion">
                     <p class="text-red">結論：Threadsなら、少ない労力で<br>「質の高い見込み客」が集まります。</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- 7. 特典セクション -->
+        <section class="section">
+            <div class="benefits-area">
+                <div class="benefits-title">参加者限定 4大特典</div>
+                
+                <p class="benefits-intro-text">
+                    ロードマップ作成会に参加された方全員に<br class="pc-br">
+                    <span class="text-red">今すぐ使える豪華特典</span>をプレゼント！
+                </p>
+
+                <div class="benefit-grid">
+                    <!-- 特典1 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
+                            <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
+                        </div>
+                    </div>
+                    <!-- 特典2 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
+                            <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
+                        </div>
+                    </div>
+                    <!-- 特典3 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
+                            <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
+                        </div>
+                    </div>
+                    <!-- 特典4 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
+                            <p>実際のThreads運用データを全てまるまる公開します。</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center" style="margin-top: 25px; font-weight: bold; font-size: 15px;">
+                    これら全て、無料でプレゼントします。<br>
+                    <span class="text-marker">正直、この特典だけでも<br class="sp-br">5万円以上の価値があります。</span>
+                </p>
             </div>
         </section>
 
