@@ -14,10 +14,10 @@
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f4f4f4;
             color: #111;
-            line-height: 1.8; /* 行間を少し広げて読みやすく */
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 120px; 
-            font-feature-settings: "palt"; /* 文字詰め */
+            font-feature-settings: "palt";
         }
         img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -72,11 +72,9 @@
             background: #fff100;
             color: #000;
             text-align: center;
-            /* PC版の設定：サイズを大きく */
             padding: 20px 10px; 
             font-weight: 900;
-            font-size: 22px; /* PC版のみ大きく変更 */
-            border-bottom: 3px solid #000;
+            font-size: 22px;
             line-height: 1.4;
         }
         .emergency-bar i { margin-right: 5px; color: #d32f2f; }
@@ -93,10 +91,10 @@
             width: 100%;
             max-width: 740px;
             margin: 30px auto 0;
-            padding-top: 56.25%; /* 16:9 */
+            padding-top: 56.25%;
             background: #000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
         }
         .video-wrapper iframe {
@@ -129,7 +127,7 @@
         /* デザイン枠 */
         .cta-design-box {
             background: #fff;
-            border: 2px solid #bf2d2d;
+            border: 4px solid #bf2d2d;
             border-radius: 15px; 
             padding: 30px 20px;
             text-align: center;
@@ -159,25 +157,25 @@
             padding: 0 4px;
         }
         
+        /* 説明文 (改行調整) */
         .cta-desc {
             font-size: 15px;
             color: #444;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-weight: 500;
             line-height: 1.8;
         }
 
-        /* マイクロコピー */
         .btn-micro-copy {
             font-size: 16px;
             font-weight: 900;
             color: #d32f2f; 
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
-        /* --- 共通ボタンデザイン (CTA & Sticky) --- */
+        /* --- 共通ボタンデザイン --- */
         .btn-common {
             display: flex;
             flex-direction: column;
@@ -191,7 +189,7 @@
             font-size: 20px;
             font-weight: 900;
             text-align: center;
-            padding: 16px 10px;
+            padding: 18px 10px;
             border-radius: 50px;
             border: 2px solid #fff;
             box-shadow: 0 4px 0 #038e3b, 0 8px 15px rgba(0,0,0,0.3);
@@ -205,7 +203,7 @@
             display: block;
             font-size: 13px;
             color: #fff;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             font-weight: 700;
         }
         .btn-common:active {
@@ -234,7 +232,7 @@
         }
         .voice-card {
             background: #fff;
-            border: 2px solid #eee;
+            border: 1px solid #eee;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             overflow: hidden;
@@ -247,9 +245,15 @@
         }
         .voice-video iframe {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
-        .voice-content { padding: 20px; text-align: center; }
+        .voice-content { 
+            padding: 25px 20px; 
+            text-align: center; 
+        }
         
         .voice-badge {
             background: #111;
@@ -278,7 +282,7 @@
             margin: 0 auto;
             font-size: 16px;
             line-height: 1.8;
-            text-align: left; /* スマホで読みやすくするため左揃え推奨 */
+            text-align: left; 
         }
         .change-section-text p { margin-bottom: 25px; }
         
@@ -287,7 +291,7 @@
             background: #f9f9f9;
             padding: 25px 20px;
             border-radius: 8px;
-            border-left: 5px solid #111;
+            border-left: 4px solid #111;
             margin: 30px 0;
         }
         .check-box-title {
@@ -321,7 +325,7 @@
         }
         .comparison-conclusion {
             background: #fff;
-            border: 3px solid #d32f2f;
+            border: 2px solid #d32f2f;
             border-radius: 8px;
             padding: 25px;
             text-align: center;
@@ -344,7 +348,7 @@
             width: 100%;
             border-collapse: collapse;
             background: #fff;
-            min-width: 600px; /* スマホで崩れないように最小幅を設定 */
+            min-width: 600px;
         }
         .comparison-table th, .comparison-table td {
             border: 1px solid #ddd;
@@ -368,10 +372,10 @@
         .text-strong { color: #d32f2f; font-weight: 900; font-size: 15px; }
 
 
-        /* --- 特典セクション --- */
+        /* --- 特典セクション (アイコンスタイル) --- */
         .benefits-area {
             background: #fff;
-            border: 4px solid #111;
+            border: 2px solid #111;
             padding: 50px 20px 30px;
             margin-top: 40px;
             position: relative;
@@ -384,7 +388,7 @@
             background: #cc0000;
             color: #fff;
             padding: 12px 0;
-            width: 90%; /* スマホ対応 */
+            width: 90%;
             max-width: 400px;
             font-weight: 900;
             font-size: 20px;
@@ -410,13 +414,16 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
+        
+        /* アイコンスタイル */
         .benefit-card {
             background: #fff8e1;
-            border: 2px solid #ffc107;
+            border: 1px solid #ffc107;
             border-radius: 10px;
             padding: 20px;
             display: flex;
             align-items: flex-start;
+            text-align: left;
         }
         .benefit-icon {
             background: #d32f2f;
@@ -427,12 +434,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             margin-right: 15px;
             flex-shrink: 0;
         }
-        .benefit-content h3 { font-size: 16px; font-weight: 900; margin-bottom: 8px; line-height: 1.4; }
-        .benefit-content p { font-size: 14px; color: #555; line-height: 1.6; }
+        .benefit-content h3 { 
+            font-size: 16px; 
+            font-weight: 900; 
+            margin-bottom: 5px;
+            line-height: 1.4;
+            color: #111;
+        }
+        .benefit-content p { font-size: 13px; color: #555; line-height: 1.6; }
 
         /* --- なぜ無料なのか？ セクション --- */
         .reason-box {
@@ -441,7 +454,7 @@
             border-radius: 10px;
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid #d32f2f;
+            border-left: 4px solid #d32f2f;
         }
         .reason-box h3 {
             font-size: 18px;
@@ -463,7 +476,7 @@
         .final-message h3 { font-size: 22px; font-weight: 900; color: #d32f2f; margin-bottom: 20px; }
         .final-message p { font-size: 16px; line-height: 2; margin-bottom: 20px; }
 
-        /* --- Sticky Footer --- */
+        /* --- Sticky Footer (JSで制御) --- */
         .sticky-footer {
             position: fixed;
             bottom: 20px;
@@ -474,7 +487,17 @@
             display: flex;
             justify-content: center;
             padding: 0 15px;
+            /* 初期状態: 非表示 */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s, transform 0.4s;
         }
+        /* 表示クラス */
+        .sticky-footer.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .sticky-btn-wrapper {
             width: 100%;
             max-width: 600px;
@@ -486,46 +509,26 @@
            スマホ最適化 (max-width: 600px)
            ========================================= */
         @media (max-width: 600px) {
-            /* 緊急告知バーをスマホ向けサイズに戻す */
-            .emergency-bar {
-                font-size: 14px;
-                padding: 12px 10px;
-            }
-
-            /* 改行の切り替え */
+            .emergency-bar { font-size: 14px; padding: 12px 10px; }
             .pc-br { display: none; }
             .sp-br { display: block; }
-            
-            /* 全体の調整 */
             .section { padding: 50px 15px; }
             .section-gray { padding: 50px 15px; }
-            
-            /* 見出し調整 */
-            h2.section-title {
-                font-size: 24px;
-                margin-bottom: 30px;
-                line-height: 1.5;
-            }
+            h2.section-title { font-size: 24px; margin-bottom: 30px; line-height: 1.5; }
             
             /* CTA周り */
-            .cta-headline { font-size: 20px; }
+            .sandwich-cta { padding: 0 15px; }
             .cta-design-box { padding: 25px 15px; }
+            
+            .cta-headline { font-size: 20px; }
             .btn-cta { font-size: 18px; padding: 15px 10px; }
             .btn-micro-copy { font-size: 14px; }
-            
-            /* ボタン共通 */
-            .btn-common {
-                font-size: 18px; /* スマホでは少し文字を小さくして改行を防ぐ */
-                padding: 14px 10px;
-            }
+            .btn-common { font-size: 18px; padding: 14px 10px; }
             .btn-common small { font-size: 12px; }
 
-            /* テキスト調整 */
             .change-section-text { font-size: 15px; }
             .voice-result { font-size: 18px; }
             .comparison-conclusion { font-size: 16px; padding: 20px; }
-            
-            /* テーブルスクロールヒント */
             .table-wrapper::after {
                 content: '横にスクロールしてご覧ください →';
                 display: block;
@@ -535,12 +538,7 @@
                 padding: 5px;
                 background: #fdfdfd;
             }
-            
-            /* Sticky位置微調整 */
-            .sticky-footer {
-                bottom: 15px;
-                padding: 0 10px;
-            }
+            .sticky-footer { bottom: 15px; padding: 0 10px; }
         }
     </style>
 </head>
@@ -556,38 +554,42 @@
 
         <!-- 2. FVエリア -->
         <div class="fv-area">
-
+            
             <!-- メイン動画 -->
             <div class="video-wrapper">
                 <!-- ★ここにメイン動画のIDを入れてください -->
-                <iframe src="https://www.youtube.com/embed/PMCjUhArfi8" title="ロードマップ作成会ローンチ動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_MAIN" title="Main Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <p class="video-caption">▲ 今すぐ再生して「売れる秘密」を確認する ▲</p>
 
-            <!-- 3. CTAエリア -->
+            <!-- 3. CTAエリア (赤枠) -->
             <div class="sandwich-cta">
                 <div class="cta-design-box">
-                    <img src="./header-fv.png" alt="AI×Threads ロードマップ作成会" class="cta-embedded-img">
+                    <img src="./Gemini_Generated_Image_s7ucrms7ucrms7uc.png" alt="AI×Threads ロードマップ作成会" class="cta-embedded-img">
                     <h2 class="cta-headline">
                         あなたのための<br class="sp-br"><span>「売れる仕組み」</span>を<br>
                         マンツーマンで設計します
                     </h2>
+                    
+                    <!-- テキスト改行調整 -->
                     <p class="cta-desc">
-                        動画で解説した「AI×Threads」のロードマップを、<br class="pc-br">
-                        あなたの状況に合わせて<br class="sp-br">具体的に作成する個別相談会です。
+                        動画で解説した「AI×Threads」のロードマップを、<br>
+                        あなたの状況に合わせて<br>
+                        具体的に作成する個別相談会です。
                     </p>
+                    
                     <p class="btn-micro-copy">＼4大特典付き・1分で予約完了／</p>
-                    <!-- 共通デザインのボタンを適用 -->
                     <a href="https://lstep.app/rn86X1t" class="btn-common btn-animate">
                         <small>先着10名限定</small>
                         ロードマップ作成会に申し込む
                     </a>
                 </div>
             </div>
+
         </div>
 
-        <!-- 4. 受講生の実績 -->
-        <section class="section-gray">
+        <!-- 4. 受講生の実績 (ID追加: スクロール判定用) -->
+        <section class="section-gray" id="voice-section">
             <h2 class="section-title">
                 論より証拠。<br>
                 <span>受講生のリアルな実績</span>
@@ -597,7 +599,7 @@
                 <!-- 1. じゅんさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/appbeUXYJOs" title="じゅんさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績① じゅんさん</span>
@@ -608,7 +610,7 @@
                 <!-- 2. えりさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/ItV4c7BTCC8" title="えりさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績② えりさん</span>
@@ -619,7 +621,7 @@
                 <!-- 3. やんもさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/pt7LYe-VFj8" title="やんもさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績③ やんもさん</span>
@@ -630,7 +632,7 @@
                 <!-- 4. ゆうきさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4" title="ゆうきさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績④ ゆうきさん</span>
@@ -641,7 +643,7 @@
                 <!-- 5. かずみさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/Yfuoon5F774" title="かずみさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績⑤ かずみさん</span>
@@ -652,7 +654,7 @@
                 <!-- 6. 日高さん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/V4hwO1roOXM" title="日高さんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_6" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績⑥ 日高さん</span>
@@ -663,7 +665,7 @@
                 <!-- 7. おたさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/shr1bcowliA" title="おたさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_7" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績⑦ おたさん</span>
@@ -674,7 +676,7 @@
                 <!-- 8. アネさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/ftC7P9sAByk" title="アネさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_8" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績⑧ アネさん</span>
@@ -685,7 +687,7 @@
                 <!-- 9. あっぴさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/BUcjT7zmsKM" title="あっぴさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_9" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績⑨ あっぴさん</span>
@@ -696,7 +698,7 @@
                 <!-- 10. ねこさん -->
                 <div class="voice-card">
                     <div class="voice-video">
-                        <iframe src="https://www.youtube.com/embed/jGbs31g8OTY" title="ねこさんインタビュー" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_10" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="voice-content">
                         <span class="voice-badge">受講生の実績⑩ ねこさん</span>
@@ -704,6 +706,83 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- 7. 特典セクション (アイコンに戻す) -->
+        <section class="section">
+            <div class="benefits-area">
+                <div class="benefits-title">参加者限定 4大特典</div>
+                
+                <p class="benefits-intro-text">
+                    ロードマップ作成会に参加された方全員に<br class="pc-br">
+                    <span class="text-red">今すぐ使える豪華特典</span>をプレゼント！
+                </p>
+
+                <div class="benefit-grid">
+                    <!-- 特典1 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
+                            <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
+                        </div>
+                    </div>
+                    <!-- 特典2 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
+                            <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
+                        </div>
+                    </div>
+                    <!-- 特典3 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
+                            <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
+                        </div>
+                    </div>
+                    <!-- 特典4 -->
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="benefit-content">
+                            <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
+                            <p>実際のThreads運用データを全てまるまる公開します。</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center" style="margin-top: 25px; font-weight: bold; font-size: 15px;">
+                    これら全て、無料でプレゼントします。<br>
+                    <span class="text-marker">正直、この特典だけでも<br class="sp-br">5万円以上の価値があります。</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- 追加CTAセクション (赤枠) -->
+        <section class="section" style="padding-top:0;">
+            <div class="sandwich-cta">
+                <div class="cta-design-box">
+                    <img src="./Gemini_Generated_Image_s7ucrms7ucrms7uc.png" alt="AI×Threads ロードマップ作成会" class="cta-embedded-img">
+                    <h2 class="cta-headline">
+                        あなたのための<br class="sp-br"><span>「売れる仕組み」</span>を<br>
+                        マンツーマンで設計します
+                    </h2>
+                    
+                    <!-- テキスト改行調整 -->
+                    <p class="cta-desc">
+                        動画で解説した「AI×Threads」のロードマップを、<br>
+                        あなたの状況に合わせて<br>
+                        具体的に作成する個別相談会です。
+                    </p>
+                    
+                    <p class="btn-micro-copy">＼4大特典付き・1分で予約完了／</p>
+                    <a href="https://lstep.app/rn86X1t" class="btn-common btn-animate">
+                        <small>先着10名限定</small>
+                        ロードマップ作成会に申し込む
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -788,57 +867,6 @@
             </div>
         </section>
 
-        <!-- 7. 特典セクション -->
-        <section class="section">
-            <div class="benefits-area">
-                <div class="benefits-title">参加者限定 4大特典</div>
-                
-                <p class="benefits-intro-text">
-                    ロードマップ作成会に参加された方全員に<br class="pc-br">
-                    <span class="text-red">今すぐ使える豪華特典</span>をプレゼント！
-                </p>
-
-                <div class="benefit-grid">
-                    <!-- 特典1 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
-                            <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
-                        </div>
-                    </div>
-                    <!-- 特典2 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
-                            <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
-                        </div>
-                    </div>
-                    <!-- 特典3 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
-                            <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
-                        </div>
-                    </div>
-                    <!-- 特典4 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
-                            <p>実際のThreads運用データを全てまるまる公開します。</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center" style="margin-top: 25px; font-weight: bold; font-size: 15px;">
-                    これら全て、無料でプレゼントします。<br>
-                    <span class="text-marker">正直、この特典だけでも<br class="sp-br">5万円以上の価値があります。</span>
-                </p>
-            </div>
-        </section>
-
         <!-- 8. なぜ無料なのか？ -->
         <section class="section-gray">
             <h2 class="section-title">なぜ、<span>無料</span>なのか？</h2>
@@ -906,6 +934,28 @@
             </a>
         </div>
     </div>
+
+    <!-- スクロール検知用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stickyFooter = document.querySelector('.sticky-footer');
+            const targetSection = document.getElementById('voice-section');
+
+            if (stickyFooter && targetSection) {
+                window.addEventListener('scroll', function() {
+                    const targetPosition = targetSection.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    // ターゲットセクションの上端が画面中央より上に来たら表示
+                    if (targetPosition < windowHeight / 2) {
+                        stickyFooter.classList.add('is-visible');
+                    } else {
+                        stickyFooter.classList.remove('is-visible');
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
