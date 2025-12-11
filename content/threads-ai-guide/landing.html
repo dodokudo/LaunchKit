@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×Threads集客術完全攻略ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f2f5; /* 画面外は薄いグレー */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* コンテンツ幅をスマホサイズに固定して中央配置（縦型レイアウト維持） */
+        .container-mobile {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* 2つ目のLPのCTAボタン（緑色の立体ボタン） */
+        .btn-green-3d {
+            background: linear-gradient(180deg, #06c755 0%, #009944 100%);
+            border: 2px solid #fff;
+            box-shadow: 0 4px 0 #00642e, 0 8px 15px rgba(0,0,0,0.15);
+            border-radius: 9999px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.1s;
+            /* 修正：揺れ(shake)から拡大縮小(pulse)に変更 */
+            animation: pulse-zoom 2s infinite ease-in-out;
+        }
+
+        /* 拡大縮小のアニメーション（ロードマップLP風） */
+        @keyframes pulse-zoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 光沢アニメーション */
+        .btn-green-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 3s infinite;
+        }
+
+        .btn-green-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #00642e, inset 0 2px 5px rgba(0,0,0,0.2);
+            animation: none;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* ボタン上のマイクロコピー吹き出し */
+        .cta-balloon {
+            position: relative;
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+            /* 吹き出しもふわふわさせる */
+            animation: float-balloon 3s infinite ease-in-out;
+        }
+
+        @keyframes float-balloon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .cta-balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top: 6px solid #fff;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+        }
+
+        /* 見出しデザイン */
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid #fbbf24; /* yellow-400 */
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ゴールド（アクセント） */
+        .text-gold { color: #d4af37; }
+        .border-gold { border-color: #d4af37; }
+    </style>
+</head>
+<body>
+
+<div class="container-mobile">
+
+    <!-- ヘッダー（画像のみ） -->
+    <header class="w-full bg-slate-900 relative aspect-[3/4] flex items-center justify-center overflow-hidden">
+        <!-- 実際の画像を入れる場合はここをimgタグに -->
+        <div class="text-center text-gray-500">
+            <i class="fas fa-image text-6xl mb-2 text-white opacity-50"></i>
+            <p class="text-white text-xs opacity-50">LPヘッダー画像</p>
+        </div>
+        <!-- <img src="header-image.png" alt="AI×Threads集客術" class="w-full h-full object-cover"> -->
+    </header>
+
+    <!-- ファーストビューCTA -->
+    <section class="py-8 px-4 bg-gray-50 text-center border-b border-gray-100">
+        <div class="cta-balloon">
+            ＼ 公式LINEで3大特典を無料配布中 ／
+        </div>
+        <a href="https://liff.line.me/2007350099-K9dE2l1E/landing?follow=%40118dgavc&lp=eyxvC8&liff_id=2007350099-K9dE2l1E" class="btn-green-3d w-full block text-white font-bold text-xl py-4 leading-tight">
+            今すぐ無料で受け取る
+            <span class="block text-xs font-normal mt-1 opacity-90">詳しくはこちら <i class="fas fa-chevron-right ml-1"></i></span>
+        </a>
+        <p class="text-xs text-gray-400 mt-3">※完全無料・いつでもブロック可能</p>
+    </section>
+
+    <!-- 特典紹介セクション -->
+    <section class="py-12 px-5 bg-white">
+        <div class="text-center">
+            <h2 class="section-title">3大特典の内容</h2>
+        </div>
+
+        <!-- 特典1 -->
+        <div class="mb-8 relative border-2 border-gray-100 rounded-xl p-5 shadow-lg overflow-hidden">
+            <div class="absolute top-0 left-0 bg-black text-white px-3 py-1 text-xs font-bold rounded-br-lg">特典1</div>
+
+            <h3 class="text-xl font-bold mt-4 mb-4 text-center">AI×Threads集客術<br><span class="text-red-600">完全攻略ガイド</span></h3>
+
+            <div class="bg-gray-100 rounded-lg aspect-video w-full flex items-center justify-center mb-4">
+                <i class="fas fa-book-open text-4xl text-gray-300"></i>
+            </div>
+
+            <ul class="text-sm font-medium space-y-2">
+                <li class="flex items-start"><i class="fas fa-check-circle text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>月150件LINE登録する実践ノウハウ</li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>1ヶ月で1,600フォロワー増やした全手法</li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-yellow-500 mt-1 mr-2 flex-shrink-0"></i>集客→教育→販売の全体像を完全公開</li>
+            </ul>
+        </div>
+
+        <!-- 特典2 -->
+        <div class="mb-6 relative bg-gray-50 border border-gray-200 rounded-lg p-5">
+            <div class="absolute top-0 left-0 bg-black text-white px-3 py-1 text-xs font-bold rounded-br-lg">特典2</div>
+            <h3 class="text-lg font-bold mt-4 mb-2">投稿作成プロンプト集</h3>
+            <p class="text-xs font-bold text-gray-600 mb-2">95%自動化を実現するAI活用術</p>
+            <ul class="text-xs space-y-1 text-gray-700 ml-4 list-disc">
+                <li>AIで投稿を自動生成する方法</li>
+                <li>実際に使えるプロンプトテンプレート</li>
+                <li>反応が取れる投稿パターン30選</li>
+            </ul>
+        </div>
+
+        <!-- 特典3 -->
+        <div class="mb-6 relative bg-gray-50 border border-gray-200 rounded-lg p-5">
+            <div class="absolute top-0 left-0 bg-black text-white px-3 py-1 text-xs font-bold rounded-br-lg">特典3</div>
+            <h3 class="text-lg font-bold mt-4 mb-2">AI活用完全マニュアル</h3>
+            <p class="text-xs font-bold text-gray-600 mb-2">投稿作成を効率化するAI活用の全て</p>
+            <ul class="text-xs space-y-1 text-gray-700 ml-4 list-disc">
+                <li>AIツールの使い方（初心者でもOK）</li>
+                <li>実践事例とビフォーアフター</li>
+                <li>よくあるミスと改善方法</li>
+            </ul>
+        </div>
+
+        <!-- 中間CTA -->
+        <div class="mt-8 text-center">
+            <p class="font-bold text-red-600 mb-3 text-sm">今すぐ3大特典を受け取る</p>
+            <a href="https://liff.line.me/2007350099-K9dE2l1E/landing?follow=%40118dgavc&lp=eyxvC8&liff_id=2007350099-K9dE2l1E" class="btn-green-3d w-full block text-white font-bold text-lg py-4">
+                無料LINE登録はこちら
+                <i class="fas fa-chevron-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- プロフィールセクション（名前：くどう） -->
+    <section class="py-12 px-5 bg-black text-white">
+        <div class="text-center">
+            <h2 class="text-2xl font-black mb-8 text-gold border-b-2 border-gold inline-block pb-1">主宰者プロフィール</h2>
+        </div>
+
+        <div class="flex flex-col items-center mb-6">
+            <!-- プロフィール画像エリア -->
+            <div class="w-32 h-32 rounded-full border-2 border-gold overflow-hidden mb-4 bg-gray-800 flex items-center justify-center relative">
+                <!-- 実際の画像がある場合はimgタグを使用 -->
+                <i class="fas fa-user text-5xl text-gray-600"></i>
+                <div class="absolute bottom-0 w-full bg-black/60 text-[10px] text-center py-1">Photo</div>
+            </div>
+
+            <div class="text-center">
+                <p class="text-xs text-gold font-bold tracking-wider mb-1">AI×Threadsの専門家</p>
+                <h3 class="text-2xl font-bold">くどう</h3>
+            </div>
+        </div>
+
+        <div class="text-sm leading-relaxed text-gray-300 space-y-4 px-2">
+            <div class="border-y border-gray-800 py-4 my-4">
+                <h4 class="font-bold text-white mb-2">【実績】</h4>
+                <ul class="space-y-1 text-xs">
+                    <li>● 1ヶ月でフォロワー1,600人増</li>
+                    <li>● インプレッション113万達成</li>
+                    <li>● リール不要、文章だけで月150件LINE登録</li>
+                    <li>● 投稿作成をAIで95%自動化</li>
+                    <li>● SNSで8,000万円のマネタイズ実績</li>
+                </ul>
+            </div>
+            <p>
+                2025年2月からThreads運用を本格開始。わずか1ヶ月で1,600フォロワーを獲得し、月150件のLINE登録を実現。
+            </p>
+            <p>
+                現在は、SNS集客で疲弊している事業者や副業希望者に向けて、Threads×AI集客術を教える専門家として活動中。
+            </p>
+        </div>
+    </section>
+
+    <!-- 実績数字 -->
+    <section class="py-12 px-5 bg-white text-center border-b border-gray-100">
+        <h2 class="text-lg font-bold mb-6">実際の数字で証明された成果</h2>
+
+        <div class="bg-gray-900 text-white rounded-xl p-4 mb-6 shadow-lg">
+            <div class="grid grid-cols-3 gap-2 divide-x divide-gray-700">
+                <div class="text-center px-1">
+                    <p class="text-[10px] text-gray-400 mb-1">フォロワー増</p>
+                    <p class="text-xl font-bold text-yellow-400">1,600</p>
+                </div>
+                <div class="text-center px-1">
+                    <p class="text-[10px] text-gray-400 mb-1">インプ数</p>
+                    <p class="text-xl font-bold text-yellow-400">113万</p>
+                </div>
+                <div class="text-center px-1">
+                    <p class="text-[10px] text-gray-400 mb-1">LINE登録</p>
+                    <p class="text-xl font-bold text-yellow-400">150件</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-left text-xs bg-gray-50 p-4 rounded border border-gray-200">
+            <p class="font-bold mb-2"><i class="fas fa-chart-bar mr-2"></i>Threads Analytics (2月)</p>
+            <ul class="space-y-1 text-gray-600">
+                <li>期間: 2025年2月1日〜28日</li>
+                <li>総インプレッション: 1,126,000回</li>
+                <li>エンゲージメント率: 8.3%</li>
+                <li>CVR (LINE登録率): 9.4%</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 受講生の実績（縦並び・動画埋め込み風レイアウト・修正：文言をthreads-thと一致） -->
+    <section class="py-12 px-5 bg-gray-50">
+        <div class="text-center">
+            <h2 class="section-title">受講生の実績</h2>
+        </div>
+
+        <div class="space-y-8">
+            <!-- 実績 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-3 border-b border-gray-100 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs mr-3">じ</div>
+                    <div>
+                        <p class="font-bold text-sm">じゅんさん</p>
+                        <!-- 文言修正 -->
+                        <p class="text-xs text-gray-500">会社員の副業で2,000万円<br>法人の設立を達成！</p>
+                    </div>
+                </div>
+                <!-- 動画埋め込み風エリア -->
+                <div class="aspect-video bg-black relative flex items-center justify-center cursor-pointer group">
+                    <div class="w-full h-full bg-gray-800 opacity-50 absolute"></div>
+                    <i class="fas fa-play-circle text-5xl text-white opacity-80 group-hover:opacity-100 transition-opacity z-10"></i>
+                    <p class="absolute bottom-2 right-2 text-white text-[10px] bg-black/70 px-2 py-0.5 rounded">0:58</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-sm font-bold text-gray-800">「最初は不安でしたが、開始1ヶ月で...」</p>
+                </div>
+            </div>
+
+            <!-- 実績 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-3 border-b border-gray-100 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-xs mr-3">ゆ</div>
+                    <div>
+                        <p class="font-bold text-sm">ゆうきさん</p>
+                        <!-- 文言修正 -->
+                        <p class="text-xs text-gray-500">半年で320万円の収益化達成</p>
+                    </div>
+                </div>
+                <!-- 動画埋め込み風エリア -->
+                <div class="aspect-video bg-black relative flex items-center justify-center cursor-pointer group">
+                    <div class="w-full h-full bg-gray-800 opacity-50 absolute"></div>
+                    <i class="fas fa-play-circle text-5xl text-white opacity-80 group-hover:opacity-100 transition-opacity z-10"></i>
+                    <p class="absolute bottom-2 right-2 text-white text-[10px] bg-black/70 px-2 py-0.5 rounded">1:12</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-sm font-bold text-gray-800">「リールに疲れていた私でも...」</p>
+                </div>
+            </div>
+
+            <!-- 実績 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-3 border-b border-gray-100 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-xs mr-3">か</div>
+                    <div>
+                        <p class="font-bold text-sm">かずみさん</p>
+                        <!-- 文言修正 -->
+                        <p class="text-xs text-gray-500">0→1から52万円の収益化達成</p>
+                    </div>
+                </div>
+                <!-- 動画埋め込み風エリア -->
+                <div class="aspect-video bg-black relative flex items-center justify-center cursor-pointer group">
+                    <div class="w-full h-full bg-gray-800 opacity-50 absolute"></div>
+                    <i class="fas fa-play-circle text-5xl text-white opacity-80 group-hover:opacity-100 transition-opacity z-10"></i>
+                    <p class="absolute bottom-2 right-2 text-white text-[10px] bg-black/70 px-2 py-0.5 rounded">0:45</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-sm font-bold text-gray-800">「未経験でも結果が出せました！」</p>
+                </div>
+            </div>
+
+            <!-- 実績 4 -->
+             <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-3 border-b border-gray-100 flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xs mr-3">や</div>
+                    <div>
+                        <p class="font-bold text-sm">やんもさん</p>
+                        <!-- 文言修正 -->
+                        <p class="text-xs text-gray-500">未経験から1,200万円の収益化<br>法人設立を達成</p>
+                    </div>
+                </div>
+                <!-- 動画埋め込み風エリア -->
+                <div class="aspect-video bg-black relative flex items-center justify-center cursor-pointer group">
+                    <div class="w-full h-full bg-gray-800 opacity-50 absolute"></div>
+                    <i class="fas fa-play-circle text-5xl text-white opacity-80 group-hover:opacity-100 transition-opacity z-10"></i>
+                    <p class="absolute bottom-2 right-2 text-white text-[10px] bg-black/70 px-2 py-0.5 rounded">1:30</p>
+                </div>
+                <div class="p-3">
+                    <p class="text-sm font-bold text-gray-800">「Threads×AIの可能性は凄いです」</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center font-bold mt-8 text-red-600 bg-white p-3 rounded-lg shadow-sm border border-red-100">
+            あなたも同じように結果を出せます
+        </p>
+    </section>
+
+    <!-- 悩み共感 -->
+    <section class="py-12 px-5 bg-white border-b border-gray-100">
+        <h2 class="text-center text-lg font-bold mb-6">SNS集客で、<br>こんな悩みありませんか？</h2>
+        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-inner">
+            <ul class="space-y-4">
+                <li class="flex items-start text-sm"><i class="fas fa-times text-red-500 mt-1 mr-3 flex-shrink-0"></i>リール作成に毎日3時間、でも売上ゼロ</li>
+                <li class="flex items-start text-sm"><i class="fas fa-times text-red-500 mt-1 mr-3 flex-shrink-0"></i>フォロワーは増えてもLINE登録されない</li>
+                <li class="flex items-start text-sm"><i class="fas fa-times text-red-500 mt-1 mr-3 flex-shrink-0"></i>投稿ネタが尽きて、更新が止まる</li>
+                <li class="flex items-start text-sm"><i class="fas fa-times text-red-500 mt-1 mr-3 flex-shrink-0"></i>画像・動画編集が面倒で続かない</li>
+            </ul>
+        </div>
+        <div class="mt-8 text-center">
+            <p class="text-sm mb-4 font-bold">これらの悩みの原因は1つ。<br><span class="text-red-600 border-b-2 border-red-400">「戦う場所を、間違えているから」</span></p>
+            <div class="bg-black text-white p-5 rounded-lg shadow-lg">
+                <p class="font-bold text-lg mb-2">文章だけで集客できる<br>Threadsなら違います！</p>
+                <p class="text-xs text-gray-300">しかも、投稿作成の95%はAIに任せています。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- メカニズム (AI自動化) -->
+    <section class="py-12 px-5 bg-gray-50">
+        <div class="text-center mb-8">
+            <h2 class="section-title text-xl mb-4">AI活用で投稿作成を<br>自動化する仕組み</h2>
+        </div>
+
+        <div class="relative max-w-sm mx-auto">
+            <!-- Step 1 -->
+            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow mb-6 relative z-10">
+                <span class="absolute -top-3 left-4 bg-black text-white px-3 py-1 text-xs font-bold rounded">1</span>
+                <h3 class="font-bold mt-2">AIに指示を出す</h3>
+                <p class="text-xs text-gray-500">プロンプトを入力</p>
+            </div>
+            <!-- Arrow -->
+            <div class="text-center text-gray-300 text-2xl -my-4 pb-4">↓</div>
+            <!-- Step 2 -->
+             <div class="bg-white p-4 rounded-lg border border-gray-200 shadow mb-6 relative z-10">
+                <span class="absolute -top-3 left-4 bg-black text-white px-3 py-1 text-xs font-bold rounded">2</span>
+                <h3 class="font-bold mt-2">AIが自動生成</h3>
+                <p class="text-xs text-gray-500">数秒で投稿文が完成</p>
+            </div>
+            <!-- Arrow -->
+            <div class="text-center text-gray-300 text-2xl -my-4 pb-4">↓</div>
+            <!-- Step 3 -->
+             <div class="bg-white p-4 rounded-lg border border-gray-200 shadow relative z-10">
+                <span class="absolute -top-3 left-4 bg-black text-white px-3 py-1 text-xs font-bold rounded">3</span>
+                <h3 class="font-bold mt-2">編集して投稿</h3>
+                <p class="text-xs text-gray-500">微調整してThreadsへ</p>
+            </div>
+        </div>
+        <p class="text-center font-bold mt-8 bg-yellow-100 p-2 rounded text-red-600 border border-yellow-200">
+            所要時間：たった10分で完了！
+        </p>
+    </section>
+
+    <!-- Why Threads? -->
+    <section class="py-12 px-5 bg-white">
+        <div class="text-center">
+            <h2 class="section-title">なぜ今、Threadsなのか？</h2>
+        </div>
+        <div class="space-y-8">
+            <div class="flex">
+                <div class="mr-4 text-4xl font-black text-gray-100 flex-shrink-0">01</div>
+                <div>
+                    <h3 class="font-bold text-lg border-b-2 border-yellow-400 inline-block mb-2">リール不要、文章だけでOK</h3>
+                    <p class="text-sm text-gray-600">画像編集も動画撮影も一切不要。スマホでサクッと文章を書くだけ。</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="mr-4 text-4xl font-black text-gray-100 flex-shrink-0">02</div>
+                <div>
+                    <h3 class="font-bold text-lg border-b-2 border-yellow-400 inline-block mb-2">後発組でも圧倒的に有利</h3>
+                    <p class="text-sm text-gray-600">ユーザーの99%は「つぶやき」だけ。価値ある情報を発信すれば一瞬でトップに。</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="mr-4 text-4xl font-black text-gray-100 flex-shrink-0">03</div>
+                <div>
+                    <h3 class="font-bold text-lg border-b-2 border-yellow-400 inline-block mb-2">AI活用で95%自動化</h3>
+                    <p class="text-sm text-gray-600">AIを使えば、投稿作成を95%自動化できる。1日10分で完結します。</p>
+                </div>
+            </div>
+             <div class="flex">
+                <div class="mr-4 text-4xl font-black text-gray-100 flex-shrink-0">04</div>
+                <div>
+                    <h3 class="font-bold text-lg border-b-2 border-yellow-400 inline-block mb-2">エンゲージメント率が高い</h3>
+                    <p class="text-sm text-gray-600">Threadsは「滞在時間」を重視。長文投稿ほど有利です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="py-12 px-5 bg-gray-50">
+        <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-black">
+            <h2 class="text-center text-lg font-bold mb-6">後発組でも、正しい戦略で<br>大逆転は可能です</h2>
+            <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                私が提唱するThreads×AI集客術は、フォロワー数に依存せず、必要な人に必要な情報を届け、売上につなげる戦略です。
+            </p>
+            <ul class="text-sm font-bold space-y-2 mb-6 text-gray-800 bg-gray-50 p-4 rounded">
+                <li>✓ リール不要、文章だけで集客</li>
+                <li>✓ AIで投稿作成を95%自動化</li>
+                <li>✓ 集客→教育→販売の仕組み化</li>
+            </ul>
+            <p class="text-sm text-gray-600 font-bold text-center">
+                後発組だからこそ、正しいノウハウを学び、Threadsを集客の武器にしませんか？
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="py-12 px-5 bg-white text-center pb-32">
+        <p class="text-lg font-bold mb-6">今すぐ3大特典を受け取って<br>Threads×AI集客をマスターしよう</p>
+
+        <div class="cta-balloon border border-green-500 text-green-600">
+            ＼ 無料で3大特典を受け取る ／
+        </div>
+
+        <a href="https://liff.line.me/2007350099-K9dE2l1E/landing?follow=%40118dgavc&lp=eyxvC8&liff_id=2007350099-K9dE2l1E" class="btn-green-3d w-full block text-white font-bold text-xl py-5 shadow-xl mb-4">
+            今すぐ無料で受け取る
+            <span class="block text-xs font-normal mt-1 opacity-90">LINE登録へ進む</span>
+        </a>
+
+        <p class="text-xs text-gray-400 mt-8">© 2025 AI x Threads Strategy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- スマホ用固定フッターCTA（常時表示） -->
+    <div class="fixed bottom-6 left-0 w-full z-50 flex justify-center pointer-events-none">
+        <div class="w-full max-w-[480px] px-4 pointer-events-auto">
+            <a href="https://liff.line.me/2007350099-K9dE2l1E/landing?follow=%40118dgavc&lp=eyxvC8&liff_id=2007350099-K9dE2l1E" class="btn-green-3d w-full block text-white font-bold text-center py-4 text-lg shadow-2xl transform transition hover:-translate-y-1">
+                無料で3大特典を受け取る
+            </a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
