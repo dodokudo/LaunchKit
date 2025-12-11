@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI×Threads ロードマップ作成会 LP</title>
+    <title>AI×Threads ロードマップ作成会 LP (Neon White Ver.3)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,7 +12,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f4f4f4; /* 背景は白のまま */
             color: #111;
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
@@ -22,6 +22,12 @@
         img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
+
+        /* グラデーション定義 */
+        :root {
+            --insta-gradient: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            --insta-gradient-text: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+        }
 
         /* --- レスポンシブ改行用ユーティリティ --- */
         .pc-br { display: block; }
@@ -36,7 +42,17 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
         .text-center { text-align: center; }
-        .text-red { color: #d32f2f; font-weight: bold; }
+        
+        /* テキスト強調：グラデーション文字 */
+        .text-red { 
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900; 
+            display: inline-block; /* グラデーション切れ防止 */
+        }
+        
+        /* マーカー：黄色蛍光ペン */
         .text-marker { background: linear-gradient(transparent 60%, #fff176 60%); font-weight: bold; padding: 0 2px; }
         
         .section { padding: 60px 20px; border-bottom: 1px solid #eee; }
@@ -53,9 +69,13 @@
             padding-bottom: 15px;
             line-height: 1.4;
         }
+        /* 見出しの強調部分もネオンに */
         h2.section-title span {
-            color: #cc0000;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        /* 見出しの下線もネオンに */
         h2.section-title::after {
             content: '';
             position: absolute;
@@ -64,10 +84,10 @@
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, #d62976, #fa7e1e);
+            background: var(--insta-gradient);
         }
 
-        /* --- 1. 緊急告知バー --- */
+        /* --- 1. 緊急告知バー (黄色固定) --- */
         .emergency-bar {
             background: #fff100;
             color: #000;
@@ -77,7 +97,7 @@
             font-size: 22px;
             line-height: 1.4;
         }
-        .emergency-bar i { margin-right: 5px; color: #d32f2f; }
+        .emergency-bar i { margin-right: 5px; color: #000; }
 
         /* --- 2. FVエリア --- */
         .fv-area {
@@ -85,16 +105,16 @@
             padding-bottom: 50px;
         }
         
-        /* 動画埋め込み枠 */
+        /* 動画埋め込み枠 (修正: 縁なしシンプル版) */
         .video-wrapper {
             position: relative;
             width: 100%;
             max-width: 740px;
             margin: 30px auto 0;
-            padding-top: 56.25%;
+            padding-top: 56.25%; /* アスペクト比 16:9 */
             background: #000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
             border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         .video-wrapper iframe {
@@ -104,8 +124,11 @@
             width: 100%;
             height: 100%;
         }
+
         .video-caption {
-            color: #d32f2f;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-align: center;
             font-size: 16px;
             margin-top: 15px;
@@ -114,7 +137,7 @@
         }
         @keyframes flash {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.6; }
         }
 
         /* --- 3. サンドイッチ型 CTAエリア --- */
@@ -124,14 +147,18 @@
             padding: 0 15px;
         }
 
-        /* デザイン枠 */
+        /* デザイン枠：ここをネオン枠に変更 */
         .cta-design-box {
             background: #fff;
-            border: 4px solid #bf2d2d;
+            /* グラデーションボーダーの魔法 */
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 4px solid transparent;
+            
             border-radius: 15px; 
             padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 40px rgba(131, 58, 180, 0.15); /* 紫っぽい影 */
             position: relative;
             overflow: visible;
         }
@@ -153,11 +180,16 @@
             line-height: 1.5;
         }
         .cta-headline span {
-            background: linear-gradient(transparent 70%, #fff176 70%);
+            /* 文字自体をグラデーションに */
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* 下線装飾 */
+            border-bottom: 2px solid #fd1d1d;
             padding: 0 4px;
         }
         
-        /* 説明文 (改行調整) */
+        /* 説明文 */
         .cta-desc {
             font-size: 15px;
             color: #444;
@@ -166,16 +198,17 @@
             line-height: 1.8;
         }
 
+        /* マイクロコピー */
         .btn-micro-copy {
             font-size: 16px;
             font-weight: 900;
-            color: #d32f2f; 
+            color: #000; 
             display: block;
             margin-bottom: 10px;
             text-align: center;
         }
 
-        /* --- 共通ボタンデザイン --- */
+        /* --- 共通ボタンデザイン (緑固定) --- */
         .btn-common {
             display: flex;
             flex-direction: column;
@@ -236,6 +269,7 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             overflow: hidden;
+            /* 修正点: 下部の赤いネオン線（border-bottom）なし */
         }
         .voice-video {
             position: relative;
@@ -256,7 +290,8 @@
         }
         
         .voice-badge {
-            background: #111;
+            /* バッジもグラデーション */
+            background: var(--insta-gradient);
             color: #fff;
             font-size: 12px;
             padding: 4px 10px;
@@ -268,7 +303,7 @@
         .voice-result { 
             font-size: 18px; 
             font-weight: 900; 
-            color: #d32f2f; 
+            color: #000;
             margin-bottom: 10px; 
             line-height: 1.4;
             border-bottom: 1px solid #eee;
@@ -286,14 +321,26 @@
         }
         .change-section-text p { margin-bottom: 25px; }
         
-        /* 箇条書きBOX */
+        /* 箇条書きBOX：左線をグラデーションに */
         .check-box {
             background: #f9f9f9;
             padding: 25px 20px;
             border-radius: 8px;
-            border-left: 4px solid #111;
+            position: relative;
+            overflow: hidden; /* 擬似要素のはみ出し防止 */
             margin: 30px 0;
         }
+        /* 左線用の擬似要素 */
+        .check-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--insta-gradient);
+        }
+
         .check-box-title {
             font-weight: bold;
             margin-bottom: 15px;
@@ -310,12 +357,16 @@
             margin-bottom: 10px;
             font-weight: 500;
         }
+        /* チェックマークをグラデーション文字に */
         .check-box li::before {
             content: '✔';
             position: absolute;
             left: 0;
-            color: #d32f2f;
-            font-weight: bold;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            display: inline-block;
         }
 
         /* --- なぜThreadsなのか？ (比較表デザイン) --- */
@@ -325,7 +376,10 @@
         }
         .comparison-conclusion {
             background: #fff;
-            border: 2px solid #d32f2f;
+            /* 結論BOXの枠をグラデーションに */
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 2px solid transparent;
             border-radius: 8px;
             padding: 25px;
             text-align: center;
@@ -333,6 +387,7 @@
             font-weight: bold;
             margin-top: 25px;
             line-height: 1.6;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         /* 比較表テーブルスタイル */
@@ -365,17 +420,28 @@
         }
         .comparison-table .th-item { background: #f4f4f4; width: 15%; }
         .comparison-table .th-reel { background: #eceff1; color: #455a64; width: 42.5%; }
-        .comparison-table .th-threads { background: #ffebee; color: #c62828; width: 42.5%; border-bottom: 3px solid #c62828; }
+        
+        /* Threadsヘッダーを下線グラデーションに */
+        .comparison-table .th-threads { 
+            background: #fff0f5; /* 薄いピンク */
+            color: #000; 
+            width: 42.5%; 
+            border-bottom: 3px solid #fd1d1d; 
+        }
         .comparison-table tr:nth-child(even) { background: #fafafa; }
-        .comparison-table td:nth-child(2) { background: #fff8f8; font-weight: bold; color: #111; }
+        .comparison-table td:nth-child(2) { background: #fffcfc; font-weight: bold; color: #111; }
         .text-weak { color: #777; font-size: 13px; }
-        .text-strong { color: #d32f2f; font-weight: 900; font-size: 15px; }
+        .text-strong { color: #000; font-weight: 900; font-size: 15px; }
 
 
         /* --- 特典セクション (アイコンスタイル) --- */
         .benefits-area {
             background: #fff;
-            border: 2px solid #111;
+            /* 特典枠をグラデーションに */
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 3px solid transparent;
+
             padding: 50px 20px 30px;
             margin-top: 40px;
             position: relative;
@@ -385,7 +451,8 @@
             border-radius: 8px;
         }
         .benefits-title {
-            background: #cc0000;
+            /* タイトル背景をグラデーションに */
+            background: var(--insta-gradient);
             color: #fff;
             padding: 12px 0;
             width: 90%;
@@ -415,18 +482,20 @@
             gap: 20px;
         }
         
-        /* アイコンスタイル */
+        /* アイコンカード */
         .benefit-card {
-            background: #fff8e1;
-            border: 1px solid #ffc107;
+            background: #fff;
+            border: 1px solid #eee;
             border-radius: 10px;
             padding: 20px;
             display: flex;
             align-items: flex-start;
             text-align: left;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.03);
         }
+        /* アイコン背景をグラデーションに */
         .benefit-icon {
-            background: #d32f2f;
+            background: var(--insta-gradient);
             color: #fff;
             width: 40px;
             height: 40px;
@@ -454,8 +523,22 @@
             border-radius: 10px;
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 4px solid #d32f2f;
+            /* 左線を擬似要素で作るためrelative */
+            position: relative;
+            overflow: hidden;
+            padding-left: 25px; /* 線のために余白確保 */
         }
+        /* 左線グラデーション */
+        .reason-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--insta-gradient);
+        }
+
         .reason-box h3 {
             font-size: 18px;
             font-weight: 900;
@@ -464,16 +547,20 @@
             align-items: center;
             line-height: 1.4;
         }
+        /* アイコンをグラデーション文字に */
         .reason-box h3 i {
-            color: #d32f2f;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-right: 10px;
             font-size: 24px;
+            display: inline-block;
         }
         .reason-box p { font-size: 15px; line-height: 1.8; color: #333; }
 
         /* --- 最後に セクション --- */
         .final-message { text-align: center; padding: 0 10px; }
-        .final-message h3 { font-size: 22px; font-weight: 900; color: #d32f2f; margin-bottom: 20px; }
+        .final-message h3 { font-size: 22px; font-weight: 900; color: #000; margin-bottom: 20px; }
         .final-message p { font-size: 16px; line-height: 2; margin-bottom: 20px; }
 
         /* --- Sticky Footer (JSで制御) --- */
@@ -487,12 +574,10 @@
             display: flex;
             justify-content: center;
             padding: 0 15px;
-            /* 初期状態: 非表示 */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.4s, transform 0.4s;
         }
-        /* 表示クラス */
         .sticky-footer.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -562,7 +647,7 @@
             <!-- -->
             <p class="video-caption">▲ 今すぐ再生して「売れる秘密」を確認する ▲</p>
 
-            <!-- 3. CTAエリア (赤枠) [cite: 6-17] -->
+            <!-- 3. CTAエリア (グラデーション枠) -->
             <div class="sandwich-cta">
                 <div class="cta-design-box">
                     <img src="./cta-image.png" alt="AI×Threads ロードマップ作成会" class="cta-embedded-img">
@@ -582,7 +667,7 @@
 
         </div>
 
-        <!-- 4. 受講生の実績 [cite: 18-29] -->
+        <!-- 4. 受講生の実績 -->
         <section class="section-gray" id="voice-section">
             <h2 class="section-title">
                 論より証拠。<br>
@@ -703,7 +788,7 @@
             </div>
         </section>
 
-        <!-- 7. 特典セクション (アイコンスタイル) [cite: 30-40] -->
+        <!-- 7. 特典セクション (アイコンスタイル) -->
         <section class="section">
             <div class="benefits-area">
                 <div class="benefits-title">参加者限定 4大特典</div>
@@ -754,7 +839,7 @@
             </div>
         </section>
 
-        <!-- CTAセクション (中間) [cite: 41-44] -->
+        <!-- CTAセクション (中間) -->
         <section class="section" style="padding-top:0;">
             <div class="sandwich-cta">
                 <div class="cta-design-box">
@@ -774,7 +859,7 @@
             </div>
         </section>
 
-        <!-- 新規セクション: 悩み [cite: 45-55] -->
+        <!-- 新規セクション: 悩み -->
         <section class="section">
             <h2 class="section-title">あなたは今、<br class="sp-br">こんな<span>状況</span>ではありませんか？</h2>
             <div class="change-section-text">
@@ -794,7 +879,7 @@
             </div>
         </section>
 
-        <!-- 新規セクション: 売上のフレーム [cite: 56-69] -->
+        <!-- 新規セクション: 売上のフレーム -->
         <section class="section-gray">
             <h2 class="section-title">なぜ、あなたの<br class="sp-br">売上は<span>伸びない</span>のか？</h2>
             <div class="change-section-text">
@@ -806,7 +891,7 @@
                 </p>
                 <p class="text-center">この違いだけです。</p>
                 
-                <div class="comparison-conclusion" style="margin: 30px auto; max-width: 600px;">
+                <div class="comparison-conclusion">
                     <p style="margin-bottom:10px;">そして、売れる仕組みには「公式」があります。</p>
                     <p class="text-red" style="font-size:18px;">売上 = SNS(認知) × 導線(教育) × 提案 × 商品構造 × 仕組み(AI)</p>
                 </div>
@@ -821,7 +906,7 @@
             </div>
         </section>
 
-        <!-- なぜThreads×AIなのか？ (比較表含む) [cite: 70-79] -->
+        <!-- なぜThreads×AIなのか？ (比較表含む) -->
         <section class="section">
             <h2 class="section-title">なぜ、今<br class="sp-br"><span>Threads</span>なのか？</h2>
             
@@ -889,28 +974,28 @@
             </div>
         </section>
 
-        <!-- 新規セクション: 感情的な声 (受講生のリアルな声) [cite: 80-102] -->
+        <!-- 新規セクション: 感情的な声 (受講生のリアルな声) -->
         <section class="section-gray">
             <h2 class="section-title">受講生の<span>声</span>を<br>お聞きください</h2>
             <div style="max-width: 680px; margin: 0 auto;">
                 
                 <!-- 1 -->
-                <div class="reason-box" style="border-left-color: #111;">
-                    <h3><i class="fa-solid fa-user" style="color:#111;"></i> 50代女性・Instagramで売上ゼロ→3ヶ月で月商100万円</h3>
+                <div class="reason-box">
+                    <h3><i class="fa-solid fa-user"></i> 50代女性・Instagramで売上ゼロ→3ヶ月で月商100万円</h3>
                     <p>「リールの撮影・編集が本当に辛かった。毎日3時間以上かけて1本作って、それでも売上は変わらなくて。<br>
                     Threadsに変えてから、テキストだけで集客できるようになって、人生が変わりました。もっと早く知りたかったです。」</p>
                 </div>
 
                 <!-- 2 -->
-                <div class="reason-box" style="border-left-color: #111;">
-                    <h3><i class="fa-solid fa-user" style="color:#111;"></i> 40代女性・LINE登録率が3倍に</h3>
+                <div class="reason-box">
+                    <h3><i class="fa-solid fa-user"></i> 40代女性・LINE登録率が3倍に</h3>
                     <p>「Instagramの時は、いいねはつくけど、全然商品に興味を持ってもらえなかった。<br>
                     でも、Threadsに変えてから、LINEの登録率が3倍になった。しかも、登録してくれる人の質が全然違う。価格じゃなくて、価値で判断してくれる人が増えました。」</p>
                 </div>
 
                 <!-- 3 -->
-                <div class="reason-box" style="border-left-color: #111;">
-                    <h3><i class="fa-solid fa-user" style="color:#111;"></i> 30代男性・月30万円で停滞 →月150万円突破</h3>
+                <div class="reason-box">
+                    <h3><i class="fa-solid fa-user"></i> 30代男性・月30万円で停滞 →月150万円突破</h3>
                     <p>「ずっと月30万円で頭打ちでした。リールを頑張っても、何も変わらなくて。<br>
                     導線を再設計してもらったら、翌月に月150万円を突破。やり方が間違っていただけだったんです。」</p>
                 </div>
@@ -918,7 +1003,7 @@
             </div>
         </section>
 
-        <!-- 新規セクション: ロードマップ作成会で得られること [cite: 103-113] -->
+        <!-- 新規セクション: ロードマップ作成会で得られること -->
         <section class="section">
             <h2 class="section-title">ロードマップ作成会で<br><span>得られること</span></h2>
             <div class="change-section-text">
@@ -936,7 +1021,7 @@
             </div>
         </section>
 
-        <!-- 8. なぜ無料なのか？ [cite: 114-133] -->
+        <!-- 8. なぜ無料なのか？ -->
         <section class="section-gray">
             <h2 class="section-title">なぜ、<span>無料</span>なのか？</h2>
             <div style="max-width: 680px; margin: 0 auto;">
@@ -959,7 +1044,7 @@
             </div>
         </section>
 
-        <!-- 新規セクション: マインドセット [cite: 134-156] -->
+        <!-- 新規セクション: マインドセット -->
         <section class="section">
             <h2 class="section-title">成果を出す人と<br><span>出さない人</span>の違い</h2>
             <div class="change-section-text">
@@ -989,7 +1074,7 @@
             </div>
         </section>
 
-        <!-- CTAセクション (最後) [cite: 174-177] -->
+        <!-- CTAセクション (最後) -->
         <section class="section" style="padding-top:0; padding-bottom:60px;">
             <div class="sandwich-cta">
                 <div class="cta-design-box">
@@ -1009,7 +1094,7 @@
             </div>
         </section>
 
-        <!-- 9. 最後に [cite: 178-205] -->
+        <!-- 9. 最後に -->
         <section class="section-gray" style="padding-bottom: 60px;">
             <div class="text-center">
                 <h2 class="section-title">最後に</h2>
