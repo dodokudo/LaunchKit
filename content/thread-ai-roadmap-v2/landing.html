@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI×Threads ロードマップ作成会 LP (Neon White Ver.3)</title>
+    <title>AI×Threads ロードマップ作成会 LP (Neon White v4 - Images)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -105,7 +105,7 @@
             padding-bottom: 50px;
         }
         
-        /* 動画埋め込み枠 (修正: 縁なしシンプル版) */
+        /* 動画埋め込み枠 (縁なしシンプル版) */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -147,7 +147,7 @@
             padding: 0 15px;
         }
 
-        /* デザイン枠：ここをネオン枠に変更 */
+        /* デザイン枠：ネオン枠 */
         .cta-design-box {
             background: #fff;
             /* グラデーションボーダーの魔法 */
@@ -269,7 +269,6 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             overflow: hidden;
-            /* 修正点: 下部の赤いネオン線（border-bottom）なし */
         }
         .voice-video {
             position: relative;
@@ -290,7 +289,6 @@
         }
         
         .voice-badge {
-            /* バッジもグラデーション */
             background: var(--insta-gradient);
             color: #fff;
             font-size: 12px;
@@ -321,16 +319,14 @@
         }
         .change-section-text p { margin-bottom: 25px; }
         
-        /* 箇条書きBOX：左線をグラデーションに */
         .check-box {
             background: #f9f9f9;
             padding: 25px 20px;
             border-radius: 8px;
             position: relative;
-            overflow: hidden; /* 擬似要素のはみ出し防止 */
+            overflow: hidden; 
             margin: 30px 0;
         }
-        /* 左線用の擬似要素 */
         .check-box::before {
             content: '';
             position: absolute;
@@ -357,7 +353,6 @@
             margin-bottom: 10px;
             font-weight: 500;
         }
-        /* チェックマークをグラデーション文字に */
         .check-box li::before {
             content: '✔';
             position: absolute;
@@ -376,7 +371,6 @@
         }
         .comparison-conclusion {
             background: #fff;
-            /* 結論BOXの枠をグラデーションに */
             background: linear-gradient(#fff, #fff) padding-box,
                         var(--insta-gradient) border-box;
             border: 2px solid transparent;
@@ -390,7 +384,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* 比較表テーブルスタイル */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -421,9 +414,8 @@
         .comparison-table .th-item { background: #f4f4f4; width: 15%; }
         .comparison-table .th-reel { background: #eceff1; color: #455a64; width: 42.5%; }
         
-        /* Threadsヘッダーを下線グラデーションに */
         .comparison-table .th-threads { 
-            background: #fff0f5; /* 薄いピンク */
+            background: #fff0f5;
             color: #000; 
             width: 42.5%; 
             border-bottom: 3px solid #fd1d1d; 
@@ -434,7 +426,7 @@
         .text-strong { color: #000; font-weight: 900; font-size: 15px; }
 
 
-        /* --- 特典セクション (アイコンスタイル) --- */
+        /* --- 特典セクション (画像対応レイアウト) --- */
         .benefits-area {
             background: #fff;
             /* 特典枠をグラデーションに */
@@ -451,7 +443,6 @@
             border-radius: 8px;
         }
         .benefits-title {
-            /* タイトル背景をグラデーションに */
             background: var(--insta-gradient);
             color: #fff;
             padding: 12px 0;
@@ -482,18 +473,44 @@
             gap: 20px;
         }
         
-        /* アイコンカード */
+        /* 特典カード (レイアウト変更) */
         .benefit-card {
             background: #fff;
             border: 1px solid #eee;
             border-radius: 10px;
+            overflow: hidden; /* 画像の角丸対応 */
+            box-shadow: 0 5px 10px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column; /* 縦並び */
+        }
+        
+        /* 画像エリア */
+        .benefit-image {
+            width: 100%;
+            height: 180px; /* 画像の高さ */
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+        }
+        .benefit-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 枠いっぱいにトリミング */
+            display: block;
+        }
+
+        /* コンテンツ部分 */
+        .benefit-body {
             padding: 20px;
             display: flex;
             align-items: flex-start;
-            text-align: left;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.03);
+            flex-grow: 1;
         }
-        /* アイコン背景をグラデーションに */
+
+        /* アイコン */
         .benefit-icon {
             background: var(--insta-gradient);
             color: #fff;
@@ -523,12 +540,10 @@
             border-radius: 10px;
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            /* 左線を擬似要素で作るためrelative */
             position: relative;
             overflow: hidden;
-            padding-left: 25px; /* 線のために余白確保 */
+            padding-left: 25px;
         }
-        /* 左線グラデーション */
         .reason-box::before {
             content: '';
             position: absolute;
@@ -538,7 +553,6 @@
             height: 100%;
             background: var(--insta-gradient);
         }
-
         .reason-box h3 {
             font-size: 18px;
             font-weight: 900;
@@ -547,7 +561,6 @@
             align-items: center;
             line-height: 1.4;
         }
-        /* アイコンをグラデーション文字に */
         .reason-box h3 i {
             background: var(--insta-gradient-text);
             -webkit-background-clip: text;
@@ -563,7 +576,7 @@
         .final-message h3 { font-size: 22px; font-weight: 900; color: #000; margin-bottom: 20px; }
         .final-message p { font-size: 16px; line-height: 2; margin-bottom: 20px; }
 
-        /* --- Sticky Footer (JSで制御) --- */
+        /* --- Sticky Footer --- */
         .sticky-footer {
             position: fixed;
             bottom: 20px;
@@ -582,7 +595,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
         .sticky-btn-wrapper {
             width: 100%;
             max-width: 600px;
@@ -591,7 +603,7 @@
         }
 
         /* =========================================
-           スマホ最適化 (max-width: 600px)
+           スマホ最適化
            ========================================= */
         @media (max-width: 600px) {
             .emergency-bar { font-size: 14px; padding: 12px 10px; }
@@ -601,10 +613,8 @@
             .section-gray { padding: 50px 15px; }
             h2.section-title { font-size: 24px; margin-bottom: 30px; line-height: 1.5; }
             
-            /* CTA周り */
             .sandwich-cta { padding: 0 15px; }
             .cta-design-box { padding: 25px 15px; }
-            
             .cta-headline { font-size: 20px; }
             .btn-cta { font-size: 18px; padding: 15px 10px; }
             .btn-micro-copy { font-size: 14px; }
@@ -788,7 +798,7 @@
             </div>
         </section>
 
-        <!-- 7. 特典セクション (アイコンスタイル) -->
+        <!-- 7. 特典セクション (画像対応版) -->
         <section class="section">
             <div class="benefits-area">
                 <div class="benefits-title">参加者限定 4大特典</div>
@@ -799,36 +809,53 @@
                 </p>
 
                 <div class="benefit-grid">
-                    <!-- 特典1 -->
+                    <!-- 特典1 (画像なし) -->
                     <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
-                            <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
+                                <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
+                            </div>
                         </div>
                     </div>
                     <!-- 特典2 -->
                     <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
-                            <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
+                        <div class="benefit-image">
+                            <img src="./benefit2.png" alt="特典2画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
+                                <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
+                            </div>
                         </div>
                     </div>
                     <!-- 特典3 -->
                     <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
-                            <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
+                        <div class="benefit-image">
+                            <img src="./benefit2.png" alt="特典3画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
+                                <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
+                            </div>
                         </div>
                     </div>
                     <!-- 特典4 -->
                     <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
-                            <p>実際のThreads運用データを全てまるまる公開します。</p>
+                        <div class="benefit-image">
+                            <img src="./benefit4.png" alt="特典4画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
+                                <p>実際のThreads運用データを全てまるまる公開します。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
