@@ -1,538 +1,856 @@
-<!-- ヘッダー -->
-<div class="header-image" style="text-align: center; background: #ffffff; padding: 0;">
-    <img src="/threads-opt/assets/images/header-banner.png" alt="AI×Threads集客術" style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
-</div>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×Threads集客術 無料プログラム</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- 基本設定 (1.htmlベース) --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f4f4;
+            color: #111;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            font-feature-settings: "palt";
+            padding-bottom: 0;
+        }
+        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-<!-- CTA -->
-<div class="cta-section" style="text-align: center; padding: 25px 20px; background: #f8f9fa;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <p class="cta-text" style="font-size: 16px; margin-bottom: 15px; font-weight: bold;">＼ 公式LINEで3大特典を無料配布中 ／</p>
-        <a href="https://autostudio-self.vercel.app/l/LINE2" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #00B900 0%, #06C755 50%, #00A84F 100%); color: white; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 50px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); animation: bounce 2s ease-in-out infinite;">今すぐ無料で受け取る</a>
-    </div>
-</div>
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            padding-bottom: 80px; /* スティッキーボタンとかぶらないよう余白確保 */
+        }
+        .text-center { text-align: center; }
+        /* 赤文字を緑に変更 */
+        .text-red { color: #06c755; font-weight: bold; } 
+        /* マーカーも黄色から薄い緑系に変更 */
+        .text-marker { background: linear-gradient(transparent 60%, #bbf7d0 60%); font-weight: bold; padding: 0 2px; }
+        
+        .section { padding: 60px 20px; border-bottom: 1px solid #eee; }
+        /* グレー背景を少し緑がかった薄い色にするか、そのままグレーにするか。今回は爽やかに薄い緑系グレーに */
+        .section-gray { padding: 60px 20px; background: #f0fdf4; } 
+        .bg-white { background: #fff; }
 
-<!-- 3大特典セクション -->
-<div class="section benefits bg-white" style="padding: 40px 20px; background: #FFFFFF;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <!-- 特典1 -->
-        <div class="benefit-item" style="background: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 10px; border-left: 5px solid #10b981; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <h3 class="benefit-title" style="font-size: 18px; font-weight: bold; margin-bottom: 12px; color: #1a1a1a;">【特典1】AI×Threads集客術完全攻略ガイド</h3>
+        /* 見出しデザイン (1.html移植 + 緑化) */
+        h2.section-title {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 900;
+            color: #111;
+            position: relative;
+            padding-bottom: 15px;
+            line-height: 1.4;
+        }
+        h2.section-title span {
+            color: #06c755; /* 緑に変更 */
+        }
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            /* 緑のグラデーションに変更 */
+            background: linear-gradient(90deg, #06c755, #10b981); 
+        }
 
-            <!-- 特典画像 -->
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="/threads-lp-v2/assets/images/threads-guide-3d-box.png" alt="AI×Threads集客完全攻略ガイド" style="max-width: 100%; height: auto; max-height: 350px;">
-            </div>
+        /* --- CTAボタンデザイン (緑のまま維持) --- */
+        .btn-common {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #06c755, #00b900);
+            color: #fff;
+            font-size: 22px;
+            font-weight: 900;
+            text-align: center;
+            padding: 18px 20px;
+            border-radius: 50px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 0 #038e3b, 0 8px 15px rgba(0,0,0,0.3);
+            position: relative;
+            transition: all 0.1s;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            text-decoration: none;
+            line-height: 1.2;
+            cursor: pointer;
+        }
+        .btn-common:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #038e3b, 0 4px 5px rgba(0,0,0,0.2);
+        }
+        .btn-animate {
+            animation: btn-pulse 2s infinite;
+        }
+        @keyframes btn-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
 
-            <div class="benefit-content">
-                <ul style="list-style: none; padding-left: 0; font-size: 14px;">
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>Threadsで月150件LINE登録する実践ノウハウ</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>1ヶ月で1,600フォロワー増やした全手法</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>集客→教育→販売の全体像を完全公開</li>
-                </ul>
+        /* --- 実績数字エリア (最新データ + 緑化) --- */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 140px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid #eee;
+        }
+        .number-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            color: #06c755; /* 緑に変更 */
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+        .number-label {
+            display: block;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            font-weight: bold;
+        }
 
-                <div class="benefit-details" style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px;">
-                    <h4 style="font-size: 15px; margin-bottom: 8px; color: #333;">〜ガイドの内容〜</h4>
+        /* --- 特典セクション (緑化) --- */
+        .benefits-area {
+            background: #fff;
+            padding: 20px 20px 30px;
+            margin-top: 0;
+            position: relative;
+            border-radius: 10px;
+        }
 
-                    <p style="font-size: 14px; margin-bottom: 10px;"><strong>第1章：Threads集客のノウハウ</strong></p>
-                    <ul style="list-style: none; padding-left: 0; font-size: 13px;">
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>なぜ今Threadsなのか？（ブルーオーシャン市場）</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>フォロワーを増やす投稿戦略</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>エンゲージメントを高める具体的手法</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>1ヶ月で1,600フォロワー増やした実例公開</li>
-                    </ul>
+        .benefit-item {
+            background: #f0fdf4; /* 薄い緑背景 */
+            border: 2px solid #86efac; /* 明るい緑枠 */
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+        .benefit-head {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #111;
+            border-bottom: 2px dashed #06c755; /* 緑点線 */
+            padding-bottom: 10px;
+        }
+        .benefit-head i { color: #06c755; margin-right: 8px; } /* アイコンも緑 */
+        
+        .benefit-main-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .benefit-main-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #111;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 5px;
+        }
+        .benefit-main-list li::before {
+            content: '■';
+            position: absolute;
+            left: 0;
+            color: #06c755; /* 緑 */
+            font-size: 12px;
+            top: 5px;
+        }
 
-                    <p style="font-size: 14px; margin-bottom: 10px; margin-top: 15px;"><strong>第2章：AI活用で投稿作成を効率化</strong></p>
-                    <ul style="list-style: none; padding-left: 0; font-size: 13px;">
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>AIを使えば投稿作成が95%自動化できます</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>詳しい活用方法は特典2で完全公開</li>
-                    </ul>
+        .benefit-details {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        .benefit-details h4 {
+            font-size: 16px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #166534; /* 濃い緑文字 */
+            background: #dcfce7; /* 薄い緑背景 */
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .chapter-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #06c755; /* 緑 */
+            margin-top: 15px;
+            margin-bottom: 5px;
+            border-left: 4px solid #06c755; /* 緑 */
+            padding-left: 10px;
+        }
+        .chapter-title:first-of-type { margin-top: 0; }
+        
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .chapter-list li {
+            position: relative;
+            padding-left: 15px;
+            font-size: 14px;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        .chapter-list li::before {
+            content: '・';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
 
-                    <p style="font-size: 14px; margin-bottom: 10px; margin-top: 15px;"><strong>第3章：集客→教育→販売の全体設計</strong></p>
-                    <ul style="list-style: none; padding-left: 0; font-size: 13px;">
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>集客だけでは売上にならない理由</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>ThreadsからLINE登録への導線設計</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>教育→販売につなげる具体的ステップ</li>
-                        <li style="padding: 4px 0; padding-left: 20px; position: relative;"><span style="content: '・'; position: absolute; left: 0; color: #10b981;">・</span>マネタイズまでの全体像を徹底解説</li>
-                    </ul>
-                </div>
-            </div>
+        /* 画像プレースホルダー */
+        .img-placeholder-box {
+            background: #f0f0f0;
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 0;
+            border: 2px dashed #ccc;
+            text-align: center;
+            padding: 20px;
+        }
+        .benefit-item .img-placeholder-box {
+            margin-bottom: 15px;
+        }
+
+        /* --- プロフィール画像レイアウト --- */
+        .profile-container {
+            display: flex;
+            align-items: center; /* 垂直方向中央揃え */
+            justify-content: center;
+            gap: 20px; /* 画像とテキストの間隔 */
+            margin-bottom: 20px;
+        }
+        .profile-img-wrapper {
+            flex-shrink: 0; /* 画像が縮まないようにする */
+        }
+        .profile-img-placeholder {
+            width: 120px; /* 少し小さめに調整 */
+            height: 120px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-weight: bold;
+            border: 2px dashed #ccc;
+        }
+        .profile-info {
+            text-align: left; /* 左揃え */
+        }
+        
+        /* --- 受講生の声 (1.htmlから移植) --- */
+        .voice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px; 
+            margin-top: 30px;
+        }
+        .voice-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .voice-video {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #000;
+        }
+        .voice-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .voice-content { 
+            padding: 20px; 
+            text-align: center; 
+        }
+        .voice-badge {
+            background: #111;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .voice-result { 
+            font-size: 18px; 
+            font-weight: 900; 
+            color: #06c755; /* 緑に変更 */
+            margin-bottom: 5px; 
+            line-height: 1.4;
+        }
+
+        /* --- 新規追加スタイル (緑化) --- */
+        
+        /* 理由セクション */
+        .reason-item {
+            background: white; 
+            padding: 25px; 
+            margin-bottom: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid #eee;
+            border-left: 5px solid #06c755; /* 緑に変更 */
+        }
+        .reason-number {
+            display: inline-block; 
+            background: #06c755; /* 緑に変更 */
+            color: #fff; 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+            font-size: 13px;
+        }
+        .reason-title {
+            font-size: 18px; 
+            font-weight: 900; 
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        /* 警告ボックス */
+        .warning-box {
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            border: 3px solid #06c755; /* 緑枠 */
+            text-align: center;
+        }
+
+        /* 集客フロー図 */
+        .flow-step {
+            background: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+            border-left: 4px solid #111; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .flow-label {
+            background: #111; 
+            color: white; 
+            padding: 4px 12px; 
+            border-radius: 15px; 
+            font-weight: bold; 
+            font-size: 12px;
+        }
+
+        /* クロージングメッセージ */
+        .final-message-box {
+            background: #fff; 
+            border: 4px solid #06c755; /* 緑枠 */
+            padding: 30px 20px; 
+            border-radius: 10px; 
+            margin: 30px 0; 
+            font-size: 16px; 
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* --- FAQ --- */
+        .faq-item {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid #111;
+        }
+        .faq-question { font-weight: 900; margin-bottom: 10px; color: #111; font-size: 16px; }
+        .faq-answer { font-size: 14px; color: #333; line-height: 1.6; }
+
+        /* --- Sticky Footer (追従ボタン) --- */
+        .sticky-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            padding: 0 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .sticky-footer.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .sticky-btn-wrapper {
+            width: 100%;
+            max-width: 600px;
+            pointer-events: auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        /* --- スマホ最適化 --- */
+        @media (max-width: 600px) {
+            .section { padding: 40px 15px; }
+            h2.section-title { font-size: 24px; }
+            .btn-common { font-size: 20px; width: 100%; }
+            .stats-container { gap: 10px; }
+            .stat-item { width: 48%; min-width: auto; padding: 10px; }
+            .number-circle { font-size: 22px; }
+            .benefit-item { padding: 20px 15px; }
+            .sticky-footer { bottom: 15px; padding: 0 10px; }
+            /* スマホでも横並びを維持するので特別な変更はなし */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- ヘッダー -->
+        <div class="header-image" style="text-align: center; background: #ffffff; padding: 0;">
+            <img src="/threads-opt/assets/images/header-banner.png" alt="AI×Threads集客術" style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
         </div>
 
-        <!-- 特典2 -->
-        <div id="benefits-trigger" class="benefit-item" style="background: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 10px; border-left: 5px solid #10b981; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <h3 class="benefit-title" style="font-size: 18px; font-weight: bold; margin-bottom: 12px; color: #1a1a1a;">【特典2】投稿作成プロンプト集</h3>
-            <div class="benefit-content">
-                <p style="font-size: 18px; margin-bottom: 15px;">95%自動化を実現する<br>AI活用プロンプトを完全公開</p>
-                <ul style="list-style: none; padding-left: 0; font-size: 14px;">
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>AIで投稿を自動生成する方法</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>実際に使えるプロンプトテンプレート</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>反応が取れる投稿パターン30選</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>1日10分で投稿を量産する具体的手順</li>
-                </ul>
-            </div>
+        <!-- CTAセクション 1 -->
+        <div class="section-gray" style="padding-top: 10px; padding-bottom: 20px;">
+            <p class="text-center text-red" style="font-size: 16px; margin-bottom: 20px; margin-top: 10px; font-weight: bold;">＼ 公式LINEで2大特典を無料配布中 ／</p>
+            <a href="https://autostudio-self.vercel.app/l/thLINE1" class="btn-common btn-animate">
+                無料LINE登録はこちら
+            </a>
         </div>
 
-        <!-- 特典3 -->
-        <div class="benefit-item" style="background: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 10px; border-left: 5px solid #10b981; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <h3 class="benefit-title" style="font-size: 18px; font-weight: bold; margin-bottom: 12px; color: #1a1a1a;">【特典3】AI活用完全マニュアル</h3>
-            <div class="benefit-content">
-                <p style="font-size: 18px; margin-bottom: 15px;">投稿作成を効率化する<br>AI活用の全てがわかる</p>
-                <ul style="list-style: none; padding-left: 0; font-size: 14px;">
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>AIツールの使い方（初心者でもOK）</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>効率化のための具体的手順</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>実践事例とビフォーアフター</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '■'; position: absolute; left: 0; color: #10b981; font-size: 12px;">■</span>よくあるミスと改善方法</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- CTA -->
-<div class="cta-section" style="text-align: center; padding: 25px 20px; background: #f8f9fa;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <p class="cta-text" style="font-size: 16px; margin-bottom: 15px; font-weight: bold;">今すぐ3大特典を受け取る</p>
-        <a href="https://autostudio-self.vercel.app/l/LINE2" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #00B900 0%, #06C755 50%, #00A84F 100%); color: white; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 50px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); animation: bounce 2s ease-in-out infinite;">無料LINE登録はこちら</a>
-    </div>
-</div>
-
-<!-- プロフィールセクション -->
-<div class="section profile bg-light-purple" style="padding: 40px 20px; background: #f0fdf4;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">主宰者プロフィール</h2>
-
-        <div class="profile-content" style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
-            <div class="profile-text" style="flex: 1; min-width: 300px;">
-                <div class="profile-name" style="font-size: 22px; font-weight: bold; margin-bottom: 8px;">工藤博也（くどう ひろや）</div>
-                <div class="profile-role" style="font-size: 16px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">AI×Threadsの専門家</div>
-
-                <div class="profile-achievements" style="margin-top: 15px;">
-                    <h4 style="font-size: 15px; margin-bottom: 8px;">実績：</h4>
-                    <ul style="list-style: none; font-size: 14px;">
-                        <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '●'; position: absolute; left: 0; color: #10b981; font-size: 12px;">●</span>1ヶ月でフォロワー1,600人増・インプレッション113万達成</li>
-                        <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '●'; position: absolute; left: 0; color: #10b981; font-size: 12px;">●</span>リール不要、文章だけで月150件LINE登録</li>
-                        <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '●'; position: absolute; left: 0; color: #10b981; font-size: 12px;">●</span>投稿作成をAIで95%自動化</li>
-                        <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '●'; position: absolute; left: 0; color: #10b981; font-size: 12px;">●</span>SNSで8,000万円のマネタイズ実績</li>
-                        <li style="padding: 6px 0; padding-left: 20px; position: relative;"><span style="content: '●'; position: absolute; left: 0; color: #10b981; font-size: 12px;">●</span>コンサル実績100名以上</li>
-                    </ul>
-                </div>
-
-                <p style="margin-top: 20px; line-height: 1.8;">
-                    2025年2月からThreads運用を本格開始。わずか1ヶ月で1,600フォロワーを獲得し、月150件のLINE登録を実現。投稿作成の95%をAIで自動化し、効率的な集客を実現している。
-                </p>
-
-                <p style="margin-top: 15px; line-height: 1.8;">
-                    現在は、SNS集客で疲弊している事業者や副業希望者に向けて、Threads×AI集客術を教える専門家として活動中。
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 実績データセクション -->
-<div class="section bg-light-green" style="padding: 40px 20px; background: #f0fdf4;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">実際の数字で証明された成果</h2>
-
-        <p style="text-align: center; font-size: 16px; margin-bottom: 30px; line-height: 1.8;">
-            これは実際のThreadsアナリティクスデータです。<br>
-            わずか1ヶ月で<strong style="color: #1a1a1a;">112.6万インプレッション</strong>を達成しました。
-        </p>
-
-        <!-- 数字のビジュアル化 -->
-        <div class="stats-container" style="display: flex; flex-wrap: nowrap; justify-content: center; align-items: flex-start; gap: 20px; margin: 30px 0; overflow-x: auto;">
-            <div class="stat-item" style="text-align: center; flex-shrink: 0; min-width: 120px;">
-                <div class="number-circle" style="display: inline-flex; align-items: center; justify-content: center; width: 120px; height: 120px; background: #ffffff; border-radius: 50%; color: #06C755; font-size: 32px; font-weight: 800; margin: 10px; box-shadow: 0 10px 30px rgba(6, 199, 85, 0.2); border: 3px solid #dcfce7;">1,600</div>
-                <span class="number-label" style="display: block; text-align: center; font-size: 14px; color: #666; margin-top: 5px;">フォロワー増加</span>
-            </div>
-            <div class="stat-item" style="text-align: center; flex-shrink: 0; min-width: 120px;">
-                <div class="number-circle" style="display: inline-flex; align-items: center; justify-content: center; width: 120px; height: 120px; background: #ffffff; border-radius: 50%; color: #06C755; font-size: 32px; font-weight: 800; margin: 10px; box-shadow: 0 10px 30px rgba(6, 199, 85, 0.2); border: 3px solid #dcfce7;">113万</div>
-                <span class="number-label" style="display: block; text-align: center; font-size: 14px; color: #666; margin-top: 5px;">インプレッション</span>
-            </div>
-            <div class="stat-item" style="text-align: center; flex-shrink: 0; min-width: 120px;">
-                <div class="number-circle" style="display: inline-flex; align-items: center; justify-content: center; width: 120px; height: 120px; background: #ffffff; border-radius: 50%; color: #06C755; font-size: 32px; font-weight: 800; margin: 10px; box-shadow: 0 10px 30px rgba(6, 199, 85, 0.2); border: 3px solid #dcfce7;">150</div>
-                <span class="number-label" style="display: block; text-align: center; font-size: 14px; color: #666; margin-top: 5px;">LINE登録件数</span>
-            </div>
-        </div>
-
-        <!-- スクリーンショット風モックアップ -->
-        <div class="screenshot-mockup" style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 15px 40px rgba(6, 199, 85, 0.15); border: 8px solid #d1fae5; margin: 30px auto; max-width: 350px;">
-            <div class="screenshot-header" style="display: flex; align-items: center; gap: 6px; margin-bottom: 15px;">
-                <div class="screenshot-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></div>
-                <div class="screenshot-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></div>
-                <div class="screenshot-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></div>
-            </div>
-            <div class="screenshot-content" style="background: #f8f9fa; padding: 20px; border-radius: 10px; font-size: 14px; line-height: 1.6;">
-                <p style="font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">📊 Threads Analytics</p>
-                <p style="margin-bottom: 8px;"><strong>期間:</strong> 2025年2月1日〜28日</p>
-                <p style="margin-bottom: 8px;"><strong>総インプレッション:</strong> 1,126,000回</p>
-                <p style="margin-bottom: 8px;"><strong>フォロワー増加:</strong> 1,600人</p>
-                <p style="margin-bottom: 8px;"><strong>エンゲージメント率:</strong> 8.3%</p>
-                <p style="margin-bottom: 0;"><strong>LINE登録:</strong> 150件 (CVR 9.4%)</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 受講生の実績セクション -->
-<div class="student-results animated-gradient" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #f0fdf4 100%); color: #1a1a1a; padding: 50px 20px; background-size: 400% 400%; animation: gradient-shift 15s ease infinite;">
-    <div class="parallax-decoration decoration-circle-2"></div>
-    <div class="container" style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 40px; font-weight: 800; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1.3;">受講生の実績</h2>
-
-        <!-- じゅんさん -->
-        <div style="margin-bottom: 60px; text-align: center;">
-            <div style="display: inline-block; background: rgba(0, 0, 0, 0.6); padding: 8px 20px; border-radius: 20px; margin-bottom: 10px;">
-                <div style="font-size: 14px; font-weight: 300; color: white; letter-spacing: 0.05em;">じゅんさん</div>
-            </div>
-            <div class="student-achievement" style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-bottom: 15px; line-height: 1.6; text-align: center;">
-                会社員の副業で2,000万円<br>
-                法人の設立を達成！
-            </div>
-            <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
-                <iframe src="https://www.youtube.com/embed/appbeUXYJOs" title="じゅんさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
-            </div>
-        </div>
-
-        <!-- ゆうきさん -->
-        <div style="margin-bottom: 60px; text-align: center;">
-            <div style="display: inline-block; background: rgba(0, 0, 0, 0.6); padding: 8px 20px; border-radius: 20px; margin-bottom: 10px;">
-                <div style="font-size: 14px; font-weight: 300; color: white; letter-spacing: 0.05em;">ゆうきさん</div>
-            </div>
-            <div class="student-achievement" style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-bottom: 15px; line-height: 1.6; text-align: center;">
-                半年で320万円の収益化達成
-            </div>
-            <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
-                <iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4" title="ゆうきさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
-            </div>
-        </div>
-
-        <!-- かずみさん -->
-        <div style="margin-bottom: 60px; text-align: center;">
-            <div style="display: inline-block; background: rgba(0, 0, 0, 0.6); padding: 8px 20px; border-radius: 20px; margin-bottom: 10px;">
-                <div style="font-size: 14px; font-weight: 300; color: white; letter-spacing: 0.05em;">かずみさん</div>
-            </div>
-            <div class="student-achievement" style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-bottom: 15px; line-height: 1.6; text-align: center;">
-                0→1から52万円の収益化達成
-            </div>
-            <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
-                <iframe src="https://www.youtube.com/embed/Yfuoon5F774" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
-            </div>
-        </div>
-
-        <!-- やんもさん -->
-        <div style="margin-bottom: 60px; text-align: center;">
-            <div style="display: inline-block; background: rgba(0, 0, 0, 0.6); padding: 8px 20px; border-radius: 20px; margin-bottom: 10px;">
-                <div style="font-size: 14px; font-weight: 300; color: white; letter-spacing: 0.05em;">やんもさん</div>
-            </div>
-            <div class="student-achievement" style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-bottom: 15px; line-height: 1.6; text-align: center;">
-                未経験から1,200万円の収益化<br>
-                法人設立を達成
-            </div>
-            <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
-                <iframe src="https://www.youtube.com/embed/pt7LYe-VFj8" title="やんもさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
-            </div>
-        </div>
-
-        <p style="text-align: center; font-size: 18px; margin-top: 40px; font-weight: bold; color: #1a1a1a;">
-            あなたも同じように結果を出せます
-        </p>
-    </div>
-</div>
-
-<!-- 問題提起セクション -->
-<div class="section problem bg-light-gray" style="padding: 40px 20px; background: #f0fdf4;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">SNS集客で、<br>こんな悩みありませんか？</h2>
-
-        <div class="checklist" style="background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0;">
-            <ul style="list-style: none;">
-                <li style="padding: 8px 0; padding-left: 25px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; color: #ff6b6b; font-weight: bold; font-size: 18px;">✓</span>リール作成に毎日3時間、でも売上ゼロ</li>
-                <li style="padding: 8px 0; padding-left: 25px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; color: #ff6b6b; font-weight: bold; font-size: 18px;">✓</span>フォロワーは増えても、LINE登録されない</li>
-                <li style="padding: 8px 0; padding-left: 25px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; color: #ff6b6b; font-weight: bold; font-size: 18px;">✓</span>投稿ネタが尽きて、更新が止まる</li>
-                <li style="padding: 8px 0; padding-left: 25px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; color: #ff6b6b; font-weight: bold; font-size: 18px;">✓</span>画像・動画編集が面倒で続かない</li>
-                <li style="padding: 8px 0; padding-left: 25px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; color: #ff6b6b; font-weight: bold; font-size: 18px;">✓</span>アルゴリズム変化についていけない</li>
-            </ul>
-        </div>
-
-        <p style="text-align: center; font-size: 15px; font-weight: bold; margin: 20px 0;">
-            1つでも当てはまる方は、読み進めてください。
-        </p>
-
-        <div class="highlight-box" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #166534; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; font-size: 16px; font-weight: bold; line-height: 1.6; border: 2px solid #86efac;">
-            実は、これらの悩みの原因は1つ。<br><br>
-            「戦う場所を、間違えているから」です。
-        </div>
-
-        <p style="font-size: 15px; line-height: 1.8; margin: 20px 0;">
-            今のInstagramは、高度な編集スキル、リール撮影、トレンド追いかけ...お金と時間だけかかり、結果が出ません。
-        </p>
-
-        <div class="solution-box" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #166534; padding: 30px 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #86efac;">
-            <h3 style="font-size: 18px; margin-bottom: 15px; text-align: center;">でも、文章だけで集客できるThreadsなら違います！</h3>
-
-            <p style="text-align: center; font-size: 16px; margin: 15px 0;">
-                しかも、投稿作成の95%はAIに任せています。
-            </p>
-
-            <!-- AI活用フローチャート -->
-            <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                <h4 style="font-size: 17px; text-align: center; margin-bottom: 20px; color: #1a1a1a;">
-                    AI活用で投稿作成を自動化する仕組み
-                </h4>
-
-                <div style="display: flex; flex-direction: column; gap: 10px; max-width: 500px; margin: 0 auto;">
-                    <!-- ステップ1 -->
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="flex: 0 0 50px; height: 50px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold;">1</div>
-                        <div style="flex: 1; background: #f8f9fa; padding: 12px 15px; border-radius: 8px; border-left: 3px solid #10b981;">
-                            <div style="font-weight: bold; font-size: 14px; color: #1a1a1a;">AIに指示を出す</div>
-                            <div style="font-size: 12px; color: #666;">プロンプトを入力</div>
+        <!-- 1. 2大特典セクション -->
+        <section class="section" style="padding-top: 0;">
+            <div class="benefits-area">
+                
+                <!-- 特典1 -->
+                <div class="benefit-item" id="benefit-trigger">
+                    <div class="benefit-head"><i class="fa-solid fa-play-circle"></i> 【特典1】Threads×AI完全攻略 プレミアム動画講座</div>
+                    <img src="./benefit1.png" alt="特典1" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <div class="benefit-content">
+                        <ul class="benefit-main-list">
+                            <li>SNSで8,000万円売り上げた「売れる仕組み」の全体像</li>
+                            <li>2ヶ月で2,600フォロワー・405リストを獲得した最新ノウハウ</li>
+                        </ul>
+                        <div class="benefit-details">
+                            <h4>〜動画講座の内容〜</h4>
+                            <div class="chapter-title">第1章：SNS集客の真実と売上の方程式</div>
+                            <ul class="chapter-list">
+                                <li>SNS単体では売上が伸びない理由</li>
+                                <li>売上＝SNS×導線×提案×商品×仕組み</li>
+                            </ul>
+                            <div class="chapter-title">第2章：Threads×AIが最強な理由</div>
+                            <ul class="chapter-list">
+                                <li>後発組でも勝てるアルゴリズムの秘密</li>
+                                <li>撮影・編集不要！テキストだけで集客する方法</li>
+                            </ul>
+                            <div class="chapter-title">第3章：Threads運用の具体的ノウハウ</div>
+                            <ul class="chapter-list">
+                                <li>反応が取れる「3ブロック構成」の文章術</li>
+                                <li>AIで投稿を量産する「改善サイクル」</li>
+                            </ul>
+                            <div class="chapter-title">第4章：売上に直結する導線と商品設計</div>
+                            <ul class="chapter-list">
+                                <li>集客を無駄にしないLINE誘導の鉄則</li>
+                                <li>月100万円を突破する高単価商品の作り方</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
 
-                    <div style="text-align: center; color: #1a1a1a; font-size: 20px; line-height: 1;">↓</div>
-
-                    <!-- ステップ2 -->
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="flex: 0 0 50px; height: 50px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold;">2</div>
-                        <div style="flex: 1; background: #f8f9fa; padding: 12px 15px; border-radius: 8px; border-left: 3px solid #10b981;">
-                            <div style="font-weight: bold; font-size: 14px; color: #1a1a1a;">AIが自動生成</div>
-                            <div style="font-size: 12px; color: #666;">数秒で投稿文が完成</div>
-                        </div>
-                    </div>
-
-                    <div style="text-align: center; color: #1a1a1a; font-size: 20px; line-height: 1;">↓</div>
-
-                    <!-- ステップ3 -->
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="flex: 0 0 50px; height: 50px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold;">3</div>
-                        <div style="flex: 1; background: #f8f9fa; padding: 12px 15px; border-radius: 8px; border-left: 3px solid #10b981;">
-                            <div style="font-weight: bold; font-size: 14px; color: #1a1a1a;">編集して投稿</div>
-                            <div style="font-size: 12px; color: #666;">微調整してThreadsへ</div>
+                <!-- 特典2 -->
+                <div class="benefit-item">
+                    <div class="benefit-head"><i class="fa-solid fa-book"></i> 【特典2】AI×Threads集客術完全攻略ガイド</div>
+                    <img src="./benefit2.png" alt="特典2" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <div class="benefit-content">
+                        <ul class="benefit-main-list">
+                            <li>Threadsで405件LINE登録する実践ノウハウ</li>
+                            <li>2ヶ月で2,600フォロワー増やした全手法</li>
+                            <li>集客→教育→販売の全体像を完全公開</li>
+                        </ul>
+                        <div class="benefit-details">
+                            <h4>〜ガイドの内容〜</h4>
+                            <div class="chapter-title">第1章：Threads集客のノウハウ</div>
+                            <ul class="chapter-list">
+                                <li>なぜ今Threadsなのか？（ブルーオーシャン市場）</li>
+                                <li>フォロワーを増やす投稿戦略</li>
+                                <li>エンゲージメントを高める具体的手法</li>
+                                <li>2ヶ月で2600フォロワー増やした実例公開</li>
+                            </ul>
+                            <div class="chapter-title">第2章：AI活用で投稿作成を効率化</div>
+                            <ul class="chapter-list">
+                                <li>AIを使えば投稿作成が95%自動化できます</li>
+                            </ul>
+                            <div class="chapter-title">第3章：集客→教育→販売の全体設計</div>
+                            <ul class="chapter-list">
+                                <li>集客だけでは売上にならない理由</li>
+                                <li>ThreadsからLINE登録への導線設計</li>
+                                <li>教育→販売につなげる具体的ステップ</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <p style="text-align: center; font-size: 14px; color: #1a1a1a; font-weight: bold; margin-top: 15px;">
-                    所要時間：たった10分で完了！
+                <div class="text-center" style="margin-top:20px;">
+                    <a href="https://autostudio-self.vercel.app/l/thLINE1" class="btn-common btn-animate" style="font-size:20px; padding:15px;">
+                        無料LINE登録はこちら
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. プロフィールセクション -->
+        <section class="section-gray">
+            <h2 class="section-title">主宰者プロフィール</h2>
+            <div style="background: #fff; padding: 30px 20px; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.05); max-width: 680px; margin: 0 auto;">
+                
+                <!-- アイコン・名前の横並びレイアウト -->
+                <div class="profile-container">
+                    <div class="profile-img-wrapper">
+                        <img src="./profile.jpg" alt="くどう" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <div class="profile-info">
+                        <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 5px; text-align: left;">くどう</h3>
+                        <p style="font-weight: bold; color: #06c755; margin-bottom: 0; text-align: left;">AI×Threadsの専門家</p>
+                    </div>
+                </div>
+
+                <!-- 不要な文章を削除 -->
+                <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
+                    <h4 style="font-size: 16px; margin-bottom: 10px; font-weight: bold;">【主な実績】</h4>
+                    <ul style="font-size: 14px; list-style: disc; padding-left: 20px;">
+                        <li>2ヶ月でフォロワー2,600人増・インプ164万達成</li>
+                        <li>リール不要、文章だけで月405件LINE登録</li>
+                        <li>投稿作成をAIで95%自動化</li>
+                        <li>SNSで8,000万円のマネタイズ実績</li>
+                        <li>コンサル実績100名以上</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 実績データセクション -->
+        <section class="section">
+            <h2 class="section-title">
+                実際の数字で証明された<br>
+                <span>圧倒的な成果</span>
+            </h2>
+            <p class="text-center" style="font-size: 16px; margin-bottom: 30px; font-weight: bold;">
+                わずか2ヶ月の実践データです。
+            </p>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="number-circle">2,600+</div>
+                    <span class="number-label">フォロワー増加</span>
+                </div>
+                <div class="stat-item">
+                    <div class="number-circle">164万</div>
+                    <span class="number-label">インプレッション</span>
+                </div>
+                <div class="stat-item">
+                    <div class="number-circle">405名</div>
+                    <span class="number-label">LINE登録件数</span>
+                </div>
+            </div>
+            <p class="text-center" style="font-size: 14px; margin-top: 20px; color: #555;">
+                ※2025年最新の実績データに基づいています。
+            </p>
+        </section>
+
+        <!-- 4. 受講生の実績セクション (緑化) -->
+        <section class="section-gray" id="voice-section">
+            <h2 class="section-title">
+                論より証拠。<br>
+                <span>受講生のリアルな実績</span>
+            </h2>
+            <div class="voice-list" style="max-width: 600px; margin: 0 auto;">
+                
+                <!-- 1. じゅんさん -->
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/appbeUXYJOs" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">実績① じゅんさん</span>
+                        <p class="voice-result">会社員の副業で2,000万円<br>法人の設立を達成！</p>
+                    </div>
+                </div>
+
+                <!-- 2. えりさん -->
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/ItV4c7BTCC8" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">実績② えりさん</span>
+                        <p class="voice-result">1撃528万円の収益化達成</p>
+                    </div>
+                </div>
+
+                <!-- 3. やんもさん -->
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/pt7LYe-VFj8" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">実績③ やんもさん</span>
+                        <p class="voice-result">未経験から1,200万円の収益化<br>法人設立を達成</p>
+                    </div>
+                </div>
+
+                <!-- 4. ゆうきさん -->
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">実績④ ゆうきさん</span>
+                        <p class="voice-result">半年で320万円の収益化達成</p>
+                    </div>
+                </div>
+
+            </div>
+            <p class="text-center" style="margin-top: 30px; font-weight: bold; font-size: 18px;">
+                あなたも同じように結果を出せます。
+            </p>
+        </section>
+
+        <!-- 【新規】なぜ今、Threadsなのか？ (緑化) -->
+        <section class="section">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title">なぜ今、<br><span>Threads</span>なのか？</h2>
+
+                <div class="reason-item">
+                    <span class="reason-number">理由1</span>
+                    <h3 class="reason-title">リール不要、文章だけでOK</h3>
+                    <p style="font-size: 14px;">画像編集も動画撮影も一切不要。スマホでサクッと文章を書くだけで集客が可能です。</p>
+                </div>
+
+                <div class="reason-item">
+                    <span class="reason-number">理由2</span>
+                    <h3 class="reason-title">後発組でも圧倒的に有利</h3>
+                    <p style="font-size: 14px;">Threadsユーザーの99%は「つぶやき」だけ。価値ある情報を発信すれば一瞬でポジションを確立できます。</p>
+                </div>
+
+                <div class="reason-item">
+                    <span class="reason-number">理由3</span>
+                    <h3 class="reason-title">AI活用で95%自動化が可能</h3>
+                    <p style="font-size: 14px;">テキスト主体だからこそAIと相性抜群。投稿作成を95%自動化し、1日10分で運用可能です。</p>
+                </div>
+
+                <div class="reason-item">
+                    <span class="reason-number">理由4</span>
+                    <h3 class="reason-title">エンゲージメント率が高い</h3>
+                    <p style="font-size: 14px;">「滞在時間」を重視するアルゴリズムのため、しっかり読ませる長文投稿が有利に働きます。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 【新規】フォロワー数の神話（集客フロー） (緑化) -->
+        <section class="section-gray">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title">フォロワー数を増やすだけの<br><span>時代は終わり</span>です</h2>
+
+                <div class="warning-box">
+                    <h3 style="font-size: 18px; margin-bottom: 12px; color: #06c755; font-weight:900;">フォロワー増 ＝ 売上アップではありません。</h3>
+                    <p style="font-size: 16px; margin-top: 15px; line-height: 1.8; font-weight:bold;">
+                        今のSNS集客で結果を出すには、<br>
+                        「集客→教育→販売」の仕組みを作ることが重要です。
+                    </p>
+                </div>
+
+                <p class="text-center" style="font-size: 18px; font-weight: bold; margin: 30px 0;">
+                    このガイドでは、ThreadsからLINE登録を獲得し、<br>教育を経て販売につなげる<span class="text-red">「全体設計」</span>を完全公開します。
                 </p>
-            </div>
 
-            <div class="results-list" style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.2); border-radius: 10px;">
-                <p style="font-size: 20px; margin-bottom: 15px; font-weight: bold;">これで、たった1ヶ月で：</p>
-                <ul style="list-style: none;">
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; font-weight: bold;">✓</span>フォロワー1,600人増加</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; font-weight: bold;">✓</span>インプレッション113万達成</li>
-                    <li style="padding: 6px 0; padding-left: 20px; position: relative; font-size: 15px;"><span style="content: '✓'; position: absolute; left: 0; font-weight: bold;">✓</span>LINE登録150件獲得</li>
-                </ul>
-            </div>
+                <!-- 集客フロー図 -->
+                <div style="background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #eee;">
+                    <h3 style="font-size: 18px; text-align: center; margin-bottom: 20px; color: #111; font-weight:900;">
+                        Threads×AI集客の全体フロー
+                    </h3>
 
-            <div class="emphasis-text" style="text-align: center; font-size: 18px; font-weight: bold; margin: 30px 0; color: #166534;">
-                文章 × AI活用 = 最強の集客術
-            </div>
+                    <div style="max-width: 500px; margin: 0 auto;">
+                        <!-- フェーズ1 -->
+                        <div class="flow-step">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                <span class="flow-label">フェーズ1</span>
+                                <div style="font-size: 16px; font-weight: bold; color: #111;">集客 (Threads)</div>
+                            </div>
+                            <div style="font-size: 13px; color: #555;">価値提供 → フォロワー・インプ獲得</div>
+                        </div>
 
-            <p style="text-align: center; font-size: 20px; margin-top: 10px;">
-                これが、Threads×AIの威力です。
-            </p>
-        </div>
-    </div>
-</div>
+                        <div style="text-align: center; color: #06c755; font-size: 20px; line-height: 1; margin: 5px 0;">▼</div>
 
-<!-- Threadsが最強の理由 -->
-<div class="section reasons bg-light-gray" style="padding: 40px 20px; background: #f8f9fa;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">なぜ今、Threadsなのか？</h2>
+                        <!-- フェーズ2 -->
+                        <div class="flow-step">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                <span class="flow-label">フェーズ2</span>
+                                <div style="font-size: 16px; font-weight: bold; color: #111;">教育 (LINE)</div>
+                            </div>
+                            <div style="font-size: 13px; color: #555;">LINE登録 → 特典配布 → 信頼構築</div>
+                        </div>
 
-        <div class="reason-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <span class="reason-number" style="display: inline-block; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-bottom: 8px; font-size: 13px;">理由1</span>
-            <h3 class="reason-title" style="font-size: 17px; font-weight: bold; margin-bottom: 8px;">リール不要、文章だけでOK</h3>
-            <p style="font-size: 14px;">画像編集も動画撮影も一切不要。スマホでサクッと文章を書くだけ。</p>
-        </div>
+                        <div style="text-align: center; color: #06c755; font-size: 20px; line-height: 1; margin: 5px 0;">▼</div>
 
-        <div class="reason-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <span class="reason-number" style="display: inline-block; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-bottom: 8px; font-size: 13px;">理由2</span>
-            <h3 class="reason-title" style="font-size: 17px; font-weight: bold; margin-bottom: 8px;">後発組でも圧倒的に有利</h3>
-            <p style="font-size: 14px;">Threadsユーザーの99%は「つぶやき」だけ。価値ある情報を発信すれば一瞬でトップに立てます。</p>
-        </div>
-
-        <div class="reason-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <span class="reason-number" style="display: inline-block; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-bottom: 8px; font-size: 13px;">理由3</span>
-            <h3 class="reason-title" style="font-size: 17px; font-weight: bold; margin-bottom: 8px;">AI活用で95%自動化が可能</h3>
-            <p style="font-size: 14px;">AIを使えば、投稿作成を95%自動化できる。1日10分で完結します。</p>
-        </div>
-
-        <div class="reason-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <span class="reason-number" style="display: inline-block; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #166534; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-bottom: 8px; font-size: 13px;">理由4</span>
-            <h3 class="reason-title" style="font-size: 17px; font-weight: bold; margin-bottom: 8px;">エンゲージメント率が高い</h3>
-            <p style="font-size: 14px;">Threadsは「滞在時間」を重視するアルゴリズム。長文投稿ほど有利です。</p>
-        </div>
-    </div>
-</div>
-
-<!-- フォロワー数だけではダメ -->
-<div class="section follower-myth bg-white" style="padding: 40px 20px; background: white; text-align: center;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">フォロワー数を増やすだけの<br>時代は終わりです</h2>
-
-        <div class="warning-box" style="background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 3px solid #ffc107;">
-            <h3 style="font-size: 18px; margin-bottom: 12px; color: #333;">フォロワー数を増やすこと = 売上につながる、ではありません。</h3>
-            <p style="font-size: 18px; margin-top: 15px; line-height: 1.8;">
-                今のSNS集客で結果を出すには、「集客→教育→販売」の仕組みを作ることが重要です。
-            </p>
-        </div>
-
-        <p style="font-size: 20px; font-weight: bold; margin: 30px 0;">
-            集客だけでは稼げません。
-        </p>
-
-        <p style="font-size: 18px; line-height: 1.9;">
-            このガイドでは、ThreadsからLINE登録を獲得し、教育を経て販売につなげる「全体設計」を完全公開します。
-        </p>
-
-        <!-- 集客フロー図 -->
-        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-            <h3 style="font-size: 17px; text-align: center; margin-bottom: 20px; color: #333;">
-                Threads×AI集客の全体フロー
-            </h3>
-
-            <div style="max-width: 500px; margin: 0 auto;">
-                <!-- フェーズ1: 集客 -->
-                <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #10b981;">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                        <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: white; padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 12px;">フェーズ1</div>
-                        <div style="font-size: 16px; font-weight: bold; color: #333;">集客</div>
-                    </div>
-                    <div style="font-size: 13px; color: #666; line-height: 1.6;">
-                        Threadsで価値提供 → フォロワー・インプレッション獲得
-                    </div>
-                </div>
-
-                <div style="text-align: center; color: #1a1a1a; font-size: 20px; line-height: 1;">↓</div>
-
-                <!-- フェーズ2: 教育 -->
-                <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #10b981;">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                        <div style="background: linear-gradient(135deg, #a7f3d0 0%, #d1fae5 100%); color: white; padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 12px;">フェーズ2</div>
-                        <div style="font-size: 16px; font-weight: bold; color: #333;">教育</div>
-                    </div>
-                    <div style="font-size: 13px; color: #666; line-height: 1.6;">
-                        LINE登録 → 特典配布 → 信頼構築
-                    </div>
-                </div>
-
-                <div style="text-align: center; color: #1a1a1a; font-size: 20px; line-height: 1;">↓</div>
-
-                <!-- フェーズ3: 販売 -->
-                <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #06C755;">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                        <div style="background: #06C755; color: white; padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 12px;">フェーズ3</div>
-                        <div style="font-size: 16px; font-weight: bold; color: #333;">販売</div>
-                    </div>
-                    <div style="font-size: 13px; color: #666; line-height: 1.6;">
-                        商品提案 → セミナー・相談 → 継続収益化
+                        <!-- フェーズ3 -->
+                        <div class="flow-step" style="border-left-color: #06c755;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                <span class="flow-label" style="background:#06c755;">フェーズ3</span>
+                                <div style="font-size: 16px; font-weight: bold; color: #06c755;">販売</div>
+                            </div>
+                            <div style="font-size: 13px; color: #555;">商品提案 → セミナー・相談 → 成約</div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <p style="text-align: center; font-size: 14px; color: #1a1a1a; font-weight: bold; margin-top: 15px;">
-                この3ステップ設計が売上につながる秘訣
+        <!-- 【新規】クロージング (緑化) -->
+        <section class="section">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 class="section-title">後発組でも、正しい戦略を知れば<br><span>結果は出ます。</span></h2>
+
+                <div class="text-center" style="font-size: 16px; line-height: 1.8; margin-bottom: 30px;">
+                    <p>私が提唱するThreads×AI集客術は、フォロワー数に依存せず、<br>必要な人に必要な情報を届け、売上につなげる戦略です。</p>
+                    
+                    <div style="background: #f0fdf4; display:inline-block; padding: 15px 30px; margin: 20px 0; border-radius: 8px; font-weight:bold;">
+                        <ul style="text-align:left; list-style:none; padding:0;">
+                            <li style="margin-bottom:10px;"><i class="fa-solid fa-check" style="color:#06c755;"></i> リール不要、文章だけで集客できる</li>
+                            <li style="margin-bottom:10px;"><i class="fa-solid fa-check" style="color:#06c755;"></i> AIで投稿作成を95%自動化できる</li>
+                            <li><i class="fa-solid fa-check" style="color:#06c755;"></i> 集客→教育→販売の仕組みを構築できる</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="final-message-box">
+                    <p>このガイドで学べば、後発組でも短期間で結果を出す<br>Threads集客の全貌が明確になります。</p>
+                    <p style="margin-top: 15px; font-weight:bold;">正しい方法を知るだけで、後発組でも大逆転は可能です。</p>
+                    <p style="margin-top: 20px; font-size: 20px; font-weight: 900; color: #06c755;">
+                        後発組だからこそ、正しいノウハウを学び、<br>Threadsを集客の武器にしませんか？
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-gray">
+            <h2 class="section-title">よくあるご質問</h2>
+            <div style="max-width: 680px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">Q. Threads初心者でも大丈夫ですか？</div>
+                    <div class="faq-answer">はい、大丈夫です。基本的な使い方から、集客の仕組み作りまで、ステップバイステップで解説しています。初心者の方も安心して学べます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q. AIツールを使ったことがないのですが...？</div>
+                    <div class="faq-answer">問題ありません。特典では、AIツールの使い方を初心者でもわかるように解説しています。プロンプトもそのまま使えるテンプレートを用意しているので、コピペするだけで投稿が作れます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Q. 本当に無料ですか？</div>
+                    <div class="faq-answer">はい、完全無料です。ただし、いつまで無料で提供できるかはわかりません。今のうちにLINE登録して、2大特典を受け取ってください。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最終CTA -->
+        <div class="section" style="text-align: center; padding-top: 60px; padding-bottom: 80px;">
+            <p style="font-size: 18px; margin-bottom: 30px; font-weight: bold;">
+                今すぐ2大特典を受け取って<br>Threads×AI集客をマスターしよう
             </p>
+            <a href="https://autostudio-self.vercel.app/l/thLINE1" class="btn-common btn-animate">
+                無料LINE登録はこちら
+            </a>
         </div>
+
+        <footer style="background:#111; color:#888; text-align:center; padding:20px; font-size:12px;">
+            &copy; 2025 AI x Threads Consultation. All Rights Reserved.
+        </footer>
+        
+        <!-- Sticky Footer (追従ボタン) -->
+        <div class="sticky-footer">
+            <div class="sticky-btn-wrapper">
+                <a href="https://autostudio-self.vercel.app/l/thLINE1" class="btn-common btn-animate">
+                    無料LINE登録はこちら
+                </a>
+            </div>
+        </div>
+
     </div>
-</div>
 
-<!-- CTA -->
-<div class="cta-section" style="text-align: center; padding: 25px 20px; background: #f8f9fa;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <p class="cta-text" style="font-size: 16px; margin-bottom: 15px; font-weight: bold;">今すぐ下記のLINE登録ボタンを押して<br>AI×Threads集客術を学んでください</p>
-        <a href="https://autostudio-self.vercel.app/l/LINE2" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #00B900 0%, #06C755 50%, #00A84F 100%); color: white; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 50px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); animation: bounce 2s ease-in-out infinite;">無料で3大特典を受け取る</a>
-    </div>
-</div>
+    <!-- スクロール検知用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stickyFooter = document.querySelector('.sticky-footer');
+            const benefitSection = document.getElementById('benefit-trigger'); // 特典1をターゲットに
 
-<!-- FAQ -->
-<div class="section faq bg-light-gray" style="padding: 40px 20px; background: #f8f9fa;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">よくあるご質問</h2>
+            if (stickyFooter && benefitSection) {
+                window.addEventListener('scroll', function() {
+                    const rect = benefitSection.getBoundingClientRect();
+                    // 特典1の上端が画面上部付近に来たら表示
+                    if (rect.top < window.innerHeight * 0.2) {
+                        stickyFooter.classList.add('is-visible');
+                    } else {
+                        stickyFooter.classList.remove('is-visible');
+                    }
+                });
+            }
+        });
+    </script>
 
-        <div class="faq-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="faq-question" style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">Q. Threads初心者でも大丈夫ですか？</div>
-            <div class="faq-answer" style="font-size: 14px; line-height: 1.7;">
-                はい、大丈夫です。基本的な使い方から、集客の仕組み作りまで、ステップバイステップで解説しています。初心者の方も安心して学べます。
-            </div>
-        </div>
-
-        <div class="faq-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="faq-question" style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">Q. AIツールを使ったことがないのですが...？</div>
-            <div class="faq-answer" style="font-size: 14px; line-height: 1.7;">
-                問題ありません。特典では、AIツールの使い方を初心者でもわかるように解説しています。プロンプトもそのまま使えるテンプレートを用意しているので、コピペするだけで投稿が作れます。
-            </div>
-        </div>
-
-        <div class="faq-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="faq-question" style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">Q. どんな業種でも使えますか？</div>
-            <div class="faq-answer" style="font-size: 14px; line-height: 1.7;">
-                はい、どんな業種でも活用できます。コーチ・コンサル、サロン経営、オンライン講座、物販など、既に商品がある方なら誰でも実践可能です。
-            </div>
-        </div>
-
-        <div class="faq-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="faq-question" style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">Q. InstagramとThreadsは何が違うんですか？</div>
-            <div class="faq-answer" style="font-size: 14px; line-height: 1.7;">
-                最大の違いは「手軽さ」です。Instagramはリール作成や画像編集が必須ですが、Threadsは文章だけでOK。しかも、後発組でも結果が出やすいブルーオーシャン市場です。
-            </div>
-        </div>
-
-        <div class="faq-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="faq-question" style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">Q. 本当に無料ですか？</div>
-            <div class="faq-answer" style="font-size: 14px; line-height: 1.7;">
-                はい、完全無料です。ただし、いつまで無料で提供できるかはわかりません。今のうちにLINE登録して、3大特典を受け取ってください。
-            </div>
-        </div>
-
-        <div class="faq-item" style="background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-            <div class="faq-question" style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a;">Q. どれくらいの期間で成果が出ますか？</div>
-            <div class="faq-answer" style="font-size: 14px; line-height: 1.7;">
-                早い方は1ヶ月以内にLINE登録が発生しています。私自身も1ヶ月で150件のLINE登録を獲得しました。実践すれば、短期間で成果を実感できます。
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- クロージング -->
-<div class="section closing bg-white" style="padding: 40px 20px; background: white; text-align: center;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <h2 class="section-title" style="font-size: 32px; text-align: center; margin-bottom: 25px; font-weight: 800; color: #333; letter-spacing: -0.03em; line-height: 1.3;">後発組でも、正しい戦略を知れば<br>結果は出ます。</h2>
-
-        <div class="closing-text" style="font-size: 15px; line-height: 1.8; margin-bottom: 15px;">
-            <p>私が提唱するThreads×AI集客術は、フォロワー数に依存せず、必要な人に必要な情報を届け、売上につなげる戦略です。</p>
-        </div>
-
-        <div style="margin: 30px 0; font-size: 15px; line-height: 1.8;">
-            <p>✓ リール不要、文章だけで集客できる</p>
-            <p>✓ AIで投稿作成を95%自動化できる</p>
-            <p>✓ 集客→教育→販売の仕組みを構築できる</p>
-        </div>
-
-        <div class="closing-text" style="font-size: 15px; line-height: 1.8; margin-bottom: 15px;">
-            <p>多くの方が、「SNSはフォロワーを増やすゲーム」と思い込んでいます。</p>
-            <p style="margin-top: 15px;">でも、<strong>フォロワー数を増やすことが目的ではなく、売上につながる運用をすることこそが本質です。</strong></p>
-        </div>
-
-        <div class="final-message" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #166534; padding: 30px 20px; border-radius: 10px; margin: 20px 0; font-size: 16px; line-height: 1.7; border: 2px solid #86efac;">
-            <p style="font-size: 16px;">このガイドで学べば、後発組でも短期間で結果を出すThreads集客の全貌が明確になります！</p>
-            <p style="margin-top: 15px; font-size: 16px;">正しい方法を知るだけで、後発組でも大逆転は可能です。</p>
-            <p style="margin-top: 15px; font-size: 16px;">安心してください。最新のThreadsアルゴリズムとAI活用を取り入れるだけで、短期間で成果を出すことができます。</p>
-            <p style="margin-top: 20px; font-size: 17px; font-weight: bold;">後発組だからこそ、正しいノウハウを学び、Threadsを集客の武器にしませんか？</p>
-            <p style="margin-top: 30px; font-size: 22px; font-weight: bold;">後発組だからこそ、正しいノウハウを学び、Threadsを集客の武器にしませんか？</p>
-        </div>
-    </div>
-</div>
-
-<!-- 最終CTA -->
-<div class="cta-section" style="text-align: center; padding: 40px 20px; background: #f8f9fa;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 15px;">
-        <p class="cta-text" style="font-size: 17px; margin-bottom: 20px; font-weight: bold;">今すぐ3大特典を受け取って<br>Threads×AI集客をマスターしよう</p>
-        <a href="https://autostudio-self.vercel.app/l/LINE2" class="cta-button" style="display: inline-block; background: linear-gradient(135deg, #00B900 0%, #06C755 50%, #00A84F 100%); color: white; padding: 15px 40px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 50px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); animation: bounce 2s ease-in-out infinite;">無料LINE登録はこちら</a>
-    </div>
-</div>
+</body>
+</html>
