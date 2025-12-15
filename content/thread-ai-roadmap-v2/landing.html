@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI×Threads ロードマップ作成会 LP (Neon White v4 - Images)</title>
+    <title>AI×Threads ロードマップ作成会 LP (Neon White v7 - Unified Timer)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,11 +12,11 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f4f4f4; /* 背景は白のまま */
+            background-color: #f4f4f4;
             color: #111;
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
-            padding-bottom: 120px; 
+            padding-bottom: 120px;
             font-feature-settings: "palt";
         }
         img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
@@ -25,8 +25,12 @@
 
         /* グラデーション定義 */
         :root {
+            /* 共通のInstagram風ネオン（紫→赤→黄） */
             --insta-gradient: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
             --insta-gradient-text: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+
+            /* タイマー用：同じ色構成で、横方向に流れるように調整 (90deg) */
+            --timer-gradient: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
         }
 
         /* --- レスポンシブ改行用ユーティリティ --- */
@@ -87,19 +91,59 @@
             background: var(--insta-gradient);
         }
 
-        /* --- 1. 緊急告知バー (黄色固定) --- */
-        .emergency-bar {
-            background: #fff100;
-            color: #000;
+        /* --- 1. タイマーバー (上部) --- */
+        .timer-bar {
+            background: var(--timer-gradient); /* 統一されたグラデーションを使用 */
+            color: #fff;
             text-align: center;
-            padding: 20px 10px; 
-            font-weight: 900;
-            font-size: 22px;
-            line-height: 1.4;
+            padding: 20px 10px;
         }
-        .emergency-bar i { margin-right: 5px; color: #000; }
+        .timer-sub-text {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .timer-main-text {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1.2;
+            font-feature-settings: "tnum";
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-        /* --- 2. FVエリア --- */
+        /* --- 2. 緊急告知バー (下部・黄色) --- */
+        .emergency-bar {
+            background: #fff100; /* 鮮やかな黄色 */
+            /* 斜めストライプパターン */
+            background-image: linear-gradient(45deg,rgba(255,255,255,.25) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.25) 50%,rgba(255,255,255,.25) 75%,transparent 75%,transparent);
+            background-size: 20px 20px;
+            color: #000;
+            padding: 15px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .emergency-icon {
+            font-size: 36px;
+            color: #333; /* アイコンの色は黒系 */
+            flex-shrink: 0;
+        }
+        .emergency-text {
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .text-alert-red {
+            color: #d32f2f; /* 赤文字 */
+            font-weight: 900;
+            font-size: 1.1em;
+        }
+
+        /* --- 3. FVエリア --- */
         .fv-area {
             background: #fff;
             padding-bottom: 50px;
@@ -140,7 +184,7 @@
             50% { opacity: 0.6; }
         }
 
-        /* --- 3. サンドイッチ型 CTAエリア --- */
+        /* --- 4. サンドイッチ型 CTAエリア --- */
         .sandwich-cta {
             margin: 50px auto 0;
             max-width: 700px;
@@ -606,7 +650,13 @@
            スマホ最適化
            ========================================= */
         @media (max-width: 600px) {
-            .emergency-bar { font-size: 14px; padding: 12px 10px; }
+            .timer-main-text { font-size: 26px; }
+            .timer-sub-text { font-size: 14px; }
+
+            .emergency-bar { padding: 12px 10px; }
+            .emergency-icon { font-size: 30px; }
+            .emergency-text { font-size: 13px; }
+
             .pc-br { display: none; }
             .sp-br { display: block; }
             .section { padding: 50px 15px; }
@@ -639,15 +689,28 @@
 </head>
 <body>
 
-    <!-- 1. 緊急告知バー -->
+    <!-- 1. タイマーバー (グラデーション) -->
+    <div class="timer-bar">
+        <p class="timer-sub-text">終了まで</p>
+        <div class="timer-main-text">
+            残り<span id="timer-day">2</span>日<span id="timer-hour">23</span>時間<span id="timer-min">58</span>分<span id="timer-sec">34</span>秒
+        </div>
+    </div>
+
+    <!-- 2. 緊急告知バー (黄色) -->
     <div class="emergency-bar">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        このプレミアム動画は3日間限定公開です。<br>再公開はいたしませんので期限内にご視聴ください
+        <div class="emergency-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="emergency-text">
+            無料プレミアム動画の公開は<span class="text-alert-red">3日間限定</span>です！<br>
+            再公開はいたしませんので、期限内にご視聴ください
+        </div>
     </div>
 
     <div class="container">
 
-        <!-- 2. FVエリア -->
+        <!-- 3. FVエリア -->
         <div class="fv-area">
             
             <!-- メイン動画 -->
@@ -1188,6 +1251,37 @@
                 });
             }
         });
+        // 簡易タイマーロジック (ページリロードでリセット)
+        let timeRemaining = 72 * 60 * 60; // 72時間
+        let timerInterval;
+
+        function updateTimer() {
+            const day = Math.floor(timeRemaining / (24 * 60 * 60));
+            const hour = Math.floor((timeRemaining % (24 * 60 * 60)) / (60 * 60));
+            const min = Math.floor((timeRemaining % (60 * 60)) / 60);
+            const sec = Math.floor(timeRemaining % 60);
+
+            const dayElem = document.getElementById('timer-day');
+            const hourElem = document.getElementById('timer-hour');
+            const minElem = document.getElementById('timer-min');
+            const secElem = document.getElementById('timer-sec');
+
+            if (dayElem) dayElem.textContent = day;
+            if (hourElem) hourElem.textContent = String(hour).padStart(2, '0');
+            if (minElem) minElem.textContent = String(min).padStart(2, '0');
+            if (secElem) secElem.textContent = String(sec).padStart(2, '0');
+
+            if (timeRemaining > 0) {
+                timeRemaining--;
+            } else {
+                clearInterval(timerInterval);
+                // Redirect when timer reaches zero
+                window.location.href = "https://lmagnet.xyz/?page_id=137";
+            }
+        }
+        // 初回実行とインターバル設定
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
     </script>
     <script src='https://lstep.app/s/86571/FMABvA'></script>
 
