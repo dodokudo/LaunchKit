@@ -29,7 +29,16 @@ async function main() {
     path.join(distDir, 'assets')
   );
 
-  // 3. LP一覧ページを生成
+  // 3. seminar/assetsをdist/seminar/にコピー
+  console.log('Copying seminar LP...');
+  const seminarSrc = path.join(projectRoot, 'seminar', 'assets');
+  const seminarDist = path.join(distDir, 'seminar');
+  if (await fs.pathExists(seminarSrc)) {
+    await fs.ensureDir(seminarDist);
+    await fs.copy(seminarSrc, seminarDist);
+  }
+
+  // 4. LP一覧ページを生成
   console.log('Generating LP list page...');
   const dirs = (await fs.readdir(distDir, { withFileTypes: true }))
     .filter(d => d.isDirectory() && !['assets', 'list'].includes(d.name))
