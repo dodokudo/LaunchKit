@@ -38,6 +38,14 @@ async function main() {
     await fs.copy(seminarSrc, seminarDist);
   }
 
+  // 3.5. seminar/assetsをdist/seminar2/にもコピー
+  console.log('Copying seminar2 LP...');
+  const seminar2Dist = path.join(distDir, 'seminar2');
+  if (await fs.pathExists(seminarSrc)) {
+    await fs.ensureDir(seminar2Dist);
+    await fs.copy(seminarSrc, seminar2Dist);
+  }
+
   // 4. LP一覧ページを生成
   console.log('Generating LP list page...');
   const dirs = (await fs.readdir(distDir, { withFileTypes: true }))
