@@ -97,7 +97,7 @@ async function main() {
 
   const slug = config.slug || path.basename(configPath, path.extname(configPath));
   const distDir = path.resolve(projectRoot, 'dist', slug);
-  await fs.emptyDir(distDir);
+  await fs.ensureDir(distDir);
 
   // copy_raw: trueの場合、HTMLファイルをそのままコピーして終了
   if (config.copy_raw && config.raw_html_file) {
