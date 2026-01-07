@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threads×AI運用完全攻略セミナー｜LP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- リセット & 基本設定 --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f4f4;
+            color: #111;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 120px; 
+            font-feature-settings: "palt";
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- カラー定義 --- */
+        :root {
+            --insta-gradient: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            --insta-gradient-text: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            --timer-gradient: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045); 
+            --accent-red: #d32f2f;
+        }
+
+        /* --- ユーティリティ --- */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        .text-center { text-align: center; }
+        .font-bold { font-weight: bold; }
+        
+        /* テキスト強調 */
+        .text-neon { 
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900; 
+            display: inline-block; 
+        }
+        .text-marker { background: linear-gradient(transparent 60%, #fff176 60%); font-weight: bold; padding: 0 2px; }
+        .text-alert-red { color: #d32f2f; font-weight: 900; }
+        
+        /* 文字サイズユーティリティ */
+        .text-lg { font-size: 20px; font-weight: bold; }
+        .text-xl { font-size: 24px; font-weight: 900; }
+
+        /* --- セクション共通 --- */
+        .section { padding: 60px 20px; border-bottom: 1px solid #eee; }
+        .section-gray { padding: 60px 20px; background: #f9f9f9; }
+
+        /* 見出しデザイン */
+        h2.section-title {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 900;
+            color: #111;
+            position: relative;
+            padding-bottom: 15px;
+            line-height: 1.4;
+            word-break: keep-all; 
+            overflow-wrap: break-word;
+        }
+        h2.section-title span {
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--insta-gradient);
+        }
+
+        /* --- 1. タイマーバー --- */
+        .timer-bar {
+            background: var(--timer-gradient);
+            color: #fff;
+            text-align: center;
+            padding: 12px 10px;
+        }
+        .timer-main-text {
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1.2;
+            font-feature-settings: "tnum";
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .timer-sub-text { font-size: 13px; margin-bottom: 2px; opacity: 0.9; font-weight: bold; }
+
+        /* --- FVエリア --- */
+        .fv-area {
+            background: #fff;
+            padding: 20px 20px 60px; 
+            text-align: center;
+        }
+        
+        .fv-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            padding-top: 56.25%;
+            background: #000;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .fv-video-wrapper iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .fv-title {
+            font-size: 40px; 
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .fv-sub-copy {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .fv-sub-copy span {
+            background: linear-gradient(transparent 60%, #fff176 60%);
+        }
+
+        /* --- 共通ボタンデザイン --- */
+        .btn-common {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 550px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #06c755, #00b900);
+            color: #fff;
+            font-size: 22px;
+            font-weight: 900;
+            text-align: center;
+            padding: 20px 10px;
+            border-radius: 50px;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 0 #038e3b, 0 8px 15px rgba(0,0,0,0.3);
+            position: relative;
+            transition: all 0.1s;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+            text-decoration: none;
+            line-height: 1.2;
+        }
+        .btn-common small {
+            display: block;
+            font-size: 13px;
+            color: #fff;
+            margin-bottom: 4px;
+            font-weight: 700;
+            background: rgba(0,0,0,0.2);
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+        .btn-common:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #038e3b, 0 4px 5px rgba(0,0,0,0.2);
+        }
+        .btn-animate {
+            animation: btn-pulse 2s infinite;
+        }
+        @keyframes btn-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        .cta-micro-copy {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #d32f2f;
+        }
+
+        /* --- 汎用ボックススタイル --- */
+        .content-box {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.9;
+            text-align: left;
+        }
+        .content-box p { margin-bottom: 25px; }
+
+        /* --- シンプル左寄せボレット --- */
+        .simple-bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .simple-bullet-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .simple-bullet-list li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.8em;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- 実績強調ボックス --- */
+        .achievement-box {
+            background: #fff;
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 3px solid transparent;
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .ach-number {
+            font-size: 28px;
+            font-weight: 900;
+            color: #d32f2f;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        /* --- 3つの原則カード --- */
+        .principle-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px 20px 20px 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            border-left: 6px solid #833ab4;
+            position: relative;
+            margin-top: 20px;
+        }
+        .principle-num {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--insta-gradient);
+            color: #fff;
+            font-weight: bold;
+            padding: 2px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .principle-title {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .principle-desc {
+            font-weight: bold;
+            font-size: 15px;
+            color: #333;
+            margin: 0;
+        }
+
+        /* --- 受講生の実績 (動画対応) --- */
+        .voice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .voice-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .voice-video {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #000;
+        }
+        .voice-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .voice-content {
+            padding: 25px 20px;
+            text-align: center;
+        }
+        .voice-badge {
+            background: var(--insta-gradient);
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .voice-result {
+            font-size: 18px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .voice-title {
+            font-size: 16px;
+            font-weight: 900;
+            padding: 15px 20px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* --- 特典セクション --- */
+        .benefits-area {
+            background: #fff;
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 3px solid transparent;
+            padding: 50px 20px 30px;
+            margin-top: 40px;
+            position: relative;
+            max-width: 740px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+        }
+        .benefits-title {
+            background: var(--insta-gradient);
+            color: #fff;
+            padding: 12px 0;
+            width: 90%;
+            max-width: 400px;
+            font-weight: 900;
+            font-size: 20px;
+            text-align: center;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        .benefits-intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .benefit-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+        }
+        .benefit-image {
+            width: 100%;
+            height: 180px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+        }
+        .benefit-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .benefit-body {
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            flex-grow: 1;
+        }
+        .benefit-icon {
+            background: var(--insta-gradient);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .benefit-content h3 {
+            font-size: 16px;
+            font-weight: 900;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            color: #111;
+        }
+        .benefit-content p { font-size: 13px; color: #555; line-height: 1.6; }
+
+        .text-red {
+            background: var(--insta-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            display: inline-block;
+        }
+        .pc-br { display: block; }
+        .sp-br { display: none; }
+
+        /* --- 理由/ターゲット ボックス (統一デザイン) --- */
+        .unified-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            padding-left: 30px;
+        }
+        .unified-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 6px;
+            background: var(--insta-gradient);
+        }
+        .unified-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .unified-box li {
+            margin-bottom: 12px;
+            font-weight: bold;
+            position: relative;
+            padding-left: 20px;
+        }
+        .unified-box li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #d32f2f;
+            font-weight: 900;
+        }
+
+        /* --- セミナー内容リスト (デザインボックス) --- */
+        .seminar-content-box {
+            background: #fff;
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        .seminar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .seminar-list > li {
+            padding: 15px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        .seminar-list > li:last-child { border-bottom: none; }
+        
+        .chapter-badge {
+            background: #000;
+            color: #fff;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .chapter-title {
+            font-weight: 900;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+        .chapter-detail {
+            list-style: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* --- 画像プレースホルダー --- */
+        .placeholder-box {
+            width: 100%;
+            background-color: #f9f9f9;
+            background: linear-gradient(#f9f9f9, #f9f9f9) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 2px dashed #d62976; 
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 15px 0 15px;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+            min-height: 200px;
+            text-align: center;
+        }
+        .placeholder-box img { max-width: 100%; height: auto; opacity: 0.8; }
+        .placeholder-label {
+            margin-top: 10px;
+            font-size: 11px;
+            background: var(--insta-gradient);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* --- 日程ボックス --- */
+        .schedule-box {
+            background: #fff;
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 4px solid transparent;
+            padding: 25px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .schedule-list li { margin-bottom: 8px; font-weight: bold; font-size: 18px;}
+
+        /* --- 緊急性ボックス --- */
+        .urgency-box {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 30px 25px;
+            margin: 30px 0;
+        }
+        .urgency-box h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: #d32f2f;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .urgency-box p {
+            margin-bottom: 15px;
+        }
+
+        /* --- Sticky Footer --- */
+        .sticky-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            padding: 0 15px;
+            opacity: 0; 
+            transform: translateY(20px);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .sticky-footer.is-visible { opacity: 1; transform: translateY(0); }
+        .sticky-btn-wrapper {
+            width: 100%;
+            max-width: 600px;
+            pointer-events: auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        /* --- スマホ最適化 --- */
+        @media (max-width: 600px) {
+            .fv-area { padding: 20px 15px 40px; }
+            .fv-title { font-size: 7.5vw; }
+            .fv-sub-copy { font-size: 15px; line-height: 1.6; }
+            h2.section-title { font-size: 6vw; line-height: 1.4; }
+            .btn-common { font-size: 17px; padding: 15px 10px; width: 100%; }
+            .btn-common small { font-size: 11px; }
+            .ach-number { font-size: 26px; }
+            .principle-title { font-size: 18px; }
+            .placeholder-box { margin-bottom: 15px; }
+            .pc-br { display: none; }
+            .sp-br { display: block; }
+            .voice-result { font-size: 18px; }
+            
+            /* 追加：スマホ用調整 */
+            .unified-box { padding: 20px 15px 20px 25px; }
+            .unified-box li { font-size: 14px; line-height: 1.5; }
+            .chapter-title { font-size: 15px; display: block; margin-top: 5px; }
+            .chapter-badge { font-size: 11px; }
+            .chapter-detail { font-size: 13px; }
+            .seminar-content-box { padding: 20px 15px; }
+            .benefits-title { font-size: 16px; width: 85%; }
+            .benefit-body { padding: 15px; }
+            .benefit-content h3 { font-size: 14px; }
+            .benefit-content p { font-size: 13px; }
+            .content-box { padding: 20px 15px; }
+            .content-box p { font-size: 15px; }
+            .schedule-box { padding: 15px; }
+            .schedule-list li { font-size: 14px; }
+            .video-thumbnail { height: 160px; }
+            .video-thumbnail img { height: 160px; }
+            .video-info h4 { font-size: 13px; }
+            .voice-card { margin-bottom: 15px; }
+            .voice-title { font-size: 14px; padding: 12px 15px; }
+            .timer-main-text { font-size: 22px; }
+            .timer-sub-text { font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダーエリア -->
+    <div class="timer-bar">
+        <p class="timer-sub-text">募集終了まで</p>
+        <div class="timer-main-text">
+            残り<span id="timer-day">0</span>日<span id="timer-hour">00</span>時間<span id="timer-min">00</span>分<span id="timer-sec">00</span>秒
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- =============================================
+             【前半】熱い人を即刈り取る
+             ============================================= -->
+
+        <!-- =============================================
+             1. FVエリア（動画 + 実績数字）
+             ============================================= -->
+        <div class="fv-area">
+            
+            <!-- 動画埋め込み -->
+            <div class="fv-video-wrapper">
+                <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            
+            <h1 class="fv-title">
+                Threads×AI運用<br>完全攻略セミナー
+            </h1>
+
+            <p class="fv-sub-copy">
+                <span>フォロワー3100名・LINE登録者558名</span>を<br>
+                3ヶ月で集客し、<span>SNSで累計8000万円</span>を<br>
+                売り上げたノウハウを全て継承します。
+            </p>
+
+            <div>
+                <!-- CTAボタン -->
+                <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
+                    <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                    今すぐセミナーに申し込む
+                </a>
+            </div>
+        </div>
+
+        <!-- =============================================
+             2. 受講生の実績ぶん殴り（Threads実績）
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">開始1ヶ月以内で<br><span>続々と成果が出ています</span></h2>
+            <div class="content-box">
+                <p class="text-center font-bold">全員が後発組・フォロワー100人以下からスタート</p>
+
+                <!-- 実績グリッド -->
+                <div class="voice-list" style="gap:20px;">
+                    <div class="voice-card">
+                        <div class="voice-title">Threads1ヶ月で3名個別相談→全員成約</div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">画像挿入箇所</span>
+                        </div>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-title">フォロワー100名以下→LINE登録者200名増加</div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">画像挿入箇所</span>
+                        </div>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-title">1週間でLINE登録60人</div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">画像挿入箇所</span>
+                        </div>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-title">1投稿で9.5万インプ・フォロワー+66名・LINE+72名</div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">画像挿入箇所</span>
+                        </div>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-title">48時間で8.2万回視聴・フォロー+98人</div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">画像挿入箇所</span>
+                        </div>
+                    </div>
+                    <div class="voice-card">
+                        <div class="voice-title">2.7万インプ・いいね96・フォロワー+80名・LINE+67名</div>
+                        <div class="placeholder-box">
+                            <span class="placeholder-label">画像挿入箇所</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             受講生の対談動画（売上実績）
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">
+                売上実績も<br>
+                <span>続々と出ています</span>
+            </h2>
+            <div class="voice-list">
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/appbeUXYJOs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績① じゅんさん</span>
+                        <p class="voice-result">会社員の副業で2,000万円<br>法人の設立を達成！</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/ItV4c7BTCC8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績② えりさん</span>
+                        <p class="voice-result">1撃528万円の収益化達成</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/pt7LYe-VFj8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績③ やんもさん</span>
+                        <p class="voice-result">未経験から1,200万円の収益化<br class="pc-br">法人設立を達成</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績④ ゆうきさん</span>
+                        <p class="voice-result">半年で320万円の収益化達成</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/Yfuoon5F774" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績⑤ かずみさん</span>
+                        <p class="voice-result">0→1から52万円の収益化達成</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/V4hwO1roOXM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績⑥ 日高さん</span>
+                        <p class="voice-result">わずか2ヶ月で50万円の収益化！</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/shr1bcowliA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績⑦ おたさん</span>
+                        <p class="voice-result">副業で8ヶ月で250万円の収益化</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/ftC7P9sAByk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績⑧ アネさん</span>
+                        <p class="voice-result">初挑戦で月170万円の収益化</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/BUcjT7zmsKM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績⑨ あっぴさん</span>
+                        <p class="voice-result">未経験から開始2ヶ月で<br class="sp-br">122万円の収益化</p>
+                    </div>
+                </div>
+                <div class="voice-card">
+                    <div class="voice-video">
+                        <iframe src="https://www.youtube.com/embed/jGbs31g8OTY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="voice-content">
+                        <span class="voice-badge">受講生の実績⑩ ねこさん</span>
+                        <p class="voice-result">住宅営業コーチという<br class="sp-br">ニッチジャンルで188万円</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             3. 4大特典
+             ============================================= -->
+        <section class="section">
+            <div class="benefits-area">
+                <div class="benefits-title">参加者限定 4大特典</div>
+                <p class="benefits-intro-text">
+                    セミナーに参加された方全員に<br class="pc-br">
+                    <span class="text-red">今すぐ使える豪華特典</span>をプレゼント！
+                </p>
+                <div class="benefit-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="../thread-ai-roadmap-v2/benefit1.png" alt="特典1画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
+                                <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="../thread-ai-roadmap-v2/benefit2.png" alt="特典2画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-user-check"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典2：Threadsプロフィール<br class="sp-br">添削・設計チェックシート</h3>
+                                <p>動画で解説した「売れるプロフィールの3要素」を完全網羅。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="../thread-ai-roadmap-v2/benefit3.png" alt="特典3画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-file-lines"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典3：閲覧数10倍！3ブロック構成<br class="sp-br">投稿テンプレート集（10選）</h3>
+                                <p>真似して穴埋めするだけ。閲覧数を10倍にし、ファン化させる「悪魔的・文章術」</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-image">
+                            <img src="../thread-ai-roadmap-v2/benefit4.png" alt="特典4画像">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <div class="benefit-content">
+                                <h3>特典4：2ヶ月でフォロワー2600名<br class="sp-br">増加の運用データ</h3>
+                                <p>実際のThreads運用データを全てまるまる公開します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center" style="margin-top: 25px; font-weight: bold; font-size: 15px;">
+                    これら全て、無料でプレゼント。<br>
+                    <span class="text-marker">正直、この特典だけでも<br class="sp-br">5万円以上の価値があります。</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             4. CTA（前半用・熱い人向け）
+             ============================================= -->
+        <section class="section" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+            <h2 class="fv-title" style="text-align:center;">
+                Threads×AI運用<br>完全攻略セミナー
+            </h2>
+            
+            <p class="fv-sub-copy text-center">
+                <span>フォロワー3100名・LINE登録者558名</span>を<br>
+                3ヶ月で集客し、<span>SNSで累計8000万円</span>を<br>
+                売り上げたノウハウを全て継承します。
+            </p>
+
+            <div class="content-box" style="text-align:center;">
+                <div class="schedule-box" style="display:inline-block;">
+                    <ul class="schedule-list text-center" style="padding:0; list-style:none;">
+                        <li>各回 少人数開催(先着10名限定)</li>
+                        <li>日程: 1/13・14・15・17・18</li>
+                        <li>時間: 2時間</li>
+                        <li>参加費: <span class="text-alert-red" style="font-size:1.2em;">無料</span></li>
+                    </ul>
+                </div>
+
+                <div class="text-center">
+                    <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
+                        <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                        今すぐセミナーに申し込む
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             【後半】迷ってる人を教育して刈り取る
+             ============================================= -->
+
+        <!-- =============================================
+             5. 共感パート（僕もリール200本で苦しんでいた）
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">実は僕も<br><span>ずっと苦しんでいました</span></h2>
+            <div class="content-box">
+                <p>インスタグラムで、<br>リール投稿を本気で続け<br>台本を書き、撮影・編集・投稿する。</p>
+                <p>それを<span class="text-marker">200本以上</span>繰り返しました。</p>
+                <p>結果はどうだったか。</p>
+                <div style="background:#fff; border:2px solid #ddd; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <ul style="list-style:disc; padding-left:20px; font-weight:bold;">
+                        <li>フォロワーは700人程度。</li>
+                        <li>再生数は100回いけばいい方。</li>
+                        <li>LINE登録なんて、週に1~2件あればラッキー。</li>
+                    </ul>
+                </div>
+                <p>200本出して、これです。<br>正直、かなりしんどかったです。</p>
+                <p class="font-bold text-center">「ここまでやって無理なら、もうダメだ」<br>本気で、そう思いました。</p>
+
+                <p class="text-center text-xl font-bold" style="margin-top:40px;">だから、戦う場所を変えました。</p>
+                <p class="text-center text-xl text-neon" style="margin-bottom:30px;">それが、Threadsです。</p>
+                
+                <p>僕は努力をやめたのではなく、<br>「どこで努力するか」を変えました。</p>
+
+                <div class="achievement-box">
+                    <p style="font-weight:bold; margin-bottom:20px;">結果、3ヶ月で</p>
+                    <p class="ach-number">フォロワー3100人増加</p>
+                    <p class="ach-number">LINE登録558名</p>
+                    <p style="font-weight:bold; margin-top:10px;">を達成しました。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             6. 失敗する人の共通点
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">Threadsで<br><span>失敗する人の共通点</span></h2>
+            <div class="content-box">
+                <p>今、Threadsが良いと聞いて<br>すでに始めている人も多いです。<br>ですが、多くの人が<br>間違った運用ばかりしています。</p>
+                
+                <div style="background:#fff; padding:20px; border-radius:8px; border:2px solid #ddd; margin:20px 0;">
+                    <ul style="list-style:none; font-weight:bold; color:#555;">
+                        <li style="margin-bottom:10px;"><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> 短文投稿でバズを狙う</li>
+                        <li style="margin-bottom:10px;"><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> いいね回り、フォロー回り</li>
+                        <li><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> 「アクティブ層に入れば伸びる」という考え方</li>
+                    </ul>
+                </div>
+
+                <p class="text-center text-xl text-alert-red">これらは、全て間違いです。</p>
+                <p>一時的に数字は伸びるかもしれません。<br>でも、そこから集客や売上には繋がりません。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             7. 3つの原則
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">工藤式Threads運用<br><span>3つの原則</span></h2>
+            <div class="content-box">
+                <p class="text-center" style="margin-bottom:30px;">だからこそ僕が一貫して行っている運用は、これだけです。</p>
+
+                <div class="principle-card">
+                    <span class="principle-num">原則 1</span>
+                    <h3 class="principle-title">自分からアクションしない</h3>
+                    <p class="principle-desc">投稿で価値を提供した結果として、フォローされる構造を作る</p>
+                </div>
+
+                <div class="principle-card">
+                    <span class="principle-num">原則 2</span>
+                    <h3 class="principle-title">長文で投稿する</h3>
+                    <p class="principle-desc">バズ狙いではなく、熱量の高い見込み客を集める</p>
+                </div>
+
+                <div class="principle-card">
+                    <span class="principle-num">原則 3</span>
+                    <h3 class="principle-title">数を打つ</h3>
+                    <p class="principle-desc">試行回数を増やし、投稿が伸びる可能性を引き上げる</p>
+                </div>
+
+                <p class="text-center font-bold" style="margin-top:40px;">この3つを正しく実践すれば、<br>後発組でも成果は出せます。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             8. なぜ今参加すべきか（Narrow down）
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">なぜ<br><span>今すぐ参加すべきか</span></h2>
+            <div class="content-box">
+                
+                <div class="urgency-box">
+                    <h3>⚠️ Threadsのボーナスタイムは、もうすぐ終わります</h3>
+                    <p>Threadsは2023年にリリースされましたが、<br>まだ本気でビジネス活用している人が少ない。</p>
+                    <p>「Instagramのおまけでしょ？」<br>「Twitterのパクリでしょ？」</p>
+                    <p>こう思って様子見している人が9割です。</p>
+                    <p class="font-bold">でも、これはInstagramでも昔同じことが起きました。</p>
+                    <p>初期にInstagramを本気でやってた人は今「先行者利益」で大きな利益を得ています。<br>でも今はどうですか？<br><span class="text-alert-red">プロがひしめき合っていて、素人が入り込む余地がほぼない。</span></p>
+                    <p class="font-bold text-center" style="font-size:18px; margin-top:20px;">Threadsも間違いなく同じ状態になります。</p>
+                </div>
+
+                <p class="text-center font-bold text-lg">つまり、ライバル不在の<br><span class="text-marker">「ボーナスタイム」である今のうち</span>に<br>Threads攻略をすることが必須なんです。</p>
+
+                <p style="margin-top:30px;">実際、僕の受講生は全員が後発組。<br>フォロワー100人以下からスタートして、<br>開始1ヶ月以内に成果を出しています。</p>
+
+                <p class="text-center font-bold text-xl" style="margin-top:30px; color:#d32f2f;">このチャンスを逃すか、<br>今すぐ行動するか。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             9. セミナー内容
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">セミナーで<br><span>お伝えする事</span></h2>
+            <div class="content-box">
+                <div class="seminar-content-box">
+                    <h3 style="text-align:center; font-weight:900; margin-bottom:15px; border-bottom:1px solid #ddd; padding-bottom:10px;">セミナー内容</h3>
+                    
+                    <ul class="seminar-list">
+                        <li>
+                            <span class="chapter-badge">第1章</span> <span class="chapter-title">なぜ今、Threadsなのか</span>
+                            <ul class="chapter-detail">
+                                <li>リール200本で700人だった僕が、3ヶ月で3100人・LINE558名になった逆転劇</li>
+                                <li>【2026年最新】Instagram vs Threads 徹底比較と「先行者利益」の全貌</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="chapter-badge">第2章</span> <span class="chapter-title">9割が知らない「売れないアカウント」の正体</span>
+                            <ul class="chapter-detail">
+                                <li>有名インフルエンサーのノウハウが「今のあなた」に合わない構造的理由</li>
+                                <li>短文投稿・いいね回り・フォロー回りが「ただの数字集め」で終わるカラクリ</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="chapter-badge">第3章</span> <span class="chapter-title">工藤式Threads運用「3つの原則」</span>
+                            <ul class="chapter-detail">
+                                <li>フォロワー100人以下でも1ヶ月でLINE200件・成約3件を実現する運用原則</li>
+                                <li>自分からアクションしない／長文で投稿／数を打つ</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="chapter-badge">第4章</span> <span class="chapter-title">AI×Threads実践術</span>
+                            <ul class="chapter-detail">
+                                <li>悪用厳禁！数分で質の高い投稿を量産するAIプロンプト活用術</li>
+                                <li>成果が出ない人が必ずぶつかる「5つの壁」とその突破法</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             10. こんな方のためのセミナーです / 参加後の変化
+             ============================================= -->
+        <section class="section">
+            <div class="content-box">
+                <div style="margin-bottom:40px;">
+                    <h3 class="text-center font-bold text-lg" style="margin-bottom:20px;">こんな方のためのセミナーです</h3>
+                    <div class="unified-box">
+                        <ul>
+                            <li>真剣にSNSで売上を伸ばしたいと悩んでいる方</li>
+                            <li>リールやインスタで限界を感じている方</li>
+                            <li>Threadsを始めたが、正解が分からない方</li>
+                            <li>数字ではなく「集客・売上」につなげたい方</li>
+                            <li>正しい運用法できちんと成果を出したい方</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-center font-bold text-lg" style="margin-bottom:20px;">このセミナーに参加すると、こうなります</h3>
+                    <div class="unified-box">
+                        <ul>
+                            <li>「このやり方で合ってる」という確信を持って運用できる</li>
+                            <li>「なんで自分だけ成果出ないんだろう...」というモヤモヤの正体が分かる</li>
+                            <li>投稿前に「これでいいのかな...」と手が止まる時間が無くなる</li>
+                            <li>「とりあえず投稿」ではなく、集客につながる投稿だけに集中できるようになる</li>
+                            <li>毎日の投稿が"作業"ではなく、売上に直結する"資産"に変わる</li>
+                            <li>「頑張ってるのに結果が出ない」という空回りから抜け出せる</li>
+                            <li>他の発信者を見て焦る時間が、自分のビジネスを伸ばす時間に変わる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             10. 日程・CTA（後半用）
+             ============================================= -->
+        <section class="section" id="register">
+            <h2 class="fv-title" style="text-align:center;">
+                Threads×AI運用<br>完全攻略セミナー
+            </h2>
+            
+            <p class="fv-sub-copy text-center">
+                <span>フォロワー3100名・LINE登録者558名</span>を<br>
+                3ヶ月で集客し、<span>SNSで累計8000万円</span>を<br>
+                売り上げたノウハウを全て継承します。
+            </p>
+
+            <div class="content-box" style="text-align:center;">
+                <div class="schedule-box" style="display:inline-block;">
+                    <ul class="schedule-list text-center" style="padding:0; list-style:none;">
+                        <li>各回 少人数開催(先着10名限定)</li>
+                        <li>日程: 1/13・14・15・17・18</li>
+                        <li>時間: 2時間</li>
+                        <li>参加費: <span class="text-alert-red" style="font-size:1.2em;">無料</span></li>
+                    </ul>
+                </div>
+
+                <div class="text-center">
+                    <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
+                        <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                        今すぐセミナーに申し込む
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             11. 最後に僕からのメッセージです
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">最後に僕からの<br><span>メッセージです。</span></h2>
+            <div class="content-box">
+                <p>僕が一番伝えたいのは、<br>Threadsを運用して<br><span class="text-lg font-bold">「驚いてほしい」</span>ということです。</p>
+                <p>今までSNSをやってきて、<br>ここまでスピード感を持って<br>集客できたのはThreads以外は<br>本当にありません。</p>
+                <p>僕自身が、一番驚いています。</p>
+                <p>今まで、<br>200本以上リールを出してもダメ。<br>正直、心が折れかけていました。</p>
+                <p>そんな時に、<br>たまたま触ったのがThreadsでした。</p>
+                <p>フォロワー数は関係ない。<br>投稿したら、閲覧数が伸びる。<br>閲覧が伸びれば、当たり前のようにLINEが入る。</p>
+                <p>最初は信じられなかったです。<br>今まで、ピクリとも動かなかった<br>LINE登録が、Threadsをやっただけで、<br>毎日、普通に通知が鳴る。<br>入らない日の方が珍しい。</p>
+                <p>今では5~10件は日常で<br>多い日は20件入る。<br>正直、異常です。</p>
+                <p>やっていることは<br>テキストでの投稿で<br>しかも、AIも使っているから、<br>労力は今までのSNS運用と比較して<br>比にならないレベルです。</p>
+                <p>「なんだこれ...」って、<br>何度も思いました。</p>
+                <p>でも同時に、<br>こう思ったんです。</p>
+                <p class="text-center font-bold text-lg">「ああ、俺は間違ってなかったんだ」って。</p>
+                <p>今まで成果が出なかったのは、<br>努力が足りなかったからじゃない。<br>才能がなかったからでもない。</p>
+                <p class="text-center text-alert-red font-bold">ただ、<br>努力する"場所"と"方向"が<br>間違っていただけだった。</p>
+                <p>Threadsで結果が出たことで、<br>僕は自分に自信を取り戻しました。<br>自分の考えは正しかった。<br>自分の価値は、ちゃんと届くんだ。</p>
+                <p>LINE登録の通知を見るたびに、<br>正直、心が安心します。<br>もう<br>「今日も誰も来なかった...」<br>って悩まなくていい。</p>
+                <p>集客ができると、<br>すべてが前に進み始めます。<br>フォロワーが増える。<br>LINE登録が入る。</p>
+                <p>上記が発生することで<br>誰に向けて発信すればいいかが明確になる。</p>
+                <ul style="list-style:none; padding-left:20px; font-weight:bold; margin-bottom:20px;">
+                    <li>・「この人たちに、これを届けよう」</li>
+                    <li>・「この商品、いけるな」</li>
+                    <li>・「この導線、数字悪いから直そう」</li>
+                </ul>
+                <p>全部、集客ができて<br>初めて考えられることです。<br>集客ができなければ、<br>1も2も3も始まらない。</p>
+                <p>だから僕は、この体験を<br>一人でも多くの人にしてほしい。<br>驚いてほしい。<br>「こんな世界があったのか」って。</p>
+                <p>そして、<br>「自分もやれる」<br>「努力は無駄じゃなかった」<br>そう思ってほしいんです。</p>
+                <p>Threadsの今の状況は<br>ボーナスタイムだと本気で思っています。<br>この波に、早く乗ってほしい。<br>僕と同じこっち側に来ていい。<br>本気でそう思ってます。</p>
+                <p>そして、すでに結果が出ている人もいます。<br>フォロワー100人以下でも、<br>成果を出している人がいる。</p>
+                <p class="text-center font-bold text-lg">だから、あなたもできる。</p>
+                <p>だからこそ、あなたが本気で<br>Threads運用を学び、実践して<br>人生を変えたいと考えているなら<br>セミナーに来てください。</p>
+                <p class="text-center font-bold text-xl" style="margin-top:30px;">お待ちしています。</p>
+            </div>
+            
+            <!-- 最後の一押しCTA -->
+            <div class="text-center" style="margin-top:60px;">
+                <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
+                    <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                    今すぐセミナーに申し込む
+                </a>
+            </div>
+        </section>
+
+    </div><!-- container end -->
+
+    <footer style="background:#111; color:#888; text-align:center; padding:20px; font-size:12px;">
+        &copy; 2026 Threads×AI Strategy Seminar. All Rights Reserved.
+    </footer>
+
+    <!-- Sticky Footer (追従ボタン) -->
+    <div class="sticky-footer">
+        <div class="sticky-btn-wrapper">
+            <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate" style="font-size:16px; padding:12px;">
+                <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                今すぐセミナーに申し込む
+            </a>
+        </div>
+    </div>
+
+    <!-- スクロール検知 & タイマー用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stickyFooter = document.querySelector('.sticky-footer');
+
+            if (stickyFooter) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        stickyFooter.classList.add('is-visible');
+                    } else {
+                        stickyFooter.classList.remove('is-visible');
+                    }
+                });
+            }
+        });
+
+        // タイマーロジック（流入から3日間）
+        const TIMER_STORAGE_KEY = 'seminar_timer_end';
+        const TIMER_DURATION_DAYS = 3;
+
+        function getEndDate() {
+            let endDateStr = localStorage.getItem(TIMER_STORAGE_KEY);
+            if (!endDateStr) {
+                const endDate = new Date();
+                endDate.setDate(endDate.getDate() + TIMER_DURATION_DAYS);
+                endDate.setHours(23, 59, 59, 0);
+                endDateStr = endDate.toISOString();
+                localStorage.setItem(TIMER_STORAGE_KEY, endDateStr);
+            }
+            return new Date(endDateStr);
+        }
+
+        const endDate = getEndDate();
+        let timerInterval;
+
+        function updateTimer() {
+            const now = new Date();
+            let timeRemaining = Math.floor((endDate - now) / 1000);
+
+            const dayElem = document.getElementById('timer-day');
+            const hourElem = document.getElementById('timer-hour');
+            const minElem = document.getElementById('timer-min');
+            const secElem = document.getElementById('timer-sec');
+
+            if (timeRemaining < 0) {
+                clearInterval(timerInterval);
+                if (dayElem) dayElem.textContent = '0';
+                if (hourElem) hourElem.textContent = '00';
+                if (minElem) minElem.textContent = '00';
+                if (secElem) secElem.textContent = '00';
+                return;
+            }
+
+            const day = Math.floor(timeRemaining / (24 * 60 * 60));
+            const hour = Math.floor((timeRemaining % (24 * 60 * 60)) / (60 * 60));
+            const min = Math.floor((timeRemaining % (60 * 60)) / 60);
+            const sec = Math.floor(timeRemaining % 60);
+
+            if (dayElem) dayElem.textContent = day;
+            if (hourElem) hourElem.textContent = String(hour).padStart(2, '0');
+            if (minElem) minElem.textContent = String(min).padStart(2, '0');
+            if (secElem) secElem.textContent = String(sec).padStart(2, '0');
+        }
+
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
+    </script>
+
+</body>
+</html>
