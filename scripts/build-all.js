@@ -20,7 +20,7 @@ function runBuild(projectRoot, configPath) {
 async function main() {
   const projectRoot = process.cwd();
   const configsDir = path.join(projectRoot, 'configs');
-  const files = (await fs.readdir(configsDir)).filter((f) => f.endsWith('.json'));
+  const files = (await fs.readdir(configsDir)).filter((f) => f.endsWith('.json') && f !== 'lp-meta.json');
   for (const file of files) {
     const configPath = path.join('configs', file);
     console.log(`Building ${configPath} ...`);

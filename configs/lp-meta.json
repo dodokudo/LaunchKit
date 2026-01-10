@@ -1,0 +1,183 @@
+{
+  "_comment": "カテゴリ: オプト / セミナー / 個別相談 / サンプル",
+  "consult-sample": {
+    "name": "個別相談LP サンプル",
+    "category": "サンプル",
+    "created": "2025-10-18",
+    "updated": "2025-10-23"
+  },
+  "opt-3": {
+    "name": "オプトLP v3",
+    "category": "オプト",
+    "created": "2026-01-07",
+    "updated": "2026-01-07"
+  },
+  "opt-3/ig": {
+    "name": "オプトLP v3 (Instagram)",
+    "category": "オプト",
+    "created": "2026-01-07",
+    "updated": "2026-01-07"
+  },
+  "opt-3/th": {
+    "name": "オプトLP v3 (Threads)",
+    "category": "オプト",
+    "created": "2026-01-07",
+    "updated": "2026-01-11"
+  },
+  "opt-3/tp": {
+    "name": "オプトLP v3 (TikTok)",
+    "category": "オプト",
+    "created": "2026-01-07",
+    "updated": "2026-01-07"
+  },
+  "optin-enhanced": {
+    "name": "オプトLP Enhanced",
+    "category": "サンプル",
+    "created": "2025-10-18",
+    "updated": "2025-10-18"
+  },
+  "optin-sample": {
+    "name": "オプトLP サンプル",
+    "category": "サンプル",
+    "created": "2025-10-18",
+    "updated": "2025-10-18"
+  },
+  "seminar": {
+    "name": "セミナーLP",
+    "category": "セミナー",
+    "created": "2025-10-18",
+    "updated": "2025-10-18"
+  },
+  "seminar2": {
+    "name": "セミナーLP 2",
+    "category": "セミナー",
+    "created": "2025-10-18",
+    "updated": "2025-10-18"
+  },
+  "seminar-sample": {
+    "name": "セミナーLP サンプル",
+    "category": "サンプル",
+    "created": "2025-10-18",
+    "updated": "2025-10-18"
+  },
+  "tai-v2": {
+    "name": "Threads AI v2",
+    "category": "オプト",
+    "created": "2025-12-26",
+    "updated": "2025-12-26"
+  },
+  "thread-ai-roadmap": {
+    "name": "Thread AI ロードマップ",
+    "category": "オプト",
+    "created": "2025-11-27",
+    "updated": "2025-11-27"
+  },
+  "thread-ai-roadmap-v2": {
+    "name": "Thread AI ロードマップ v2",
+    "category": "オプト",
+    "created": "2025-12-12",
+    "updated": "2025-12-12"
+  },
+  "threads-ai-guide": {
+    "name": "Threads AI ガイド",
+    "category": "オプト",
+    "created": "2025-12-11",
+    "updated": "2025-12-11"
+  },
+  "threads-consultation": {
+    "name": "Threads 個別相談",
+    "category": "個別相談",
+    "created": "2025-11-01",
+    "updated": "2025-11-01"
+  },
+  "threads-consultation-v2": {
+    "name": "Threads 個別相談 v2",
+    "category": "個別相談",
+    "created": "2025-11-13",
+    "updated": "2025-11-13"
+  },
+  "threads-consultation-v3": {
+    "name": "Threads 個別相談 v3",
+    "category": "個別相談",
+    "created": "2025-11-13",
+    "updated": "2025-11-13"
+  },
+  "threads-ig": {
+    "name": "Threads LP (Instagram)",
+    "category": "オプト",
+    "created": "2025-11-06",
+    "updated": "2025-11-06"
+  },
+  "threads-lp-green": {
+    "name": "Threads LP Green",
+    "category": "オプト",
+    "created": "2025-10-27",
+    "updated": "2025-11-02"
+  },
+  "threads-lp-green-v2": {
+    "name": "Threads LP Green v2",
+    "category": "オプト",
+    "created": "2025-11-02",
+    "updated": "2025-11-02"
+  },
+  "threads-lp-v2": {
+    "name": "Threads LP v2",
+    "category": "オプト",
+    "created": "2025-11-02",
+    "updated": "2025-11-02"
+  },
+  "threads-lp-v3": {
+    "name": "Threads LP v3",
+    "category": "オプト",
+    "created": "2025-11-05",
+    "updated": "2025-11-05"
+  },
+  "threads-lp-v4": {
+    "name": "Threads LP v4",
+    "category": "オプト",
+    "created": "2025-11-05",
+    "updated": "2025-11-05"
+  },
+  "threads-opt": {
+    "name": "Threads オプト",
+    "category": "オプト",
+    "created": "2025-12-12",
+    "updated": "2025-12-12"
+  },
+  "threads-opt-2": {
+    "name": "Threads オプト v2",
+    "category": "オプト",
+    "created": "2025-12-12",
+    "updated": "2025-12-12"
+  },
+  "threads-opt-3": {
+    "name": "Threads オプト v3",
+    "category": "オプト",
+    "created": "2025-12-12",
+    "updated": "2025-12-12"
+  },
+  "threads-opt-IG": {
+    "name": "Threads オプト (Instagram)",
+    "category": "オプト",
+    "created": "2025-12-12",
+    "updated": "2025-12-12"
+  },
+  "threads-th": {
+    "name": "Threads LP (Threads)",
+    "category": "オプト",
+    "created": "2025-11-06",
+    "updated": "2025-11-06"
+  },
+  "webinar-sample": {
+    "name": "ウェビナーLP サンプル",
+    "category": "サンプル",
+    "created": "2025-10-18",
+    "updated": "2025-10-18"
+  },
+  "lp-meta": {
+    "name": "lp-meta",
+    "category": "オプト",
+    "created": "2026-01-11",
+    "updated": "2026-01-11"
+  }
+}
