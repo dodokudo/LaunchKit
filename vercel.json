@@ -1,5 +1,15 @@
 {
   "buildCommand": "npm run build:deploy",
   "outputDirectory": "dist",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/funnel",
+      "destination": "https://funnel-ml94fwfhd-kudos-projects-0bee12bb.vercel.app"
+    },
+    {
+      "source": "/funnel/:path*",
+      "destination": "https://funnel-ml94fwfhd-kudos-projects-0bee12bb.vercel.app/:path*"
+    }
+  ]
 }
