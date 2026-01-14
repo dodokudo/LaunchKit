@@ -1,0 +1,723 @@
+[
+  {
+    "id": "funnel-1768406773692",
+    "name": "Test",
+    "description": "",
+    "baseDate": "2026-01-28",
+    "baseDateDays": 3,
+    "baseDateLabel": "販売期間",
+    "startDate": "2026-01-14",
+    "endDate": "2026-02-04",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "all",
+        "name": "全員",
+        "color": "#6B7280",
+        "isDefault": true
+      }
+    ],
+    "deliveries": [],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [
+      {
+        "id": "node-1",
+        "type": "funnel",
+        "position": {
+          "x": 100,
+          "y": 100
+        },
+        "data": {
+          "label": "Instagram",
+          "nodeType": "entry"
+        }
+      },
+      {
+        "id": "node-2",
+        "type": "funnel",
+        "position": {
+          "x": 300,
+          "y": 100
+        },
+        "data": {
+          "label": "LINE登録",
+          "nodeType": "action"
+        }
+      },
+      {
+        "id": "node-3",
+        "type": "funnel",
+        "position": {
+          "x": 500,
+          "y": 100
+        },
+        "data": {
+          "label": "購入",
+          "nodeType": "conversion"
+        }
+      }
+    ],
+    "canvasEdges": [
+      {
+        "id": "edge-1",
+        "source": "node-1",
+        "target": "node-2"
+      },
+      {
+        "id": "edge-2",
+        "source": "node-2",
+        "target": "node-3"
+      }
+    ],
+    "branchPoints": [],
+    "createdAt": "2026-01-14T16:06:13.692Z",
+    "updatedAt": "2026-01-14T16:06:52.304Z"
+  },
+  {
+    "id": "funnel-1768406949111",
+    "name": "SNS集客ファネル",
+    "description": "",
+    "baseDate": "2026-01-28",
+    "baseDateDays": 3,
+    "baseDateLabel": "販売期間",
+    "startDate": "2026-01-14",
+    "endDate": "2026-02-04",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "all",
+        "name": "全員",
+        "color": "#6B7280",
+        "isDefault": true
+      }
+    ],
+    "deliveries": [],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [
+      {
+        "id": "n1",
+        "type": "funnel",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "label": "Instagram",
+          "nodeType": "entry"
+        }
+      },
+      {
+        "id": "n2",
+        "type": "funnel",
+        "position": {
+          "x": 0,
+          "y": 100
+        },
+        "data": {
+          "label": "TikTok",
+          "nodeType": "entry"
+        }
+      },
+      {
+        "id": "n3",
+        "type": "funnel",
+        "position": {
+          "x": 270,
+          "y": 50
+        },
+        "data": {
+          "label": "LINE登録",
+          "nodeType": "action"
+        }
+      },
+      {
+        "id": "n4",
+        "type": "funnel",
+        "position": {
+          "x": 540,
+          "y": 0
+        },
+        "data": {
+          "label": "動画視聴",
+          "nodeType": "action"
+        }
+      },
+      {
+        "id": "n5",
+        "type": "funnel",
+        "position": {
+          "x": 540,
+          "y": 100
+        },
+        "data": {
+          "label": "セミナー申込",
+          "nodeType": "action"
+        }
+      },
+      {
+        "id": "n6",
+        "type": "funnel",
+        "position": {
+          "x": 810,
+          "y": 50
+        },
+        "data": {
+          "label": "商品購入",
+          "nodeType": "conversion"
+        }
+      }
+    ],
+    "canvasEdges": [
+      {
+        "id": "e1",
+        "source": "n1",
+        "target": "n3",
+        "type": "step",
+        "style": {
+          "stroke": "#6B7280",
+          "strokeWidth": 2
+        },
+        "markerEnd": {
+          "type": "arrowclosed",
+          "color": "#6B7280"
+        }
+      },
+      {
+        "id": "e2",
+        "source": "n2",
+        "target": "n3",
+        "type": "step",
+        "style": {
+          "stroke": "#6B7280",
+          "strokeWidth": 2
+        },
+        "markerEnd": {
+          "type": "arrowclosed",
+          "color": "#6B7280"
+        }
+      },
+      {
+        "id": "e3",
+        "source": "n3",
+        "target": "n4",
+        "type": "step",
+        "style": {
+          "stroke": "#6B7280",
+          "strokeWidth": 2
+        },
+        "markerEnd": {
+          "type": "arrowclosed",
+          "color": "#6B7280"
+        }
+      },
+      {
+        "id": "e4",
+        "source": "n3",
+        "target": "n5",
+        "type": "step",
+        "style": {
+          "stroke": "#6B7280",
+          "strokeWidth": 2
+        },
+        "markerEnd": {
+          "type": "arrowclosed",
+          "color": "#6B7280"
+        }
+      },
+      {
+        "id": "e5",
+        "source": "n4",
+        "target": "n6",
+        "type": "step",
+        "style": {
+          "stroke": "#6B7280",
+          "strokeWidth": 2
+        },
+        "markerEnd": {
+          "type": "arrowclosed",
+          "color": "#6B7280"
+        }
+      },
+      {
+        "id": "e6",
+        "source": "n5",
+        "target": "n6",
+        "type": "step",
+        "style": {
+          "stroke": "#6B7280",
+          "strokeWidth": 2
+        },
+        "markerEnd": {
+          "type": "arrowclosed",
+          "color": "#6B7280"
+        }
+      }
+    ],
+    "branchPoints": [],
+    "createdAt": "2026-01-14T16:09:09.111Z",
+    "updatedAt": "2026-01-14T16:18:53.523Z"
+  },
+  {
+    "id": "funnel-1768407696991",
+    "name": "対角線フローテスト",
+    "description": "",
+    "baseDate": "2026-01-24",
+    "baseDateDays": 3,
+    "baseDateLabel": "販売期間",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-28",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "all",
+        "name": "全員",
+        "color": "#6B7280",
+        "isDefault": true
+      },
+      {
+        "id": "seg-1768415354514",
+        "name": "セグメント２",
+        "color": "#10B981"
+      },
+      {
+        "id": "seg-1768415362751",
+        "name": "セグメント3",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "seg-1768415363451",
+        "name": "セグメント4",
+        "color": "#EF4444"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "delivery-1768415452167",
+        "date": "2026-01-20",
+        "segmentId": "all",
+        "segmentIds": [
+          "all",
+          "seg-1768415354514",
+          "seg-1768415362751",
+          "seg-1768415363451"
+        ],
+        "title": "挨拶メッセージ",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768415476951",
+        "date": "2026-01-22",
+        "segmentId": "seg-1768415354514",
+        "segmentIds": [
+          "seg-1768415354514"
+        ],
+        "title": "テスト動画",
+        "type": "video"
+      }
+    ],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [
+      {
+        "id": "n1",
+        "type": "funnel",
+        "position": {
+          "x": -30,
+          "y": -450
+        },
+        "data": {
+          "label": "Instagram",
+          "nodeType": "entry",
+          "bg": "#e3f2fd",
+          "border": "#1976d2",
+          "kpiOptions": [
+            {
+              "id": "n1",
+              "label": "Instagram"
+            },
+            {
+              "id": "n2",
+              "label": "TikTok"
+            },
+            {
+              "id": "n3",
+              "label": "LINE登録"
+            },
+            {
+              "id": "n4",
+              "label": "動画視聴"
+            },
+            {
+              "id": "n5",
+              "label": "セミナー申込"
+            },
+            {
+              "id": "n6",
+              "label": "商品購入",
+              "target": 2
+            }
+          ],
+          "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
+        },
+        "width": 120,
+        "height": 38,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": -30,
+          "y": -450
+        }
+      },
+      {
+        "id": "n2",
+        "type": "funnel",
+        "position": {
+          "x": 105,
+          "y": -450
+        },
+        "data": {
+          "label": "TikTok",
+          "nodeType": "entry",
+          "bg": "#e3f2fd",
+          "border": "#1976d2",
+          "kpiOptions": [
+            {
+              "id": "n1",
+              "label": "Instagram"
+            },
+            {
+              "id": "n2",
+              "label": "TikTok"
+            },
+            {
+              "id": "n3",
+              "label": "LINE登録"
+            },
+            {
+              "id": "n4",
+              "label": "動画視聴"
+            },
+            {
+              "id": "n5",
+              "label": "セミナー申込"
+            },
+            {
+              "id": "n6",
+              "label": "商品購入",
+              "target": 2
+            }
+          ],
+          "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
+        },
+        "width": 120,
+        "height": 38,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 105,
+          "y": -450
+        },
+        "dragging": false
+      },
+      {
+        "id": "n3",
+        "type": "funnel",
+        "position": {
+          "x": 420,
+          "y": -285
+        },
+        "data": {
+          "label": "LINE登録",
+          "nodeType": "action",
+          "bg": "#ecfdf3",
+          "border": "#34d399",
+          "showKpi": false,
+          "kpiOptions": [
+            {
+              "id": "n1",
+              "label": "Instagram"
+            },
+            {
+              "id": "n2",
+              "label": "TikTok"
+            },
+            {
+              "id": "n3",
+              "label": "LINE登録"
+            },
+            {
+              "id": "n4",
+              "label": "動画視聴"
+            },
+            {
+              "id": "n5",
+              "label": "セミナー申込"
+            },
+            {
+              "id": "n6",
+              "label": "商品購入",
+              "target": 2
+            }
+          ],
+          "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
+        },
+        "width": 120,
+        "height": 38,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 420,
+          "y": -285
+        },
+        "dragging": false
+      },
+      {
+        "id": "n4",
+        "type": "funnel",
+        "position": {
+          "x": 615,
+          "y": -180
+        },
+        "data": {
+          "label": "動画視聴",
+          "nodeType": "action",
+          "bg": "#ffffff",
+          "border": "#cbd5e1",
+          "kpiOptions": [
+            {
+              "id": "n1",
+              "label": "Instagram"
+            },
+            {
+              "id": "n2",
+              "label": "TikTok"
+            },
+            {
+              "id": "n3",
+              "label": "LINE登録"
+            },
+            {
+              "id": "n4",
+              "label": "動画視聴"
+            },
+            {
+              "id": "n5",
+              "label": "セミナー申込"
+            },
+            {
+              "id": "n6",
+              "label": "商品購入",
+              "target": 2
+            }
+          ],
+          "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
+        },
+        "width": 120,
+        "height": 38,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 615,
+          "y": -180
+        },
+        "dragging": false
+      },
+      {
+        "id": "n5",
+        "type": "funnel",
+        "position": {
+          "x": 810,
+          "y": -75
+        },
+        "data": {
+          "label": "セミナー申込",
+          "nodeType": "action",
+          "bg": "#fff7ed",
+          "border": "#fb923c",
+          "kpiOptions": [
+            {
+              "id": "n1",
+              "label": "Instagram"
+            },
+            {
+              "id": "n2",
+              "label": "TikTok"
+            },
+            {
+              "id": "n3",
+              "label": "LINE登録"
+            },
+            {
+              "id": "n4",
+              "label": "動画視聴"
+            },
+            {
+              "id": "n5",
+              "label": "セミナー申込"
+            },
+            {
+              "id": "n6",
+              "label": "商品購入",
+              "target": 2
+            }
+          ],
+          "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
+        },
+        "width": 120,
+        "height": 38,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 810,
+          "y": -75
+        },
+        "dragging": false
+      },
+      {
+        "id": "n6",
+        "type": "funnel",
+        "position": {
+          "x": 1005,
+          "y": 45
+        },
+        "data": {
+          "label": "商品購入",
+          "nodeType": "conversion",
+          "target": 2,
+          "rate": 10,
+          "showKpi": true,
+          "kpiOptions": [
+            {
+              "id": "n1",
+              "label": "Instagram"
+            },
+            {
+              "id": "n2",
+              "label": "TikTok"
+            },
+            {
+              "id": "n3",
+              "label": "LINE登録"
+            },
+            {
+              "id": "n4",
+              "label": "動画視聴"
+            },
+            {
+              "id": "n5",
+              "label": "セミナー申込"
+            },
+            {
+              "id": "n6",
+              "label": "商品購入",
+              "target": 2
+            }
+          ],
+          "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2",
+          "denominatorId": "n3"
+        },
+        "width": 120,
+        "height": 57,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 1005,
+          "y": 45
+        },
+        "dragging": false
+      }
+    ],
+    "canvasEdges": [
+      {
+        "id": "e1",
+        "source": "n1",
+        "target": "n3",
+        "type": "step",
+        "selected": false
+      },
+      {
+        "id": "e2",
+        "source": "n2",
+        "target": "n3",
+        "type": "step"
+      },
+      {
+        "id": "e3",
+        "source": "n3",
+        "target": "n4",
+        "type": "step",
+        "selected": false
+      },
+      {
+        "id": "e4",
+        "source": "n4",
+        "target": "n5",
+        "type": "step"
+      },
+      {
+        "id": "e5",
+        "source": "n5",
+        "target": "n6",
+        "type": "step"
+      }
+    ],
+    "branchPoints": [],
+    "createdAt": "2026-01-14T16:21:36.991Z",
+    "updatedAt": "2026-01-14T20:03:45.219Z",
+    "phaseNames": [
+      "流入",
+      "アクション",
+      "教育",
+      "CV",
+      "フェーズ5"
+    ],
+    "kpis": [
+      {
+        "target": 1000,
+        "rate": 100,
+        "width": 485
+      },
+      {
+        "target": 700,
+        "rate": 70,
+        "width": 205
+      },
+      {
+        "target": 490,
+        "rate": 70,
+        "width": 185
+      },
+      {
+        "target": 49,
+        "rate": 20,
+        "width": 195
+      },
+      {
+        "target": 25,
+        "rate": 50,
+        "width": 200
+      }
+    ],
+    "tasks": [],
+    "periods": [
+      {
+        "id": "period-1768414702550",
+        "name": "",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-23",
+        "color": "#FEF3C7"
+      },
+      {
+        "id": "period-1768415042617",
+        "name": "新しい期間",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "color": "#E5E7EB"
+      }
+    ],
+    "taskCategories": [
+      "テスト",
+      "アクション",
+      "教育",
+      "CV",
+      "購入"
+    ]
+  }
+]
