@@ -1,45 +1,50 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Funnel, createDefaultFunnel } from '@/types/funnel';
+import { Funnel } from '@/types/funnel';
 
 export default function Dashboard() {
+  const router = useRouter();
   const [funnels, setFunnels] = useState<Funnel[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const apiBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
-    const stored = localStorage.getItem('funnels');
-    if (stored) {
-      // 古いデータ形式をマイグレーション
-      const parsed = JSON.parse(stored);
-      const migrated = parsed.map((f: Funnel) => {
-        // 新しい型に必要なプロパティがない場合はデフォルト値を設定
-        if (!f.segments) {
-          return createDefaultFunnel(f.id);
-        }
-        return f;
-      });
-      setFunnels(migrated);
-      // マイグレーションしたデータを保存
-      localStorage.setItem('funnels', JSON.stringify(migrated));
-    }
-    setIsLoading(false);
+    const loadFunnels = async () => {
+      try {
+        const res = await fetch(`${apiBase}/api/funnels`);
+        if (!res.ok) throw new Error('Failed to load funnels');
+        const data = await res.json();
+        setFunnels(data);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadFunnels();
   }, []);
 
   const createNewFunnel = () => {
-    const newFunnel = createDefaultFunnel(`funnel-${Date.now()}`);
-    const updatedFunnels = [...funnels, newFunnel];
-    setFunnels(updatedFunnels);
-    localStorage.setItem('funnels', JSON.stringify(updatedFunnels));
-    window.location.href = `/editor/${newFunnel.id}`;
+    const create = async () => {
+      const res = await fetch(`${apiBase}/api/funnels`, { method: 'POST' });
+      if (!res.ok) return;
+      const data = await res.json();
+      router.push(`/editor/${data.id}`);
+    };
+    create();
   };
 
   const deleteFunnel = (id: string) => {
     if (!confirm('このファネルを削除しますか？')) return;
-    const updatedFunnels = funnels.filter((f) => f.id !== id);
-    setFunnels(updatedFunnels);
-    localStorage.setItem('funnels', JSON.stringify(updatedFunnels));
+    const remove = async () => {
+      const res = await fetch(`${apiBase}/api/funnels/${id}`, { method: 'DELETE' });
+      if (!res.ok) return;
+      setFunnels((prev) => prev.filter((f) => f.id !== id));
+    };
+    remove();
   };
 
   const formatDate = (dateStr: string) => {

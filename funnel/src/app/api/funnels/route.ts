@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllFunnels, saveFunnel } from '@/lib/storage';
 import { createDefaultFunnel } from '@/types/funnel';
+import { funnelStore } from '@/lib/funnelStore';
 
 // GET /api/funnels - 全ファネル一覧
 export async function GET() {
-  const funnels = getAllFunnels();
+  const funnels = await funnelStore.getAll();
   return NextResponse.json(funnels);
 }
 
@@ -17,6 +17,6 @@ export async function POST(request: NextRequest) {
   if (body.name) funnel.name = body.name;
   if (body.description) funnel.description = body.description;
 
-  const saved = saveFunnel(funnel);
+  const saved = await funnelStore.save(funnel);
   return NextResponse.json(saved, { status: 201 });
 }

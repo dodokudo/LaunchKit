@@ -7,7 +7,7 @@ const DATA_DIR = path.join(process.cwd(), 'data');
 const FUNNELS_FILE = path.join(DATA_DIR, 'funnels.json');
 
 // 自動レイアウト（左上から右下への対角線フロー）
-function layoutNodes(nodes: any[], edges: any[]): any[] {
+export function layoutNodes(nodes: any[], edges: any[]): any[] {
   if (nodes.length === 0) return nodes;
 
   const dagreGraph = new dagre.graphlib.Graph();

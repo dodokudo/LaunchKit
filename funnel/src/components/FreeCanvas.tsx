@@ -176,34 +176,6 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
     onSaveRef.current = onSave;
   }, [onSave]);
 
-  useEffect(() => {
-    const kpiOptions = nodes.map((node) => ({
-      id: node.id,
-      label: node.data?.label || 'ノード',
-      target: node.data?.target,
-    }));
-    const kpiOptionsKey = kpiOptions
-      .map((option) => `${option.id}:${option.label}:${option.target ?? ''}`)
-      .join('|');
-
-    let needsUpdate = false;
-    nodes.forEach((node) => {
-      if (node.data?.kpiOptionsKey !== kpiOptionsKey) needsUpdate = true;
-    });
-    if (!needsUpdate) return;
-
-    setNodes((prev) =>
-      prev.map((node) => ({
-        ...node,
-        data: {
-          ...node.data,
-          kpiOptions,
-          kpiOptionsKey,
-        },
-      }))
-    );
-  }, [nodes, setNodes]);
-
   // 履歴管理
   const [history, setHistory] = useState<HistoryState[]>([{ nodes: initialNodes, edges: initialEdges }]);
   const [historyIndex, setHistoryIndex] = useState(0);
@@ -213,6 +185,8 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
   // 状態変更時に履歴に追加（debounce）
   useEffect(() => {
     if (isUndoing.current) return;
+    // 初期化前は何もしない
+    if (!isInitialized.current) return;
 
     if (saveTimer.current) {
       clearTimeout(saveTimer.current);
@@ -908,11 +882,13 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
           onPaneClick={closeContextMenu}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
-          fitView
+          fitView={false}
           snapToGrid
           snapGrid={[15, 15]}
           panOnDrag
           zoomOnScroll
+          minZoom={0.1}
+          maxZoom={2}
           defaultEdgeOptions={{
             type: 'task',
             markerEnd: { type: MarkerType.ArrowClosed, color: '#94a3b8' },

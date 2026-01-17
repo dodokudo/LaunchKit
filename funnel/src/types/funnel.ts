@@ -26,6 +26,8 @@ export interface Connection {
   fromDeliveryId: string; // 接続元の配信ID
   toDeliveryId: string;   // 接続先の配信ID
   label?: string;         // 接続ラベル（条件など）
+  fromHandle?: 'top' | 'right' | 'bottom' | 'left';
+  toHandle?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 // 分岐点（あるセグメントから別のセグメントへの分岐）- 廃止予定

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { TimelineEditor } from '@/components/TimelineEditor';
-import { Funnel, createDefaultFunnel } from '@/types/funnel';
+import { Funnel } from '@/types/funnel';
 
 export default function EditorPage() {
   const params = useParams();
@@ -15,109 +15,67 @@ export default function EditorPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [funnelName, setFunnelName] = useState('');
   const [isEditingName, setIsEditingName] = useState(false);
+  const apiBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+  const normalizeFunnel = (data: Funnel) => {
+    const next = { ...data };
+    if (!next.transitions) next.transitions = [];
+    if (!next.connections) next.connections = [];
+    if (!next.canvasNodes) next.canvasNodes = [];
+    if (!next.canvasEdges) next.canvasEdges = [];
+    if (next.deliveries) {
+      next.deliveries = next.deliveries.map(d => {
+        if (!d.segmentIds) {
+          return { ...d, segmentIds: [d.segmentId] };
+        }
+        return d;
+      });
+    }
+    return next;
+  };
 
   useEffect(() => {
     const loadFunnel = async () => {
-      // まずAPIから取得を試みる
       try {
-        const res = await fetch(`/api/funnels/${funnelId}`);
+        const res = await fetch(`${apiBase}/api/funnels/${funnelId}`);
         if (res.ok) {
           const data = await res.json();
-          setFunnel(data);
-          setFunnelName(data.name);
-          // localStorageにも同期
-          syncToLocalStorage(data);
-          setIsLoading(false);
+          const normalized = normalizeFunnel(data);
+          setFunnel(normalized);
+          setFunnelName(normalized.name);
           return;
         }
-      } catch (e) {
-        console.log('API not available, falling back to localStorage');
-      }
 
-      // APIで見つからない場合はlocalStorageから取得
-      const stored = localStorage.getItem('funnels');
-      if (stored) {
-        const funnels: Funnel[] = JSON.parse(stored);
-        let found = funnels.find((f) => f.id === funnelId);
-
-        if (!found) {
-          found = createDefaultFunnel(funnelId);
-          const updatedFunnels = [...funnels, found];
-          localStorage.setItem('funnels', JSON.stringify(updatedFunnels));
-        } else {
-          let needsUpdate = false;
-          if (!found.transitions) {
-            found.transitions = [];
-            needsUpdate = true;
-          }
-          if (!found.connections) {
-            found.connections = [];
-            needsUpdate = true;
-          }
-          if (!found.canvasNodes) {
-            found.canvasNodes = [];
-            needsUpdate = true;
-          }
-          if (!found.canvasEdges) {
-            found.canvasEdges = [];
-            needsUpdate = true;
-          }
-          if (found.deliveries) {
-            found.deliveries = found.deliveries.map(d => {
-              if (!d.segmentIds) {
-                needsUpdate = true;
-                return { ...d, segmentIds: [d.segmentId] };
-              }
-              return d;
-            });
-          }
-          if (needsUpdate) {
-            const updatedFunnels = funnels.map(f => f.id === funnelId ? found : f);
-            localStorage.setItem('funnels', JSON.stringify(updatedFunnels));
+        if (res.status === 404) {
+          const created = await fetch(`${apiBase}/api/funnels`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: funnelId }),
+          });
+          if (created.ok) {
+            const data = await created.json();
+            const normalized = normalizeFunnel(data);
+            setFunnel(normalized);
+            setFunnelName(normalized.name);
           }
         }
-
-        setFunnel(found);
-        setFunnelName(found.name);
-      } else {
-        const newFunnel = createDefaultFunnel(funnelId);
-        localStorage.setItem('funnels', JSON.stringify([newFunnel]));
-        setFunnel(newFunnel);
-        setFunnelName(newFunnel.name);
+      } catch (e) {
+        console.error('Failed to load funnel', e);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     loadFunnel();
   }, [funnelId]);
 
-  const syncToLocalStorage = (data: Funnel) => {
-    const stored = localStorage.getItem('funnels');
-    const funnels: Funnel[] = stored ? JSON.parse(stored) : [];
-    const index = funnels.findIndex(f => f.id === data.id);
-    if (index >= 0) {
-      funnels[index] = data;
-    } else {
-      funnels.push(data);
-    }
-    localStorage.setItem('funnels', JSON.stringify(funnels));
-  };
-
   const handleUpdate = useCallback(
     async (updatedFunnel: Funnel) => {
       setIsSaving(true);
 
-      // localStorageに保存
-      const stored = localStorage.getItem('funnels');
-      const funnels: Funnel[] = stored ? JSON.parse(stored) : [];
-      const updatedFunnels = funnels.map((f) =>
-        f.id === funnelId ? updatedFunnel : f
-      );
-      localStorage.setItem('funnels', JSON.stringify(updatedFunnels));
-
       // APIにも保存（バックグラウンド）
       try {
-        await fetch(`/api/funnels/${funnelId}`, {
+        await fetch(`${apiBase}/api/funnels/${funnelId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedFunnel),
@@ -152,16 +110,9 @@ export default function EditorPage() {
     setIsSaving(true);
     const updatedFunnel = { ...funnel, updatedAt: new Date().toISOString() };
 
-    const stored = localStorage.getItem('funnels');
-    const funnels: Funnel[] = stored ? JSON.parse(stored) : [];
-    const updatedFunnels = funnels.map((f) =>
-      f.id === funnelId ? updatedFunnel : f
-    );
-    localStorage.setItem('funnels', JSON.stringify(updatedFunnels));
-
     // APIにも保存
     try {
-      await fetch(`/api/funnels/${funnelId}`, {
+      await fetch(`${apiBase}/api/funnels/${funnelId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedFunnel),

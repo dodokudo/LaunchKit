@@ -1,267 +1,7 @@
 [
   {
-    "id": "funnel-1768406773692",
-    "name": "Test",
-    "description": "",
-    "baseDate": "2026-01-28",
-    "baseDateDays": 3,
-    "baseDateLabel": "販売期間",
-    "startDate": "2026-01-14",
-    "endDate": "2026-02-04",
-    "entryPoints": [],
-    "segments": [
-      {
-        "id": "all",
-        "name": "全員",
-        "color": "#6B7280",
-        "isDefault": true
-      }
-    ],
-    "deliveries": [],
-    "connections": [],
-    "transitions": [],
-    "canvasNodes": [
-      {
-        "id": "node-1",
-        "type": "funnel",
-        "position": {
-          "x": 100,
-          "y": 100
-        },
-        "data": {
-          "label": "Instagram",
-          "nodeType": "entry"
-        }
-      },
-      {
-        "id": "node-2",
-        "type": "funnel",
-        "position": {
-          "x": 300,
-          "y": 100
-        },
-        "data": {
-          "label": "LINE登録",
-          "nodeType": "action"
-        }
-      },
-      {
-        "id": "node-3",
-        "type": "funnel",
-        "position": {
-          "x": 500,
-          "y": 100
-        },
-        "data": {
-          "label": "購入",
-          "nodeType": "conversion"
-        }
-      }
-    ],
-    "canvasEdges": [
-      {
-        "id": "edge-1",
-        "source": "node-1",
-        "target": "node-2"
-      },
-      {
-        "id": "edge-2",
-        "source": "node-2",
-        "target": "node-3"
-      }
-    ],
-    "branchPoints": [],
-    "createdAt": "2026-01-14T16:06:13.692Z",
-    "updatedAt": "2026-01-14T16:06:52.304Z"
-  },
-  {
-    "id": "funnel-1768406949111",
-    "name": "SNS集客ファネル",
-    "description": "",
-    "baseDate": "2026-01-28",
-    "baseDateDays": 3,
-    "baseDateLabel": "販売期間",
-    "startDate": "2026-01-14",
-    "endDate": "2026-02-04",
-    "entryPoints": [],
-    "segments": [
-      {
-        "id": "all",
-        "name": "全員",
-        "color": "#6B7280",
-        "isDefault": true
-      }
-    ],
-    "deliveries": [],
-    "connections": [],
-    "transitions": [],
-    "canvasNodes": [
-      {
-        "id": "n1",
-        "type": "funnel",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
-        "data": {
-          "label": "Instagram",
-          "nodeType": "entry"
-        }
-      },
-      {
-        "id": "n2",
-        "type": "funnel",
-        "position": {
-          "x": 0,
-          "y": 100
-        },
-        "data": {
-          "label": "TikTok",
-          "nodeType": "entry"
-        }
-      },
-      {
-        "id": "n3",
-        "type": "funnel",
-        "position": {
-          "x": 270,
-          "y": 50
-        },
-        "data": {
-          "label": "LINE登録",
-          "nodeType": "action"
-        }
-      },
-      {
-        "id": "n4",
-        "type": "funnel",
-        "position": {
-          "x": 540,
-          "y": 0
-        },
-        "data": {
-          "label": "動画視聴",
-          "nodeType": "action"
-        }
-      },
-      {
-        "id": "n5",
-        "type": "funnel",
-        "position": {
-          "x": 540,
-          "y": 100
-        },
-        "data": {
-          "label": "セミナー申込",
-          "nodeType": "action"
-        }
-      },
-      {
-        "id": "n6",
-        "type": "funnel",
-        "position": {
-          "x": 810,
-          "y": 50
-        },
-        "data": {
-          "label": "商品購入",
-          "nodeType": "conversion"
-        }
-      }
-    ],
-    "canvasEdges": [
-      {
-        "id": "e1",
-        "source": "n1",
-        "target": "n3",
-        "type": "step",
-        "style": {
-          "stroke": "#6B7280",
-          "strokeWidth": 2
-        },
-        "markerEnd": {
-          "type": "arrowclosed",
-          "color": "#6B7280"
-        }
-      },
-      {
-        "id": "e2",
-        "source": "n2",
-        "target": "n3",
-        "type": "step",
-        "style": {
-          "stroke": "#6B7280",
-          "strokeWidth": 2
-        },
-        "markerEnd": {
-          "type": "arrowclosed",
-          "color": "#6B7280"
-        }
-      },
-      {
-        "id": "e3",
-        "source": "n3",
-        "target": "n4",
-        "type": "step",
-        "style": {
-          "stroke": "#6B7280",
-          "strokeWidth": 2
-        },
-        "markerEnd": {
-          "type": "arrowclosed",
-          "color": "#6B7280"
-        }
-      },
-      {
-        "id": "e4",
-        "source": "n3",
-        "target": "n5",
-        "type": "step",
-        "style": {
-          "stroke": "#6B7280",
-          "strokeWidth": 2
-        },
-        "markerEnd": {
-          "type": "arrowclosed",
-          "color": "#6B7280"
-        }
-      },
-      {
-        "id": "e5",
-        "source": "n4",
-        "target": "n6",
-        "type": "step",
-        "style": {
-          "stroke": "#6B7280",
-          "strokeWidth": 2
-        },
-        "markerEnd": {
-          "type": "arrowclosed",
-          "color": "#6B7280"
-        }
-      },
-      {
-        "id": "e6",
-        "source": "n5",
-        "target": "n6",
-        "type": "step",
-        "style": {
-          "stroke": "#6B7280",
-          "strokeWidth": 2
-        },
-        "markerEnd": {
-          "type": "arrowclosed",
-          "color": "#6B7280"
-        }
-      }
-    ],
-    "branchPoints": [],
-    "createdAt": "2026-01-14T16:09:09.111Z",
-    "updatedAt": "2026-01-14T16:18:53.523Z"
-  },
-  {
     "id": "funnel-1768407696991",
-    "name": "対角線フローテスト",
+    "name": "テスト",
     "description": "",
     "baseDate": "2026-01-24",
     "baseDateDays": 3,
@@ -294,8 +34,25 @@
     ],
     "deliveries": [
       {
-        "id": "delivery-1768415452167",
+        "id": "delivery-1768415476951",
+        "date": "2026-01-22",
+        "segmentId": "seg-1768415354514",
+        "segmentIds": [
+          "seg-1768415354514",
+          "seg-1768415362751",
+          "seg-1768415363451"
+        ],
+        "title": "テスト動画",
+        "type": "video",
+        "description": "",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22"
+      },
+      {
+        "id": "delivery-1768636258116",
         "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
         "segmentId": "all",
         "segmentIds": [
           "all",
@@ -303,18 +60,22 @@
           "seg-1768415362751",
           "seg-1768415363451"
         ],
-        "title": "挨拶メッセージ",
+        "title": "タイトル",
+        "description": "",
         "type": "message"
       },
       {
-        "id": "delivery-1768415476951",
-        "date": "2026-01-22",
-        "segmentId": "seg-1768415354514",
+        "id": "delivery-1768637170409",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "all",
         "segmentIds": [
-          "seg-1768415354514"
+          "all"
         ],
-        "title": "テスト動画",
-        "type": "video"
+        "title": "タイトル",
+        "description": "",
+        "type": "message"
       }
     ],
     "connections": [],
@@ -649,7 +410,8 @@
         "id": "e4",
         "source": "n4",
         "target": "n5",
-        "type": "step"
+        "type": "step",
+        "selected": true
       },
       {
         "id": "e5",
@@ -660,7 +422,7 @@
     ],
     "branchPoints": [],
     "createdAt": "2026-01-14T16:21:36.991Z",
-    "updatedAt": "2026-01-14T20:03:45.219Z",
+    "updatedAt": "2026-01-17T08:20:03.995Z",
     "phaseNames": [
       "流入",
       "アクション",
@@ -719,5 +481,32 @@
       "CV",
       "購入"
     ]
+  },
+  {
+    "id": "funnel-1768638061419",
+    "name": "新規ファネル",
+    "description": "",
+    "baseDate": "2026-01-31",
+    "baseDateDays": 3,
+    "baseDateLabel": "販売期間",
+    "startDate": "2026-01-17",
+    "endDate": "2026-02-07",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "all",
+        "name": "全員",
+        "color": "#6B7280",
+        "isDefault": true
+      }
+    ],
+    "deliveries": [],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [],
+    "canvasEdges": [],
+    "branchPoints": [],
+    "createdAt": "2026-01-17T08:21:01.420Z",
+    "updatedAt": "2026-01-17T08:21:01.420Z"
   }
 ]

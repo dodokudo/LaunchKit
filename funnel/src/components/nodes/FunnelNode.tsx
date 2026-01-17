@@ -1,7 +1,7 @@
 'use client';
 
-import { memo, useState, useEffect } from 'react';
-import { Handle, Position, NodeProps } from 'reactflow';
+import { memo, useState, useEffect, useMemo } from 'react';
+import { Handle, Position, NodeProps, useStore } from 'reactflow';
 
 interface FunnelNodeData {
   label: string;
@@ -10,7 +10,6 @@ interface FunnelNodeData {
   border?: string;
   target?: number;
   denominatorId?: string;
-  kpiOptions?: { id: string; label: string; target?: number }[];
   showKpi?: boolean;
 }
 
@@ -20,7 +19,17 @@ export const FunnelNode = memo(({ id, data, selected }: NodeProps<FunnelNodeData
   const [isMetricEditing, setIsMetricEditing] = useState(false);
   const [target, setTarget] = useState<number | ''>(data.target ?? '');
   const [denominatorId, setDenominatorId] = useState<string>(data.denominatorId ?? '');
-  const denominatorTarget = data.kpiOptions?.find((option) => option.id === data.denominatorId)?.target;
+
+  // kpiOptions を store から直接取得（無限ループを防ぐ）
+  const kpiOptions = useStore((state) =>
+    state.getNodes().map((node) => ({
+      id: node.id,
+      label: node.data?.label || 'ノード',
+      target: node.data?.target,
+    }))
+  );
+
+  const denominatorTarget = kpiOptions.find((option) => option.id === data.denominatorId)?.target;
   const cvr =
     data.target && denominatorTarget ? Math.round((data.target / denominatorTarget) * 1000) / 10 : null;
 
@@ -124,7 +133,7 @@ export const FunnelNode = memo(({ id, data, selected }: NodeProps<FunnelNodeData
                 className="w-24 text-[10px] border border-slate-200 rounded px-1 py-0.5 focus:outline-none bg-white"
               >
                 <option value="">CVR基準</option>
-                {(data.kpiOptions || [])
+                {kpiOptions
                   .filter((option) => option.id !== id)
                   .map((option) => (
                     <option key={option.id} value={option.id}>

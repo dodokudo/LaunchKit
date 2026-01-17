@@ -1,11 +1,8 @@
 'use client';
 
-import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { Funnel, Segment, DeliveryItem, Connection, SegmentTransition, DELIVERY_TYPES, KPI, Task, Period } from '@/types/funnel';
-import { SegmentPanel } from './SegmentPanel';
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import { Funnel, Segment, DeliveryItem, Connection, KPI, Task, Period } from '@/types/funnel';
 import { FreeCanvas } from './FreeCanvas';
-import { DeliveryModal } from './DeliveryModal';
-import { SettingsPanel } from './SettingsPanel';
 import { Node, Edge } from 'reactflow';
 
 interface TimelineEditorProps {
@@ -14,10 +11,6 @@ interface TimelineEditorProps {
 }
 
 export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
-  const [selectedCell, setSelectedCell] = useState<{ date: string; segmentId: string } | null>(null);
-  const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false);
-  const [editingDelivery, setEditingDelivery] = useState<DeliveryItem | null>(null);
-  const [connectingFrom, setConnectingFrom] = useState<string | null>(null);
   const [isCanvasCollapsed, setIsCanvasCollapsed] = useState(false);
   const [isTaskListCollapsed, setIsTaskListCollapsed] = useState(false);
   const [canvasHeight, setCanvasHeight] = useState(50); // パーセント
@@ -34,6 +27,51 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
   const [isResizingSchedule, setIsResizingSchedule] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const gridContentRef = useRef<HTMLDivElement>(null);
+  const deliveryCardRefs = useRef(new Map<string, HTMLDivElement>());
+  const scheduleRafRef = useRef<number | null>(null);
+  const [scheduleLayoutTick, setScheduleLayoutTick] = useState(0);
+  const [dayWidth, setDayWidth] = useState(120);
+  const rowHeight = 200;
+  const segmentLabelWidth = 120;
+  const [isResizingDayWidth, setIsResizingDayWidth] = useState(false);
+  const dayWidthDragRef = useRef<{ startX: number; startWidth: number } | null>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  const [connectingFrom, setConnectingFrom] = useState<{ id: string; side: 'top' | 'right' | 'bottom' | 'left' } | null>(null);
+  const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
+  const [scheduleModalDeliveryId, setScheduleModalDeliveryId] = useState<string | null>(null);
+  const [scheduleModalTitle, setScheduleModalTitle] = useState('');
+  const [scheduleModalDescription, setScheduleModalDescription] = useState('');
+  const [scheduleModalStartIndex, setScheduleModalStartIndex] = useState(0);
+  const [scheduleModalEndIndex, setScheduleModalEndIndex] = useState(0);
+  const [scheduleModalSegmentStart, setScheduleModalSegmentStart] = useState(0);
+  const [scheduleModalSegmentEnd, setScheduleModalSegmentEnd] = useState(0);
+  const [scheduleContextMenu, setScheduleContextMenu] = useState<{
+    x: number;
+    y: number;
+    deliveryId: string;
+  } | null>(null);
+  const scheduleHistoryRef = useRef<
+    { deliveries: DeliveryItem[]; connections: Connection[]; key: string }[]
+  >([]);
+  const scheduleHistoryIndexRef = useRef(-1);
+  const isScheduleUndoingRef = useRef(false);
+  const [dragState, setDragState] = useState<{
+    id: string;
+    mode: 'move' | 'resize-x' | 'resize-y';
+    startIndex: number;
+    endIndex: number;
+    segmentStart: number;
+    segmentEnd: number;
+    startX: number;
+    startY: number;
+  } | null>(null);
+  const dragPreviewRef = useRef<{
+    startIndex: number;
+    endIndex: number;
+    segmentStart: number;
+    segmentEnd: number;
+  } | null>(null);
   const [segmentNameDrafts, setSegmentNameDrafts] = useState<Record<string, string>>({});
   const [taskCategoryDrafts, setTaskCategoryDrafts] = useState<string[]>([]);
   const [taskTitleDrafts, setTaskTitleDrafts] = useState<Record<string, string>>({});
@@ -115,6 +153,116 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
       return next;
     });
   }, [tasks]);
+
+  const bumpScheduleLayout = useCallback(() => {
+    if (scheduleRafRef.current !== null) return;
+    scheduleRafRef.current = window.requestAnimationFrame(() => {
+      scheduleRafRef.current = null;
+      setScheduleLayoutTick((prev) => prev + 1);
+    });
+  }, []);
+
+  useEffect(() => {
+    const gridEl = gridRef.current;
+    if (!gridEl) return;
+    const handle = () => bumpScheduleLayout();
+    gridEl.addEventListener('scroll', handle, { passive: true });
+    window.addEventListener('resize', handle);
+    return () => {
+      gridEl.removeEventListener('scroll', handle);
+      window.removeEventListener('resize', handle);
+    };
+  }, [bumpScheduleLayout]);
+
+  const handleCardMouseDown = (e: React.MouseEvent, delivery: DeliveryItem) => {
+    if (e.button !== 0) return;
+    e.stopPropagation();
+    const { start, end } = getDeliveryDateRange(delivery);
+    const startIndex = Math.max(0, dates.indexOf(start));
+    const endIndex = Math.max(startIndex, dates.indexOf(end));
+    const segmentsRange = getDeliverySegmentRange(delivery);
+    setDragState({
+      id: delivery.id,
+      mode: 'move',
+      startIndex,
+      endIndex,
+      segmentStart: segmentsRange.start,
+      segmentEnd: segmentsRange.end,
+      startX: e.clientX,
+      startY: e.clientY,
+    });
+  };
+
+  const handleResizeXMouseDown = (e: React.MouseEvent, delivery: DeliveryItem) => {
+    if (e.button !== 0) return;
+    e.stopPropagation();
+    const { start, end } = getDeliveryDateRange(delivery);
+    const startIndex = Math.max(0, dates.indexOf(start));
+    const endIndex = Math.max(startIndex, dates.indexOf(end));
+    const segmentsRange = getDeliverySegmentRange(delivery);
+    setDragState({
+      id: delivery.id,
+      mode: 'resize-x',
+      startIndex,
+      endIndex,
+      segmentStart: segmentsRange.start,
+      segmentEnd: segmentsRange.end,
+      startX: e.clientX,
+      startY: e.clientY,
+    });
+  };
+
+  const handleResizeYMouseDown = (e: React.MouseEvent, delivery: DeliveryItem) => {
+    if (e.button !== 0) return;
+    e.stopPropagation();
+    const { start, end } = getDeliveryDateRange(delivery);
+    const startIndex = Math.max(0, dates.indexOf(start));
+    const endIndex = Math.max(startIndex, dates.indexOf(end));
+    const segmentsRange = getDeliverySegmentRange(delivery);
+    setDragState({
+      id: delivery.id,
+      mode: 'resize-y',
+      startIndex,
+      endIndex,
+      segmentStart: segmentsRange.start,
+      segmentEnd: segmentsRange.end,
+      startX: e.clientX,
+      startY: e.clientY,
+    });
+  };
+
+  const addDeliveryAt = (dateIndex: number, segmentIndex: number) => {
+    if (dates.length === 0 || funnel.segments.length === 0) return;
+    const safeDateIndex = clamp(dateIndex, 0, dates.length - 1);
+    const safeSegmentIndex = clamp(segmentIndex, 0, funnel.segments.length - 1);
+    const date = dates[safeDateIndex];
+    const segment = funnel.segments[safeSegmentIndex];
+    const newDelivery: DeliveryItem = {
+      id: `delivery-${Date.now()}`,
+      date,
+      startDate: date,
+      endDate: date,
+      segmentId: segment.id,
+      segmentIds: [segment.id],
+      title: 'タイトル',
+      description: '',
+      type: 'message',
+    };
+    commitScheduleUpdate([...funnel.deliveries, newDelivery], connections);
+    setActiveCardId(newDelivery.id);
+    openScheduleModal(newDelivery);
+  };
+
+  const handleCanvasDoubleClick = (e: React.MouseEvent) => {
+    if (!gridContentRef.current) return;
+    if (dates.length === 0 || funnel.segments.length === 0) return;
+    const rect = gridContentRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const dateIndex = Math.floor(x / dayWidth);
+    const segmentIndex = Math.floor(y / rowHeight);
+    addDeliveryAt(dateIndex, segmentIndex);
+  };
 
   // リサイズ処理（ファネル設計）
   useEffect(() => {
@@ -382,9 +530,298 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     return result;
   }, [funnel.startDate, funnel.endDate]);
 
+  useEffect(() => {
+    if (!isScheduleModalOpen || !scheduleModalDeliveryId) return;
+    const delivery = funnel.deliveries.find((item) => item.id === scheduleModalDeliveryId);
+    if (!delivery) return;
+    const { start, end } = getDeliveryDateRange(delivery);
+    const startIndex = Math.max(0, dates.indexOf(start));
+    const endIndex = Math.max(startIndex, dates.indexOf(end));
+    const segmentRange = getDeliverySegmentRange(delivery);
+    setScheduleModalTitle(delivery.title || '');
+    setScheduleModalDescription(delivery.description || '');
+    setScheduleModalStartIndex(startIndex);
+    setScheduleModalEndIndex(endIndex);
+    setScheduleModalSegmentStart(segmentRange.start);
+    setScheduleModalSegmentEnd(segmentRange.end);
+  }, [funnel.deliveries, isScheduleModalOpen, scheduleModalDeliveryId, dates]);
+
+  const connections = useMemo(() => funnel.connections ?? [], [funnel.connections]);
+
+  useEffect(() => {
+    bumpScheduleLayout();
+  }, [bumpScheduleLayout, funnel.deliveries, connections, dates, funnel.segments]);
+
+  const scheduleSize = useMemo(() => {
+    return {
+      width: dates.length * dayWidth,
+      height: funnel.segments.length * rowHeight,
+    };
+  }, [dates.length, dayWidth, funnel.segments.length, rowHeight, scheduleLayoutTick]);
+
+  const setDeliveryCardRef = useCallback(
+    (id: string) => (el: HTMLDivElement | null) => {
+      if (el) {
+        deliveryCardRefs.current.set(id, el);
+      } else {
+        deliveryCardRefs.current.delete(id);
+      }
+    },
+    []
+  );
+
+  const handleStartConnection = (deliveryId: string, side: 'top' | 'right' | 'bottom' | 'left') => {
+    setConnectingFrom({ id: deliveryId, side });
+  };
+
+  const recordScheduleHistory = useCallback(() => {
+    if (isScheduleUndoingRef.current) return;
+    const snapshot = {
+      deliveries: funnel.deliveries,
+      connections: funnel.connections ?? [],
+    };
+    const key = JSON.stringify(snapshot);
+    const history = scheduleHistoryRef.current;
+    const last = history[scheduleHistoryIndexRef.current];
+    if (last && last.key === key) return;
+    history.splice(scheduleHistoryIndexRef.current + 1);
+    history.push({ ...snapshot, key });
+    scheduleHistoryIndexRef.current = history.length - 1;
+  }, [funnel.deliveries, funnel.connections]);
+
+  const commitScheduleUpdate = useCallback(
+    (nextDeliveries: DeliveryItem[], nextConnections: Connection[]) => {
+      recordScheduleHistory();
+      onUpdate({
+        ...funnel,
+        deliveries: nextDeliveries,
+        connections: nextConnections,
+        updatedAt: new Date().toISOString(),
+      });
+    },
+    [funnel, onUpdate, recordScheduleHistory]
+  );
+
+  const handleAddConnection = (
+    fromId: string,
+    fromSide: 'top' | 'right' | 'bottom' | 'left',
+    toId: string,
+    toSide: 'top' | 'right' | 'bottom' | 'left'
+  ) => {
+    if (fromId === toId) {
+      setConnectingFrom(null);
+      return;
+    }
+    const exists = connections.some(
+      (connection) =>
+        connection.fromDeliveryId === fromId &&
+        connection.toDeliveryId === toId &&
+        (connection.fromHandle || 'right') === fromSide &&
+        (connection.toHandle || 'left') === toSide
+    );
+    if (exists) {
+      setConnectingFrom(null);
+      return;
+    }
+    const next: Connection = {
+      id: `conn-${Date.now()}`,
+      fromDeliveryId: fromId,
+      toDeliveryId: toId,
+      fromHandle: fromSide,
+      toHandle: toSide,
+    };
+    commitScheduleUpdate(funnel.deliveries, [...connections, next]);
+    setConnectingFrom(null);
+  };
+
+  const handleScheduleUndo = useCallback(() => {
+    const history = scheduleHistoryRef.current;
+    const idx = scheduleHistoryIndexRef.current;
+    if (idx <= 0) return;
+    isScheduleUndoingRef.current = true;
+    const prev = history[idx - 1];
+    scheduleHistoryIndexRef.current = idx - 1;
+    onUpdate({
+      ...funnel,
+      deliveries: prev.deliveries,
+      connections: prev.connections,
+      updatedAt: new Date().toISOString(),
+    });
+    setTimeout(() => {
+      isScheduleUndoingRef.current = false;
+    }, 0);
+  }, [funnel, onUpdate]);
+
+  useEffect(() => {
+    scheduleHistoryRef.current = [];
+    scheduleHistoryIndexRef.current = -1;
+    recordScheduleHistory();
+  }, [funnel.id, recordScheduleHistory]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        handleScheduleUndo();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleScheduleUndo]);
+
+  const clamp = (value: number, min: number, max: number) => {
+    return Math.min(max, Math.max(min, value));
+  };
+
+  const getDeliveryDateRange = (delivery: DeliveryItem) => {
+    const start = delivery.startDate || delivery.date;
+    const end = delivery.endDate || start;
+    return { start, end };
+  };
+
+  const getDeliverySegmentRange = (delivery: DeliveryItem) => {
+    const ids = delivery.segmentIds?.length ? delivery.segmentIds : [delivery.segmentId];
+    const indices = ids
+      .map((id) => funnel.segments.findIndex((segment) => segment.id === id))
+      .filter((index) => index >= 0);
+    if (indices.length === 0) return { start: 0, end: 0 };
+    return { start: Math.min(...indices), end: Math.max(...indices) };
+  };
+
+  useEffect(() => {
+    if (!isResizingDayWidth) return;
+    const start = dayWidthDragRef.current;
+    if (!start) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const next = clamp(start.startWidth + (e.clientX - start.startX), 80, 220);
+      setDayWidth(next);
+    };
+    const handleMouseUp = () => {
+      setIsResizingDayWidth(false);
+      dayWidthDragRef.current = null;
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizingDayWidth]);
+
+  const applyDeliveryLayout = (
+    deliveryId: string,
+    startIndex: number,
+    endIndex: number,
+    segmentStart: number,
+    segmentEnd: number
+  ) => {
+    const startDate = dates[startIndex];
+    const endDate = dates[endIndex];
+    const segmentIds = funnel.segments.slice(segmentStart, segmentEnd + 1).map((segment) => segment.id);
+    const nextDeliveries = funnel.deliveries.map((delivery) =>
+      delivery.id === deliveryId
+        ? {
+            ...delivery,
+            date: startDate,
+            startDate,
+            endDate,
+            segmentId: segmentIds[0],
+            segmentIds,
+          }
+        : delivery
+    );
+    commitScheduleUpdate(nextDeliveries, connections);
+  };
+
+  const updateDelivery = useCallback(
+    (deliveryId: string, updates: Partial<DeliveryItem>) => {
+      const nextDeliveries = funnel.deliveries.map((delivery) =>
+        delivery.id === deliveryId ? { ...delivery, ...updates } : delivery
+      );
+      commitScheduleUpdate(nextDeliveries, connections);
+    },
+    [funnel, connections, commitScheduleUpdate]
+  );
+
+  useEffect(() => {
+    if (!dragState) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const spanDays = dragState.endIndex - dragState.startIndex;
+      const spanSegments = dragState.segmentEnd - dragState.segmentStart;
+      const deltaX = e.clientX - dragState.startX;
+      const deltaY = e.clientY - dragState.startY;
+      const shiftDays = Math.round(deltaX / dayWidth);
+      const shiftSegments = Math.round(deltaY / rowHeight);
+
+      let nextStart = dragState.startIndex;
+      let nextEnd = dragState.endIndex;
+      let nextSegmentStart = dragState.segmentStart;
+      let nextSegmentEnd = dragState.segmentEnd;
+
+      if (dragState.mode === 'move') {
+        nextStart = clamp(dragState.startIndex + shiftDays, 0, dates.length - 1);
+        nextEnd = clamp(nextStart + spanDays, nextStart, dates.length - 1);
+        nextSegmentStart = clamp(dragState.segmentStart + shiftSegments, 0, funnel.segments.length - 1);
+        nextSegmentEnd = clamp(nextSegmentStart + spanSegments, nextSegmentStart, funnel.segments.length - 1);
+      } else if (dragState.mode === 'resize-x') {
+        nextEnd = clamp(dragState.endIndex + shiftDays, dragState.startIndex, dates.length - 1);
+      } else if (dragState.mode === 'resize-y') {
+        nextSegmentEnd = clamp(dragState.segmentEnd + shiftSegments, dragState.segmentStart, funnel.segments.length - 1);
+      }
+
+      dragPreviewRef.current = {
+        startIndex: nextStart,
+        endIndex: nextEnd,
+        segmentStart: nextSegmentStart,
+        segmentEnd: nextSegmentEnd,
+      };
+      setScheduleLayoutTick((prev) => prev + 1);
+    };
+
+    const handleMouseUp = () => {
+      const preview = dragPreviewRef.current;
+      if (preview) {
+        applyDeliveryLayout(dragState.id, preview.startIndex, preview.endIndex, preview.segmentStart, preview.segmentEnd);
+      }
+      dragPreviewRef.current = null;
+      setDragState(null);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [dragState, dayWidth, rowHeight, dates.length, funnel.segments.length]);
+
   // セグメント更新
   const handleUpdateSegments = (segments: Segment[]) => {
     onUpdate({ ...funnel, segments, updatedAt: new Date().toISOString() });
+  };
+
+  const handleDeleteSegment = (segmentId: string) => {
+    const nextSegments = funnel.segments.filter((segment) => segment.id !== segmentId);
+    if (nextSegments.length === 0) return;
+    const nextDeliveries = funnel.deliveries
+      .map((delivery) => {
+        const currentIds = delivery.segmentIds?.length ? delivery.segmentIds : [delivery.segmentId];
+        const filteredIds = currentIds.filter((id) => id !== segmentId);
+        if (filteredIds.length === 0) return null;
+        return {
+          ...delivery,
+          segmentIds: filteredIds,
+          segmentId: filteredIds[0],
+        };
+      })
+      .filter((delivery): delivery is DeliveryItem => delivery !== null);
+    onUpdate({
+      ...funnel,
+      segments: nextSegments,
+      deliveries: nextDeliveries,
+      updatedAt: new Date().toISOString(),
+    });
   };
 
   const handleUpdateSegmentName = (segmentId: string, name: string) => {
@@ -405,62 +842,128 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     });
   };
 
-  // 特定のセル（日付×セグメント）の配信を取得
-  const getDeliveryRange = (delivery: DeliveryItem) => {
-    const startDate = delivery.startDate || delivery.date;
-    const endDate = delivery.endDate || delivery.date || startDate;
-    return { startDate, endDate };
-  };
-
-  const getDeliveries = (date: string, segmentId: string): DeliveryItem[] => {
-    return funnel.deliveries.filter(d => {
-      const { startDate, endDate } = getDeliveryRange(d);
-      if (!startDate || !endDate) return false;
-      if (date < startDate || date > endDate) return false;
-      const segmentIds = d.segmentIds || [d.segmentId];
-      return segmentIds.includes(segmentId);
-    });
-  };
-
-  // セルクリック
-  const handleCellClick = (date: string, segmentId: string) => {
-    if (connectingFrom) {
-      setConnectingFrom(null);
-      return;
-    }
-    setSelectedCell({ date, segmentId });
-    setEditingDelivery(null);
-    setIsDeliveryModalOpen(true);
-  };
-
   // 配信クリック
   const handleDeliveryClick = (e: React.MouseEvent, delivery: DeliveryItem) => {
     e.stopPropagation();
-    setEditingDelivery(delivery);
-    setSelectedCell(null);
-    setIsDeliveryModalOpen(true);
+    setActiveCardId(delivery.id);
   };
 
-  // 配信を保存
-  const handleSaveDelivery = (delivery: DeliveryItem) => {
-    let newDeliveries: DeliveryItem[];
-    if (editingDelivery) {
-      newDeliveries = funnel.deliveries.map(d => d.id === editingDelivery.id ? delivery : d);
-    } else {
-      newDeliveries = [...funnel.deliveries, delivery];
+  const handleDeliveryDelete = (deliveryId: string) => {
+    const nextDeliveries = funnel.deliveries.filter((delivery) => delivery.id !== deliveryId);
+    const nextConnections = connections.filter(
+      (connection) =>
+        connection.fromDeliveryId !== deliveryId && connection.toDeliveryId !== deliveryId
+    );
+    commitScheduleUpdate(nextDeliveries, nextConnections);
+    if (scheduleModalDeliveryId === deliveryId) {
+      closeScheduleModal();
     }
-    onUpdate({ ...funnel, deliveries: newDeliveries, updatedAt: new Date().toISOString() });
-    setIsDeliveryModalOpen(false);
-    setSelectedCell(null);
-    setEditingDelivery(null);
+    setActiveCardId(null);
+    setConnectingFrom(null);
   };
 
-  // 配信を削除
-  const handleDeleteDelivery = (deliveryId: string) => {
-    const newDeliveries = funnel.deliveries.filter(d => d.id !== deliveryId);
-    onUpdate({ ...funnel, deliveries: newDeliveries, updatedAt: new Date().toISOString() });
-    setIsDeliveryModalOpen(false);
-    setEditingDelivery(null);
+  const getHandlePoint = (
+    rect: DOMRect,
+    containerRect: DOMRect,
+    side: 'top' | 'right' | 'bottom' | 'left'
+  ) => {
+    const left = rect.left - containerRect.left;
+    const top = rect.top - containerRect.top;
+    const centerX = left + rect.width / 2;
+    const centerY = top + rect.height / 2;
+    switch (side) {
+      case 'top':
+        return { x: centerX, y: top };
+      case 'bottom':
+        return { x: centerX, y: top + rect.height };
+      case 'left':
+        return { x: left, y: centerY };
+      case 'right':
+        return { x: left + rect.width, y: centerY };
+      default:
+        return { x: left + rect.width, y: centerY };
+    }
+  };
+
+  const resolveDeliveryLayout = (delivery: DeliveryItem) => {
+    if (dragState?.id === delivery.id && dragPreviewRef.current) {
+      return dragPreviewRef.current;
+    }
+    const { start, end } = getDeliveryDateRange(delivery);
+    const startIndex = Math.max(0, dates.indexOf(start));
+    const endIndex = Math.max(startIndex, dates.indexOf(end));
+    const segmentRange = getDeliverySegmentRange(delivery);
+    return {
+      startIndex,
+      endIndex,
+      segmentStart: segmentRange.start,
+      segmentEnd: segmentRange.end,
+    };
+  };
+
+  const openScheduleModal = (delivery: DeliveryItem) => {
+    const { start, end } = getDeliveryDateRange(delivery);
+    const startIndex = Math.max(0, dates.indexOf(start));
+    const endIndex = Math.max(startIndex, dates.indexOf(end));
+    const segmentRange = getDeliverySegmentRange(delivery);
+    setScheduleModalDeliveryId(delivery.id);
+    setScheduleModalTitle(delivery.title || '');
+    setScheduleModalDescription(delivery.description || '');
+    setScheduleModalStartIndex(startIndex);
+    setScheduleModalEndIndex(endIndex);
+    setScheduleModalSegmentStart(segmentRange.start);
+    setScheduleModalSegmentEnd(segmentRange.end);
+    setIsScheduleModalOpen(true);
+  };
+
+  const closeScheduleModal = () => {
+    setIsScheduleModalOpen(false);
+    setScheduleModalDeliveryId(null);
+  };
+
+  const saveScheduleModal = () => {
+    if (!scheduleModalDeliveryId) return;
+    const nextStart = clamp(
+      Math.min(scheduleModalStartIndex, scheduleModalEndIndex),
+      0,
+      dates.length - 1
+    );
+    const nextEnd = clamp(
+      Math.max(scheduleModalStartIndex, scheduleModalEndIndex),
+      nextStart,
+      dates.length - 1
+    );
+    const nextSegmentStart = clamp(
+      Math.min(scheduleModalSegmentStart, scheduleModalSegmentEnd),
+      0,
+      funnel.segments.length - 1
+    );
+    const nextSegmentEnd = clamp(
+      Math.max(scheduleModalSegmentStart, scheduleModalSegmentEnd),
+      nextSegmentStart,
+      funnel.segments.length - 1
+    );
+    const startDate = dates[nextStart];
+    const endDate = dates[nextEnd];
+    const segmentIds = funnel.segments
+      .slice(nextSegmentStart, nextSegmentEnd + 1)
+      .map((segment) => segment.id);
+    const nextDeliveries = funnel.deliveries.map((delivery) =>
+      delivery.id === scheduleModalDeliveryId
+        ? {
+            ...delivery,
+            title: scheduleModalTitle.trim() || 'タイトル',
+            description: scheduleModalDescription.trim(),
+            date: startDate,
+            startDate,
+            endDate,
+            segmentId: segmentIds[0],
+            segmentIds,
+          }
+        : delivery
+    );
+    commitScheduleUpdate(nextDeliveries, connections);
+    closeScheduleModal();
   };
 
   // 日付フォーマット
@@ -540,12 +1043,28 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                 >⋮⋮</span>
                 <span className="text-sm font-medium text-gray-700">スケジュール</span>
               </div>
-              <button
-                onClick={() => setIsScheduleCollapsed(!isScheduleCollapsed)}
-                className="px-2 py-1 text-gray-400 hover:text-gray-600"
-              >
-                {isScheduleCollapsed ? '▼' : '▲'}
-              </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => addDeliveryAt(0, 0)}
+                    className="text-xs text-gray-500 border border-gray-300 rounded px-2 py-1 hover:bg-gray-100"
+                  >
+                    + カード追加
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleScheduleUndo}
+                    className="text-xs text-gray-500 border border-gray-300 rounded px-2 py-1 hover:bg-gray-100"
+                  >
+                    戻す
+                  </button>
+                  <button
+                    onClick={() => setIsScheduleCollapsed(!isScheduleCollapsed)}
+                    className="px-2 py-1 text-gray-400 hover:text-gray-600"
+                  >
+                    {isScheduleCollapsed ? '▼' : '▲'}
+                </button>
+              </div>
             </div>
 
             {/* スケジュールコンテンツ */}
@@ -595,6 +1114,14 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                               }}
                               className="flex-1 text-xs border border-transparent hover:border-gray-300 focus:border-gray-400 rounded px-1 py-0.5 focus:outline-none text-gray-700 bg-transparent"
                             />
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteSegment(segment.id)}
+                              className="text-gray-300 hover:text-red-500 text-xs opacity-0 group-hover:opacity-100"
+                              title="セグメント削除"
+                            >
+                              ×
+                            </button>
                           </div>
                         ))}
                       </div>
@@ -753,113 +1280,318 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
 
                 {/* 右: タイムライン */}
                 <div className="flex-1 overflow-auto p-2 panel-white" ref={gridRef}>
-                  <div className="inline-block min-w-full">
+                  <div className="min-w-max">
                     {/* 期間帯（上部） */}
                     {displayPeriods.length > 0 && (
                       <div className="flex border-b border-gray-200 sticky top-0 bg-white z-30">
-                        <div className="w-24 flex-shrink-0 p-1 border-r border-gray-200 text-[10px] text-gray-400">
+                        <div
+                          className="flex-shrink-0 p-1 border-r border-gray-200 text-[10px] text-gray-400 bg-white"
+                          style={{ width: segmentLabelWidth }}
+                        >
                           期間
                         </div>
-                        {dates.map(date => {
-                          // この日付が含まれる期間を探す
-                          const matchingPeriod = displayPeriods.find(p => {
-                            const checkDate = new Date(date);
-                            const start = new Date(p.startDate);
-                            const end = new Date(p.endDate);
-                            return checkDate >= start && checkDate <= end;
-                          });
-                          return (
-                            <div
-                              key={`period-${date}`}
-                              className="w-24 flex-shrink-0 border-r border-gray-200 h-6"
-                              style={{ backgroundColor: matchingPeriod?.color || 'transparent' }}
-                            >
-                              {matchingPeriod && date === matchingPeriod.startDate && (
-                                <span className="text-[9px] text-gray-600 px-1 truncate block">
-                                  {matchingPeriod.name}
-                                </span>
-                              )}
-                            </div>
-                          );
-                        })}
+                        <div className="relative" style={{ width: scheduleSize.width }}>
+                          <div className="flex">
+                            {dates.map((date) => {
+                              const matchingPeriod = displayPeriods.find((p) => {
+                                const checkDate = new Date(date);
+                                const start = new Date(p.startDate);
+                                const end = new Date(p.endDate);
+                                return checkDate >= start && checkDate <= end;
+                              });
+                              return (
+                                <div
+                                  key={`period-${date}`}
+                                  className="flex-shrink-0 border-r border-gray-200 h-6"
+                                  style={{ width: dayWidth, backgroundColor: matchingPeriod?.color || 'transparent' }}
+                                >
+                                  {matchingPeriod && date === matchingPeriod.startDate && (
+                                    <span className="text-[9px] text-gray-600 px-1 truncate block">
+                                      {matchingPeriod.name}
+                                    </span>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
                     )}
 
                     {/* ヘッダー（日付） */}
-                    <div className={`flex border-b-2 border-gray-300 sticky bg-white z-20 ${displayPeriods.length > 0 ? 'top-6' : 'top-0'}`}>
-                      <div className="w-24 flex-shrink-0 p-2 font-medium text-gray-600 border-r border-gray-200 text-xs">
+                    <div
+                      className={`flex border-b-2 border-gray-300 sticky bg-white z-20 ${
+                        displayPeriods.length > 0 ? 'top-6' : 'top-0'
+                      }`}
+                    >
+                      <div
+                        className="flex-shrink-0 p-2 font-medium text-gray-600 border-r border-gray-200 text-xs bg-white"
+                        style={{ width: segmentLabelWidth }}
+                      >
                         セグメント
                       </div>
-                      {dates.map(date => {
-                        const dayNum = getBaseDateDayNumber(date);
-                        const isInPeriod = dayNum > 0;
-                        return (
-                          <div
-                            key={date}
-                            className={`w-24 flex-shrink-0 p-1 text-center border-r border-gray-200 ${isInPeriod ? 'bg-red-50' : ''}`}
-                          >
-                            <div className={`text-xs font-bold ${isInPeriod ? 'text-red-600' : 'text-gray-800'}`}>
-                              {formatDate(date)}
-                            </div>
-                            <div className={`text-[10px] ${isInPeriod ? 'text-red-500' : 'text-gray-500'}`}>
-                              ({getDayOfWeek(date)})
-                            </div>
-                          </div>
-                        );
-                      })}
+                      <div className="relative" style={{ width: scheduleSize.width }}>
+                        <div className="flex">
+                          {dates.map((date) => {
+                            const dayNum = getBaseDateDayNumber(date);
+                            const isInPeriod = dayNum > 0;
+                            return (
+                              <div
+                                key={date}
+                                className={`flex-shrink-0 p-1 text-center border-r border-gray-200 relative ${
+                                  isInPeriod ? 'bg-red-50' : ''
+                                }`}
+                                style={{ width: dayWidth }}
+                              >
+                                <div className={`text-xs font-bold ${isInPeriod ? 'text-red-600' : 'text-gray-800'}`}>
+                                  {formatDate(date)}
+                                </div>
+                                <div className={`text-[10px] ${isInPeriod ? 'text-red-500' : 'text-gray-500'}`}>
+                                  ({getDayOfWeek(date)})
+                                </div>
+                                <div
+                                  className="absolute right-0 top-0 h-full w-2 cursor-col-resize"
+                                  onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    setIsResizingDayWidth(true);
+                                    dayWidthDragRef.current = { startX: e.clientX, startWidth: dayWidth };
+                                  }}
+                                  title="日付幅を調整"
+                                />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
                     </div>
 
-                    {/* 行（セグメントごと） */}
-                    {funnel.segments.map((segment) => (
-                      <div key={segment.id} className="flex border-b border-gray-200">
+                    <div className="flex">
+                      <div
+                        className="flex-shrink-0 border-r border-gray-200 bg-white sticky left-0 z-10"
+                        style={{ width: segmentLabelWidth }}
+                      >
+                        {funnel.segments.map((segment) => (
+                          <div
+                            key={segment.id}
+                            className="flex items-center gap-2 px-2 border-b border-gray-200"
+                            style={{ height: rowHeight, backgroundColor: `${segment.color}14` }}
+                          >
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: segment.color }} />
+                            <span className="text-xs font-medium truncate">{segment.name}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div
+                        ref={gridContentRef}
+                        className="relative"
+                        style={{ width: scheduleSize.width, height: scheduleSize.height }}
+                        onDoubleClick={handleCanvasDoubleClick}
+                        onClick={() => {
+                          setActiveCardId(null);
+                          setConnectingFrom(null);
+                          setScheduleContextMenu(null);
+                        }}
+                      >
                         <div
-                          className="w-24 flex-shrink-0 p-1 border-r border-gray-200 flex items-center gap-1"
-                          style={{ backgroundColor: segment.color + '20' }}
+                          className="absolute inset-0"
+                          style={{
+                            backgroundImage:
+                              'linear-gradient(to right, rgba(229,231,235,0.8) 1px, transparent 1px), linear-gradient(to bottom, rgba(229,231,235,0.8) 1px, transparent 1px)',
+                            backgroundSize: `${dayWidth}px ${rowHeight}px`,
+                          }}
+                        />
+
+                        <svg
+                          className="absolute inset-0 z-0 pointer-events-none"
+                          width="100%"
+                          height="100%"
+                          viewBox={`0 0 ${scheduleSize.width} ${scheduleSize.height}`}
                         >
-                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: segment.color }} />
-                          <span className="text-xs font-medium truncate">{segment.name}</span>
-                        </div>
-                        {dates.map(date => {
-                          const deliveries = getDeliveries(date, segment.id);
-                          const isInBasePeriod = isInBaseDatePeriod(date);
-                          // 期間の色も適用
-                          const matchingPeriod = displayPeriods.find(p => {
-                            const checkDate = new Date(date);
-                            const start = new Date(p.startDate);
-                            const end = new Date(p.endDate);
-                            return checkDate >= start && checkDate <= end;
-                          });
+                          <defs>
+                            <marker
+                              id="schedule-arrow"
+                              viewBox="0 0 10 10"
+                              refX="10"
+                              refY="5"
+                              markerWidth="6"
+                              markerHeight="6"
+                              orient="auto-start-reverse"
+                            >
+                              <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
+                            </marker>
+                          </defs>
+                          {connections.map((connection) => {
+                            const sourceEl = deliveryCardRefs.current.get(connection.fromDeliveryId);
+                            const targetEl = deliveryCardRefs.current.get(connection.toDeliveryId);
+                            const containerEl = gridContentRef.current;
+                            if (!sourceEl || !targetEl || !containerEl) return null;
+                            const containerRect = containerEl.getBoundingClientRect();
+                            const sourceRect = sourceEl.getBoundingClientRect();
+                            const targetRect = targetEl.getBoundingClientRect();
+                            const startSide = connection.fromHandle || 'right';
+                            const endSide = connection.toHandle || 'left';
+                            const startPoint = getHandlePoint(sourceRect, containerRect, startSide);
+                            const endPoint = getHandlePoint(targetRect, containerRect, endSide);
+                            const startX = startPoint.x;
+                            const startY = startPoint.y;
+                            const endX = endPoint.x;
+                            const endY = endPoint.y;
+                            const curve = Math.max(40, Math.abs(endX - startX) * 0.4);
+                            const path = `M ${startX} ${startY} C ${startX + curve} ${startY}, ${endX - curve} ${endY}, ${endX} ${endY}`;
+                            return (
+                              <path
+                                key={connection.id}
+                                d={path}
+                                stroke="#94a3b8"
+                                strokeWidth={2}
+                                fill="none"
+                                markerEnd="url(#schedule-arrow)"
+                              />
+                            );
+                          })}
+                        </svg>
+
+                        {(() => {
+                          const stackCounts = new Map<string, number>();
+                          return funnel.deliveries.map((delivery) => {
+                            const layout = resolveDeliveryLayout(delivery);
+                            const stackKey = `${layout.segmentStart}:${layout.startIndex}`;
+                            const stackIndex = stackCounts.get(stackKey) ?? 0;
+                            stackCounts.set(stackKey, stackIndex + 1);
+                            const left = layout.startIndex * dayWidth + 6;
+                            const top = layout.segmentStart * rowHeight + 6 + stackIndex * 62;
+                            const rawWidth = (layout.endIndex - layout.startIndex + 1) * dayWidth - 12;
+                            const rawHeight = (layout.segmentEnd - layout.segmentStart + 1) * rowHeight - 12;
+                            const width = Math.min(Math.max(88, rawWidth), scheduleSize.width - left - 6);
+                            const height = Math.min(Math.max(48, rawHeight), scheduleSize.height - top - 6);
+                            const isActive = activeCardId === delivery.id;
+                          const startSegmentName = funnel.segments[layout.segmentStart]?.name || '';
+                          const endSegmentName = funnel.segments[layout.segmentEnd]?.name || '';
+                          const segmentLabel =
+                            layout.segmentStart === layout.segmentEnd
+                              ? startSegmentName
+                              : `${startSegmentName}〜${endSegmentName}`;
                           return (
                             <div
-                              key={`${segment.id}-${date}`}
-                              className={`w-24 flex-shrink-0 p-1 border-r border-gray-200 min-h-[150px] cursor-pointer hover:bg-gray-50 ${
-                                isInBasePeriod ? 'bg-red-50/50' : ''
+                              key={delivery.id}
+                              ref={setDeliveryCardRef(delivery.id)}
+                              onMouseDown={(e) => handleCardMouseDown(e, delivery)}
+                              onClick={(e) => handleDeliveryClick(e, delivery)}
+                              onDoubleClick={(e) => {
+                                e.stopPropagation();
+                                openScheduleModal(delivery);
+                              }}
+                              onContextMenu={(e) => {
+                                e.preventDefault();
+                                setScheduleContextMenu({
+                                  x: e.clientX,
+                                  y: e.clientY,
+                                  deliveryId: delivery.id,
+                                });
+                              }}
+                              className={`absolute rounded-lg border bg-white shadow-sm transition overflow-visible ${
+                                isActive ? 'ring-2 ring-blue-200 border-blue-300' : 'border-gray-200'
                               }`}
-                              style={{ backgroundColor: matchingPeriod && !isInBasePeriod ? matchingPeriod.color + '30' : undefined }}
-                              onClick={() => handleCellClick(date, segment.id)}
+                              style={{ left, top, width, height }}
                             >
-                              {deliveries.map(delivery => (
-                                <div
-                                  key={delivery.id}
-                                  onClick={(e) => handleDeliveryClick(e, delivery)}
-                                  className="rounded px-1 py-0.5 text-[10px] mb-1 cursor-pointer hover:opacity-80"
-                                  style={{ backgroundColor: DELIVERY_TYPES[delivery.type].color + '30' }}
-                                >
-                                  <span className="inline-flex items-center gap-1">
-                                    <span
-                                      className="w-1.5 h-1.5 rounded-full"
-                                      style={{ backgroundColor: DELIVERY_TYPES[delivery.type].color }}
-                                    />
-                                    <span className="text-[9px] text-gray-600">{DELIVERY_TYPES[delivery.type].label}</span>
-                                  </span>
-                                  <span className="ml-1 truncate">{delivery.title}</span>
+                              <div
+                                className={`absolute left-1/2 -translate-x-1/2 top-1 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                  connectingFrom?.id === delivery.id && connectingFrom.side === 'top'
+                                    ? 'border-blue-400'
+                                    : 'border-gray-300'
+                                }`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (connectingFrom && connectingFrom.id !== delivery.id) {
+                                    handleAddConnection(connectingFrom.id, connectingFrom.side, delivery.id, 'top');
+                                  } else {
+                                    handleStartConnection(delivery.id, 'top');
+                                  }
+                                }}
+                                onMouseDown={(e) => e.stopPropagation()}
+                                title="接続"
+                              >
+                                <span className="sr-only">接続</span>
+                              </div>
+                              <div
+                                className={`absolute right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                  connectingFrom?.id === delivery.id && connectingFrom.side === 'right'
+                                    ? 'border-blue-400'
+                                    : 'border-gray-300'
+                                }`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (connectingFrom && connectingFrom.id !== delivery.id) {
+                                    handleAddConnection(connectingFrom.id, connectingFrom.side, delivery.id, 'right');
+                                  } else {
+                                    handleStartConnection(delivery.id, 'right');
+                                  }
+                                }}
+                                onMouseDown={(e) => e.stopPropagation()}
+                                title="接続"
+                              >
+                                <span className="sr-only">接続</span>
+                              </div>
+                              <div
+                                className={`absolute left-1/2 -translate-x-1/2 bottom-1 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                  connectingFrom?.id === delivery.id && connectingFrom.side === 'bottom'
+                                    ? 'border-blue-400'
+                                    : 'border-gray-300'
+                                }`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (connectingFrom && connectingFrom.id !== delivery.id) {
+                                    handleAddConnection(connectingFrom.id, connectingFrom.side, delivery.id, 'bottom');
+                                  } else {
+                                    handleStartConnection(delivery.id, 'bottom');
+                                  }
+                                }}
+                                onMouseDown={(e) => e.stopPropagation()}
+                                title="接続"
+                              >
+                                <span className="sr-only">接続</span>
+                              </div>
+                              <div
+                                className={`absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                  connectingFrom?.id === delivery.id && connectingFrom.side === 'left'
+                                    ? 'border-blue-400'
+                                    : 'border-gray-300'
+                                }`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (connectingFrom && connectingFrom.id !== delivery.id) {
+                                    handleAddConnection(connectingFrom.id, connectingFrom.side, delivery.id, 'left');
+                                  } else {
+                                    handleStartConnection(delivery.id, 'left');
+                                  }
+                                }}
+                                onMouseDown={(e) => e.stopPropagation()}
+                                title="接続"
+                              >
+                                <span className="sr-only">接続</span>
+                              </div>
+                              <div className="flex items-start justify-between gap-2 px-2 pt-2">
+                                <div className="text-[11px] font-medium text-gray-700 truncate">
+                                  {delivery.title || 'タイトル'}
                                 </div>
-                              ))}
+                              </div>
+                              <div className="px-2 pt-1 text-[9px] text-gray-400 truncate">
+                                {segmentLabel}
+                              </div>
+
+                              <div className="px-2 pb-2 pt-1 text-[10px] text-gray-500">
+                                <div className="text-[10px] text-gray-500 line-clamp-2">
+                                  {delivery.description || '訴求・詳細'}
+                                </div>
+                              </div>
+
                             </div>
                           );
-                        })}
+                          });
+                        })()}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1078,22 +1810,146 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
         </button>
       )}
 
-      {/* 配信編集モーダル */}
-      {isDeliveryModalOpen && (
-        <DeliveryModal
-          date={selectedCell?.date || editingDelivery?.date || ''}
-          segments={funnel.segments}
-          initialSegmentIds={selectedCell ? [selectedCell.segmentId] : (editingDelivery?.segmentIds || [editingDelivery?.segmentId || ''])}
-          delivery={editingDelivery}
-          onSave={handleSaveDelivery}
-          onDelete={editingDelivery ? () => handleDeleteDelivery(editingDelivery.id) : undefined}
-          onClose={() => {
-            setIsDeliveryModalOpen(false);
-            setSelectedCell(null);
-            setEditingDelivery(null);
-          }}
-        />
+      {isScheduleModalOpen && scheduleModalDeliveryId && (
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg shadow-xl w-[360px] p-4">
+            <div className="text-sm font-medium text-gray-700 mb-3">配信カード</div>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-[10px] text-gray-500 mb-1">タイトル</label>
+                <input
+                  type="text"
+                  value={scheduleModalTitle}
+                  onChange={(e) => setScheduleModalTitle(e.target.value)}
+                  className="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                  placeholder="タイトル"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] text-gray-500 mb-1">訴求・詳細</label>
+                <textarea
+                  value={scheduleModalDescription}
+                  onChange={(e) => setScheduleModalDescription(e.target.value)}
+                  className="w-full text-xs border border-gray-300 rounded px-2 py-1 h-20 resize-none focus:outline-none"
+                  placeholder="訴求・詳細"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] text-gray-500 mb-1">期間</label>
+                <div className="flex items-center gap-2">
+                  <select
+                    value={scheduleModalStartIndex}
+                    onChange={(e) => setScheduleModalStartIndex(parseInt(e.target.value, 10))}
+                    className="flex-1 text-xs border border-gray-300 rounded px-2 py-1"
+                  >
+                    {dates.map((date, idx) => (
+                      <option key={`start-${date}`} value={idx}>
+                        {formatDate(date)}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="text-xs text-gray-400">→</span>
+                  <select
+                    value={scheduleModalEndIndex}
+                    onChange={(e) => setScheduleModalEndIndex(parseInt(e.target.value, 10))}
+                    className="flex-1 text-xs border border-gray-300 rounded px-2 py-1"
+                  >
+                    {dates.map((date, idx) => (
+                      <option key={`end-${date}`} value={idx}>
+                        {formatDate(date)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="block text-[10px] text-gray-500 mb-1">セグメント</label>
+                <div className="flex items-center gap-2">
+                  <select
+                    value={scheduleModalSegmentStart}
+                    onChange={(e) => setScheduleModalSegmentStart(parseInt(e.target.value, 10))}
+                    className="flex-1 text-xs border border-gray-300 rounded px-2 py-1"
+                  >
+                    {funnel.segments.map((segment, idx) => (
+                      <option key={`seg-start-${segment.id}`} value={idx}>
+                        {segment.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="text-xs text-gray-400">→</span>
+                  <select
+                    value={scheduleModalSegmentEnd}
+                    onChange={(e) => setScheduleModalSegmentEnd(parseInt(e.target.value, 10))}
+                    className="flex-1 text-xs border border-gray-300 rounded px-2 py-1"
+                  >
+                    {funnel.segments.map((segment, idx) => (
+                      <option key={`seg-end-${segment.id}`} value={idx}>
+                        {segment.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => handleDeliveryDelete(scheduleModalDeliveryId)}
+                className="text-xs text-red-500 px-2 py-1"
+              >
+                削除
+              </button>
+              <button
+                type="button"
+                onClick={closeScheduleModal}
+                className="text-xs text-gray-500 px-2 py-1"
+              >
+                キャンセル
+              </button>
+              <button
+                type="button"
+                onClick={saveScheduleModal}
+                className="text-xs bg-gray-700 text-white px-3 py-1 rounded hover:bg-gray-800"
+              >
+                保存
+              </button>
+            </div>
+          </div>
+        </div>
       )}
+
+      {scheduleContextMenu && (
+        <div
+          className="fixed z-50 bg-white border border-gray-200 rounded shadow-md text-xs"
+          style={{ left: scheduleContextMenu.x, top: scheduleContextMenu.y }}
+        >
+          <button
+            type="button"
+            onClick={() => {
+              const target = funnel.deliveries.find(
+                (delivery) => delivery.id === scheduleContextMenu.deliveryId
+              );
+              if (target) openScheduleModal(target);
+              setScheduleContextMenu(null);
+            }}
+            className="block w-full text-left px-3 py-2 hover:bg-gray-100"
+          >
+            編集
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              handleDeliveryDelete(scheduleContextMenu.deliveryId);
+              setScheduleContextMenu(null);
+            }}
+            className="block w-full text-left px-3 py-2 text-red-500 hover:bg-red-50"
+          >
+            削除
+          </button>
+        </div>
+      )}
+
     </div>
   );
 }

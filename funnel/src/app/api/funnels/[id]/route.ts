@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getFunnel, saveFunnel, deleteFunnel, addNode, updateNode, deleteNode, addEdge, autoLayout } from '@/lib/storage';
+import { layoutNodes } from '@/lib/storage';
+import { funnelStore } from '@/lib/funnelStore';
 
 // GET /api/funnels/[id] - 特定ファネル取得
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const funnel = getFunnel(params.id);
+  const funnel = await funnelStore.getById(params.id);
   if (!funnel) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
@@ -18,14 +19,14 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const funnel = getFunnel(params.id);
+  const funnel = await funnelStore.getById(params.id);
   if (!funnel) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
   const body = await request.json();
   const updated = { ...funnel, ...body, id: params.id };
-  const saved = saveFunnel(updated);
+  const saved = await funnelStore.save(updated);
   return NextResponse.json(saved);
 }
 
@@ -34,10 +35,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const deleted = deleteFunnel(params.id);
-  if (!deleted) {
-    return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  }
+  await funnelStore.delete(params.id);
   return NextResponse.json({ success: true });
 }
 
@@ -49,31 +47,41 @@ export async function PATCH(
   const body = await request.json();
   const { action, node, nodeId, edge, updates } = body;
 
-  let result = null;
+  const funnel = await funnelStore.getById(params.id);
+  if (!funnel) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
 
   switch (action) {
     case 'addNode':
-      result = addNode(params.id, node);
+      funnel.canvasNodes = funnel.canvasNodes || [];
+      funnel.canvasNodes.push(node);
       break;
     case 'updateNode':
-      result = updateNode(params.id, nodeId, updates);
+      funnel.canvasNodes = funnel.canvasNodes || [];
+      funnel.canvasNodes = funnel.canvasNodes.map((n: any) =>
+        n.id === nodeId ? { ...n, ...updates } : n
+      );
       break;
     case 'deleteNode':
-      result = deleteNode(params.id, nodeId);
+      funnel.canvasNodes = (funnel.canvasNodes || []).filter((n: any) => n.id !== nodeId);
+      funnel.canvasEdges = (funnel.canvasEdges || []).filter(
+        (e: any) => e.source !== nodeId && e.target !== nodeId
+      );
       break;
     case 'addEdge':
-      result = addEdge(params.id, edge);
+      funnel.canvasEdges = funnel.canvasEdges || [];
+      funnel.canvasEdges.push(edge);
+      funnel.canvasNodes = layoutNodes(funnel.canvasNodes || [], funnel.canvasEdges);
       break;
     case 'autoLayout':
-      result = autoLayout(params.id);
+      funnel.canvasNodes = layoutNodes(funnel.canvasNodes || [], funnel.canvasEdges || []);
       break;
     default:
       return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
   }
 
-  if (!result) {
-    return NextResponse.json({ error: 'Operation failed' }, { status: 400 });
-  }
-
-  return NextResponse.json(result);
+  funnel.updatedAt = new Date().toISOString();
+  const saved = await funnelStore.save(funnel);
+  return NextResponse.json(saved);
 }
