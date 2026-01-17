@@ -67,6 +67,12 @@ export function SegmentPanel({ segments, onUpdate }: SegmentPanelProps) {
     onUpdate(nextSegments);
   };
 
+  const handleMove = (index: number, direction: number) => {
+    const newIndex = index + direction;
+    if (newIndex < 0 || newIndex >= segments.length) return;
+    moveSegment(index, newIndex);
+  };
+
   const handlePointerMove = (event: React.PointerEvent) => {
     if (!draggingId) return;
     const target = document.elementFromPoint(event.clientX, event.clientY);
