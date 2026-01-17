@@ -5,11 +5,15 @@
   "rewrites": [
     {
       "source": "/funnel",
-      "destination": "https://funnel-ml94fwfhd-kudos-projects-0bee12bb.vercel.app"
+      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel"
     },
     {
       "source": "/funnel/:path*",
-      "destination": "https://funnel-ml94fwfhd-kudos-projects-0bee12bb.vercel.app/:path*"
+      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/_next/:path*"
     }
   ]
 }
