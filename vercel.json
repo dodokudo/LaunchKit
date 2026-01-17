@@ -2,18 +2,17 @@
   "buildCommand": "npm run build:deploy",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/funnel",
-      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel"
+      "src": "/funnel/(.*)",
+      "dest": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/$1"
     },
     {
-      "source": "/funnel/:path*",
-      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/:path*"
+      "src": "/funnel",
+      "dest": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel"
     },
     {
-      "source": "/_next/:path*",
-      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/_next/:path*"
+      "handle": "filesystem"
     }
   ]
 }
