@@ -625,6 +625,33 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
     event.dataTransfer.dropEffect = 'move';
   }, []);
 
+  const addNodeAt = useCallback(
+    (position: { x: number; y: number }) => {
+      const newNode: Node = {
+        id: `node-${Date.now()}`,
+        type: 'funnel',
+        position,
+        data: {
+          label: 'ノード',
+          bg: DEFAULT_NODE_STYLE.bg,
+          border: DEFAULT_NODE_STYLE.border,
+        },
+      };
+      setNodes((nds) => [...nds, newNode]);
+    },
+    [setNodes]
+  );
+
+  const addNodeAtCenter = useCallback(() => {
+    const reactFlowBounds = reactFlowWrapper.current?.getBoundingClientRect();
+    if (!reactFlowBounds) return;
+    const position = {
+      x: reactFlowBounds.width / 2 - 75,
+      y: reactFlowBounds.height / 2 - 25,
+    };
+    addNodeAt(position);
+  }, [addNodeAt]);
+
   const onDrop = useCallback(
     (event: React.DragEvent) => {
       event.preventDefault();
@@ -640,20 +667,9 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
         y: event.clientY - reactFlowBounds.top - 25,
       };
 
-      const newNode: Node = {
-        id: `node-${Date.now()}`,
-        type: 'funnel',
-        position,
-        data: {
-          label: 'ノード',
-          bg: DEFAULT_NODE_STYLE.bg,
-          border: DEFAULT_NODE_STYLE.border,
-        },
-      };
-
-      setNodes((nds) => [...nds, newNode]);
+      addNodeAt(position);
     },
-    [setNodes]
+    [addNodeAt]
   );
 
   // ドラッグ開始
@@ -720,6 +736,7 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
             <div
               draggable
               onDragStart={(e) => onDragStart(e, 'node')}
+              onClick={addNodeAtCenter}
               className="p-3 rounded border cursor-grab active:cursor-grabbing hover:bg-gray-100 transition text-sm text-gray-700 text-center mb-4"
               style={{ backgroundColor: DEFAULT_NODE_STYLE.bg, borderColor: DEFAULT_NODE_STYLE.border }}
             >

@@ -33,6 +33,9 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
   const [scheduleLayoutTick, setScheduleLayoutTick] = useState(0);
   const [dayWidth, setDayWidth] = useState(120);
   const rowHeight = 200;
+  const cardStackGap = 34;
+  const cardMinHeight = 28;
+  const cardMaxHeight = 36;
   const segmentLabelWidth = 120;
   const [isResizingDayWidth, setIsResizingDayWidth] = useState(false);
   const dayWidthDragRef = useRef<{ startX: number; startWidth: number } | null>(null);
@@ -46,6 +49,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
   const [scheduleModalEndIndex, setScheduleModalEndIndex] = useState(0);
   const [scheduleModalSegmentStart, setScheduleModalSegmentStart] = useState(0);
   const [scheduleModalSegmentEnd, setScheduleModalSegmentEnd] = useState(0);
+  const [segmentRangeAnchor, setSegmentRangeAnchor] = useState<number | null>(null);
   const [scheduleContextMenu, setScheduleContextMenu] = useState<{
     x: number;
     y: number;
@@ -73,6 +77,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     segmentEnd: number;
   } | null>(null);
   const [segmentNameDrafts, setSegmentNameDrafts] = useState<Record<string, string>>({});
+  const [draggingSegmentId, setDraggingSegmentId] = useState<string | null>(null);
   const [taskCategoryDrafts, setTaskCategoryDrafts] = useState<string[]>([]);
   const [taskTitleDrafts, setTaskTitleDrafts] = useState<Record<string, string>>({});
 
@@ -544,6 +549,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     setScheduleModalEndIndex(endIndex);
     setScheduleModalSegmentStart(segmentRange.start);
     setScheduleModalSegmentEnd(segmentRange.end);
+    setSegmentRangeAnchor(null);
   }, [funnel.deliveries, isScheduleModalOpen, scheduleModalDeliveryId, dates]);
 
   const connections = useMemo(() => funnel.connections ?? [], [funnel.connections]);
@@ -788,6 +794,38 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
   // セグメント更新
   const handleUpdateSegments = (segments: Segment[]) => {
     onUpdate({ ...funnel, segments, updatedAt: new Date().toISOString() });
+  };
+
+  const moveSegmentOrder = (fromId: string, toId: string) => {
+    if (fromId === toId) return;
+    const fromIndex = funnel.segments.findIndex((segment) => segment.id === fromId);
+    const toIndex = funnel.segments.findIndex((segment) => segment.id === toId);
+    if (fromIndex === -1 || toIndex === -1) return;
+    if (funnel.segments[fromIndex]?.isDefault) return;
+    if (funnel.segments[toIndex]?.isDefault) return;
+    const nextSegments = [...funnel.segments];
+    const [moved] = nextSegments.splice(fromIndex, 1);
+    nextSegments.splice(toIndex, 0, moved);
+    handleUpdateSegments(nextSegments);
+  };
+
+  const handleSegmentPointerMove = (event: React.PointerEvent) => {
+    if (!draggingSegmentId) return;
+    const target = document.elementFromPoint(event.clientX, event.clientY);
+    const row = target?.closest('[data-segment-id]') as HTMLElement | null;
+    const targetId = row?.dataset.segmentId;
+    if (!targetId) return;
+    moveSegmentOrder(draggingSegmentId, targetId);
+  };
+
+  const handleSegmentPointerUp = (event: React.PointerEvent) => {
+    if (!draggingSegmentId) return;
+    setDraggingSegmentId(null);
+    try {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    } catch {
+      // no-op
+    }
   };
 
   const handleDeleteSegment = (segmentId: string) => {
@@ -1101,8 +1139,27 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                       <div className="text-xs text-gray-500 mb-2">セグメント</div>
                       <div className="space-y-1">
                         {funnel.segments.map((segment) => (
-                          <div key={segment.id} className="flex items-center gap-2 group">
-                            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: segment.color }} />
+                          <div
+                            key={segment.id}
+                            className={`flex items-center gap-2 group rounded px-1 py-0.5 transition ${
+                              draggingSegmentId === segment.id ? 'bg-blue-50 ring-1 ring-blue-200' : ''
+                            }`}
+                            data-segment-id={segment.id}
+                          >
+                            <div
+                              className={`w-3 h-3 rounded-full flex-shrink-0 ${segment.isDefault ? '' : 'cursor-grab active:cursor-grabbing'} ${
+                                draggingSegmentId === segment.id ? 'scale-110 shadow-sm' : ''
+                              }`}
+                              style={{ backgroundColor: segment.color }}
+                              onPointerDown={(event) => {
+                                if (segment.isDefault) return;
+                                setDraggingSegmentId(segment.id);
+                                event.currentTarget.setPointerCapture(event.pointerId);
+                              }}
+                              onPointerMove={handleSegmentPointerMove}
+                              onPointerUp={handleSegmentPointerUp}
+                              title={segment.isDefault ? '固定' : 'ドラッグで並び替え'}
+                            />
                             <input
                               type="text"
                               value={segmentNameDrafts[segment.id] ?? segment.name}
@@ -1466,11 +1523,15 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                             const stackIndex = stackCounts.get(stackKey) ?? 0;
                             stackCounts.set(stackKey, stackIndex + 1);
                             const left = layout.startIndex * dayWidth + 6;
-                            const top = layout.segmentStart * rowHeight + 6 + stackIndex * 62;
+                            const top = layout.segmentStart * rowHeight + 6 + stackIndex * cardStackGap;
                             const rawWidth = (layout.endIndex - layout.startIndex + 1) * dayWidth - 12;
                             const rawHeight = (layout.segmentEnd - layout.segmentStart + 1) * rowHeight - 12;
                             const width = Math.min(Math.max(88, rawWidth), scheduleSize.width - left - 6);
-                            const height = Math.min(Math.max(48, rawHeight), scheduleSize.height - top - 6);
+                            const isMultiSegment = layout.segmentEnd !== layout.segmentStart;
+                            const desiredHeight = isMultiSegment
+                              ? rawHeight
+                              : Math.min(Math.max(cardMinHeight, rawHeight), cardMaxHeight);
+                            const height = Math.min(desiredHeight, scheduleSize.height - top - 6);
                             const isActive = activeCardId === delivery.id;
                           const startSegmentName = funnel.segments[layout.segmentStart]?.name || '';
                           const endSegmentName = funnel.segments[layout.segmentEnd]?.name || '';
@@ -1577,17 +1638,13 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                               >
                                 <span className="sr-only">接続</span>
                               </div>
-                              <div className="flex items-start justify-between gap-2 px-2 pt-2">
-                                <div className="text-[11px] font-medium text-gray-700 truncate">
+                              <div className="flex items-start justify-between gap-2 px-2 pt-1">
+                                <div className="text-[10px] font-medium text-gray-700 truncate">
                                   {delivery.title || 'タイトル'}
                                 </div>
                               </div>
-                              <div className="px-2 pt-1 text-[9px] text-gray-400 truncate">
-                                {segmentLabel}
-                              </div>
-
-                              <div className="px-2 pb-2 pt-1 text-[10px] text-gray-500">
-                                <div className="text-[10px] text-gray-500 line-clamp-2">
+                              <div className="px-2 pb-1 pt-0.5 text-[9px] text-gray-500">
+                                <div className="text-[9px] text-gray-500 line-clamp-1">
                                   {delivery.description || '訴求・詳細'}
                                 </div>
                               </div>
@@ -1871,30 +1928,42 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
               </div>
               <div>
                 <label className="block text-[10px] text-gray-500 mb-1">セグメント</label>
-                <div className="flex items-center gap-2">
-                  <select
-                    value={scheduleModalSegmentStart}
-                    onChange={(e) => setScheduleModalSegmentStart(parseInt(e.target.value, 10))}
-                    className="flex-1 text-xs border border-gray-300 rounded px-2 py-1"
-                  >
-                    {funnel.segments.map((segment, idx) => (
-                      <option key={`seg-start-${segment.id}`} value={idx}>
-                        {segment.name}
-                      </option>
-                    ))}
-                  </select>
-                  <span className="text-xs text-gray-400">→</span>
-                  <select
-                    value={scheduleModalSegmentEnd}
-                    onChange={(e) => setScheduleModalSegmentEnd(parseInt(e.target.value, 10))}
-                    className="flex-1 text-xs border border-gray-300 rounded px-2 py-1"
-                  >
-                    {funnel.segments.map((segment, idx) => (
-                      <option key={`seg-end-${segment.id}`} value={idx}>
-                        {segment.name}
-                      </option>
-                    ))}
-                  </select>
+                <div className="flex flex-wrap gap-2">
+                  {funnel.segments.map((segment, idx) => {
+                    const start = Math.min(scheduleModalSegmentStart, scheduleModalSegmentEnd);
+                    const end = Math.max(scheduleModalSegmentStart, scheduleModalSegmentEnd);
+                    const isSelected = idx >= start && idx <= end;
+                    return (
+                      <button
+                        key={segment.id}
+                        type="button"
+                        onClick={() => {
+                          if (segmentRangeAnchor === null) {
+                            setScheduleModalSegmentStart(idx);
+                            setScheduleModalSegmentEnd(idx);
+                            setSegmentRangeAnchor(idx);
+                            return;
+                          }
+                          const nextStart = Math.min(segmentRangeAnchor, idx);
+                          const nextEnd = Math.max(segmentRangeAnchor, idx);
+                          setScheduleModalSegmentStart(nextStart);
+                          setScheduleModalSegmentEnd(nextEnd);
+                          setSegmentRangeAnchor(null);
+                        }}
+                        className={`flex items-center gap-1 border rounded px-2 py-1 text-[10px] transition ${
+                          isSelected
+                            ? 'border-blue-300 bg-blue-50 text-gray-800'
+                            : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
+                        }`}
+                      >
+                        <span
+                          className="w-2 h-2 rounded-full"
+                          style={{ backgroundColor: segment.color }}
+                        />
+                        <span>{segment.name}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>

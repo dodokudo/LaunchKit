@@ -561,5 +561,709 @@
         "width": 200
       }
     ]
+  },
+  {
+    "id": "funnel-1768640720064",
+    "name": "gem 1月ローンチ",
+    "description": "",
+    "folderId": null,
+    "baseDate": "2026-01-23",
+    "baseDateDays": 2,
+    "baseDateLabel": "販売期間",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-24",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "all",
+        "name": "全員",
+        "color": "#6B7280",
+        "isDefault": true
+      },
+      {
+        "id": "seg-new-line",
+        "name": "新規LINE登録者",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "seg-survey",
+        "name": "アンケート回答者",
+        "color": "#10B981"
+      },
+      {
+        "id": "seg-existing-line",
+        "name": "既存LINE登録者",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "seg-paid",
+        "name": "有料会員",
+        "color": "#EF4444"
+      }
+    ],
+    "deliveries": [],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [],
+    "canvasEdges": [],
+    "branchPoints": [],
+    "createdAt": "2026-01-17T09:05:50.040129Z",
+    "updatedAt": "2026-01-17T09:40:47.170Z",
+    "phaseNames": [
+      "流入",
+      "アクション",
+      "教育",
+      "販売",
+      "CV"
+    ],
+    "kpis": [
+      {
+        "target": 1000,
+        "rate": 100,
+        "width": 200
+      },
+      {
+        "target": 700,
+        "rate": 70,
+        "width": 200
+      },
+      {
+        "target": 490,
+        "rate": 70,
+        "width": 200
+      },
+      {
+        "target": 245,
+        "rate": 50,
+        "width": 200
+      },
+      {
+        "target": 49,
+        "rate": 20,
+        "width": 200
+      }
+    ]
+  },
+  {
+    "id": "funnel-1768640821216",
+    "name": "gem 1月ローンチ",
+    "description": "",
+    "folderId": null,
+    "baseDate": "2026-01-23",
+    "baseDateDays": 2,
+    "baseDateLabel": "販売期間",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-24",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "seg-new-line",
+        "name": "新規LINE登録者",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "seg-existing-line",
+        "name": "既存LINE登録者",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "seg-survey",
+        "name": "アンケート回答（非会員）",
+        "color": "#10B981"
+      },
+      {
+        "id": "seg-paid",
+        "name": "有料会員",
+        "color": "#EF4444"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "delivery-1768644820781",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "20:00 アンケート回答のお願い",
+        "description": "本日のアンケートに回答してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644820782",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "21:00 アンケート回答のお願い",
+        "description": "本日のアンケートに回答してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644820783",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "21:00 アンケート回答のお願い",
+        "description": "本日のアンケートに回答してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644820784",
+        "date": "2026-01-22",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "21:00 アンケート回答のお願い",
+        "description": "本日のアンケートに回答してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971947",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-new-line",
+        "segmentIds": [
+          "seg-new-line"
+        ],
+        "title": "20:00 挨拶メッセージ",
+        "description": "登録1日目",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971948",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-new-line",
+        "segmentIds": [
+          "seg-new-line"
+        ],
+        "title": "21:00 リマインド",
+        "description": "登録1日目（1時間後）",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971949",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-new-line",
+        "segmentIds": [
+          "seg-new-line"
+        ],
+        "title": "20:00 リマインド",
+        "description": "登録翌日",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971950",
+        "date": "2026-01-22",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22",
+        "segmentId": "seg-new-line",
+        "segmentIds": [
+          "seg-new-line"
+        ],
+        "title": "20:00 最終リマインド",
+        "description": "登録2日目",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971951",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-survey",
+        "segmentIds": [
+          "seg-survey"
+        ],
+        "title": "21:00 会員登録のお願い",
+        "description": "22日までに会員登録してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971952",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-survey",
+        "segmentIds": [
+          "seg-survey"
+        ],
+        "title": "21:00 会員登録のお願い",
+        "description": "22日までに会員登録してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971953",
+        "date": "2026-01-22",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22",
+        "segmentId": "seg-survey",
+        "segmentIds": [
+          "seg-survey"
+        ],
+        "title": "21:00 会員登録のお願い",
+        "description": "22日までに会員登録してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971954",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971955",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971956",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "12:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971957",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "20:50 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971958",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971959",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:10 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971960",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:30 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971961",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "22:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971962",
+        "date": "2026-01-24",
+        "startDate": "2026-01-24",
+        "endDate": "2026-01-24",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "12:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971963",
+        "date": "2026-01-24",
+        "startDate": "2026-01-24",
+        "endDate": "2026-01-24",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768644971964",
+        "date": "2026-01-24",
+        "startDate": "2026-01-24",
+        "endDate": "2026-01-24",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "23:00 ローンチ配信",
+        "description": "パール大会の配信",
+        "type": "message"
+      },
+      {
+        "id": "delivery-1768645137810",
+        "date": "2026-01-22",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00",
+        "description": "",
+        "type": "message"
+      }
+    ],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [
+      {
+        "id": "node-instagram",
+        "type": "funnel",
+        "position": {
+          "x": -90,
+          "y": -90
+        },
+        "data": {
+          "label": "Instagram",
+          "nodeType": "entry",
+          "bg": "#e3f2fd",
+          "border": "#1976d2"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -90,
+          "y": -90
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-line",
+        "type": "funnel",
+        "position": {
+          "x": 165,
+          "y": 0
+        },
+        "data": {
+          "label": "LINE登録",
+          "nodeType": "action",
+          "bg": "#ecfdf3",
+          "border": "#34d399"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 165,
+          "y": 0
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-new",
+        "type": "funnel",
+        "position": {
+          "x": 105,
+          "y": 105
+        },
+        "data": {
+          "label": "新規",
+          "nodeType": "action",
+          "bg": "#eff6ff",
+          "border": "#60a5fa"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 105,
+          "y": 105
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-existing",
+        "type": "funnel",
+        "position": {
+          "x": 255,
+          "y": 105
+        },
+        "data": {
+          "label": "既存",
+          "nodeType": "action",
+          "bg": "#fff7ed",
+          "border": "#fb923c"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 255,
+          "y": 105
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-survey",
+        "type": "funnel",
+        "position": {
+          "x": 165,
+          "y": 195
+        },
+        "data": {
+          "label": "アンケート回答",
+          "nodeType": "action",
+          "bg": "#ffffff",
+          "border": "#cbd5e1"
+        },
+        "width": 131,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 165,
+          "y": 195
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-launch",
+        "type": "funnel",
+        "position": {
+          "x": 585,
+          "y": 375
+        },
+        "data": {
+          "label": "ローンチ配信",
+          "nodeType": "action",
+          "bg": "#f5f3ff",
+          "border": "#a78bfa"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 585,
+          "y": 375
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-purchase",
+        "type": "funnel",
+        "position": {
+          "x": 795,
+          "y": 465
+        },
+        "data": {
+          "label": "商品購入",
+          "nodeType": "conversion",
+          "bg": "#ecfdf3",
+          "border": "#34d399"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 795,
+          "y": 465
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-paid",
+        "type": "funnel",
+        "position": {
+          "x": 405,
+          "y": 285
+        },
+        "data": {
+          "label": "有料会員",
+          "nodeType": "action",
+          "bg": "#fdf2f8",
+          "border": "#f472b6"
+        },
+        "width": 120,
+        "height": 37
+      }
+    ],
+    "canvasEdges": [
+      {
+        "id": "edge-instagram-line",
+        "source": "node-instagram",
+        "target": "node-line",
+        "type": "task",
+        "data": {
+          "task": ""
+        }
+      },
+      {
+        "id": "edge-line-new",
+        "source": "node-line",
+        "target": "node-new",
+        "type": "task",
+        "data": {
+          "task": "新規"
+        }
+      },
+      {
+        "id": "edge-line-existing",
+        "source": "node-line",
+        "target": "node-existing",
+        "type": "task",
+        "data": {
+          "task": "既存"
+        },
+        "selected": false
+      },
+      {
+        "id": "edge-new-survey",
+        "source": "node-new",
+        "target": "node-survey",
+        "type": "task",
+        "data": {
+          "task": ""
+        },
+        "selected": false
+      },
+      {
+        "id": "edge-existing-survey",
+        "source": "node-existing",
+        "target": "node-survey",
+        "type": "task",
+        "data": {
+          "task": ""
+        }
+      },
+      {
+        "id": "edge-launch-purchase",
+        "source": "node-launch",
+        "target": "node-purchase",
+        "type": "task",
+        "data": {
+          "task": ""
+        }
+      },
+      {
+        "id": "edge-survey-paid",
+        "source": "node-survey",
+        "target": "node-paid",
+        "type": "task",
+        "data": {
+          "task": "会員化"
+        }
+      },
+      {
+        "id": "edge-paid-launch",
+        "source": "node-paid",
+        "target": "node-launch",
+        "type": "task",
+        "data": {
+          "task": ""
+        }
+      }
+    ],
+    "branchPoints": [],
+    "createdAt": "2026-01-17T09:39:48.353Z",
+    "updatedAt": "2026-01-17T10:19:59.943Z",
+    "phaseNames": [
+      "流入",
+      "登録・アンケート",
+      "会員化",
+      "ローンチ配信",
+      "成約/参加"
+    ],
+    "kpis": [
+      {
+        "target": 1000,
+        "rate": 100,
+        "width": 180
+      },
+      {
+        "target": 700,
+        "rate": 70,
+        "width": 305
+      },
+      {
+        "target": 350,
+        "rate": 50,
+        "width": 180
+      },
+      {
+        "target": 200,
+        "rate": 57,
+        "width": 180
+      },
+      {
+        "target": 60,
+        "rate": 30,
+        "width": 180
+      }
+    ]
   }
 ]

@@ -231,6 +231,30 @@
         }
         .content-box p { margin-bottom: 25px; }
 
+        /* --- チェックリスト (Problem/Agitation) --- */
+        .check-list-neon {
+            background: #fff;
+            background: linear-gradient(#fff, #fff) padding-box,
+                        var(--insta-gradient) border-box;
+            border: 3px solid transparent;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .check-list-neon li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            list-style: none;
+        }
+        .check-list-neon li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #d32f2f;
+        }
+
         /* --- シンプル左寄せボレット --- */
         .simple-bullet-list {
             list-style: none;
@@ -561,36 +585,6 @@
             font-weight: 500;
         }
 
-        /* --- 画像プレースホルダー --- */
-        .placeholder-box {
-            width: 100%;
-            background-color: #f9f9f9;
-            background: linear-gradient(#f9f9f9, #f9f9f9) padding-box,
-                        var(--insta-gradient) border-box;
-            border: 2px dashed #d62976; 
-            color: #666;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin: 15px 0 15px;
-            overflow: hidden;
-            position: relative;
-            padding: 20px;
-            min-height: 200px;
-            text-align: center;
-        }
-        .placeholder-box img { max-width: 100%; height: auto; opacity: 0.8; }
-        .placeholder-label {
-            margin-top: 10px;
-            font-size: 11px;
-            background: var(--insta-gradient);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
         /* --- 日程ボックス --- */
         .schedule-box {
             background: #fff;
@@ -660,12 +654,10 @@
             .btn-common small { font-size: 11px; }
             .ach-number { font-size: 26px; }
             .principle-title { font-size: 18px; }
-            .placeholder-box { margin-bottom: 15px; }
             .pc-br { display: none; }
             .sp-br { display: block; }
             .voice-result { font-size: 18px; }
             
-            /* 追加：スマホ用調整 */
             .unified-box { padding: 20px 15px 20px 25px; }
             .unified-box li { font-size: 14px; line-height: 1.5; }
             .chapter-title { font-size: 15px; display: block; margin-top: 5px; }
@@ -680,9 +672,6 @@
             .content-box p { font-size: 15px; }
             .schedule-box { padding: 15px; }
             .schedule-list li { font-size: 14px; }
-            .video-thumbnail { height: 160px; }
-            .video-thumbnail img { height: 160px; }
-            .video-info h4 { font-size: 13px; }
             .voice-card { margin-bottom: 15px; }
             .voice-title { font-size: 14px; padding: 12px 15px; }
             .timer-main-text { font-size: 22px; }
@@ -703,11 +692,7 @@
     <div class="container">
 
         <!-- =============================================
-             【前半】熱い人を即刈り取る
-             ============================================= -->
-
-        <!-- =============================================
-             1. FVエリア（動画 + 実績数字）
+             1. FVエリア（動画 + タイトル + CTA）
              ============================================= -->
         <div class="fv-area">
             
@@ -728,23 +713,206 @@
             </p>
 
             <div>
+                <p class="cta-micro-copy">※定員に達し次第、募集を終了します</p>
                 <!-- CTAボタン -->
                 <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
-                    <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                    <small>＼残り席がわずかです／</small>
                     今すぐセミナーに申し込む
                 </a>
             </div>
         </div>
 
         <!-- =============================================
-             2. 受講生の実績ぶん殴り（Threads実績）
+             2. Problem：正直に答えてください（共感から入る）
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">正直に答えてください<br><span>こんな状態になっていませんか?</span></h2>
+            <div class="content-box">
+                <!-- ネオン枠の箇条書き -->
+                <div class="check-list-neon">
+                    <ul>
+                        <li>毎日投稿しているのに、数字が伸びない</li>
+                        <li>伸びている人の真似をしても、再現できない</li>
+                        <li>ノウハウを学んでも、結局何をすればいいか分からない</li>
+                        <li>やればやるほど、判断に迷う</li>
+                        <li>何が悪いのか分からないまま、ただ時間だけが過ぎていく</li>
+                    </ul>
+                </div>
+                <p class="text-center font-bold text-lg">どれか一つでも当てはまるなら、<br>それは努力不足ではありません。</p>
+                <p class="text-center">努力が足りないんじゃない。<br>なのに、成果が出ない。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             3. Agitation：一番きついのは...（問題の増幅）
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">一番きついのは...</h2>
+            <div class="content-box">
+                <p>正直、一番きついのは、<br>「自分は頑張っている」っていう感覚があるのに<br>成果が出ないことじゃないですか?</p>
+                <p>夜中にSNSの画面を見て<br>ふと「また今日も伸びなかったな...」<br>そんなふうに思ってないですか?</p>
+                
+                <div class="unified-box" style="border-top:none; border-left:none;">
+                    <ul>
+                        <li>毎日続けている。</li>
+                        <li>サボっていない。</li>
+                        <li>勉強もしてる。</li>
+                    </ul>
+                </div>
+                
+                <p>それなのに成果が出ない。</p>
+                <p>そして</p>
+                
+                <div class="unified-box" style="border-top:none; border-left:none;">
+                    <ul>
+                        <li>「才能がないのかもしれない」</li>
+                        <li>「自分には向いていないのかも」</li>
+                        <li>「もう、やめた方がいいのかも」</li>
+                    </ul>
+                </div>
+
+                <p>そんなふうに心のどこかで<br>SNSで成果を出している人と<br>成果の出ていない自分を比較してませんか?</p>
+                <p class="text-center text-xl text-alert-red" style="margin-top:30px;">でも、はっきり言います。<br>これは才能の問題ではないです。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             4. Story：僕もまさにその状況でした
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">僕もまさに<br><span>その状況でした</span></h2>
+            <div class="content-box">
+                <p>インスタグラムで、<br>リール投稿を本気で続け<br>台本を書き、撮影・編集・投稿する。</p>
+                <p>それを<span class="text-marker">200本以上</span>繰り返しました。</p>
+                <p>結果はどうだったか。</p>
+                <div style="background:#fff; border:2px solid #ddd; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <ul style="list-style:disc; padding-left:20px; font-weight:bold;">
+                        <li>フォロワーは700人程度。</li>
+                        <li>再生数は100回いけばいい方。</li>
+                        <li>LINE登録なんて、週に1~2件あればラッキー。</li>
+                    </ul>
+                </div>
+                <p>200本出して、これです。<br>正直、かなりしんどかったです。</p>
+                <p class="font-bold text-center">「ここまでやって無理なら、もうダメだ」<br>本気で、そう思いました。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             5. Transformation：戦う場所を変えました
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">だから、<br><span>戦う場所を変えました</span></h2>
+            <div class="content-box">
+                <p class="text-center text-xl font-bold" style="margin-bottom:30px;">それが、Threadsです。</p>
+                <p>僕は努力をやめたのではなく、<br>「どこで努力するか」を変えました。</p>
+                <p>Threadsは、<span class="text-marker">後発組が勝てる唯一のSNS</span>です。</p>
+                
+                <ul class="simple-bullet-list">
+                    <li>フォロワー数は関係ない</li>
+                    <li>影響力も関係ない</li>
+                    <li>動画や画像も不要</li>
+                </ul>
+
+                <p>インスタグラムとは異なり<br>テキストだけで発信できて<br>そのまま数字に反映されます。</p>
+
+                <div class="achievement-box">
+                    <p style="font-weight:bold; margin-bottom:20px;">結果、3ヶ月で</p>
+                    <p class="ach-number">フォロワー3100人増加</p>
+                    <p class="ach-number">LINE登録558名</p>
+                    <p style="font-weight:bold; margin-top:10px;">を達成しました。</p>
+                </div>
+
+                <p class="text-center font-bold" style="font-size:18px;">ただし、<br>全員が成果を出せるわけではありません。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             6. Misconceptions：失敗する人の共通点
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">Threadsで<br><span>失敗する人の共通点</span></h2>
+            <div class="content-box">
+                <p>今、Threadsが良いと聞いて<br>すでに始めている人も多いです。<br>ですが、多くの人が<br>間違った運用ばかりしています。</p>
+                
+                <div style="background:#fff; padding:20px; border-radius:8px; border:2px solid #ddd; margin:20px 0;">
+                    <ul style="list-style:none; font-weight:bold; color:#555;">
+                        <li style="margin-bottom:10px;"><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> 短文投稿でバズを狙う</li>
+                        <li style="margin-bottom:10px;"><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> いいね回り、フォロー回り</li>
+                        <li><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> 「アクティブ層に入れば伸びる」という考え方</li>
+                    </ul>
+                </div>
+
+                <p class="text-center text-xl text-alert-red">これらは、全て間違いです。</p>
+                <p>一時的に数字は伸びるかもしれません。<br>でも、そこから集客や売上には繋がりません。</p>
+                <p>なぜなら、SNSの本来の形である<br>「この人の投稿を今後も見たいからフォローする」<br>という価値提供の対価でのフォローではなく、</p>
+                <p class="text-center font-bold">ただの「フォローしてくれたから返しただけ」<br>という見返りフォローに過ぎないからです。</p>
+                <p class="text-center text-lg">これは集客ではなく<br>ただの数字集めです。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             7. 3つの原則
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">工藤式Threads運用<br><span>3つの原則</span></h2>
+            <div class="content-box">
+                <p class="text-center" style="margin-bottom:30px;">だからこそ僕が一貫して行っている運用は、これだけです。</p>
+
+                <div class="principle-card">
+                    <span class="principle-num">原則 1</span>
+                    <h3 class="principle-title">自分からアクションしない</h3>
+                    <p class="principle-desc">投稿で価値を提供した結果として、フォローされる構造を作る</p>
+                </div>
+
+                <div class="principle-card">
+                    <span class="principle-num">原則 2</span>
+                    <h3 class="principle-title">長文で投稿する</h3>
+                    <p class="principle-desc">バズ狙いではなく、熱量の高い見込み客を集める</p>
+                </div>
+
+                <div class="principle-card">
+                    <span class="principle-num">原則 3</span>
+                    <h3 class="principle-title">数を打つ</h3>
+                    <p class="principle-desc">試行回数を増やし、投稿が伸びる可能性を引き上げる</p>
+                </div>
+
+                <p class="text-center font-bold" style="margin-top:40px;">この3つを正しく実践すれば、<br>後発組でも成果は出せます。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             8. なぜ今参加すべきか（緊急性）※そのまま残す
+             ============================================= -->
+        <section class="section-gray">
+            <h2 class="section-title">なぜ<br><span>今すぐ参加すべきか</span></h2>
+            <div class="content-box">
+                
+                <div class="urgency-box">
+                    <h3>⚠️ Threadsのボーナスタイムは、もうすぐ終わります</h3>
+                    <p>Threadsは2023年にリリースされましたが、<br>まだ本気でビジネス活用している人が少ない。</p>
+                    <p>「Instagramのおまけでしょ？」<br>「Twitterのパクリでしょ？」</p>
+                    <p>こう思って様子見している人が9割です。</p>
+                    <p class="font-bold">でも、これはInstagramでも昔同じことが起きました。</p>
+                    <p>初期にInstagramを本気でやってた人は今「先行者利益」で大きな利益を得ています。<br>でも今はどうですか？<br><span class="text-alert-red">プロがひしめき合っていて、素人が入り込む余地がほぼない。</span></p>
+                    <p class="font-bold text-center" style="font-size:18px; margin-top:20px;">Threadsも間違いなく同じ状態になります。</p>
+                </div>
+
+                <p class="text-center font-bold text-lg">つまり、ライバル不在の<br><span class="text-marker">「ボーナスタイム」である今のうち</span>に<br>Threads攻略をすることが必須なんです。</p>
+
+                <p style="margin-top:30px;">実際、僕の受講生は全員が後発組。<br>フォロワー100人以下からスタートして、<br>開始1ヶ月以内に成果を出しています。</p>
+
+                <p class="text-center font-bold text-xl" style="margin-top:30px; color:#d32f2f;">このチャンスを逃すか、<br>今すぐ行動するか。</p>
+            </div>
+        </section>
+
+        <!-- =============================================
+             9. 受講生の実績（Threads実績）※後半に移動
              ============================================= -->
         <section class="section">
             <h2 class="section-title">開始1ヶ月以内で<br><span>続々と成果が出ています</span></h2>
             <div class="content-box">
                 <p class="text-center font-bold">全員が後発組・フォロワー100人以下からスタート</p>
 
-                <!-- 実績グリッド -->
                 <div class="voice-list" style="gap:20px;">
                     <div class="voice-card">
                         <div class="voice-title">今月3名個別相談→全員成約</div>
@@ -779,7 +947,7 @@
         </section>
 
         <!-- =============================================
-             受講生の対談動画（売上実績）
+             10. 売上実績（動画）※後半に移動
              ============================================= -->
         <section class="section-gray">
             <h2 class="section-title">
@@ -881,7 +1049,85 @@
         </section>
 
         <!-- =============================================
-             3. 4大特典
+             11. セミナー内容
+             ============================================= -->
+        <section class="section">
+            <h2 class="section-title">セミナーで<br><span>お伝えする事</span></h2>
+            <div class="content-box">
+                <div class="seminar-content-box">
+                    <h3 style="text-align:center; font-weight:900; margin-bottom:15px; border-bottom:1px solid #ddd; padding-bottom:10px;">セミナー内容</h3>
+                    
+                    <ul class="seminar-list">
+                        <li>
+                            <span class="chapter-badge">第1章</span> <span class="chapter-title">なぜ今、Threadsなのか</span>
+                            <ul class="chapter-detail">
+                                <li>リール200本で700人だった僕が、3ヶ月で3100人・LINE558名になった逆転劇</li>
+                                <li>【2026年最新】Instagram vs Threads 徹底比較と「先行者利益」の全貌</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="chapter-badge">第2章</span> <span class="chapter-title">9割が知らない「売れないアカウント」の正体</span>
+                            <ul class="chapter-detail">
+                                <li>有名インフルエンサーのノウハウが「今のあなた」に合わない構造的理由</li>
+                                <li>短文投稿・いいね回り・フォロー回りが「ただの数字集め」で終わるカラクリ</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="chapter-badge">第3章</span> <span class="chapter-title">工藤式Threads運用「3つの原則」</span>
+                            <ul class="chapter-detail">
+                                <li>フォロワー100人以下でも1ヶ月でLINE200件・成約3件を実現する運用原則</li>
+                                <li>自分からアクションしない／長文で投稿／数を打つ</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="chapter-badge">第4章</span> <span class="chapter-title">AI×Threads実践術</span>
+                            <ul class="chapter-detail">
+                                <li>悪用厳禁！数分で質の高い投稿を量産するAIプロンプト活用術</li>
+                                <li>成果が出ない人が必ずぶつかる「5つの壁」とその突破法</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             12. こんな方のためのセミナーです / 参加後の変化
+             ============================================= -->
+        <section class="section-gray">
+            <div class="content-box">
+                <div style="margin-bottom:40px;">
+                    <h3 class="text-center font-bold text-lg" style="margin-bottom:20px;">こんな方のためのセミナーです</h3>
+                    <div class="unified-box">
+                        <ul>
+                            <li>真剣にSNSで売上を伸ばしたいと悩んでいる方</li>
+                            <li>リールやインスタで限界を感じている方</li>
+                            <li>Threadsを始めたが、正解が分からない方</li>
+                            <li>数字ではなく「集客・売上」につなげたい方</li>
+                            <li>正しい運用法できちんと成果を出したい方</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-center font-bold text-lg" style="margin-bottom:20px;">このセミナーに参加すると、こうなります</h3>
+                    <div class="unified-box">
+                        <ul>
+                            <li>「このやり方で合ってる」という確信を持って運用できる</li>
+                            <li>「なんで自分だけ成果出ないんだろう...」というモヤモヤの正体が分かる</li>
+                            <li>投稿前に「これでいいのかな...」と手が止まる時間が無くなる</li>
+                            <li>「とりあえず投稿」ではなく、集客につながる投稿だけに集中できるようになる</li>
+                            <li>毎日の投稿が"作業"ではなく、売上に直結する"資産"に変わる</li>
+                            <li>「頑張ってるのに結果が出ない」という空回りから抜け出せる</li>
+                            <li>他の発信者を見て焦る時間が、自分のビジネスを伸ばす時間に変わる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             13. 4大特典
              ============================================= -->
         <section class="section">
             <div class="benefits-area">
@@ -948,9 +1194,9 @@
         </section>
 
         <!-- =============================================
-             4. CTA（前半用・熱い人向け）
+             14. 日程・CTA
              ============================================= -->
-        <section class="section" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+        <section class="section-gray" id="register">
             <h2 class="fv-title" style="text-align:center;">
                 Threads×AI運用<br>完全攻略セミナー
             </h2>
@@ -973,7 +1219,7 @@
 
                 <div class="text-center">
                     <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
-                        <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                        <small>＼残り席がわずかです／</small>
                         今すぐセミナーに申し込む
                     </a>
                 </div>
@@ -981,233 +1227,9 @@
         </section>
 
         <!-- =============================================
-             【後半】迷ってる人を教育して刈り取る
-             ============================================= -->
-
-        <!-- =============================================
-             5. 共感パート（僕もリール200本で苦しんでいた）
-             ============================================= -->
-        <section class="section-gray">
-            <h2 class="section-title">実は僕も<br><span>ずっと苦しんでいました</span></h2>
-            <div class="content-box">
-                <p>インスタグラムで、<br>リール投稿を本気で続け<br>台本を書き、撮影・編集・投稿する。</p>
-                <p>それを<span class="text-marker">200本以上</span>繰り返しました。</p>
-                <p>結果はどうだったか。</p>
-                <div style="background:#fff; border:2px solid #ddd; padding:20px; border-radius:8px; margin-bottom:20px;">
-                    <ul style="list-style:disc; padding-left:20px; font-weight:bold;">
-                        <li>フォロワーは700人程度。</li>
-                        <li>再生数は100回いけばいい方。</li>
-                        <li>LINE登録なんて、週に1~2件あればラッキー。</li>
-                    </ul>
-                </div>
-                <p>200本出して、これです。<br>正直、かなりしんどかったです。</p>
-                <p class="font-bold text-center">「ここまでやって無理なら、もうダメだ」<br>本気で、そう思いました。</p>
-
-                <p class="text-center text-xl font-bold" style="margin-top:40px;">だから、戦う場所を変えました。</p>
-                <p class="text-center text-xl text-neon" style="margin-bottom:30px;">それが、Threadsです。</p>
-                
-                <p>僕は努力をやめたのではなく、<br>「どこで努力するか」を変えました。</p>
-
-                <div class="achievement-box">
-                    <p style="font-weight:bold; margin-bottom:20px;">結果、3ヶ月で</p>
-                    <p class="ach-number">フォロワー3100人増加</p>
-                    <p class="ach-number">LINE登録558名</p>
-                    <p style="font-weight:bold; margin-top:10px;">を達成しました。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- =============================================
-             6. 失敗する人の共通点
+             15. 最後に僕からのメッセージです
              ============================================= -->
         <section class="section">
-            <h2 class="section-title">Threadsで<br><span>失敗する人の共通点</span></h2>
-            <div class="content-box">
-                <p>今、Threadsが良いと聞いて<br>すでに始めている人も多いです。<br>ですが、多くの人が<br>間違った運用ばかりしています。</p>
-                
-                <div style="background:#fff; padding:20px; border-radius:8px; border:2px solid #ddd; margin:20px 0;">
-                    <ul style="list-style:none; font-weight:bold; color:#555;">
-                        <li style="margin-bottom:10px;"><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> 短文投稿でバズを狙う</li>
-                        <li style="margin-bottom:10px;"><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> いいね回り、フォロー回り</li>
-                        <li><i class="fa-solid fa-xmark" style="color:#d32f2f;"></i> 「アクティブ層に入れば伸びる」という考え方</li>
-                    </ul>
-                </div>
-
-                <p class="text-center text-xl text-alert-red">これらは、全て間違いです。</p>
-                <p>一時的に数字は伸びるかもしれません。<br>でも、そこから集客や売上には繋がりません。</p>
-            </div>
-        </section>
-
-        <!-- =============================================
-             7. 3つの原則
-             ============================================= -->
-        <section class="section-gray">
-            <h2 class="section-title">工藤式Threads運用<br><span>3つの原則</span></h2>
-            <div class="content-box">
-                <p class="text-center" style="margin-bottom:30px;">だからこそ僕が一貫して行っている運用は、これだけです。</p>
-
-                <div class="principle-card">
-                    <span class="principle-num">原則 1</span>
-                    <h3 class="principle-title">自分からアクションしない</h3>
-                    <p class="principle-desc">投稿で価値を提供した結果として、フォローされる構造を作る</p>
-                </div>
-
-                <div class="principle-card">
-                    <span class="principle-num">原則 2</span>
-                    <h3 class="principle-title">長文で投稿する</h3>
-                    <p class="principle-desc">バズ狙いではなく、熱量の高い見込み客を集める</p>
-                </div>
-
-                <div class="principle-card">
-                    <span class="principle-num">原則 3</span>
-                    <h3 class="principle-title">数を打つ</h3>
-                    <p class="principle-desc">試行回数を増やし、投稿が伸びる可能性を引き上げる</p>
-                </div>
-
-                <p class="text-center font-bold" style="margin-top:40px;">この3つを正しく実践すれば、<br>後発組でも成果は出せます。</p>
-            </div>
-        </section>
-
-        <!-- =============================================
-             8. なぜ今参加すべきか（Narrow down）
-             ============================================= -->
-        <section class="section">
-            <h2 class="section-title">なぜ<br><span>今すぐ参加すべきか</span></h2>
-            <div class="content-box">
-                
-                <div class="urgency-box">
-                    <h3>⚠️ Threadsのボーナスタイムは、もうすぐ終わります</h3>
-                    <p>Threadsは2023年にリリースされましたが、<br>まだ本気でビジネス活用している人が少ない。</p>
-                    <p>「Instagramのおまけでしょ？」<br>「Twitterのパクリでしょ？」</p>
-                    <p>こう思って様子見している人が9割です。</p>
-                    <p class="font-bold">でも、これはInstagramでも昔同じことが起きました。</p>
-                    <p>初期にInstagramを本気でやってた人は今「先行者利益」で大きな利益を得ています。<br>でも今はどうですか？<br><span class="text-alert-red">プロがひしめき合っていて、素人が入り込む余地がほぼない。</span></p>
-                    <p class="font-bold text-center" style="font-size:18px; margin-top:20px;">Threadsも間違いなく同じ状態になります。</p>
-                </div>
-
-                <p class="text-center font-bold text-lg">つまり、ライバル不在の<br><span class="text-marker">「ボーナスタイム」である今のうち</span>に<br>Threads攻略をすることが必須なんです。</p>
-
-                <p style="margin-top:30px;">実際、僕の受講生は全員が後発組。<br>フォロワー100人以下からスタートして、<br>開始1ヶ月以内に成果を出しています。</p>
-
-                <p class="text-center font-bold text-xl" style="margin-top:30px; color:#d32f2f;">このチャンスを逃すか、<br>今すぐ行動するか。</p>
-            </div>
-        </section>
-
-        <!-- =============================================
-             9. セミナー内容
-             ============================================= -->
-        <section class="section-gray">
-            <h2 class="section-title">セミナーで<br><span>お伝えする事</span></h2>
-            <div class="content-box">
-                <div class="seminar-content-box">
-                    <h3 style="text-align:center; font-weight:900; margin-bottom:15px; border-bottom:1px solid #ddd; padding-bottom:10px;">セミナー内容</h3>
-                    
-                    <ul class="seminar-list">
-                        <li>
-                            <span class="chapter-badge">第1章</span> <span class="chapter-title">なぜ今、Threadsなのか</span>
-                            <ul class="chapter-detail">
-                                <li>リール200本で700人だった僕が、3ヶ月で3100人・LINE558名になった逆転劇</li>
-                                <li>【2026年最新】Instagram vs Threads 徹底比較と「先行者利益」の全貌</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="chapter-badge">第2章</span> <span class="chapter-title">9割が知らない「売れないアカウント」の正体</span>
-                            <ul class="chapter-detail">
-                                <li>有名インフルエンサーのノウハウが「今のあなた」に合わない構造的理由</li>
-                                <li>短文投稿・いいね回り・フォロー回りが「ただの数字集め」で終わるカラクリ</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="chapter-badge">第3章</span> <span class="chapter-title">工藤式Threads運用「3つの原則」</span>
-                            <ul class="chapter-detail">
-                                <li>フォロワー100人以下でも1ヶ月でLINE200件・成約3件を実現する運用原則</li>
-                                <li>自分からアクションしない／長文で投稿／数を打つ</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="chapter-badge">第4章</span> <span class="chapter-title">AI×Threads実践術</span>
-                            <ul class="chapter-detail">
-                                <li>悪用厳禁！数分で質の高い投稿を量産するAIプロンプト活用術</li>
-                                <li>成果が出ない人が必ずぶつかる「5つの壁」とその突破法</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- =============================================
-             10. こんな方のためのセミナーです / 参加後の変化
-             ============================================= -->
-        <section class="section">
-            <div class="content-box">
-                <div style="margin-bottom:40px;">
-                    <h3 class="text-center font-bold text-lg" style="margin-bottom:20px;">こんな方のためのセミナーです</h3>
-                    <div class="unified-box">
-                        <ul>
-                            <li>真剣にSNSで売上を伸ばしたいと悩んでいる方</li>
-                            <li>リールやインスタで限界を感じている方</li>
-                            <li>Threadsを始めたが、正解が分からない方</li>
-                            <li>数字ではなく「集客・売上」につなげたい方</li>
-                            <li>正しい運用法できちんと成果を出したい方</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-center font-bold text-lg" style="margin-bottom:20px;">このセミナーに参加すると、こうなります</h3>
-                    <div class="unified-box">
-                        <ul>
-                            <li>「このやり方で合ってる」という確信を持って運用できる</li>
-                            <li>「なんで自分だけ成果出ないんだろう...」というモヤモヤの正体が分かる</li>
-                            <li>投稿前に「これでいいのかな...」と手が止まる時間が無くなる</li>
-                            <li>「とりあえず投稿」ではなく、集客につながる投稿だけに集中できるようになる</li>
-                            <li>毎日の投稿が"作業"ではなく、売上に直結する"資産"に変わる</li>
-                            <li>「頑張ってるのに結果が出ない」という空回りから抜け出せる</li>
-                            <li>他の発信者を見て焦る時間が、自分のビジネスを伸ばす時間に変わる</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =============================================
-             10. 日程・CTA（後半用）
-             ============================================= -->
-        <section class="section" id="register">
-            <h2 class="fv-title" style="text-align:center;">
-                Threads×AI運用<br>完全攻略セミナー
-            </h2>
-            
-            <p class="fv-sub-copy text-center">
-                <span>フォロワー3100名・LINE登録者558名</span>を<br>
-                3ヶ月で集客し、<span>SNSで累計8000万円</span>を<br>
-                売り上げたノウハウを全て継承します。
-            </p>
-
-            <div class="content-box" style="text-align:center;">
-                <div class="schedule-box" style="display:inline-block;">
-                    <ul class="schedule-list text-center" style="padding:0; list-style:none;">
-                        <li>各回 少人数開催(先着10名限定)</li>
-                        <li>日程: 1/13・14・15・17・18</li>
-                        <li>時間: 2時間</li>
-                        <li>参加費: <span class="text-alert-red" style="font-size:1.2em;">無料</span></li>
-                    </ul>
-                </div>
-
-                <div class="text-center">
-                    <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
-                        <small>＼参加無料・豪華４大特典プレゼント！／</small>
-                        今すぐセミナーに申し込む
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- =============================================
-             11. 最後に僕からのメッセージです
-             ============================================= -->
-        <section class="section-gray">
             <h2 class="section-title">最後に僕からの<br><span>メッセージです。</span></h2>
             <div class="content-box">
                 <p>僕が一番伝えたいのは、<br>Threadsを運用して<br><span class="text-lg font-bold">「驚いてほしい」</span>ということです。</p>
@@ -1246,7 +1268,7 @@
             <!-- 最後の一押しCTA -->
             <div class="text-center" style="margin-top:60px;">
                 <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate">
-                    <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                    <small>＼残り席がわずかです／</small>
                     今すぐセミナーに申し込む
                 </a>
             </div>
@@ -1262,7 +1284,7 @@
     <div class="sticky-footer">
         <div class="sticky-btn-wrapper">
             <a href="https://lstep.app/tBRtR77" class="btn-common btn-animate" style="font-size:16px; padding:12px;">
-                <small>＼参加無料・豪華４大特典プレゼント！／</small>
+                <small>＼残り席がわずかです／</small>
                 今すぐセミナーに申し込む
             </a>
         </div>

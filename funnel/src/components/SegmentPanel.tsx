@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Segment } from '@/types/funnel';
 
 interface SegmentPanelProps {
@@ -24,6 +24,8 @@ export function SegmentPanel({ segments, onUpdate }: SegmentPanelProps) {
   const [newName, setNewName] = useState('');
   const [newColor, setNewColor] = useState(PRESET_COLORS[4]);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const handleAdd = () => {
     if (!newName.trim()) return;
@@ -57,6 +59,39 @@ export function SegmentPanel({ segments, onUpdate }: SegmentPanelProps) {
     onUpdate(segments.map(s => s.id === id ? { ...s, color } : s));
   };
 
+  const moveSegment = (fromIndex: number, toIndex: number) => {
+    if (fromIndex === toIndex) return;
+    const nextSegments = [...segments];
+    const [moved] = nextSegments.splice(fromIndex, 1);
+    nextSegments.splice(toIndex, 0, moved);
+    onUpdate(nextSegments);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent) => {
+    if (!draggingId) return;
+    const target = document.elementFromPoint(event.clientX, event.clientY);
+    const row = target?.closest('[data-segment-id]') as HTMLElement | null;
+    const targetId = row?.dataset.segmentId;
+    if (!targetId || targetId === draggingId) return;
+    const targetSegment = segments.find((segment) => segment.id === targetId);
+    if (targetSegment?.isDefault) return;
+    const fromIndex = segments.findIndex((segment) => segment.id === draggingId);
+    const toIndex = segments.findIndex((segment) => segment.id === targetId);
+    if (fromIndex === -1 || toIndex === -1) return;
+    moveSegment(fromIndex, toIndex);
+  };
+
+  const handlePointerUp = (event: React.PointerEvent) => {
+    if (draggingId) {
+      setDraggingId(null);
+      try {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      } catch {
+        // no-op
+      }
+    }
+  };
+
   return (
     <div className="bg-white rounded-xl border border-gray-200 flex flex-col">
       <div className="p-3 border-b border-gray-200">
@@ -67,12 +102,13 @@ export function SegmentPanel({ segments, onUpdate }: SegmentPanelProps) {
       </div>
 
       {/* セグメント一覧 */}
-      <div className="flex-1 overflow-y-auto p-2">
-        {segments.map((segment) => (
+      <div className="flex-1 overflow-y-auto p-2" ref={listRef}>
+        {segments.map((segment, index) => (
           <div
             key={segment.id}
             className="p-2 rounded-lg mb-2 hover:bg-gray-50"
             style={{ backgroundColor: segment.color + '10' }}
+            data-segment-id={segment.id}
           >
             {editingId === segment.id ? (
               <div className="space-y-2">
@@ -104,8 +140,16 @@ export function SegmentPanel({ segments, onUpdate }: SegmentPanelProps) {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div
-                    className="w-3 h-3 rounded-full"
+                    className={`w-3 h-3 rounded-full ${segment.isDefault ? '' : 'cursor-grab active:cursor-grabbing'}`}
                     style={{ backgroundColor: segment.color }}
+                    onPointerDown={(event) => {
+                      if (segment.isDefault) return;
+                      setDraggingId(segment.id);
+                      event.currentTarget.setPointerCapture(event.pointerId);
+                    }}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    title={segment.isDefault ? '固定' : 'ドラッグで並び替え'}
                   />
                   <span className="text-sm font-medium">{segment.name}</span>
                   {segment.isDefault && (
@@ -113,6 +157,22 @@ export function SegmentPanel({ segments, onUpdate }: SegmentPanelProps) {
                   )}
                 </div>
                 <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => handleMove(index, -1)}
+                    className="text-gray-400 hover:text-gray-600 text-xs disabled:opacity-30"
+                    disabled={segment.isDefault || index === 0}
+                    title="上へ"
+                  >
+                    ↑
+                  </button>
+                  <button
+                    onClick={() => handleMove(index, 1)}
+                    className="text-gray-400 hover:text-gray-600 text-xs disabled:opacity-30"
+                    disabled={segment.isDefault || index === segments.length - 1}
+                    title="下へ"
+                  >
+                    ↓
+                  </button>
                   <button
                     onClick={() => setEditingId(segment.id)}
                     className="text-gray-400 hover:text-gray-600 text-xs"
