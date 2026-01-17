@@ -34,6 +34,8 @@ export default function CanvasPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [canvasName, setCanvasName] = useState('');
   const [isEditingName, setIsEditingName] = useState(false);
+  const apiBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const dashboardHref = apiBase ? `${apiBase}/` : '/';
 
   useEffect(() => {
     const stored = localStorage.getItem('canvases');
@@ -121,9 +123,12 @@ export default function CanvasPage() {
         <div className="text-center">
           <div className="text-4xl mb-4">😕</div>
           <p className="text-gray-600 mb-4">キャンバスが見つかりません</p>
-          <Link href="/" className="text-blue-600 hover:text-blue-700 underline">
+          <a
+            href={dashboardHref}
+            className="text-blue-600 hover:text-blue-700 underline"
+          >
             ダッシュボードに戻る
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -134,9 +139,12 @@ export default function CanvasPage() {
       {/* ヘッダー */}
       <header className="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between z-10 flex-shrink-0">
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-gray-500 hover:text-gray-700 transition">
+          <a
+            href={dashboardHref}
+            className="text-gray-500 hover:text-gray-700 transition"
+          >
             ← 戻る
-          </Link>
+          </a>
           {isEditingName ? (
             <div className="flex items-center gap-2">
               <input

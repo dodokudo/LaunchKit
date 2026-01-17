@@ -8,10 +8,12 @@ import {
 } from '@/lib/storage';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const hasSupabaseConfig = Boolean(supabaseUrl && supabaseKey);
+const useLocalStore = process.env.NODE_ENV === 'development';
 
-const supabase = hasSupabaseConfig
+const supabase = hasSupabaseConfig && !useLocalStore
   ? createClient(supabaseUrl as string, supabaseKey as string, {
       auth: { persistSession: false },
     })
@@ -27,7 +29,7 @@ const normalizeRow = (row: { id: string; data?: Funnel }) => {
 };
 
 export const funnelStore = {
-  isRemote: hasSupabaseConfig,
+  isRemote: hasSupabaseConfig && !useLocalStore,
 
   async getAll(): Promise<Funnel[]> {
     if (!supabase) {

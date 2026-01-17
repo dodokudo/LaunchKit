@@ -16,6 +16,7 @@ export default function EditorPage() {
   const [funnelName, setFunnelName] = useState('');
   const [isEditingName, setIsEditingName] = useState(false);
   const apiBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const dashboardHref = apiBase ? `${apiBase}/` : '/';
 
   const normalizeFunnel = (data: Funnel) => {
     const next = { ...data };
@@ -145,12 +146,12 @@ export default function EditorPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-500 mb-4">ファネルが見つかりません</p>
-          <Link
-            href="/"
+          <a
+            href={dashboardHref}
             className="text-gray-600 hover:text-gray-800 underline text-sm"
           >
             戻る
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -161,12 +162,12 @@ export default function EditorPage() {
       {/* ヘッダー */}
       <header className="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between z-10 flex-shrink-0">
         <div className="flex items-center gap-4">
-          <Link
-            href="/"
+          <a
+            href={dashboardHref}
             className="text-gray-400 hover:text-gray-600 transition text-sm"
           >
             戻る
-          </Link>
+          </a>
           {isEditingName ? (
             <div className="flex items-center gap-2">
               <input
