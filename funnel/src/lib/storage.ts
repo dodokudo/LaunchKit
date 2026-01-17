@@ -2,9 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import dagre from 'dagre';
 import { Funnel } from '@/types/funnel';
+import { Folder } from '@/types/folder';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const FUNNELS_FILE = path.join(DATA_DIR, 'funnels.json');
+const FOLDERS_FILE = path.join(DATA_DIR, 'folders.json');
 
 // 自動レイアウト（左上から右下への対角線フロー）
 export function layoutNodes(nodes: any[], edges: any[]): any[] {
@@ -111,6 +113,54 @@ export function deleteFunnel(id: string): boolean {
   }
 
   fs.writeFileSync(FUNNELS_FILE, JSON.stringify(filtered, null, 2));
+  return true;
+}
+
+// 全フォルダを取得
+export function getAllFolders(): Folder[] {
+  ensureDataDir();
+  if (!fs.existsSync(FOLDERS_FILE)) {
+    return [];
+  }
+  const data = fs.readFileSync(FOLDERS_FILE, 'utf-8');
+  return JSON.parse(data);
+}
+
+// 特定のフォルダを取得
+export function getFolder(id: string): Folder | null {
+  const folders = getAllFolders();
+  return folders.find(f => f.id === id) || null;
+}
+
+// フォルダを保存（新規 or 更新）
+export function saveFolder(folder: Folder): Folder {
+  ensureDataDir();
+  const folders = getAllFolders();
+  const index = folders.findIndex(f => f.id === folder.id);
+
+  folder.updatedAt = new Date().toISOString();
+
+  if (index >= 0) {
+    folders[index] = folder;
+  } else {
+    folder.createdAt = new Date().toISOString();
+    folders.push(folder);
+  }
+
+  fs.writeFileSync(FOLDERS_FILE, JSON.stringify(folders, null, 2));
+  return folder;
+}
+
+// フォルダを削除
+export function deleteFolder(id: string): boolean {
+  const folders = getAllFolders();
+  const filtered = folders.filter(f => f.id !== id);
+
+  if (filtered.length === folders.length) {
+    return false;
+  }
+
+  fs.writeFileSync(FOLDERS_FILE, JSON.stringify(filtered, null, 2));
   return true;
 }
 

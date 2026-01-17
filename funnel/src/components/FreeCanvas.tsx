@@ -171,6 +171,15 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
   const isInitialized = useRef(false);
   const autoSaveTimer = useRef<NodeJS.Timeout | null>(null);
   const onSaveRef = useRef(onSave);
+  const defaultEdgeOptions = useMemo(
+    () => ({
+      type: 'task',
+      markerEnd: { type: MarkerType.ArrowClosed, color: '#94a3b8' },
+      style: { stroke: '#cbd5e1', strokeWidth: 1.5 },
+    }),
+    []
+  );
+  const snapGrid = useMemo(() => [15, 15] as [number, number], []);
 
   useEffect(() => {
     onSaveRef.current = onSave;
@@ -884,16 +893,12 @@ function FreeCanvasInner({ initialNodes, initialEdges, initialPhaseNames, initia
           edgeTypes={edgeTypes}
           fitView={false}
           snapToGrid
-          snapGrid={[15, 15]}
+          snapGrid={snapGrid}
           panOnDrag
           zoomOnScroll
           minZoom={0.1}
           maxZoom={2}
-          defaultEdgeOptions={{
-            type: 'task',
-            markerEnd: { type: MarkerType.ArrowClosed, color: '#94a3b8' },
-            style: { stroke: '#cbd5e1', strokeWidth: 1.5 },
-          }}
+          defaultEdgeOptions={defaultEdgeOptions}
         >
           <PhaseBackground phases={phases} />
           <Background color="#fafafa" gap={20} />

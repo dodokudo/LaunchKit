@@ -90,6 +90,9 @@ export interface Funnel {
   name: string;
   description?: string;
 
+  // 所属フォルダ
+  folderId?: string | null;
+
   // 基準日（販売日など）
   baseDate: string; // YYYY-MM-DD（開始日）
   baseDateDays: number; // 期間（日数）。1なら1日だけ、5なら5日間
@@ -181,6 +184,7 @@ export function createDefaultFunnel(id: string): Funnel {
     id,
     name: '新規ファネル',
     description: '',
+    folderId: null,
     baseDate: baseDate.toISOString().split('T')[0],
     baseDateDays: 3, // デフォルトは3日間
     baseDateLabel: '販売期間',

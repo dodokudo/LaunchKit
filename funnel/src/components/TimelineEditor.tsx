@@ -574,11 +574,11 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     setConnectingFrom({ id: deliveryId, side });
   };
 
-  const recordScheduleHistory = useCallback(() => {
+  const pushScheduleHistory = useCallback((nextDeliveries: DeliveryItem[], nextConnections: Connection[]) => {
     if (isScheduleUndoingRef.current) return;
     const snapshot = {
-      deliveries: funnel.deliveries,
-      connections: funnel.connections ?? [],
+      deliveries: nextDeliveries,
+      connections: nextConnections,
     };
     const key = JSON.stringify(snapshot);
     const history = scheduleHistoryRef.current;
@@ -587,11 +587,11 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     history.splice(scheduleHistoryIndexRef.current + 1);
     history.push({ ...snapshot, key });
     scheduleHistoryIndexRef.current = history.length - 1;
-  }, [funnel.deliveries, funnel.connections]);
+  }, []);
 
   const commitScheduleUpdate = useCallback(
     (nextDeliveries: DeliveryItem[], nextConnections: Connection[]) => {
-      recordScheduleHistory();
+      pushScheduleHistory(nextDeliveries, nextConnections);
       onUpdate({
         ...funnel,
         deliveries: nextDeliveries,
@@ -599,7 +599,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
         updatedAt: new Date().toISOString(),
       });
     },
-    [funnel, onUpdate, recordScheduleHistory]
+    [funnel, onUpdate, pushScheduleHistory]
   );
 
   const handleAddConnection = (
@@ -655,19 +655,8 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
   useEffect(() => {
     scheduleHistoryRef.current = [];
     scheduleHistoryIndexRef.current = -1;
-    recordScheduleHistory();
-  }, [funnel.id, recordScheduleHistory]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
-        e.preventDefault();
-        handleScheduleUndo();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleScheduleUndo]);
+    pushScheduleHistory(funnel.deliveries, funnel.connections ?? []);
+  }, [funnel.id, pushScheduleHistory]);
 
   const clamp = (value: number, min: number, max: number) => {
     return Math.min(max, Math.max(min, value));
@@ -861,6 +850,24 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
     setActiveCardId(null);
     setConnectingFrom(null);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement).tagName === 'INPUT' || (e.target as HTMLElement).tagName === 'TEXTAREA') {
+        return;
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        handleScheduleUndo();
+      }
+      if ((e.key === 'Delete' || e.key === 'Backspace') && activeCardId) {
+        e.preventDefault();
+        handleDeliveryDelete(activeCardId);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleScheduleUndo, activeCardId, handleDeliveryDelete]);
 
   const getHandlePoint = (
     rect: DOMRect,
@@ -1338,7 +1345,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                             return (
                               <div
                                 key={date}
-                                className={`flex-shrink-0 p-1 text-center border-r border-gray-200 relative ${
+                                className={`flex-shrink-0 p-1 text-center border-r border-gray-200 relative group ${
                                   isInPeriod ? 'bg-red-50' : ''
                                 }`}
                                 style={{ width: dayWidth }}
@@ -1350,7 +1357,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                                   ({getDayOfWeek(date)})
                                 </div>
                                 <div
-                                  className="absolute right-0 top-0 h-full w-2 cursor-col-resize"
+                                  className="absolute right-0 top-0 h-full w-2 cursor-col-resize opacity-0 group-hover:opacity-100 bg-gray-300/50"
                                   onMouseDown={(e) => {
                                     e.preventDefault();
                                     setIsResizingDayWidth(true);
@@ -1362,7 +1369,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                             );
                           })}
                         </div>
-                      </div>
+                    </div>
                     </div>
 
                     <div className="flex">
@@ -1437,8 +1444,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                             const startY = startPoint.y;
                             const endX = endPoint.x;
                             const endY = endPoint.y;
-                            const curve = Math.max(40, Math.abs(endX - startX) * 0.4);
-                            const path = `M ${startX} ${startY} C ${startX + curve} ${startY}, ${endX - curve} ${endY}, ${endX} ${endY}`;
+                            const path = `M ${startX} ${startY} L ${startX} ${endY} L ${endX} ${endY}`;
                             return (
                               <path
                                 key={connection.id}
@@ -1496,7 +1502,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                               style={{ left, top, width, height }}
                             >
                               <div
-                                className={`absolute left-1/2 -translate-x-1/2 top-1 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                className={`absolute left-1/2 -translate-x-1/2 -top-1 w-2 h-2 rounded-full border bg-white cursor-pointer ${
                                   connectingFrom?.id === delivery.id && connectingFrom.side === 'top'
                                     ? 'border-blue-400'
                                     : 'border-gray-300'
@@ -1515,7 +1521,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                                 <span className="sr-only">接続</span>
                               </div>
                               <div
-                                className={`absolute right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                className={`absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white cursor-pointer ${
                                   connectingFrom?.id === delivery.id && connectingFrom.side === 'right'
                                     ? 'border-blue-400'
                                     : 'border-gray-300'
@@ -1534,7 +1540,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                                 <span className="sr-only">接続</span>
                               </div>
                               <div
-                                className={`absolute left-1/2 -translate-x-1/2 bottom-1 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                className={`absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 rounded-full border bg-white cursor-pointer ${
                                   connectingFrom?.id === delivery.id && connectingFrom.side === 'bottom'
                                     ? 'border-blue-400'
                                     : 'border-gray-300'
@@ -1553,7 +1559,7 @@ export function TimelineEditor({ funnel, onUpdate }: TimelineEditorProps) {
                                 <span className="sr-only">接続</span>
                               </div>
                               <div
-                                className={`absolute left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white cursor-pointer ${
+                                className={`absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white cursor-pointer ${
                                   connectingFrom?.id === delivery.id && connectingFrom.side === 'left'
                                     ? 'border-blue-400'
                                     : 'border-gray-300'
