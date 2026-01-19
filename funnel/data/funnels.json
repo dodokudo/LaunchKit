@@ -129,7 +129,7 @@
           "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
         },
         "width": 120,
-        "height": 38,
+        "height": 37,
         "selected": false,
         "dragging": false,
         "positionAbsolute": {
@@ -179,7 +179,7 @@
           "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
         },
         "width": 120,
-        "height": 38,
+        "height": 37,
         "selected": false,
         "positionAbsolute": {
           "x": 105,
@@ -230,7 +230,7 @@
           "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
         },
         "width": 120,
-        "height": 38,
+        "height": 37,
         "selected": false,
         "positionAbsolute": {
           "x": 420,
@@ -280,7 +280,7 @@
           "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
         },
         "width": 120,
-        "height": 38,
+        "height": 37,
         "selected": false,
         "positionAbsolute": {
           "x": 615,
@@ -330,7 +330,7 @@
           "kpiOptionsKey": "n1:Instagram:|n2:TikTok:|n3:LINE登録:|n4:動画視聴:|n5:セミナー申込:|n6:商品購入:2"
         },
         "width": 120,
-        "height": 38,
+        "height": 37,
         "selected": false,
         "positionAbsolute": {
           "x": 810,
@@ -382,7 +382,7 @@
           "denominatorId": "n3"
         },
         "width": 120,
-        "height": 57,
+        "height": 56,
         "selected": false,
         "positionAbsolute": {
           "x": 1005,
@@ -441,7 +441,7 @@
     ],
     "branchPoints": [],
     "createdAt": "2026-01-14T16:21:36.991Z",
-    "updatedAt": "2026-01-17T08:36:45.272Z",
+    "updatedAt": "2026-01-19T13:07:09.240Z",
     "phaseNames": [
       "流入",
       "アクション",
@@ -563,88 +563,6 @@
     ]
   },
   {
-    "id": "funnel-1768640720064",
-    "name": "gem 1月ローンチ",
-    "description": "",
-    "folderId": null,
-    "baseDate": "2026-01-23",
-    "baseDateDays": 2,
-    "baseDateLabel": "販売期間",
-    "startDate": "2026-01-20",
-    "endDate": "2026-01-24",
-    "entryPoints": [],
-    "segments": [
-      {
-        "id": "all",
-        "name": "全員",
-        "color": "#6B7280",
-        "isDefault": true
-      },
-      {
-        "id": "seg-new-line",
-        "name": "新規LINE登録者",
-        "color": "#3B82F6"
-      },
-      {
-        "id": "seg-survey",
-        "name": "アンケート回答者",
-        "color": "#10B981"
-      },
-      {
-        "id": "seg-existing-line",
-        "name": "既存LINE登録者",
-        "color": "#F59E0B"
-      },
-      {
-        "id": "seg-paid",
-        "name": "有料会員",
-        "color": "#EF4444"
-      }
-    ],
-    "deliveries": [],
-    "connections": [],
-    "transitions": [],
-    "canvasNodes": [],
-    "canvasEdges": [],
-    "branchPoints": [],
-    "createdAt": "2026-01-17T09:05:50.040129Z",
-    "updatedAt": "2026-01-17T09:40:47.170Z",
-    "phaseNames": [
-      "流入",
-      "アクション",
-      "教育",
-      "販売",
-      "CV"
-    ],
-    "kpis": [
-      {
-        "target": 1000,
-        "rate": 100,
-        "width": 200
-      },
-      {
-        "target": 700,
-        "rate": 70,
-        "width": 200
-      },
-      {
-        "target": 490,
-        "rate": 70,
-        "width": 200
-      },
-      {
-        "target": 245,
-        "rate": 50,
-        "width": 200
-      },
-      {
-        "target": 49,
-        "rate": 20,
-        "width": 200
-      }
-    ]
-  },
-  {
     "id": "funnel-1768640821216",
     "name": "gem 1月ローンチ",
     "description": "",
@@ -653,7 +571,7 @@
     "baseDateDays": 2,
     "baseDateLabel": "販売期間",
     "startDate": "2026-01-20",
-    "endDate": "2026-01-24",
+    "endDate": "2026-01-25",
     "entryPoints": [],
     "segments": [
       {
@@ -679,59 +597,7 @@
     ],
     "deliveries": [
       {
-        "id": "delivery-1768644820781",
-        "date": "2026-01-20",
-        "startDate": "2026-01-20",
-        "endDate": "2026-01-20",
-        "segmentId": "seg-existing-line",
-        "segmentIds": [
-          "seg-existing-line"
-        ],
-        "title": "20:00 アンケート回答のお願い",
-        "description": "本日のアンケートに回答してください",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644820782",
-        "date": "2026-01-20",
-        "startDate": "2026-01-20",
-        "endDate": "2026-01-20",
-        "segmentId": "seg-existing-line",
-        "segmentIds": [
-          "seg-existing-line"
-        ],
-        "title": "21:00 アンケート回答のお願い",
-        "description": "本日のアンケートに回答してください",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644820783",
-        "date": "2026-01-21",
-        "startDate": "2026-01-21",
-        "endDate": "2026-01-21",
-        "segmentId": "seg-existing-line",
-        "segmentIds": [
-          "seg-existing-line"
-        ],
-        "title": "21:00 アンケート回答のお願い",
-        "description": "本日のアンケートに回答してください",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644820784",
-        "date": "2026-01-22",
-        "startDate": "2026-01-22",
-        "endDate": "2026-01-22",
-        "segmentId": "seg-existing-line",
-        "segmentIds": [
-          "seg-existing-line"
-        ],
-        "title": "21:00 アンケート回答のお願い",
-        "description": "本日のアンケートに回答してください",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971947",
+        "id": "delivery-new-1",
         "date": "2026-01-20",
         "startDate": "2026-01-20",
         "endDate": "2026-01-20",
@@ -740,11 +606,11 @@
           "seg-new-line"
         ],
         "title": "20:00 挨拶メッセージ",
-        "description": "登録1日目",
+        "description": "カルーセル誘導・スケジュール記載・有料会員登録案内",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971948",
+        "id": "delivery-new-2",
         "date": "2026-01-20",
         "startDate": "2026-01-20",
         "endDate": "2026-01-20",
@@ -753,11 +619,11 @@
           "seg-new-line"
         ],
         "title": "21:00 リマインド",
-        "description": "登録1日目（1時間後）",
+        "description": "短め・パール画像",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971949",
+        "id": "delivery-new-3",
         "date": "2026-01-21",
         "startDate": "2026-01-21",
         "endDate": "2026-01-21",
@@ -765,12 +631,12 @@
         "segmentIds": [
           "seg-new-line"
         ],
-        "title": "20:00 リマインド",
-        "description": "登録翌日",
+        "title": "リマインド",
+        "description": "短め・パール画像",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971950",
+        "id": "delivery-new-4",
         "date": "2026-01-22",
         "startDate": "2026-01-22",
         "endDate": "2026-01-22",
@@ -778,12 +644,64 @@
         "segmentIds": [
           "seg-new-line"
         ],
-        "title": "20:00 最終リマインド",
-        "description": "登録2日目",
+        "title": "最終リマインド",
+        "description": "長め・感情訴求",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971951",
+        "id": "delivery-existing-1",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "20:00 パール大会の告知",
+        "description": "カルーセル誘導・スケジュール記載・有料会員登録案内",
+        "type": "message"
+      },
+      {
+        "id": "delivery-existing-2",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "21:00 リマインド",
+        "description": "短め・パール画像",
+        "type": "message"
+      },
+      {
+        "id": "delivery-existing-3",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "再度リマインド",
+        "description": "短め・パール画像",
+        "type": "message"
+      },
+      {
+        "id": "delivery-existing-4",
+        "date": "2026-01-22",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22",
+        "segmentId": "seg-existing-line",
+        "segmentIds": [
+          "seg-existing-line"
+        ],
+        "title": "最終リマインド",
+        "description": "長め・感情訴求",
+        "type": "message"
+      },
+      {
+        "id": "delivery-survey-1",
         "date": "2026-01-20",
         "startDate": "2026-01-20",
         "endDate": "2026-01-20",
@@ -791,12 +709,25 @@
         "segmentIds": [
           "seg-survey"
         ],
-        "title": "21:00 会員登録のお願い",
-        "description": "22日までに会員登録してください",
+        "title": "回答直後 会員サイトへ誘導",
+        "description": "スケジュール記載・有料会員でないと参加不可の注意書き・LP誘導",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971952",
+        "id": "delivery-survey-2",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-survey",
+        "segmentIds": [
+          "seg-survey"
+        ],
+        "title": "1時間後 リマインド",
+        "description": "会員サイト案内",
+        "type": "message"
+      },
+      {
+        "id": "delivery-survey-3",
         "date": "2026-01-21",
         "startDate": "2026-01-21",
         "endDate": "2026-01-21",
@@ -804,12 +735,12 @@
         "segmentIds": [
           "seg-survey"
         ],
-        "title": "21:00 会員登録のお願い",
-        "description": "22日までに会員登録してください",
+        "title": "20:00 会員サイト案内",
+        "description": "",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971953",
+        "id": "delivery-survey-4",
         "date": "2026-01-22",
         "startDate": "2026-01-22",
         "endDate": "2026-01-22",
@@ -817,12 +748,25 @@
         "segmentIds": [
           "seg-survey"
         ],
-        "title": "21:00 会員登録のお願い",
-        "description": "22日までに会員登録してください",
+        "title": "20:00 会員サイト案内",
+        "description": "",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971954",
+        "id": "delivery-survey-5",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-survey",
+        "segmentIds": [
+          "seg-survey"
+        ],
+        "title": "12:00 本日からパール大会開始",
+        "description": "会員登録しないと参加できません",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-1",
         "date": "2026-01-20",
         "startDate": "2026-01-20",
         "endDate": "2026-01-20",
@@ -830,12 +774,12 @@
         "segmentIds": [
           "seg-paid"
         ],
-        "title": "21:00 ローンチ配信",
-        "description": "パール大会の配信",
+        "title": "21:00 パール大会の告知",
+        "description": "文章＋画像でスケジュール記載（Canva作成）",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971955",
+        "id": "delivery-paid-2",
         "date": "2026-01-21",
         "startDate": "2026-01-21",
         "endDate": "2026-01-21",
@@ -843,129 +787,12 @@
         "segmentIds": [
           "seg-paid"
         ],
-        "title": "21:00 ローンチ配信",
-        "description": "パール大会の配信",
+        "title": "21:00 予習ライブ",
+        "description": "Instagramライブ誘導",
         "type": "message"
       },
       {
-        "id": "delivery-1768644971956",
-        "date": "2026-01-23",
-        "startDate": "2026-01-23",
-        "endDate": "2026-01-23",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "12:00 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971957",
-        "date": "2026-01-23",
-        "startDate": "2026-01-23",
-        "endDate": "2026-01-23",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "20:50 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971958",
-        "date": "2026-01-23",
-        "startDate": "2026-01-23",
-        "endDate": "2026-01-23",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "21:00 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971959",
-        "date": "2026-01-23",
-        "startDate": "2026-01-23",
-        "endDate": "2026-01-23",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "21:10 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971960",
-        "date": "2026-01-23",
-        "startDate": "2026-01-23",
-        "endDate": "2026-01-23",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "21:30 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971961",
-        "date": "2026-01-23",
-        "startDate": "2026-01-23",
-        "endDate": "2026-01-23",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "22:00 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971962",
-        "date": "2026-01-24",
-        "startDate": "2026-01-24",
-        "endDate": "2026-01-24",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "12:00 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971963",
-        "date": "2026-01-24",
-        "startDate": "2026-01-24",
-        "endDate": "2026-01-24",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "21:00 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768644971964",
-        "date": "2026-01-24",
-        "startDate": "2026-01-24",
-        "endDate": "2026-01-24",
-        "segmentId": "seg-paid",
-        "segmentIds": [
-          "seg-paid"
-        ],
-        "title": "23:00 ローンチ配信",
-        "description": "パール大会の配信",
-        "type": "message"
-      },
-      {
-        "id": "delivery-1768645137810",
+        "id": "delivery-paid-3",
         "date": "2026-01-22",
         "startDate": "2026-01-22",
         "endDate": "2026-01-22",
@@ -973,7 +800,137 @@
         "segmentIds": [
           "seg-paid"
         ],
-        "title": "21:00",
+        "title": "21:00 EC公開",
+        "description": "EC誘導",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-4",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "12:00 人気アイテム公開",
+        "description": "いいね数・お気に入り数ランキング・カルーセル",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-5",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "20:50 10分前の告知",
+        "description": "ライブ開始です、準備してください",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-6",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00 ライブ販売開始",
+        "description": "カルーセル：EC（上）・ライブ誘導（下）",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-7",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:10 購入通知が止まりません",
+        "description": "今これぐらい売れてますよ",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-8",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:30 ライブ盛況の演出",
+        "description": "今○人がライブ見てますよ",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-9",
+        "date": "2026-01-23",
+        "startDate": "2026-01-23",
+        "endDate": "2026-01-23",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "22:00 ももちゃんの声",
+        "description": "感情訴求・狙い目アイテム・スタッフの想い",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-10",
+        "date": "2026-01-24",
+        "startDate": "2026-01-24",
+        "endDate": "2026-01-24",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "12:00 残り12時間",
+        "description": "本日で終了",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-11",
+        "date": "2026-01-24",
+        "startDate": "2026-01-24",
+        "endDate": "2026-01-24",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "21:00 残り3時間",
+        "description": "チームキラキラの声",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-12",
+        "date": "2026-01-24",
+        "startDate": "2026-01-24",
+        "endDate": "2026-01-24",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "23:00 残り1時間",
+        "description": "感情訴求・長文",
+        "type": "message"
+      },
+      {
+        "id": "delivery-paid-13",
+        "date": "2026-01-25",
+        "startDate": "2026-01-25",
+        "endDate": "2026-01-25",
+        "segmentId": "seg-paid",
+        "segmentIds": [
+          "seg-paid"
+        ],
+        "title": "12:00 お礼",
         "description": "",
         "type": "message"
       }
@@ -1230,7 +1187,7 @@
     ],
     "branchPoints": [],
     "createdAt": "2026-01-17T09:39:48.353Z",
-    "updatedAt": "2026-01-17T10:19:59.943Z",
+    "updatedAt": "2026-01-17T12:12:30.547Z",
     "phaseNames": [
       "流入",
       "登録・アンケート",
@@ -1263,6 +1220,320 @@
         "target": 60,
         "rate": 30,
         "width": 180
+      }
+    ]
+  },
+  {
+    "id": "funnel-1768857000000",
+    "name": "2026年1月リマーケ",
+    "description": "TAI2セミナー後のリマーケティング施策",
+    "folderId": null,
+    "baseDate": "2026-01-21",
+    "baseDateDays": 2,
+    "baseDateLabel": "個別相談会",
+    "startDate": "2026-01-19",
+    "endDate": "2026-01-22",
+    "entryPoints": [],
+    "segments": [
+      {
+        "id": "seg-seminar-no-purchase",
+        "name": "セミナー参加→未購入",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "seg-seminar-not-joined",
+        "name": "セミナー未参加",
+        "color": "#F59E0B"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "delivery-nopurchase-1",
+        "date": "2026-01-20",
+        "startDate": "2026-01-20",
+        "endDate": "2026-01-20",
+        "segmentId": "seg-seminar-no-purchase",
+        "segmentIds": ["seg-seminar-no-purchase"],
+        "title": "20:00 個別相談会 募集開始",
+        "description": "セミナー参加ありがとう。購入迷ってる方向け個別相談会のご案内",
+        "type": "message"
+      },
+      {
+        "id": "delivery-nopurchase-2",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-seminar-no-purchase",
+        "segmentIds": ["seg-seminar-no-purchase"],
+        "title": "21:00 リマインド",
+        "description": "本日で募集終了です",
+        "type": "message"
+      },
+      {
+        "id": "delivery-nopurchase-3",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-seminar-no-purchase",
+        "segmentIds": ["seg-seminar-no-purchase"],
+        "title": "23:00 終了告知",
+        "description": "まもなく募集終了",
+        "type": "message"
+      },
+      {
+        "id": "delivery-notjoined-1",
+        "date": "2026-01-19",
+        "startDate": "2026-01-19",
+        "endDate": "2026-01-19",
+        "segmentId": "seg-seminar-not-joined",
+        "segmentIds": ["seg-seminar-not-joined"],
+        "title": "アーカイブ興味確認",
+        "description": "セミナーアーカイブ見たい方はタップ",
+        "type": "message"
+      },
+      {
+        "id": "delivery-notjoined-2",
+        "date": "2026-01-21",
+        "startDate": "2026-01-21",
+        "endDate": "2026-01-21",
+        "segmentId": "seg-seminar-not-joined",
+        "segmentIds": ["seg-seminar-not-joined"],
+        "title": "アーカイブ公開開始（24h限定）",
+        "description": "セミナーアーカイブ24時間限定公開",
+        "type": "message"
+      },
+      {
+        "id": "delivery-notjoined-3",
+        "date": "2026-01-22",
+        "startDate": "2026-01-22",
+        "endDate": "2026-01-22",
+        "segmentId": "seg-seminar-not-joined",
+        "segmentIds": ["seg-seminar-not-joined"],
+        "title": "アーカイブ終了",
+        "description": "本日でアーカイブ公開終了",
+        "type": "message"
+      }
+    ],
+    "connections": [],
+    "transitions": [],
+    "canvasNodes": [
+      {
+        "id": "node-seminar-joined",
+        "type": "funnel",
+        "position": {
+          "x": -30,
+          "y": -60
+        },
+        "data": {
+          "label": "セミナー参加",
+          "nodeType": "entry",
+          "bg": "#e3f2fd",
+          "border": "#1976d2"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -30,
+          "y": -60
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-seminar-not-joined",
+        "type": "funnel",
+        "position": {
+          "x": -30,
+          "y": 30
+        },
+        "data": {
+          "label": "セミナー未参加",
+          "nodeType": "entry",
+          "bg": "#fff7ed",
+          "border": "#fb923c"
+        },
+        "width": 131,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -30,
+          "y": 30
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-no-purchase",
+        "type": "funnel",
+        "position": {
+          "x": 315,
+          "y": 45
+        },
+        "data": {
+          "label": "未購入",
+          "nodeType": "action",
+          "bg": "#fef2f2",
+          "border": "#ef4444"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": 315,
+          "y": 45
+        }
+      },
+      {
+        "id": "node-archive",
+        "type": "funnel",
+        "position": {
+          "x": 195,
+          "y": 165
+        },
+        "data": {
+          "label": "アーカイブ視聴",
+          "nodeType": "action",
+          "bg": "#f5f3ff",
+          "border": "#a78bfa"
+        },
+        "width": 130,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 195,
+          "y": 165
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-consultation",
+        "type": "funnel",
+        "position": {
+          "x": 510,
+          "y": 255
+        },
+        "data": {
+          "label": "個別相談会",
+          "nodeType": "action",
+          "bg": "#ecfdf3",
+          "border": "#34d399"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": false,
+        "positionAbsolute": {
+          "x": 510,
+          "y": 255
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-purchase",
+        "type": "funnel",
+        "position": {
+          "x": 795,
+          "y": 390
+        },
+        "data": {
+          "label": "商品購入",
+          "nodeType": "conversion",
+          "bg": "#ecfdf3",
+          "border": "#34d399"
+        },
+        "width": 120,
+        "height": 37,
+        "selected": true,
+        "positionAbsolute": {
+          "x": 795,
+          "y": 390
+        },
+        "dragging": false
+      }
+    ],
+    "canvasEdges": [
+      {
+        "id": "edge-joined-nopurchase",
+        "source": "node-seminar-joined",
+        "target": "node-no-purchase",
+        "type": "task",
+        "data": {
+          "task": "未購入"
+        },
+        "selected": false
+      },
+      {
+        "id": "edge-notjoined-archive",
+        "source": "node-seminar-not-joined",
+        "target": "node-archive",
+        "type": "task",
+        "data": {
+          "task": "48h限定"
+        }
+      },
+      {
+        "id": "edge-nopurchase-consultation",
+        "source": "node-no-purchase",
+        "target": "node-consultation",
+        "type": "task",
+        "data": {
+          "task": "20h限定"
+        },
+        "selected": false
+      },
+      {
+        "id": "edge-archive-consultation",
+        "source": "node-archive",
+        "target": "node-consultation",
+        "type": "task",
+        "data": {
+          "task": ""
+        }
+      },
+      {
+        "id": "edge-consultation-purchase",
+        "source": "node-consultation",
+        "target": "node-purchase",
+        "type": "task",
+        "data": {
+          "task": ""
+        }
+      }
+    ],
+    "branchPoints": [],
+    "createdAt": "2026-01-19T12:30:00.000Z",
+    "updatedAt": "2026-01-19T13:08:34.458Z",
+    "phaseNames": [
+      "対象",
+      "施策",
+      "クロージング",
+      "CV",
+      "フェーズ5"
+    ],
+    "kpis": [
+      {
+        "target": 100,
+        "rate": 100,
+        "width": 270
+      },
+      {
+        "target": 50,
+        "rate": 50,
+        "width": 270
+      },
+      {
+        "target": 25,
+        "rate": 50,
+        "width": 270
+      },
+      {
+        "target": 10,
+        "rate": 40,
+        "width": 250
+      },
+      {
+        "target": 5,
+        "rate": 50,
+        "width": 200
       }
     ]
   }
