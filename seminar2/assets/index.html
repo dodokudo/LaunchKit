@@ -599,6 +599,7 @@
             width: 100%;
             max-width: 740px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            position: relative;
         }
         .schedule-list li { margin-bottom: 8px; font-weight: bold; font-size: 18px;}
         .schedule-title {
@@ -610,9 +611,13 @@
             font-weight: 900;
             font-size: 18px;
             text-align: center;
-            margin: 0 auto 14px;
+            margin: 0 auto;
             border-radius: 4px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .schedule-table {
             width: 100%;
@@ -1272,11 +1277,10 @@
 
             <div class="content-box" style="text-align:center;">
                 <div class="schedule-box" style="display:inline-block;">
-                    <ul class="schedule-list text-center" style="padding:0; list-style:none; margin-bottom: 10px;">
-                        <div class="schedule-title">開催日時一覧</div>
+                    <div class="schedule-title">開催日時一覧</div>
+                    <ul class="schedule-list text-center" style="padding:0; list-style:none; margin-bottom: 10px; margin-top: 20px;">
                         <li>各回：先着10名限定</li>
-                        <li>時間：2時間</li>
-                        <li>参加費：<span class="text-alert-red" style="font-size:1.2em;">無料</span></li>
+                        <li>時間：2時間　／　参加費：<span class="text-alert-red" style="font-size:1.2em;">無料</span></li>
                     </ul>
                     <table class="schedule-table">
                         <thead>
