@@ -1478,6 +1478,44 @@
                 return (hash % 7) + 1;
             }
 
+            function hashNum(str) {
+                let h = 0;
+                for (let i = 0; i < str.length; i++) {
+                    h = (h * 31 + str.charCodeAt(i)) % 2147483647;
+                }
+                return h;
+            }
+
+            function buildSeats(dates) {
+                const seats = dates.map(d => seatCount(d));
+                const order = dates
+                    .map((_, idx) => ({ idx, h: hashNum(`${todayKey}-${idx}`) }))
+                    .sort((a, b) => a.h - b.h)
+                    .map(x => x.idx);
+
+                let count1 = seats.filter(v => v === 1).length;
+                let count2 = seats.filter(v => v === 2).length;
+
+                for (const idx of order) {
+                    if (count1 >= 2) break;
+                    if (seats[idx] !== 1) {
+                        if (seats[idx] === 2) count2 -= 1;
+                        seats[idx] = 1;
+                        count1 += 1;
+                    }
+                }
+                for (const idx of order) {
+                    if (count2 >= 1) break;
+                    if (seats[idx] !== 2) {
+                        if (seats[idx] === 1 && count1 <= 2) continue;
+                        if (seats[idx] === 1) count1 -= 1;
+                        seats[idx] = 2;
+                        count2 += 1;
+                    }
+                }
+                return seats;
+            }
+
             const rows = [];
             // 過去5日（今日含む）
             for (let offset = -4; offset <= 0; offset++) {
@@ -1491,15 +1529,19 @@
                 });
             }
             // 直近8日（明日から）
+            const upcomingDates = [];
             for (let offset = 1; offset <= 8; offset++) {
-                const d = new Date(baseUtcMs + offset * 24 * 60 * 60 * 1000);
+                upcomingDates.push(new Date(baseUtcMs + offset * 24 * 60 * 60 * 1000));
+            }
+            const upcomingSeats = buildSeats(upcomingDates);
+            upcomingDates.forEach((d, i) => {
                 const dateText = fmt.format(d);
                 rows.push({
                     dateText: `${dateText} 20:00〜22:00`,
-                    status: `残り${seatCount(d)}名`,
+                    status: `残り${upcomingSeats[i]}名`,
                     isFull: false
                 });
-            }
+            });
 
             scheduleBody.innerHTML = rows.map((row) => {
                 const rowClass = row.isFull ? 'schedule-row is-full' : 'schedule-row';
