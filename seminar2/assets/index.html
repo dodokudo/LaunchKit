@@ -601,6 +601,57 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         .schedule-list li { margin-bottom: 8px; font-weight: bold; font-size: 18px;}
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .schedule-table th,
+        .schedule-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e6e6e6;
+            font-size: 14px;
+        }
+        .schedule-table th {
+            background: #5b1414;
+            color: #f5e4c2;
+            font-weight: 900;
+        }
+        .schedule-table td { background: #fff; color: #333; }
+        .schedule-table tr:last-child td { border-bottom: none; }
+        .schedule-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 0.02em;
+        }
+        .schedule-status.full { background: #c0392b; color: #fff; }
+        .schedule-status.left { background: #2e7d32; color: #fff; }
+        .schedule-row.is-full td {
+            color: #666;
+            text-decoration: line-through;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: rgba(0,0,0,0.6);
+            background:
+                repeating-linear-gradient(
+                    -45deg,
+                    rgba(0,0,0,0.06),
+                    rgba(0,0,0,0.06) 6px,
+                    transparent 6px,
+                    transparent 12px
+                );
+        }
+        .schedule-row.is-full .schedule-status {
+            text-decoration: none;
+            background: #b03a2e;
+        }
+        .schedule-note { font-size: 12px; color: #666; margin-top: 8px; }
 
         /* --- 緊急性ボックス --- */
         .urgency-box {
@@ -1209,11 +1260,73 @@
 
             <div class="content-box" style="text-align:center;">
                 <div class="schedule-box" style="display:inline-block;">
-                    <ul class="schedule-list text-center" style="padding:0; list-style:none;">
+                    <ul class="schedule-list text-center" style="padding:0; list-style:none; margin-bottom: 10px;">
                         <li>各回 少人数開催(先着10名限定)</li>
                         <li>時間: 2時間</li>
                         <li>参加費: <span class="text-alert-red" style="font-size:1.2em;">無料</span></li>
                     </ul>
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>日程</th>
+                                <th>開催地</th>
+                                <th>残数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="schedule-row is-full">
+                                <td>1月20日(火) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status full">満席</span></td>
+                            </tr>
+                            <tr class="schedule-row is-full">
+                                <td>1月21日(水) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status full">満席</span></td>
+                            </tr>
+                            <tr class="schedule-row is-full">
+                                <td>1月22日(木) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status full">満席</span></td>
+                            </tr>
+                            <tr class="schedule-row is-full">
+                                <td>1月23日(金) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status full">満席</span></td>
+                            </tr>
+                            <tr class="schedule-row is-full">
+                                <td>1月24日(土) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status full">満席</span></td>
+                            </tr>
+                            <tr class="schedule-row">
+                                <td>1月25日(日) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status left">残り1名</span></td>
+                            </tr>
+                            <tr class="schedule-row">
+                                <td>1月26日(月) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status left">残り2名</span></td>
+                            </tr>
+                            <tr class="schedule-row">
+                                <td>1月27日(火) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status left">残り3名</span></td>
+                            </tr>
+                            <tr class="schedule-row">
+                                <td>1月28日(水) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status left">残り4名</span></td>
+                            </tr>
+                            <tr class="schedule-row">
+                                <td>1月29日(木) 20:00〜22:00</td>
+                                <td>オンライン</td>
+                                <td><span class="schedule-status left">残り5名</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="schedule-note">※ 満席回は斜線表示にしています。</div>
                 </div>
 
                 <div class="text-center">
