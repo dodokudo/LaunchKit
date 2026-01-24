@@ -634,10 +634,13 @@
             border-bottom: 1px solid #e6e6e6;
             font-size: 14px;
         }
+        .schedule-table thead {
+            background: var(--insta-gradient);
+        }
         .schedule-table th {
-            background: #5b1414;
-            color: #f5e4c2;
+            color: #fff;
             font-weight: 900;
+            border-bottom: none;
         }
         .schedule-table td { background: #fff; color: #333; }
         .schedule-table tr:last-child td { border-bottom: none; }
@@ -1289,48 +1292,7 @@
                                 <th>残数</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="schedule-row is-full">
-                                <td>1月20日(火) 20:00〜22:00</td>
-                                <td><span class="schedule-status full">満席</span></td>
-                            </tr>
-                            <tr class="schedule-row is-full">
-                                <td>1月21日(水) 20:00〜22:00</td>
-                                <td><span class="schedule-status full">満席</span></td>
-                            </tr>
-                            <tr class="schedule-row is-full">
-                                <td>1月22日(木) 20:00〜22:00</td>
-                                <td><span class="schedule-status full">満席</span></td>
-                            </tr>
-                            <tr class="schedule-row is-full">
-                                <td>1月23日(金) 20:00〜22:00</td>
-                                <td><span class="schedule-status full">満席</span></td>
-                            </tr>
-                            <tr class="schedule-row is-full">
-                                <td>1月24日(土) 20:00〜22:00</td>
-                                <td><span class="schedule-status full">満席</span></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td>1月25日(日) 20:00〜22:00</td>
-                                <td><span class="schedule-status left">残り1名</span></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td>1月26日(月) 20:00〜22:00</td>
-                                <td><span class="schedule-status left">残り2名</span></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td>1月27日(火) 20:00〜22:00</td>
-                                <td><span class="schedule-status left">残り3名</span></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td>1月28日(水) 20:00〜22:00</td>
-                                <td><span class="schedule-status left">残り4名</span></td>
-                            </tr>
-                            <tr class="schedule-row">
-                                <td>1月29日(木) 20:00〜22:00</td>
-                                <td><span class="schedule-status left">残り5名</span></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="schedule-body"></tbody>
                     </table>
                 </div>
 
@@ -1473,6 +1435,82 @@
 
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
+
+        // 日程テーブル自動生成（JST基準）
+        const scheduleBody = document.getElementById('schedule-body');
+        if (scheduleBody) {
+            const fmt = new Intl.DateTimeFormat('ja-JP', {
+                timeZone: 'Asia/Tokyo',
+                month: 'numeric',
+                day: 'numeric',
+                weekday: 'short'
+            });
+
+            const now = new Date();
+            const todayParts = new Intl.DateTimeFormat('ja-JP', {
+                timeZone: 'Asia/Tokyo',
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric'
+            }).formatToParts(now).reduce((acc, p) => {
+                if (p.type === 'year') acc.year = Number(p.value);
+                if (p.type === 'month') acc.month = Number(p.value);
+                if (p.type === 'day') acc.day = Number(p.value);
+                return acc;
+            }, { year: 0, month: 0, day: 0 });
+
+            const baseUtcMs = Date.UTC(todayParts.year, todayParts.month - 1, todayParts.day) - 9 * 60 * 60 * 1000;
+            const todayKey = `${todayParts.year}${String(todayParts.month).padStart(2, '0')}${String(todayParts.day).padStart(2, '0')}`;
+
+            function seatCount(dateObj) {
+                const dateKey = new Intl.DateTimeFormat('ja-JP', {
+                    timeZone: 'Asia/Tokyo',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                }).format(dateObj).replace(/\//g, '');
+                const seed = `${dateKey}-${todayKey}`;
+                let hash = 0;
+                for (let i = 0; i < seed.length; i++) {
+                    hash = (hash * 31 + seed.charCodeAt(i)) % 2147483647;
+                }
+                return (hash % 7) + 1;
+            }
+
+            const rows = [];
+            // 過去5日（今日含む）
+            for (let offset = -4; offset <= 0; offset++) {
+                const d = new Date(baseUtcMs + offset * 24 * 60 * 60 * 1000);
+                const dateText = fmt.format(d);
+                const isRecentFull = offset >= -2;
+                rows.push({
+                    dateText: `${dateText} 20:00〜22:00`,
+                    status: isRecentFull ? '満席' : '終了',
+                    isFull: true
+                });
+            }
+            // 直近8日（明日から）
+            for (let offset = 1; offset <= 8; offset++) {
+                const d = new Date(baseUtcMs + offset * 24 * 60 * 60 * 1000);
+                const dateText = fmt.format(d);
+                rows.push({
+                    dateText: `${dateText} 20:00〜22:00`,
+                    status: `残り${seatCount(d)}名`,
+                    isFull: false
+                });
+            }
+
+            scheduleBody.innerHTML = rows.map((row) => {
+                const rowClass = row.isFull ? 'schedule-row is-full' : 'schedule-row';
+                const badgeClass = row.isFull ? 'schedule-status full' : 'schedule-status left';
+                return `
+                    <tr class="${rowClass}">
+                        <td>${row.dateText}</td>
+                        <td><span class="${badgeClass}">${row.status}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
     </script>
 
 </body>
