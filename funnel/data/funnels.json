@@ -1536,5 +1536,633 @@
         "width": 200
       }
     ]
+  },
+  {
+    "id": "funnel-1770200000000",
+    "name": "2月マーケティング",
+    "description": "既存LINE登録者向け2月プロモーション - セミナールート（Threadsセミナー→フロントエンド→バックエンド）と個別相談会ルート（前振り教育→募集→バックエンド）の2軸展開",
+    "folderId": null,
+    "baseDate": "2026-02-10",
+    "baseDateDays": 2,
+    "baseDateLabel": "セミナー実施",
+    "startDate": "2026-02-04",
+    "endDate": "2026-02-20",
+    "entryPoints": [
+      {
+        "id": "entry-line",
+        "platform": "line",
+        "label": "既存LINE登録者",
+        "description": "既存のLINE登録者リスト"
+      }
+    ],
+    "segments": [
+      {
+        "id": "all",
+        "name": "既存LINE登録者",
+        "color": "#6B7280",
+        "isDefault": true
+      },
+      {
+        "id": "seg-seminar-interest",
+        "name": "セミナー興味あり",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "seg-consultation-interest",
+        "name": "個別相談会興味あり",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "seg-seminar-registered",
+        "name": "セミナー申込者",
+        "color": "#8B5CF6"
+      },
+      {
+        "id": "seg-frontend-purchased",
+        "name": "フロントエンド購入者",
+        "color": "#10B981"
+      },
+      {
+        "id": "seg-consultation-registered",
+        "name": "個別相談会申込者",
+        "color": "#EF4444"
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "delivery-branch-1",
+        "date": "2026-02-04",
+        "startDate": "2026-02-04",
+        "endDate": "2026-02-04",
+        "segmentId": "all",
+        "segmentIds": ["all"],
+        "title": "興味関心アンケート",
+        "description": "【分岐配信】2つの企画を告知。セミナー or 個別相談会、どちらに興味あるかクリックで分岐",
+        "type": "branch"
+      },
+      {
+        "id": "delivery-seminar-recruit-1",
+        "date": "2026-02-06",
+        "startDate": "2026-02-06",
+        "endDate": "2026-02-06",
+        "segmentId": "seg-seminar-interest",
+        "segmentIds": ["seg-seminar-interest"],
+        "title": "セミナー募集①",
+        "description": "Threadsセミナー募集開始。2/10-11開催告知",
+        "type": "message"
+      },
+      {
+        "id": "delivery-seminar-recruit-2",
+        "date": "2026-02-07",
+        "startDate": "2026-02-07",
+        "endDate": "2026-02-07",
+        "segmentId": "seg-seminar-interest",
+        "segmentIds": ["seg-seminar-interest"],
+        "title": "セミナー募集②",
+        "description": "セミナー内容詳細・参加者の声",
+        "type": "message"
+      },
+      {
+        "id": "delivery-seminar-recruit-3",
+        "date": "2026-02-08",
+        "startDate": "2026-02-08",
+        "endDate": "2026-02-08",
+        "segmentId": "seg-seminar-interest",
+        "segmentIds": ["seg-seminar-interest"],
+        "title": "セミナー募集③",
+        "description": "残り枠数・申込締切リマインド",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-seminar-recruit-4",
+        "date": "2026-02-09",
+        "startDate": "2026-02-09",
+        "endDate": "2026-02-09",
+        "segmentId": "seg-seminar-interest",
+        "segmentIds": ["seg-seminar-interest"],
+        "title": "セミナー募集④（最終）",
+        "description": "本日締切！最終案内",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-seminar-day1",
+        "date": "2026-02-10",
+        "startDate": "2026-02-10",
+        "endDate": "2026-02-10",
+        "segmentId": "seg-seminar-registered",
+        "segmentIds": ["seg-seminar-registered"],
+        "title": "セミナー実施 Day1",
+        "description": "Threadsセミナー1日目開催",
+        "type": "video"
+      },
+      {
+        "id": "delivery-seminar-day2",
+        "date": "2026-02-11",
+        "startDate": "2026-02-11",
+        "endDate": "2026-02-11",
+        "segmentId": "seg-seminar-registered",
+        "segmentIds": ["seg-seminar-registered"],
+        "title": "セミナー実施 Day2",
+        "description": "Threadsセミナー2日目開催",
+        "type": "video"
+      },
+      {
+        "id": "delivery-frontend-sale-1",
+        "date": "2026-02-12",
+        "startDate": "2026-02-12",
+        "endDate": "2026-02-12",
+        "segmentId": "seg-seminar-registered",
+        "segmentIds": ["seg-seminar-registered"],
+        "title": "フロントエンド販売開始",
+        "description": "【スレッズ×AIマスター講座】販売開始",
+        "type": "sale"
+      },
+      {
+        "id": "delivery-frontend-sale-2",
+        "date": "2026-02-13",
+        "startDate": "2026-02-13",
+        "endDate": "2026-02-13",
+        "segmentId": "seg-seminar-registered",
+        "segmentIds": ["seg-seminar-registered"],
+        "title": "フロントエンド販売リマインド",
+        "description": "講座の詳細・受講者の声",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-frontend-sale-3",
+        "date": "2026-02-14",
+        "startDate": "2026-02-14",
+        "endDate": "2026-02-14",
+        "segmentId": "seg-seminar-registered",
+        "segmentIds": ["seg-seminar-registered"],
+        "title": "フロントエンド販売最終",
+        "description": "本日締切！最終案内",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-backend-sale-seminar-1",
+        "date": "2026-02-16",
+        "startDate": "2026-02-16",
+        "endDate": "2026-02-16",
+        "segmentId": "seg-frontend-purchased",
+        "segmentIds": ["seg-frontend-purchased"],
+        "title": "バックエンド販売開始（セミナールート）",
+        "description": "【SNS×高単価商品販売マスター講座】購入者限定案内",
+        "type": "sale"
+      },
+      {
+        "id": "delivery-backend-sale-seminar-2",
+        "date": "2026-02-17",
+        "startDate": "2026-02-17",
+        "endDate": "2026-02-17",
+        "segmentId": "seg-frontend-purchased",
+        "segmentIds": ["seg-frontend-purchased"],
+        "title": "バックエンド販売リマインド",
+        "description": "講座詳細・成果事例",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-backend-sale-seminar-3",
+        "date": "2026-02-18",
+        "startDate": "2026-02-18",
+        "endDate": "2026-02-18",
+        "segmentId": "seg-frontend-purchased",
+        "segmentIds": ["seg-frontend-purchased"],
+        "title": "バックエンド販売最終",
+        "description": "本日締切！最終案内",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-consultation-warmup-1",
+        "date": "2026-02-05",
+        "startDate": "2026-02-05",
+        "endDate": "2026-02-05",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "前振り①",
+        "description": "高単価商品の重要性・なぜ今必要か",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-warmup-2",
+        "date": "2026-02-06",
+        "startDate": "2026-02-06",
+        "endDate": "2026-02-06",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "前振り②",
+        "description": "売れる商品設計の3つのポイント",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-warmup-3",
+        "date": "2026-02-07",
+        "startDate": "2026-02-07",
+        "endDate": "2026-02-07",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "前振り③",
+        "description": "マーケティングの基本・集客の仕組み",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-warmup-4",
+        "date": "2026-02-08",
+        "startDate": "2026-02-08",
+        "endDate": "2026-02-08",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "前振り④",
+        "description": "成功事例・実績紹介",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-warmup-5",
+        "date": "2026-02-09",
+        "startDate": "2026-02-09",
+        "endDate": "2026-02-09",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "前振り⑤",
+        "description": "個別相談会の予告・明日から募集開始",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-recruit-1",
+        "date": "2026-02-10",
+        "startDate": "2026-02-10",
+        "endDate": "2026-02-10",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "個別相談会募集①",
+        "description": "個別相談会募集開始！限定枠",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-recruit-2",
+        "date": "2026-02-11",
+        "startDate": "2026-02-11",
+        "endDate": "2026-02-11",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "個別相談会募集②",
+        "description": "相談会で得られること・参加者の声",
+        "type": "message"
+      },
+      {
+        "id": "delivery-consultation-recruit-3",
+        "date": "2026-02-12",
+        "startDate": "2026-02-12",
+        "endDate": "2026-02-12",
+        "segmentId": "seg-consultation-interest",
+        "segmentIds": ["seg-consultation-interest"],
+        "title": "個別相談会募集③（最終）",
+        "description": "本日締切！残り枠わずか",
+        "type": "reminder"
+      },
+      {
+        "id": "delivery-consultation-day",
+        "date": "2026-02-13",
+        "startDate": "2026-02-13",
+        "endDate": "2026-02-20",
+        "segmentId": "seg-consultation-registered",
+        "segmentIds": ["seg-consultation-registered"],
+        "title": "個別相談会実施期間",
+        "description": "個別相談会実施（2/13〜随時）",
+        "type": "message"
+      },
+      {
+        "id": "delivery-backend-sale-consultation-1",
+        "date": "2026-02-14",
+        "startDate": "2026-02-14",
+        "endDate": "2026-02-14",
+        "segmentId": "seg-consultation-registered",
+        "segmentIds": ["seg-consultation-registered"],
+        "title": "バックエンド案内（相談会ルート）",
+        "description": "【SNS×高単価商品販売マスター講座】個別相談会参加者限定案内",
+        "type": "sale"
+      }
+    ],
+    "connections": [
+      {
+        "id": "conn-branch-seminar",
+        "fromDeliveryId": "delivery-branch-1",
+        "toDeliveryId": "delivery-seminar-recruit-1",
+        "label": "セミナー興味",
+        "fromHandle": "bottom",
+        "toHandle": "top"
+      },
+      {
+        "id": "conn-branch-consultation",
+        "fromDeliveryId": "delivery-branch-1",
+        "toDeliveryId": "delivery-consultation-warmup-1",
+        "label": "個別相談会興味",
+        "fromHandle": "bottom",
+        "toHandle": "top"
+      },
+      {
+        "id": "conn-seminar-frontend",
+        "fromDeliveryId": "delivery-seminar-day2",
+        "toDeliveryId": "delivery-frontend-sale-1",
+        "fromHandle": "right",
+        "toHandle": "left"
+      },
+      {
+        "id": "conn-frontend-backend",
+        "fromDeliveryId": "delivery-frontend-sale-3",
+        "toDeliveryId": "delivery-backend-sale-seminar-1",
+        "label": "購入者のみ",
+        "fromHandle": "right",
+        "toHandle": "left"
+      },
+      {
+        "id": "conn-warmup-recruit",
+        "fromDeliveryId": "delivery-consultation-warmup-5",
+        "toDeliveryId": "delivery-consultation-recruit-1",
+        "fromHandle": "right",
+        "toHandle": "left"
+      },
+      {
+        "id": "conn-recruit-consultation",
+        "fromDeliveryId": "delivery-consultation-recruit-3",
+        "toDeliveryId": "delivery-consultation-day",
+        "label": "申込者のみ",
+        "fromHandle": "right",
+        "toHandle": "left"
+      }
+    ],
+    "transitions": [],
+    "canvasNodes": [
+      {
+        "id": "node-line-existing",
+        "type": "funnel",
+        "position": { "x": 0, "y": 0 },
+        "data": {
+          "label": "既存LINE登録者",
+          "nodeType": "entry",
+          "bg": "#ecfdf3",
+          "border": "#34d399"
+        },
+        "width": 140,
+        "height": 37
+      },
+      {
+        "id": "node-branch",
+        "type": "funnel",
+        "position": { "x": 200, "y": 0 },
+        "data": {
+          "label": "興味関心分岐",
+          "nodeType": "action",
+          "bg": "#f5f3ff",
+          "border": "#a78bfa"
+        },
+        "width": 120,
+        "height": 37
+      },
+      {
+        "id": "node-seminar-interest",
+        "type": "funnel",
+        "position": { "x": 100, "y": 100 },
+        "data": {
+          "label": "セミナー興味",
+          "nodeType": "action",
+          "bg": "#eff6ff",
+          "border": "#3b82f6"
+        },
+        "width": 120,
+        "height": 37
+      },
+      {
+        "id": "node-consultation-interest",
+        "type": "funnel",
+        "position": { "x": 300, "y": 100 },
+        "data": {
+          "label": "個別相談会興味",
+          "nodeType": "action",
+          "bg": "#fff7ed",
+          "border": "#f59e0b"
+        },
+        "width": 130,
+        "height": 37
+      },
+      {
+        "id": "node-seminar",
+        "type": "funnel",
+        "position": { "x": 100, "y": 200 },
+        "data": {
+          "label": "セミナー参加",
+          "nodeType": "action",
+          "bg": "#f5f3ff",
+          "border": "#8b5cf6"
+        },
+        "width": 120,
+        "height": 37
+      },
+      {
+        "id": "node-warmup",
+        "type": "funnel",
+        "position": { "x": 300, "y": 200 },
+        "data": {
+          "label": "前振り教育",
+          "nodeType": "action",
+          "bg": "#fef3c7",
+          "border": "#f59e0b"
+        },
+        "width": 120,
+        "height": 37
+      },
+      {
+        "id": "node-frontend",
+        "type": "funnel",
+        "position": { "x": 100, "y": 300 },
+        "data": {
+          "label": "フロントエンド購入",
+          "nodeType": "action",
+          "bg": "#dcfce7",
+          "border": "#10b981"
+        },
+        "width": 140,
+        "height": 37
+      },
+      {
+        "id": "node-consultation",
+        "type": "funnel",
+        "position": { "x": 300, "y": 300 },
+        "data": {
+          "label": "個別相談会参加",
+          "nodeType": "action",
+          "bg": "#fef2f2",
+          "border": "#ef4444"
+        },
+        "width": 130,
+        "height": 37
+      },
+      {
+        "id": "node-backend",
+        "type": "funnel",
+        "position": { "x": 200, "y": 400 },
+        "data": {
+          "label": "バックエンド購入",
+          "nodeType": "conversion",
+          "bg": "#ecfdf3",
+          "border": "#34d399"
+        },
+        "width": 140,
+        "height": 37
+      }
+    ],
+    "canvasEdges": [
+      {
+        "id": "edge-line-branch",
+        "source": "node-line-existing",
+        "target": "node-branch",
+        "type": "task",
+        "data": { "task": "" }
+      },
+      {
+        "id": "edge-branch-seminar",
+        "source": "node-branch",
+        "target": "node-seminar-interest",
+        "type": "task",
+        "data": { "task": "セミナー" }
+      },
+      {
+        "id": "edge-branch-consultation",
+        "source": "node-branch",
+        "target": "node-consultation-interest",
+        "type": "task",
+        "data": { "task": "個別相談会" }
+      },
+      {
+        "id": "edge-seminar-interest-seminar",
+        "source": "node-seminar-interest",
+        "target": "node-seminar",
+        "type": "task",
+        "data": { "task": "申込" }
+      },
+      {
+        "id": "edge-consultation-interest-warmup",
+        "source": "node-consultation-interest",
+        "target": "node-warmup",
+        "type": "task",
+        "data": { "task": "教育" }
+      },
+      {
+        "id": "edge-seminar-frontend",
+        "source": "node-seminar",
+        "target": "node-frontend",
+        "type": "task",
+        "data": { "task": "購入" }
+      },
+      {
+        "id": "edge-warmup-consultation",
+        "source": "node-warmup",
+        "target": "node-consultation",
+        "type": "task",
+        "data": { "task": "申込" }
+      },
+      {
+        "id": "edge-frontend-backend",
+        "source": "node-frontend",
+        "target": "node-backend",
+        "type": "task",
+        "data": { "task": "購入" }
+      },
+      {
+        "id": "edge-consultation-backend",
+        "source": "node-consultation",
+        "target": "node-backend",
+        "type": "task",
+        "data": { "task": "購入" }
+      }
+    ],
+    "branchPoints": [],
+    "periods": [
+      {
+        "id": "period-branch",
+        "name": "分岐",
+        "startDate": "2026-02-04",
+        "endDate": "2026-02-04",
+        "color": "#E5E7EB"
+      },
+      {
+        "id": "period-seminar-recruit",
+        "name": "セミナー募集",
+        "startDate": "2026-02-06",
+        "endDate": "2026-02-09",
+        "color": "#DBEAFE"
+      },
+      {
+        "id": "period-seminar",
+        "name": "セミナー実施",
+        "startDate": "2026-02-10",
+        "endDate": "2026-02-11",
+        "color": "#EDE9FE"
+      },
+      {
+        "id": "period-frontend",
+        "name": "フロントエンド販売",
+        "startDate": "2026-02-12",
+        "endDate": "2026-02-14",
+        "color": "#D1FAE5"
+      },
+      {
+        "id": "period-warmup",
+        "name": "前振り教育",
+        "startDate": "2026-02-05",
+        "endDate": "2026-02-09",
+        "color": "#FEF3C7"
+      },
+      {
+        "id": "period-consultation-recruit",
+        "name": "個別相談会募集",
+        "startDate": "2026-02-10",
+        "endDate": "2026-02-12",
+        "color": "#FFEDD5"
+      },
+      {
+        "id": "period-consultation",
+        "name": "個別相談会実施",
+        "startDate": "2026-02-13",
+        "endDate": "2026-02-20",
+        "color": "#FEE2E2"
+      }
+    ],
+    "phaseNames": [
+      "分岐",
+      "募集/教育",
+      "実施",
+      "販売",
+      "バックエンド"
+    ],
+    "kpis": [
+      {
+        "target": 500,
+        "rate": 100,
+        "width": 200
+      },
+      {
+        "target": 250,
+        "rate": 50,
+        "width": 200
+      },
+      {
+        "target": 100,
+        "rate": 40,
+        "width": 200
+      },
+      {
+        "target": 30,
+        "rate": 30,
+        "width": 200
+      },
+      {
+        "target": 10,
+        "rate": 33,
+        "width": 200
+      }
+    ],
+    "createdAt": "2026-02-03T10:00:00.000Z",
+    "updatedAt": "2026-02-03T10:00:00.000Z"
   }
 ]
