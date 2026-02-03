@@ -4,8 +4,13 @@ import { funnelStore } from '@/lib/funnelStore';
 
 // GET /api/funnels - 全ファネル一覧
 export async function GET() {
-  const funnels = await funnelStore.getAll();
-  return NextResponse.json(funnels);
+  try {
+    const funnels = await funnelStore.getAll();
+    return NextResponse.json(funnels);
+  } catch (error) {
+    console.error('GET /api/funnels error:', error);
+    return NextResponse.json({ error: String(error), message: (error as Error).message }, { status: 500 });
+  }
 }
 
 // POST /api/funnels - 新規ファネル作成

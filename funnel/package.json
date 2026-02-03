@@ -10,6 +10,7 @@
     "funnel:plan": "node scripts/funnel-plan.js"
   },
   "dependencies": {
+    "@google-cloud/bigquery": "^8.1.1",
     "@supabase/supabase-js": "^2.39.0",
     "@types/dagre": "^0.7.53",
     "dagre": "^0.8.5",

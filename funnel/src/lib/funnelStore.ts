@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { BigQuery } from '@google-cloud/bigquery';
 import { Funnel } from '@/types/funnel';
 import {
   getAllFunnels as getAllFunnelsLocal,
@@ -7,53 +7,65 @@ import {
   deleteFunnel as deleteFunnelLocal,
 } from '@/lib/storage';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const hasSupabaseConfig = Boolean(supabaseUrl && supabaseKey);
-const useLocalStore = process.env.NODE_ENV === 'development';
-
-const supabase = hasSupabaseConfig && !useLocalStore
-  ? createClient(supabaseUrl as string, supabaseKey as string, {
-      auth: { persistSession: false },
-    })
-  : null;
-
+const PROJECT_ID = process.env.GOOGLE_CLOUD_PROJECT || 'mark-454114';
+const DATASET = 'marketing';
 const TABLE = 'funnels';
 
-const normalizeRow = (row: { id: string; data?: Funnel }) => {
-  if (row.data) {
-    return { ...row.data, id: row.id };
+const useLocalStore = process.env.NODE_ENV === 'development';
+
+// BigQueryクライアントの初期化
+const getBigQueryClient = () => {
+  const credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
+  if (credentials) {
+    const parsed = JSON.parse(credentials);
+    return new BigQuery({
+      projectId: PROJECT_ID,
+      credentials: parsed,
+    });
   }
-  return row as unknown as Funnel;
+  // デフォルト認証（ローカル開発時やGCP環境）
+  return new BigQuery({ projectId: PROJECT_ID });
+};
+
+const bigquery = !useLocalStore ? getBigQueryClient() : null;
+
+const normalizeRow = (row: { id: string; data: string | Funnel }): Funnel => {
+  const data = typeof row.data === 'string' ? JSON.parse(row.data) : row.data;
+  return { ...data, id: row.id };
 };
 
 export const funnelStore = {
-  isRemote: hasSupabaseConfig && !useLocalStore,
+  isRemote: !useLocalStore,
 
   async getAll(): Promise<Funnel[]> {
-    if (!supabase) {
+    if (!bigquery) {
       return Promise.resolve(getAllFunnelsLocal());
     }
-    const { data, error } = await supabase
-      .from(TABLE)
-      .select('id, data, updated_at')
-      .order('updated_at', { ascending: false });
-    if (error) throw error;
-    return (data || []).map((row) => normalizeRow(row as { id: string; data?: Funnel }));
+    const query = `
+      SELECT id, TO_JSON_STRING(data) as data, updated_at
+      FROM \`${PROJECT_ID}.${DATASET}.${TABLE}\`
+      ORDER BY updated_at DESC
+    `;
+    const [rows] = await bigquery.query({ query });
+    return (rows || []).map((row: { id: string; data: string }) => normalizeRow(row));
   },
 
   async getById(id: string): Promise<Funnel | null> {
-    if (!supabase) {
+    if (!bigquery) {
       return Promise.resolve(getFunnelLocal(id));
     }
-    const { data, error } = await supabase
-      .from(TABLE)
-      .select('id, data')
-      .eq('id', id)
-      .single();
-    if (error) return null;
-    return normalizeRow(data as { id: string; data?: Funnel });
+    const query = `
+      SELECT id, TO_JSON_STRING(data) as data
+      FROM \`${PROJECT_ID}.${DATASET}.${TABLE}\`
+      WHERE id = @id
+      LIMIT 1
+    `;
+    const [rows] = await bigquery.query({
+      query,
+      params: { id },
+    });
+    if (!rows || rows.length === 0) return null;
+    return normalizeRow(rows[0] as { id: string; data: string });
   },
 
   async save(funnel: Funnel): Promise<Funnel> {
@@ -63,30 +75,47 @@ export const funnelStore = {
       updatedAt: funnel.updatedAt || now,
       createdAt: funnel.createdAt || now,
     };
-    if (!supabase) {
+    if (!bigquery) {
       return Promise.resolve(saveFunnelLocal(nextFunnel));
     }
-    const payload = {
-      id: nextFunnel.id,
-      data: nextFunnel,
-      created_at: nextFunnel.createdAt,
-      updated_at: nextFunnel.updatedAt,
-    };
-    const { data, error } = await supabase
-      .from(TABLE)
-      .upsert(payload)
-      .select('id, data')
-      .single();
-    if (error) throw error;
-    return normalizeRow(data as { id: string; data?: Funnel });
+
+    // BigQueryではMERGEでUPSERTを実現
+    const query = `
+      MERGE \`${PROJECT_ID}.${DATASET}.${TABLE}\` AS target
+      USING (SELECT @id AS id) AS source
+      ON target.id = source.id
+      WHEN MATCHED THEN
+        UPDATE SET
+          data = PARSE_JSON(@data),
+          updated_at = TIMESTAMP(@updated_at)
+      WHEN NOT MATCHED THEN
+        INSERT (id, data, created_at, updated_at)
+        VALUES (@id, PARSE_JSON(@data), TIMESTAMP(@created_at), TIMESTAMP(@updated_at))
+    `;
+    await bigquery.query({
+      query,
+      params: {
+        id: nextFunnel.id,
+        data: JSON.stringify(nextFunnel),
+        created_at: nextFunnel.createdAt,
+        updated_at: nextFunnel.updatedAt,
+      },
+    });
+    return nextFunnel;
   },
 
   async delete(id: string): Promise<boolean> {
-    if (!supabase) {
+    if (!bigquery) {
       return Promise.resolve(deleteFunnelLocal(id));
     }
-    const { error } = await supabase.from(TABLE).delete().eq('id', id);
-    if (error) throw error;
+    const query = `
+      DELETE FROM \`${PROJECT_ID}.${DATASET}.${TABLE}\`
+      WHERE id = @id
+    `;
+    await bigquery.query({
+      query,
+      params: { id },
+    });
     return true;
   },
 };
