@@ -10,6 +10,8 @@ import {
 const PROJECT_ID = process.env.GOOGLE_CLOUD_PROJECT || 'mark-454114';
 const DATASET = 'marketing';
 const TABLE = 'funnels';
+// BigQueryのテーブル参照（バッククォートで囲む）
+const getTableRef = () => '`' + PROJECT_ID + '.' + DATASET + '.' + TABLE + '`';
 
 const useLocalStore = process.env.NODE_ENV === 'development';
 
@@ -41,11 +43,8 @@ export const funnelStore = {
     if (!bigquery) {
       return Promise.resolve(getAllFunnelsLocal());
     }
-    const query = `
-      SELECT id, TO_JSON_STRING(data) as data, updated_at
-      FROM \`${PROJECT_ID}.${DATASET}.${TABLE}\`
-      ORDER BY updated_at DESC
-    `;
+    const tableRef = getTableRef();
+    const query = `SELECT id, TO_JSON_STRING(data) as data, updated_at FROM ${tableRef} ORDER BY updated_at DESC`;
     const [rows] = await bigquery.query({ query });
     return (rows || []).map((row: { id: string; data: string }) => normalizeRow(row));
   },
@@ -54,12 +53,8 @@ export const funnelStore = {
     if (!bigquery) {
       return Promise.resolve(getFunnelLocal(id));
     }
-    const query = `
-      SELECT id, TO_JSON_STRING(data) as data
-      FROM \`${PROJECT_ID}.${DATASET}.${TABLE}\`
-      WHERE id = @id
-      LIMIT 1
-    `;
+    const tableRef = getTableRef();
+    const query = `SELECT id, TO_JSON_STRING(data) as data FROM ${tableRef} WHERE id = @id LIMIT 1`;
     const [rows] = await bigquery.query({
       query,
       params: { id },
@@ -80,18 +75,8 @@ export const funnelStore = {
     }
 
     // BigQueryではMERGEでUPSERTを実現
-    const query = `
-      MERGE \`${PROJECT_ID}.${DATASET}.${TABLE}\` AS target
-      USING (SELECT @id AS id) AS source
-      ON target.id = source.id
-      WHEN MATCHED THEN
-        UPDATE SET
-          data = PARSE_JSON(@data),
-          updated_at = TIMESTAMP(@updated_at)
-      WHEN NOT MATCHED THEN
-        INSERT (id, data, created_at, updated_at)
-        VALUES (@id, PARSE_JSON(@data), TIMESTAMP(@created_at), TIMESTAMP(@updated_at))
-    `;
+    const tableRef = getTableRef();
+    const query = `MERGE ${tableRef} AS target USING (SELECT @id AS id) AS source ON target.id = source.id WHEN MATCHED THEN UPDATE SET data = PARSE_JSON(@data), updated_at = TIMESTAMP(@updated_at) WHEN NOT MATCHED THEN INSERT (id, data, created_at, updated_at) VALUES (@id, PARSE_JSON(@data), TIMESTAMP(@created_at), TIMESTAMP(@updated_at))`;
     await bigquery.query({
       query,
       params: {
@@ -108,10 +93,8 @@ export const funnelStore = {
     if (!bigquery) {
       return Promise.resolve(deleteFunnelLocal(id));
     }
-    const query = `
-      DELETE FROM \`${PROJECT_ID}.${DATASET}.${TABLE}\`
-      WHERE id = @id
-    `;
+    const tableRef = getTableRef();
+    const query = `DELETE FROM ${tableRef} WHERE id = @id`;
     await bigquery.query({
       query,
       params: { id },
