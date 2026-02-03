@@ -4,12 +4,12 @@
   "installCommand": "npm install",
   "rewrites": [
     {
-      "source": "/funnel/:path*",
-      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/:path*"
+      "source": "/funnel",
+      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/"
     },
     {
-      "source": "/funnel",
-      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel"
+      "source": "/funnel/(.*)",
+      "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/$1"
     }
   ]
 }
