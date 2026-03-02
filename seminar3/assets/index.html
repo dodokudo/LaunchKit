@@ -86,18 +86,17 @@ a { text-decoration: none; color: inherit; }
   line-height: 1.6;
   letter-spacing: 0.04em;
   position: relative;
-  overflow: hidden;
 }
-@media (max-width: 600px) { .section-sh { font-size: 1.15rem; } }
-.section-sh::after {
+.section-sh::before {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 4px;
-  background: var(--neon-gradient);
+  background: linear-gradient(90deg, #8B5CF6, #06B6D4);
 }
+@media (max-width: 600px) { .section-sh { font-size: 1.15rem; } }
 .section-sh h2 {
   font-size: inherit;
   font-weight: inherit;
@@ -708,7 +707,7 @@ a { text-decoration: none; color: inherit; }
 }
 .tokuten-detail img {
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
   margin-bottom: 20px;
@@ -1270,37 +1269,32 @@ a { text-decoration: none; color: inherit; }
   <div class="container">
     <h2 class="sec-heading">参加者限定 <span class="marker-y">4大特典</span></h2>
 
-    <div class="card-lg mb-md">
-      <div class="tokuten-detail">
-        <img src="tokuten1.png" alt="特典1" loading="lazy">
-        <div class="tokuten-detail-text">
-          <h3>特典1：SNSマーケで使えるAIプロンプト30選</h3>
-          <ul>
-            <li>投稿ネタ出し・フック作成・リサーチまで、Threads運用に必要なプロンプトを厳選30個</li>
-            <li>コピペしてすぐ使える形式なので、AIが苦手な方でも即実践可能</li>
-            <li>僕自身が毎日使っている「実戦検証済み」のプロンプトだけを収録</li>
-          </ul>
-        </div>
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten1.png" alt="特典1" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典1：SNSマーケで使えるAIプロンプト30選</h3>
+        <ul>
+          <li>投稿ネタ出し・フック作成・リサーチまで、Threads運用に必要なプロンプトを厳選30個</li>
+          <li>コピペしてすぐ使える形式なので、AIが苦手な方でも即実践可能</li>
+          <li>僕自身が毎日使っている「実戦検証済み」のプロンプトだけを収録</li>
+        </ul>
       </div>
     </div>
 
-    <div class="card-lg mb-md">
-      <div class="tokuten-detail">
-        <img src="tokuten2.png" alt="特典2" loading="lazy">
-        <div class="tokuten-detail-text">
-          <h3>特典2：Threads一撃でフォロワー1,000人伸ばしたプロンプト</h3>
-          <ul>
-            <li>たった1投稿でフォロワー1,000人を増やした時に使った、実際のAIプロンプトをそのまま公開</li>
-            <li>「どんな指示を出せば伸びる投稿が作れるか」のロジックも解説</li>
-            <li>これだけで、今日からの投稿の質が一段階上がります</li>
-          </ul>
-        </div>
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten2.png" alt="特典2" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典2：Threads一撃でフォロワー1,000人伸ばしたプロンプト</h3>
+        <ul>
+          <li>たった1投稿でフォロワー1,000人を増やした時に使った、実際のAIプロンプトをそのまま公開</li>
+          <li>「どんな指示を出せば伸びる投稿が作れるか」のロジックも解説</li>
+          <li>これだけで、今日からの投稿の質が一段階上がります</li>
+        </ul>
       </div>
     </div>
 
-    <div class="card-lg mb-md">
-      <div class="tokuten-detail">
-        <img src="tokuten3.png" alt="特典3" loading="lazy">
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten3.png" alt="特典3" loading="lazy">
         <div class="tokuten-detail-text">
           <h3>特典3：高単価商品作成マニュアル（PDF49枚）</h3>
           <ul>
@@ -1312,17 +1306,15 @@ a { text-decoration: none; color: inherit; }
       </div>
     </div>
 
-    <div class="card-lg mb-md">
-      <div class="tokuten-detail">
-        <img src="tokuten4.png" alt="特典4" loading="lazy">
-        <div class="tokuten-detail-text">
-          <h3>特典4：月商100万円LINE設計テンプレート</h3>
-          <ul>
-            <li>Threadsで集めたリストを「売上」に変換するLINE配信のテンプレート</li>
-            <li>実際に5日間で700万円を売り上げた配信シナリオを、そのまま使える形式でお渡し</li>
-            <li>「集客はできるけど販売が分からない」という悩みを一発で解決</li>
-          </ul>
-        </div>
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten4.png" alt="特典4" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典4：月商100万円LINE設計テンプレート</h3>
+        <ul>
+          <li>Threadsで集めたリストを「売上」に変換するLINE配信のテンプレート</li>
+          <li>実際に5日間で700万円を売り上げた配信シナリオを、そのまま使える形式でお渡し</li>
+          <li>「集客はできるけど販売が分からない」という悩みを一発で解決</li>
+        </ul>
       </div>
     </div>
 
