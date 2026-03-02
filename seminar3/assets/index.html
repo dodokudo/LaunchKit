@@ -16,16 +16,13 @@
   --bg-page: #F1F5F9;
   --bg-white: #FFFFFF;
   --bg-gray: #F8FAFC;
-  --accent: #38BDF8;
-  --accent-dark: #0284C7;
-  --accent-glow: rgba(56, 189, 248, 0.12);
-  --green-line: #06c755;
-  --green-line-dark: #00b900;
-  --red: #EF4444;
+  --border: #E2E8F0;
   --text-dark: #0F172A;
   --text-mid: #475569;
   --text-light: #94A3B8;
-  --border: #E2E8F0;
+  --green-line: #06c755;
+  --green-line-dark: #00b900;
+  --red: #EF4444;
   --shadow: 0 2px 12px rgba(0,0,0,0.08);
   --shadow-lg: 0 4px 24px rgba(0,0,0,0.12);
 }
@@ -35,7 +32,6 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 16px;
   color: var(--text-dark);
   background: var(--bg-page);
   line-height: 1.8;
@@ -61,7 +57,7 @@ a { text-decoration: none; color: inherit; }
   letter-spacing: 0.02em;
 }
 .timer-bar .timer-num {
-  color: var(--accent);
+  color: #FDE68A;
   font-size: 18px;
   font-weight: 900;
   margin: 0 2px;
@@ -81,14 +77,12 @@ a { text-decoration: none; color: inherit; }
   color: #fff;
   text-align: center;
   padding: 28px 20px;
-  font-size: 1.4rem;
-  font-weight: 900;
-  line-height: 1.5;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.6;
   letter-spacing: 0.04em;
   position: relative;
-  border-bottom: 4px solid var(--accent);
 }
-@media (max-width: 600px) { .section-sh { font-size: 1.15rem; } }
 .section-sh h2 {
   font-size: inherit;
   font-weight: inherit;
@@ -127,7 +121,6 @@ a { text-decoration: none; color: inherit; }
   box-shadow: var(--shadow-lg);
   padding: 32px;
   margin-bottom: 24px;
-  border-top: 4px solid var(--accent);
 }
 
 /* ===== MARKER ===== */
@@ -138,11 +131,6 @@ a { text-decoration: none; color: inherit; }
 }
 .marker-r {
   background: linear-gradient(transparent 60%, #FECACA 60%);
-  padding: 0 2px;
-  font-weight: 700;
-}
-.marker-b {
-  background: linear-gradient(transparent 60%, rgba(56, 189, 248, 0.25) 60%);
   padding: 0 2px;
   font-weight: 700;
 }
@@ -161,7 +149,7 @@ a { text-decoration: none; color: inherit; }
 .text-mid { color: var(--text-mid); }
 .text-light { color: var(--text-light); }
 .text-red { color: var(--red); }
-.text-accent { color: var(--accent); font-weight: 800; }
+.text-accent { color: var(--navy); font-weight: 800; }
 .fw-bold { font-weight: 700; }
 .fw-black { font-weight: 900; }
 .fs-lg { font-size: 1.125rem; }
@@ -183,51 +171,24 @@ a { text-decoration: none; color: inherit; }
 .mb-md { margin-bottom: 24px; }
 .mb-lg { margin-bottom: 40px; }
 
-/* ===== HERO BADGE ===== */
-.hero-badge {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 900;
-  padding: 6px 20px;
-  border-radius: 50px;
-  margin-bottom: 16px;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
-}
-
 /* ===== SECTION HEADING ===== */
 .sec-heading {
-  font-size: 1.75rem;
-  font-weight: 900;
+  font-size: 1.5rem;
+  font-weight: 800;
   line-height: 1.5;
   text-align: center;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   letter-spacing: 0.02em;
-  position: relative;
-  padding-bottom: 16px;
 }
-.sec-heading::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: var(--accent);
-  border-radius: 2px;
-}
-@media (max-width: 600px) { .sec-heading { font-size: 1.35rem; } }
+@media (max-width: 600px) { .sec-heading { font-size: 1.2rem; } }
 
-/* ===== CTA BUTTON ===== */
+/* ===== CTA BUTTON (seminar2 style) ===== */
 .cta-wrap {
   text-align: center;
   margin: 40px 0 0;
 }
 .cta-note {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--red);
   margin-bottom: 12px;
@@ -242,7 +203,7 @@ a { text-decoration: none; color: inherit; }
   margin: 0 auto;
   background: linear-gradient(180deg, #06c755, #00b900);
   color: #fff;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 900;
   text-align: center;
   padding: 20px 10px;
@@ -279,7 +240,7 @@ a { text-decoration: none; color: inherit; }
   100% { transform: scale(1); }
 }
 @media (max-width: 600px) {
-  .cta-btn { font-size: 1.1rem; padding: 15px 10px; }
+  .cta-btn { font-size: 1rem; padding: 15px 10px; }
   .cta-btn .cta-sub { font-size: 0.7rem; }
 }
 .cta-sub-text {
@@ -293,19 +254,19 @@ a { text-decoration: none; color: inherit; }
 .hero { padding: 32px 0 0; }
 .hero-hook {
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.7;
   margin-bottom: 20px;
   color: var(--text-dark);
 }
 .hero-hook strong {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 900;
 }
 @media (max-width: 600px) {
-  .hero-hook { font-size: 1rem; }
-  .hero-hook strong { font-size: 1.25rem; }
+  .hero-hook { font-size: 0.9rem; }
+  .hero-hook strong { font-size: 1.1rem; }
 }
 .video-wrap {
   position: relative;
@@ -324,23 +285,23 @@ a { text-decoration: none; color: inherit; }
 }
 .hero-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 900;
   line-height: 1.4;
   margin-bottom: 8px;
   letter-spacing: 0.04em;
 }
-@media (max-width: 600px) { .hero-title { font-size: 1.8rem; } }
+@media (max-width: 600px) { .hero-title { font-size: 1.4rem; } }
 .hero-prehead {
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--text-mid);
   font-weight: 600;
   margin-bottom: 4px;
 }
 .hero-deck {
   text-align: center;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--text-mid);
   margin: 16px auto 0;
   max-width: 600px;
@@ -350,34 +311,21 @@ a { text-decoration: none; color: inherit; }
 /* ===== CHECK LIST ===== */
 .check-list { list-style: none; padding: 0; }
 .check-list li {
-  padding: 12px 0 12px 44px;
+  padding: 12px 0 12px 36px;
   position: relative;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   border-bottom: 1px solid var(--border);
 }
 .check-list li:last-child { border-bottom: none; }
 .check-list li::before {
-  content: '\2713';
+  content: '\2705';
   position: absolute;
-  left: 0;
+  left: 4px;
   top: 12px;
-  width: 28px;
-  height: 28px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 900;
-  line-height: 1;
+  font-size: 1rem;
 }
-.x-list li::before {
-  content: '\2715';
-  background: var(--red);
-}
+.x-list li::before { content: '\274C'; }
 
 /* ===== TOKUTEN GRID ===== */
 .tokuten-grid {
@@ -397,7 +345,7 @@ a { text-decoration: none; color: inherit; }
   .tokuten-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ===== BENEFIT CARDS ===== */
+/* ===== BENEFIT CARDS (seminar2 style) ===== */
 .benefit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -436,7 +384,7 @@ a { text-decoration: none; color: inherit; }
   flex-grow: 1;
 }
 .benefit-icon {
-  background: var(--accent);
+  background: var(--navy);
   color: #fff;
   width: 40px;
   height: 40px;
@@ -515,7 +463,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--text-mid);
 }
 
-/* ===== VOICE CARDS ===== */
+/* ===== VOICE CARDS (seminar2 style) ===== */
 .voice-list {
   display: flex;
   flex-direction: column;
@@ -547,7 +495,7 @@ a { text-decoration: none; color: inherit; }
   text-align: center;
 }
 .voice-badge {
-  background: var(--accent);
+  background: var(--navy);
   color: #fff;
   font-size: 0.75rem;
   padding: 4px 12px;
@@ -577,16 +525,16 @@ a { text-decoration: none; color: inherit; }
   background: var(--bg-white);
   border-radius: 12px;
   box-shadow: var(--shadow);
-  padding: 28px;
-  border-left: 5px solid var(--red);
+  padding: 24px;
+  border-left: 4px solid var(--red);
 }
 .error-card h3 {
-  font-size: 1.1rem;
-  font-weight: 900;
+  font-size: 1rem;
+  font-weight: 800;
   margin-bottom: 12px;
   color: var(--red);
 }
-.error-card p { font-size: 1rem; color: var(--text-mid); line-height: 1.8; }
+.error-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.8; }
 
 /* ===== TOKUTEN DETAIL CARD ===== */
 .tokuten-detail {
@@ -629,9 +577,9 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
-.faq-q::before { content: 'Q'; background: var(--accent); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; flex-shrink: 0; }
+.faq-q::before { content: 'Q'; background: var(--navy); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; flex-shrink: 0; }
 .faq-q::after { content: '\FF0B'; margin-left: auto; font-size: 1.2rem; color: var(--text-light); transition: transform 0.3s; }
 .faq-q.open::after { transform: rotate(45deg); }
 .faq-a {
@@ -639,7 +587,7 @@ a { text-decoration: none; color: inherit; }
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-mid);
   line-height: 1.8;
 }
@@ -662,36 +610,20 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
 }
 .schedule-table .seats {
-  color: var(--accent);
-  font-weight: 800;
+  color: #FDE68A;
+  font-weight: 700;
 }
 
 /* ===== FIT LIST ===== */
 .fit-list { list-style: none; padding: 0; }
 .fit-list li {
-  padding: 10px 0 10px 44px;
+  padding: 10px 0 10px 36px;
   position: relative;
   font-size: 0.95rem;
   line-height: 1.7;
 }
-.fit-list.yes li::before {
-  content: '\25CE';
-  position: absolute;
-  left: 4px;
-  top: 10px;
-  color: var(--accent);
-  font-weight: 900;
-  font-size: 1.2rem;
-}
-.fit-list.no li::before {
-  content: '\2715';
-  position: absolute;
-  left: 8px;
-  top: 10px;
-  color: var(--red);
-  font-weight: 900;
-  font-size: 1.1rem;
-}
+.fit-list.yes li::before { content: '\25CE'; position: absolute; left: 4px; top: 10px; color: var(--green-line); font-weight: 800; }
+.fit-list.no li::before { content: '\2715'; position: absolute; left: 8px; top: 10px; color: var(--red); font-weight: 800; }
 
 /* ===== STICKY FOOTER CTA ===== */
 #sticky-footer {
@@ -734,7 +666,7 @@ a { text-decoration: none; color: inherit; }
   position: absolute;
   left: 0; top: 10px;
   width: 32px; height: 32px;
-  background: var(--accent);
+  background: var(--navy);
   color: #fff;
   border-radius: 50%;
   display: flex;
@@ -755,7 +687,6 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== SECTION 1: HERO ===== -->
 <section class="section-page hero">
   <div class="container">
-    <div class="text-center"><span class="hero-badge">2026年最新版</span></div>
     <p class="hero-hook">
       <strong>「Threads×AI」</strong>を活用し<br>
       開始<span class="marker-y">たった3ヶ月</span>で<br>
@@ -766,7 +697,7 @@ a { text-decoration: none; color: inherit; }
       <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
     <p class="hero-prehead">SNS累計売上8,000万円の講師が教える</p>
-    <h1 class="hero-title"><span class="marker-b">Threads×AI運用</span><br>完全攻略セミナー</h1>
+    <h1 class="hero-title">Threads×AI運用<br>完全攻略セミナー</h1>
     <p class="hero-deck">今、Threadsでフォロワー数やバズを追いかける人だけが失敗しています。<br>従来の"数字重視"ではなく、必要な層に確実に届ける戦略を学ぶことが、今のThreads成功のカギ。</p>
     <div class="cta-wrap">
       <p class="cta-note">※各回先着10名限定・参加費無料</p>
@@ -794,7 +725,7 @@ a { text-decoration: none; color: inherit; }
       </ul>
     </div>
 
-    <h3 class="sec-heading mt-lg">さらに、参加するだけで<br><span class="marker-b">4つの特典</span>をプレゼント</h3>
+    <h3 class="sec-heading mt-lg">さらに、参加するだけで<br><span class="marker-y">5つの特典</span>をプレゼント</h3>
     <div class="benefit-grid">
       <div class="benefit-card">
         <div class="benefit-image"><img src="tokuten1.png" alt="特典1" loading="lazy"></div>
@@ -836,6 +767,16 @@ a { text-decoration: none; color: inherit; }
           </div>
         </div>
       </div>
+      <div class="benefit-card">
+        <div class="benefit-image"><img src="tokuten5.png" alt="特典5" loading="lazy"></div>
+        <div class="benefit-body">
+          <div class="benefit-icon">5</div>
+          <div class="benefit-content">
+            <h3>AI×Threads完全攻略ガイド</h3>
+            <p>フォロワー4,200名・LINE1,000名達成の運用ノウハウを完全網羅</p>
+          </div>
+        </div>
+      </div>
     </div>
     <p class="text-center text-sm text-mid">※特典の詳細は、このページの後半でお伝えします。</p>
 
@@ -856,7 +797,7 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== SECTION 3: 受講生実績（メイン） ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">これらは「後発組」からの挑戦でありながら、<br><span class="marker-b">最速で成果を出した実績</span>です</h2>
+    <h2 class="sec-heading">これらは「後発組」からの挑戦でありながら、<br><span class="marker-y">最速で成果を出した実績</span>です</h2>
 
     <!-- 動画ブロック（h3 + yt-list）を先に配置 -->
     <h3 class="sec-heading mt-lg">受講生のリアルな成功体験</h3>
@@ -983,7 +924,7 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== SECTION 5: なぜ実績が出るのか ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">僕の受講生が短期間で売上を伸ばせたのは、<br>「<span class="marker-b">フォロワー数に頼らず、売上を生み出す正しい運用法</span>」<br>を学んだからです</h2>
+    <h2 class="sec-heading">僕の受講生が短期間で売上を伸ばせたのは、<br>「<span class="marker-y">フォロワー数に頼らず、売上を生み出す正しい運用法</span>」<br>を学んだからです</h2>
     <p class="text-center fs-lg">正しい場所で、正しいやり方を、素直に実践する。<br>それだけで結果は変わります。</p>
     <p class="text-center mt-md">「特別な才能」も「大量のフォロワー」も、この方たちは持っていませんでした。</p>
     <p class="text-center mt-md fw-bold fs-lg">あなたも「売れるThreads運用法」を学びませんか？</p>
@@ -1108,7 +1049,7 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== SECTION 11: O（提案）特典詳細 ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">参加者限定 <span class="marker-b">4大特典</span></h2>
+    <h2 class="sec-heading">参加者限定 <span class="marker-y">5大特典</span></h2>
 
     <div class="card-lg mb-md">
       <div class="tokuten-detail">
@@ -1161,6 +1102,20 @@ a { text-decoration: none; color: inherit; }
             <li>Threadsで集めたリストを「売上」に変換するLINE配信のテンプレート</li>
             <li>実際に5日間で700万円を売り上げた配信シナリオを、そのまま使える形式でお渡し</li>
             <li>「集客はできるけど販売が分からない」という悩みを一発で解決</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-lg mb-md">
+      <div class="tokuten-detail">
+        <img src="tokuten5.png" alt="特典5" loading="lazy">
+        <div class="tokuten-detail-text">
+          <h3>特典5：AI×Threads完全攻略ガイド</h3>
+          <ul>
+            <li>5ヶ月でフォロワー4,200名・LINE登録1,000名を達成した運用ノウハウを完全網羅</li>
+            <li>最新のAIを活用したThreads運用の徹底解説</li>
+            <li>これ1冊で、Threads×AIの全体像が把握できます</li>
           </ul>
         </div>
       </div>
@@ -1291,7 +1246,7 @@ a { text-decoration: none; color: inherit; }
   <div class="container">
     <h2 class="sec-heading" style="color:#fff;">あなたも正しいThreads運用を<br>始めてください</h2>
     <p class="text-center" style="opacity:0.9;">後発組だからといって、成果が出ないわけではありません。<br>正しいやり方を知って、素直に実践するだけ。それで人生は変わります。</p>
-    <p class="text-center mt-sm fw-bold fs-xl" style="color:var(--accent);">次は、あなたの番です。</p>
+    <p class="text-center mt-sm fw-bold fs-xl" style="color:#FDE68A;">次は、あなたの番です。</p>
 
     <h3 class="text-center fw-bold mt-lg mb-md" style="color:#fff;">開催スケジュール</h3>
     <table class="schedule-table">
@@ -1307,7 +1262,7 @@ a { text-decoration: none; color: inherit; }
     </table>
 
     <div class="cta-wrap" style="margin-top:32px;">
-      <p class="cta-note" style="color:var(--accent);">※各回先着10名限定・参加費無料</p>
+      <p class="cta-note" style="color:#FDE68A;">※各回先着10名限定・参加費無料</p>
       <a href="https://lstep.app/tBRtR77" class="cta-btn">
         <span class="cta-sub">＼ 残り席がわずかです ／</span>
         今すぐ無料セミナーに申し込む
