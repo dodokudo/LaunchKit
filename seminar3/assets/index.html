@@ -370,38 +370,59 @@ a { text-decoration: none; color: inherit; }
   background: linear-gradient(135deg, #EF4444, #F97316);
   color: #fff;
   display: inline-block;
-  padding: 8px 24px;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  line-height: 1.6;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
 }
 .hero-year {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.8rem;
+  font-weight: 900;
   color: var(--text-dark);
-  margin-bottom: 8px;
-  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  letter-spacing: 0.1em;
 }
 .hero-year .diamond {
   color: var(--neon-purple);
-  font-size: 0.8em;
+  font-size: 0.85em;
 }
 .hero-title-highlight {
   display: inline-block;
   background: #FDE68A;
-  padding: 8px 20px;
-  font-size: 2.8rem;
+  padding: 10px 28px;
+  font-size: 3.5rem;
   font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 0;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+.hero-subtitle {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-top: 4px;
+  margin-bottom: 20px;
   line-height: 1.3;
+}
+.hero-stats {
+  font-size: 1.1rem;
+  color: var(--text-mid);
   margin-bottom: 4px;
-  border-radius: 4px;
+  line-height: 1.8;
+}
+.hero-stats strong {
+  color: var(--text-dark);
+  font-weight: 800;
 }
 @media (max-width: 600px) {
-  .hero-prehead-strip { font-size: 0.82rem; padding: 6px 16px; }
-  .hero-year { font-size: 1.2rem; }
-  .hero-title-highlight { font-size: 2rem; padding: 6px 14px; }
+  .hero-prehead-strip { font-size: 0.9rem; padding: 10px 20px; }
+  .hero-year { font-size: 1.4rem; }
+  .hero-title-highlight { font-size: 2.5rem; padding: 8px 18px; }
+  .hero-subtitle { font-size: 1.8rem; }
+  .hero-stats { font-size: 0.95rem; }
 }
 
 /* ===== CHECK LIST ===== */
@@ -739,28 +760,28 @@ a { text-decoration: none; color: inherit; }
 /* ===== TOKUTEN DETAIL CARD ===== */
 .tokuten-detail {
   display: flex;
-  gap: 24px;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .tokuten-detail img {
-  width: 180px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 20px;
+}
+.tokuten-detail-text {
+  width: 100%;
 }
 .tokuten-detail-text h3 {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
-.tokuten-detail-text p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.7; }
-.tokuten-detail-text ul { list-style: disc; padding-left: 20px; font-size: 0.875rem; color: var(--text-mid); }
-.tokuten-detail-text ul li { margin-bottom: 4px; }
-@media (max-width: 600px) {
-  .tokuten-detail { flex-direction: column; align-items: center; text-align: center; }
-  .tokuten-detail img { width: 200px; }
-  .tokuten-detail-text ul { text-align: left; }
-}
+.tokuten-detail-text p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; }
+.tokuten-detail-text ul { list-style: disc; padding-left: 20px; font-size: 0.95rem; color: var(--text-mid); text-align: left; }
+.tokuten-detail-text ul li { margin-bottom: 6px; line-height: 1.7; }
 
 /* ===== FAQ ACCORDION ===== */
 .faq-item {
@@ -929,12 +950,10 @@ a { text-decoration: none; color: inherit; }
     <div class="hero-prehead-strip">後発組のフォロワー100名以下でも<br>開始1ヶ月で成果報告続出！</div>
     <p class="hero-year"><span class="diamond">◆</span> 2026年最新版 <span class="diamond">◆</span></p>
     <div><span class="hero-title-highlight">Threads×AI</span></div>
-    <h1 class="hero-title" style="margin-top:8px;">完全攻略セミナー</h1>
-    <p class="hero-deck" style="margin-top:16px;">
-      5ヶ月で フォロワー5,000名・LINE登録1,000名<br>
-      SNS累計8,000万円達成<br>
-      <strong>リール不要・文章だけで、商品が売れ続ける方法を公開！</strong>
-    </p>
+    <p class="hero-subtitle">完全攻略セミナー</p>
+    <p class="hero-stats">5ヶ月で フォロワー<strong>5,000名</strong>・LINE登録<strong>1,000名</strong></p>
+    <p class="hero-stats">SNS累計<strong>8,000万円</strong>達成</p>
+    <p class="hero-stats"><strong>リール不要・文章だけで、商品が売れ続ける方法を公開！</strong></p>
     <div class="cta-wrap">
       <p class="cta-note">※各回先着10名限定・参加費無料</p>
       <a href="https://lstep.app/tBRtR77" class="cta-btn">
@@ -1035,21 +1054,34 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== SECTION 3: 受講生実績（メイン） ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">▶︎「後発組」からの挑戦でありながら、<br><span class="marker-y">最速で成果を出した実績</span>です</h2>
+    <h2 class="sec-heading">「後発組」からの挑戦でありながら、<br><span class="marker-y">最速で成果を出した実績</span>です</h2>
 
-    <!-- 動画ブロック（yt-list）-->
-    <div class="yt-list">
-      <div class="yt-item">
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+    <!-- 動画ブロック（voice-card UIで統一）-->
+    <div class="voice-list">
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー①</span>
+        </div>
       </div>
-      <div class="yt-item">
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/RYFjEkP19X0?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/RYFjEkP19X0?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー②</span>
+        </div>
       </div>
-      <div class="yt-item">
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/3AA6DFJBflM?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/3AA6DFJBflM?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー③</span>
+        </div>
       </div>
-      <div class="yt-item">
-        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/xJ__v5P6GQI?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xJ__v5P6GQI?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー④ かずみさん</span>
+          <p class="voice-result">0→1から380万円の収益化達成</p>
+        </div>
       </div>
     </div>
 
