@@ -191,5 +191,23 @@
     "category": "オプト",
     "created": "2026-01-11",
     "updated": "2026-01-11"
+  },
+  "opt-3/note": {
+    "name": "opt-3/note",
+    "category": "オプト",
+    "created": "2026-03-02",
+    "updated": "2026-03-02"
+  },
+  "thread-ai-roadmap-v3": {
+    "name": "thread-ai-roadmap-v3",
+    "category": "オプト",
+    "created": "2026-03-02",
+    "updated": "2026-03-02"
+  },
+  "seminar3": {
+    "name": "seminar3",
+    "category": "セミナー",
+    "created": "2026-03-02",
+    "updated": "2026-03-02"
   }
 }
