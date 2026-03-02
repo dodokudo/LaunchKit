@@ -755,18 +755,27 @@ a { text-decoration: none; color: inherit; }
   border-collapse: collapse;
   margin: 20px 0;
 }
+.schedule-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  margin: 20px 0;
+}
 .schedule-table th, .schedule-table td {
   padding: 14px 16px;
   text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid #E2E8F0;
   font-size: 0.9rem;
+  color: var(--text-dark);
 }
 .schedule-table th {
-  background: rgba(255,255,255,0.1);
+  background: #F1F5F9;
   font-weight: 700;
+  color: var(--navy);
 }
 .schedule-table .seats {
-  color: var(--neon-cyan);
+  color: #DC2626;
   font-weight: 800;
 }
 
@@ -1419,17 +1428,19 @@ a { text-decoration: none; color: inherit; }
     <p class="text-center mt-sm fw-bold fs-xl" style="color:#06B6D4;">次は、あなたの番です。</p>
 
     <h3 class="text-center fw-bold mt-lg mb-md" style="color:#fff;">開催スケジュール</h3>
-    <table class="schedule-table">
-      <thead><tr><th>日程</th><th>時間</th><th>残席</th></tr></thead>
-      <tbody>
-        <tr><td>3月14日（金）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
-        <tr><td>3月15日（土）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
-        <tr><td>3月17日（月）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
-        <tr><td>3月18日（火）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
-        <tr><td>3月19日（水）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
-        <tr><td>3月21日（金）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
-      </tbody>
-    </table>
+    <div class="schedule-card">
+      <table class="schedule-table">
+        <thead><tr><th>日程</th><th>時間</th><th>残席</th></tr></thead>
+        <tbody>
+          <tr><td>3月14日（金）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月15日（土）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月17日（月）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月18日（火）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月19日（水）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月21日（金）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="cta-wrap" style="margin-top:32px;">
       <p class="cta-note" style="color:#06B6D4;">※先着10名様限定・参加費無料</p>
