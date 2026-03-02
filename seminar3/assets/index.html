@@ -96,12 +96,11 @@ a { text-decoration: none; color: inherit; }
 /* ===== TRIANGLE-DOWN ===== */
 .triangle-down {
   position: relative;
-  margin-bottom: 20px;
 }
 .triangle-down::after {
   content: '';
   position: absolute;
-  bottom: -20px;
+  bottom: -19px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
@@ -233,7 +232,7 @@ a { text-decoration: none; color: inherit; }
 /* ===== CTA BUTTON (seminar2 style) ===== */
 .cta-wrap {
   text-align: center;
-  margin: 40px 0 0;
+  margin: 24px 0 0;
 }
 .cta-note {
   font-size: 1rem;
@@ -333,13 +332,17 @@ a { text-decoration: none; color: inherit; }
 }
 .hero-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 900;
-  line-height: 1.4;
+  line-height: 1.35;
   margin-bottom: 8px;
   letter-spacing: 0.04em;
+  background: var(--neon-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-@media (max-width: 600px) { .hero-title { font-size: 1.8rem; } }
+@media (max-width: 600px) { .hero-title { font-size: 2rem; } }
 .hero-prehead {
   text-align: center;
   font-size: 1rem;
@@ -985,36 +988,98 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== 見出しバー: 後発組からの挑戦で最速の実績 ===== -->
 <div class="section-sh triangle-down"><h2>後発組からの挑戦で最速の実績</h2></div>
 
-<!-- ===== SECTION 3: 受講生実績（メイン） ===== -->
+<!-- ===== SECTION 3: 受講生実績（統合） ===== -->
 <section class="section-gray section-content">
   <div class="container">
     <h2 class="sec-heading">「後発組」からの挑戦でありながら、<br><span class="marker-y">最速で成果を出した実績</span>です</h2>
 
-    <!-- 動画ブロック（voice-card UIで統一）-->
     <div class="voice-list">
       <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xJ__v5P6GQI?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生インタビュー①</span>
+          <span class="voice-badge">受講生インタビュー① かずみさん</span>
+          <p class="voice-result">0→1から380万円の収益化達成</p>
         </div>
       </div>
       <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/RYFjEkP19X0?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
           <span class="voice-badge">受講生インタビュー②</span>
         </div>
       </div>
       <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/3AA6DFJBflM?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/RYFjEkP19X0?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
           <span class="voice-badge">受講生インタビュー③</span>
         </div>
       </div>
       <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xJ__v5P6GQI?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/3AA6DFJBflM?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生インタビュー④ かずみさん</span>
-          <p class="voice-result">0→1から380万円の収益化達成</p>
+          <span class="voice-badge">受講生インタビュー④</span>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/appbeUXYJOs?rel=0" title="じゅんさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑤ じゅんさん</span>
+          <p class="voice-result">会社員の副業で2,000万円<br>法人の設立を達成！</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/ItV4c7BTCC8?rel=0" title="えりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑥ えりさん</span>
+          <p class="voice-result">1撃528万円の収益化達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/pt7LYe-VFj8?rel=0" title="やんもさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑦ やんもさん</span>
+          <p class="voice-result">未経験から1,200万円の収益化<br>法人設立を達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4?rel=0" title="ゆうきさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑧ ゆうきさん</span>
+          <p class="voice-result">半年で320万円の収益化達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/V4hwO1roOXM?rel=0" title="日高さんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑨ 日高さん</span>
+          <p class="voice-result">わずか2ヶ月で50万円の収益化！</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/shr1bcowliA?rel=0" title="おたさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑩ おたさん</span>
+          <p class="voice-result">副業で8ヶ月250万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/ftC7P9sAByk?rel=0" title="アネさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑪ アネさん</span>
+          <p class="voice-result">初挑戦で月170万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/BUcjT7zmsKM?rel=0" title="あっぴさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑫ あっぴさん</span>
+          <p class="voice-result">未経験から2ヶ月で122万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/jGbs31g8OTY?rel=0" title="ねこさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑬ ねこさん</span>
+          <p class="voice-result">ニッチジャンルで188万円</p>
         </div>
       </div>
     </div>
@@ -1025,80 +1090,6 @@ a { text-decoration: none; color: inherit; }
         <span class="cta-sub">＼ 残り席がわずかです ／</span>
         今すぐ無料セミナーに申し込む
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 見出しバー: 売上導線まで整えるとこうなります ===== -->
-<div class="section-sh triangle-down"><h2>売上導線まで整えるとこうなります</h2></div>
-
-<!-- ===== SECTION 4: 受講生インタビュー動画（既存10本 → voice-card） ===== -->
-<section class="section-white section-content">
-  <div class="container">
-    <div class="voice-list">
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/appbeUXYJOs?rel=0" title="じゅんさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績① じゅんさん</span>
-          <p class="voice-result">会社員の副業で2,000万円<br>法人の設立を達成！</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/ItV4c7BTCC8?rel=0" title="えりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績② えりさん</span>
-          <p class="voice-result">1撃528万円の収益化達成</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/pt7LYe-VFj8?rel=0" title="やんもさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績③ やんもさん</span>
-          <p class="voice-result">未経験から1,200万円の収益化<br>法人設立を達成</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4?rel=0" title="ゆうきさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績④ ゆうきさん</span>
-          <p class="voice-result">半年で320万円の収益化達成</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/V4hwO1roOXM?rel=0" title="日高さんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑤ 日高さん</span>
-          <p class="voice-result">わずか2ヶ月で50万円の収益化！</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/shr1bcowliA?rel=0" title="おたさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑥ おたさん</span>
-          <p class="voice-result">副業で8ヶ月250万円の収益化</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/ftC7P9sAByk?rel=0" title="アネさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑦ アネさん</span>
-          <p class="voice-result">初挑戦で月170万円の収益化</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/BUcjT7zmsKM?rel=0" title="あっぴさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑧ あっぴさん</span>
-          <p class="voice-result">未経験から2ヶ月で122万円の収益化</p>
-        </div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/jGbs31g8OTY?rel=0" title="ねこさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑨ ねこさん</span>
-          <p class="voice-result">ニッチジャンルで188万円</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1113,13 +1104,6 @@ a { text-decoration: none; color: inherit; }
     <p class="text-center fs-lg">正しい場所で、正しいやり方を、素直に実践する。<br>それだけで結果は変わります。</p>
     <p class="text-center mt-md">「特別な才能」も「大量のフォロワー」も、この方たちは持っていませんでした。</p>
     <p class="text-center mt-md fw-bold fs-lg">あなたも「売れるThreads運用法」を学びませんか？</p>
-    <div class="cta-wrap">
-      <p class="cta-note">※先着10名様限定・参加費無料</p>
-      <a href="https://lstep.app/tBRtR77" class="cta-btn">
-        <span class="cta-sub">＼ 残り席がわずかです ／</span>
-        今すぐ無料セミナーに申し込む
-      </a>
-    </div>
   </div>
 </section>
 
