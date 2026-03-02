@@ -86,10 +86,18 @@ a { text-decoration: none; color: inherit; }
   line-height: 1.6;
   letter-spacing: 0.04em;
   position: relative;
-  border-bottom: 4px solid transparent;
-  border-image: var(--neon-gradient) 1;
+  overflow: hidden;
 }
 @media (max-width: 600px) { .section-sh { font-size: 1.15rem; } }
+.section-sh::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--neon-gradient);
+}
 .section-sh h2 {
   font-size: inherit;
   font-weight: inherit;
@@ -356,6 +364,44 @@ a { text-decoration: none; color: inherit; }
   margin: 16px auto 0;
   max-width: 600px;
   line-height: 1.8;
+}
+
+.hero-prehead-strip {
+  background: linear-gradient(135deg, #EF4444, #F97316);
+  color: #fff;
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.hero-year {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+}
+.hero-year .diamond {
+  color: var(--neon-purple);
+  font-size: 0.8em;
+}
+.hero-title-highlight {
+  display: inline-block;
+  background: #FDE68A;
+  padding: 8px 20px;
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
+@media (max-width: 600px) {
+  .hero-prehead-strip { font-size: 0.82rem; padding: 6px 16px; }
+  .hero-year { font-size: 1.2rem; }
+  .hero-title-highlight { font-size: 2rem; padding: 6px 14px; }
 }
 
 /* ===== CHECK LIST ===== */
@@ -874,25 +920,21 @@ a { text-decoration: none; color: inherit; }
 
 <!-- ===== TIMER BAR ===== -->
 <div class="timer-bar" id="timer-bar">
-  特典つきセミナー受付終了まで <span class="timer-num" id="timer-days">3</span>日 <span class="timer-num" id="timer-clock">00:00:00</span>
+  セミナー受付終了まで <span class="timer-num" id="timer-days">3</span>日 <span class="timer-num" id="timer-clock">00:00:00</span>
 </div>
 
 <!-- ===== SECTION 1: HERO ===== -->
 <section class="section-page hero">
-  <div class="container">
-    <div class="text-center"><span class="hero-badge">2026年最新版</span></div>
-    <p class="hero-hook">
-      <strong>「Threads×AI」</strong>を活用し<br>
-      開始<span class="marker-y">たった3ヶ月</span>で<br>
-      フォロワー3028名・LINE558名を集客し<br>
-      <strong>SNSで累計8000万円を売った方法</strong>とは？
+  <div class="container text-center">
+    <div class="hero-prehead-strip">後発組のフォロワー100名以下でも<br>開始1ヶ月で成果報告続出！</div>
+    <p class="hero-year"><span class="diamond">◆</span> 2026年最新版 <span class="diamond">◆</span></p>
+    <div><span class="hero-title-highlight">Threads×AI</span></div>
+    <h1 class="hero-title" style="margin-top:8px;">完全攻略セミナー</h1>
+    <p class="hero-deck" style="margin-top:16px;">
+      5ヶ月で フォロワー5,000名・LINE登録1,000名<br>
+      SNS累計8,000万円達成<br>
+      <strong>リール不要・文章だけで、商品が売れ続ける方法を公開！</strong>
     </p>
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-    </div>
-    <p class="hero-prehead">SNS累計売上8,000万円の講師が教える</p>
-    <h1 class="hero-title">Threads×AI運用<br>完全攻略セミナー</h1>
-    <p class="hero-deck">今、Threadsでフォロワー数やバズを追いかける人だけが失敗しています。<br>従来の"数字重視"ではなく、必要な層に確実に届ける戦略を学ぶことが、今のThreads成功のカギ。</p>
     <div class="cta-wrap">
       <p class="cta-note">※各回先着10名限定・参加費無料</p>
       <a href="https://lstep.app/tBRtR77" class="cta-btn">
@@ -900,6 +942,9 @@ a { text-decoration: none; color: inherit; }
         今すぐ無料セミナーに申し込む
       </a>
       <p class="cta-sub-text">参加費無料・顔出し不要・途中退出OK</p>
+    </div>
+    <div class="video-wrap" style="margin-top:32px;">
+      <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -990,10 +1035,9 @@ a { text-decoration: none; color: inherit; }
 <!-- ===== SECTION 3: 受講生実績（メイン） ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">これらは「後発組」からの挑戦でありながら、<br><span class="marker-y">最速で成果を出した実績</span>です</h2>
+    <h2 class="sec-heading">▶︎「後発組」からの挑戦でありながら、<br><span class="marker-y">最速で成果を出した実績</span>です</h2>
 
-    <!-- 動画ブロック（h3 + yt-list）-->
-    <h3 class="sec-heading mt-lg">受講生のリアルな成功体験</h3>
+    <!-- 動画ブロック（yt-list）-->
     <div class="yt-list">
       <div class="yt-item">
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
@@ -1003,6 +1047,9 @@ a { text-decoration: none; color: inherit; }
       </div>
       <div class="yt-item">
         <div class="video-wrap"><iframe src="https://www.youtube.com/embed/3AA6DFJBflM?rel=0" title="受講生インタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      </div>
+      <div class="yt-item">
+        <div class="video-wrap"><iframe src="https://www.youtube.com/embed/xJ__v5P6GQI?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
       </div>
     </div>
 
@@ -1053,44 +1100,37 @@ a { text-decoration: none; color: inherit; }
         </div>
       </div>
       <div class="voice-card">
-        <div class="voice-video"><iframe src="https://www.youtube.com/embed/Yfuoon5F774?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑤ かずみさん</span>
-          <p class="voice-result">0→1から380万円の収益化達成</p>
-        </div>
-      </div>
-      <div class="voice-card">
         <div class="voice-video"><iframe src="https://www.youtube.com/embed/V4hwO1roOXM?rel=0" title="日高さんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑥ 日高さん</span>
+          <span class="voice-badge">受講生の実績⑤ 日高さん</span>
           <p class="voice-result">わずか2ヶ月で50万円の収益化！</p>
         </div>
       </div>
       <div class="voice-card">
         <div class="voice-video"><iframe src="https://www.youtube.com/embed/shr1bcowliA?rel=0" title="おたさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑦ おたさん</span>
+          <span class="voice-badge">受講生の実績⑥ おたさん</span>
           <p class="voice-result">副業で8ヶ月250万円の収益化</p>
         </div>
       </div>
       <div class="voice-card">
         <div class="voice-video"><iframe src="https://www.youtube.com/embed/ftC7P9sAByk?rel=0" title="アネさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑧ アネさん</span>
+          <span class="voice-badge">受講生の実績⑦ アネさん</span>
           <p class="voice-result">初挑戦で月170万円の収益化</p>
         </div>
       </div>
       <div class="voice-card">
         <div class="voice-video"><iframe src="https://www.youtube.com/embed/BUcjT7zmsKM?rel=0" title="あっぴさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑨ あっぴさん</span>
+          <span class="voice-badge">受講生の実績⑧ あっぴさん</span>
           <p class="voice-result">未経験から2ヶ月で122万円の収益化</p>
         </div>
       </div>
       <div class="voice-card">
         <div class="voice-video"><iframe src="https://www.youtube.com/embed/jGbs31g8OTY?rel=0" title="ねこさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         <div class="voice-content">
-          <span class="voice-badge">受講生の実績⑩ ねこさん</span>
+          <span class="voice-badge">受講生の実績⑨ ねこさん</span>
           <p class="voice-result">ニッチジャンルで188万円</p>
         </div>
       </div>
@@ -1311,21 +1351,19 @@ a { text-decoration: none; color: inherit; }
 
     <p class="text-center fw-bold fs-lg mt-md">これら全て、<span class="marker-y">無料でプレゼント</span>します。</p>
 
-    <div class="card mt-lg">
-      <h3 class="text-center fw-bold mb-md">参加までの3ステップ</h3>
-      <div class="steps-horizontal">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <p>下のボタンを<br>タップ</p>
-        </div>
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <p>LINEで参加日程を<br>選択（約30秒）</p>
-        </div>
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <p>確認メッセージが<br>届いたら完了</p>
-        </div>
+    <h3 class="text-center fw-bold mb-md mt-lg">参加までの3ステップ</h3>
+    <div class="steps-horizontal">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <p>下のボタンを<br>タップ</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <p>LINEで参加日程を<br>選択（約30秒）</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <p>確認メッセージが<br>届いたら完了</p>
       </div>
     </div>
 
@@ -1473,12 +1511,35 @@ a { text-decoration: none; color: inherit; }
 <section class="section-gray section-content">
   <div class="container">
     <h2 class="sec-heading">P.S.</h2>
-    <p>最後まで読んでくださったあなたに、一つだけ伝えさせてください。</p>
-    <p class="mt-md">僕がこのセミナーをやっている理由は、<span class="marker-y">正しいやり方を知るだけで結果が変わる人を、一人でも多く増やしたい</span>からです。</p>
-    <p class="mt-md">僕自身、ずっと間違ったやり方で努力していました。成果が出なかったのは、努力が足りなかったからじゃない。やり方を知らなかっただけでした。</p>
-    <p class="mt-md">正しいThreads運用法を学んでから、毎日LINEの通知が鳴るようになりました。やっていることはテキストでの投稿で、しかもAIも使っているから、労力は今までのSNS運用と比較にならないレベルです。</p>
-    <p class="mt-md fw-bold">この体験を、あなたにもしてほしいんです。</p>
+    <p>最後まで読んでくださったあなたに、僕が一番伝えたいことを書かせてください。</p>
+    <p class="mt-md">僕がこのセミナーをやっている理由は、一つだけです。</p>
+    <p class="mt-md fw-bold fs-lg"><span class="marker-y">あなたに「驚いてほしい」</span>んです。</p>
+    <p class="mt-md">今までSNSを頑張ってきて、ここまでスピード感を持って集客できた経験は、Threads以外では本当にありませんでした。</p>
+    <p class="mt-md">正直、僕自身が一番驚いています。200本以上リールを出してもダメだった僕が、Threadsをやっただけで、毎日LINEの通知が鳴るようになった。</p>
+    <p class="mt-md">1日5〜10件は日常で、多い日は20件入ります。入らない日の方が珍しい。正直、異常です。</p>
+    <p class="mt-md">やっていることはテキストでの投稿で、しかもAIも使っているから、労力は今までのSNS運用と比較して比にならないレベルです。</p>
+    <p class="mt-md">「なんだこれ...」って、何度も思いました。</p>
+    <p class="mt-md">でも同時に、こう思ったんです。</p>
+    <p class="mt-md fw-bold">「ああ、僕は間違ってなかったんだ」って。</p>
+    <p class="mt-md">今まで成果が出なかったのは、努力が足りなかったからじゃない。才能がなかったからでもない。<br><strong>ただ、努力する「場所」と「方向」が間違っていただけでした。</strong></p>
+    <p class="mt-md">Threadsで結果が出たことで、僕は自分に自信を取り戻しました。</p>
+    <p class="mt-md">LINE登録の通知を見るたびに、正直、心が安心します。もう「今日も誰も来なかった...」って悩まなくていい。</p>
+    <p class="mt-md fw-bold">集客ができると、すべてが前に進み始めます。</p>
+    <p class="mt-md">フォロワーが増える。LINE登録が入る。誰に向けて発信すればいいかが明確になる。</p>
+    <ul class="mt-md" style="list-style:none;padding:0;">
+      <li style="margin-bottom:8px;">・「この人たちに、これを届けよう」</li>
+      <li style="margin-bottom:8px;">・「この商品、いけるな」</li>
+      <li style="margin-bottom:8px;">・「この導線、数字悪いから直そう」</li>
+    </ul>
+    <p class="mt-md">全部、集客ができて初めて考えられることです。集客ができなければ、1も2も3も始まらない。</p>
+    <p class="mt-md">だから僕は、この体験を一人でも多くの人にしてほしい。驚いてほしい。「こんな世界があったのか」って。</p>
+    <p class="mt-md">そして、<strong>「自分もやれる」「努力は無駄じゃなかった」</strong>そう思ってほしいんです。</p>
+    <p class="mt-md">Threadsの今の状況は、マジでボーナスタイムです。この波に、早く乗ってほしい。僕と同じこっち側に来ていい。本気でそう思ってます。</p>
+    <p class="mt-md">そして、すでに結果が出ている人もいます。フォロワー100人以下でも、成果を出している人がいる。</p>
+    <p class="mt-md fw-bold fs-lg"><span class="marker-y">だから、あなたもできる。</span></p>
+    <p class="mt-md">だからこそ、あなたが本気でThreads運用を学び、実践して、人生を変えたいと考えているなら、セミナーに来てください。</p>
     <p class="mt-md">セミナーは各回先着10名限定です。迷っているなら、まずは席を確保してください。参加費は無料ですし、合わないと思ったらいつでもキャンセルできます。</p>
+    <p class="mt-md fw-bold">あなたの「戦う場所」を変える2時間にしてみせます。</p>
     <p class="mt-lg text-center fw-bold fs-lg">セミナーでお待ちしています。</p>
     <p class="text-center mt-sm text-mid">工藤</p>
   </div>
