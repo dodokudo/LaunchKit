@@ -344,7 +344,7 @@ br.sp-only { display: none; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-@media (max-width: 600px) { .hero-title { font-size: 2rem; } }
+@media (max-width: 600px) { .hero-title { font-size: 2.3rem; } }
 .hero-prehead {
   text-align: center;
   font-size: 1rem;
@@ -853,9 +853,11 @@ br.sp-only { display: none; }
   line-height: 1.5;
 }
 @media (max-width: 600px) {
-  .steps-horizontal { flex-direction: column; }
+  .steps-horizontal { gap: 10px; }
   .step-item { text-align: center; }
-  .step-item p { font-size: 0.85rem; }
+  .step-item p { font-size: 0.7rem; line-height: 1.4; }
+  .step-num { width: 28px; height: 28px; font-size: 0.75rem; }
+  .steps-horizontal br { display: none; }
 }
 
 /* ===== MOBILE OPTIMIZATION ===== */
@@ -929,10 +931,10 @@ br.sp-only { display: none; }
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
-    <p class="hero-prehead">後発組のフォロワー100名以下でも開始1ヶ月で成果報告続出！</p>
-    <p class="text-center fw-bold" style="font-size:1.1rem; letter-spacing:0.1em; margin-bottom:8px;">ー2026年最新版ー</p>
+    <p class="hero-prehead">後発組のフォロワー100名以下でも<br class="sp-only">開始1ヶ月で成果報告続出！</p>
+    <p class="text-center fw-bold" style="font-size:1.4rem; letter-spacing:0.1em; margin-bottom:8px;">ー2026年最新版ー</p>
     <h1 class="hero-title">Threads×AI<br>完全攻略セミナー</h1>
-    <p class="hero-deck" style="font-weight:700; color:var(--text-dark); font-size:1.1rem;">リール不要・文章だけで、商品が売れ続ける方法を公開！</p>
+    <p class="hero-deck" style="font-weight:700; color:var(--text-dark); font-size:1.1rem;">リール不要・文章だけで、<br class="sp-only">商品が売れ続ける方法を公開！</p>
     <div class="cta-wrap">
       <p class="cta-note">※先着10名様限定・参加費無料</p>
       <a href="https://lstep.app/tBRtR77" class="cta-btn">
@@ -1023,12 +1025,12 @@ br.sp-only { display: none; }
 </section>
 
 <!-- ===== 見出しバー: 後発組からの挑戦で最速の実績 ===== -->
-<div class="section-sh triangle-down"><h2>後発組からの挑戦で最速の実績</h2></div>
+<div class="section-sh triangle-down"><h2>後発組から最速の実績</h2></div>
 
 <!-- ===== SECTION 3: 受講生実績（統合） ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">「後発組」からの挑戦で<br>ありながら、<span class="marker-y">最速で成果を出した実績</span>です</h2>
+    <h2 class="sec-heading">「後発組」から<br class="sp-only"><span class="marker-y">最速で成果を出した実績</span>です</h2>
 
     <div class="voice-list">
       <div class="voice-card">
@@ -1141,8 +1143,8 @@ br.sp-only { display: none; }
 <section class="section-gray section-content">
   <div class="container">
     <h2 class="sec-heading">僕の受講生が短期間で<br class="sp-only">売上を伸ばせたのは、<br>「<span class="marker-y">フォロワー数に頼らず、<br class="sp-only">売上を生み出す正しい運用法</span>」<br>を学んだからです</h2>
-    <p class="text-center fs-lg">正しい場所で、正しいやり方を、素直に実践する。<br>それだけで結果は変わります。</p>
-    <p class="text-center mt-md">「特別な才能」も「大量のフォロワー」も、この方たちは持っていませんでした。</p>
+    <p class="text-center fs-lg">正しい場所で、正しいやり方を、<br class="sp-only">素直に実践する。<br>それだけで結果は変わります。</p>
+    <p class="text-center mt-md">「特別な才能」も「大量のフォロワー」も、<br class="sp-only">この方たちは持っていませんでした。</p>
     <p class="text-center mt-md fw-bold fs-lg">あなたも「売れるThreads運用法」を学びませんか？</p>
   </div>
 </section>
@@ -1154,7 +1156,7 @@ br.sp-only { display: none; }
 <section class="section-white section-content">
   <div class="container">
     <h2 class="sec-heading">巷のThreads運用ノウハウに<br>振り回されていませんか？</h2>
-    <p class="text-center mb-md">正直に聞かせてください。こんな状態になっていませんか？</p>
+    <p class="text-center mb-md">正直に聞かせてください。<br class="sp-only">こんな状態になっていませんか？</p>
     <div class="card-lg">
       <ul class="check-list x-list">
         <li>毎日投稿しているのに、フォロワーも売上も伸びない</li>
@@ -1174,8 +1176,8 @@ br.sp-only { display: none; }
 <section class="section-gray section-content">
   <div class="container">
     <h2 class="sec-heading">かつての成功法則は、<br>今や「間違い」になっている</h2>
-    <p>以前は「フォロワーを増やせば成功する」と言われていました。しかし今のSNSの環境は変化し、単にフォロワーを増やしても成果に直結しません。</p>
-    <p class="mt-md">あなたが毎日SNSに費やしている時間は、<span class="marker-y">正しいやり方で使えば売上を生み出す時間</span>です。その時間を、成果の出ないやり方で消耗し続けているとしたら ── それが、あなたが今気づかずに垂れ流している最大の損失です。</p>
+    <p>以前は「フォロワーを増やせば成功する」<br class="sp-only">と言われていました。<br class="sp-only"><br class="sp-only">しかし今のSNSの環境は変化し、<br class="sp-only">単にフォロワーを増やしても成果に直結しません。</p>
+    <p class="mt-md">あなたが毎日SNSに費やしている時間は、<br class="sp-only"><span class="marker-y">正しいやり方で使えば<br class="sp-only">売上を生み出す時間</span>です。<br class="sp-only"><br class="sp-only">その時間を、成果の出ないやり方で<br class="sp-only">消耗し続けているとしたら ──<br class="sp-only">それが、あなたが今気づかずに<br class="sp-only">垂れ流している最大の損失です。</p>
   </div>
 </section>
 
@@ -1185,7 +1187,7 @@ br.sp-only { display: none; }
 <!-- ===== SECTION 8: S（解決） ===== -->
 <section class="section-white section-content">
   <div class="container">
-    <h2 class="sec-heading">「正しいThreads運用法」を理解すれば、<br>集客はシンプルになる</h2>
+    <h2 class="sec-heading">「正しいThreads運用法」<br class="sp-only">を理解すれば、<br>集客はシンプルになる</h2>
     <p class="text-center fs-lg">「では、どうすればいいのか？」</p>
     <p class="text-center mt-md fw-bold fs-xl">その答えを、<br class="sp-only"><span class="marker-y">セミナーで全てお伝えします。</span></p>
     <p class="mt-md">フォロワーが少なくても売上が立つアカウント設計。再現性の高い手法。Threadsを「単なる投稿の場」ではなく「自動集客の仕組み」に変える方法。</p>
@@ -1216,7 +1218,7 @@ br.sp-only { display: none; }
     </div>
 
     <p class="text-center mt-lg fw-bold">このまま、間違った運用を続けても<br>時間と労力を浪費するだけです。</p>
-    <p class="text-center mt-sm fs-lg"><span class="marker-y">正しいやり方は、セミナーで全てお伝えします。</span></p>
+    <p class="text-center mt-sm fs-lg"><span class="marker-y">正しいやり方は、<br class="sp-only">セミナーで全てお伝えします。</span></p>
 
     <div class="cta-wrap">
       <p class="cta-note">※先着10名様限定・参加費無料</p>
@@ -1452,7 +1454,7 @@ br.sp-only { display: none; }
 <section class="section-dark section-content">
   <div class="container">
     <h2 class="sec-heading" style="color:#fff;">あなたも正しいThreads運用を<br>始めてください</h2>
-    <p class="text-center" style="opacity:0.9;">後発組だからといって、成果が出ないわけではありません。<br>正しいやり方を知って、素直に実践するだけ。それで人生は変わります。</p>
+    <p class="text-center" style="opacity:0.9;">後発組だからといって、<br class="sp-only">成果が出ないわけではありません。<br>正しいやり方を知って、<br class="sp-only">素直に実践するだけ。<br class="sp-only">それで人生は変わります。</p>
     <p class="text-center mt-sm fw-bold fs-xl" style="color:#06B6D4;">次は、あなたの番です。</p>
 
     <h3 class="text-center fw-bold mt-lg mb-md" style="color:#fff;">開催スケジュール</h3>
