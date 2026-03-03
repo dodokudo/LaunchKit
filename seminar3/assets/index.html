@@ -316,8 +316,8 @@ br.sp-only { display: none; }
   font-weight: 900;
 }
 @media (max-width: 600px) {
-  .hero-hook { font-size: 1rem; }
-  .hero-hook strong { font-size: 1.25rem; }
+  .hero-hook { font-size: 0.88rem; }
+  .hero-hook strong { font-size: 1.05rem; }
 }
 .video-wrap {
   position: relative;
@@ -854,16 +854,32 @@ br.sp-only { display: none; }
   font-weight: 700;
   line-height: 1.5;
 }
+.step-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: var(--neon-purple);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 2px;
+}
 @media (max-width: 600px) {
-  .steps-horizontal { gap: 6px; }
-  .step-item { text-align: center; padding: 12px 0; border-radius: 8px; }
-  .step-item p { font-size: 0.55rem; line-height: 1.4; }
-  .step-num { width: 24px; height: 24px; font-size: 0.65rem; margin-bottom: 6px; }
+  .steps-horizontal { gap: 8px; }
+  .step-item { text-align: center; padding: 18px 6px; border-radius: 8px; }
+  .step-item p { font-size: 0.75rem; line-height: 1.4; }
+  .step-num { width: 28px; height: 28px; font-size: 0.75rem; margin-bottom: 4px; }
+  .step-label { font-size: 0.5rem; }
   .steps-horizontal br { display: none; }
 }
 
 /* ===== MOBILE OPTIMIZATION ===== */
 @media (max-width: 600px) {
+  .hero { padding: 20px 0 28px; }
+  .hero-hook { margin-bottom: 12px; }
+  .video-wrap { margin-bottom: 16px; }
+  .hero-prehead { margin-bottom: 2px; }
+  .hero-title { margin-bottom: 0; }
+  .hero-deck { margin-top: 6px !important; }
+  .hero .cta-wrap { margin-top: 16px; }
   .card-lg { padding: 20px 16px; }
   .sec-heading { margin-bottom: 20px; }
   .voice-list { gap: 16px; }
@@ -1014,7 +1030,7 @@ br.sp-only { display: none; }
       </div>
     </div>
     <p class="text-center mt-md fw-bold">これら全て、<span class="marker-y">無料でプレゼント</span>します。</p>
-    <p class="text-center text-sm text-mid mt-sm">※特典の詳細は、このページの後半でお伝えします。</p>
+
 
     <div class="cta-wrap">
       <p class="cta-note">※先着10名様限定・参加費無料</p>
@@ -1144,7 +1160,7 @@ br.sp-only { display: none; }
 <!-- ===== SECTION 5: なぜ実績が出るのか ===== -->
 <section class="section-gray section-content">
   <div class="container">
-    <h2 class="sec-heading">僕の受講生が短期間で<br class="sp-only">売上を伸ばせたのは、<br>「<span class="marker-y">フォロワー数に頼らず、<br class="sp-only">売上を生み出す正しい運用法</span>」<br>を学んだからです</h2>
+    <h2 class="sec-heading">短期間で売上を伸ばせたのは、<br>「<span class="marker-y">フォロワー数に頼らず、<br class="sp-only">売上を生み出す正しい運用法</span>」<br>を学んだからです</h2>
     <p class="text-center fs-lg">正しい場所で、正しいやり方を、<br class="sp-only">素直に実践する。<br>それだけで結果は変わります。</p>
     <p class="text-center mt-md">「特別な才能」も「大量のフォロワー」も、<br class="sp-only">この方たちは持っていませんでした。</p>
     <p class="text-center mt-md fw-bold fs-lg">あなたも「売れるThreads運用法」を学びませんか？</p>
@@ -1331,14 +1347,17 @@ br.sp-only { display: none; }
     <h3 class="text-center fw-bold mb-md mt-lg">参加までの3ステップ</h3>
     <div class="steps-horizontal">
       <div class="step-item">
+        <span class="step-label">STEP</span>
         <div class="step-num">1</div>
         <p>下のボタンを<br>タップ</p>
       </div>
       <div class="step-item">
+        <span class="step-label">STEP</span>
         <div class="step-num">2</div>
         <p>参加日程を<br>選択<span class="sp-hide">（約30秒）</span></p>
       </div>
       <div class="step-item">
+        <span class="step-label">STEP</span>
         <div class="step-num">3</div>
         <p>メッセージが<br>届いたら完了</p>
       </div>
