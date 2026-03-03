@@ -216,6 +216,8 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 600px) { .sec-heading { font-size: 1.35rem; } }
 br.sp-only { display: none; }
 @media (max-width: 600px) { br.sp-only { display: block; } }
+.sp-hide { }
+@media (max-width: 600px) { .sp-hide { display: none; } }
 
 /* ===== HERO BADGE ===== */
 .hero-badge {
@@ -853,10 +855,10 @@ br.sp-only { display: none; }
   line-height: 1.5;
 }
 @media (max-width: 600px) {
-  .steps-horizontal { gap: 10px; }
+  .steps-horizontal { gap: 6px; }
   .step-item { text-align: center; }
-  .step-item p { font-size: 0.7rem; line-height: 1.4; }
-  .step-num { width: 28px; height: 28px; font-size: 0.75rem; }
+  .step-item p { font-size: 0.62rem; line-height: 1.4; }
+  .step-num { width: 26px; height: 26px; font-size: 0.7rem; }
   .steps-horizontal br { display: none; }
 }
 
@@ -1334,11 +1336,11 @@ br.sp-only { display: none; }
       </div>
       <div class="step-item">
         <div class="step-num">2</div>
-        <p>参加日程を<br>選択（約30秒）</p>
+        <p>参加日程を<br>選択<span class="sp-hide">（約30秒）</span></p>
       </div>
       <div class="step-item">
         <div class="step-num">3</div>
-        <p>確認メッセージが<br>届いたら完了</p>
+        <p>メッセージが<br>届いたら完了</p>
       </div>
     </div>
 
