@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threads×AI運用 完全攻略セミナー</title>
+<meta name="description" content="後発組でも正しい運用をすれば結果はついてくる。SNS累計売上8,000万円の講師が教える、フォロワー数に頼らず売上を生み出すThreads運用法。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --navy: #0F172A;
+  --navy-light: #1E293B;
+  --bg-page: #F1F5F9;
+  --bg-white: #FFFFFF;
+  --bg-gray: #F8FAFC;
+  --border: #E2E8F0;
+  --text-dark: #0F172A;
+  --text-mid: #475569;
+  --text-light: #94A3B8;
+  --green-line: #06c755;
+  --green-line-dark: #00b900;
+  --red: #EF4444;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.12);
+  --neon-gradient: linear-gradient(135deg, #8B5CF6, #06B6D4);
+  --neon-purple: #8B5CF6;
+  --neon-cyan: #06B6D4;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text-dark);
+  background: var(--bg-page);
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 100px;
+  font-size: 16px;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== TIMER BAR ===== */
+.timer-bar {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 1000;
+  letter-spacing: 0.02em;
+}
+.timer-bar .timer-num {
+  color: var(--neon-cyan);
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 2px;
+}
+
+/* ===== SECTION BACKGROUNDS ===== */
+.section-white { background: var(--bg-white); }
+.section-gray { background: var(--bg-gray); }
+.section-page { background: var(--bg-page); }
+.section-dark { background: var(--navy); color: #fff; }
+.section-content { padding: 60px 0; }
+@media (max-width: 600px) { .section-content { padding: 40px 0; } }
+
+/* ===== SECTION-SH ===== */
+.section-sh {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  position: relative;
+}
+@media (max-width: 600px) { .section-sh { font-size: 1.15rem; } }
+.section-sh h2 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+/* ===== TRIANGLE-DOWN ===== */
+.triangle-down {
+  position: relative;
+}
+.triangle-down::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-top: 20px solid var(--navy);
+  z-index: 2;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: var(--bg-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.card-lg {
+  background: var(--bg-white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  padding: 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.card-lg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--neon-gradient);
+}
+
+/* ===== MARKER ===== */
+.marker-y {
+  background: linear-gradient(transparent 60%, #FDE68A 60%);
+  padding: 0 2px;
+  font-weight: 700;
+}
+.marker-r {
+  background: linear-gradient(transparent 60%, #FECACA 60%);
+  padding: 0 2px;
+  font-weight: 700;
+}
+.marker-b {
+  background: linear-gradient(transparent 60%, rgba(139, 92, 246, 0.2) 60%);
+  padding: 0 2px;
+  font-weight: 700;
+}
+
+/* ===== IMG-SHADOW ===== */
+.img-shadow {
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.text-center { text-align: center; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.text-mid { color: var(--text-mid); }
+.text-light { color: var(--text-light); }
+.text-red { color: var(--red); }
+.text-accent { color: var(--navy); font-weight: 800; }
+.fw-bold { font-weight: 700; }
+.fw-black { font-weight: 900; }
+.fs-lg { font-size: 1.125rem; }
+.fs-xl { font-size: 1.5rem; }
+.fs-2xl { font-size: 1.75rem; }
+.fs-3xl { font-size: 2rem; }
+@media (max-width: 600px) {
+  .fs-xl { font-size: 1.25rem; }
+  .fs-2xl { font-size: 1.4rem; }
+  .fs-3xl { font-size: 1.5rem; }
+}
+.ls-wide { letter-spacing: 0.06em; }
+.lh-tight { line-height: 1.5; }
+.lh-loose { line-height: 2; }
+.mt-sm { margin-top: 12px; }
+.mt-md { margin-top: 24px; }
+.mt-lg { margin-top: 40px; }
+.mb-sm { margin-bottom: 12px; }
+.mb-md { margin-bottom: 24px; }
+.mb-lg { margin-bottom: 40px; }
+
+/* ===== SECTION HEADING ===== */
+.sec-heading {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+  position: relative;
+  padding-bottom: 16px;
+}
+.sec-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--neon-gradient);
+  border-radius: 2px;
+}
+@media (max-width: 600px) { .sec-heading { font-size: 1.35rem; } }
+br.sp-only { display: none; }
+@media (max-width: 600px) { br.sp-only { display: block; } }
+.sp-hide { }
+@media (max-width: 600px) { .sp-hide { display: none; } }
+
+/* ===== HERO BADGE ===== */
+.hero-badge {
+  display: inline-block;
+  background: var(--neon-gradient);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 900;
+  padding: 6px 20px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* ===== CTA BUTTON (seminar2 style) ===== */
+.cta-wrap {
+  text-align: center;
+  margin: 24px 0 0;
+}
+.cta-note {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.cta-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #06c755, #00b900);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-align: center;
+  padding: 20px 10px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 0 #038e3b, 0 8px 15px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.1s;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  text-decoration: none;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  animation: btn-pulse 2s infinite;
+}
+.cta-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #038e3b, 0 4px 5px rgba(0,0,0,0.2);
+}
+.cta-btn:hover { transform: scale(1.03); }
+.cta-btn .cta-sub {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+  background: rgba(0,0,0,0.2);
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+@keyframes btn-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+@media (max-width: 600px) {
+  .cta-btn { font-size: 1.1rem; padding: 15px 10px; }
+  .cta-btn .cta-sub { font-size: 0.7rem; }
+}
+.cta-sub-text {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ===== HERO ===== */
+.hero { padding: 32px 0 48px; }
+.hero-hook {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+.hero-hook strong {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+@media (max-width: 600px) {
+  .hero-hook { font-size: 0.88rem; }
+  .hero-hook strong { font-size: 1.05rem; }
+}
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 32px;
+}
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.hero-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  background: var(--neon-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@media (max-width: 600px) { .hero-title { font-size: 2.3rem; } }
+.hero-prehead {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-mid);
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.hero-deck {
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  margin: 16px auto 0;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+
+/* ===== CHECK LIST ===== */
+.check-list { list-style: none; padding: 0; }
+.check-list li {
+  padding: 12px 0 12px 44px;
+  position: relative;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  border-bottom: 1px solid var(--border);
+}
+.check-list li:last-child { border-bottom: none; }
+.check-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  background: var(--neon-gradient);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.x-list li::before {
+  content: '\2715';
+  background: var(--red);
+}
+
+/* ===== TOKUTEN GRID ===== */
+.tokuten-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+.tokuten-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+.tokuten-grid img {
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+.tokuten-grid img:hover { transform: scale(1.03); }
+@media (max-width: 600px) {
+  .tokuten-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===== BENEFITS AREA (seminar2 style) ===== */
+.benefits-area {
+  background: linear-gradient(var(--bg-white), var(--bg-white)) padding-box,
+              var(--neon-gradient) border-box;
+  border: 3px solid transparent;
+  padding: 50px 20px 30px;
+  margin-top: 40px;
+  position: relative;
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+}
+.benefits-title {
+  background: var(--neon-gradient);
+  color: #fff;
+  padding: 12px 0;
+  width: 90%;
+  max-width: 400px;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-align: center;
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+.benefits-intro-text {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .benefit-grid { grid-template-columns: 1fr; }
+  .benefits-title { font-size: 1rem; width: 85%; }
+}
+.benefit-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.benefit-image {
+  width: 100%;
+  height: 180px;
+  background-color: var(--bg-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.benefit-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.benefit-body {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+.benefit-icon {
+  background: var(--neon-gradient);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-right: 15px;
+  flex-shrink: 0;
+  font-weight: 900;
+}
+.benefit-content h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+  line-height: 1.4;
+  color: var(--text-dark);
+}
+.benefit-content p {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .benefit-body { padding: 15px; }
+  .benefit-content h3 { font-size: 0.85rem; }
+}
+
+/* ===== RESULT GRID ===== */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+.result-grid img {
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+/* ===== TABLE ===== */
+.lp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+.lp-table th, .lp-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.lp-table th {
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.lp-table tr:nth-child(even) { background: var(--bg-gray); }
+.lp-table tr:hover { background: #EEF2FF; }
+
+/* ===== YOUTUBE LIST (1 column) ===== */
+.yt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.yt-item { text-align: center; }
+.yt-item .video-wrap { margin-bottom: 8px; }
+.yt-item p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+/* ===== VOICE CARDS (seminar2 style) ===== */
+.voice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.voice-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.voice-video {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #000;
+}
+.voice-video iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+.voice-content {
+  padding: 20px;
+  text-align: center;
+}
+.voice-badge {
+  background: var(--neon-gradient);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.voice-result {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .voice-card { margin-bottom: 0; }
+  .voice-result { font-size: 1rem; }
+}
+
+/* ===== ERROR CARDS ===== */
+.error-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.error-card {
+  background: var(--bg-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  border-left: 4px solid var(--red);
+}
+.error-card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--red);
+}
+.error-card p { font-size: 1rem; color: var(--text-mid); line-height: 1.8; }
+
+/* ===== SEMINAR CONTENT BOX (seminar2 style) ===== */
+.seminar-content-box {
+  background: linear-gradient(var(--bg-white), var(--bg-white)) padding-box,
+              var(--neon-gradient) border-box;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  padding: 25px;
+}
+.seminar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.seminar-list > li {
+  padding: 15px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.seminar-list > li:last-child { border-bottom: none; }
+.chapter-badge {
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.chapter-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+.chapter-detail {
+  list-style: none;
+  padding: 8px 0 0 0;
+}
+.chapter-detail li {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  padding: 2px 0 2px 16px;
+  position: relative;
+}
+.chapter-detail li::before {
+  content: '\30FB';
+  position: absolute;
+  left: 0;
+}
+@media (max-width: 600px) {
+  .chapter-title { font-size: 0.95rem; display: block; margin-top: 5px; }
+  .chapter-badge { font-size: 0.7rem; }
+  .chapter-detail li { font-size: 0.8rem; }
+}
+
+/* ===== TOKUTEN DETAIL CARD ===== */
+.tokuten-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.tokuten-detail img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.tokuten-detail-text {
+  width: 100%;
+}
+.tokuten-detail-text h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.tokuten-detail-text p { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; }
+.tokuten-detail-text ul { list-style: disc; padding-left: 20px; font-size: 0.95rem; color: var(--text-mid); text-align: left; }
+.tokuten-detail-text ul li { margin-bottom: 6px; line-height: 1.7; }
+
+/* ===== FAQ ACCORDION ===== */
+.faq-item {
+  background: var(--bg-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.faq-q {
+  padding: 16px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+}
+.faq-q::before { content: 'Q'; background: var(--neon-gradient); color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; flex-shrink: 0; }
+.faq-q::after { content: '\FF0B'; margin-left: auto; font-size: 1.2rem; color: var(--text-light); transition: transform 0.3s; }
+.faq-q.open::after { transform: rotate(45deg); }
+.faq-a {
+  padding: 0 20px 0 60px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+.faq-a.open { padding-bottom: 20px; max-height: 300px; }
+
+/* ===== SCHEDULE TABLE ===== */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+.schedule-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  margin: 20px 0;
+}
+.schedule-table th, .schedule-table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+.schedule-table th {
+  background: #F1F5F9;
+  font-weight: 700;
+  color: var(--navy);
+}
+.schedule-table .seats {
+  color: #DC2626;
+  font-weight: 800;
+}
+
+/* ===== FIT LIST ===== */
+.fit-list { list-style: none; padding: 0; }
+.fit-list li {
+  padding: 10px 0 10px 36px;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.fit-list.yes li::before { content: '\25CE'; position: absolute; left: 4px; top: 10px; color: var(--neon-purple); font-weight: 800; }
+.fit-list.no li::before { content: '\2715'; position: absolute; left: 8px; top: 10px; color: var(--red); font-weight: 800; }
+
+/* ===== STICKY FOOTER CTA ===== */
+#sticky-footer {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  padding: 0 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+#sticky-footer.visible { opacity: 1; transform: translateY(0); }
+#sticky-footer .sticky-btn-wrapper {
+  width: 100%;
+  max-width: 500px;
+  pointer-events: auto;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+#sticky-footer .cta-btn {
+  font-size: 1rem;
+  padding: 14px 10px;
+}
+
+/* ===== HORIZONTAL STEPS ===== */
+.steps-horizontal {
+  display: flex;
+  gap: 16px;
+  margin: 24px auto;
+  max-width: 480px;
+}
+.step-item {
+  flex: 1;
+  background: var(--bg-white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 20px 16px;
+  text-align: center;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--neon-gradient);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+.step-item p {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.step-label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: var(--neon-purple);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 2px;
+}
+@media (max-width: 600px) {
+  .steps-horizontal { gap: 8px; }
+  .step-item { text-align: center; padding: 18px 6px; border-radius: 8px; }
+  .step-item p { font-size: 0.75rem; line-height: 1.4; }
+  .step-num { width: 28px; height: 28px; font-size: 0.75rem; margin-bottom: 4px; }
+  .step-label { font-size: 0.5rem; }
+  .steps-horizontal br { display: none; }
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 600px) {
+  .hero { padding: 20px 0 28px; }
+  .hero-hook { margin-bottom: 12px; }
+  .video-wrap { margin-bottom: 16px; }
+  .hero-prehead { margin-bottom: 0; font-size: 0.68rem; }
+  .hero .text-center.fw-bold { margin-bottom: 0 !important; font-size: 1.1rem !important; }
+  .hero-title { margin-bottom: 0; line-height: 1.15; }
+  .hero-deck { margin-top: 6px !important; font-size: 0.75rem !important; }
+  .hero .cta-wrap { margin-top: 10px; }
+  .card-lg { padding: 20px 16px; }
+  .sec-heading { margin-bottom: 20px; }
+  .voice-list { gap: 16px; }
+  .voice-content { padding: 14px; }
+  .voice-badge { font-size: 0.7rem; padding: 3px 10px; }
+  .tokuten-detail img { max-width: 280px; }
+  .tokuten-detail-text h3 { font-size: 1.05rem; }
+  .tokuten-detail-text p,
+  .tokuten-detail-text ul { font-size: 0.88rem; }
+  .error-card { padding: 18px; }
+  .error-card h3 { font-size: 1rem; }
+  .error-card p { font-size: 0.9rem; line-height: 1.7; }
+  .mt-lg { margin-top: 28px; }
+  .mb-lg { margin-bottom: 28px; }
+  .benefits-area { padding: 40px 15px 24px; margin-top: 28px; }
+  .seminar-content-box { padding: 24px 16px; }
+  .chapter-detail li { font-size: 0.8rem; }
+  .faq-q { font-size: 0.9rem; padding: 14px 16px; }
+  .fit-list li { font-size: 0.88rem; padding: 8px 0 8px 36px; }
+  .schedule-card { padding: 16px 10px; }
+  .schedule-table th, .schedule-table td { padding: 10px 8px; font-size: 0.82rem; }
+  #sticky-footer { bottom: 12px; padding: 0 10px; }
+  #sticky-footer .cta-btn { font-size: 0.9rem; padding: 12px 8px; }
+}
+
+/* ===== MISC ===== */
+.divider { height: 1px; background: var(--border); margin: 40px 0; }
+.steps-list { counter-reset: step; list-style: none; padding: 0; }
+.steps-list li {
+  counter-increment: step;
+  padding: 12px 0 12px 48px;
+  position: relative;
+  font-size: 0.95rem;
+}
+.steps-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0; top: 10px;
+  width: 32px; height: 32px;
+  background: var(--neon-gradient);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TIMER BAR ===== -->
+<div class="timer-bar" id="timer-bar">
+  セミナー受付終了まで <span class="timer-num" id="timer-days">3</span>日 <span class="timer-num" id="timer-clock">00:00:00</span>
+</div>
+
+<!-- ===== SECTION 1: HERO ===== -->
+<section class="section-page hero">
+  <div class="container">
+    <p class="hero-hook">
+      <strong>「Threads×AI」</strong>を活用し<br>
+      開始<span class="marker-y">たった5ヶ月</span>で<br>
+      フォロワー5000人・LINE登録1000人を集客し<br>
+      <strong>SNSで累計8000万円を売った方法</strong>とは？
+    </p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="hero-prehead">後発組のフォロワー100名以下でも開始1ヶ月で成果報告続出！</p>
+    <p class="text-center fw-bold" style="font-size:1.4rem; letter-spacing:0.1em; margin-bottom:8px;">ー2026年最新版ー</p>
+    <h1 class="hero-title">Threads×AI<br>完全攻略セミナー</h1>
+    <p class="hero-deck" style="font-weight:700; color:var(--text-dark); font-size:1.1rem;">リール不要・文章だけで、商品が売れ続ける方法を公開！</p>
+    <div class="cta-wrap">
+      <p class="cta-note">※先着10名様限定・参加費無料</p>
+      <a href="https://lstep.app/tBRtR77" class="cta-btn">
+        <span class="cta-sub">＼ 残り席がわずかです ／</span>
+        今すぐ無料セミナーに申し込む
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: このセミナーで学べること ===== -->
+<div class="section-sh triangle-down"><h2>このセミナーで学べること</h2></div>
+
+<!-- ===== SECTION 2: セミナー概要 + 特典プレビュー ===== -->
+<section class="section-white section-content">
+  <div class="container">
+    <h2 class="sec-heading">90分で「やるべきこと」と<br>「やり方」が明確になる<br class="sp-only">セミナーです</h2>
+    <div class="card-lg">
+      <ul class="check-list">
+        <li><strong>売上を生み出すために必要な準備と手順を明確化</strong> ── 集客→教育→販売の導線を、あなたのビジネスに落とし込む方法</li>
+        <li><strong>テキスト投稿を活用した集客の極意</strong> ── フォロワー100人以下でも成約する原則</li>
+        <li><strong>3ヶ月〜1年以内に売上を作るための具体的戦略</strong> ── AI活用で投稿の「量」と「質」を両立する実践術</li>
+      </ul>
+    </div>
+
+    <h3 class="sec-heading mt-lg">さらに、参加するだけで<br><span class="marker-y">4つの特典</span>をプレゼント</h3>
+
+    <div class="benefits-area">
+      <div class="benefits-title">参加者限定 4大特典</div>
+      <p class="benefits-intro-text">
+        セミナーに参加された方全員に<br>
+        <strong style="color:var(--neon-purple);">今すぐ使える豪華特典</strong>をプレゼント！
+      </p>
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-image"><img src="tokuten1.png" alt="特典1" loading="lazy"></div>
+          <div class="benefit-body">
+            <div class="benefit-icon">1</div>
+            <div class="benefit-content">
+              <h3>SNSマーケで使えるAIプロンプト30選</h3>
+              <p>投稿ネタ出し・リサーチまで、すぐ使えるプロンプトを厳選30個収録</p>
+            </div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-image"><img src="tokuten2.png" alt="特典2" loading="lazy"></div>
+          <div class="benefit-body">
+            <div class="benefit-icon">2</div>
+            <div class="benefit-content">
+              <h3>フォロワー1,000人伸ばしたプロンプト</h3>
+              <p>たった1投稿でフォロワー1,000人を増やした実際のプロンプトを公開</p>
+            </div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-image"><img src="tokuten3.png" alt="特典3" loading="lazy"></div>
+          <div class="benefit-body">
+            <div class="benefit-icon">3</div>
+            <div class="benefit-content">
+              <h3>高単価商品作成マニュアル</h3>
+              <p>月商100万円超の受講生も使う商品設計フレームワーク</p>
+            </div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-image"><img src="tokuten4.png" alt="特典4" loading="lazy"></div>
+          <div class="benefit-body">
+            <div class="benefit-icon">4</div>
+            <div class="benefit-content">
+              <h3>月商100万円LINE設計テンプレート</h3>
+              <p>5日間で700万円を売り上げた配信シナリオをそのまま公開</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mt-md fw-bold">これら全て、<span class="marker-y">無料でプレゼント</span>します。</p>
+
+
+    <div class="cta-wrap">
+      <p class="cta-note">※先着10名様限定・参加費無料</p>
+      <a href="https://lstep.app/tBRtR77" class="cta-btn">
+        <span class="cta-sub">＼ 残り席がわずかです ／</span>
+        今すぐ無料セミナーに申し込む
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: 後発組からの挑戦で最速の実績 ===== -->
+<div class="section-sh triangle-down"><h2>後発組から最速の実績</h2></div>
+
+<!-- ===== SECTION 3: 受講生実績（統合） ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">「後発組」から<br class="sp-only"><span class="marker-y">最速で成果を出した実績</span>です</h2>
+
+    <div class="voice-list">
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xJ__v5P6GQI?rel=0" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー① かずみさん</span>
+          <p class="voice-result">0→1から380万円の収益化達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?rel=0" title="あかりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー② あかりさん</span>
+          <p class="voice-result">1ヶ月でフォロワー2,400名達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/RYFjEkP19X0?rel=0" title="なぎささんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー③ なぎささん</span>
+          <p class="voice-result">Threads運用2ヶ月で150万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/3AA6DFJBflM?rel=0" title="さおりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生インタビュー④ さおりさん</span>
+          <p class="voice-result">1ヶ月でフォロワー1,300名・LINE登録400名増加</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/appbeUXYJOs?rel=0" title="じゅんさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑤ じゅんさん</span>
+          <p class="voice-result">会社員の副業で2,000万円<br>法人の設立を達成！</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/ItV4c7BTCC8?rel=0" title="えりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑥ えりさん</span>
+          <p class="voice-result">1撃528万円の収益化達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/pt7LYe-VFj8?rel=0" title="やんもさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑦ やんもさん</span>
+          <p class="voice-result">未経験から1,200万円の収益化<br>法人設立を達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/8ZMLwWP6SC4?rel=0" title="ゆうきさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑧ ゆうきさん</span>
+          <p class="voice-result">半年で320万円の収益化達成</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/V4hwO1roOXM?rel=0" title="日高さんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑨ 日高さん</span>
+          <p class="voice-result">わずか2ヶ月で50万円の収益化！</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/shr1bcowliA?rel=0" title="おたさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑩ おたさん</span>
+          <p class="voice-result">副業で8ヶ月250万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/ftC7P9sAByk?rel=0" title="アネさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑪ アネさん</span>
+          <p class="voice-result">初挑戦で月170万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/BUcjT7zmsKM?rel=0" title="あっぴさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑫ あっぴさん</span>
+          <p class="voice-result">未経験から2ヶ月で122万円の収益化</p>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-video"><iframe src="https://www.youtube.com/embed/jGbs31g8OTY?rel=0" title="ねこさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="voice-content">
+          <span class="voice-badge">受講生の実績⑬ ねこさん</span>
+          <p class="voice-result">ニッチジャンルで188万円</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <p class="cta-note">※先着10名様限定・参加費無料</p>
+      <a href="https://lstep.app/tBRtR77" class="cta-btn">
+        <span class="cta-sub">＼ 残り席がわずかです ／</span>
+        今すぐ無料セミナーに申し込む
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: なぜここまでの実績を出せているのか？ ===== -->
+<div class="section-sh triangle-down"><h2>なぜここまでの実績を出せているのか？</h2></div>
+
+<!-- ===== SECTION 5: なぜ実績が出るのか ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">短期間で売上を伸ばせたのは、<br>「<span class="marker-y">フォロワー数に頼らず、<br class="sp-only">売上を生み出す正しい運用法</span>」<br>を学んだからです</h2>
+    <p class="text-center fs-lg">正しい場所で、正しいやり方を、<br class="sp-only">素直に実践する。<br>それだけで結果は変わります。</p>
+    <p class="text-center mt-md">「特別な才能」も「大量のフォロワー」も、<br class="sp-only">この方たちは持っていませんでした。</p>
+    <p class="text-center mt-md fw-bold fs-lg">あなたも「売れるThreads運用法」を学びませんか？</p>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: あなたの現状を変える第一歩 ===== -->
+<div class="section-sh triangle-down"><h2>あなたの現状を変える第一歩</h2></div>
+
+<!-- ===== SECTION 6: P（問題提起） ===== -->
+<section class="section-white section-content">
+  <div class="container">
+    <h2 class="sec-heading">巷のThreads運用ノウハウに<br>振り回されていませんか？</h2>
+    <p class="text-center mb-md">正直に聞かせてください。<br class="sp-only">こんな状態になっていませんか？</p>
+    <div class="card-lg">
+      <ul class="check-list x-list">
+        <li>毎日投稿しているのに、フォロワーも売上も伸びない</li>
+        <li>テキスト投稿を頑張っても、反応がなくて手応えがない</li>
+        <li>伸びている人の真似をしても、自分だけ再現できない</li>
+        <li>ノウハウを学べば学ぶほど、何をすればいいか分からなくなる</li>
+        <li>「今日も誰もLINEに登録してくれなかった...」と夜中にスマホを見つめている</li>
+        <li>SNS運用がただの「作業」になっていて、正直しんどい</li>
+      </ul>
+    </div>
+    <p class="text-center mt-md">もし一つでも当てはまるなら、はっきり言わせてください。</p>
+    <p class="text-center mt-sm"><strong class="fs-xl">それは、あなたの努力不足<br class="sp-only">ではないです。</strong></p>
+  </div>
+</section>
+
+<!-- ===== SECTION 7: A（親近） ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">かつての成功法則は、<br>今や「間違い」になっている</h2>
+    <p>以前は「フォロワーを増やせば成功する」<br class="sp-only">と言われていました。<br class="sp-only"><br class="sp-only">しかし今のSNSの環境は変化し、<br class="sp-only">単にフォロワーを増やしても成果に直結しません。</p>
+    <p class="mt-md">あなたが毎日SNSに費やしている時間は、<br class="sp-only"><span class="marker-y">正しいやり方で使えば<br class="sp-only">売上を生み出す時間</span>です。<br class="sp-only"><br class="sp-only">その時間を、成果の出ないやり方で<br class="sp-only">消耗し続けているとしたら ──<br class="sp-only">それが、あなたが今気づかずに<br class="sp-only">垂れ流している最大の損失です。</p>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: 正しい運用法を知るだけで結果は変わる ===== -->
+<div class="section-sh triangle-down"><h2>正しい運用法を知るだけで結果は変わる</h2></div>
+
+<!-- ===== SECTION 8: S（解決） ===== -->
+<section class="section-white section-content">
+  <div class="container">
+    <h2 class="sec-heading">「正しいThreads運用法」<br class="sp-only">を理解すれば、<br>集客はシンプルになる</h2>
+    <p class="text-center fs-lg">「では、どうすればいいのか？」</p>
+    <p class="text-center mt-md fw-bold fs-xl">その答えを、<br class="sp-only"><span class="marker-y">セミナーで全てお伝えします。</span></p>
+    <p class="mt-md">フォロワーが少なくても売上が立つアカウント設計。再現性の高い手法。Threadsを「単なる投稿の場」ではなく「自動集客の仕組み」に変える方法。</p>
+    <p class="mt-md text-mid">正直、ここに全部書きたいところですが、テキストで伝えるには限界があります。セミナーで実際の事例とデータを見せながら、あなたのビジネスに落とし込めるレベルでお伝えします。</p>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: 9割が間違えているThreads運用の真実 ===== -->
+<div class="section-sh triangle-down"><h2>9割が間違えているThreads運用の真実</h2></div>
+
+<!-- ===== SECTION 9: 間違い3つ ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">Threadsで失敗する人が<br>陥っている<span class="marker-r">3つの間違い</span></h2>
+    <div class="error-cards">
+      <div class="error-card">
+        <h3>間違い1：「フォロワー数を増やす」だけでは売上につながらない</h3>
+        <p>フォロワーが増えても、投稿のリーチが全然伸びない。いいね回りやフォロー回りで集めたフォロワーは「フォローしてくれたから返しただけ」の人たち。フォロワーの「数」ではなく、あなたの商品を本気で必要としている人に届いているかどうか。ここが全てです。</p>
+      </div>
+      <div class="error-card">
+        <h3>間違い2：「バズる＝成功」ではない</h3>
+        <p>バズっても商品が売れない人は山ほどいます。一時的に数字が伸びても、LINE登録や売上にはつながらない。「面白い投稿だな」と思われても、あなたの商品を買いたいとは思いません。バズ＝集客ではありません。</p>
+      </div>
+      <div class="error-card">
+        <h3>間違い3：「毎日投稿すれば伸びる」は過去の話</h3>
+        <p>投稿の質が低ければ、どれだけ毎日投稿しても伸びません。大事なのは「いかに投稿を見てもらうか」ではなく、<strong>「見た人が、あなたの発信をもっと読みたいと思うかどうか」</strong>です。</p>
+      </div>
+    </div>
+
+    <p class="text-center mt-lg fw-bold">このまま、間違った運用を続けても<br>時間と労力を浪費するだけです。</p>
+    <p class="text-center mt-sm fs-lg"><span class="marker-y">正しいやり方は、<br class="sp-only">セミナーで全てお伝えします。</span></p>
+
+    <div class="cta-wrap">
+      <p class="cta-note">※先着10名様限定・参加費無料</p>
+      <a href="https://lstep.app/tBRtR77" class="cta-btn">
+        <span class="cta-sub">＼ 残り席がわずかです ／</span>
+        今すぐ無料セミナーに申し込む
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 10: C（内容） ===== -->
+<section class="section-white section-content">
+  <div class="container">
+    <h2 class="sec-heading">セミナーでお伝えすること</h2>
+    <div class="seminar-content-box">
+      <h3 style="text-align:center; font-weight:900; margin-bottom:15px; border-bottom:1px solid var(--border); padding-bottom:10px;">セミナー内容</h3>
+      <ul class="seminar-list">
+        <li>
+          <span class="chapter-badge">第1章</span><span class="chapter-title">なぜ今、Threadsなのか</span>
+          <ul class="chapter-detail">
+            <li>リール200本で700人だった僕が、3ヶ月で3100人・LINE558名になった逆転劇</li>
+            <li>【2026年最新】Instagram vs Threads 徹底比較と「先行者利益」の全貌</li>
+          </ul>
+        </li>
+        <li>
+          <span class="chapter-badge">第2章</span><span class="chapter-title">9割が知らない「売れないアカウント」の正体</span>
+          <ul class="chapter-detail">
+            <li>有名インフルエンサーのノウハウが「今のあなた」に合わない構造的理由</li>
+            <li>短文投稿・いいね回り・フォロー回りが「ただの数字集め」で終わるカラクリ</li>
+          </ul>
+        </li>
+        <li>
+          <span class="chapter-badge">第3章</span><span class="chapter-title">工藤式Threads運用「3つの原則」</span>
+          <ul class="chapter-detail">
+            <li>フォロワー100人以下でも1ヶ月でLINE200件・成約3件を実現する運用原則</li>
+            <li>自分からアクションしない／長文で投稿／数を打つ</li>
+          </ul>
+        </li>
+        <li>
+          <span class="chapter-badge">第4章</span><span class="chapter-title">AI×Threads実践術</span>
+          <ul class="chapter-detail">
+            <li>悪用厳禁！数分で質の高い投稿を量産するAIプロンプト活用術</li>
+            <li>成果が出ない人が必ずぶつかる「5つの壁」とその突破法</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <p class="text-center text-mid mt-md">Zoomライブ開催で、受講生限定の特別講義を公開します。</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 11: O（提案）特典詳細 ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">参加者限定 <span class="marker-y">4大特典</span></h2>
+
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten1.png" alt="特典1" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典1：SNSマーケで使えるAIプロンプト30選</h3>
+        <ul>
+          <li>投稿ネタ出し・フック作成・リサーチまで、Threads運用に必要なプロンプトを厳選30個</li>
+          <li>コピペしてすぐ使える形式なので、AIが苦手な方でも即実践可能</li>
+          <li>僕自身が毎日使っている「実戦検証済み」のプロンプトだけを収録</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten2.png" alt="特典2" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典2：Threads一撃でフォロワー1,000人伸ばしたプロンプト</h3>
+        <ul>
+          <li>たった1投稿でフォロワー1,000人を増やした時に使った、実際のAIプロンプトをそのまま公開</li>
+          <li>「どんな指示を出せば伸びる投稿が作れるか」のロジックも解説</li>
+          <li>これだけで、今日からの投稿の質が一段階上がります</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten3.png" alt="特典3" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典3：高単価商品作成マニュアル<br>（PDF49枚）</h3>
+        <ul>
+          <li>集客ができても「売るもの」がなければ売上にならない。「売れる商品の作り方」が分かる</li>
+          <li>棚卸し→競合リサーチ→ターゲット設計→コンセプト→コンテンツ作成の5ステップ</li>
+          <li>月商100万円を超えている受講生たちが実際に使っている商品設計フレームワーク</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tokuten-detail mb-lg">
+      <img src="tokuten4.png" alt="特典4" loading="lazy">
+      <div class="tokuten-detail-text">
+        <h3>特典4：月商100万円LINE設計テンプレート</h3>
+        <ul>
+          <li>Threadsで集めたリストを「売上」に変換するLINE配信のテンプレート</li>
+          <li>実際に5日間で700万円を売り上げた配信シナリオを、そのまま使える形式でお渡し</li>
+          <li>「集客はできるけど販売が分からない」という悩みを一発で解決</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-center fw-bold fs-lg mt-md">これら全て、<span class="marker-y">無料でプレゼント</span>します。</p>
+
+    <h3 class="text-center fw-bold mb-md mt-lg">参加までの3ステップ</h3>
+    <div class="steps-horizontal">
+      <div class="step-item">
+        <span class="step-label">STEP</span>
+        <div class="step-num">1</div>
+        <p>下のボタンを<br>タップ</p>
+      </div>
+      <div class="step-item">
+        <span class="step-label">STEP</span>
+        <div class="step-num">2</div>
+        <p>参加日程を<br>選択<span class="sp-hide">（約30秒）</span></p>
+      </div>
+      <div class="step-item">
+        <span class="step-label">STEP</span>
+        <div class="step-num">3</div>
+        <p>メッセージが<br>届いたら完了</p>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <p class="cta-note">※先着10名様限定・参加費無料</p>
+      <a href="https://lstep.app/tBRtR77" class="cta-btn">
+        <span class="cta-sub">＼ 残り席がわずかです ／</span>
+        今すぐ無料セミナーに申し込む
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: こんな方にこそ来てほしい ===== -->
+<div class="section-sh triangle-down"><h2>こんな方にこそ来てほしい</h2></div>
+
+<!-- ===== SECTION 12: N（適合） ===== -->
+<section class="section-white section-content">
+  <div class="container">
+    <h3 class="sec-heading">このセミナーに来てほしい方</h3>
+    <div class="card-lg mb-md">
+      <ul class="fit-list yes">
+        <li>真剣にSNSで売上を伸ばしたいと悩んでいる方</li>
+        <li>フォロワーは増えても売上につながらず限界を感じている方</li>
+        <li>Threadsに興味はあるけど、正しいやり方が分からない方</li>
+        <li>子育てや本業と両立しながら、効率的にビジネスを伸ばしたい方</li>
+        <li>数字ではなく「集客・売上」につなげたい方</li>
+        <li>AIを活用して、SNS運用の作業時間を大幅に減らしたい方</li>
+      </ul>
+    </div>
+
+    <h3 class="sec-heading">逆に、こんな方には<br>向いていません</h3>
+    <div class="card-lg">
+      <ul class="fit-list no">
+        <li>「楽して稼ぎたい」とだけ思っている方</li>
+        <li>学んだことを実践する気がない方</li>
+        <li>すでにThreadsで月商100万円以上を安定的に達成している方</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 13: FAQ ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">よくあるご質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">本当に無料ですか？</div>
+      <div class="faq-a">はい、完全に無料です。セミナー最後にご案内はありますが、その場で判断を迫ることはしません。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">SNS初心者でも大丈夫？</div>
+      <div class="faq-a">むしろ初心者の方が成果が出やすい傾向があります。未経験から122万円達成の受講生もいます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">Threadsってもう遅くないですか？</div>
+      <div class="faq-a">今がギリギリのタイミングです。月間アクティブユーザー3.2億人を超えて急成長中ですが、ビジネス活用者はまだ少ない。参入者が増えれば増えるほど難しくなります。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">子育て中で時間がないのですが...</div>
+      <div class="faq-a">テキストだけ+AI活用で1投稿数分です。子育てしながら成果を出している受講生もいます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">AIを使ったことがないのですが...</div>
+      <div class="faq-a">コピペで使えるプロンプトを特典でお渡しします。基礎から丁寧にお伝えします。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">商品をまだ持っていないのですが...</div>
+      <div class="faq-a">まず集客力を身につけることが最優先。商品は後から作れます。セミナーでは全体像もお伝えします。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">顔出ししたくないのですが...</div>
+      <div class="faq-a">Threadsはテキスト投稿なので顔出し不要です。文章だけで人柄が伝わるのがThreadsの強みです。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 見出しバー: 実践できる自分になるために ===== -->
+<div class="section-sh triangle-down"><h2>「なるほど」で終わらず、<br>実践できる自分になるために</h2></div>
+
+<!-- ===== SECTION 14: ブリッジ（実践化教育） ===== -->
+<section class="section-white section-content">
+  <div class="container">
+    <p>これまで、こういったオンラインセミナーに参加したことがある方も多いかもしれません。「勉強になった」「なるほどな」── でも、いざ実践しようとしたときに<span class="marker-y">「何から始めればいいかわからない...」</span>と手が止まってしまった経験はありませんか？</p>
+
+    <p class="mt-md">だからこそ、このセミナーでは<strong>実際に行動に移せるレベル</strong>まで落とし込めるように内容をチューニングしています。</p>
+
+    <div class="card mt-md">
+      <ul class="steps-list">
+        <li>動画や特典資料で「イメージ」をつかむ</li>
+        <li>セミナーで「実践できるレベル」に仕上げる</li>
+        <li>セミナー終了後、すぐに動ける「アクションプラン」を作る</li>
+      </ul>
+    </div>
+
+    <p class="mt-lg text-center fw-bold fs-lg">「動画や資料を見て時間を使った」── この時点で、あなたはすでに一歩踏み出しています。</p>
+    <p class="text-center mt-sm">あとはオンラインセミナーに参加して、<span class="marker-y">実践できるレベルに仕上げるだけ</span>。</p>
+
+    <div class="card mt-md">
+      <ul class="check-list">
+        <li>最短3ヶ月で成果を出す</li>
+        <li>遅くても1年以内には大きな変化を起こす</li>
+        <li>フォロワー数に依存しない、売上を生み出せるアカウントを作る</li>
+      </ul>
+    </div>
+
+    <p class="text-center mt-md fw-bold">後発組だからといって、成功を諦める必要は一切ありません。<br><span class="marker-y">むしろ、今こそチャンスです。</span></p>
+  </div>
+</section>
+
+<!-- ===== SECTION 15: CTA + スケジュール（固定日程） ===== -->
+<section class="section-dark section-content">
+  <div class="container">
+    <h2 class="sec-heading" style="color:#fff;">あなたも正しいThreads運用を<br>始めてください</h2>
+    <p class="text-center" style="opacity:0.9;">後発組だからといって、<br class="sp-only">成果が出ないわけではありません。<br>正しいやり方を知って、<br class="sp-only">素直に実践するだけ。<br class="sp-only">それで人生は変わります。</p>
+    <p class="text-center mt-sm fw-bold fs-xl" style="color:#06B6D4;">次は、あなたの番です。</p>
+
+    <h3 class="text-center fw-bold mt-lg mb-md" style="color:#fff;">開催スケジュール</h3>
+    <div class="schedule-card">
+      <table class="schedule-table">
+        <thead><tr><th>日程</th><th>時間</th><th>残席</th></tr></thead>
+        <tbody>
+          <tr><td>3月14日（金）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月15日（土）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月17日（月）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月18日（火）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月19日（水）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+          <tr><td>3月21日（金）</td><td>20:00〜21:30</td><td class="seats">残り10名</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cta-wrap" style="margin-top:32px;">
+      <p class="cta-note" style="color:#06B6D4;">※先着10名様限定・参加費無料</p>
+      <a href="https://lstep.app/tBRtR77" class="cta-btn">
+        <span class="cta-sub">＼ 残り席がわずかです ／</span>
+        今すぐ無料セミナーに申し込む
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 16: 追伸 ===== -->
+<section class="section-gray section-content">
+  <div class="container">
+    <h2 class="sec-heading">P.S.</h2>
+    <p>最後まで読んでくださったあなたに、僕が一番伝えたいことを書かせてください。</p>
+    <p class="mt-md">僕がこのセミナーをやっている理由は、一つだけです。</p>
+    <p class="mt-md fw-bold fs-lg"><span class="marker-y">あなたに「驚いてほしい」</span>んです。</p>
+    <p class="mt-md">今までSNSを頑張ってきて、ここまでスピード感を持って集客できた経験は、Threads以外では本当にありませんでした。</p>
+    <p class="mt-md">正直、僕自身が一番驚いています。200本以上リールを出してもダメだった僕が、Threadsをやっただけで、毎日LINEの通知が鳴るようになった。</p>
+    <p class="mt-md">1日5〜10件は日常で、多い日は20件入ります。入らない日の方が珍しい。正直、異常です。</p>
+    <p class="mt-md">やっていることはテキストでの投稿で、しかもAIも使っているから、労力は今までのSNS運用と比較して比にならないレベルです。</p>
+    <p class="mt-md">「なんだこれ...」って、何度も思いました。</p>
+    <p class="mt-md">でも同時に、こう思ったんです。</p>
+    <p class="mt-md fw-bold">「ああ、僕は間違ってなかったんだ」って。</p>
+    <p class="mt-md">今まで成果が出なかったのは、努力が足りなかったからじゃない。才能がなかったからでもない。<br><strong>ただ、努力する「場所」と「方向」が間違っていただけでした。</strong></p>
+    <p class="mt-md">Threadsで結果が出たことで、僕は自分に自信を取り戻しました。</p>
+    <p class="mt-md">LINE登録の通知を見るたびに、正直、心が安心します。もう「今日も誰も来なかった...」って悩まなくていい。</p>
+    <p class="mt-md fw-bold">集客ができると、すべてが前に進み始めます。</p>
+    <p class="mt-md">フォロワーが増える。LINE登録が入る。誰に向けて発信すればいいかが明確になる。</p>
+    <ul class="mt-md" style="list-style:none;padding:0;">
+      <li style="margin-bottom:8px;">・「この人たちに、これを届けよう」</li>
+      <li style="margin-bottom:8px;">・「この商品、いけるな」</li>
+      <li style="margin-bottom:8px;">・「この導線、数字悪いから直そう」</li>
+    </ul>
+    <p class="mt-md">全部、集客ができて初めて考えられることです。集客ができなければ、1も2も3も始まらない。</p>
+    <p class="mt-md">だから僕は、この体験を一人でも多くの人にしてほしい。驚いてほしい。「こんな世界があったのか」って。</p>
+    <p class="mt-md">そして、<strong>「自分もやれる」「努力は無駄じゃなかった」</strong>そう思ってほしいんです。</p>
+    <p class="mt-md">Threadsの今の状況は、マジでボーナスタイムです。この波に、早く乗ってほしい。僕と同じこっち側に来ていい。本気でそう思ってます。</p>
+    <p class="mt-md">そして、すでに結果が出ている人もいます。フォロワー100人以下でも、成果を出している人がいる。</p>
+    <p class="mt-md fw-bold fs-lg"><span class="marker-y">だから、あなたもできる。</span></p>
+    <p class="mt-md">だからこそ、あなたが本気でThreads運用を学び、実践して、人生を変えたいと考えているなら、セミナーに来てください。</p>
+    <p class="mt-md">セミナーは各回先着10名限定です。迷っているなら、まずは席を確保してください。参加費は無料ですし、合わないと思ったらいつでもキャンセルできます。</p>
+    <p class="mt-md fw-bold">あなたの「戦う場所」を変える2時間にしてみせます。</p>
+    <p class="mt-lg text-center fw-bold fs-lg">セミナーでお待ちしています。</p>
+    <p class="text-center mt-sm text-mid">工藤</p>
+  </div>
+</section>
+
+<!-- ===== STICKY FOOTER CTA ===== -->
+<div id="sticky-footer">
+  <div class="sticky-btn-wrapper">
+    <a href="https://lstep.app/tBRtR77" class="cta-btn">
+      <span class="cta-sub">＼ 残り席がわずかです ／</span>
+      今すぐ無料セミナーに申し込む
+    </a>
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* Timer (3-day countdown from first visit) */
+(function(){
+  var key = 'seminar_timer_end';
+  var end = localStorage.getItem(key);
+  if (!end) {
+    end = Date.now() + 3 * 24 * 60 * 60 * 1000;
+    localStorage.setItem(key, end);
+  }
+  end = parseInt(end, 10);
+  function update() {
+    var diff = end - Date.now();
+    if (diff < 0) diff = 0;
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var pad = function(n){ return n < 10 ? '0'+n : n; };
+    document.getElementById('timer-days').textContent = d;
+    document.getElementById('timer-clock').textContent = pad(h)+':'+pad(m)+':'+pad(s);
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+/* Sticky footer (show after 300px scroll) */
+(function(){
+  var footer = document.getElementById('sticky-footer');
+  if (!footer) return;
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 300) {
+      footer.classList.add('visible');
+    } else {
+      footer.classList.remove('visible');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
