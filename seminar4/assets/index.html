@@ -308,6 +308,10 @@ br.sp-only { display: none; }
   padding: 0;
   text-align: center;
 }
+@media (max-width: 600px) {
+  .hero-banner-pc { display: none !important; }
+  .hero-banner-sp { display: block !important; }
+}
 .hero-header .hero-pre {
   display: inline-block;
   background: rgba(255,255,255,0.1);
@@ -1114,7 +1118,8 @@ br.sp-only { display: none; }
 <!-- ===== SECTION 1: HERO ===== -->
 <section class="hero">
   <div class="hero-header">
-    <img src="hero-banner.png" alt="たった1投稿でフォロワー1,000人増加！後発組・フォロワー100人以下でも Threadsで1撃で集客できる方法を公開!" style="width:100%; display:block;">
+    <img src="hero-banner.png" alt="たった1投稿でフォロワー1,000人増加！後発組・フォロワー100人以下でも Threadsで1撃で集客できる方法を公開!" class="hero-banner-pc" style="width:100%; display:block;">
+    <img src="hero-banner-sp.png" alt="たった1投稿でフォロワー1,000人増加！後発組・フォロワー100人以下でも Threadsで1撃で集客できる方法を公開!" class="hero-banner-sp" style="width:100%; display:none;">
     <div class="hero-impact-inner">
       今のままThreads運用を続けると<br>フォロワーは増えず、商品は売れず<br><span class="impact-red">あなたのアカウント終わります。</span>
     </div>
