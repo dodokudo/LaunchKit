@@ -302,7 +302,48 @@ br.sp-only { display: none; }
 }
 
 /* ===== HERO ===== */
-.hero { padding: 32px 0 48px; }
+.hero { padding: 0 0 48px; }
+.hero-header {
+  background: var(--navy);
+  padding: 32px 20px 28px;
+  text-align: center;
+}
+.hero-header .hero-pre {
+  display: inline-block;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 6px 24px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+.hero-header .hero-sub {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+.hero-header .hero-main-title {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+}
+.hero-header .hero-main-title .accent-gradient {
+  background: var(--neon-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@media (max-width: 600px) {
+  .hero-header .hero-pre { font-size: 0.8rem; padding: 5px 16px; }
+  .hero-header .hero-sub { font-size: 0.8rem; }
+  .hero-header .hero-main-title { font-size: 1.35rem; }
+}
 .hero-hook {
   text-align: center;
   font-size: 1.15rem;
@@ -946,14 +987,15 @@ br.sp-only { display: none; }
   margin: 24px 0;
 }
 .ss-item {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 28px 12px;
-  text-align: center;
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
-.ss-item p { font-size: 0.75rem; color: var(--text-mid); font-weight: 500; }
+.ss-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 .ss-item.full { grid-column: 1 / -1; max-width: 50%; justify-self: center; }
 @media (max-width: 500px) { .ss-item.full { max-width: 100%; } }
 
@@ -1022,18 +1064,19 @@ br.sp-only { display: none; }
 </div>
 
 <!-- ===== SECTION 1: HERO ===== -->
-<section class="section-page hero">
-  <div class="container">
-    <p class="hero-hook">
-      <strong>たった1投稿で<br class="sp-only">フォロワー1,000人増加！</strong><br>
-      後発組・フォロワー100人以下でも<br>
-      <span class="marker-y">Threadsで1撃で集客できる方法</span>を公開！
-    </p>
+<section class="hero">
+  <div class="hero-header">
+    <span class="hero-pre">たった1投稿でフォロワー1,000人増加！</span>
+    <p class="hero-sub">後発組・フォロワー100人以下でも</p>
+    <h1 class="hero-main-title">Threadsで<br class="sp-only"><span class="accent-gradient">1撃で集客できる方法</span><br>を公開！</h1>
+  </div>
+  <div class="container" style="padding-top:32px;">
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/EJcgwx8pPTs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/BZjM8do42Rs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
     <p class="text-center" style="font-weight:700; margin-bottom:12px;">今のままThreads運用を続けると<br class="sp-only">フォロワーは増えず、商品は売れず<br><strong class="text-red fs-lg">あなたのアカウント終わります。</strong></p>
     <p class="text-center">だから今回、<br class="sp-only">「集客できないThreads運用」から抜け出す<br><strong class="marker-y">最新Threads集客法をセミナーで公開！</strong></p>
+    <p class="text-center mt-sm"><span class="marker-y">リール不要・文章だけで、商品が売れ続ける方法をお伝えします</span></p>
     <div class="cta-wrap">
       <p class="cta-note">＼累計150名が参加・各回人数限定！／</p>
       <a href="https://lstep.app/tBRtR77" class="cta-btn">
@@ -1053,11 +1096,16 @@ br.sp-only { display: none; }
     <h2 class="sec-heading">「本当にそんなことあるの？」<br>と思うなら、先に証拠を出します。</h2>
 
     <div class="ss-grid">
-      <div class="ss-item"><p>【Threadsスクショ挿入①】<br>※1投稿でフォロワー急増</p></div>
-      <div class="ss-item"><p>【Threadsスクショ挿入②】<br>※LINE登録通知が連続</p></div>
-      <div class="ss-item"><p>【Threadsスクショ挿入③】<br>※受講生の成果報告</p></div>
-      <div class="ss-item"><p>【Threadsスクショ挿入④】<br>※売上報告</p></div>
-      <div class="ss-item full"><p>【Threadsスクショ挿入⑤】<br>※1投稿目から伸びている実績</p></div>
+      <div class="ss-item"><img src="ss01.jpg" alt="1ヶ月で484人・219万インプ" loading="lazy"></div>
+      <div class="ss-item"><img src="ss02.jpg" alt="9.5万インプ・フォロワー+66名・LINE+72名" loading="lazy"></div>
+      <div class="ss-item"><img src="ss03.jpg" alt="2週間で60.4万インプ・フォロワー+203名" loading="lazy"></div>
+      <div class="ss-item"><img src="ss04.jpg" alt="37万インプ・LINE登録250名増加" loading="lazy"></div>
+      <div class="ss-item"><img src="ss05.jpg" alt="フォロワー500人増・リスト250人増" loading="lazy"></div>
+      <div class="ss-item"><img src="ss06.jpg" alt="18万インプ・フォロー240名" loading="lazy"></div>
+      <div class="ss-item"><img src="ss07.jpg" alt="12万インプ・フォロワー400人以上" loading="lazy"></div>
+      <div class="ss-item"><img src="ss08.jpg" alt="LINE登録45名・フォロワー150名以上（3日間）" loading="lazy"></div>
+      <div class="ss-item"><img src="ss09.jpg" alt="フォロワー+264人・リスト+68人" loading="lazy"></div>
+      <div class="ss-item"><img src="ss10.jpg" alt="万インプ3投稿・最高21万インプ" loading="lazy"></div>
     </div>
 
     <p class="text-center mt-md">まだアカウントが育ちきっていない段階でも<br class="sp-only">結果が出ているのが分かるはずです。</p>
@@ -1177,16 +1225,7 @@ br.sp-only { display: none; }
       </div>
     </div>
     <p class="text-center mt-md">SNSで累計<strong class="fs-xl" style="background:var(--neon-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">8,000万円</strong>を売った方法があります。</p>
-    <p class="text-center mt-md mb-md">しかも、<br class="sp-only">受講生も続々と成果を出しています。</p>
-
-    <div class="ss-grid">
-      <div class="ss-item"><p>【実績スクショ帯挿入①】<br>※実績スクショ</p></div>
-      <div class="ss-item"><p>【実績スクショ帯挿入②】<br>※受講生成果報告</p></div>
-      <div class="ss-item"><p>【実績スクショ帯挿入③】<br>※LINE登録増加</p></div>
-      <div class="ss-item"><p>【実績スクショ帯挿入④】<br>※フォロワー急増</p></div>
-    </div>
-
-    <p class="text-center fw-bold mt-md"><span class="marker-y">様々なジャンルで<br class="sp-only">すでに証明されています。</span></p>
+    <p class="text-center fw-bold mt-md"><span class="marker-y">その全てを、<br class="sp-only">このセミナーで公開します。</span></p>
   </div>
 </section>
 
