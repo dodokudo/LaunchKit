@@ -41,7 +41,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   padding-bottom: 100px;
-  font-size: 16px;
+  font-size: 17px;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: inherit; }
@@ -78,14 +78,14 @@ a { text-decoration: none; color: inherit; }
   background: var(--navy);
   color: #fff;
   text-align: center;
-  padding: 28px 20px;
-  font-size: 1.4rem;
+  padding: 32px 20px;
+  font-size: 1.7rem;
   font-weight: 800;
   line-height: 1.6;
   letter-spacing: 0.04em;
   position: relative;
 }
-@media (max-width: 600px) { .section-sh { font-size: 1.15rem; } }
+@media (max-width: 600px) { .section-sh { font-size: 1.35rem; padding: 28px 20px; } }
 .section-sh h2 {
   font-size: inherit;
   font-weight: inherit;
@@ -193,11 +193,11 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== SECTION HEADING ===== */
 .sec-heading {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 800;
   line-height: 1.5;
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   letter-spacing: 0.02em;
   position: relative;
   padding-bottom: 16px;
@@ -213,7 +213,7 @@ a { text-decoration: none; color: inherit; }
   background: var(--neon-gradient);
   border-radius: 2px;
 }
-@media (max-width: 600px) { .sec-heading { font-size: 1.35rem; } }
+@media (max-width: 600px) { .sec-heading { font-size: 1.5rem; } }
 br.sp-only { display: none; }
 @media (max-width: 600px) { br.sp-only { display: block; } }
 .sp-hide { }
@@ -239,7 +239,7 @@ br.sp-only { display: none; }
   margin: 24px 0 0;
 }
 .cta-note {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--red);
   margin-bottom: 12px;
@@ -254,10 +254,10 @@ br.sp-only { display: none; }
   margin: 0 auto;
   background: linear-gradient(180deg, #06c755, #00b900);
   color: #fff;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
-  padding: 20px 10px;
+  padding: 24px 10px;
   border-radius: 50px;
   border: 2px solid #fff;
   box-shadow: 0 4px 0 #038e3b, 0 8px 15px rgba(0,0,0,0.3);
@@ -291,7 +291,7 @@ br.sp-only { display: none; }
   100% { transform: scale(1); }
 }
 @media (max-width: 600px) {
-  .cta-btn { font-size: 1.1rem; padding: 15px 10px; }
+  .cta-btn { font-size: 1.25rem; padding: 20px 10px; }
   .cta-btn .cta-sub { font-size: 0.7rem; }
 }
 .cta-sub-text {
@@ -305,30 +305,30 @@ br.sp-only { display: none; }
 .hero { padding: 0 0 48px; }
 .hero-header {
   background: var(--navy);
-  padding: 32px 20px 28px;
+  padding: 40px 20px 36px;
   text-align: center;
 }
 .hero-header .hero-pre {
   display: inline-block;
   background: linear-gradient(135deg, #EF4444, #DC2626);
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 900;
-  padding: 6px 24px;
+  padding: 10px 32px;
   border-radius: 50px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   letter-spacing: 0.04em;
 }
 .hero-header .hero-sub {
   color: rgba(255,255,255,0.85);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   line-height: 1.6;
 }
 .hero-header .hero-main-title {
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 900;
   line-height: 1.45;
   letter-spacing: 0.03em;
@@ -340,9 +340,42 @@ br.sp-only { display: none; }
   background-clip: text;
 }
 @media (max-width: 600px) {
-  .hero-header .hero-pre { font-size: 0.8rem; padding: 5px 16px; }
-  .hero-header .hero-sub { font-size: 0.8rem; }
-  .hero-header .hero-main-title { font-size: 1.35rem; }
+  .hero-header .hero-pre { font-size: 1rem; padding: 8px 24px; }
+  .hero-header .hero-sub { font-size: 1rem; }
+  .hero-header .hero-main-title { font-size: 1.7rem; }
+}
+/* ===== HERO IMPACT BLOCKS ===== */
+.hero-impact {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.8;
+}
+.hero-impact .impact-red {
+  color: #EF4444;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.hero-highlight {
+  background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(6,182,212,0.12));
+  border-left: 4px solid var(--neon-purple);
+  text-align: center;
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-radius: 0 12px 12px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.8;
+}
+@media (max-width: 600px) {
+  .hero-impact { font-size: 1.05rem; padding: 16px 20px; }
+  .hero-impact .impact-red { font-size: 1.25rem; }
+  .hero-highlight { font-size: 1rem; padding: 16px 20px; }
 }
 .hero-hook {
   text-align: center;
@@ -364,10 +397,10 @@ br.sp-only { display: none; }
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  margin-bottom: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  margin-bottom: 28px;
 }
 .video-wrap iframe {
   position: absolute;
@@ -1074,9 +1107,13 @@ br.sp-only { display: none; }
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/BZjM8do42Rs?rel=0" title="セミナー紹介動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
-    <p class="text-center" style="font-weight:700; margin-bottom:12px;">今のままThreads運用を続けると<br class="sp-only">フォロワーは増えず、商品は売れず<br><strong class="text-red fs-lg">あなたのアカウント終わります。</strong></p>
-    <p class="text-center">だから今回、<br class="sp-only">「集客できないThreads運用」から抜け出す<br><strong class="marker-y">最新Threads集客法をセミナーで公開！</strong></p>
-    <p class="text-center mt-sm"><span class="marker-y">リール不要・文章だけで、商品が売れ続ける方法をお伝えします</span></p>
+    <div class="hero-impact">
+      今のままThreads運用を続けると<br>フォロワーは増えず、商品は売れず<br><span class="impact-red">あなたのアカウント終わります。</span>
+    </div>
+    <div class="hero-highlight">
+      だから今回、「集客できないThreads運用」から抜け出す<br><strong style="font-size:1.3em;">最新Threads集客法をセミナーで公開！</strong>
+    </div>
+    <p class="text-center mt-sm fw-bold fs-lg"><span class="marker-y">リール不要・文章だけで、商品が売れ続ける方法をお伝えします</span></p>
     <div class="cta-wrap">
       <p class="cta-note">＼累計150名が参加・各回人数限定！／</p>
       <a href="https://lstep.app/tBRtR77" class="cta-btn">
