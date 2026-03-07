@@ -209,5 +209,41 @@
     "category": "セミナー",
     "created": "2026-03-02",
     "updated": "2026-03-02"
+  },
+  "seminar4": {
+    "name": "seminar4",
+    "category": "セミナー",
+    "created": "2026-03-07",
+    "updated": "2026-03-07"
+  },
+  "opt-4": {
+    "name": "opt-4",
+    "category": "オプト",
+    "created": "2026-03-08",
+    "updated": "2026-03-08"
+  },
+  "opt-4/ig": {
+    "name": "opt-4/ig",
+    "category": "オプト",
+    "created": "2026-03-08",
+    "updated": "2026-03-08"
+  },
+  "opt-4/note": {
+    "name": "opt-4/note",
+    "category": "オプト",
+    "created": "2026-03-08",
+    "updated": "2026-03-08"
+  },
+  "opt-4/th": {
+    "name": "opt-4/th",
+    "category": "オプト",
+    "created": "2026-03-08",
+    "updated": "2026-03-08"
+  },
+  "opt-4/tp": {
+    "name": "opt-4/tp",
+    "category": "オプト",
+    "created": "2026-03-08",
+    "updated": "2026-03-08"
   }
 }
