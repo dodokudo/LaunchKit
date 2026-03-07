@@ -80,6 +80,15 @@ async function main() {
     await fs.copy(seminar4Src, seminar4Dist);
   }
 
+  // 3.8. threads-guide をdist/threads-guide/にコピー
+  console.log('Copying threads-guide...');
+  const threadsGuideSrc = path.join(projectRoot, 'threads-guide');
+  const threadsGuideDist = path.join(distDir, 'threads-guide');
+  if (await fs.pathExists(threadsGuideSrc)) {
+    await fs.ensureDir(threadsGuideDist);
+    await fs.copy(threadsGuideSrc, threadsGuideDist);
+  }
+
   // 4. LP一覧ページを生成
   console.log('Generating LP list page...');
 

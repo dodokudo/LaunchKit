@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threads運用攻略ガイド｜工藤</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;color:#1a1a1a;background:#fafafa;line-height:1.8;-webkit-font-smoothing:antialiased}
+
+/* ===== Layout ===== */
+.container{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#fff;padding:60px 0 50px;text-align:center}
+.hero-badge{display:inline-block;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;font-size:13px;font-weight:600;padding:6px 16px;border-radius:100px;margin-bottom:20px;letter-spacing:.5px}
+.hero h1{font-size:28px;font-weight:800;line-height:1.4;margin-bottom:16px}
+.hero h1 span{color:#818cf8}
+.hero-stats{display:flex;justify-content:center;gap:24px;margin:24px 0;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:32px;font-weight:800;color:#818cf8;display:block;line-height:1.2}
+.hero-stat .label{font-size:13px;color:#94a3b8;margin-top:4px}
+.hero-img{max-width:100%;border-radius:12px;margin:28px auto 0;box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.hero-sub{font-size:15px;color:#cbd5e1;margin-top:20px;line-height:1.7}
+.hero-sub strong{color:#fff}
+
+/* ===== TOC ===== */
+.toc{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:32px;margin:-30px 20px 40px;position:relative;z-index:2;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.toc h2{font-size:18px;font-weight:700;margin-bottom:20px;color:#334155}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.toc-list li a{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;text-decoration:none;color:#334155;font-size:15px;font-weight:500;transition:all .2s;border:1px solid transparent}
+.toc-list li a:hover{background:#f1f5f9;border-color:#e2e8f0}
+.toc-num{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:#eef2ff;color:#6366f1;font-size:13px;font-weight:700;flex-shrink:0}
+.toc-num.bonus{background:#fef3c7;color:#d97706;font-size:11px}
+
+/* ===== Lessons ===== */
+.lesson{padding:48px 0;border-bottom:1px solid #e2e8f0}
+.lesson:last-of-type{border-bottom:none}
+.lesson-header{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.lesson-number{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:#6366f1;color:#fff;font-size:15px;font-weight:800;flex-shrink:0}
+.lesson-number.bonus{background:#d97706}
+.lesson-title{font-size:22px;font-weight:800;color:#0f172a;line-height:1.3}
+.lesson-intro{font-size:15px;color:#64748b;margin-bottom:24px;padding:16px 20px;background:#f8fafc;border-radius:10px;border-left:3px solid #6366f1}
+
+.lesson h3{font-size:18px;font-weight:700;color:#1e293b;margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid #eef2ff}
+.lesson h4{font-size:16px;font-weight:700;color:#334155;margin:24px 0 8px}
+.lesson p{font-size:15px;color:#374151;margin-bottom:14px}
+.lesson ul,.lesson ol{margin:12px 0 16px 20px;font-size:15px;color:#374151}
+.lesson li{margin-bottom:8px;line-height:1.7}
+.lesson strong{color:#1e293b}
+
+.lesson blockquote{margin:16px 0;padding:14px 20px;background:#f0fdf4;border-left:3px solid #22c55e;border-radius:0 8px 8px 0;font-size:15px;color:#166534;font-weight:500}
+
+.highlight-box{background:#eef2ff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:15px;color:#3730a3;font-weight:600;line-height:1.7}
+
+/* Table */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0}
+.lesson table{width:100%;border-collapse:collapse;font-size:14px;min-width:400px}
+.lesson th,.lesson td{padding:10px 14px;text-align:left;border:1px solid #e2e8f0}
+.lesson th{background:#f8fafc;font-weight:600;color:#334155;white-space:nowrap}
+.lesson td{color:#374151}
+
+/* Code block (for structure diagrams) */
+.structure-block{background:#1e293b;color:#e2e8f0;padding:20px 24px;border-radius:10px;margin:16px 0;font-family:"SF Mono","Fira Code",monospace;font-size:13px;line-height:1.9;overflow-x:auto;white-space:pre-line}
+.structure-block .arrow{color:#818cf8}
+.structure-block .highlight{color:#fbbf24}
+
+/* Summary */
+.lesson-summary{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-top:28px}
+.lesson-summary h4{margin:0 0 12px;font-size:15px;color:#6366f1;font-weight:700}
+.lesson-summary ul{margin:0;padding-left:18px;font-size:14px;color:#475569}
+.lesson-summary li{margin-bottom:6px}
+
+/* ===== Seminar CTA ===== */
+.seminar-cta{background:linear-gradient(135deg,#312e81 0%,#4338ca 100%);padding:40px 24px;border-radius:16px;margin:40px 0;text-align:center;color:#fff}
+.seminar-cta .cta-eyebrow{font-size:13px;color:#c7d2fe;margin-bottom:8px;letter-spacing:.5px}
+.seminar-cta h3{font-size:20px;font-weight:800;margin-bottom:12px;line-height:1.4}
+.seminar-cta p{font-size:14px;color:#c7d2fe;margin-bottom:20px;line-height:1.7}
+.seminar-cta .cta-btn{display:inline-block;background:#fff;color:#4338ca;font-size:15px;font-weight:700;padding:14px 40px;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.seminar-cta .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+/* Final CTA */
+.final-cta{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#312e81 100%);padding:60px 24px;text-align:center;color:#fff;margin-top:48px}
+.final-cta h2{font-size:24px;font-weight:800;margin-bottom:16px;line-height:1.4}
+.final-cta .lead{font-size:15px;color:#cbd5e1;margin-bottom:28px;line-height:1.8}
+.final-cta .benefits{text-align:left;max-width:480px;margin:0 auto 32px;display:flex;flex-direction:column;gap:12px}
+.final-cta .benefit{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#e2e8f0;line-height:1.6}
+.final-cta .benefit-icon{width:24px;height:24px;border-radius:50%;background:rgba(99,102,241,.3);color:#a5b4fc;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;margin-top:2px}
+.final-cta .cta-btn-main{display:inline-block;background:linear-gradient(135deg,#818cf8,#6366f1);color:#fff;font-size:17px;font-weight:700;padding:18px 48px;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(99,102,241,.4)}
+.final-cta .cta-btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.5)}
+.final-cta .cta-note{font-size:12px;color:#94a3b8;margin-top:12px}
+
+/* ===== Progress ===== */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:#6366f1;z-index:1000;transition:width .1s linear}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:32px 20px;color:#94a3b8;font-size:12px}
+
+/* ===== SP ===== */
+@media(max-width:600px){
+  html{font-size:15px}
+  .hero{padding:40px 0 36px}
+  .hero h1{font-size:22px}
+  .hero-stats{gap:16px}
+  .hero-stat .num{font-size:26px}
+  .toc{margin:-24px 12px 32px;padding:24px 20px}
+  .lesson{padding:36px 0}
+  .lesson-title{font-size:19px}
+  .lesson h3{font-size:16px}
+  .seminar-cta{padding:32px 20px;margin:32px 0}
+  .seminar-cta h3{font-size:18px}
+  .final-cta{padding:48px 20px}
+  .final-cta h2{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">SPECIAL CONTENTS</div>
+    <h1>Threads運用<span>攻略ガイド</span></h1>
+    <p class="hero-sub">特典を受け取ってくださりありがとうございます。<br>僕はThreadsを本格的に運用し始めて、以下の実績を出しています。</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">4,200</span>
+        <span class="label">5ヶ月のフォロワー増加</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">1,060</span>
+        <span class="label">LINE登録者数</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">95%</span>
+        <span class="label">AIで自動化</span>
+      </div>
+    </div>
+    <img src="assets/images/hero-screenshot.png" alt="Threads運用実績" class="hero-img" loading="lazy" width="720">
+    <p class="hero-sub">しかも、投稿の<strong>95%はAIで自動化</strong>しています。<br>今回はそんなThreads運用の全てをこの教材にまとめました。</p>
+  </div>
+</section>
+
+<!-- ========== TOC ========== -->
+<nav class="toc container">
+  <h2>全6レッスン + ボーナス</h2>
+  <p style="font-size:14px;color:#64748b;margin-bottom:16px">LESSON 1から順番に読み進めてください。</p>
+  <ul class="toc-list">
+    <li><a href="#lesson1"><span class="toc-num">01</span>なぜ今Threadsなのか？（工藤式3原則）</a></li>
+    <li><a href="#lesson2"><span class="toc-num">02</span>誰に届けるかを決める</a></li>
+    <li><a href="#lesson3"><span class="toc-num">03</span>伸びるコンテンツの考え方</a></li>
+    <li><a href="#lesson4"><span class="toc-num">04</span>プロフィールと固定投稿の設計</a></li>
+    <li><a href="#lesson5"><span class="toc-num">05</span>投稿の書き方の基本</a></li>
+    <li><a href="#lesson6"><span class="toc-num">06</span>Threads → 収益化の全体像</a></li>
+    <li><a href="#bonus"><span class="toc-num bonus">B</span>運用マインドセット</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<!-- ========== LESSON 1 ========== -->
+<section class="lesson" id="lesson1">
+  <div class="lesson-header">
+    <div class="lesson-number">01</div>
+    <h2 class="lesson-title">なぜ今Threadsなのか？（工藤式3原則）</h2>
+  </div>
+  <div class="lesson-intro">SNSで集客しようとして、疲弊していませんか？<br>間違った場所で頑張っても、消耗するだけ。結論から言うと、<strong>今最も適しているのがThreads</strong>です。</div>
+
+  <h3>他SNSとの比較</h3>
+
+  <h4>X（旧Twitter）との違い</h4>
+  <p>Xは短文文化が根付いています。140文字の制限が長く続いたため、ユーザーは短い文章を好む傾向があります。</p>
+  <blockquote>また、Xはすでに競合が飽和しています。今から参入しても埋もれやすい。</blockquote>
+
+  <h4>Instagramとの違い</h4>
+  <p>Instagramはビジュアル中心のプラットフォーム。画像や動画のクオリティが勝負を分けます。</p>
+  <blockquote>フィード投稿よりもリールが優遍されているため、動画制作のスキルが必要。投稿作成にかなりの工数がかかります。</blockquote>
+
+  <h4>YouTubeとの違い</h4>
+  <p>YouTubeは動画制作に時間とスキルが必要です。1本の動画を作るのに数時間〜数日かかることも珍しくありません。</p>
+  <p>テキストなら10分で1投稿作れますが、動画だとそうはいきません。</p>
+  <div class="highlight-box">「数を打つ」戦略とは相性が悪いです。</div>
+
+  <h3>Threadsを選ぶべき3つの理由</h3>
+
+  <h4>理由1：競合が少ない（先行者利益）</h4>
+  <p>Threadsは2023年7月にリリースされた新しいプラットフォーム。まだ参入者が少なく、今から始めれば先行者利益を取れます。</p>
+  <blockquote>1年後、2年後には競合が増えて同じことをやっても伸びにくくなります。今がチャンスです。</blockquote>
+
+  <h4>理由2：長文が読まれる文化</h4>
+  <p>Threadsのアルゴリズムで最も重要なのは「滞在時間」です。ユーザーがどれだけ長くその投稿を見ていたかを計測し、滞在時間が長い投稿を「良い投稿」と判断して拡散します。</p>
+  <div class="highlight-box">つまり、長文投稿が有利。</div>
+
+  <h4>理由3：収益化導線が作りやすい</h4>
+  <p>Threadsはプロフィールにリンクを1つ設置できます。ここにLINEのリンクを置けば、投稿→プロフィール→LINE登録という導線が簡単に作れます。</p>
+  <blockquote>シンプルだからこそ、迷わず行動してもらえる。</blockquote>
+
+  <h3>工藤式の3原則</h3>
+
+  <h4>原則1：数を打つ</h4>
+  <p>1日5〜10投稿を目標にする。多くの人は「質の高い投稿を1日1本」と考えますが、それでは成果が出るまでに時間がかかりすぎます。</p>
+  <blockquote>数を打てば、伸びるテーマと伸びないテーマがわかります。</blockquote>
+
+  <h4>原則2：長文で価値提供</h4>
+  <p>短文でバズっても収益にはならない。長文で有益な情報を提供することで、質の高い見込み客を集めます。</p>
+  <div class="highlight-box">長文をしっかり読める人 = 学習意欲が高い人 = 収益につながりやすい見込み客。</div>
+
+  <h4>原則3：いいね周り・リプ周り・フォロー周りはしない</h4>
+  <p>価値の代替をしない。いいね周りで増えたフォロワーは、LINE誘導や商品販売にはつながりません。</p>
+  <blockquote>労力の割にリターンが少ないので、やりません。</blockquote>
+
+  <h3>実績データ</h3>
+  <blockquote>2ヶ月間の運用実績：フォロワー2,600名増加 / インプレッション164万 / LINE登録者405名</blockquote>
+  <div class="highlight-box">しかも、投稿の95%はAIで自動化しています。<br>今がチャンス。Threadsは、少ない労力で大きな成果を出せる数少ないプラットフォームです。</div>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>Threadsを選ぶ理由：競合が少ない、長文が読まれる、導線が作りやすい</li>
+      <li>工藤式3原則：数を打つ、長文で価値提供、いいね周りしない</li>
+      <li>ゴール：フォロワー数ではなく「売上」</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 2 ========== -->
+<section class="lesson" id="lesson2">
+  <div class="lesson-header">
+    <div class="lesson-number">02</div>
+    <h2 class="lesson-title">誰に届けるかを決める</h2>
+  </div>
+  <div class="lesson-intro">「とりあえず発信を始めよう」——<strong>この考え方、危険です。</strong><br>誰に届けるかを決めずに発信を始めると、何を投稿すればいいかわからなくなり、結局やめてしまう悪循環にハマります。</div>
+
+  <h3>ターゲット設計の考え方</h3>
+  <h4>「誰でもいい」は「誰にも届かない」</h4>
+  <p>「できるだけ多くの人に届けたい」気持ちはわかります。でも、これだと誰にも刺さりません。</p>
+  <p>例えば、こんな投稿があったとします。</p>
+  <p><strong>A：「SNSで集客する方法を教えます」</strong></p>
+  <p><strong>B：「Instagramの投稿作成に疲れた個人事業主が、Threadsで毎日10投稿して月100人 LINE登録を獲得する方法」</strong></p>
+  <blockquote>明らかにBですよね。Aは「誰にでも当てはまりそう」で、結果「誰にも刺さらない」。Bは「特定の人」に向けてるから、その人には深く刺さる。</blockquote>
+  <div class="highlight-box">ターゲットを絞るほど、刺さる発信ができる。これがターゲット設計の基本です。</div>
+
+  <h3>ターゲットを決める3つの質問</h3>
+
+  <h4>質問1：どんな人を助けたいか？</h4>
+  <ul>
+    <li>過去の自分と同じ悩みを抱えている人</li>
+    <li>自分がすでに解決した問題で困っている人</li>
+    <li>自分の経験やスキルで助けられる人</li>
+  </ul>
+
+  <h4>質問2：その人はどんな悩みを抱えているか？</h4>
+  <ul>
+    <li>何に困っているか</li>
+    <li>何を不安に思っているか</li>
+    <li>何を解決したいと思っているか</li>
+  </ul>
+
+  <h4>質問3：その人はどうなりたいと思っているか？</h4>
+  <ul>
+    <li>どんな結果を手に入れたいか</li>
+    <li>どんな生活を送りたいか</li>
+    <li>どんな自分になりたいか</li>
+  </ul>
+  <blockquote>悩み（現状）と理想（ゴール）のギャップを埋めるのが、あなたの発信の役割です。</blockquote>
+
+  <h3>悩みを深掘りする方法</h3>
+  <h4>「なぜ？」を繰り返す</h4>
+  <p>例えば、ターゲットの悩みが「フォロワーが増えない」だとします。</p>
+  <ul>
+    <li>なぜフォロワーを増やしたいの？ → 集客したいから</li>
+    <li>なぜ集客したいの？ → 商品を売りたいから</li>
+    <li>なぜ商品を売りたいの？ → 収入を増やしたいから</li>
+    <li>なぜ収入を増やしたいの？ → <strong>会社に依存せず自由に働きたいから</strong></li>
+  </ul>
+  <blockquote>この「本当の欲求」に刺さる発信ができると、反応が全然違ってきます。</blockquote>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>「誰でもいい」は「誰にも届かない」</li>
+      <li>ターゲットを絞るほど、刺さる発信ができる</li>
+      <li>3つの質問で決める：助けたい人、悩み、理想</li>
+      <li>悩みは「なぜ？」を繰り返して深掘りする</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== CTA 1 ===== -->
+<div class="seminar-cta">
+  <p class="cta-eyebrow">ここまで読んで、こう思いませんでしたか？</p>
+  <h3>「考え方はわかった。<br>でも、自分のターゲットって<br>これで合ってるのかな？」</h3>
+  <p>ターゲット設計は、自分一人だと「本当にこれでいいのか」が判断しにくいポイントです。<br>セミナーでは、あなたの状況に合わせたターゲット設計を一緒に作ります。</p>
+  <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta1" class="cta-btn">セミナーの詳細を見る</a>
+</div>
+
+<!-- ========== LESSON 3 ========== -->
+<section class="lesson" id="lesson3">
+  <div class="lesson-header">
+    <div class="lesson-number">03</div>
+    <h2 class="lesson-title">伸びるコンテンツの考え方</h2>
+  </div>
+  <div class="lesson-intro">LESSON 1で「長文投稿で価値提供する」という原則をお伝えしました。<br>でも、<strong>「長文で何を書けばいいの？」</strong>という疑問が残りますよね。</div>
+
+  <h3>投稿タイプは4種類</h3>
+
+  <h4>タイプ1：ノウハウ系</h4>
+  <p>読者に具体的な知識やスキルを教える投稿。</p>
+  <p>例：「Threadsで伸びる投稿時間帯3選」「フォロワー1000人まで最速で到達する方法」</p>
+  <blockquote>保存・シェアされやすく、専門性をアピールできる。これがメインの投稿タイプになります。</blockquote>
+
+  <h4>タイプ2：共感系</h4>
+  <p>読者が「わかる！」と思う内容の投稿。</p>
+  <p>例：「投稿作るのめんどくさい、わかる」「毎日投稿してるのに全然伸びない」</p>
+  <p>いいねがつきやすく、読者との距離が縮まる。</p>
+
+  <h4>タイプ3：ストーリー系</h4>
+  <p>自分の経験や体験を語る投稿。</p>
+  <p>例：「なぜ僕がThreads発信を始めたのか」「フォロワー0から1000人までの道のり」</p>
+  <p>人間味が出て、ファン化が進む。</p>
+
+  <h4>タイプ4：質問系</h4>
+  <p>読者に問いかけて、コメントを促す投稿。</p>
+  <p>例：「Threads使ってますか？何に使ってますか？」</p>
+  <p>コメントが増えて、エンゲージメント率が上がる。</p>
+
+  <h3>配分の考え方</h3>
+  <blockquote>答えはシンプルです。ノウハウ系を50%以上にする。</blockquote>
+  <div class="table-wrap"><table>
+    <tr><th>タイプ</th><th>配分目安</th></tr>
+    <tr><td>ノウハウ系</td><td><strong>50%以上</strong></td></tr>
+    <tr><td>共感系</td><td>20%</td></tr>
+    <tr><td>ストーリー系</td><td>20%</td></tr>
+    <tr><td>質問系</td><td>10%</td></tr>
+  </table></div>
+
+  <h3>なぜノウハウ系がメインなのか？</h3>
+  <h4>1. 専門性が伝わる</h4>
+  <p>ノウハウ系が少ないと、「この人、何の人？」となります。共感系やストーリー系ばかりだと、専門性が見えない。</p>
+  <h4>2. 収益につながる</h4>
+  <blockquote>ノウハウ系で価値提供を続けることで、「この人から学びたい」と思ってもらえる。</blockquote>
+  <h4>3. 見込み客が集まる</h4>
+  <p>共感系やストーリー系でバズっても、集まるのは「共感してくれた人」。ノウハウ系で集まるのは「学びたい人」。</p>
+  <div class="highlight-box">学びたい人 = お金を払ってでも解決したい人 = 見込み客。だからノウハウ系をメインにする。</div>
+
+  <h3>短文バズは狙わない</h3>
+  <p>「短文でバズった方が楽じゃない？」そう思うかもしれません。でも、短文バズには落とし穴があります。</p>
+  <ul>
+    <li>短文で集まるのは「なんとなく面白かった人」</li>
+    <li>長文で集まるのは「学びたい人」</li>
+  </ul>
+  <blockquote>質が全然違います。</blockquote>
+  <div class="highlight-box">長文で価値提供、これを数打つ。これがThreadsで収益化するための正攻法です。</div>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>投稿タイプは4種類：ノウハウ系、共感系、ストーリー系、質問系</li>
+      <li>ノウハウ系を50%以上にする</li>
+      <li>短文バズは狙わない</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 4 ========== -->
+<section class="lesson" id="lesson4">
+  <div class="lesson-header">
+    <div class="lesson-number">04</div>
+    <h2 class="lesson-title">プロフィールと固定投稿の設計</h2>
+  </div>
+  <div class="lesson-intro">どれだけ良い投稿をしても、プロフィールがダメだとフォローされません。<br>投稿を見て「この人いいな」と思った人は、<strong>必ずプロフィールを見に来ます。</strong></div>
+
+  <h3>プロフィールファネルを理解する</h3>
+  <div class="structure-block"><span class="highlight">投稿を見る</span> <span class="arrow">→</span> <span class="highlight">プロフィールを見る</span> <span class="arrow">→</span> <span class="highlight">フォローする</span></div>
+  <p>これを<strong>プロフィールファネル</strong>と呼びます。どんなにインプレッションを稼いでも、プロフィールで離脱されたらフォロワーは増えない。</p>
+
+  <h3>プロフィールで伝えるべき3つのこと</h3>
+  <h4>1. この人は何者か？（肩書き・実績）</h4>
+  <p>「誰？」がわからないとフォローしません。何をしている人なのか、どんな実績があるのかを明示する。</p>
+  <h4>2. フォローすると何が得られるか？（提供価値）</h4>
+  <p>「フォローするメリット」がわからないとフォローしません。どんな情報が得られるのかを明示する。</p>
+  <h4>3. 次に何をすればいいか？（CTA）</h4>
+  <p>行動を促さないと、人は動きません。「フォローしてね」「リンクから特典を受け取ってね」など、次のアクションを明示する。</p>
+
+  <h3>プロフィールの各要素</h3>
+  <h4>名前</h4>
+  <p>覚えやすく、何者かがわかる名前にする。</p>
+  <p><strong>おすすめの形式：</strong>名前｜キーワード</p>
+  <p>例：ひろや｜Threads×AI集客、たなか｜30代からの筋トレ</p>
+
+  <h4>プロフィール文（Bio）</h4>
+  <p>ここが一番重要。以下の要素を入れる。</p>
+  <ul>
+    <li>何者か（肩書き）</li>
+    <li>実績（数字があるとベスト）</li>
+    <li>提供価値</li>
+    <li>CTA</li>
+  </ul>
+  <p>例：Threads×AIで集客を自動化｜2ヶ月でフォロワー2,600名増加｜LINE登録405名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
+
+  <h4>プロフィール画像</h4>
+  <p><strong>「人」だとわかることが大事。</strong>顔出しがベストですが、必須ではありません。顔出しできない場合は、AIでイラスト系のアイコンを作ればOK。</p>
+  <p>僕自身、Xでは顔出しせずアイコンで運用して、4,000万円以上売り上げました。だからアイコンでも全然いけます。</p>
+
+  <h4>リンク</h4>
+  <p>Threadsはプロフィールにリンクを1つ設置できます。<strong>おすすめはLINE登録のリンク。</strong></p>
+  <p>投稿→プロフィール→LINE登録。この導線を作ることで、フォロワーをリスト化できます。</p>
+
+  <h3>固定投稿の活用</h3>
+  <p>Threadsには「固定投稿」機能があります。プロフィールの直下に、1つの投稿を固定できる。<strong>固定投稿は、プロフィールを見た人が必ず目にする場所。</strong></p>
+
+  <h4>パターン1：自己紹介・ストーリー</h4>
+  <p>自分が何者か、なぜこの発信をしているか、どんな実績があるか、フォローするとどんな価値があるか。初めて見た人に「この人をフォローしたい」と思ってもらうための投稿。</p>
+
+  <h4>パターン2：LINE誘導</h4>
+  <p>無料特典の紹介、特典を受け取るメリット、LINE登録への誘導。フォロワーをリスト化するための投稿。</p>
+
+  <p><strong>どちらを選ぶか？</strong></p>
+  <ul>
+    <li>まだフォロワーが少ない段階 → パターン1でフォロワーを増やすことを優先</li>
+    <li>ある程度フォロワーがいる段階 → パターン2でリスト化を優先</li>
+  </ul>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>プロフィールは「フォローするかどうか」を決める場所</li>
+      <li>伝えるべき3つ：何者か、提供価値、CTA</li>
+      <li>名前は「名前｜キーワード」形式</li>
+      <li>固定投稿は自己紹介かLINE誘導</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 5 ========== -->
+<section class="lesson" id="lesson5">
+  <div class="lesson-header">
+    <div class="lesson-number">05</div>
+    <h2 class="lesson-title">投稿の書き方の基本</h2>
+  </div>
+  <div class="lesson-intro">LESSON 3で「長文ノウハウ系を中心に投稿する」とお伝えしました。<br>でも、ただ長く書けばいいわけじゃありません。<strong>読まれない長文は、存在しないのと同じ。</strong></div>
+
+  <h3>長文投稿の基本構成</h3>
+  <p>Threadsの長文投稿は、<strong>冒頭 + コメント欄</strong>で構成します。1投稿だけで完結させるんじゃなくて、自分の投稿にコメントをぶら下げていく形式。これによって、700〜1100文字の長文を読みやすく届けられます。</p>
+
+  <div class="structure-block"><span class="highlight">【冒頭】</span>問題提起 + 解決策の予告（50〜100文字）
+<span class="arrow">↓</span>
+<span class="highlight">【コメント欄1】</span>原因の説明 + 解決手順（300〜500文字）
+<span class="arrow">↓</span>
+<span class="highlight">【コメント欄2】</span>応用テクニック + 注意点（300〜500文字）
+<span class="arrow">↓</span>
+<span class="highlight">【コメント欄3】</span>CTA（フォロー促進 or LINE誘導）</div>
+  <p>合計で700〜1100文字。これが「教育できる長文投稿」の基本形です。</p>
+
+  <h4>【冒頭】問題提起 + 解決策の予告</h4>
+  <p>冒頭の役割は「読者の手を止めること」。スクロールを止めてもらわないと、読んでもらえません。</p>
+  <ol>
+    <li>問題提起（恐怖訴求、共感、疑問）で注意を引く</li>
+    <li>「解決策を教えます」と予告して続きを読ませる</li>
+  </ol>
+
+  <h4>【コメント欄1】原因の説明 + 解決手順</h4>
+  <p>なぜその問題が起きるのか、どうすれば解決できるのかを説明します。ステップ形式がベスト。</p>
+
+  <h4>【コメント欄2】応用テクニック + 注意点</h4>
+  <p>基本を教えた上で、応用や注意点を伝えます。さらに効果を上げる方法、やりがちな失敗。</p>
+
+  <h4>【コメント欄3】CTA</h4>
+  <p>フォローやLINE登録に誘導します。ただし、<strong>毎回やるとウザがられる</strong>ので注意。5〜10投稿に1回くらいの頻度がちょうどいい。</p>
+
+  <h3>フックの重要性</h3>
+  <div class="highlight-box">フックが弱いと、どれだけ良い内容を書いてもスルーされる。</div>
+  <p>Threadsのタイムラインには大量の投稿が流れています。ユーザーは1〜2秒で「読むかどうか」を判断する。その判断基準が<strong>一行目（フック）</strong>です。</p>
+
+  <h4>強いフックの特徴</h4>
+  <ol>
+    <li><strong>自分ごとだと感じる</strong> - 「あ、これ自分のことだ」と思わせる</li>
+    <li><strong>続きが気になる</strong> - 「どういうこと？」と思わせる</li>
+    <li><strong>緊急性がある</strong> - 「今知らないとヤバい」と思わせる</li>
+    <li><strong>具体的</strong> - 数字やツール名など、具体的な情報が入っている</li>
+  </ol>
+
+  <h4>効果的なフックの型</h4>
+  <div class="table-wrap"><table>
+    <tr><th>型</th><th>例</th><th>効果</th></tr>
+    <tr><td>時代遅れ型</td><td>「まだ○○してる人、時代遅れです」</td><td>FOMO（取り残される恐怖）を刺激</td></tr>
+    <tr><td>損してる型</td><td>「○○知らない人、損してます」</td><td>機会損失への不安を刺激</td></tr>
+    <tr><td>数字型</td><td>「○○を○倍にする方法」</td><td>具体的な数字で自分ごと化</td></tr>
+    <tr><td>警告型</td><td>「これ知らないと○○になります」</td><td>緊急性を出して今すぐ読ませる</td></tr>
+    <tr><td>逆張り型</td><td>「○○は間違いです」</td><td>常識を否定して「え？」と思わせる</td></tr>
+    <tr><td>疑問型</td><td>「なぜ○○なのか？」</td><td>答えを知りたくさせる</td></tr>
+  </table></div>
+
+  <h3>フックを作る時の鉄則</h3>
+  <div class="highlight-box">投稿作成の90%の時間をフックに使う。</div>
+  <p>本文を書く前に、フックを5〜10パターン作ってみる。その中で一番強いものを選ぶ。</p>
+  <p><strong>「自分がスクロールしてる時、この1行で手を止めるか？」</strong>止まらないなら、練り直す。</p>
+
+  <h3>投稿タイミングの考え方</h3>
+  <div class="table-wrap"><table>
+    <tr><th>時間帯</th><th>評価</th><th>理由</th></tr>
+    <tr><td>朝 6〜9時</td><td><strong>ゴールデンタイム</strong></td><td>通勤時間帯。電車でスマホを見る人が多い</td></tr>
+    <tr><td>昼 12〜13時</td><td>そこそこ</td><td>昼休み。軽めの内容が読まれやすい</td></tr>
+    <tr><td>夜 18〜21時</td><td><strong>ゴールデンタイム</strong></td><td>帰宅後のリラックスタイム</td></tr>
+    <tr><td>午前9〜12時</td><td>避ける</td><td>仕事中の人が多く見られにくい</td></tr>
+  </table></div>
+
+  <h3>読まれるフォーマットのルール</h3>
+  <ol>
+    <li><strong>1文を短くする</strong> - 長い文は読まれません。1文 1メッセージ。</li>
+    <li><strong>改行を多く入れる</strong> - スマホで読まれることを前提に。余白を作る。</li>
+    <li><strong>箇条書きを活用する</strong> - 複数のポイントを伝える時は箇条書き。</li>
+    <li><strong>具体的に書く</strong> - 数字や固有名詞を入れて具体的に。</li>
+  </ol>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>長文投稿は「冒頭 + コメント欄3つ」で構成する</li>
+      <li>フックが9割。90%の時間をフックに使う</li>
+      <li>フックの型：時代遅れ型、損してる型、数字型、警告型、逆張り型、疑問型</li>
+      <li>投稿タイミング：朝6〜9時、夜18〜21時がゴールデンタイム</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== CTA 2 ===== -->
+<div class="seminar-cta">
+  <p class="cta-eyebrow">フックの型、投稿の構成はわかった。でも...</p>
+  <h3>「自分のジャンルだと、<br>どう使えばいいの？」</h3>
+  <p>型を知っていても、自分のテーマに落とし込むのが一番難しいポイントです。<br>セミナーでは、あなたのジャンルに合わせた投稿の添削・フィードバックを行います。</p>
+  <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta2" class="cta-btn">セミナーの詳細を見る</a>
+</div>
+
+<!-- ========== LESSON 6 ========== -->
+<section class="lesson" id="lesson6">
+  <div class="lesson-header">
+    <div class="lesson-number">06</div>
+    <h2 class="lesson-title">Threads → 収益化の全体像</h2>
+  </div>
+  <div class="lesson-intro">ここまで、Threadsで伸ばす方法をお伝えしてきました。<br>でも、正直に言います。<strong>フォロワーが増えただけでは1円にもなりません。</strong></div>
+
+  <h3>なぜThreadsだけでは収益化できないのか</h3>
+  <p>Threadsには、マネタイズ機能がほぼありません。</p>
+  <ul>
+    <li>投げ銭機能なし</li>
+    <li>アフィリエイトリンクも貼りにくい</li>
+    <li>DM機能はあるが、商談には向かない</li>
+  </ul>
+  <p>つまり、<strong>Threads上で直接お金をもらう手段がない</strong>ということです。だから、Threadsは「集客の場」と割り切る必要があります。</p>
+
+  <h3>収益化までの全体導線</h3>
+  <div class="structure-block"><span class="highlight">長文投稿で価値提供</span>
+<span class="arrow">↓</span>
+<span class="highlight">インプレッション獲得</span>
+<span class="arrow">↓</span>
+<span class="highlight">プロフィール誘導（CTA）</span>
+<span class="arrow">↓</span>
+<span class="highlight">フォロー獲得</span>
+<span class="arrow">↓</span>
+<span class="highlight">固定ポスト or 投稿でLINE誘導</span>
+<span class="arrow">↓</span>
+<span class="highlight">LINE登録</span>
+<span class="arrow">↓</span>
+<span class="highlight">ステップ配信で教育</span>
+<span class="arrow">↓</span>
+<span class="highlight">セールス → 収益化</span></div>
+
+  <h3>LINEに誘導する3つのメリット</h3>
+  <h4>1. リスト化できる</h4>
+  <p>フォロワーは「借り物」です。アカウントが凍結されたら、フォロワーとの接点がなくなります。LINEに誘導すれば「自分のリスト」になります。</p>
+  <h4>2. プッシュ通知ができる</h4>
+  <p>Threadsの投稿は、フォロワー全員に届くわけではありません。LINEならプッシュ通知で確実に届きます。</p>
+  <h4>3. クローズドな環境で教育できる</h4>
+  <p>Threadsは公開の場。深い内容を出すと競合にパクられます。LINEはクローズドな環境。ここでしか出さない情報を提供することで、信頼関係を構築できます。</p>
+
+  <h3>LINE誘導の3つのポイント</h3>
+  <h4>1. プロフィールリンク</h4>
+  <p>プロフィールに設置できる1つのリンク。ここにLINEのリンクを設置します。</p>
+  <h4>2. 固定ポスト</h4>
+  <p>プロフィール直下に固定する投稿。ここでLINE登録のメリットを伝え、誘導します。</p>
+  <h4>3. 投稿内CTA</h4>
+  <p>通常の投稿のCTA（コメント欄3）でLINE誘導。ただし、毎回やるとしつこいので、5〜10投稿に1回程度が目安。</p>
+
+  <h3>特典（リードマグネット）の設計</h3>
+  <p>LINE登録してもらうには、<strong>登録するメリット（特典）</strong>が必要です。「LINE登録してください」だけでは、誰も登録しません。</p>
+  <p><strong>効果的な特典の種類：</strong></p>
+  <ul>
+    <li><strong>PDF資料</strong>：専門知識をまとめたもの（例：「○○完全ガイド50ページ」）</li>
+    <li><strong>動画コンテンツ</strong>：設定方法の解説動画など</li>
+    <li><strong>テンプレート</strong>：そのまま使えるもの（例：「投稿テンプレート30種類」）</li>
+    <li><strong>チェックリスト</strong>：自己診断できるもの</li>
+  </ul>
+
+  <p><strong>特典設計の5つのポイント：</strong></p>
+  <ol>
+    <li>ペルソナの悩みを解決するものにする</li>
+    <li>「これが無料でもらえるの？」と思わせる</li>
+    <li>タイトルは具体的に（数字を入れる）</li>
+    <li>すぐに結果が出るものにする</li>
+    <li>本商品への布石にする</li>
+  </ol>
+
+  <h3>数値を計測する</h3>
+  <p>導線がうまく機能しているかは、数値で判断します。</p>
+  <p><strong>週次で確認すべき指標：</strong></p>
+  <ul>
+    <li>インプレッション数</li>
+    <li>プロフィールアクセス数</li>
+    <li>フォロワー増加数</li>
+    <li>LINE登録数</li>
+  </ul>
+  <p><strong>重要な計算式：</strong></p>
+  <ul>
+    <li><strong>プロフィール訪問率</strong> = プロフィールアクセス / インプレッション × 100（目安：0.5%以上）</li>
+    <li><strong>フォロー率</strong> = フォロワー増加 / プロフィールアクセス × 100（目安：5%以上）</li>
+  </ul>
+  <blockquote>離脱が多いステップを改善すれば、全体の成果が上がります。</blockquote>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>Threadsは「集客の場」であり、直接収益化はできない</li>
+      <li>Threads→LINE→セールスの導線を設計する</li>
+      <li>LINE誘導には魅力的な特典が必要</li>
+      <li>固定ポストでLINE登録のメリットを伝える</li>
+      <li>数値を計測して、離脱ポイントを改善する</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== CTA 3 ===== -->
+<div class="seminar-cta">
+  <p class="cta-eyebrow">収益化の導線は理解できた。でも...</p>
+  <h3>「自分の商品・サービスだと、<br>どう導線を組めばいいの？」</h3>
+  <p>導線設計は、商品やジャンルによって最適解が変わります。<br>セミナーでは、あなたの状況に合わせたロードマップを一緒に設計します。</p>
+  <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta3" class="cta-btn">セミナーの詳細を見る</a>
+</div>
+
+<!-- ========== BONUS ========== -->
+<section class="lesson" id="bonus">
+  <div class="lesson-header">
+    <div class="lesson-number bonus">B</div>
+    <h2 class="lesson-title">運用マインドセット</h2>
+  </div>
+  <div class="lesson-intro">ここまで、Threads運用の「やり方」をお伝えしてきました。<br>でも、やり方を知っても結果が出ない人がいます。その違いは<strong>「マインドセット」</strong>です。</div>
+
+  <h3>Threadsで結果を出す人の共通点</h3>
+
+  <h4>1. 「数を打つ」ことを理解している</h4>
+  <p>結果を出す人は、圧倒的な量を投稿しています。1日1投稿では、当たるパターンを見つけるまでに時間がかかりすぎます。1日5〜10投稿すれば、何が伸びて何が伸びないか、すぐにわかります。</p>
+
+  <h4>2. 「完璧を求めない」</h4>
+  <p>「もっと良い投稿を作らなきゃ」と思って、投稿できない人がいます。でも、最初から完璧な投稿は作れません。</p>
+  <div class="highlight-box">60点でいいからまず出す。出してから改善する。このスタンスが大事。</div>
+
+  <h4>3. 「データで判断する」</h4>
+  <p>結果を出す人は、感覚ではなくデータで判断します。「この投稿、良かった気がする」ではなく「この投稿、インプレッションが高かった。なぜか？」と分析します。</p>
+
+  <h4>4. 「長期視点を持っている」</h4>
+  <p>1週間で結果を求める人は、だいたい途中でやめます。結果を出す人は、最低3ヶ月は継続する前提で始めます。</p>
+
+  <h3>やりがちな失敗とその回避法</h3>
+
+  <h4>失敗1：最初から完璧を求めすぎる</h4>
+  <p>「プロフィールを完璧にしてから投稿しよう」「投稿の型を完全に理解してから始めよう」——これでは永遠に始まりません。</p>
+  <blockquote>回避法：まず1投稿出す。出してから考える。</blockquote>
+
+  <h4>失敗2：他人と比較して落ち込む</h4>
+  <p>「あの人は1週間で1000人伸びてるのに、自分は全然…」他人の成果を見て落ち込むのは、時間の無駄です。</p>
+  <blockquote>回避法：比べるのは「昨日の自分」だけ。昨日より1投稿でも多く出せたら、それでOK。</blockquote>
+
+  <h4>失敗3：いいね・フォロワー数に一喜一憂する</h4>
+  <p>数字が伸びないと落ち込み、伸びると調子に乗る。このジェットコースターはメンタルに悪いです。</p>
+  <blockquote>回避法：数字は「判断材料」として使う。感情を乗せない。</blockquote>
+
+  <h4>失敗4：短期で結果を求めすぎる</h4>
+  <p>「1週間やってフォロワー100人しか増えなかった。向いてないかも」1週間で結果は出ません。</p>
+  <blockquote>回避法：最低3ヶ月は継続すると決める。その間、数字は気にせず「継続すること」自体を目標にする。</blockquote>
+
+  <h3>継続するための考え方</h3>
+
+  <h4>「継続」こそ最強の武器</h4>
+  <p>SNS運用で9割の人が3ヶ月以内にやめます。つまり、<strong>3ヶ月継続するだけで、上位10%に入れます。</strong>才能やセンスではなく、「継続」が勝敗を分けます。</p>
+
+  <h4>継続のハードルを下げる</h4>
+  <p>毎日10投稿は最初からは無理です。まずは1日1投稿から始める。それが習慣になったら、2投稿、3投稿と増やす。</p>
+  <p><strong>継続のコツ：</strong></p>
+  <ol>
+    <li><strong>投稿の「型」を持つ</strong> - 毎回ゼロから考えない</li>
+    <li><strong>時間を決める</strong> - 「朝7時に投稿」のように固定する</li>
+    <li><strong>AIを活用する</strong> - 下書きはAIに任せて効率化</li>
+    <li><strong>バッファを作る</strong> - 余裕があるときにまとめて作り置き</li>
+  </ol>
+
+  <h4>「楽しむ」ことを忘れない</h4>
+  <p>義務感だけで続けるのは、長続きしません。フォロワーが増えた、コメントがついた、結果が出た——この「小さな嬉しさ」を感じることが、継続の原動力になります。</p>
+
+  <div class="lesson-summary">
+    <h4>全レッスンの振り返り</h4>
+    <ul>
+      <li><strong>LESSON 1</strong>：競合が少ない、長文が読まれる、導線が作りやすい</li>
+      <li><strong>LESSON 2</strong>：ペルソナを具体的に設定し、痛いところだけを突く</li>
+      <li><strong>LESSON 3</strong>：長文投稿×数を打つ。ノウハウ系をメインに</li>
+      <li><strong>LESSON 4</strong>：「何者か」「何が得られるか」を明確に。CTAで次のアクションを促す</li>
+      <li><strong>LESSON 5</strong>：フックで手を止め、コメント欄で価値提供。型を使って量産</li>
+      <li><strong>LESSON 6</strong>：Threads→LINE→セールスの導線を設計。特典でLINE誘導</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="final-cta">
+  <div class="container">
+    <h2>知識は手に入った。<br>あとは「実行」するだけ。</h2>
+    <p class="lead">ここまで読んで、Threads運用の全体像がつかめたと思います。<br>でも、一人で実践しようとすると、こんな壁にぶつかります。</p>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">?</div>
+        <span>自分のターゲット設計、これで合ってるのかわからない</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">?</div>
+        <span>投稿を書いてみたけど、フックが弱い気がする</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">?</div>
+        <span>収益化の導線を自分の商品に落とし込めない</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">?</div>
+        <span>一人で継続できるか不安</span>
+      </div>
+    </div>
+    <p class="lead">そんな方のために、<strong>Threads運用攻略セミナー</strong>を開催しています。<br>あなたの状況に合わせた具体的な進め方を、一緒に設計します。</p>
+    <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta-final" class="cta-btn-main">セミナーの詳細を見る</a>
+    <p class="cta-note">※ 参加費無料・オンライン開催</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>ここまで読んでくれて、ありがとうございました。<br>あなたのThreads運用がうまくいくことを応援しています。<br><br>工藤</p>
+</footer>
+
+<script>
+// Progress bar
+const bar=document.getElementById('progressBar');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  const pct=h>0?(window.scrollY/h)*100:0;
+  bar.style.width=pct+'%';
+});
+</script>
+</body>
+</html>
