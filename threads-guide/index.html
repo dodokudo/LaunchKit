@@ -14,21 +14,21 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .container{max-width:720px;margin:0 auto;padding:0 20px}
 
 /* ===== Hero ===== */
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#312e81 100%);color:#fff;padding:32px 0 28px;text-align:center}
-.hero-badge{display:inline-block;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;font-size:13px;font-weight:600;padding:6px 16px;border-radius:100px;margin-bottom:8px;letter-spacing:.5px}
-.hero h1{font-size:28px;font-weight:800;line-height:1.4;margin-bottom:0}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#312e81 100%);color:#fff;padding:8px 0 8px;text-align:center}
+.hero-badge{display:inline-block;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.4);color:#a5b4fc;font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;margin-bottom:4px;letter-spacing:.5px}
+.hero h1{font-size:28px;font-weight:800;line-height:1.3;margin-bottom:0}
 .hero h1 span{color:#818cf8}
 .hero-stats{display:flex;justify-content:center;gap:24px;margin:24px 0;flex-wrap:wrap}
 .hero-stat{text-align:center}
 .hero-stat .num{font-size:32px;font-weight:800;color:#818cf8;display:block;line-height:1.2}
 .hero-stat .label{font-size:13px;color:#94a3b8;margin-top:4px}
-.hero-book{max-width:480px;width:90%;margin:0 auto 12px;display:block;filter:drop-shadow(0 16px 30px rgba(0,0,0,.4))}
+.hero-book{max-width:560px;width:92%;margin:0 auto 0;display:block;filter:drop-shadow(0 16px 30px rgba(0,0,0,.4))}
 .hero-screenshot{max-width:100%;border-radius:12px;margin:28px auto 0;box-shadow:0 20px 40px rgba(0,0,0,.3)}
 .hero-sub{font-size:15px;color:#cbd5e1;margin-top:20px;line-height:1.7}
 .hero-sub strong{color:#fff}
 
 /* ===== Intro (white) ===== */
-.intro{background:#fff;padding:40px 0 20px;text-align:center}
+.intro{background:#fff;padding:28px 0 20px;text-align:center}
 .intro-text{font-size:15px;color:#475569;margin-bottom:16px;line-height:1.8}
 .intro-text strong{color:#1e293b}
 .intro .hero-stats{display:flex;justify-content:center;gap:24px;margin:20px 0;flex-wrap:wrap}
@@ -106,13 +106,68 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 /* ===== Progress ===== */
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:#6366f1;z-index:1000;transition:width .1s linear}
 
+/* ===== Diagrams ===== */
+.diagram{margin:20px 0;border-radius:12px;overflow:hidden}
+
+/* SNS比較カード */
+.sns-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sns-card{border-radius:10px;padding:14px;text-align:center;border:1px solid #e2e8f0}
+.sns-card.dim{background:#f8fafc;opacity:.7}
+.sns-card.active{background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-color:#818cf8}
+.sns-icon{font-size:24px;margin-bottom:6px}
+.sns-name{font-size:14px;font-weight:700;margin-bottom:4px;color:#1e293b}
+.sns-card.active .sns-name{color:#4338ca}
+.sns-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.sns-tag{font-size:11px;padding:2px 8px;border-radius:100px;background:#f1f5f9;color:#64748b}
+.sns-card.active .sns-tag{background:rgba(99,102,241,.15);color:#4338ca}
+.sns-tag.bad{background:#fef2f2;color:#dc2626}
+.sns-tag.good{background:#f0fdf4;color:#16a34a}
+
+/* フロー図（縦） */
+.flow-vertical{display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 16px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0}
+.flow-step{width:100%;max-width:320px;padding:12px 16px;border-radius:10px;text-align:center;font-size:14px;font-weight:600;color:#1e293b;background:#fff;border:1px solid #e2e8f0;position:relative}
+.flow-step.highlight{background:linear-gradient(135deg,#312e81,#4338ca);color:#fff;border-color:transparent}
+.flow-arrow{color:#6366f1;font-size:18px;line-height:1;padding:4px 0;font-weight:700}
+.flow-label{font-size:11px;color:#6366f1;font-weight:600;margin-top:-2px;margin-bottom:2px}
+
+/* 配分バーチャート */
+.bar-chart{padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bar-row:last-child{margin-bottom:0}
+.bar-label{font-size:13px;font-weight:600;color:#334155;width:80px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;height:28px;background:#e2e8f0;border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:12px;font-weight:700;color:#fff}
+.bar-fill.primary{background:linear-gradient(90deg,#6366f1,#818cf8)}
+.bar-fill.secondary{background:#94a3b8}
+
+/* ファネル図 */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 16px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0}
+.funnel-step{padding:10px 0;text-align:center;font-size:14px;font-weight:600;color:#fff;position:relative;border-radius:6px}
+.funnel-step:nth-child(1){background:#6366f1;width:100%;max-width:300px}
+.funnel-step:nth-child(3){background:#7c3aed;width:80%;max-width:240px}
+.funnel-step:nth-child(5){background:#a855f7;width:60%;max-width:180px}
+.funnel-arrow{color:#6366f1;font-size:16px;padding:2px 0;font-weight:700}
+
+/* 投稿構成（スレッド風） */
+.thread-diagram{padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0}
+.thread-post{display:flex;gap:12px;margin-bottom:0}
+.thread-line{display:flex;flex-direction:column;align-items:center;width:24px;flex-shrink:0}
+.thread-dot{width:12px;height:12px;border-radius:50%;background:#6366f1;flex-shrink:0}
+.thread-dot.cta{background:#d97706}
+.thread-connector{width:2px;flex:1;background:#c7d2fe;min-height:8px}
+.thread-content{flex:1;padding-bottom:12px}
+.thread-role{font-size:11px;font-weight:700;color:#6366f1;text-transform:uppercase;margin-bottom:2px}
+.thread-role.cta{color:#d97706}
+.thread-text{font-size:13px;color:#334155;font-weight:500}
+.thread-chars{font-size:11px;color:#94a3b8;margin-top:2px}
+
 /* ===== Footer ===== */
 .footer{text-align:center;padding:32px 20px;color:#94a3b8;font-size:12px}
 
 /* ===== SP ===== */
 @media(max-width:600px){
   html{font-size:15px}
-  .hero{padding:40px 0 36px}
+  .hero{padding:6px 0 6px}
   .hero h1{font-size:22px}
   .hero-stats{gap:16px}
   .hero-stat .num{font-size:26px}
@@ -192,6 +247,31 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-intro">SNSで集客しようとして、疲弊していませんか？<br>間違った場所で頑張っても、消耗するだけ。結論から言うと、<strong>今最も適しているのがThreads</strong>です。</div>
 
   <h3>他SNSとの比較</h3>
+
+  <div class="diagram">
+    <div class="sns-grid">
+      <div class="sns-card dim">
+        <div class="sns-icon">𝕏</div>
+        <div class="sns-name">X（旧Twitter）</div>
+        <div class="sns-tags"><span class="sns-tag bad">短文文化</span><span class="sns-tag bad">競合飽和</span></div>
+      </div>
+      <div class="sns-card dim">
+        <div class="sns-icon">📸</div>
+        <div class="sns-name">Instagram</div>
+        <div class="sns-tags"><span class="sns-tag bad">画像必須</span><span class="sns-tag bad">工数大</span></div>
+      </div>
+      <div class="sns-card dim">
+        <div class="sns-icon">▶️</div>
+        <div class="sns-name">YouTube</div>
+        <div class="sns-tags"><span class="sns-tag bad">動画制作</span><span class="sns-tag bad">時間大</span></div>
+      </div>
+      <div class="sns-card active">
+        <div class="sns-icon">🔥</div>
+        <div class="sns-name">Threads</div>
+        <div class="sns-tags"><span class="sns-tag good">競合少</span><span class="sns-tag good">長文◎</span><span class="sns-tag good">導線◎</span></div>
+      </div>
+    </div>
+  </div>
 
   <h4>X（旧Twitter）との違い</h4>
   <p>Xは短文文化が根付いています。140文字の制限が長く続いたため、ユーザーは短い文章を好む傾向があります。</p>
@@ -292,12 +372,20 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h3>悩みを深掘りする方法</h3>
   <h4>「なぜ？」を繰り返す</h4>
   <p>例えば、ターゲットの悩みが「フォロワーが増えない」だとします。</p>
-  <ul>
-    <li>なぜフォロワーを増やしたいの？ → 集客したいから</li>
-    <li>なぜ集客したいの？ → 商品を売りたいから</li>
-    <li>なぜ商品を売りたいの？ → 収入を増やしたいから</li>
-    <li>なぜ収入を増やしたいの？ → <strong>会社に依存せず自由に働きたいから</strong></li>
-  </ul>
+
+  <div class="diagram">
+    <div class="flow-vertical">
+      <div class="flow-step">フォロワーが増えない</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step">集客したいから</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step">商品を売りたいから</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step">収入を増やしたいから</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step highlight">会社に依存せず自由に働きたい</div>
+    </div>
+  </div>
   <blockquote>この「本当の欲求」に刺さる発信ができると、反応が全然違ってきます。</blockquote>
 
   <div class="lesson-summary">
@@ -351,6 +439,16 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 
   <h3>配分の考え方</h3>
   <blockquote>答えはシンプルです。ノウハウ系を50%以上にする。</blockquote>
+
+  <div class="diagram">
+    <div class="bar-chart">
+      <div class="bar-row"><span class="bar-label">ノウハウ系</span><div class="bar-track"><div class="bar-fill primary" style="width:75%">50%+</div></div></div>
+      <div class="bar-row"><span class="bar-label">共感系</span><div class="bar-track"><div class="bar-fill secondary" style="width:30%">20%</div></div></div>
+      <div class="bar-row"><span class="bar-label">ストーリー</span><div class="bar-track"><div class="bar-fill secondary" style="width:30%">20%</div></div></div>
+      <div class="bar-row"><span class="bar-label">質問系</span><div class="bar-track"><div class="bar-fill secondary" style="width:15%">10%</div></div></div>
+    </div>
+  </div>
+
   <div class="table-wrap"><table>
     <tr><th>タイプ</th><th>配分目安</th></tr>
     <tr><td>ノウハウ系</td><td><strong>50%以上</strong></td></tr>
@@ -396,7 +494,15 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-intro">どれだけ良い投稿をしても、プロフィールがダメだとフォローされません。<br>投稿を見て「この人いいな」と思った人は、<strong>必ずプロフィールを見に来ます。</strong></div>
 
   <h3>プロフィールファネルを理解する</h3>
-  <div class="structure-block"><span class="highlight">投稿を見る</span> <span class="arrow">→</span> <span class="highlight">プロフィールを見る</span> <span class="arrow">→</span> <span class="highlight">フォローする</span></div>
+  <div class="diagram">
+    <div class="funnel">
+      <div class="funnel-step" style="background:#6366f1;width:100%;max-width:300px;padding:12px 0">投稿を見る（多い）</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#7c3aed;width:75%;max-width:225px;padding:12px 0">プロフィールを見る</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#a855f7;width:50%;max-width:150px;padding:12px 0">フォローする（少ない）</div>
+    </div>
+  </div>
   <p>これを<strong>プロフィールファネル</strong>と呼びます。どんなにインプレッションを稼いでも、プロフィールで離脱されたらフォロワーは増えない。</p>
 
   <h3>プロフィールで伝えるべき3つのこと</h3>
@@ -468,13 +574,26 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h3>長文投稿の基本構成</h3>
   <p>Threadsの長文投稿は、<strong>冒頭 + コメント欄</strong>で構成します。1投稿だけで完結させるんじゃなくて、自分の投稿にコメントをぶら下げていく形式。これによって、700〜1100文字の長文を読みやすく届けられます。</p>
 
-  <div class="structure-block"><span class="highlight">【冒頭】</span>問題提起 + 解決策の予告（50〜100文字）
-<span class="arrow">↓</span>
-<span class="highlight">【コメント欄1】</span>原因の説明 + 解決手順（300〜500文字）
-<span class="arrow">↓</span>
-<span class="highlight">【コメント欄2】</span>応用テクニック + 注意点（300〜500文字）
-<span class="arrow">↓</span>
-<span class="highlight">【コメント欄3】</span>CTA（フォロー促進 or LINE誘導）</div>
+  <div class="diagram">
+    <div class="thread-diagram">
+      <div class="thread-post">
+        <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
+        <div class="thread-content"><div class="thread-role">冒頭（メイン投稿）</div><div class="thread-text">問題提起 + 解決策の予告</div><div class="thread-chars">50〜100文字</div></div>
+      </div>
+      <div class="thread-post">
+        <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
+        <div class="thread-content"><div class="thread-role">コメント欄 1</div><div class="thread-text">原因の説明 + 解決手順</div><div class="thread-chars">300〜500文字</div></div>
+      </div>
+      <div class="thread-post">
+        <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
+        <div class="thread-content"><div class="thread-role">コメント欄 2</div><div class="thread-text">応用テクニック + 注意点</div><div class="thread-chars">300〜500文字</div></div>
+      </div>
+      <div class="thread-post">
+        <div class="thread-line"><div class="thread-dot cta"></div></div>
+        <div class="thread-content"><div class="thread-role cta">コメント欄 3</div><div class="thread-text">CTA（フォロー促進 or LINE誘導）</div></div>
+      </div>
+    </div>
+  </div>
   <p>合計で700〜1100文字。これが「教育できる長文投稿」の基本形です。</p>
 
   <h4>【冒頭】問題提起 + 解決策の予告</h4>
@@ -575,21 +694,25 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <p>つまり、<strong>Threads上で直接お金をもらう手段がない</strong>ということです。だから、Threadsは「集客の場」と割り切る必要があります。</p>
 
   <h3>収益化までの全体導線</h3>
-  <div class="structure-block"><span class="highlight">長文投稿で価値提供</span>
-<span class="arrow">↓</span>
-<span class="highlight">インプレッション獲得</span>
-<span class="arrow">↓</span>
-<span class="highlight">プロフィール誘導（CTA）</span>
-<span class="arrow">↓</span>
-<span class="highlight">フォロー獲得</span>
-<span class="arrow">↓</span>
-<span class="highlight">固定ポスト or 投稿でLINE誘導</span>
-<span class="arrow">↓</span>
-<span class="highlight">LINE登録</span>
-<span class="arrow">↓</span>
-<span class="highlight">ステップ配信で教育</span>
-<span class="arrow">↓</span>
-<span class="highlight">セールス → 収益化</span></div>
+  <div class="diagram">
+    <div class="flow-vertical">
+      <div class="flow-step">長文投稿で価値提供</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">インプレッション獲得</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">プロフィール誘導（CTA）</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">フォロー獲得</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step" style="background:#eef2ff;border-color:#818cf8;color:#4338ca">固定ポスト / 投稿でLINE誘導</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step" style="background:#dcfce7;border-color:#22c55e;color:#166534">LINE登録</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">ステップ配信で教育</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step highlight">セールス → 収益化</div>
+    </div>
+  </div>
 
   <h3>LINEに誘導する3つのメリット</h3>
   <h4>1. リスト化できる</h4>
