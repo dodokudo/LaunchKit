@@ -27,6 +27,16 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .hero-sub{font-size:15px;color:#cbd5e1;margin-top:20px;line-height:1.7}
 .hero-sub strong{color:#fff}
 
+/* ===== Intro (white) ===== */
+.intro{background:#fff;padding:40px 0 20px;text-align:center}
+.intro-text{font-size:15px;color:#475569;margin-bottom:16px;line-height:1.8}
+.intro-text strong{color:#1e293b}
+.intro .hero-stats{display:flex;justify-content:center;gap:24px;margin:20px 0;flex-wrap:wrap}
+.intro .hero-stat{text-align:center}
+.intro .hero-stat .num{font-size:32px;font-weight:800;color:#6366f1;display:block;line-height:1.2}
+.intro .hero-stat .label{font-size:13px;color:#64748b;margin-top:4px}
+.intro .hero-screenshot{max-width:100%;border-radius:12px;margin:20px auto;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+
 /* ===== TOC ===== */
 .toc{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:32px;margin:-30px 20px 40px;position:relative;z-index:2;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 4px 20px rgba(0,0,0,.06)}
 .toc h2{font-size:18px;font-weight:700;margin-bottom:20px;color:#334155}
@@ -106,6 +116,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   .hero h1{font-size:22px}
   .hero-stats{gap:16px}
   .hero-stat .num{font-size:26px}
+  .intro .hero-stat .num{font-size:26px}
   .toc{margin:-24px 12px 32px;padding:24px 20px}
   .lesson{padding:36px 0}
   .lesson-title{font-size:19px}
@@ -128,7 +139,13 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <div class="hero-badge">SPECIAL CONTENTS</div>
     <img src="assets/images/book-cover.png" alt="AI×Threads 完全攻略ガイド" class="hero-book" loading="eager">
     <h1>Threads運用<span>攻略ガイド</span></h1>
-    <p class="hero-sub">特典を受け取ってくださりありがとうございます。<br>僕はThreadsを本格的に運用し始めて、以下の実績を出しています。</p>
+  </div>
+</section>
+
+<!-- ========== INTRO (白背景) ========== -->
+<section class="intro">
+  <div class="container">
+    <p class="intro-text">特典を受け取ってくださりありがとうございます。<br>僕はThreadsを本格的に運用し始めて、以下の実績を出しています。</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="num">4,200</span>
@@ -144,7 +161,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       </div>
     </div>
     <img src="assets/images/hero-screenshot.png" alt="Threads運用実績" class="hero-screenshot" loading="eager" width="720">
-    <p class="hero-sub">しかも、投稿の<strong>95%はAIで自動化</strong>しています。<br>今回はそんなThreads運用の全てをこの教材にまとめました。</p>
+    <p class="intro-text">しかも、投稿の<strong>95%はAIで自動化</strong>しています。<br>今回はそんなThreads運用の全てをこの教材にまとめました。</p>
   </div>
 </section>
 
