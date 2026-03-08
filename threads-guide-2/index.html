@@ -89,8 +89,9 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .seminar-cta .cta-eyebrow{font-size:13px;color:#c7d2fe;margin-bottom:8px;letter-spacing:.5px}
 .seminar-cta h3{font-size:20px;font-weight:800;margin-bottom:12px;line-height:1.4}
 .seminar-cta p{font-size:14px;color:#c7d2fe;margin-bottom:20px;line-height:1.7}
-.seminar-cta .cta-btn{display:inline-block;background:#fff;color:#4338ca;font-size:15px;font-weight:700;padding:14px 40px;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 14px rgba(0,0,0,.15)}
-.seminar-cta .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.seminar-cta .cta-btn{display:block;width:100%;max-width:420px;margin:0 auto;background:linear-gradient(180deg,#06c755,#00b900);color:#fff;font-size:18px;font-weight:800;padding:18px 24px;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 0 #038e3b,0 8px 15px rgba(0,0,0,.2);text-align:center;letter-spacing:.02em}
+.seminar-cta .cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #038e3b,0 12px 24px rgba(0,0,0,.25)}
+.seminar-cta .cta-sub-note{font-size:12px;color:rgba(255,255,255,.7);margin-top:10px}
 
 /* Final CTA */
 .final-cta{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#312e81 100%);padding:60px 24px;text-align:center;color:#fff;margin-top:48px}
@@ -99,9 +100,10 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .final-cta .benefits{text-align:left;max-width:480px;margin:0 auto 32px;display:flex;flex-direction:column;gap:12px}
 .final-cta .benefit{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#e2e8f0;line-height:1.6}
 .final-cta .benefit-icon{width:24px;height:24px;border-radius:50%;background:rgba(99,102,241,.3);color:#a5b4fc;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;margin-top:2px}
-.final-cta .cta-btn-main{display:inline-block;background:linear-gradient(135deg,#818cf8,#6366f1);color:#fff;font-size:17px;font-weight:700;padding:18px 48px;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(99,102,241,.4)}
-.final-cta .cta-btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,.5)}
+.final-cta .cta-btn-main{display:block;width:100%;max-width:420px;margin:0 auto;background:linear-gradient(180deg,#06c755,#00b900);color:#fff;font-size:18px;font-weight:800;padding:20px 24px;border-radius:100px;text-decoration:none;transition:all .25s;box-shadow:0 4px 0 #038e3b,0 8px 15px rgba(0,0,0,.2);text-align:center}
+.final-cta .cta-btn-main:hover{transform:translateY(-2px);box-shadow:0 6px 0 #038e3b,0 12px 24px rgba(0,0,0,.25)}
 .final-cta .cta-note{font-size:12px;color:#94a3b8;margin-top:12px}
+.final-cta .cta-sub-note{font-size:12px;color:#94a3b8;margin-top:10px}
 
 /* ===== Progress ===== */
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:#6366f1;z-index:1000;transition:width .1s linear}
@@ -177,6 +179,41 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 /* ===== Footer ===== */
 .footer{text-align:center;padding:32px 20px;color:#94a3b8;font-size:12px}
 
+/* Hook cards */
+.hook-cards{display:flex;flex-direction:column;gap:12px;margin:16px 0}
+.hook-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.hook-type{font-size:14px;font-weight:800;color:#6366f1;margin-bottom:6px;display:inline-block;background:#eef2ff;padding:2px 10px;border-radius:6px}
+.hook-example{font-size:15px;font-weight:600;color:#1e293b;margin-bottom:6px;line-height:1.5}
+.hook-effect{font-size:13px;color:#64748b;line-height:1.5}
+
+/* VS compare */
+.vs-compare{display:flex;align-items:center;gap:8px;margin:20px 0}
+.vs-card{flex:1;padding:16px;border-radius:12px;text-align:center}
+.vs-card.vs-win{background:#eef2ff;border:2px solid #6366f1}
+.vs-card.vs-lose{background:#fef2f2;border:2px solid #fca5a5}
+.vs-label{font-size:12px;font-weight:700;margin-bottom:8px}
+.vs-card.vs-win .vs-label{color:#4338ca}
+.vs-card.vs-lose .vs-label{color:#dc2626}
+.vs-num{font-size:28px;font-weight:900;display:block;line-height:1.2}
+.vs-card.vs-win .vs-num{color:#4338ca}
+.vs-card.vs-lose .vs-num{color:#dc2626}
+.vs-stat{font-size:13px;color:#64748b;font-weight:600}
+.vs-detail{font-size:11px;color:#94a3b8;margin-top:4px}
+.vs-divider{font-size:14px;font-weight:900;color:#94a3b8;flex-shrink:0}
+
+/* Time compare */
+.time-compare{display:flex;align-items:center;gap:8px;margin:20px 0}
+.time-card{flex:1;padding:20px 12px;border-radius:12px;text-align:center}
+.time-card.time-before{background:#fef2f2;border:1px solid #fca5a5}
+.time-card.time-after{background:#f0fdf4;border:1px solid #86efac}
+.time-label{font-size:12px;font-weight:700;color:#64748b;margin-bottom:4px}
+.time-value{font-size:28px;font-weight:900;line-height:1.2}
+.time-card.time-before .time-value{color:#dc2626}
+.time-card.time-after .time-value{color:#16a34a}
+.time-value span{font-size:14px;font-weight:600}
+.time-desc{font-size:11px;color:#94a3b8;margin-top:4px}
+.time-arrow{font-size:24px;font-weight:900;color:#6366f1;flex-shrink:0}
+
 /* ===== SP ===== */
 @media(max-width:600px){
   html{font-size:15px}
@@ -190,7 +227,10 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   .lesson-title{font-size:19px}
   .lesson h3{font-size:16px}
   .seminar-cta{padding:32px 20px;margin:32px 0}
-  .seminar-cta h3{font-size:18px}
+  .seminar-cta h3{font-size:17px;line-height:1.5}
+  .lesson-intro{font-size:14px;line-height:1.8}
+  .highlight-box{font-size:14px}
+  .intro-text{font-size:14px}
   .final-cta{padding:48px 20px}
   .final-cta h2{font-size:20px}
 }
@@ -444,6 +484,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h3>一人で3ヶ月試行錯誤するか、<br>90分のセミナーで全部わかるか。</h3>
   <p>正しいやり方を知らずに独学で始めると、確実に遠回りします。<br>無料セミナーでは、AIプロンプト30選・高単価商品作成マニュアルなど<strong>4大特典付き</strong>で、あなたの状況に合わせた始め方を具体的にお伝えします。</p>
   <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta-after-voice" class="cta-btn">無料セミナーの詳細を見てみる →</a>
+  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
 </div>
 
 <!-- ========== LESSON 3 ========== -->
@@ -654,6 +695,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h3>「自分のターゲット、<br>本当にこれで合ってる？」<br>その確認、90分で終わります。</h3>
   <p>ターゲット設計は自分一人だと「正解がわからない」まま進んでしまう、一番危険なポイントです。<br>無料セミナーでは、あなたのジャンルに合わせた設計を一緒に作ります。<strong>AIプロンプト30選など4大特典付き。</strong></p>
   <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta1" class="cta-btn">無料セミナーに参加する →</a>
+  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
 </div>
 
 <!-- ========== LESSON 6 ========== -->
@@ -740,6 +782,20 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <tr><td>投稿A</td><td>20件</td><td><strong>20万</strong></td></tr>
     <tr><td>投稿B</td><td>100件</td><td>1万</td></tr>
   </table>
+
+  <div class="vs-compare">
+    <div class="vs-card vs-win">
+      <div class="vs-label">投稿A（長文）</div>
+      <div class="vs-stat"><span class="vs-num">20万</span>インプ</div>
+      <div class="vs-detail">コメント20件 / 滞在時間 長い</div>
+    </div>
+    <div class="vs-divider">VS</div>
+    <div class="vs-card vs-lose">
+      <div class="vs-label">投稿B（短文バズ）</div>
+      <div class="vs-stat"><span class="vs-num">1万</span>インプ</div>
+      <div class="vs-detail">コメント100件 / 滞在時間 短い</div>
+    </div>
+  </div>
 
   <p>コメント100件の方がインプレッション1万。コメント20件の方が20万。なぜか？</p>
   <p><strong>答えは「滞在時間」です。</strong></p>
@@ -883,15 +939,38 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </ol>
 
   <h4>効果的なフックの型</h4>
-  <div class="table-wrap"><table>
-    <tr><th>型</th><th>例</th><th>効果</th></tr>
-    <tr><td>時代遅れ型</td><td>「まだ○○してる人、時代遅れです」</td><td>FOMO（取り残される恐怖）を刺激</td></tr>
-    <tr><td>損してる型</td><td>「○○知らない人、損してます」</td><td>機会損失への不安を刺激</td></tr>
-    <tr><td>数字型</td><td>「○○を○倍にする方法」</td><td>具体的な数字で自分ごと化</td></tr>
-    <tr><td>警告型</td><td>「これ知らないと○○になります」</td><td>緊急性を出して今すぐ読ませる</td></tr>
-    <tr><td>逆張り型</td><td>「○○は間違いです」</td><td>常識を否定して「え？」と思わせる</td></tr>
-    <tr><td>疑問型</td><td>「なぜ○○なのか？」</td><td>答えを知りたくさせる</td></tr>
-  </table></div>
+  <div class="hook-cards">
+    <div class="hook-card">
+      <div class="hook-type">時代遅れ型</div>
+      <div class="hook-example">「まだ○○してる人、時代遅れです」</div>
+      <div class="hook-effect">FOMO（取り残される恐怖）を刺激</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">損してる型</div>
+      <div class="hook-example">「○○知らない人、損してます」</div>
+      <div class="hook-effect">機会損失への不安を刺激</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">数字型</div>
+      <div class="hook-example">「○○を○倍にする方法」</div>
+      <div class="hook-effect">具体的な数字で自分ごと化</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">警告型</div>
+      <div class="hook-example">「これ知らないと○○になります」</div>
+      <div class="hook-effect">緊急性を出して今すぐ読ませる</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">逆張り型</div>
+      <div class="hook-example">「○○は間違いです」</div>
+      <div class="hook-effect">常識を否定して「え？」と思わせる</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">疑問型</div>
+      <div class="hook-example">「なぜ○○なのか？」</div>
+      <div class="hook-effect">答えを知りたくさせる</div>
+    </div>
+  </div>
 
   <h3>フックを作る時の鉄則</h3>
   <div class="highlight-box">投稿作成の90%の時間をフックに使え。本文は30分で書けるけど、フックは1時間かけてもいい。それくらい、1行目が全てを決めます。</div>
@@ -933,6 +1012,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h3>フックの作り方、投稿構成、<br>あなたのジャンルで実践する方法を<br>90分で全部教えます。</h3>
   <p>「型はわかったけど、自分のテーマだとどう使えば…」——この壁にぶつかる人がほとんどです。<br>セミナーでは添削・フィードバックに加えて、<strong>フォロワー1,000人伸ばしたプロンプト</strong>など4大特典をその場でお渡しします。</p>
   <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta2" class="cta-btn">無料で参加枠を確認する →</a>
+  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
 </div>
 
 <!-- ========== LESSON 8 ========== -->
@@ -951,6 +1031,20 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <div class="bar-chart">
       <div class="bar-row"><span class="bar-label">以前</span><div class="bar-track"><div class="bar-fill secondary" style="width:100%">3時間 / 日</div></div></div>
       <div class="bar-row"><span class="bar-label">AI導入後</span><div class="bar-track"><div class="bar-fill primary" style="width:17%">30分</div></div></div>
+    </div>
+  </div>
+
+  <div class="time-compare">
+    <div class="time-card time-before">
+      <div class="time-label">以前</div>
+      <div class="time-value">3時間<span>/日</span></div>
+      <div class="time-desc">手動で投稿作成</div>
+    </div>
+    <div class="time-arrow">→</div>
+    <div class="time-card time-after">
+      <div class="time-label">AI導入後</div>
+      <div class="time-value">30分<span>/日</span></div>
+      <div class="time-desc">10投稿量産可能</div>
     </div>
   </div>
 
@@ -1113,6 +1207,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h3>あなたの商品・サービスに合った<br>「売れる導線」を<br>90分で一緒に設計しませんか？</h3>
   <p>導線設計は、商品やジャンルによって最適解がまるで違います。<br>セミナーでは、<strong>月商100万円のLINE設計テンプレート</strong>をそのまま使える形でお渡しします。参加費無料・オンライン開催です。</p>
   <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta3" class="cta-btn">無料セミナーの席を確保する →</a>
+  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
 </div>
 
 <!-- ========== BONUS ========== -->
@@ -1217,7 +1312,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     </div>
     <p class="lead"><strong>この壁を90分で全部壊すのが、無料セミナーです。</strong><br>「1投稿でフォロワー1,000人増加」を実現した僕の最新ノウハウと、<br>AIプロンプト30選・高単価商品作成マニュアル・月商100万円LINE設計テンプレートなど<strong>4大特典</strong>をその場でお渡しします。</p>
     <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta-final" class="cta-btn-main">今すぐ無料セミナーに参加する →</a>
-    <p class="cta-note">参加費無料 / オンライン開催 / 90分で完結</p>
+    <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
   </div>
 </section>
 
