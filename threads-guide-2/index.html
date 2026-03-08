@@ -176,6 +176,26 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .ss-card img{width:100%;display:block}
 .ss-card .ss-caption{padding:12px 16px;font-size:14px;font-weight:700;color:#1e293b}
 
+/* ===== Bonus Tokuten ===== */
+.bonus-tokuten{background:linear-gradient(135deg,#fefce8 0%,#fef9c3 100%);border:2px solid #eab308;border-radius:20px;padding:36px 24px;margin:48px 0;text-align:center}
+.bonus-tokuten .bt-badge{display:inline-block;background:linear-gradient(135deg,#eab308,#ca8a04);color:#fff;font-size:12px;font-weight:800;padding:6px 16px;border-radius:100px;margin-bottom:12px;letter-spacing:.5px}
+.bonus-tokuten h3{font-size:22px;font-weight:900;color:#92400e;line-height:1.4;margin-bottom:8px}
+.bonus-tokuten .bt-sub{font-size:14px;color:#a16207;margin-bottom:24px;line-height:1.7}
+.bonus-tokuten .bt-sub strong{color:#92400e}
+.steps-grid{display:flex;flex-direction:column;gap:24px;margin:0 auto;max-width:400px;text-align:left}
+.step-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);border:1px solid #e2e8f0}
+.step-card .step-num{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#0f172a;color:#fff;font-size:14px;font-weight:800}
+.step-card .step-num .num-circle{width:28px;height:28px;border-radius:50%;background:#eab308;color:#0f172a;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0}
+.step-card .step-img{width:100%;display:block}
+.step-card .step-desc{padding:14px 16px;font-size:13px;color:#475569;line-height:1.7}
+.step-card .step-desc strong{color:#1e293b}
+.bt-note{font-size:13px;color:#92400e;margin-top:20px;line-height:1.7;background:rgba(255,255,255,.6);border-radius:10px;padding:14px 16px;text-align:left}
+.bt-note strong{color:#78350f}
+@media(max-width:600px){
+  .bonus-tokuten{padding:28px 16px;margin:36px 0}
+  .bonus-tokuten h3{font-size:19px}
+}
+
 /* ===== Footer ===== */
 .footer{text-align:center;padding:32px 20px;color:#94a3b8;font-size:12px}
 
@@ -1284,6 +1304,40 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     </ul>
   </div>
 </section>
+
+<!-- ========== BONUS TOKUTEN ========== -->
+<div class="bonus-tokuten">
+  <div class="bt-badge">全レッスン読了者限定</div>
+  <h3>追加特典をプレゼントします。</h3>
+  <p class="bt-sub">ここまで全部読んだあなたは、<strong>それだけで上位5%の行動力</strong>です。<br>そんなあなたに、追加で特典を用意しました。<br>受け取り方は簡単。<strong>3ステップだけ</strong>です。</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num"><span class="num-circle">1</span>固定ポストの「引用」をタップ</div>
+      <img src="assets/images/step1-quote.png" alt="STEP1: 固定ポストを表示して引用ボタンをタップ" class="step-img" loading="lazy">
+      <div class="step-desc"><a href="https://www.threads.com/@kudooo_ai/post/DVn950GCRmW" target="_blank" style="color:#6366f1;font-weight:700;text-decoration:underline">こちらの固定ポスト</a>を開き、リポストアイコン（↻）を長押し。表示されるメニューから<strong>「引用」</strong>を選択してください。</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num"><span class="num-circle">2</span>感想を4行以上書いて投稿</div>
+      <img src="assets/images/step2-repost.png" alt="STEP2: 引用画面で感想を4行以上書く" class="step-img" loading="lazy">
+      <div class="step-desc">引用投稿の画面が開いたら、<strong>この教材を読んだ感想を4行以上</strong>書いて投稿してください。<br>「参考になった点」「実践しようと思ったこと」など、具体的に書くほどOKです。</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num"><span class="num-circle">3</span>スクショをLINEに送る</div>
+      <img src="assets/images/step3-post.png" alt="STEP3: 投稿のスクショをLINEに送信" class="step-img" loading="lazy">
+      <div class="step-desc">投稿が完了したら、<strong>投稿画面のスクリーンショット</strong>を撮って、公式LINEにスクショと一緒に<strong>「追加特典ください」</strong>とメッセージを送ってください。<br>確認でき次第、追加特典をお渡しします。</div>
+    </div>
+  </div>
+
+  <div class="bt-note">
+    <strong>なぜアウトプットを条件にしているか？</strong><br>
+    正直に言うと、読んだだけでは何も変わらないからです。<br>
+    感想を書くというアウトプットをすることで、学んだ内容が「知識」から「使えるスキル」に変わります。<br>
+    4行でいい。それだけで、読んだだけの人とは雲泥の差がつきます。
+  </div>
+</div>
 
 </main>
 
