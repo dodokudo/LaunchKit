@@ -161,6 +161,15 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .thread-text{font-size:13px;color:#334155;font-weight:500}
 .thread-chars{font-size:11px;color:#94a3b8;margin-top:2px}
 
+/* ===== Voice/Testimonial ===== */
+.voice-grid{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0}
+.voice-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.voice-video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+.voice-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.voice-body{padding:16px 20px}
+.voice-badge{display:inline-block;background:#eef2ff;color:#6366f1;font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;margin-bottom:8px}
+.voice-result{font-size:16px;font-weight:700;color:#1e293b;line-height:1.5;margin:0}
+
 /* ===== Footer ===== */
 .footer{text-align:center;padding:32px 20px;color:#94a3b8;font-size:12px}
 
@@ -222,16 +231,19 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 
 <!-- ========== TOC ========== -->
 <nav class="toc container">
-  <h2>全6レッスン + ボーナス</h2>
+  <h2>全9レッスン + ボーナス</h2>
   <img src="assets/images/lessons-overview.png" alt="この講座で学べること" style="width:100%;border-radius:10px;margin-bottom:16px" loading="lazy">
   <p style="font-size:14px;color:#64748b;margin-bottom:16px">LESSON 1から順番に読み進めてください。</p>
   <ul class="toc-list">
-    <li><a href="#lesson1"><span class="toc-num">01</span>なぜ今Threadsなのか？</a></li>
-    <li><a href="#lesson2"><span class="toc-num">02</span>誰に届けるかを決める</a></li>
-    <li><a href="#lesson3"><span class="toc-num">03</span>伸びるコンテンツの考え方</a></li>
-    <li><a href="#lesson4"><span class="toc-num">04</span>プロフィールと固定投稿の設計</a></li>
-    <li><a href="#lesson5"><span class="toc-num">05</span>投稿の書き方の基本</a></li>
-    <li><a href="#lesson6"><span class="toc-num">06</span>Threads → 収益化の全体像</a></li>
+    <li><a href="#lesson1"><span class="toc-num">01</span>なぜ今Threadsなのか</a></li>
+    <li><a href="#lesson2"><span class="toc-num">02</span>受講生の実績</a></li>
+    <li><a href="#lesson3"><span class="toc-num">03</span>収益化の全体像</a></li>
+    <li><a href="#lesson4"><span class="toc-num">04</span>キャラクター設定</a></li>
+    <li><a href="#lesson5"><span class="toc-num">05</span>誰に届けるかを決める</a></li>
+    <li><a href="#lesson6"><span class="toc-num">06</span>プロフィール設計</a></li>
+    <li><a href="#lesson7"><span class="toc-num">07</span>投稿の書き方</a></li>
+    <li><a href="#lesson8"><span class="toc-num">08</span>AIで投稿を量産する</a></li>
+    <li><a href="#lesson9"><span class="toc-num">09</span>固定ポスト + Threads→LINE導線</a></li>
     <li><a href="#bonus"><span class="toc-num bonus">B</span>運用マインドセット</a></li>
   </ul>
 </nav>
@@ -332,6 +344,209 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 <section class="lesson" id="lesson2">
   <div class="lesson-header">
     <div class="lesson-number">02</div>
+    <h2 class="lesson-title">受講生の実績</h2>
+  </div>
+  <div class="lesson-intro">理論だけじゃ信じられないですよね。<br>この教材の内容を実践した受講生の、リアルな成果を紹介します。</div>
+
+  <h3>受講生インタビュー</h3>
+
+  <div class="voice-grid">
+    <div class="voice-card">
+      <div class="voice-video">
+        <iframe src="https://www.youtube.com/embed/xJ__v5P6GQI" title="かずみさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="voice-body">
+        <span class="voice-badge">かずみさん</span>
+        <p class="voice-result">0→1から380万円の収益化達成</p>
+      </div>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-video">
+        <iframe src="https://www.youtube.com/embed/3nL7GNNqtzQ" title="サラさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="voice-body">
+        <span class="voice-badge">サラさん</span>
+        <p class="voice-result">Threads運用1ヶ月で10万円の収益化</p>
+      </div>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-video">
+        <iframe src="https://www.youtube.com/embed/xl0DP4fcBY8" title="あかりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="voice-body">
+        <span class="voice-badge">あかりさん</span>
+        <p class="voice-result">1ヶ月でフォロワー2,400名達成</p>
+      </div>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-video">
+        <iframe src="https://www.youtube.com/embed/3AA6DFJBflM" title="さおりさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="voice-body">
+        <span class="voice-badge">さおりさん</span>
+        <p class="voice-result">1ヶ月でフォロワー1,300名・LINE登録400名増加</p>
+      </div>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-video">
+        <iframe src="https://www.youtube.com/embed/RYFjEkP19X0" title="なぎささんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="voice-body">
+        <span class="voice-badge">なぎささん</span>
+        <p class="voice-result">Threads運用2ヶ月で150万円の収益化</p>
+      </div>
+    </div>
+
+    <div class="voice-card">
+      <div class="voice-video">
+        <iframe src="https://www.youtube.com/embed/k0by674DVNw" title="TAKUさんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="voice-body">
+        <span class="voice-badge">TAKUさん</span>
+        <p class="voice-result">Threads運用1ヶ月でLINE登録200件</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">特別な才能がある人たちじゃない。正しいやり方で、正しい場所で、数を打っただけ。次はあなたの番です。</div>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>Threads運用で0→1の収益化を達成した受講生が複数いる</li>
+      <li>フォロワー増加だけでなく、LINE登録・売上に直結した成果が出ている</li>
+      <li>共通点は「正しいやり方で、数を打った」こと</li>
+      <li>才能やセンスではなく、再現性のある方法論で結果が出ている</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 3 ========== -->
+<section class="lesson" id="lesson3">
+  <div class="lesson-header">
+    <div class="lesson-number">03</div>
+    <h2 class="lesson-title">収益化の全体像</h2>
+  </div>
+  <div class="lesson-intro">ここで最初に、ゴールを明確にします。<br>Threads運用のゴールは「フォロワーを増やすこと」じゃない。<strong>売上を立てること</strong>です。</div>
+
+  <h3>なぜThreadsだけでは収益化できないのか</h3>
+  <p>Threadsには、マネタイズ機能がほぼありません。</p>
+  <ul>
+    <li>投げ銭機能なし</li>
+    <li>アフィリエイトリンクも貼りにくい</li>
+    <li>DM機能はあるが、商談には向かない</li>
+  </ul>
+  <p>つまり、<strong>Threads上で直接お金をもらう手段がない</strong>ということです。だから、Threadsは「集客の場」と割り切る必要があります。</p>
+
+  <h3>収益化までの全体導線</h3>
+  <div class="diagram">
+    <div class="flow-vertical">
+      <div class="flow-step">長文投稿で価値提供</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">インプレッション獲得</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">プロフィール誘導（CTA）</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">フォロー獲得</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step" style="background:#eef2ff;border-color:#818cf8;color:#4338ca">固定ポスト / 投稿でLINE誘導</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step" style="background:#dcfce7;border-color:#22c55e;color:#166534">LINE登録</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">ステップ配信で教育</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step highlight">セールス → 収益化</div>
+    </div>
+  </div>
+  <p>この全体像を頭に入れた上で、各ステップを攻略していきます。LESSON 4以降で、この導線の各パーツを具体的に設計していきます。</p>
+
+  <h3>LINEに誘導する3つのメリット</h3>
+  <h4>1. リスト化できる</h4>
+  <p>フォロワーは「借り物」です。アカウントが凍結されたら、フォロワーとの接点がなくなります。LINEに誘導すれば「自分のリスト」になります。</p>
+  <h4>2. プッシュ通知ができる</h4>
+  <p>Threadsの投稿は、フォロワー全員に届くわけではありません。LINEならプッシュ通知で確実に届きます。</p>
+  <h4>3. クローズドな環境で教育できる</h4>
+  <p>Threadsは公開の場。深い内容を出すと競合にパクられます。LINEはクローズドな環境。ここでしか出さない情報を提供することで、信頼関係を構築できます。</p>
+
+  <div class="highlight-box">フォロワー数はただの指標。売上という結果から逆算して、全体の導線を設計する。これが正しい順番です。</div>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>Threadsは「集客の場」であり、直接収益化はできない</li>
+      <li>ゴールは売上。フォロワー数ではない</li>
+      <li>Threads→LINE→セールスの導線を先に理解してから各パーツを作る</li>
+      <li>LINEへの誘導がリスト化・教育・セールスの起点になる</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 4 ========== -->
+<section class="lesson" id="lesson4">
+  <div class="lesson-header">
+    <div class="lesson-number">04</div>
+    <h2 class="lesson-title">キャラクター設定</h2>
+  </div>
+  <div class="lesson-intro">投稿の内容が良くても、「誰が言っているか」で反応は全く変わります。<br>まずはSNS上での<strong>あなたのキャラクター</strong>を設計します。</div>
+
+  <h3>SNS上の「自分」を作る</h3>
+  <p>SNSは名刺と同じです。全てをさらけ出す必要はありません。</p>
+  <p>「自分のことを全部見せなきゃ」と思っている人が多いですが、それは間違いです。<strong>戦略的に見せる部分を選ぶ。</strong>これがキャラクター設定の本質です。</p>
+  <p>目指す認知はシンプルです。</p>
+  <ul>
+    <li>「この人、いいこと言ってるな」</li>
+    <li>「なんか知ってそう」</li>
+  </ul>
+  <blockquote>このレベルで十分です。いきなり「ファン」を作ろうとしなくていい。まず「信頼に値する人」と認知されれば、フォローもLINE登録もついてきます。</blockquote>
+
+  <h3>まず真面目、その後にユニーク</h3>
+  <p>よくある間違いが「最初から面白いキャラを狙う」こと。</p>
+  <p>面白い投稿でバズっても、そこから商品が売れるかは別の話です。</p>
+  <p><strong>正しい順番はこうです。</strong></p>
+  <ol>
+    <li><strong>まず専門性と信頼を見せる</strong> -- 「この人は知識がある」「言ってることが的確だ」と思ってもらう</li>
+    <li><strong>その上にユニーク要素を足す</strong> -- 人間味、独自の視点、口調の特徴など</li>
+  </ol>
+  <div class="highlight-box">真面目方向だけでもビジネスは成立します。面白いキャラ設定は、あくまでオプション。専門性が土台にないと、何を載せても崩れます。</div>
+
+  <h3>ポジショニング</h3>
+  <p>SNSで発信するジャンルは、大きく3つに分かれます。</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>ジャンル</th><th>内容</th><th>例</th></tr>
+    <tr><td><strong>稼ぐ系</strong></td><td>収入・副業・ビジネスに直結する情報</td><td>マーケティング、物販、SNS集客</td></tr>
+    <tr><td><strong>非稼ぐ系</strong></td><td>生活・趣味・スキルの情報</td><td>ダイエット、料理、英語、デザイン</td></tr>
+    <tr><td><strong>マインド系</strong></td><td>思考法・習慣・自己啓発の情報</td><td>時間管理、メンタル、習慣化</td></tr>
+  </table></div>
+
+  <p>ここで重要なのが「掛け合わせ」です。</p>
+  <p>1つのジャンルだけだと、競合と差別化できません。<strong>2つ以上のジャンルを掛け合わせることで、あなたしか語れないポジション</strong>が生まれます。</p>
+  <ul>
+    <li>マーケティング × AI → 「AIを使ったマーケ自動化」</li>
+    <li>ダイエット × 時短 → 「忙しい人のための時短ダイエット」</li>
+    <li>英語 × ビジネス → 「海外取引で使えるビジネス英語」</li>
+  </ul>
+  <blockquote>広いジャンルの中で、あなたしか語れないポジションを見つける。これがキャラクター設定の核心です。</blockquote>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>SNSでは全てさらけ出す必要はない。戦略的に見せる</li>
+      <li>目指す認知：「いいこと言ってる」「知ってそう」で十分</li>
+      <li>まず専門性と信頼、その上にユニーク要素を載せる</li>
+      <li>ジャンルの掛け合わせで、独自ポジションを作る</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 5 ========== -->
+<section class="lesson" id="lesson5">
+  <div class="lesson-header">
+    <div class="lesson-number">05</div>
     <h2 class="lesson-title">誰に届けるかを決める</h2>
   </div>
   <div class="lesson-intro">「とりあえず発信を始めよう」——<strong>この考え方、危険です。</strong><br>誰に届けるかを決めずに発信を始めると、何を投稿すればいいかわからなくなり、結局やめてしまう悪循環にハマります。</div>
@@ -407,13 +622,76 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta1" class="cta-btn">セミナーの詳細を見る</a>
 </div>
 
-<!-- ========== LESSON 3 ========== -->
-<section class="lesson" id="lesson3">
+<!-- ========== LESSON 6 ========== -->
+<section class="lesson" id="lesson6">
   <div class="lesson-header">
-    <div class="lesson-number">03</div>
-    <h2 class="lesson-title">伸びるコンテンツの考え方</h2>
+    <div class="lesson-number">06</div>
+    <h2 class="lesson-title">プロフィール設計</h2>
   </div>
-  <div class="lesson-intro">LESSON 1で「長文投稿で価値提供する」という原則をお伝えしました。<br>でも、<strong>「長文で何を書けばいいの？」</strong>という疑問が残りますよね。</div>
+  <div class="lesson-intro">どれだけ良い投稿をしても、プロフィールがダメだとフォローされません。<br>投稿を見て「この人いいな」と思った人は、<strong>必ずプロフィールを見に来ます。</strong></div>
+
+  <h3>プロフィールファネルを理解する</h3>
+  <div class="diagram">
+    <div class="funnel">
+      <div class="funnel-step" style="background:#6366f1;width:100%;max-width:300px;padding:12px 0">投稿を見る（多い）</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#7c3aed;width:75%;max-width:225px;padding:12px 0">プロフィールを見る</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#a855f7;width:50%;max-width:150px;padding:12px 0">フォローする</div>
+    </div>
+  </div>
+  <p>これを<strong>プロフィールファネル</strong>と呼びます。どんなにインプレッションを稼いでも、プロフィールで離脱されたらフォロワーは増えない。</p>
+
+  <h3>プロフィールで伝えるべき3つのこと</h3>
+  <h4>1. この人は何者か？（肩書き・実績）</h4>
+  <p>「誰？」がわからないとフォローしません。何をしている人なのか、どんな実績があるのかを明示する。</p>
+  <h4>2. フォローすると何が得られるか？（提供価値）</h4>
+  <p>「フォローするメリット」がわからないとフォローしません。どんな情報が得られるのかを明示する。</p>
+  <h4>3. 次に何をすればいいか？（CTA）</h4>
+  <p>行動を促さないと、人は動きません。「フォローしてね」「リンクから特典を受け取ってね」など、次のアクションを明示する。</p>
+
+  <h3>プロフィールの各要素</h3>
+  <h4>名前</h4>
+  <p>覚えやすく、何者かがわかる名前にする。</p>
+  <p><strong>おすすめの形式：</strong>名前｜キーワード</p>
+  <p>例：ひろや｜Threads×AI集客、たなか｜30代からの筋トレ</p>
+
+  <h4>プロフィール文（Bio）</h4>
+  <p>ここが一番重要。以下の要素を入れる。</p>
+  <ul>
+    <li>何者か（肩書き）</li>
+    <li>実績（数字があるとベスト）</li>
+    <li>提供価値</li>
+    <li>CTA</li>
+  </ul>
+  <p>例：Threads×AIで集客を自動化｜5ヶ月でフォロワー4,342名増加｜LINE登録1,060名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
+
+  <h4>プロフィール画像</h4>
+  <p><strong>「人」だとわかることが大事。</strong>顔出しがベストですが、必須ではありません。顔出しできない場合は、AIでイラスト系のアイコンを作ればOK。</p>
+  <p>僕自身、Xでは顔出しせずアイコンで運用して、4,000万円以上売り上げました。だからアイコンでも全然いけます。</p>
+
+  <h4>リンク</h4>
+  <p>Threadsはプロフィールにリンクを1つ設置できます。<strong>おすすめはLINE登録のリンク。</strong></p>
+  <p>投稿→プロフィール→LINE登録。この導線を作ることで、フォロワーをリスト化できます。</p>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>プロフィールは「フォローするかどうか」を決める場所</li>
+      <li>伝えるべき3つ：何者か、提供価値、CTA</li>
+      <li>名前は「名前｜キーワード」形式</li>
+      <li>プロフィール画像は「人」だとわかればOK</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 7 ========== -->
+<section class="lesson" id="lesson7">
+  <div class="lesson-header">
+    <div class="lesson-number">07</div>
+    <h2 class="lesson-title">投稿の書き方</h2>
+  </div>
+  <div class="lesson-intro">LESSON 1で「長文投稿で価値提供する」という原則をお伝えしました。<br>でも、<strong>「長文で何を書けばいいの？」</strong>という疑問が残りますよね。ここでは、伸びるコンテンツの考え方から具体的な書き方まで、一気に解説します。</div>
 
   <h3>投稿タイプは4種類</h3>
 
@@ -474,102 +752,6 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </ul>
   <blockquote>質が全然違います。</blockquote>
   <div class="highlight-box">長文で価値提供、これを数打つ。これがThreadsで収益化するための正攻法です。</div>
-
-  <div class="lesson-summary">
-    <h4>まとめ</h4>
-    <ul>
-      <li>投稿タイプは4種類：ノウハウ系、共感系、ストーリー系、質問系</li>
-      <li>ノウハウ系を50%以上にする</li>
-      <li>短文バズは狙わない</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========== LESSON 4 ========== -->
-<section class="lesson" id="lesson4">
-  <div class="lesson-header">
-    <div class="lesson-number">04</div>
-    <h2 class="lesson-title">プロフィールと固定投稿の設計</h2>
-  </div>
-  <div class="lesson-intro">どれだけ良い投稿をしても、プロフィールがダメだとフォローされません。<br>投稿を見て「この人いいな」と思った人は、<strong>必ずプロフィールを見に来ます。</strong></div>
-
-  <h3>プロフィールファネルを理解する</h3>
-  <div class="diagram">
-    <div class="funnel">
-      <div class="funnel-step" style="background:#6366f1;width:100%;max-width:300px;padding:12px 0">投稿を見る（多い）</div>
-      <div class="funnel-arrow">▼</div>
-      <div class="funnel-step" style="background:#7c3aed;width:75%;max-width:225px;padding:12px 0">プロフィールを見る</div>
-      <div class="funnel-arrow">▼</div>
-      <div class="funnel-step" style="background:#a855f7;width:50%;max-width:150px;padding:12px 0">フォローする</div>
-    </div>
-  </div>
-  <p>これを<strong>プロフィールファネル</strong>と呼びます。どんなにインプレッションを稼いでも、プロフィールで離脱されたらフォロワーは増えない。</p>
-
-  <h3>プロフィールで伝えるべき3つのこと</h3>
-  <h4>1. この人は何者か？（肩書き・実績）</h4>
-  <p>「誰？」がわからないとフォローしません。何をしている人なのか、どんな実績があるのかを明示する。</p>
-  <h4>2. フォローすると何が得られるか？（提供価値）</h4>
-  <p>「フォローするメリット」がわからないとフォローしません。どんな情報が得られるのかを明示する。</p>
-  <h4>3. 次に何をすればいいか？（CTA）</h4>
-  <p>行動を促さないと、人は動きません。「フォローしてね」「リンクから特典を受け取ってね」など、次のアクションを明示する。</p>
-
-  <h3>プロフィールの各要素</h3>
-  <h4>名前</h4>
-  <p>覚えやすく、何者かがわかる名前にする。</p>
-  <p><strong>おすすめの形式：</strong>名前｜キーワード</p>
-  <p>例：ひろや｜Threads×AI集客、たなか｜30代からの筋トレ</p>
-
-  <h4>プロフィール文（Bio）</h4>
-  <p>ここが一番重要。以下の要素を入れる。</p>
-  <ul>
-    <li>何者か（肩書き）</li>
-    <li>実績（数字があるとベスト）</li>
-    <li>提供価値</li>
-    <li>CTA</li>
-  </ul>
-  <p>例：Threads×AIで集客を自動化｜5ヶ月でフォロワー4,342名増加｜LINE登録1,060名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
-
-  <h4>プロフィール画像</h4>
-  <p><strong>「人」だとわかることが大事。</strong>顔出しがベストですが、必須ではありません。顔出しできない場合は、AIでイラスト系のアイコンを作ればOK。</p>
-  <p>僕自身、Xでは顔出しせずアイコンで運用して、4,000万円以上売り上げました。だからアイコンでも全然いけます。</p>
-
-  <h4>リンク</h4>
-  <p>Threadsはプロフィールにリンクを1つ設置できます。<strong>おすすめはLINE登録のリンク。</strong></p>
-  <p>投稿→プロフィール→LINE登録。この導線を作ることで、フォロワーをリスト化できます。</p>
-
-  <h3>固定投稿の活用</h3>
-  <p>Threadsには「固定投稿」機能があります。プロフィールの直下に、1つの投稿を固定できる。<strong>固定投稿は、プロフィールを見た人が必ず目にする場所。</strong></p>
-
-  <h4>パターン1：自己紹介・ストーリー</h4>
-  <p>自分が何者か、なぜこの発信をしているか、どんな実績があるか、フォローするとどんな価値があるか。初めて見た人に「この人をフォローしたい」と思ってもらうための投稿。</p>
-
-  <h4>パターン2：LINE誘導</h4>
-  <p>無料特典の紹介、特典を受け取るメリット、LINE登録への誘導。フォロワーをリスト化するための投稿。</p>
-
-  <p><strong>どちらを選ぶか？</strong></p>
-  <ul>
-    <li>まだフォロワーが少ない段階 → パターン1でフォロワーを増やすことを優先</li>
-    <li>ある程度フォロワーがいる段階 → パターン2でリスト化を優先</li>
-  </ul>
-
-  <div class="lesson-summary">
-    <h4>まとめ</h4>
-    <ul>
-      <li>プロフィールは「フォローするかどうか」を決める場所</li>
-      <li>伝えるべき3つ：何者か、提供価値、CTA</li>
-      <li>名前は「名前｜キーワード」形式</li>
-      <li>固定投稿は自己紹介かLINE誘導</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========== LESSON 5 ========== -->
-<section class="lesson" id="lesson5">
-  <div class="lesson-header">
-    <div class="lesson-number">05</div>
-    <h2 class="lesson-title">投稿の書き方の基本</h2>
-  </div>
-  <div class="lesson-intro">LESSON 3で「長文ノウハウ系を中心に投稿する」とお伝えしました。<br>でも、ただ長く書けばいいわけじゃありません。<strong>読まれない長文は、存在しないのと同じ。</strong></div>
 
   <h3>長文投稿の基本構成</h3>
   <p>Threadsの長文投稿は、<strong>冒頭 + コメント欄</strong>で構成します。1投稿だけで完結させるんじゃなくて、自分の投稿にコメントをぶら下げていく形式。これによって、700〜1100文字の長文を読みやすく届けられます。</p>
@@ -660,6 +842,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
+      <li>投稿タイプは4種類：ノウハウ系50%以上、共感・ストーリー・質問で残り</li>
       <li>長文投稿は「冒頭 + コメント欄3つ」で構成する</li>
       <li>フックが9割。90%の時間をフックに使う</li>
       <li>フックの型：時代遅れ型、損してる型、数字型、警告型、逆張り型、疑問型</li>
@@ -676,57 +859,104 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta2" class="cta-btn">セミナーの詳細を見る</a>
 </div>
 
-<!-- ========== LESSON 6 ========== -->
-<section class="lesson" id="lesson6">
+<!-- ========== LESSON 8 ========== -->
+<section class="lesson" id="lesson8">
   <div class="lesson-header">
-    <div class="lesson-number">06</div>
-    <h2 class="lesson-title">Threads → 収益化の全体像</h2>
+    <div class="lesson-number">08</div>
+    <h2 class="lesson-title">AIで投稿を量産する</h2>
   </div>
-  <div class="lesson-intro">ここまで、Threadsで伸ばす方法をお伝えしてきました。<br>でも、正直に言います。<strong>フォロワーが増えただけでは1円にもなりません。</strong></div>
+  <div class="lesson-intro">LESSON 1で「1日5〜10投稿」と言いました。<br>「そんなの無理でしょ」と思いましたよね。<strong>AIを使えば、現実的な話です。</strong></div>
 
-  <h3>なぜThreadsだけでは収益化できないのか</h3>
-  <p>Threadsには、マネタイズ機能がほぼありません。</p>
+  <h3>95%自動化の裏側</h3>
+  <p>僕自身、Threads投稿の95%はAIで自動化しています。</p>
+  <p>以前は1日3時間かけて投稿を作っていました。今は30分です。</p>
+  <p>なぜこれが可能になったか。2,000件以上の投稿データを分析して、「伸びる投稿の型」をAIに学習させたからです。</p>
+  <div class="highlight-box">AIは「ゼロから生み出す」のは苦手ですが、「型に沿って量産する」のは得意。この特性をフル活用します。</div>
+
+  <h3>AIに任せる部分 vs 自分でやる部分</h3>
+  <p>ここの線引きが、AI活用の成否を分けます。</p>
+
+  <h4>AIに任せる部分</h4>
   <ul>
-    <li>投げ銭機能なし</li>
-    <li>アフィリエイトリンクも貼りにくい</li>
-    <li>DM機能はあるが、商談には向かない</li>
+    <li><strong>リサーチ</strong> -- ターゲットの悩み・トレンドの調査</li>
+    <li><strong>下書き生成</strong> -- 型に沿った投稿の下書き</li>
+    <li><strong>コメント欄の肉付け</strong> -- メイン投稿に対する補足コンテンツ</li>
+    <li><strong>投稿バリエーション作成</strong> -- 1つのテーマから複数パターン生成</li>
   </ul>
-  <p>つまり、<strong>Threads上で直接お金をもらう手段がない</strong>ということです。だから、Threadsは「集客の場」と割り切る必要があります。</p>
 
-  <h3>収益化までの全体導線</h3>
-  <div class="diagram">
-    <div class="flow-vertical">
-      <div class="flow-step">長文投稿で価値提供</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">インプレッション獲得</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">プロフィール誘導（CTA）</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">フォロー獲得</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step" style="background:#eef2ff;border-color:#818cf8;color:#4338ca">固定ポスト / 投稿でLINE誘導</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step" style="background:#dcfce7;border-color:#22c55e;color:#166534">LINE登録</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">ステップ配信で教育</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step highlight">セールス → 収益化</div>
-    </div>
+  <h4>自分でやる部分</h4>
+  <ul>
+    <li><strong>フック（一行目）の最終判断</strong> -- ここだけは自分の感覚で磨く</li>
+    <li><strong>自分の経験・ストーリーの追加</strong> -- AIには書けない「あなただけの話」</li>
+    <li><strong>CTA設計</strong> -- 誘導先や誘導文の判断</li>
+    <li><strong>全体のトーン調整</strong> -- 「自分らしさ」の最終チェック</li>
+  </ul>
+  <blockquote>AIが80%作って、あなたが20%仕上げる。この分業が最も効率的です。</blockquote>
+
+  <h3>量産ワークフロー</h3>
+  <p>具体的な手順はこうです。</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>ステップ</th><th>内容</th><th>所要時間</th></tr>
+    <tr><td><strong>1. テーマ決め</strong></td><td>今日の投稿テーマを3〜5個選ぶ</td><td>5分</td></tr>
+    <tr><td><strong>2. AI下書き生成</strong></td><td>各テーマでAIに下書きを作らせる</td><td>10分</td></tr>
+    <tr><td><strong>3. フック磨き</strong></td><td>一行目を5パターン出して最強を選ぶ</td><td>10分</td></tr>
+    <tr><td><strong>4. 仕上げ+投稿</strong></td><td>自分の経験を追加、トーン調整、投稿</td><td>5分</td></tr>
+  </table></div>
+
+  <p>合計30分。これで1日10投稿も現実的になります。</p>
+
+  <h3>注意点</h3>
+  <p>1つだけ、絶対に守ってほしいことがあります。</p>
+  <div class="highlight-box">AIに丸投げはNG。「AIが書いた感」が出ると、読者は離れます。</div>
+  <p>AIの文章には特徴があります。きれいすぎる、整いすぎている、感情がない。読者は無意識にそれを感じ取ります。</p>
+  <p><strong>対策はシンプルです。</strong></p>
+  <ul>
+    <li>自分の失敗談や経験を必ず1つ入れる</li>
+    <li>「僕は」「正直に言うと」など、人間味のある表現を足す</li>
+    <li>完璧すぎる文章は、あえて崩す</li>
+  </ul>
+  <blockquote>AIは道具です。あなたの経験と視点が入って初めて、「この人の投稿だ」と認識される。ここを忘れないでください。</blockquote>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>AIで投稿の80%を自動化し、残り20%を自分で仕上げる</li>
+      <li>フックの最終判断と自分の経験追加は、必ず自分でやる</li>
+      <li>30分で1日10投稿の量産が可能</li>
+      <li>AI丸投げはNG。人間味を必ず入れる</li>
+    </ul>
   </div>
+</section>
 
-  <h3>LINEに誘導する3つのメリット</h3>
-  <h4>1. リスト化できる</h4>
-  <p>フォロワーは「借り物」です。アカウントが凍結されたら、フォロワーとの接点がなくなります。LINEに誘導すれば「自分のリスト」になります。</p>
-  <h4>2. プッシュ通知ができる</h4>
-  <p>Threadsの投稿は、フォロワー全員に届くわけではありません。LINEならプッシュ通知で確実に届きます。</p>
-  <h4>3. クローズドな環境で教育できる</h4>
-  <p>Threadsは公開の場。深い内容を出すと競合にパクられます。LINEはクローズドな環境。ここでしか出さない情報を提供することで、信頼関係を構築できます。</p>
+<!-- ========== LESSON 9 ========== -->
+<section class="lesson" id="lesson9">
+  <div class="lesson-header">
+    <div class="lesson-number">09</div>
+    <h2 class="lesson-title">固定ポスト + Threads→LINE導線</h2>
+  </div>
+  <div class="lesson-intro">ここまでで、投稿の作り方は完成しました。<br>最後のパーツは、<strong>フォロワーをLINE登録に変える「導線」</strong>の設計です。</div>
+
+  <h3>固定投稿の活用</h3>
+  <p>Threadsには「固定投稿」機能があります。プロフィールの直下に、1つの投稿を固定できる。<strong>固定投稿は、プロフィールを見た人が必ず目にする場所。</strong></p>
+
+  <h4>パターン1：自己紹介・ストーリー</h4>
+  <p>自分が何者か、なぜこの発信をしているか、どんな実績があるか、フォローするとどんな価値があるか。初めて見た人に「この人をフォローしたい」と思ってもらうための投稿。</p>
+
+  <h4>パターン2：LINE誘導</h4>
+  <p>無料特典の紹介、特典を受け取るメリット、LINE登録への誘導。フォロワーをリスト化するための投稿。</p>
+
+  <p><strong>どちらを選ぶか？</strong></p>
+  <ul>
+    <li>まだフォロワーが少ない段階 → パターン1でフォロワーを増やすことを優先</li>
+    <li>ある程度フォロワーがいる段階 → パターン2でリスト化を優先</li>
+  </ul>
 
   <h3>LINE誘導の3つのポイント</h3>
   <h4>1. プロフィールリンク</h4>
-  <p>プロフィールに設置できる1つのリンク。ここにLINEのリンクを設置します。</p>
+  <p>プロフィールに設置できる1つのリンク。ここにLINEのリンクを設置します。これが最も基本的な導線です。</p>
   <h4>2. 固定ポスト</h4>
-  <p>プロフィール直下に固定する投稿。ここでLINE登録のメリットを伝え、誘導します。</p>
+  <p>プロフィール直下に固定する投稿。ここでLINE登録のメリットを伝え、誘導します。プロフィールリンクだけより、固定ポストで「なぜ登録すべきか」を説明した方が登録率が上がります。</p>
   <h4>3. 投稿内CTA</h4>
   <p>通常の投稿のCTA（コメント欄3）でLINE誘導。ただし、毎回やるとしつこいので、5〜10投稿に1回程度が目安。</p>
 
@@ -763,23 +993,22 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <li><strong>プロフィール訪問率</strong> = プロフィールアクセス / インプレッション × 100（目安：0.5%以上）</li>
     <li><strong>フォロー率</strong> = フォロワー増加 / プロフィールアクセス × 100（目安：5%以上）</li>
   </ul>
-  <blockquote>離脱が多いステップを改善すれば、全体の成果が上がります。</blockquote>
+  <blockquote>離脱が多いステップを改善すれば、全体の成果が上がります。数字で判断して、ボトルネックを潰す。これが導線改善の基本です。</blockquote>
 
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>Threadsは「集客の場」であり、直接収益化はできない</li>
-      <li>Threads→LINE→セールスの導線を設計する</li>
-      <li>LINE誘導には魅力的な特典が必要</li>
-      <li>固定ポストでLINE登録のメリットを伝える</li>
-      <li>数値を計測して、離脱ポイントを改善する</li>
+      <li>固定ポストは「自己紹介」か「LINE誘導」の2パターン</li>
+      <li>LINE誘導は3箇所：プロフィールリンク、固定ポスト、投稿内CTA</li>
+      <li>特典（リードマグネット）がないとLINE登録は増えない</li>
+      <li>数値を週次で計測し、離脱ポイントを改善する</li>
     </ul>
   </div>
 </section>
 
 <!-- ===== CTA 3 ===== -->
 <div class="seminar-cta">
-  <p class="cta-eyebrow">収益化の導線は理解できた。でも...</p>
+  <p class="cta-eyebrow">導線設計と特典の考え方はわかった。でも...</p>
   <h3>「自分の商品・サービスだと、<br>どう導線を組めばいいの？」</h3>
   <p>導線設計は、商品やジャンルによって最適解が変わります。<br>セミナーでは、あなたの状況に合わせたロードマップを一緒に設計します。</p>
   <a href="https://launchkit-nine.vercel.app/seminar2/?utm_source=threads-guide&utm_content=cta3" class="cta-btn">セミナーの詳細を見る</a>
@@ -847,12 +1076,15 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-summary">
     <h4>全レッスンの振り返り</h4>
     <ul>
-      <li><strong>LESSON 1</strong>：競合が少ない、長文が読まれる、導線が作りやすい</li>
-      <li><strong>LESSON 2</strong>：ペルソナを具体的に設定し、痛いところだけを突く</li>
-      <li><strong>LESSON 3</strong>：長文投稿×数を打つ。ノウハウ系をメインに</li>
-      <li><strong>LESSON 4</strong>：「何者か」「何が得られるか」を明確に。CTAで次のアクションを促す</li>
-      <li><strong>LESSON 5</strong>：フックで手を止め、コメント欄で価値提供。型を使って量産</li>
-      <li><strong>LESSON 6</strong>：Threads→LINE→セールスの導線を設計。特典でLINE誘導</li>
+      <li><strong>LESSON 1</strong>：なぜ今Threadsなのか -- 競合が少ない、長文が読まれる、導線が作りやすい</li>
+      <li><strong>LESSON 2</strong>：受講生の実績 -- 正しいやり方で成果を出したリアルな事例</li>
+      <li><strong>LESSON 3</strong>：収益化の全体像 -- ゴールは売上。Threads→LINE→セールスの導線</li>
+      <li><strong>LESSON 4</strong>：キャラクター設定 -- まず専門性と信頼、掛け合わせで独自ポジション</li>
+      <li><strong>LESSON 5</strong>：ターゲット設計 -- ペルソナを具体的に設定し、刺さる発信をする</li>
+      <li><strong>LESSON 6</strong>：プロフィール設計 -- 「何者か」「何が得られるか」を明確に</li>
+      <li><strong>LESSON 7</strong>：投稿の書き方 -- フックで手を止め、コメント欄で価値提供</li>
+      <li><strong>LESSON 8</strong>：AIで投稿量産 -- 30分で10投稿、80%AI＋20%自分で仕上げ</li>
+      <li><strong>LESSON 9</strong>：固定ポスト+LINE導線 -- 特典でLINE誘導、数値で改善</li>
     </ul>
   </div>
 </section>
@@ -867,7 +1099,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <div class="benefits">
       <div class="benefit">
         <div class="benefit-icon">?</div>
-        <span>自分のターゲット設計、これで合ってるのかわからない</span>
+        <span>自分のキャラクター設定やターゲット、これで合ってるのかわからない</span>
       </div>
       <div class="benefit">
         <div class="benefit-icon">?</div>
@@ -875,7 +1107,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       </div>
       <div class="benefit">
         <div class="benefit-icon">?</div>
-        <span>収益化の導線を自分の商品に落とし込めない</span>
+        <span>AIの使い方や導線設計を自分の商品に落とし込めない</span>
       </div>
       <div class="benefit">
         <div class="benefit-icon">?</div>
