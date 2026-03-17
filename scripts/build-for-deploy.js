@@ -80,6 +80,15 @@ async function main() {
     await fs.copy(seminar4Src, seminar4Dist);
   }
 
+  // 3.75. course1 をdist/course1/にコピー
+  console.log('Copying course1 LP...');
+  const course1Src = path.join(projectRoot, 'course1');
+  const course1Dist = path.join(distDir, 'course1');
+  if (await fs.pathExists(course1Src)) {
+    await fs.ensureDir(course1Dist);
+    await fs.copy(course1Src, course1Dist);
+  }
+
   // 3.8. threads-guide をdist/threads-guide/にコピー
   console.log('Copying threads-guide...');
   const threadsGuideSrc = path.join(projectRoot, 'threads-guide');
