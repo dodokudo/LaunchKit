@@ -547,14 +547,60 @@
     <!-- 1. 緊急告知バー -->
     <div class="emergency-bar">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        このプレミアム動画は3日間限定公開です。<br>再公開はいたしませんので期限内にご視聴ください
+        セミナーアーカイブは2日間限定公開です。<br>再公開いたしませんので期限内にご視聴ください
     </div>
+
+    <!-- カウントダウンタイマー -->
+    <div id="countdown-timer" style="background:linear-gradient(135deg,#1a1a2e,#16213e);padding:16px 10px;text-align:center;">
+        <p style="color:#ff6b6b;font-size:13px;font-weight:700;margin-bottom:8px;letter-spacing:1px;">公開終了まで</p>
+        <div id="timer-display" style="display:flex;justify-content:center;gap:8px;">
+            <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px 12px;min-width:60px;">
+                <span id="timer-days" style="color:#fff;font-size:28px;font-weight:900;display:block;">0</span>
+                <span style="color:#999;font-size:10px;">日</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px 12px;min-width:60px;">
+                <span id="timer-hours" style="color:#fff;font-size:28px;font-weight:900;display:block;">0</span>
+                <span style="color:#999;font-size:10px;">時間</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px 12px;min-width:60px;">
+                <span id="timer-mins" style="color:#fff;font-size:28px;font-weight:900;display:block;">0</span>
+                <span style="color:#999;font-size:10px;">分</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px 12px;min-width:60px;">
+                <span id="timer-secs" style="color:#fff;font-size:28px;font-weight:900;display:block;">0</span>
+                <span style="color:#999;font-size:10px;">秒</span>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function(){
+        var deadline = new Date('2026-03-28T23:59:00+09:00').getTime();
+        function update(){
+            var now = new Date().getTime();
+            var diff = deadline - now;
+            if(diff <= 0){
+                document.getElementById('countdown-timer').innerHTML = '<p style="color:#ff6b6b;font-size:16px;font-weight:700;padding:20px;">公開は終了しました</p>';
+                return;
+            }
+            var d = Math.floor(diff/(1000*60*60*24));
+            var h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+            var m = Math.floor((diff%(1000*60*60))/(1000*60));
+            var s = Math.floor((diff%(1000*60))/1000);
+            document.getElementById('timer-days').textContent = d;
+            document.getElementById('timer-hours').textContent = h;
+            document.getElementById('timer-mins').textContent = m;
+            document.getElementById('timer-secs').textContent = s;
+        }
+        update();
+        setInterval(update, 1000);
+    })();
+    </script>
 
     <div class="container">
 
         <!-- 2. FVエリア -->
         <div class="fv-area">
-            
+
             <!-- メイン動画 -->
             <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/xzYC29Uv2X4?modestbranding=1&rel=0&controls=1&showinfo=0&vq=hd1080" title="ロードマップ作成会ローンチ動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -730,56 +776,6 @@
             </div>
         </section>
 
-        <!-- 7. 特典セクション (アイコンに戻す) -->
-        <section class="section">
-            <div class="benefits-area">
-                <div class="benefits-title">参加者限定 4大特典</div>
-                
-                <p class="benefits-intro-text">
-                    ロードマップ作成会に参加された方全員に<br class="pc-br">
-                    <span class="text-red">今すぐ使える豪華特典</span>をプレゼント！
-                </p>
-
-                <div class="benefit-grid">
-                    <!-- 特典1 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-gift"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典1：バズるThreads<br class="sp-br">投稿作成プロンプト</h3>
-                            <p>1日で1,000人増やした、そのままコピペで使える最強プロンプト。</p>
-                        </div>
-                    </div>
-                    <!-- 特典2 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-book"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典2：売れる商品作成<br class="sp-br">マニュアル(PDF49枚)</h3>
-                            <p>未経験でも高額商品を作り上げた方法を完全解説。</p>
-                        </div>
-                    </div>
-                    <!-- 特典3 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-brands fa-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典3：月商100万円<br class="sp-br">LINE設計テンプレート</h3>
-                            <p>5日で700万円売った、そのまま使える配信テンプレート。</p>
-                        </div>
-                    </div>
-                    <!-- 特典4 -->
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="benefit-content">
-                            <h3>特典4：1ヶ月で126万インプ<br class="sp-br">達成の運用データ</h3>
-                            <p>実際のThreads運用データを全てまるまる公開します。</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center" style="margin-top: 25px; font-weight: bold; font-size: 15px;">
-                    これら全て、無料でプレゼントします。<br>
-                    <span class="text-marker">正直、この特典だけでも<br class="sp-br">5万円以上の価値があります。</span>
-                </p>
-            </div>
-        </section>
 
         <!-- 追加CTAセクション (赤枠) -->
         <section class="section" style="padding-top:0;">
@@ -809,7 +805,7 @@
 
         <!-- 5. 新セクション: 2025年の変化 -->
         <section class="section">
-            <h2 class="section-title">2025年、<br class="sp-br">こんな<span>変化</span>が<br class="pc-br">起きています</h2>
+            <h2 class="section-title">2026年、<br class="sp-br">こんな<span>変化</span>が<br class="pc-br">起きています</h2>
             <div class="change-section-text">
                 <p>かつての「リールをバズらせれば売れる」「フォロワーが多ければOK」というInstagram時代は、もう終わりを迎えようとしています。</p>
                 <p>にもかかわらず、まだ多くの人が"Instagram"に縛られたまま、伸び悩んでいるのが現状です。</p>
