@@ -263,5 +263,17 @@
     "category": "オプト",
     "created": "2026-03-18",
     "updated": "2026-03-18"
+  },
+  "thread-ai-roadmap-v4": {
+    "name": "thread-ai-roadmap-v4",
+    "category": "オプト",
+    "created": "2026-03-26",
+    "updated": "2026-03-26"
+  },
+  "3mR": {
+    "name": "3mR",
+    "category": "オプト",
+    "created": "2026-04-05",
+    "updated": "2026-04-05"
   }
 }
