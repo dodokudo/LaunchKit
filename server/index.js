@@ -1,6 +1,13 @@
 #!/usr/bin/env node
 'use strict';
 
+const Sentry = require('@sentry/node');
+
+Sentry.init({
+  dsn: 'https://288de9659acefd58aafb2453a315f616@o4510956711444480.ingest.us.sentry.io/4510956787073024',
+  tracesSampleRate: 0.1,
+});
+
 const express = require('express');
 const fs = require('fs-extra');
 const path = require('path');
@@ -293,6 +300,8 @@ app.post('/api/projects/:slug/save-html-direct', async (req, res) => {
 
 app.use('/admin', express.static(path.join(projectRoot, 'admin')));
 app.use('/preview', express.static(distDir));
+
+Sentry.setupExpressErrorHandler(app);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
