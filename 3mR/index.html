@@ -1789,15 +1789,9 @@ br.sp-only { display: none; }
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
-/* Timer (3-day countdown from first visit) */
+/* Timer (fixed deadline: 2026-04-07 23:59:59 JST) */
 (function(){
-  var key = 'seminar4_timer_end';
-  var end = localStorage.getItem(key);
-  if (!end) {
-    end = Date.now() + 3 * 24 * 60 * 60 * 1000;
-    localStorage.setItem(key, end);
-  }
-  end = parseInt(end, 10);
+  var end = new Date('2026-04-07T23:59:59+09:00').getTime();
   function update() {
     var diff = end - Date.now();
     if (diff < 0) diff = 0;
