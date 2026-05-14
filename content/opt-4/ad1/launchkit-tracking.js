@@ -91,7 +91,6 @@
 
     // 遷移優先: 計測は keepalive で投げて、遷移は止めない
     try {
-      try { if (typeof window.fbq === 'function') { fbq('track', 'Lead'); } } catch(e){}
       sendEvent('line_cta_click');
     } catch (err) {
       // 失敗しても無視
