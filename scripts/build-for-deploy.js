@@ -534,6 +534,13 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
   await fs.ensureDir(path.join(distDir, 'list'));
   await fs.writeFile(path.join(distDir, 'list', 'index.html'), listHtml);
 
+  // Meta Pixel共通スクリプトをdistルートにコピー
+  const pixelSrc = path.join(projectRoot, 'public', 'meta-pixel.js');
+  if (await fs.pathExists(pixelSrc)) {
+    await fs.copy(pixelSrc, path.join(distDir, 'meta-pixel.js'));
+    console.log('Copied meta-pixel.js to dist root');
+  }
+
   console.log('Build for deployment completed!');
   console.log('- Root (/) -> threads-lp-green (no FV images)');
   console.log('- /threads-lp-green-v2/ -> with FV images');
