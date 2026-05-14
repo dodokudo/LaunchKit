@@ -138,7 +138,8 @@ async function main() {
     raw_html: null,
     footer_scripts: config.footer_scripts || [],
     sticky_cta: config.sticky_cta || { enabled: false },
-    custom_styles: config.custom_styles || null
+    custom_styles: config.custom_styles || null,
+    launchkit: config.launchkit || null
   };
 
   if (config.raw_html_file) {

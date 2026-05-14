@@ -1,0 +1,17 @@
+{
+  "slug": "test-tracking-e2e",
+  "template": "raw-html/base.njk",
+  "paths": {
+    "assets": "./assets"
+  },
+  "meta": {
+    "title": "LaunchKit計測テストLP",
+    "description": "page_view と line_cta_click を計測"
+  },
+  "raw_html_file": "content/test-tracking-e2e/landing.html",
+  "assets_source": "seminar/assets",
+  "launchkit": {
+    "lp_id": "72048349-d038-4b06-bb2f-16415c345816",
+    "api_base": "https://autostudio-self.vercel.app"
+  }
+}

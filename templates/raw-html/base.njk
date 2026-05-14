@@ -27,6 +27,15 @@
       animation: sticky-float 2s infinite;
     }
   </style>
+  {% if launchkit and launchkit.lp_id %}
+  <script>
+    window.LAUNCHKIT_TRACKING = {
+      lpId: "{{ launchkit.lp_id }}",
+      apiBase: "{{ launchkit.api_base | default('https://autostudio-self.vercel.app') }}"
+    };
+  </script>
+  <script src="{{ assets }}/js/launchkit-tracking.js" defer></script>
+  {% endif %}
 </head>
 <body>
   {% if countdown.enabled and countdown.deadline %}

@@ -35,6 +35,15 @@
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <![endif]-->
+  {% if launchkit and launchkit.lp_id %}
+  <script>
+    window.LAUNCHKIT_TRACKING = {
+      lpId: "{{ launchkit.lp_id }}",
+      apiBase: "{{ launchkit.api_base | default('https://autostudio-self.vercel.app') }}"
+    };
+  </script>
+  <script src="{{ assets }}/js/launchkit-tracking.js" defer></script>
+  {% endif %}
 </head>
 <body>
   {% for snippet in tag_manager.body %}
