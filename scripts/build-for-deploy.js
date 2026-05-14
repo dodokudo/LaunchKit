@@ -541,6 +541,33 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
     console.log('Copied meta-pixel.js to dist root');
   }
 
+  // dist内の全HTML に <script src="/meta-pixel.js"> を自動注入 (冪等)
+  const PIXEL_SCRIPT_TAG = '<script async src="/meta-pixel.js"></script>';
+  const PIXEL_MARKER = 'src="/meta-pixel.js"';
+  function walkHtml(dir, out) {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkHtml(full, out);
+      else if (entry.name.endsWith('.html')) out.push(full);
+    }
+  }
+  const htmlFiles = [];
+  walkHtml(distDir, htmlFiles);
+  let injected = 0;
+  let alreadyHad = 0;
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, 'utf8');
+    if (html.includes(PIXEL_MARKER)) { alreadyHad += 1; continue; }
+    const headIdx = html.search(/<head[^>]*>/i);
+    if (headIdx < 0) continue;
+    const insertAt = html.indexOf('>', headIdx) + 1;
+    const next = html.slice(0, insertAt) + '\n<!-- Meta Pixel (LK) auto -->\n' + PIXEL_SCRIPT_TAG + '\n<!-- End -->\n' + html.slice(insertAt);
+    fs.writeFileSync(file, next, 'utf8');
+    injected += 1;
+  }
+  console.log(`Meta Pixel auto-inject: injected=${injected}, already=${alreadyHad}, total HTMLs=${htmlFiles.length}`);
+
   console.log('Build for deployment completed!');
   console.log('- Root (/) -> threads-lp-green (no FV images)');
   console.log('- /threads-lp-green-v2/ -> with FV images');
