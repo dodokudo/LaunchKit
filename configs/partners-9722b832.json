@@ -1,0 +1,10 @@
+{
+  "slug": "partners-9722b832",
+  "template": "raw-html/base.njk",
+  "copy_raw": true,
+  "raw_html_file": "content/partners-9722b832/landing.html",
+  "meta": {
+    "title": "パートナー実績ダッシュボード",
+    "description": "代理店向け実績集計ページ"
+  }
+}

@@ -128,7 +128,8 @@ async function main() {
 
   // distディレクトリのLP一覧を取得（サブディレクトリも含む）
   const dirs = [];
-  const excludeDirs = ['assets', 'list', '.vercel', 'css', 'js', 'images', 'fonts'];
+  // partners-* は代理店向け限定公開ページのため一覧に載せない
+  const excludeDirs = ['assets', 'list', '.vercel', 'css', 'js', 'images', 'fonts', 'partners-9722b832'];
   const topDirs = (await fs.readdir(distDir, { withFileTypes: true }))
     .filter(d => d.isDirectory() && !excludeDirs.includes(d.name) && !d.name.startsWith('.'));
 
