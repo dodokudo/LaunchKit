@@ -87,6 +87,18 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .structure-block .arrow{color:#818cf8}
 .structure-block .highlight{color:#fbbf24}
 
+/* Prompt cards */
+.prompt-card{background:#fff;border:1px solid #e0e7ff;border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(99,102,241,.12);margin:24px 0}
+.prompt-head{display:flex;align-items:center;gap:12px;padding:14px 20px;background:linear-gradient(135deg,#4f5bef,#8b5cf6);color:#fff}
+.prompt-head .pnum{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.2);font-size:14px;font-weight:800;flex-shrink:0}
+.prompt-head .ptitle{font-size:16px;font-weight:800;line-height:1.4}
+.prompt-purpose{padding:12px 20px;font-size:14px;color:#475569;background:#f6f8ff;border-bottom:1px dashed #d8dcff;line-height:1.7}
+.prompt-purpose strong{color:#4338ca}
+.prompt-code{background:#0f172a;color:#e2e8f0;padding:18px 20px;font-family:"SF Mono","Fira Code",monospace;font-size:12.5px;line-height:1.85;white-space:pre-wrap;word-break:break-word}
+.prompt-code .v{color:#fbbf24}
+.prompt-out{padding:12px 20px;font-size:13px;color:#475569;line-height:1.7;border-top:1px dashed #e0e7ff}
+.prompt-out strong{color:#4338ca}
+
 /* Summary */
 .lesson-summary{background:#fff;border:1px solid #e0e7ff;border-radius:12px;padding:20px 24px;margin-top:28px;box-shadow:0 2px 12px rgba(99,102,241,.08)}
 .lesson-summary h4{margin:0 0 12px;font-size:15px;font-weight:700;background:linear-gradient(135deg,#4f5bef,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -292,23 +304,23 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <p class="intro-text">特典を受け取っていただき、ありがとうございます。</p>
     <p class="intro-text"><strong>正直に言います。</strong><br>あなたが今、Instagram・X・YouTubeで集客しようとしてるなら、<strong>毎日お金をドブに捨てているのと同じです。</strong></p>
     <p class="intro-text">工藤です。AI×Threadsの専門家として、SNS集客の自動化を教えています。<br>まず、僕自身の数字を見てください。</p>
-    <img src="assets/images/hero-screenshot.png" alt="Threads運用実績" class="hero-screenshot" loading="eager" width="720">
+    <img src="assets/images/profile-intro.png" alt="くどう｜AI×Threads売れるマーケ設計士 プロフィール" class="hero-screenshot" loading="eager" width="720">
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="num">4,342</span>
-        <span class="label">5ヶ月のフォロワー増加</span>
+        <span class="num">5,000</span>
+        <span class="label">6ヶ月のフォロワー増加</span>
       </div>
       <div class="hero-stat">
-        <span class="num">1,060</span>
+        <span class="num">1,400</span>
         <span class="label">LINE登録者数</span>
       </div>
       <div class="hero-stat">
-        <span class="num">95%</span>
-        <span class="label">AIで自動化</span>
+        <span class="num">1億円</span>
+        <span class="label">SNS累計売上</span>
       </div>
     </div>
-    <p class="intro-text" style="margin-top:24px">しかも、投稿の<strong>95%はAIで自動化</strong>。僕が1日にかける時間は、たった30分です。</p>
-    <p class="intro-text">この教材には、僕が<strong>2,000件以上の投稿データを分析して作り上げた「型」</strong>を全部詰め込みました。<br>上から順番に読んで、そのまま実践してください。</p>
+    <p class="intro-text" style="margin-top:24px">しかも、投稿作成のほとんどはAIに任せています。僕が1日にかける時間は、たった<strong>1時間ほど</strong>です。</p>
+    <p class="intro-text">この教材には、僕が<strong>2,500投稿以上を分析して作り上げた「型」</strong>と、<strong>そのままコピペして使えるAIプロンプト</strong>を全部詰め込みました。<br>上から順番に読んで、そのまま実践してください。</p>
     <div style="background:linear-gradient(135deg,#fefce8,#fef9c3);border:1px solid #eab308;border-radius:12px;margin-top:20px;margin-bottom:8px;padding:16px;font-size:14px;line-height:1.8;text-align:left">
       <strong style="color:#92400e;font-size:15px">特別なご案内</strong><br>
       最後まで読んでいただいた方限定で、追加のボーナスコンテンツを用意しています。<strong>必ず最後まで読んでください。</strong>
@@ -318,19 +330,19 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 
 <!-- ========== TOC ========== -->
 <nav class="toc container">
-  <h2>全9レッスン + ボーナス</h2>
-  <p style="font-size:14px;color:#64748b;margin-bottom:16px">上から順番に読むだけで、Threads集客の全体像がわかります。</p>
+  <h2>全10レッスン</h2>
+  <p style="font-size:14px;color:#64748b;margin-bottom:16px">上から順番に読むだけで、Threads×AI運用の全体像から実践まで一気にわかります。</p>
   <ul class="toc-list">
-    <li><a href="#lesson1"><span class="toc-num">01</span>なぜ今Threadsなのか</a></li>
-    <li><a href="#lesson2"><span class="toc-num">02</span>受講生の実績</a></li>
-    <li><a href="#lesson3"><span class="toc-num">03</span>収益化の全体像</a></li>
-    <li><a href="#lesson4"><span class="toc-num">04</span>キャラクター設定</a></li>
-    <li><a href="#lesson5"><span class="toc-num">05</span>誰に届けるかを決める</a></li>
-    <li><a href="#lesson6"><span class="toc-num">06</span>プロフィール設計</a></li>
-    <li><a href="#lesson7"><span class="toc-num">07</span>投稿の書き方</a></li>
-    <li><a href="#lesson8"><span class="toc-num">08</span>AIで投稿を量産する</a></li>
-    <li><a href="#lesson9"><span class="toc-num">09</span>固定ポスト + Threads→LINE導線</a></li>
-    <li><a href="#bonus"><span class="toc-num bonus">B</span>運用マインドセット</a></li>
+    <li><a href="#lesson1"><span class="toc-num">01</span>なぜ今、頑張っても成果が出ないのか</a></li>
+    <li><a href="#lesson2"><span class="toc-num">02</span>Threadsをやるとこうなる</a></li>
+    <li><a href="#lesson3"><span class="toc-num">03</span>Threads×AIで取り戻す、本来のビジネスの楽しさ</a></li>
+    <li><a href="#lesson4"><span class="toc-num">04</span>伸びる仕組み — アルゴリズムと3つの原則</a></li>
+    <li><a href="#lesson5"><span class="toc-num">05</span>アカウント設計 — リサーチ×ターゲット×プロフィール</a></li>
+    <li><a href="#lesson6"><span class="toc-num">06</span>読まれる長文投稿の型</a></li>
+    <li><a href="#lesson7"><span class="toc-num">07</span>AIの正しい使い方 — 丸投げが伸びない理由</a></li>
+    <li><a href="#lesson8"><span class="toc-num">08</span>コピペで使える実践プロンプト5本</a></li>
+    <li><a href="#lesson9"><span class="toc-num">09</span>1日1時間の運用ルーティン</a></li>
+    <li><a href="#lesson10"><span class="toc-num">10</span>運用マインドセット</a></li>
   </ul>
 </nav>
 
@@ -340,76 +352,94 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 <section class="lesson" id="lesson1">
   <div class="lesson-header">
     <div class="lesson-number">01</div>
-    <h2 class="lesson-title">なぜ今Threadsなのか？</h2>
+    <h2 class="lesson-title">なぜ今、頑張っても成果が出ないのか</h2>
   </div>
-  <div class="lesson-intro">ぶっちゃけ、今InstagramやXで毎日投稿してる人の9割は、<strong>場所選びの時点で負けてます。</strong><br>どれだけ頑張っても伸びない場所で消耗し続けるのは、時間と労力の垂れ流し。結論から言います。<strong>今、最もコスパ良く集客できるのはThreadsです。</strong></div>
+  <div class="lesson-intro">最初に、一番大事な話をします。<br>今SNS集客で成果が出ていないなら、それは<strong>あなたの努力不足でも、センスがないからでもありません。やり方が、集客につながる構造になっていないだけ</strong>です。まずは自分がどのパターンにハマっているか、確認してください。</div>
 
-  <h3>他SNSとの比較</h3>
+  <h3>SNS集客で失敗する5つのパターン</h3>
+  <p>2,500投稿以上のデータ分析と、100名以上の集客支援をしてきた中で見えてきた、成果が出ない人の典型パターンが5つあります。この5つのどれかに当てはまっている状態で、どれだけ投稿数を増やしても、AIを使っても、成果は出ません。</p>
 
-  <div class="diagram">
-    <div class="sns-grid">
-      <div class="sns-card dim">
-        <div class="sns-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#1a1a1a"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
-        <div class="sns-name">X（旧Twitter）</div>
-        <div class="sns-tags"><span class="sns-tag bad">短文文化</span><span class="sns-tag bad">競合飽和</span></div>
-      </div>
-      <div class="sns-card dim">
-        <div class="sns-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="url(#ig-grad)"><defs><linearGradient id="ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#feda75"/><stop offset="25%" stop-color="#fa7e1e"/><stop offset="50%" stop-color="#d62976"/><stop offset="75%" stop-color="#962fbf"/><stop offset="100%" stop-color="#4f5bd5"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-        <div class="sns-name">Instagram</div>
-        <div class="sns-tags"><span class="sns-tag bad">画像必須</span><span class="sns-tag bad">工数大</span></div>
-      </div>
-      <div class="sns-card dim">
-        <div class="sns-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-        <div class="sns-name">YouTube</div>
-        <div class="sns-tags"><span class="sns-tag bad">動画制作</span><span class="sns-tag bad">時間大</span></div>
-      </div>
-      <div class="sns-card active">
-        <div class="sns-icon"><img src="assets/images/threads_logo.png" alt="Threads" width="28" height="28" style="display:block;margin:0 auto"></div>
-        <div class="sns-name">Threads</div>
-        <div class="sns-tags"><span class="sns-tag good">競合少</span><span class="sns-tag good">長文◎</span><span class="sns-tag good">導線◎</span></div>
-      </div>
+  <div class="hook-cards">
+    <div class="hook-card">
+      <div class="hook-type">パターン1</div>
+      <div class="hook-example">Instagram・リールを頑張っているのに、売上もLINE登録も増えない</div>
+      <div class="hook-effect">台本を書いて、撮影して、編集して、テロップを入れて、BGMを選んで、サムネイルまで作る。投稿はしている。でもLINE登録は増えない、問い合わせも来ない、売上につながらない。</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">パターン2</div>
+      <div class="hook-example">Threadsを始めたのに、自己流投稿で成果が出ないまま終わる</div>
+      <div class="hook-effect">「Threadsが伸びる」「文章だけで集客できる」と聞いて始めた。でも投稿しても反応がない。毎日投稿しているのに伸びない。長文を書いているのに読まれない。</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">パターン3</div>
+      <div class="hook-example">AIで投稿を作っているのに、薄い文章になって刺さらない</div>
+      <div class="hook-effect">ChatGPTに投稿を作らせる。ネタも出させる。でも、どこか浅くて自分の言葉になっていない。見込み客の心に刺さらないから、集客にも売上にもつながらない。</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">パターン4</div>
+      <div class="hook-example">たまに投稿が伸びても、いいねで終わって売上につながらない</div>
+      <div class="hook-effect">伸びているように見えて、実は集客にはつながっていない。これが一番危険な状態。「数字は動いてるのに売上はゼロ」のまま時間だけが過ぎていく。</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-type">パターン5</div>
+      <div class="hook-example">結局SNS疲れして、止まってしまう</div>
+      <div class="hook-effect">「毎日投稿しなきゃ」「分析しなきゃ」という義務感はある。でも何を見ればいいか、どこを直せばいいかわからない。投稿が苦しくなって、SNS自体が嫌になってやめていく。</div>
     </div>
   </div>
 
-  <h4>X（旧Twitter）との違い</h4>
-  <p>Xは短文文化が根付いています。140文字の制限が長く続いたため、ユーザーは短い文章を好む傾向があります。</p>
-  <blockquote>しかもXはすでに競合が飽和してます。今から参入しても、先行者に埋もれて終わりです。</blockquote>
+  <p>Instagramで疲弊する。Threadsで成果が出ない。AIで薄い投稿を作る。伸びても収益につながらない。そしてSNS疲れしてやめていく。<strong>今のSNS集客で成果が出ない人は、だいたいこのどれかにハマっています。</strong></p>
 
-  <h4>Instagramとの違い</h4>
-  <p>Instagramはビジュアル中心のプラットフォーム。画像や動画のクオリティが勝負を分けます。</p>
-  <blockquote>今はリールが完全に優遇されてるので、動画制作スキルがないと話になりません。1投稿に何時間もかけて、それでも伸びない。正直、コスパが悪すぎます。</blockquote>
+  <h3>問題は「努力」ではなく「構造」</h3>
+  <p>ここで、はっきり伝えたいことがあります。</p>
+  <blockquote>これはあなたが悪いわけでも、努力が足りないわけでも、センスがないわけでもありません。今のやり方が、集客・売上につながる構造になっていないだけです。</blockquote>
+  <p>今のSNS集客は、ただ頑張れば勝てる時代ではありません。</p>
+  <ul>
+    <li><strong>頑張る場所</strong> — どの媒体で戦うか</li>
+    <li><strong>投稿の型</strong> — どんな構造で書くか</li>
+    <li><strong>AIへの指示の出し方</strong> — 何を渡して作らせるか</li>
+  </ul>
+  <p>この3つがズレていると、どれだけ投稿しても成果にはつながりません。逆に言えば、<strong>この3つを直すだけで、同じ努力量でも結果はまったく変わります。</strong>この教材では、この3つを順番に直していきます。</p>
 
-  <h4>YouTubeとの違い</h4>
-  <p>YouTubeは動画制作に時間とスキルが必要です。1本の動画を作るのに数時間〜数日かかることも珍しくありません。</p>
-  <p>テキストなら10分で1投稿作れますが、動画だとそうはいきません。</p>
-  <div class="highlight-box">マジで「数を打つ」戦略とは相性が悪い。動画を1本作る時間で、Threadsなら10投稿出せます。</div>
-
-  <h3>Threadsを選ぶべき3つの理由</h3>
-
-  <h4>理由1：競合が少ない（先行者利益）</h4>
-  <p>Threadsは2023年7月にリリースされた新しいプラットフォーム。まだ参入者が少なく、今から始めれば先行者利益を取れます。</p>
-  <blockquote>はっきり言います。1年後、2年後には競合が増えて同じことをやっても伸びなくなる。「あの時始めておけば…」と後悔する前に動いた人が勝ちます。</blockquote>
-
-  <h4>理由2：長文が読まれる文化</h4>
-  <p>Threadsのアルゴリズムで最も重要なのは「滞在時間」です。ユーザーがどれだけ長くその投稿を見ていたかを計測し、滞在時間が長い投稿を「良い投稿」と判断して拡散します。</p>
-  <div class="highlight-box">つまり、長文投稿を書ける人が圧倒的に有利。短文でバズっても滞在時間は伸びないから、アルゴリズムに評価されません。</div>
-
-  <h4>理由3：収益化導線が作りやすい</h4>
-  <p>Threadsはプロフィールにリンクを1つ設置できます。ここにLINEのリンクを置けば、投稿→プロフィール→LINE登録という導線が簡単に作れます。</p>
-  <blockquote>導線がシンプルだからこそ、迷わず行動してもらえる。これ、地味に見えて売上に直結するポイントです。</blockquote>
-
-
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>成果が出ないのは努力不足ではなく、やり方が「集客につながる構造」になっていないから</li>
+      <li>失敗パターンは5つ。リール疲弊・自己流Threads・AI丸投げ・いいね止まり・SNS疲れ</li>
+      <li>直すべきは「頑張る場所」「投稿の型」「AIへの指示」の3つだけ</li>
+    </ul>
+  </div>
 </section>
 
 <!-- ========== LESSON 2 ========== -->
 <section class="lesson" id="lesson2">
   <div class="lesson-header">
     <div class="lesson-number">02</div>
-    <h2 class="lesson-title">受講生の実績</h2>
+    <h2 class="lesson-title">Threadsをやるとこうなる</h2>
   </div>
-  <div class="lesson-intro">「本当にそんなうまくいくの？」——その疑問、正しいです。<br>だから理論じゃなくて<strong>数字で証明します。</strong>この教材の内容を実践した受講生の、リアルな成果を見てください。</div>
+  <div class="lesson-intro">「本当にそんなにうまくいくの？」——その疑問、正しいです。<br>だから理論じゃなくて<strong>数字で証明します。</strong>まず僕自身、そしてこのやり方を実践した受講生の、リアルな成果を見てください。</div>
+
+  <h3>僕自身の実績</h3>
+  <p>僕はリール投稿不要・文章だけのThreads運用で、<strong>6ヶ月でフォロワー5,000名、LINE登録者1,400名</strong>を集客しました。SNSを活用した売上は<strong>累計1億円以上</strong>です。</p>
+  <p>でも、最初からうまくいったわけじゃありません。僕は1年半前、Instagramで挫折しています。リールを200本以上投稿するために、台本を書いて、撮影して、編集して、分析して。かなりの時間とお金を使いました。</p>
+  <blockquote>結果は、フォロワー700人ほど。LINE登録は週に1〜2件あればラッキーという状態でした。正直、かなりきつかったです。</blockquote>
+  <p>そこから戦う場所をThreadsに変えて、AIを組み合わせた途端、<strong>連日LINE登録が10件以上</strong>入るようになりました。今かかっている時間は1日1時間ほど。リール200本の頃より圧倒的に労力は減って、成果は右肩上がりです。</p>
+  <div class="time-compare">
+    <div class="time-card time-before">
+      <div class="time-label">リール時代（200本投稿）</div>
+      <div class="time-value">週1〜2<span>件</span></div>
+      <div class="time-desc">LINE登録 / フォロワー700人</div>
+    </div>
+    <div class="time-arrow">→</div>
+    <div class="time-card time-after">
+      <div class="time-label">Threads×AI（6ヶ月）</div>
+      <div class="time-value">1,400<span>名</span></div>
+      <div class="time-desc">LINE登録 / フォロワー5,000名</div>
+    </div>
+  </div>
+  <p>さらに僕は、感覚でThreadsを語っているわけではありません。<strong>Analyca</strong>というThreadsの分析システムを自社で開発・運用していて、<strong>2,500投稿以上のデータとインサイト</strong>をAIと一緒に分析しながら、「どんな投稿が伸びるのか」「どんな投稿が集客や売上につながるのか」を検証し続けています。この教材の中身は、その<strong>成果実証済みの内容</strong>だけです。</p>
 
   <h3>受講生インタビュー</h3>
+  <p>そして、これは僕だけの再現性ではありません。未経験・新規アカウント・フォロワー100人以下から始めた受講生でも、成果が出ています。</p>
 
   <div class="voice-grid">
     <div class="voice-card">
@@ -524,7 +554,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 <div class="seminar-cta">
   <p class="cta-eyebrow">この受講生たちが成果を出すまでにかかった期間、知ってますか？ たった1〜2ヶ月です。</p>
   <h3>一人で3ヶ月試行錯誤するか、<br>90分のセミナーで全部わかるか。</h3>
-  <p>正しいやり方を知らずに独学で始めると、確実に遠回りします。<br>無料セミナーでは、AIプロンプト30選・高単価商品作成マニュアルなど<strong>4大特典付き</strong>で、あなたの状況に合わせた始め方を具体的にお伝えします。</p>
+  <p>正しいやり方を知らずに独学で始めると、確実に遠回りします。<br>無料セミナーでは、<strong>1ヶ月でフォロワー1,000人伸ばしたAIプロンプト集・投稿生成テンプレート集・アカウント添削GPT</strong>など6大特典付きで、あなたの状況に合わせた始め方を具体的にお伝えします。</p>
   <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta-after-voice" class="cta-btn">無料セミナーの詳細を見てみる</a>
   <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
 </div>
@@ -533,300 +563,109 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 <section class="lesson" id="lesson3">
   <div class="lesson-header">
     <div class="lesson-number">03</div>
-    <h2 class="lesson-title">収益化の全体像</h2>
+    <h2 class="lesson-title">Threads×AIで取り戻す、本来のビジネスの楽しさ</h2>
   </div>
-  <div class="lesson-intro">ぶっちゃけ、ここを間違えてる人が一番多いです。<br>Threads運用のゴールは「フォロワーを増やすこと」じゃない。<strong>売上を立てること</strong>です。フォロワー1万人いても売上ゼロの人、山ほどいます。</div>
+  <div class="lesson-intro">ノウハウに入る前に、僕がこの教材を作った<strong>本当の理由</strong>を話させてください。ここが伝わると、このあとの全レッスンの意味が変わります。少しだけ、本音の話です。</div>
 
-  <h3>なぜThreadsだけでは収益化できないのか</h3>
-  <p>Threadsには、マネタイズ機能がほぼありません。</p>
+  <h3>「何が間違ってるんだろう」と毎日考えていた</h3>
+  <p>LESSON 2で話した通り、僕はリール200本で挫折しました。当時の僕は、毎日こう考えていました。</p>
   <ul>
-    <li>投げ銭機能なし</li>
-    <li>アフィリエイトリンクも貼りにくい</li>
-    <li>DM機能はあるが、商談には向かない</li>
+    <li>「毎日頑張ってるのに、数字が伸びない」</li>
+    <li>「このまま続けて、本当に成果が出るのかな」</li>
+    <li>「自分にはSNSのセンスがないのかな」</li>
   </ul>
-  <p>つまり、<strong>Threads上で直接お金をもらう手段がない</strong>ということです。だから、Threadsは「集客の場」と割り切る必要があります。</p>
+  <p>もしかしたら、今のあなたは過去の僕と同じ状況かもしれません。</p>
+  <p>そこから戦う場所をThreads×AIに変えて、管理画面に毎日LINE登録の通知がバンバン入るようになった時、正直、衝撃でした。200本のリールで届かなかった人たちに、テキストの投稿があっさり届いた。</p>
+  <div class="highlight-box">今までの努力は、報われなかったんじゃない。方向がズレてただけだった。——これがこの教材で一番伝えたいことです。あなたの努力は、方向を変えれば報われます。</div>
 
-  <h3>収益化までの全体導線</h3>
+  <h3>今のSNS業界への、正直な違和感</h3>
+  <p>本音を言うと、僕は今のSNS業界に違和感があります。</p>
+  <p>「投稿しなきゃ」「インプットしなきゃ」「毎日更新しなきゃ」——義務感だけで発信して疲弊していく人が、大量発生しています。そして、その発信の中身は、誰かから聞いた情報をまた発信しているだけ。例えるなら、<strong>カルピスの原液がどんどん薄まっていくような情報</strong>が、タイムラインに溢れています。</p>
+  <p>一方で、表面だけ整えた発信がたまたま伸びて、中身の濃さとは関係なく稼げてしまう構造もあります。</p>
+  <blockquote>ちゃんと中身がある人、ちゃんとお客さんに向き合っている人が報われずに、それっぽい発信だけが伸びていく。僕はこの構造が、正直悔しいんです。だからこそ、本物の価値を持っている人にこそ、正しい武器を持ってほしい。</blockquote>
+
+  <h3>ビジネスは、本来楽しいもの</h3>
+  <p>そもそも僕は、仕事やビジネスは本来楽しいものだと思っています。</p>
+  <ul>
+    <li>成果を出す喜び</li>
+    <li>人間として成長する喜び</li>
+    <li>知らなかったことを知れる喜び</li>
+    <li>自分のやってきたことが、必要な人に届いて感謝される喜び</li>
+  </ul>
+  <p>これが仕事の本来の姿です。</p>
+  <p>でも現実には、資金繰りがあります。売上を立てなければいけない。だから「発信しなきゃ」「投稿しなきゃ」という<strong>義務</strong>が先行する。気づいたら、お客さんに価値を届けるためだったはずのSNSが、自分をすり減らす苦行になっている。</p>
+  <p>これでは、SNSが楽しくなくなるのも当然です。</p>
+
+  <h3>目指すのは「お客さんが来すぎて困る」状態</h3>
+  <p>だから、僕が提案したいのはこうです。</p>
   <div class="diagram">
     <div class="flow-vertical">
-      <div class="flow-step">長文投稿で価値提供</div>
+      <div class="flow-step">集客は Threads×AI の仕組みに任せる（1日1時間）</div>
       <div class="flow-arrow">↓</div>
-      <div class="flow-step">インプレッション獲得</div>
+      <div class="flow-step">義務感の投稿労働から解放される</div>
       <div class="flow-arrow">↓</div>
-      <div class="flow-step">プロフィール誘導（CTA）</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">フォロー獲得</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step" style="background:#eef2ff;border-color:#818cf8;color:#4338ca">固定ポスト / 投稿でLINE誘導</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step" style="background:#dcfce7;border-color:#22c55e;color:#166534">LINE登録</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">ステップ配信で教育</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step highlight">セールス → 収益化</div>
+      <div class="flow-step highlight">空いた時間と心の余裕で、目の前のお客さんを勝たせる</div>
     </div>
   </div>
-  <p>この全体像を頭に入れた上で、各ステップを攻略していきます。LESSON 4以降で、この導線の各パーツを具体的に設計していきます。</p>
-
-  <div class="highlight-box">フォロワー数はただの虚栄指標。売上という結果から逆算して、全体の導線を設計する。この順番を間違えると、永遠に「頑張ってるのに稼げない人」から抜け出せません。</div>
+  <p>あなたが本来のビジネスを楽しんでいれば、お客さんは勝手に集まってきます。感謝もされます。</p>
+  <div class="highlight-box">目指す基準は「お客さんが来すぎて困る」状態です。そこを基準に置けば、「集客できた」は当たり前の通過点になります。まず、その人間になりましょう。</div>
+  <p>そのための具体的な方法を、ここから全部解説していきます。</p>
 
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>Threadsは「集客の場」。ここで直接お金はもらえない</li>
-      <li>ゴールは売上。フォロワー数を追いかけてる時点で負け</li>
-      <li>Threads→LINE→セールスの導線を設計しないまま投稿しても、売上にはつながらない</li>
+      <li>成果が出なかったのは努力不足ではなく「方向のズレ」。方向を変えれば努力は報われる</li>
+      <li>義務感の発信と「薄まったカルピス」の再生産から抜け出す。本物の価値を持つ人こそ正しい武器を持つべき</li>
+      <li>ビジネスは本来楽しい。集客は仕組みに任せて、目の前のお客さんを勝たせることに集中する</li>
+      <li>目指す基準は「お客さんが来すぎて困る」状態</li>
     </ul>
   </div>
-
-
 </section>
 
 <!-- ========== LESSON 4 ========== -->
 <section class="lesson" id="lesson4">
   <div class="lesson-header">
     <div class="lesson-number">04</div>
-    <h2 class="lesson-title">キャラクター設定</h2>
+    <h2 class="lesson-title">伸びる仕組み — アルゴリズムと3つの原則</h2>
   </div>
-  <div class="lesson-intro">正直に言うと、<strong>同じ内容を投稿しても「誰が言うか」で反応は10倍変わります。</strong><br>ここをサボって「とりあえず投稿」を始める人が9割。だから伸びないんです。</div>
+  <div class="lesson-intro">ここから原理原則の解説に入ります。<br>なぜThreadsなのか、なぜ長文なのか、なぜAIなのか。<strong>仕組みを理解しないまま投稿しても、再現性は生まれません。</strong>2,500投稿の分析データをもとに、伸びる構造を解説します。</div>
 
-  <h3>SNS上の「自分」を作る</h3>
-  <p>SNSは名刺と同じです。全てをさらけ出す必要はありません。</p>
-  <p>「自分のことを全部見せなきゃ」と思っている人が多いですが、それは間違いです。<strong>戦略的に見せる部分を選ぶ。</strong>これがキャラクター設定の本質です。</p>
-  <p>目指す認知はシンプルです。</p>
-  <ul>
-    <li>「この人、いいこと言ってるな」</li>
-    <li>「なんか知ってそう」</li>
-  </ul>
-  <blockquote>マジでこのレベルで十分です。いきなり「ファン」を作ろうとしなくていい。まず「信頼に値する人」と認知されれば、フォローもLINE登録も勝手についてきます。</blockquote>
-
-  <h3>まず真面目、その後にユニーク</h3>
-  <p>よくある間違いが「最初から面白いキャラを狙う」こと。</p>
-  <p>面白い投稿でバズっても、そこから商品が売れるかは別の話です。</p>
-  <p><strong>正しい順番はこうです。</strong></p>
-
+  <h3>なぜ媒体はThreadsなのか</h3>
   <div class="diagram">
-    <div class="flow-vertical">
-      <div class="flow-step highlight">① まず専門性と信頼（土台）</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">② その上にユニーク要素を足す</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step" style="background:#fef2f2;border-color:#fca5a5;color:#dc2626">✗ 面白いだけ（土台なし）= 売れない</div>
+    <div class="sns-grid">
+      <div class="sns-card dim">
+        <div class="sns-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#1a1a1a"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+        <div class="sns-name">X（旧Twitter）</div>
+        <div class="sns-tags"><span class="sns-tag bad">短文文化</span><span class="sns-tag bad">競合飽和</span></div>
+      </div>
+      <div class="sns-card dim">
+        <div class="sns-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="url(#ig-grad)"><defs><linearGradient id="ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#feda75"/><stop offset="25%" stop-color="#fa7e1e"/><stop offset="50%" stop-color="#d62976"/><stop offset="75%" stop-color="#962fbf"/><stop offset="100%" stop-color="#4f5bd5"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+        <div class="sns-name">Instagram</div>
+        <div class="sns-tags"><span class="sns-tag bad">画像必須</span><span class="sns-tag bad">工数大</span></div>
+      </div>
+      <div class="sns-card dim">
+        <div class="sns-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+        <div class="sns-name">YouTube</div>
+        <div class="sns-tags"><span class="sns-tag bad">動画制作</span><span class="sns-tag bad">時間大</span></div>
+      </div>
+      <div class="sns-card active">
+        <div class="sns-icon"><img src="assets/images/threads_logo.png" alt="Threads" width="28" height="28" style="display:block;margin:0 auto"></div>
+        <div class="sns-name">Threads</div>
+        <div class="sns-tags"><span class="sns-tag good">競合少</span><span class="sns-tag good">長文◎</span><span class="sns-tag good">導線◎</span></div>
+      </div>
     </div>
   </div>
 
-  <ol>
-    <li><strong>まず専門性と信頼を見せる</strong> -- 「この人は知識がある」「言ってることが的確だ」と思ってもらう</li>
-    <li><strong>その上にユニーク要素を足す</strong> -- 人間味、独自の視点、口調の特徴など</li>
-  </ol>
-  <div class="highlight-box">はっきり言います。真面目方向だけでもビジネスは成立します。面白いキャラなんてオプション。専門性という土台がないと、何を載せても崩れる。ここを逆にやってる人、本当に多いです。</div>
+  <p>理由は3つあります。</p>
+  <h4>理由1：文章だけなのに、圧倒的に集客できる</h4>
+  <p>Threadsは撮影も編集も不要、顔出しも必須ではありません。スマホ1台で、移動中でもカフェでも家事の合間でも投稿できます。リール1本に3時間かけていた人が、同じ時間で<strong>テキストなら10投稿以上</strong>出せます。どちらが集客しやすいかは明らかです。</p>
+  <h4>理由2：悩みが深い「読む人」が集まるから、売上につながる</h4>
+  <p>リールは「ながら見」されますが、文章は「ながら読み」ができません。本を読みながらテレビは見られないですよね。つまり文章を読むという行為は、<strong>そのテーマに興味があり、集中して情報を取りに来ている</strong>ということ。だからThreadsには熱量の高い見込み客が集まります。講座・コンサル・サロン・高単価商品のような「信頼が必要な商品」と圧倒的に相性がいいです。</p>
+  <h4>理由3：AIで投稿が作りやすい</h4>
+  <p>テキスト媒体だからこそ、AIとの相性が抜群です。伸びている投稿をAIに学習させて、型に沿って量産できる。僕が6ヶ月でフォロワー5,000名を達成できたのは、この仕組みを回しているからです。</p>
 
-  <h3>ポジショニング</h3>
-  <p>SNSで発信するジャンルは、大きく3つに分かれます。</p>
-
-  <div class="table-wrap"><table>
-    <tr><th>ジャンル</th><th>内容</th><th>例</th></tr>
-    <tr><td><strong>稼ぐ系</strong></td><td>収入・副業・ビジネスに直結する情報</td><td>マーケティング、物販、SNS集客</td></tr>
-    <tr><td><strong>非稼ぐ系</strong></td><td>生活・趣味・スキルの情報</td><td>ダイエット、料理、英語、デザイン</td></tr>
-    <tr><td><strong>マインド系</strong></td><td>思考法・習慣・自己啓発の情報</td><td>時間管理、メンタル、習慣化</td></tr>
-  </table></div>
-
-  <p>ここで重要なのが「掛け合わせ」です。</p>
-  <p>1つのジャンルだけだと、競合と差別化できません。<strong>2つ以上のジャンルを掛け合わせることで、あなたしか語れないポジション</strong>が生まれます。</p>
-
-  <div class="diagram">
-    <div class="flow-vertical">
-      <div class="flow-step">ジャンルA（例：マーケティング）</div>
-      <div class="flow-arrow">×</div>
-      <div class="flow-step">ジャンルB（例：AI）</div>
-      <div class="flow-arrow">＝</div>
-      <div class="flow-step highlight">独自ポジション（AIマーケ自動化）</div>
-    </div>
-  </div>
-
-  <ul>
-    <li>マーケティング × AI → 「AIを使ったマーケ自動化」</li>
-    <li>ダイエット × 時短 → 「忙しい人のための時短ダイエット」</li>
-    <li>英語 × ビジネス → 「海外取引で使えるビジネス英語」</li>
-  </ul>
-  <blockquote>広いジャンルの中で、あなたしか語れないポジションを見つける。これだけで競合と戦わずに勝てます。キャラクター設定の核心はここです。</blockquote>
-
-  <div class="lesson-summary">
-    <h4>まとめ</h4>
-    <ul>
-      <li>全部さらけ出すのは戦略じゃない。「見せる部分」を選ぶのがキャラ設定</li>
-      <li>「いいこと言ってる」「知ってそう」——この認知で十分。ファン化はその後</li>
-      <li>専門性がない状態でユニーク路線に走ると、面白いだけの人で終わる</li>
-      <li>ジャンルの掛け合わせで、競合と戦わずに勝てるポジションを作れ</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========== LESSON 5 ========== -->
-<section class="lesson" id="lesson5">
-  <div class="lesson-header">
-    <div class="lesson-number">05</div>
-    <h2 class="lesson-title">誰に届けるかを決める</h2>
-  </div>
-  <div class="lesson-intro">「とりあえず発信を始めよう」——<strong>これ、一番やっちゃいけないパターンです。</strong><br>誰に届けるか決めずに始めた人の末路は、「何を投稿すればいいかわからない」→「反応が来ない」→「やめる」。毎回このパターン。もったいなさすぎます。</div>
-
-  <h3>ターゲット設計の考え方</h3>
-  <h4>「誰でもいい」は「誰にも届かない」</h4>
-  <p>「できるだけ多くの人に届けたい」気持ちはわかります。でも、これだと誰にも刺さりません。</p>
-  <p>例えば、こんな投稿があったとします。</p>
-  <p><strong>A：「SNSで集客する方法を教えます」</strong></p>
-  <p><strong>B：「Instagramの投稿作成に疲れた個人事業主が、Threadsで毎日10投稿して月100人 LINE登録を獲得する方法」</strong></p>
-  <blockquote>明らかにBですよね。Aは「誰にでも当てはまりそう」で、結果「誰にも刺さらない」。Bは「特定の人」に向けてるから、その人には深く刺さる。</blockquote>
-  <div class="highlight-box">ターゲットを絞るほど、刺さる。広く浅くやって誰にも刺さらないより、狭く深くやって「この人のためにある投稿だ」と思わせる方が、フォローもLINE登録も桁違いに増えます。</div>
-
-  <h3>ターゲットを決める3つの質問</h3>
-
-  <h4>質問1：どんな人を助けたいか？</h4>
-  <ul>
-    <li>過去の自分と同じ悩みを抱えている人</li>
-    <li>自分がすでに解決した問題で困っている人</li>
-    <li>自分の経験やスキルで助けられる人</li>
-  </ul>
-
-  <h4>質問2：その人はどんな悩みを抱えているか？</h4>
-  <ul>
-    <li>何に困っているか</li>
-    <li>何を不安に思っているか</li>
-    <li>何を解決したいと思っているか</li>
-  </ul>
-
-  <h4>質問3：その人はどうなりたいと思っているか？</h4>
-  <ul>
-    <li>どんな結果を手に入れたいか</li>
-    <li>どんな生活を送りたいか</li>
-    <li>どんな自分になりたいか</li>
-  </ul>
-  <blockquote>悩み（現状）と理想（ゴール）のギャップを埋めるのが、あなたの発信の役割です。</blockquote>
-
-  <h3>悩みを深掘りする方法</h3>
-  <h4>「なぜ？」を繰り返す</h4>
-  <p>例えば、ターゲットの悩みが「フォロワーが増えない」だとします。</p>
-
-  <div class="diagram">
-    <div class="flow-vertical">
-      <div class="flow-step">フォロワーが増えない</div>
-      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
-      <div class="flow-step">集客したいから</div>
-      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
-      <div class="flow-step">商品を売りたいから</div>
-      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
-      <div class="flow-step">収入を増やしたいから</div>
-      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
-      <div class="flow-step highlight">会社に依存せず自由に働きたい</div>
-    </div>
-  </div>
-  <blockquote>この「本当の欲求」に刺さる発信ができると、反応が全然違います。表面的な悩みじゃなくて、根っこの欲求をえぐる。これができる人は少ないから、やるだけで差がつきます。</blockquote>
-
-  <div class="lesson-summary">
-    <h4>まとめ</h4>
-    <ul>
-      <li>「誰でもいい」は「誰にも届かない」。これ、全員が頭ではわかってるのに9割の人がやってしまう</li>
-      <li>ターゲットを絞れば絞るほど、刺さる。売上は「広さ」じゃなく「深さ」で決まる</li>
-      <li>3つの質問：「助けたい人」「悩み」「理想」を言語化しないまま投稿を始めるな</li>
-      <li>「なぜ？」を5回繰り返せ。表面的な悩みの奥に「本当の欲求」がある</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ===== CTA 1 ===== -->
-<div class="seminar-cta">
-  <p class="cta-eyebrow">ターゲット設計を間違えたまま100投稿しても、売上はゼロです。</p>
-  <h3>「自分のターゲット、<br>本当にこれで合ってる？」<br>その確認、90分で終わります。</h3>
-  <p>ターゲット設計は自分一人だと「正解がわからない」まま進んでしまう、一番危険なポイントです。<br>無料セミナーでは、あなたのジャンルに合わせた設計を一緒に作ります。<strong>AIプロンプト30選など4大特典付き。</strong></p>
-  <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta1" class="cta-btn">無料セミナーに参加する</a>
-  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
-</div>
-
-<!-- ========== LESSON 6 ========== -->
-<section class="lesson" id="lesson6">
-  <div class="lesson-header">
-    <div class="lesson-number">06</div>
-    <h2 class="lesson-title">プロフィール設計</h2>
-  </div>
-  <div class="lesson-intro">これ、めちゃくちゃもったいない話なんですが——<strong>投稿がバズってもプロフィールがダメだと、フォローされません。</strong><br>投稿を見て「いいな」と思った人は必ずプロフィールを見に来る。そこで離脱されたら、全部無駄になります。</div>
-
-  <h3>プロフィールファネルを理解する</h3>
-  <div class="diagram">
-    <div class="funnel">
-      <div class="funnel-step" style="background:#6366f1;width:100%;max-width:300px;padding:12px 0">投稿を見る（多い）</div>
-      <div class="funnel-arrow">▼</div>
-      <div class="funnel-step" style="background:#7c3aed;width:75%;max-width:225px;padding:12px 0">プロフィールを見る</div>
-      <div class="funnel-arrow">▼</div>
-      <div class="funnel-step" style="background:#a855f7;width:50%;max-width:150px;padding:12px 0">フォローする</div>
-    </div>
-  </div>
-  <p>これを<strong>プロフィールファネル</strong>と呼びます。どんなにインプレッションを稼いでも、プロフィールで離脱されたらフォロワーは増えない。</p>
-
-  <h3>プロフィールで伝えるべき3つのこと</h3>
-  <h4>1. この人は何者か？（肩書き・実績）</h4>
-  <p>「誰？」がわからないとフォローしません。何をしている人なのか、どんな実績があるのかを明示する。</p>
-  <h4>2. フォローすると何が得られるか？（提供価値）</h4>
-  <p>「フォローするメリット」がわからないとフォローしません。どんな情報が得られるのかを明示する。</p>
-  <h4>3. 次に何をすればいいか？（CTA）</h4>
-  <p>行動を促さないと、人は動きません。「フォローしてね」「リンクから特典を受け取ってね」など、次のアクションを明示する。</p>
-
-  <h3>プロフィールの各要素</h3>
-  <h4>名前</h4>
-  <p>覚えやすく、何者かがわかる名前にする。</p>
-  <p><strong>おすすめの形式：</strong>名前｜キーワード</p>
-  <p>例：たかし｜Threads×AI集客、たなか｜30代からの筋トレ</p>
-
-  <h4>プロフィール文（Bio）</h4>
-  <p>ここが一番重要。以下の要素を入れる。</p>
-  <ul>
-    <li>何者か（肩書き）</li>
-    <li>実績（数字があるとベスト）</li>
-    <li>提供価値</li>
-    <li>CTA</li>
-  </ul>
-  <p>例：Threads×AIで集客を自動化｜5ヶ月でフォロワー4,342名増加｜LINE登録1,060名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
-
-  <h4>プロフィール画像</h4>
-  <p><strong>「人」だとわかることが大事。</strong>顔出しがベストですが、必須ではありません。顔出しできない場合は、AIでイラスト系のアイコンを作ればOK。</p>
-  <p>僕自身、Xでは顔出しせずアイコンで運用して、4,000万円以上売り上げました。だからアイコンでも全然いけます。</p>
-
-  <h4>リンク</h4>
-  <p>Threadsはプロフィールにリンクを1つ設置できます。<strong>おすすめはLINE登録のリンク。</strong></p>
-  <p>投稿→プロフィール→LINE登録。この導線を作ることで、フォロワーをリスト化できます。</p>
-
-  <div class="lesson-summary">
-    <h4>まとめ</h4>
-    <ul>
-      <li>プロフィールは「フォローするかどうか」を3秒で決められる場所。ここで離脱されたら投稿の努力が全部無駄</li>
-      <li>伝えるべきは3つだけ：何者か、何が得られるか、次に何をすればいいか</li>
-      <li>名前は「名前｜キーワード」形式。これだけで検索にも引っかかりやすくなる</li>
-      <li>顔出し不要。僕自身、アイコンで4,000万円以上売り上げた実績あり</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========== LESSON 7 ========== -->
-<section class="lesson" id="lesson7">
-  <div class="lesson-header">
-    <div class="lesson-number">07</div>
-    <h2 class="lesson-title">投稿の書き方</h2>
-  </div>
-  <div class="lesson-intro">ここが一番重要なレッスンです。<strong>投稿の書き方を間違えると、何百投稿しても1円にもなりません。</strong><br>「なぜ長文なのか」を理解しないまま投稿してる人が多すぎる。ここで全部解説します。</div>
-
-  <h3>なぜ短文投稿ではダメなのか</h3>
-  <p>「短文でバズった方が楽じゃない？」そう思うかもしれません。</p>
-  <p>結論から言うと、<strong>短文バズは収益にならない。</strong></p>
-
-  <h4>Threadsのアルゴリズムの本質</h4>
-  <p>「コメントが多い投稿が伸びる」とよく言われます。これは半分正解で、半分間違いです。</p>
-  <p>実際に僕の投稿データで、こういうケースがありました。</p>
-
-  <table>
-    <tr><th>投稿</th><th>コメント数</th><th>インプレッション</th></tr>
-    <tr><td>投稿A</td><td>20件</td><td><strong>20万</strong></td></tr>
-    <tr><td>投稿B</td><td>100件</td><td>1万</td></tr>
-  </table>
-
+  <h3>アルゴリズムの本質は「滞在時間」</h3>
+  <p>「コメントが多い投稿が伸びる」とよく言われます。半分正解で、半分間違いです。実際に僕の投稿データで、こういうケースがありました。</p>
   <div class="vs-compare">
     <div class="vs-card vs-win">
       <div class="vs-label">投稿A（長文）</div>
@@ -840,154 +679,180 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       <div class="vs-detail">コメント100件 / 滞在時間 短い</div>
     </div>
   </div>
+  <p>コメント100件の投稿が1万インプで、コメント20件の投稿が20万インプ。なぜか。<strong>アルゴリズムが最も重視しているのは「滞在時間」だから</strong>です。ユーザーがどれだけ長くその投稿に留まったかを計測して、滞在時間が長い投稿を「良い投稿」と判断して拡散します。</p>
+  <div class="highlight-box">文字量が多い投稿ほど滞在時間は長くなる。だから長文が伸びる。さらに、長文を最後まで読む人は学習意欲が高い＝見込み度の高い人。長文は「伸びやすさ」と「客の質」の両方を取れる、一石二鳥の戦い方です。</div>
 
-  <p>コメント100件の方がインプレッション1万。コメント20件の方が20万。なぜか？</p>
-  <p><strong>答えは「滞在時間」です。</strong></p>
+  <h3>Threadsを始めても伸びない人の4つの間違い</h3>
+  <p>ただし、Threadsを始めただけでは伸びません。伸びない人がやっている間違いは4つです。</p>
+  <ol>
+    <li><strong>短文バズ狙い</strong> — 一言投稿やあるある投稿は一時的に伸びても、「わかります」で終わって集客につながらない。受講生の投稿データをAIで分析した結果でも、共感系はインプは取れるが集客にはつながりにくいと明確に出ています</li>
+    <li><strong>いいね回り・フォロー回り</strong> — 返報で増えた数字は、あなたの商品に興味がある人ではない。やるべきは自分から追いかけることではなく、価値提供で「追われる発信者」になること</li>
+    <li><strong>伸びている人の表面だけ真似する</strong> — 言い回しやテーマだけ真似ても、裏側の設計（誰の悩みを代弁し、どんな常識を壊し、何をしてほしいのか）がないと中身が薄くなる</li>
+    <li><strong>投稿後に分析しない</strong> — 投稿して終わり、では改善が回らない。どの投稿がLINE登録につながったのか、なぜ伸びたのかを見て次に活かす</li>
+  </ol>
 
-  <p>Metaのアルゴリズムが最も重視しているのは、コメント数ではなく<strong>滞在時間</strong>。ユーザーがその投稿にどれだけ長く留まったかを計測し、滞在時間が長い投稿を「良い投稿」と判断して拡散します。</p>
-
-  <p>コメント欄がアクティブだと、人がコメント欄を読みに来る。つまり投稿の滞在時間が伸びる。コメント数が直接効いてるのではなく、コメント欄を読む時間が効いているということです。</p>
-
-  <div class="highlight-box">つまり、一番大事なのは「滞在時間」です。短文でバズっても滞在時間は短い。だからアルゴリズムに評価されず、結局インプレッションは伸びない。短文バズを狙ってる時点で、戦い方を間違えてます。</div>
-
-  <h4>だから長文運用をやる</h4>
-  <p>長文でコメント欄1、2と情報を積み重ねれば、滞在時間が自然と伸びます。</p>
-  <p>さらに、長文をしっかり読む人は学習意欲が高い。つまり<strong>濃いフォロワー＝見込み客</strong>が集まりやすい。</p>
-  <div class="highlight-box">長文をしっかり読める人 = 学習意欲が高い人 = お金を払ってでも問題を解決したい人。<br>短文バズで薄いフォロワーを1万人集めるより、長文で濃い見込み客を100人集めた方が、売上は圧倒的に大きくなります。</div>
-
-  <h3>工藤式の3原則</h3>
-  <p>この前提を踏まえて、僕がThreads運用で徹底している3つの原則を紹介します。</p>
-
-  <h4>原則1：数を打つ</h4>
-  <p>1日5〜10投稿を目標にする。多くの人は「質の高い投稿を1日1本」と考えますが、それでは成果が出るまでに時間がかかりすぎます。</p>
-  <blockquote>数を打てば、伸びるテーマと伸びないテーマが嫌でもわかる。データが溜まってからが本番です。</blockquote>
-
-  <h4>原則2：長文で価値提供</h4>
-  <p>上で解説した通り、滞在時間を伸ばすには長文が必須。短文でバズっても収益にはならない。長文で有益な情報を提供することで、質の高い見込み客を集めます。</p>
-
-  <h4>原則3：いいね周り・リプ周り・フォロー周りはしない</h4>
-  <p>価値の代替をしない。いいね周りで増えたフォロワーは、LINE誘導や商品販売にはつながりません。</p>
-  <blockquote>正直、時間の無駄です。その時間で投稿を1本多く出した方が、100倍リターンがあります。</blockquote>
-
-  <h3>投稿タイプは4種類</h3>
-
-  <h4>タイプ1：ノウハウ系</h4>
-  <p>読者に具体的な知識やスキルを教える投稿。</p>
-  <p>例：「Threadsで伸びる投稿時間帯3選」「フォロワー1000人まで最速で到達する方法」</p>
-  <blockquote>保存・シェアされやすく、専門性をアピールできる。これがメインの投稿タイプになります。</blockquote>
-
-  <h4>タイプ2：共感系</h4>
-  <p>読者が「わかる！」と思う内容の投稿。</p>
-  <p>例：「投稿作るのめんどくさい、わかる」「毎日投稿してるのに全然伸びない」</p>
-  <p>いいねがつきやすく、読者との距離が縮まる。</p>
-
-  <h4>タイプ3：ストーリー系</h4>
-  <p>自分の経験や体験を語る投稿。</p>
-  <p>例：「なぜ僕がThreads発信を始めたのか」「フォロワー0から1000人までの道のり」</p>
-  <p>人間味が出て、ファン化が進む。</p>
-
-  <h4>タイプ4：質問系</h4>
-  <p>読者に問いかけて、コメントを促す投稿。</p>
-  <p>例：「Threads使ってますか？何に使ってますか？」</p>
-  <p>コメントが増えて、エンゲージメント率が上がる。</p>
-
-  <h3>配分の考え方</h3>
-  <blockquote>答えはシンプルです。ノウハウ系を50%以上にする。</blockquote>
-
+  <h3>成果につなげる3つの原則</h3>
+  <p>この間違いを裏返すと、Threads×AIで成果を出す原則は3つに集約されます。</p>
   <div class="diagram">
-    <div class="bar-chart">
-      <div class="bar-row"><span class="bar-label">ノウハウ系</span><div class="bar-track"><div class="bar-fill primary" style="width:75%">50%+</div></div></div>
-      <div class="bar-row"><span class="bar-label">共感系</span><div class="bar-track"><div class="bar-fill secondary" style="width:30%">20%</div></div></div>
-      <div class="bar-row"><span class="bar-label">ストーリー</span><div class="bar-track"><div class="bar-fill secondary" style="width:30%">20%</div></div></div>
-      <div class="bar-row"><span class="bar-label">質問系</span><div class="bar-track"><div class="bar-fill secondary" style="width:15%">10%</div></div></div>
+    <div class="flow-vertical">
+      <div class="flow-step highlight">① 見込み客の悩みから逆算して投稿する</div>
+      <div class="flow-arrow">＋</div>
+      <div class="flow-step highlight">② Threadsに合った長文の型で投稿する</div>
+      <div class="flow-arrow">＋</div>
+      <div class="flow-step highlight">③ AIに正しい設計図を渡して、作成と改善を回す</div>
     </div>
   </div>
+  <p>①は、自分の言いたいことではなく「相手が今、何に困っているか」から投稿を作るということ。②は、滞在時間を作る長文の型（LESSON 6で解説）。③は、AIを丸投げの道具ではなく設計図を渡すパートナーにすること（LESSON 7・8で解説）。この教材の残りは、すべてこの3原則の実践方法です。</p>
 
-  <div class="table-wrap"><table>
-    <tr><th>タイプ</th><th>配分目安</th></tr>
-    <tr><td>ノウハウ系</td><td><strong>50%以上</strong></td></tr>
-    <tr><td>共感系</td><td>20%</td></tr>
-    <tr><td>ストーリー系</td><td>20%</td></tr>
-    <tr><td>質問系</td><td>10%</td></tr>
-  </table></div>
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>Threadsが優位な理由は3つ：文章だけで簡単・読む人＝濃い見込み客・AIと相性抜群</li>
+      <li>アルゴリズムの本質は滞在時間。長文は「伸び」と「客の質」を両取りできる</li>
+      <li>伸びない人の間違いは、短文バズ狙い・いいね回り・表面の真似・分析しない、の4つ</li>
+      <li>原則は3つ：悩みから逆算 × 長文の型 × AIに設計図を渡す</li>
+    </ul>
+  </div>
+</section>
 
-  <h3>なぜノウハウ系がメインなのか？</h3>
-  <h4>1. 専門性が伝わる</h4>
-  <p>ノウハウ系が少ないと、「この人、何の人？」となります。共感系やストーリー系ばかりだと、専門性が見えない。</p>
-  <h4>2. 収益につながる</h4>
-  <blockquote>ノウハウ系で価値提供を続けることで、「この人から学びたい」と思ってもらえる。</blockquote>
-  <h4>3. 見込み客が集まる</h4>
-  <p>共感系やストーリー系でバズっても、集まるのは「共感してくれた人」。ノウハウ系で集まるのは「学びたい人」。</p>
-  <div class="highlight-box">学びたい人 = お金を払ってでも解決したい人 = あなたの見込み客。共感系でいいね100もらうより、ノウハウ系でLINE登録1件取る方が、売上に直結します。</div>
+<!-- ========== LESSON 5 ========== -->
+<section class="lesson" id="lesson5">
+  <div class="lesson-header">
+    <div class="lesson-number">05</div>
+    <h2 class="lesson-title">アカウント設計 — リサーチ×ターゲット×プロフィール</h2>
+  </div>
+  <div class="lesson-intro">原則がわかったら、すぐ投稿……ではありません。<strong>いきなり投稿を書かないでください。</strong><br>「誰のどんな悩みを解決する発信なのか」が決まっていない状態で投稿しても、すべてズレます。投稿の前に、土台を作ります。</div>
 
-  <h3>短文バズは狙わない</h3>
-  <p>「短文でバズった方が楽じゃない？」そう思うかもしれません。でも、短文バズには落とし穴があります。</p>
+  <h3>STEP1：競合リサーチ — 答えはすでにThreadsの中にある</h3>
+  <p>「何を書けばいいかわからない」——この悩みの正体は、ただ正解を知らないだけです。ゼロから考える必要はありません。<strong>答えは、すでに伸びている投稿の中にあります。</strong></p>
+  <p>Threadsで「AI」「集客」「サロン」「コーチング」「美容」「起業」など、自分のジャンルに近いキーワードで検索して、同じジャンルの発信者を10人ほど見つけてください。</p>
+  <p><strong>見るべき投稿の目安：</strong></p>
   <ul>
-    <li>短文で集まるのは「なんとなく面白かった人」</li>
-    <li>長文で集まるのは「学びたい人」</li>
+    <li>1万インプレッション以上出ている投稿</li>
+    <li>フォロワー数より閲覧数が多い投稿</li>
   </ul>
-  <blockquote>質が全然違います。</blockquote>
-  <div class="highlight-box">長文で価値提供、これを数打つ。裏技でもハックでもない、これがThreadsで収益化するための正攻法です。地味に見えるけど、これをやってる人はほぼいないから、やるだけで勝てます。</div>
+  <p><strong>チェックするポイント：</strong></p>
+  <ul>
+    <li>どんな書き出し（フック）をしているか</li>
+    <li>どんな悩みを扱っているか</li>
+    <li>どんな言葉が使われているか</li>
+    <li>どんな流れで話しているか</li>
+  </ul>
+  <blockquote>最初に1〜2時間かけて、20〜30投稿チェックしてください。これだけで「何を書けばいいかわからない」状態からかなり抜け出せます。</blockquote>
 
-  <h3>長文投稿の基本構成</h3>
-  <p>Threadsの長文投稿は、<strong>冒頭 + コメント欄</strong>で構成します。1投稿だけで完結させるんじゃなくて、自分の投稿にコメントをぶら下げていく形式。これによって、700〜1100文字の長文を読みやすく届けられます。</p>
+  <h3>STEP2：ターゲットを決める — 「みんなに届けたい」は誰にも届かない</h3>
+  <p>次に、誰に向けて書くのかを決めます。ここが決まっていないと、何を書いても刺さりません。明確にすべきことは3つです。</p>
+  <h4>① その人はどんな人なのか</h4>
+  <p>年齢、職業、家族構成、今の状況、どんな毎日を過ごしているのか。できるだけ具体的にします。</p>
+  <h4>② 今どんな悩みを抱えているのか</h4>
+  <p>夜も眠れないくらい悩んでいることは何か。今すぐ解決したいことは何か。何に焦り、何に不安を感じているのか。</p>
+  <h4>③ どうなりたいと思っているのか</h4>
+  <p>理想の未来は何か。何が叶ったら人生や仕事が楽になるのか。</p>
+  <p>たとえば「Instagramで集客できないサロンオーナー」なら——リールを頑張っているけど予約が増えない。毎日投稿しているのにLINE登録が増えない。撮影や編集に時間がかかりすぎて疲れている。でも本当は、もっと少ない労力で理想のお客様に来てもらいたい。——ここまで言語化します。</p>
+  <p>悩みは「なぜ？」を繰り返して深掘りします。</p>
+  <div class="diagram">
+    <div class="flow-vertical">
+      <div class="flow-step">フォロワーが増えない</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step">集客したいから</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step">商品を売って収入を増やしたいから</div>
+      <div class="flow-arrow">↓</div><div class="flow-label">なぜ？</div>
+      <div class="flow-step highlight">会社や集客の不安に縛られず、自由に働きたい</div>
+    </div>
+  </div>
+  <div class="highlight-box">表面的な悩みではなく、根っこの欲求に刺さる発信ができると、反応がまったく変わります。ターゲットは絞るほど刺さる。売上は「広さ」ではなく「深さ」で決まります。</div>
 
+  <h3>STEP3：ポジションを決める — 掛け合わせで「あなたしか語れない場所」を作る</h3>
+  <p>1つのジャンルだけだと、競合と差別化できません。<strong>2つ以上のジャンルを掛け合わせる</strong>ことで、あなたしか語れないポジションが生まれます。</p>
+  <ul>
+    <li>マーケティング × AI → 「AIを使ったマーケ自動化」</li>
+    <li>ダイエット × 時短 → 「忙しい人のための時短ダイエット」</li>
+    <li>英語 × ビジネス → 「海外取引で使えるビジネス英語」</li>
+  </ul>
+  <p>そして、キャラクターは「まず専門性と信頼、その後にユニーク」の順番です。面白いキャラはオプション。<strong>専門性という土台がないと、何を載せても崩れます。</strong>目指す認知は「この人、いいこと言ってるな」「なんか知ってそう」——このレベルで十分です。</p>
+
+  <h3>STEP4：プロフィールを整える — 投稿を頑張る前に必ずやる</h3>
+  <p>投稿を見て興味を持った人は、必ずプロフィールを見に来ます。そこで「何をしている人かわからない」と、せっかくの投稿が全部無駄になります。</p>
+  <div class="diagram">
+    <div class="funnel">
+      <div class="funnel-step" style="background:#6366f1;width:100%;max-width:300px;padding:12px 0">投稿を見る（多い）</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#7c3aed;width:75%;max-width:225px;padding:12px 0">プロフィールを見る</div>
+      <div class="funnel-arrow">▼</div>
+      <div class="funnel-step" style="background:#a855f7;width:50%;max-width:150px;padding:12px 0">フォローする</div>
+    </div>
+  </div>
+  <p>プロフィールで大事なのは3つです。</p>
+  <h4>① 名前 — 何の人か一瞬でわかるように</h4>
+  <p>「名前｜キーワード」の形式がおすすめです。例：「AI×Threads集客」「サロン集客アドバイザー」「リール不要のSNS集客」。見た瞬間に何の人かわかることが大事です。</p>
+  <h4>② 誰向けなのか</h4>
+  <p>どんな人のための発信なのかを明記します。</p>
+  <h4>③ 実績 — 数字で信頼を作る</h4>
+  <p>例：「6ヶ月でフォロワー5,000名」「3ヶ月でLINE登録500名」「SNS経由で月商100万円達成」。数字や具体的な成果が信頼の材料になります。</p>
+  <p><strong>Bio全体の例：</strong><br>Threads×AIで集客を自動化｜6ヶ月でフォロワー5,000名増加｜LINE登録1,400名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
+  <p><strong>逆にNGなのは</strong>「コーチングやっています」「フォロバします」「仲良くしてください」「DMもお気軽に」のようなプロフィール。誰のどんな悩みを解決する人なのかがわからず、興味を持たれません。</p>
+  <p>プロフィール画像は「人」だとわかることが大事ですが、顔出しは必須ではありません。僕自身、Xでは顔出しせずアイコンで運用して4,000万円以上売り上げました。AIでイラスト系のアイコンを作ればOKです。</p>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>いきなり投稿を書かない。リサーチ→ターゲット→ポジション→プロフィールの順で土台を作る</li>
+      <li>競合リサーチは1〜2時間で20〜30投稿。伸びている投稿に答えがある</li>
+      <li>ターゲットは「人物像・悩み・理想」の3点を言語化。「なぜ？」で根っこの欲求まで掘る</li>
+      <li>ジャンルは掛け合わせで独自ポジションを作る。キャラは専門性が先、ユニークは後</li>
+      <li>プロフィールは名前・誰向け・実績の3点。投稿を頑張る前に必ず整える</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== LESSON 6 ========== -->
+<section class="lesson" id="lesson6">
+  <div class="lesson-header">
+    <div class="lesson-number">06</div>
+    <h2 class="lesson-title">読まれる長文投稿の型</h2>
+  </div>
+  <div class="lesson-intro">土台ができたら、いよいよ投稿です。<br>LESSON 4で「長文が伸びる」理由は解説しました。ただし、<strong>長ければいいわけではありません。読まれる長文には型があります。</strong>ここを覚えれば、投稿作りで迷うことがなくなります。</div>
+
+  <h3>投稿の基本フォーマット：ツリー形式</h3>
+  <p>Threadsの長文投稿は、1投稿で完結させるのではなく、<strong>メイン投稿＋コメント欄（ツリー形式）</strong>で構成します。自分の投稿に自分でコメントをぶら下げていく形式です。</p>
   <div class="diagram">
     <div class="thread-diagram">
       <div class="thread-post">
         <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
-        <div class="thread-content"><div class="thread-role">冒頭（メイン投稿）</div><div class="thread-text">問題提起 + 解決策の予告</div><div class="thread-chars">50〜100文字</div></div>
+        <div class="thread-content"><div class="thread-role">メイン投稿</div><div class="thread-text">悩みの代弁・問題提起で手を止める</div><div class="thread-chars">50文字程度</div></div>
       </div>
       <div class="thread-post">
         <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
-        <div class="thread-content"><div class="thread-role">コメント欄 1</div><div class="thread-text">原因の説明 + 解決手順</div><div class="thread-chars">300〜500文字</div></div>
-      </div>
-      <div class="thread-post">
-        <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
-        <div class="thread-content"><div class="thread-role">コメント欄 2</div><div class="thread-text">応用テクニック + 注意点</div><div class="thread-chars">300〜500文字</div></div>
+        <div class="thread-content"><div class="thread-role">コメント欄 1</div><div class="thread-text">今までのやり方がダメな理由 + 新しい考え方</div><div class="thread-chars">400〜500文字</div></div>
       </div>
       <div class="thread-post">
         <div class="thread-line"><div class="thread-dot cta"></div></div>
-        <div class="thread-content"><div class="thread-role cta">コメント欄 3</div><div class="thread-text">CTA（フォロー促進 or LINE誘導）</div></div>
+        <div class="thread-content"><div class="thread-role cta">コメント欄 2</div><div class="thread-text">具体例 + 次の行動につなげる締め</div><div class="thread-chars">400〜500文字</div></div>
       </div>
     </div>
   </div>
-  <p>合計で700〜1100文字。これが「教育できる長文投稿」の基本形です。</p>
+  <p>これで滞在時間が自然と伸びて、アルゴリズムにも評価されます。</p>
 
-  <h4>【冒頭】問題提起 + 解決策の予告</h4>
-  <p>冒頭の役割は「読者の手を止めること」。スクロールを止めてもらわないと、読んでもらえません。</p>
+  <h3>読まれる長文の5つの流れ</h3>
+  <p>中身の流れはこうです。</p>
   <ol>
-    <li>問題提起（恐怖訴求、共感、疑問）で注意を引く</li>
-    <li>「解決策を教えます」と予告して続きを読ませる</li>
+    <li><strong>冒頭で悩みを代弁する</strong> — 「それ、私のことです」と思わせる</li>
+    <li><strong>今までのやり方がなぜ成果につながらないのかを伝える</strong></li>
+    <li><strong>新しい考え方を提示する</strong> — 常識を壊して気づきを与える</li>
+    <li><strong>具体例を出す</strong> — 数字や場面で「自分にもできそう」と思わせる</li>
+    <li><strong>次の行動を取りたくなるように締める</strong></li>
   </ol>
+  <div class="highlight-box">大事なのは、見込み客の悩みを代弁し、新しい気づきを与え、「もっと知りたい」と思わせること。ただ長いだけの投稿は読まれません。この流れがあるから、長文でも読まれます。</div>
 
-  <h4>【コメント欄1】原因の説明 + 解決手順</h4>
-  <p>なぜその問題が起きるのか、どうすれば解決できるのかを説明します。ステップ形式がベスト。</p>
-
-  <h4>【コメント欄2】応用テクニック + 注意点</h4>
-  <p>基本を教えた上で、応用や注意点を伝えます。さらに効果を上げる方法、やりがちな失敗。</p>
-
-  <h4>【コメント欄3】CTA</h4>
-  <p>フォローやLINE登録に誘導します。ただし、<strong>毎回やるとウザがられる</strong>ので注意。5〜10投稿に1回くらいの頻度がちょうどいい。</p>
-
-  <h3>フックの重要性</h3>
-  <div class="highlight-box">はっきり言います。フックが弱いと、どれだけ良い内容を書いてもスルーされる。読まれない投稿は、存在しないのと同じです。</div>
-  <p>Threadsのタイムラインには大量の投稿が流れています。ユーザーは1〜2秒で「読むかどうか」を判断する。その判断基準が<strong>一行目（フック）</strong>です。</p>
-
-  <h4>強いフックの特徴</h4>
-  <ol>
-    <li><strong>自分ごとだと感じる</strong> - 「あ、これ自分のことだ」と思わせる</li>
-    <li><strong>続きが気になる</strong> - 「どういうこと？」と思わせる</li>
-    <li><strong>緊急性がある</strong> - 「今知らないとヤバい」と思わせる</li>
-    <li><strong>具体的</strong> - 数字やツール名など、具体的な情報が入っている</li>
-  </ol>
-
+  <h3>フックが9割 — 1行目に時間をかけろ</h3>
+  <p>タイムラインには大量の投稿が流れていて、ユーザーは1〜2秒で「読むかどうか」を判断します。その判断基準が<strong>一行目（フック）</strong>です。フックが弱いと、どれだけ良い内容もスルーされる。読まれない投稿は、存在しないのと同じです。</p>
   <h4>効果的なフックの型</h4>
   <div class="hook-cards">
     <div class="hook-card">
       <div class="hook-type">時代遅れ型</div>
       <div class="hook-example">「まだ○○してる人、時代遅れです」</div>
-      <div class="hook-effect">FOMO（取り残される恐怖）を刺激</div>
+      <div class="hook-effect">取り残される恐怖を刺激</div>
     </div>
     <div class="hook-card">
       <div class="hook-type">損してる型</div>
@@ -1015,256 +880,292 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       <div class="hook-effect">答えを知りたくさせる</div>
     </div>
   </div>
+  <p>本文を書く前にフックを5〜10パターン作って、一番強いものを選んでください。判断基準は<strong>「自分がスクロールしてる時、この1行で手が止まるか？」</strong>。止まらないなら練り直しです。</p>
 
-  <h3>フックを作る時の鉄則</h3>
-  <div class="highlight-box">投稿作成の90%の時間をフックに使え。本文は30分で書けるけど、フックは1時間かけてもいい。それくらい、1行目が全てを決めます。</div>
-  <p>本文を書く前に、フックを5〜10パターン作ってみる。その中で一番強いものを選ぶ。</p>
-  <p><strong>「自分がスクロールしてる時、この1行で手を止めるか？」</strong>止まらないなら、練り直す。</p>
+  <h3>投稿タイプは4種類、ノウハウ系を50%以上に</h3>
+  <div class="table-wrap"><table>
+    <tr><th>タイプ</th><th>内容</th><th>配分目安</th></tr>
+    <tr><td><strong>ノウハウ系</strong></td><td>具体的な知識やスキルを教える</td><td><strong>50%以上</strong></td></tr>
+    <tr><td>共感系</td><td>「わかる！」と思わせる</td><td>20%</td></tr>
+    <tr><td>ストーリー系</td><td>自分の経験や体験を語る</td><td>20%</td></tr>
+    <tr><td>質問系</td><td>読者に問いかけてコメントを促す</td><td>10%</td></tr>
+  </table></div>
+  <p>ノウハウ系をメインにする理由はシンプルです。共感系で集まるのは「共感してくれた人」、ノウハウ系で集まるのは「学びたい人」。<strong>学びたい人＝お金を払ってでも解決したい人＝あなたの見込み客</strong>です。実際に受講生の投稿データを分析しても、共感系はインプは取れても集客にはつながりにくいという結果が出ています。</p>
 
-  <h3>投稿タイミングの考え方</h3>
+  <h3>投稿タイミングと読みやすさのルール</h3>
   <div class="table-wrap"><table>
     <tr><th>時間帯</th><th>評価</th><th>理由</th></tr>
-    <tr><td>朝 6〜9時</td><td><strong>ゴールデンタイム</strong></td><td>通勤時間帯。電車でスマホを見る人が多い</td></tr>
+    <tr><td>朝 6〜9時</td><td><strong>ゴールデンタイム</strong></td><td>通勤時間帯。スマホを見る人が多い</td></tr>
     <tr><td>昼 12〜13時</td><td>そこそこ</td><td>昼休み。軽めの内容が読まれやすい</td></tr>
     <tr><td>夜 18〜21時</td><td><strong>ゴールデンタイム</strong></td><td>帰宅後のリラックスタイム</td></tr>
     <tr><td>午前9〜12時</td><td>避ける</td><td>仕事中の人が多く見られにくい</td></tr>
   </table></div>
-
-  <h3>読まれるフォーマットのルール</h3>
   <ol>
-    <li><strong>1文を短くする</strong> - 長い文は読まれません。1文 1メッセージ。</li>
-    <li><strong>改行を多く入れる</strong> - スマホで読まれることを前提に。余白を作る。</li>
-    <li><strong>箇条書きを活用する</strong> - 複数のポイントを伝える時は箇条書き。</li>
-    <li><strong>具体的に書く</strong> - 数字や固有名詞を入れて具体的に。</li>
+    <li><strong>1文を短くする</strong> — 1文1メッセージ</li>
+    <li><strong>改行を多く入れる</strong> — スマホで読まれる前提で余白を作る</li>
+    <li><strong>箇条書きを活用する</strong> — 複数のポイントは箇条書きで</li>
+    <li><strong>具体的に書く</strong> — 数字や固有名詞を入れる</li>
   </ol>
 
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>投稿タイプは4種類。ノウハウ系を50%以上にしないと、売上にはつながらない</li>
-      <li>長文投稿は「冒頭 + コメント欄3つ」。700〜1100文字で濃い見込み客を集める</li>
-      <li>フックが9割。ここに時間をかけないと、どんな良い投稿も読まれずに終わる</li>
-      <li>フックの型6種類をマスターすれば、ネタ切れは起きない</li>
-      <li>朝6〜9時、夜18〜21時に投稿しろ。それ以外はリーチが落ちる</li>
+      <li>長文はツリー形式。メイン50文字＋コメント欄1・2（各400〜500文字）</li>
+      <li>流れは5つ：悩み代弁→今までがダメな理由→新しい考え方→具体例→次の行動</li>
+      <li>フックが9割。5〜10案出して「手が止まる1行」だけを使う</li>
+      <li>ノウハウ系50%以上。学びたい人＝見込み客を集める</li>
+      <li>投稿は朝6〜9時・夜18〜21時</li>
     </ul>
   </div>
 </section>
 
-<!-- ===== CTA 2 ===== -->
-<div class="seminar-cta">
-  <p class="cta-eyebrow">型を知っても使えなければ意味がない。自分のジャンルに落とし込めますか？</p>
-  <h3>フックの作り方、投稿構成、<br>あなたのジャンルで実践する方法を<br>90分で全部教えます。</h3>
-  <p>「型はわかったけど、自分のテーマだとどう使えば…」——この壁にぶつかる人がほとんどです。<br>セミナーでは添削・フィードバックに加えて、<strong>フォロワー1,000人伸ばしたプロンプト</strong>など4大特典をその場でお渡しします。</p>
-  <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta2" class="cta-btn">無料で参加枠を確認する</a>
-  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
-</div>
-
-<!-- ========== LESSON 8 ========== -->
-<section class="lesson" id="lesson8">
+<!-- ========== LESSON 7 ========== -->
+<section class="lesson" id="lesson7">
   <div class="lesson-header">
-    <div class="lesson-number">08</div>
-    <h2 class="lesson-title">AIで投稿を量産する</h2>
+    <div class="lesson-number">07</div>
+    <h2 class="lesson-title">AIの正しい使い方 — 丸投げが伸びない理由</h2>
   </div>
-  <div class="lesson-intro">「1日5〜10投稿なんて無理でしょ」——正直、僕も最初はそう思ってました。<br>でも<strong>AIを使えば、1日30分で10投稿出せます。</strong>これは理想論じゃなくて、僕が毎日やってることです。</div>
+  <div class="lesson-intro">ここからがこの教材のメインです。<br>AIで投稿を作る人は増えました。でも、<strong>AIを使えば勝手に伸びる投稿ができるわけではありません。</strong>同じAIを使っているのに成果に雲泥の差が出る理由を、先に理解してください。</div>
 
-  <h3>95%自動化の裏側</h3>
-  <p>僕自身、Threads投稿の95%はAIで自動化しています。</p>
-  <p>以前は1日3時間かけて投稿を作っていました。今は30分です。</p>
-
-  <div class="diagram">
-    <div class="bar-chart">
-      <div class="bar-row"><span class="bar-label">以前</span><div class="bar-track"><div class="bar-fill secondary" style="width:100%">3時間 / 日</div></div></div>
-      <div class="bar-row"><span class="bar-label">AI導入後</span><div class="bar-track"><div class="bar-fill primary" style="width:17%">30分</div></div></div>
-    </div>
-  </div>
-
-  <div class="time-compare">
-    <div class="time-card time-before">
-      <div class="time-label">以前</div>
-      <div class="time-value">3時間<span>/日</span></div>
-      <div class="time-desc">手動で投稿作成</div>
-    </div>
-    <div class="time-arrow">→</div>
-    <div class="time-card time-after">
-      <div class="time-label">AI導入後</div>
-      <div class="time-value">30分<span>/日</span></div>
-      <div class="time-desc">10投稿量産可能</div>
-    </div>
-  </div>
-
-  <p>なぜこれが可能になったか。2,000件以上の投稿データを分析して、「伸びる投稿の型」をAIに学習させたからです。</p>
-  <div class="highlight-box">AIは「ゼロから生み出す」のは苦手だけど、「型に沿って量産する」のはめちゃくちゃ得意。この特性を使わないのは、もったいなさすぎます。</div>
-
-  <h3>AIに任せる部分 vs 自分でやる部分</h3>
-  <p>ここの線引きが、AI活用の成否を分けます。</p>
-
-  <h4>AIに任せる部分</h4>
+  <h3>AIは魔法ではない</h3>
+  <p>たとえば、AIにこう指示していませんか？</p>
   <ul>
-    <li><strong>リサーチ</strong> -- ターゲットの悩み・トレンドの調査</li>
-    <li><strong>下書き生成</strong> -- 型に沿った投稿の下書き</li>
-    <li><strong>コメント欄の肉付け</strong> -- メイン投稿に対する補足コンテンツ</li>
-    <li><strong>投稿バリエーション作成</strong> -- 1つのテーマから複数パターン生成</li>
+    <li>「Threads投稿を作ってください」</li>
+    <li>「SNS集客について投稿を作ってください」</li>
+    <li>「美容サロン向けに投稿を作ってください」</li>
   </ul>
-
-  <h4>自分でやる部分</h4>
+  <p>これだと、AIは「それっぽい投稿」は作ってくれます。でも、見込み客の心を動かす投稿にはなりません。なぜか。<strong>情報が足りないからです。</strong></p>
+  <p>AIに渡すべき情報はこれだけあります。</p>
   <ul>
-    <li><strong>フック（一行目）の最終判断</strong> -- ここだけは自分の感覚で磨く</li>
-    <li><strong>自分の経験・ストーリーの追加</strong> -- AIには書けない「あなただけの話」</li>
-    <li><strong>CTA設計</strong> -- 誘導先や誘導文の判断</li>
-    <li><strong>全体のトーン調整</strong> -- 「自分らしさ」の最終チェック</li>
+    <li>誰に向けた投稿なのか</li>
+    <li>その人は何に悩んでいるのか</li>
+    <li>どんな日常の痛みを感じているのか</li>
+    <li>どんな思い込みを持っているのか</li>
+    <li>どんな未来を望んでいるのか</li>
+    <li>あなた自身の実績や経験は何か</li>
+    <li>どんな投稿の型で出力するのか</li>
+    <li>投稿の目的は何か</li>
+    <li>最後にどんな行動をしてほしいのか</li>
   </ul>
+  <div class="highlight-box">この設計を入れずにAIに投げれば、出てくる文章は薄くなります。そしてその薄い文章をそのまま投稿しているから、集客できないんです。AIが悪いのではなく、渡している設計図が弱いだけです。</div>
+  <p>気づきましたか？　この「渡すべき情報」は、LESSON 5で作った土台そのものです。リサーチして、ターゲットを決めて、ポジションを定めたから、AIに正しい指示が出せる。<strong>土台を作った人だけが、AIを武器にできます。</strong></p>
+
+  <h3>AIは「代筆屋」ではなく「相棒」</h3>
+  <p>AIの正しい役割は、文章を代わりに書かせることだけではありません。</p>
+  <ul>
+    <li><strong>ターゲットの悩みを整理させる</strong> — 頭の中を言語化する</li>
+    <li><strong>投稿の構成を作らせる</strong> — 型に沿った骨組みを出す</li>
+    <li><strong>冒頭のフックを複数出させる</strong> — 選択肢を量産する</li>
+    <li><strong>下書きを作らせて、自分の経験で整える</strong></li>
+    <li><strong>投稿後に分析させる</strong> — なぜ伸びた／伸びなかったかを一緒に考える</li>
+  </ul>
+  <blockquote>AIは、頭の中を整理し、見込み客の悩みを言語化し、投稿の精度を上げるためのパートナーです。この使い方ができると、Threads集客のハードルは大幅に下がります。</blockquote>
+
+  <h3>分業の黄金比：AIが8割、あなたが2割</h3>
   <div class="diagram">
     <div class="bar-chart">
       <div class="bar-row"><span class="bar-label">AI担当</span><div class="bar-track"><div class="bar-fill primary" style="width:80%">80%</div></div></div>
       <div class="bar-row"><span class="bar-label">あなた</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:linear-gradient(90deg,#d97706,#f59e0b)">20%</div></div></div>
     </div>
   </div>
-  <blockquote>AIが80%作って、あなたが20%仕上げる。この分業が最も効率的です。</blockquote>
-
-  <h3>量産ワークフロー</h3>
-  <p>具体的な手順はこうです。</p>
-
-  <div class="table-wrap"><table>
-    <tr><th>ステップ</th><th>内容</th><th>所要時間</th></tr>
-    <tr><td><strong>1. テーマ決め</strong></td><td>今日の投稿テーマを3〜5個選ぶ</td><td>5分</td></tr>
-    <tr><td><strong>2. AI下書き生成</strong></td><td>各テーマでAIに下書きを作らせる</td><td>10分</td></tr>
-    <tr><td><strong>3. フック磨き</strong></td><td>一行目を5パターン出して最強を選ぶ</td><td>10分</td></tr>
-    <tr><td><strong>4. 仕上げ+投稿</strong></td><td>自分の経験を追加、トーン調整、投稿</td><td>5分</td></tr>
-  </table></div>
-
-  <div class="diagram">
-    <div class="flow-vertical">
-      <div class="flow-step">テーマ決め（5分）</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">AI下書き生成（10分）</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step">フック磨き（10分）</div>
-      <div class="flow-arrow">↓</div>
-      <div class="flow-step highlight">仕上げ + 投稿（5分）</div>
-    </div>
-  </div>
-  <p>合計30分。これで1日10投稿も現実的になります。</p>
-
-  <h3>注意点</h3>
-  <p>1つだけ、絶対に守ってほしいことがあります。</p>
-  <div class="highlight-box">ただし、AIに丸投げは絶対NG。「AIが書いた感」が出た瞬間、読者は離れます。これやってる人、本当に多い。</div>
-  <p>AIの文章には特徴があります。きれいすぎる、整いすぎている、感情がない。読者は無意識にそれを感じ取ります。</p>
-  <p><strong>対策はシンプルです。</strong></p>
+  <p>リサーチ・構成・下書き・分析はAIに任せる。ただし、<strong>絶対に自分でやるべき部分が2割あります。</strong></p>
   <ul>
-    <li>自分の失敗談や経験を必ず1つ入れる</li>
-    <li>「僕は」「正直に言うと」など、人間味のある表現を足す</li>
-    <li>完璧すぎる文章は、あえて崩す</li>
+    <li><strong>フック（一行目）の最終判断</strong> — 手が止まるかどうかは自分の感覚で磨く</li>
+    <li><strong>自分の経験・ストーリーの追加</strong> — AIには書けない「あなただけの話」</li>
+    <li><strong>全体のトーン調整</strong> — 「自分らしさ」の最終チェック</li>
   </ul>
-  <blockquote>AIは道具です。あなたの経験と視点が入って初めて、「この人の投稿だ」と認識される。ここを忘れた瞬間、ただのコピペアカウントになります。</blockquote>
+  <p>AIの文章には特徴があります。きれいすぎる。整いすぎている。感情がない。読者は無意識にそれを感じ取ります。<strong>自分の失敗談や経験を必ず1つ入れる。「僕は」「正直に言うと」など人間味のある表現を足す。</strong>これを忘れた瞬間、ただのコピペアカウントになります。</p>
 
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>AIで80%自動化、残り20%を自分で仕上げる。この分業が最強</li>
-      <li>フックの最終判断と自分の経験追加だけは、絶対に自分でやれ</li>
-      <li>1日30分で10投稿。以前3時間かかっていた作業が6分の1になった</li>
-      <li>AI丸投げは読者にバレる。人間味のない投稿は誰もフォローしない</li>
+      <li>「投稿を作って」だけの指示では薄い文章しか出ない。AIには設計図を渡す</li>
+      <li>渡すべき設計図は、LESSON 5で作った土台そのもの</li>
+      <li>AIは代筆屋ではなく、整理・言語化・構成・分析のパートナー</li>
+      <li>AI8割・自分2割。フックの最終判断と自分の経験だけは絶対に自分でやる</li>
     </ul>
   </div>
-
-
 </section>
+
+<!-- ========== LESSON 8 ========== -->
+<section class="lesson" id="lesson8">
+  <div class="lesson-header">
+    <div class="lesson-number">08</div>
+    <h2 class="lesson-title">コピペで使える実践プロンプト5本</h2>
+  </div>
+  <div class="lesson-intro">考え方がわかったら、実際に手を動かしましょう。<br>ここでは僕が実際に使っている流れを、<strong>そのままコピペで使えるプロンプト5本</strong>にして渡します。<span style="color:#d97706;font-weight:700">【 】の部分を自分の内容に書き換えて</span>、ChatGPTやClaudeに貼り付けてください。</div>
+
+  <h3>使い方の全体像</h3>
+  <p>5本のプロンプトは、この順番で使います。①で悩みを言語化 → ②でネタを量産 → ③で下書き作成 → ④でフックを磨く → ⑤で投稿後に分析。<strong>LESSON 5で作った土台（ターゲット・ポジション）を【 】に入れるだけ</strong>で、あなた専用のプロンプトになります。</p>
+
+  <div class="prompt-card">
+    <div class="prompt-head"><span class="pnum">1</span><span class="ptitle">ターゲットの悩み言語化プロンプト</span></div>
+    <div class="prompt-purpose"><strong>目的：</strong>投稿の材料になる「リアルな悩み」を30個出す。ネタ切れはこれで永久に解決します。</div>
+    <div class="prompt-code">あなたはSNS集客の専門家です。
+
+【Instagramを頑張っているのにLINE登録が増えないサロンオーナー】が抱えている悩みを30個出してください。
+
+条件：
+・本人が夜寝る前に頭に浮かぶような、具体的な言葉で書く
+・「集客できない」のような抽象的な悩みではなく、日常の場面が浮かぶ悩みにする
+・悩みの深さ順に並べる</div>
+    <div class="prompt-out"><strong>出力の使い方：</strong>出てきた30個のうち「これ、まさに言われたことある」と感じるものに印をつける。それが投稿テーマの一軍リストになります。</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-head"><span class="pnum">2</span><span class="ptitle">投稿ネタ出しプロンプト</span></div>
+    <div class="prompt-purpose"><strong>目的：</strong>悩みを「投稿テーマ」に変換する。1回で2週間分のネタが出ます。</div>
+    <div class="prompt-code">以下のターゲットに向けたThreads投稿のテーマ案を20個出してください。
+
+ターゲット：【Instagramのリール作成に疲れた30〜40代の個人事業主】
+ターゲットの悩み：【毎日投稿しているのにLINE登録が増えない／撮影と編集に時間がかかりすぎる】
+私の発信ジャンル：【AI×Threads集客】
+
+条件：
+・「〜する方法」「〜な人の共通点」「〜が見落としていること」など、続きが読みたくなる切り口にする
+・ノウハウ系のテーマを7割、共感・ストーリー系を3割にする
+・それぞれ、どの悩みに対応しているかを添える</div>
+    <div class="prompt-out"><strong>出力の使い方：</strong>気になったテーマをそのままプロンプト③に渡します。</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-head"><span class="pnum">3</span><span class="ptitle">長文投稿の下書きプロンプト（型に沿って生成）</span></div>
+    <div class="prompt-purpose"><strong>目的：</strong>LESSON 6の「読まれる長文の型」に沿った下書きを作る。これが投稿作成の本体です。</div>
+    <div class="prompt-code">以下の条件でThreadsの長文投稿を作ってください。
+
+テーマ：【リールを毎日投稿しても集客できない理由】
+ターゲット：【Instagramのリール作成に疲れた30〜40代の個人事業主】
+この投稿で壊したい思い込み：【投稿数を増やせばいつか伸びるはず】
+私の実績・経験：【リール200本で挫折→Threadsに変えて6ヶ月でLINE登録1,400名】
+読後にしてほしい行動：【プロフィールを見に行く】
+
+構成（ツリー形式で出力）：
+・メイン投稿：悩みの代弁か問題提起。50文字程度
+・コメント欄1：今までのやり方がダメな理由＋新しい考え方。400〜500文字
+・コメント欄2：具体例＋次の行動につなげる締め。400〜500文字
+
+文体の条件：
+・1文を短く。改行を多めに
+・専門用語を使わず、中学生でもわかる言葉で
+・きれいにまとめすぎず、話し言葉に近いトーンで</div>
+    <div class="prompt-out"><strong>出力の使い方：</strong>そのまま投稿しないこと。自分の失敗談や経験を1ヶ所差し替えて、「自分の言葉」に直してから投稿します。ここがLESSON 7で話した「あなたの2割」です。</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-head"><span class="pnum">4</span><span class="ptitle">フック量産プロンプト</span></div>
+    <div class="prompt-purpose"><strong>目的：</strong>1行目を10案出して、最強の1本を選ぶ。投稿の成否はここで決まります。</div>
+    <div class="prompt-code">以下の投稿の冒頭1行目（フック）を10パターン作ってください。
+
+投稿の内容：【リールを毎日投稿しても集客できない理由と、Threadsに切り替えるべき根拠】
+ターゲット：【リール作成に疲れた個人事業主】
+
+条件：
+・以下の型を混ぜること：時代遅れ型／損してる型／数字型／警告型／逆張り型／疑問型
+・1〜2秒で手が止まるかどうかだけを基準にする
+・40文字以内
+・絵文字は使わない</div>
+    <div class="prompt-out"><strong>出力の使い方：</strong>「自分がスクロール中に手が止まるか？」で1本選ぶ。迷ったら2本を別日に投稿して、数字で比べてください。</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-head"><span class="pnum">5</span><span class="ptitle">投稿分析プロンプト</span></div>
+    <div class="prompt-purpose"><strong>目的：</strong>投稿しっぱなしを卒業する。伸びた理由・伸びなかった理由をAIと一緒に特定して、次に活かします。</div>
+    <div class="prompt-code">私のThreads投稿の結果を分析してください。
+
+投稿文：【投稿の全文を貼る】
+結果：【インプレッション数／いいね数／コメント数／フォロワー増加数／プロフィールアクセス数】
+普段の平均：【普段のインプレッション数など】
+
+分析してほしいこと：
+・この投稿が伸びた（または伸びなかった）最大の要因はどこか
+・フックは機能していたか。改善するならどう直すか
+・この投稿を別の切り口で書き直すとしたら、どんなテーマになるか
+・この結果を踏まえて、次に出すべき投稿テーマを3つ提案してください</div>
+    <div class="prompt-out"><strong>出力の使い方：</strong>週1回、伸びた投稿と伸びなかった投稿を1本ずつ分析にかけるだけで、運用が「感覚」から「改善」に変わります。</div>
+  </div>
+
+  <div class="highlight-box">この5本を回すだけで、「何を書けばいいかわからない」は消えます。ただし注意。プロンプトはあくまで設計図であって、最後の2割——フックの判断と自分の経験——だけは絶対に自分でやってください。そこを抜くと、ただのAIっぽい投稿になります。</div>
+
+  <div class="lesson-summary">
+    <h4>まとめ</h4>
+    <ul>
+      <li>順番は固定：①悩み言語化→②ネタ出し→③下書き→④フック→⑤分析</li>
+      <li>【 】に入れるのはLESSON 5で作った土台。土台の質がそのまま出力の質になる</li>
+      <li>AIの出力をそのまま投稿しない。経験を1ヶ所入れて自分の言葉に直す</li>
+      <li>週1回の分析で、運用が「感覚」から「改善」に変わる</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== CTA 2 (after prompts) ===== -->
+<div class="seminar-cta">
+  <p class="cta-eyebrow">この5本は基本セットです。僕が実際に使っている"完全版"は、セミナーでお渡しします。</p>
+  <h3>1ヶ月でフォロワー1,000人伸ばした<br>AIプロンプト集を、<br>無料セミナーで受け取ってください。</h3>
+  <p>プロンプトは、文章で見るだけだと使い方を間違える人が多いです。<br>セミナーでは実際の使い方まで解説した上で、<strong>投稿生成テンプレート集・アカウント添削GPT・AI投稿分析マニュアル</strong>など6大特典をその場でお渡しします。</p>
+  <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta2" class="cta-btn">無料セミナーで完全版を受け取る</a>
+  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
+</div>
 
 <!-- ========== LESSON 9 ========== -->
 <section class="lesson" id="lesson9">
   <div class="lesson-header">
     <div class="lesson-number">09</div>
-    <h2 class="lesson-title">固定ポスト + Threads→LINE導線</h2>
+    <h2 class="lesson-title">1日1時間の運用ルーティン</h2>
   </div>
-  <div class="lesson-intro">ここまでで投稿の作り方は完成しました。でも正直、<strong>ここからが本番です。</strong><br>フォロワーが増えても、LINE登録に変えられなければ売上は1円も立ちません。「導線」の設計を間違えてる人、めちゃくちゃ多いです。</div>
+  <div class="lesson-intro">型もプロンプトも揃いました。あとは<strong>毎日のルーティンに落とすだけ</strong>です。<br>僕が実際に回している、1日1時間の運用の中身を公開します。これをそのまま真似してください。</div>
 
-  <h3>固定投稿の活用</h3>
-  <p>Threadsには「固定投稿」機能があります。プロフィールの直下に、1つの投稿を固定できる。<strong>固定投稿は、プロフィールを見た人が必ず目にする場所。</strong></p>
-
-  <h4>パターン1：自己紹介・ストーリー</h4>
-  <p>自分が何者か、なぜこの発信をしているか、どんな実績があるか、フォローするとどんな価値があるか。初めて見た人に「この人をフォローしたい」と思ってもらうための投稿。</p>
-
-  <h4>パターン2：LINE誘導</h4>
-  <p>無料特典の紹介、特典を受け取るメリット、LINE登録への誘導。フォロワーをリスト化するための投稿。</p>
-
-  <p><strong>どちらを選ぶか？</strong></p>
+  <h3>毎日のルーティン（合計60分）</h3>
+  <div class="table-wrap"><table>
+    <tr><th>ステップ</th><th>内容</th><th>所要時間</th></tr>
+    <tr><td><strong>1. テーマ選び</strong></td><td>プロンプト②で出したネタリストから今日の分を選ぶ</td><td>5分</td></tr>
+    <tr><td><strong>2. AI下書き生成</strong></td><td>プロンプト③で型に沿った下書きを作る</td><td>15分</td></tr>
+    <tr><td><strong>3. フック磨き</strong></td><td>プロンプト④で10案出して最強の1本を選ぶ</td><td>10分</td></tr>
+    <tr><td><strong>4. 仕上げ</strong></td><td>自分の経験を1ヶ所入れて、自分の言葉に直す</td><td>20分</td></tr>
+    <tr><td><strong>5. 投稿・予約</strong></td><td>朝6〜9時・夜18〜21時に合わせて投稿</td><td>10分</td></tr>
+  </table></div>
+  <p>1投稿あたり10分前後。慣れれば1時間で<strong>3〜5投稿</strong>は作れます。リール1本に3時間かけていた頃の自分からすると、嘘みたいな効率です。</p>
+  <p>そして週に1回、これを足します。</p>
   <ul>
-    <li>まだフォロワーが少ない段階 → パターン1でフォロワーを増やすことを優先</li>
-    <li>ある程度フォロワーがいる段階 → パターン2でリスト化を優先</li>
+    <li><strong>プロンプト⑤で分析</strong> — 伸びた投稿・伸びなかった投稿を1本ずつ。次週のテーマを決める</li>
+    <li><strong>競合チェック</strong> — 伸びている投稿を5〜10本見て、フックの引き出しを増やす</li>
   </ul>
 
-  <h3>LINE誘導の3つのポイント</h3>
-  <h4>1. プロフィールリンク</h4>
-  <p>プロフィールに設置できる1つのリンク。ここにLINEのリンクを設置します。これが最も基本的な導線です。</p>
-  <h4>2. 固定ポスト</h4>
-  <p>プロフィール直下に固定する投稿。ここでLINE登録のメリットを伝え、誘導します。プロフィールリンクだけより、固定ポストで「なぜ登録すべきか」を説明した方が登録率が上がります。</p>
-  <h4>3. 投稿内CTA</h4>
-  <p>通常の投稿のCTA（コメント欄3）でLINE誘導。ただし、毎回やるとしつこいので、5〜10投稿に1回程度が目安。</p>
-
-  <h3>特典（リードマグネット）の設計</h3>
-  <p>LINE登録してもらうには、<strong>登録するメリット（特典）</strong>が必要です。「LINE登録してください」だけでは、誰も登録しません。</p>
-  <p><strong>効果的な特典の種類：</strong></p>
-  <ul>
-    <li><strong>PDF資料</strong>：専門知識をまとめたもの（例：「○○完全ガイド50ページ」）</li>
-    <li><strong>動画コンテンツ</strong>：設定方法の解説動画など</li>
-    <li><strong>テンプレート</strong>：そのまま使えるもの（例：「投稿テンプレート30種類」）</li>
-    <li><strong>チェックリスト</strong>：自己診断できるもの</li>
-  </ul>
-
-  <p><strong>特典設計の5つのポイント：</strong></p>
+  <h3>集客の入口も忘れずに：3つのLINE導線</h3>
+  <p>投稿が回り始めたら、集客の入口を整えます。やることは3つだけです。</p>
   <ol>
-    <li>ペルソナの悩みを解決するものにする</li>
-    <li>「これが無料でもらえるの？」と思わせる</li>
-    <li>タイトルは具体的に（数字を入れる）</li>
-    <li>すぐに結果が出るものにする</li>
-    <li>本商品への布石にする</li>
+    <li><strong>プロフィールリンク</strong> — LINE登録リンクを設置（LESSON 5で設定済み）</li>
+    <li><strong>固定ポスト</strong> — プロフィール直下に固定される投稿で、特典と登録メリットを伝える。プロフィールに来た人が必ず目にする場所です</li>
+    <li><strong>投稿内CTA</strong> — コメント欄の最後でLINE誘導。ただし毎回やるとウザがられるので、5〜10投稿に1回程度</li>
   </ol>
+  <p>「LINE登録してください」だけでは誰も動きません。<strong>登録するメリット（特典）</strong>を必ずセットにしてください。PDF資料、テンプレート、チェックリストなど、「これが無料でもらえるの？」と思わせるものが理想です。</p>
 
-  <h3>数値を計測する</h3>
-  <p>導線がうまく機能しているかは、数値で判断します。</p>
-  <p><strong>週次で確認すべき指標：</strong></p>
+  <h3>数字は週次でこの4つだけ見る</h3>
   <ul>
     <li>インプレッション数</li>
-    <li>プロフィールアクセス数</li>
-    <li>フォロワー増加数</li>
+    <li>プロフィールアクセス数（目安：インプの0.5%以上）</li>
+    <li>フォロワー増加数（目安：プロフィールアクセスの5%以上）</li>
     <li>LINE登録数</li>
   </ul>
-  <p><strong>重要な計算式：</strong></p>
-  <ul>
-    <li><strong>プロフィール訪問率</strong> = プロフィールアクセス / インプレッション × 100（目安：0.5%以上）</li>
-    <li><strong>フォロー率</strong> = フォロワー増加 / プロフィールアクセス × 100（目安：5%以上）</li>
-  </ul>
-  <blockquote>離脱が多いステップを改善すれば、全体の成果が上がります。感覚で「なんとなくうまくいってない」ではなく、数字で判断してボトルネックを潰す。これだけで成果が2倍、3倍になることも普通にあります。</blockquote>
+  <blockquote>どこで離脱されているかが分かれば、直す場所も決まります。インプが少ない→フック。プロフアクセスが少ない→投稿内容とCTA。フォローされない→プロフィール。数字で判断すれば、感覚の運用から卒業できます。</blockquote>
 
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>固定ポストを設定してない人、今すぐやってください。これだけでフォロー率が変わる</li>
-      <li>LINE誘導は3箇所を全部使い切れ。1箇所だけだと取りこぼしが多すぎる</li>
-      <li>特典（リードマグネット）なしでLINE登録を促しても、誰も動かない</li>
-      <li>数値を計測してないのは、目隠しで走ってるのと同じ。週次で必ずチェックしろ</li>
+      <li>毎日60分：テーマ選び→AI下書き→フック磨き→仕上げ→投稿。1時間で3〜5投稿</li>
+      <li>週1回：プロンプト⑤で分析＋競合チェック</li>
+      <li>LINE導線は3つ：プロフィールリンク・固定ポスト・投稿内CTA（5〜10投稿に1回）</li>
+      <li>見る数字は4つだけ。離脱箇所がわかれば直す場所も決まる</li>
     </ul>
   </div>
-
-
 </section>
 
-<!-- ===== CTA 3 ===== -->
-<div class="seminar-cta">
-  <p class="cta-eyebrow">導線設計を間違えると、どれだけ投稿しても売上はゼロのまま。ここが最大の分岐点です。</p>
-  <h3>あなたの商品・サービスに合った<br>「売れる導線」を<br>90分で一緒に設計しませんか？</h3>
-  <p>導線設計は、商品やジャンルによって最適解がまるで違います。<br>セミナーでは、<strong>月商100万円のLINE設計テンプレート</strong>をそのまま使える形でお渡しします。参加費無料・オンライン開催です。</p>
-  <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta3" class="cta-btn">無料セミナーの席を確保する</a>
-  <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
-</div>
-
-<!-- ========== BONUS ========== -->
-<section class="lesson" id="bonus">
+<!-- ========== LESSON 10 ========== -->
+<section class="lesson" id="lesson10">
   <div class="lesson-header">
-    <div class="lesson-number bonus">B</div>
+    <div class="lesson-number">10</div>
     <h2 class="lesson-title">運用マインドセット</h2>
   </div>
-  <div class="lesson-intro">ここまで読んで「やり方はわかった」と思ったはずです。<br>でも正直に言うと、<strong>やり方を知っても結果が出ない人の方が圧倒的に多い。</strong>その差を分けるのが、ここで話す「マインドセット」です。</div>
+  <div class="lesson-intro">最後のレッスンです。ここまで読んで「やり方はわかった」と思ったはずです。<br>でも正直に言うと、<strong>やり方を知っても結果が出ない人の方が圧倒的に多い。</strong>その差を分けるのが、一番大事なこのレッスンです。</div>
 
   <h3>Threadsで結果を出す人の共通点</h3>
 
@@ -1320,17 +1221,19 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-summary">
     <h4>全レッスンの振り返り</h4>
     <ul>
-      <li><strong>LESSON 1</strong>：なぜ今Threadsなのか -- 他のSNSで消耗し続けるのは損。今が先行者利益を取れる最後のチャンス</li>
-      <li><strong>LESSON 2</strong>：受講生の実績 -- フォロワー100人以下からでも1〜2ヶ月で成果が出ている事実</li>
-      <li><strong>LESSON 3</strong>：収益化の全体像 -- フォロワー数じゃなくて売上がゴール。導線がないと永遠に稼げない</li>
-      <li><strong>LESSON 4</strong>：キャラクター設定 -- 専門性なしにキャラで勝負すると失敗する。掛け合わせで独自ポジションを作れ</li>
-      <li><strong>LESSON 5</strong>：ターゲット設計 -- 「誰でもいい」は「誰にも届かない」。深掘りが刺さる発信の源</li>
-      <li><strong>LESSON 6</strong>：プロフィール設計 -- せっかくバズっても、プロフィールで離脱されたら全部無駄</li>
-      <li><strong>LESSON 7</strong>：投稿の書き方 -- フックが9割。長文×ノウハウ系で濃い見込み客を集める</li>
-      <li><strong>LESSON 8</strong>：AIで投稿量産 -- 1日3時間→30分に。ただしAI丸投げは絶対NG</li>
-      <li><strong>LESSON 9</strong>：固定ポスト+LINE導線 -- 特典なしにLINE登録は増えない。数値で計測・改善しろ</li>
+      <li><strong>LESSON 1</strong>：成果が出ないのは努力不足ではなく構造の問題。失敗5パターンから抜け出す</li>
+      <li><strong>LESSON 2</strong>：僕も受講生も、Threads×AIで結果が変わった。再現性は実証済み</li>
+      <li><strong>LESSON 3</strong>：方向を変えれば努力は報われる。目指すのは「お客さんが来すぎて困る」状態</li>
+      <li><strong>LESSON 4</strong>：アルゴリズムの本質は滞在時間。原則は「悩みから逆算×長文の型×AIに設計図」</li>
+      <li><strong>LESSON 5</strong>：いきなり投稿しない。リサーチ→ターゲット→ポジション→プロフィールの土台が先</li>
+      <li><strong>LESSON 6</strong>：長文はツリー形式。悩み代弁→ダメな理由→新しい考え方→具体例→次の行動</li>
+      <li><strong>LESSON 7</strong>：AIは代筆屋ではなく相棒。AI8割・自分2割の分業</li>
+      <li><strong>LESSON 8</strong>：プロンプト5本を順番に回せば「何を書けばいいかわからない」は消える</li>
+      <li><strong>LESSON 9</strong>：毎日60分のルーティン＋週1の分析。数字で判断して改善を回す</li>
     </ul>
   </div>
+
+  <div class="highlight-box" style="margin-top:24px">最後に、もう一度だけ。あなたの今までの努力は、無駄だったんじゃない。方向がズレてただけです。方向を変えて、義務感の発信から抜け出して、本来のビジネスの楽しさを取り戻しましょう。あなたが楽しんでいれば、お客さんは勝手に集まってきます。</div>
 </section>
 
 <!-- ========== BONUS TOKUTEN ========== -->
@@ -1382,22 +1285,22 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <div class="benefits">
       <div class="benefit">
         <div class="benefit-icon">?</div>
-        <span>キャラクター設定とターゲット、自分で考えたけど合ってるかわからない</span>
+        <span>自分のジャンルでは何を投稿すればいいのか、結局わからない</span>
       </div>
       <div class="benefit">
         <div class="benefit-icon">?</div>
-        <span>投稿を書いてみたけど、フックが弱い気がする。でもどう直せばいいかわからない</span>
+        <span>ターゲットもプロフィールも作ってみたけど、これで合ってるのか自信がない</span>
       </div>
       <div class="benefit">
         <div class="benefit-icon">?</div>
-        <span>AIの使い方も導線設計も、自分のジャンルにどう落とし込むか見えない</span>
+        <span>プロンプトを使ってみたけど、出てきた文章の直し方がわからない</span>
       </div>
       <div class="benefit">
         <div class="benefit-icon">?</div>
         <span>結局、一人で試行錯誤して3ヶ月無駄にする未来が見える</span>
       </div>
     </div>
-    <p class="lead"><strong>この壁を90分で全部壊すのが、無料セミナーです。</strong><br>「1投稿でフォロワー1,000人増加」を実現した僕の最新ノウハウと、<br>AIプロンプト30選・高単価商品作成マニュアル・月商100万円LINE設計テンプレートなど<strong>4大特典</strong>をその場でお渡しします。</p>
+    <p class="lead"><strong>問題は「知っているかどうか」ではなく、自分のアカウントに落とし込めるかどうか。この壁を90分で全部壊すのが、無料セミナーです。</strong><br>あなたのジャンルへの落とし込み方を解説した上で、<br><strong>1ヶ月でフォロワー1,000人伸ばしたAIプロンプト集・投稿生成テンプレート集・伸びるアカウント設計チェックリスト・アカウント添削GPT・AI投稿分析マニュアル・プロフィール生成GPTs</strong>の6大特典をその場でお渡しします。</p>
     <a href="https://launchkit-nine.vercel.app/seminar4/?utm_source=threads-guide&utm_content=cta-final" class="cta-btn-main">今すぐ無料セミナーに参加する</a>
     <p class="cta-sub-note">参加費無料 / オンライン開催 / 90分で完結</p>
   </div>
