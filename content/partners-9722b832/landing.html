@@ -91,19 +91,26 @@
     return node;
   }
 
+  function num(value) {
+    var n = Number(value);
+    return Number.isFinite(n) ? String(n) : '0';
+  }
+
   function renderRanking(summary) {
     var rows = summary.map(function (s, i) {
       return el('tr', { class: 'rank-' + (i + 1) }, [
         el('td', null, [el('span', { class: 'rank-badge' }, [String(i + 1)])]),
         el('td', { class: 'agency-name' }, [s.agency]),
-        el('td', { class: 'num' }, [String(s.registrations)]),
-        el('td', { class: 'num' }, [String(s.fePurchases)]),
-        el('td', { class: 'num' }, [String(s.contracts)]),
+        el('td', { class: 'num' }, [num(s.registrations)]),
+        el('td', { class: 'num' }, [num(s.surveyResponses)]),
+        el('td', { class: 'num' }, [num(s.seminarApplications)]),
+        el('td', { class: 'num' }, [num(s.purchases)]),
       ]);
     });
     var thead = el('thead', null, [el('tr', null, [
       el('th', null, ['順位']), el('th', null, ['名前']),
-      el('th', null, ['登録数']), el('th', null, ['購入数']), el('th', null, ['成約数']),
+      el('th', null, ['登録数']), el('th', null, ['アンケート回答']),
+      el('th', null, ['セミナー申し込み']), el('th', null, ['購入']),
     ])]);
     return el('div', { class: 'card' }, [
       el('h2', null, ['ランキング（累計）']),
@@ -118,14 +125,16 @@
         return el('tr', null, [
           el('td', null, [d.date]),
           el('td', { class: 'agency-name' }, [d.agency]),
-          el('td', { class: 'num' }, [String(d.registrations)]),
-          el('td', { class: 'num' }, [String(d.fePurchases)]),
-          el('td', { class: 'num' }, [String(d.contracts)]),
+          el('td', { class: 'num' }, [num(d.registrations)]),
+          el('td', { class: 'num' }, [num(d.surveyResponses)]),
+          el('td', { class: 'num' }, [num(d.seminarApplications)]),
+          el('td', { class: 'num' }, [num(d.purchases)]),
         ]);
       });
     var thead = el('thead', null, [el('tr', null, [
       el('th', null, ['登録日']), el('th', null, ['名前']),
-      el('th', null, ['登録数']), el('th', null, ['購入数']), el('th', null, ['成約数']),
+      el('th', null, ['登録数']), el('th', null, ['アンケート回答']),
+      el('th', null, ['セミナー申し込み']), el('th', null, ['購入']),
     ])]);
     return el('div', { class: 'card' }, [
       el('h2', null, ['日別実績']),

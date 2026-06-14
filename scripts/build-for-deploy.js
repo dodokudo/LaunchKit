@@ -7,10 +7,16 @@ const { execSync } = require('child_process');
 
 // カテゴリを自動推測する関数
 function guessCategory(slug) {
+  if (slug.startsWith('partners-')) return '管理画面';
   if (slug.includes('sample')) return 'サンプル';
   if (slug.includes('consult') || slug.includes('consultation')) return '個別相談';
   if (slug.includes('seminar') || slug.includes('webinar')) return 'セミナー';
   return 'オプト'; // デフォルト
+}
+
+function guessName(slug) {
+  if (slug === 'partners-9722b832') return 'パートナー実績ダッシュボード';
+  return slug;
 }
 
 // 今日の日付を取得
@@ -128,8 +134,7 @@ async function main() {
 
   // distディレクトリのLP一覧を取得（サブディレクトリも含む）
   const dirs = [];
-  // partners-* は代理店向け限定公開ページのため一覧に載せない
-  const excludeDirs = ['assets', 'list', '.vercel', 'css', 'js', 'images', 'fonts', 'partners-9722b832'];
+  const excludeDirs = ['assets', 'list', '.vercel', 'css', 'js', 'images', 'fonts'];
   const topDirs = (await fs.readdir(distDir, { withFileTypes: true }))
     .filter(d => d.isDirectory() && !excludeDirs.includes(d.name) && !d.name.startsWith('.'));
 
@@ -160,7 +165,7 @@ async function main() {
   for (const slug of dirs) {
     if (!meta[slug]) {
       meta[slug] = {
-        name: slug,
+        name: guessName(slug),
         category: guessCategory(slug),
         created: today,
         updated: today
