@@ -4,186 +4,272 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>パートナー実績ダッシュボード</title>
+<title>パートナー成果レポート</title>
 <style>
   :root {
-    --bg: #f5f6f8;
+    --bg: #f6f7f8;
     --card: #ffffff;
-    --border: #e3e5e8;
-    --text: #1a1d21;
-    --text-sub: #6b7280;
-    --accent: #16a34a;
-    --gold: #d4a017;
+    --muted: #f1f3f5;
+    --border: #dfe3e8;
+    --text: #171a1f;
+    --text-sub: #626a75;
+    --text-muted: #8a93a1;
+    --accent: #0f766e;
+    --accent-soft: #e7f6f3;
+    --green: #137a4c;
+    --red: #b42318;
+    --gold: #c48a10;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing: border-box; }
   body {
-    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
   }
-  .container { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
-  header { margin-bottom: 24px; }
-  h1 { font-size: 20px; font-weight: 700; }
-  .updated { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .card h2 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .container { max-width: 1160px; margin: 0 auto; padding: 22px 14px 56px; }
+  .topbar { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }
+  .brand { display: flex; flex-direction: column; gap: 2px; }
+  h1 { margin: 0; font-size: 22px; line-height: 1.35; letter-spacing: 0; }
+  .sub { color: var(--text-sub); font-size: 13px; }
+  .pill { display: inline-flex; width: fit-content; align-items: center; border: 1px solid var(--border); border-radius: 999px; padding: 6px 10px; background: #fff; color: var(--text-sub); font-size: 12px; font-weight: 600; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 16px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); }
+  .section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  h2 { margin: 0; font-size: 16px; line-height: 1.4; }
+  .note { color: var(--text-sub); font-size: 12px; }
+  .metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .metric { min-height: 128px; border: 1px solid var(--border); border-radius: 8px; background: var(--muted); padding: 16px; }
+  .metric-label { color: var(--text-sub); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .metric-value { margin-top: 14px; color: var(--text); font-size: 30px; line-height: 1; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .metric-help { margin-top: 12px; color: var(--green); font-size: 12px; font-weight: 700; }
+  .metric-help.muted { color: var(--text-muted); }
+  .grid-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
   .table-wrap { overflow-x: auto; }
-  table { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 14px; }
-  th, td { padding: 10px 8px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  th { color: var(--text-sub); font-size: 12px; font-weight: 600; }
+  table { width: 100%; min-width: 840px; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 11px 10px; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+  th { color: var(--text-sub); font-size: 12px; font-weight: 700; }
   th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
   tr:last-child td { border-bottom: none; }
-  .rank-1 .rank-badge { background: var(--gold); }
-  .rank-badge {
-    display: inline-block;
-    min-width: 24px;
-    padding: 2px 6px;
-    border-radius: 6px;
-    background: #9ca3af;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    text-align: center;
-  }
-  .agency-name { font-weight: 700; }
   .num { font-variant-numeric: tabular-nums; }
-  .empty, .error {
-    text-align: center;
-    color: var(--text-sub);
-    font-size: 14px;
-    padding: 32px 0;
+  .rank { display: inline-flex; min-width: 26px; height: 26px; align-items: center; justify-content: center; border-radius: 7px; background: #98a2b3; color: #fff; font-size: 12px; font-weight: 800; }
+  .rank.top { background: var(--gold); }
+  .agency { font-weight: 750; }
+  .tabs { display: flex; gap: 4px; overflow-x: auto; margin-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .tab { border: 0; background: transparent; color: var(--text-sub); padding: 12px 14px; font: inherit; font-size: 14px; font-weight: 700; white-space: nowrap; cursor: pointer; border-bottom: 2px solid transparent; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .empty, .error, .loading { text-align: center; color: var(--text-sub); padding: 42px 0; font-size: 14px; }
+  footer { margin-top: 28px; color: var(--text-muted); font-size: 11px; text-align: center; }
+  @media (min-width: 760px) {
+    .topbar { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+    .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
   }
-  .loading { text-align: center; color: var(--text-sub); padding: 48px 0; }
-  footer { font-size: 11px; color: var(--text-sub); text-align: center; margin-top: 32px; }
+  @media (min-width: 1080px) {
+    .metrics { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <h1>パートナー実績ダッシュボード</h1>
-    <div class="updated" id="updated"></div>
+  <header class="topbar">
+    <div class="brand">
+      <h1 id="page-title">パートナー成果レポート</h1>
+      <div class="sub" id="updated">データ取得中</div>
+    </div>
+    <div class="pill" id="partner-pill">パートナー</div>
   </header>
 
-  <div id="content"><div class="loading">読み込み中…</div></div>
+  <nav class="tabs" aria-label="レポートタブ">
+    <button class="tab active" type="button" data-tab="overview">概要</button>
+    <button class="tab" type="button" data-tab="daily">日別</button>
+    <button class="tab" type="button" data-tab="ranking">ランキング</button>
+    <button class="tab" type="button" data-tab="rule">報酬ルール</button>
+  </nav>
 
-  <footer>数値は1日1回更新されます（前日までの実績）</footer>
+  <main id="content"><div class="card"><div class="loading">読み込み中…</div></div></main>
+  <footer>数値はCSV取込後に更新されます。報酬は確定前の見込みです。</footer>
 </div>
 
 <script>
 (function () {
-  var API_URL = 'https://asto.jp/api/agency/public?token=2fda7e77b1cc9090fc5f2ebd4bf574b9';
+  var PARTNER_NAME = '山崎';
+  var TOKEN = '2fda7e77b1cc9090fc5f2ebd4bf574b9';
+  var API_URL = 'https://asto.jp/api/agency/public?token=' + encodeURIComponent(TOKEN) + '&agency=' + encodeURIComponent(PARTNER_NAME);
+  var REWARD_MODE = 'list';
+  var LIST_REWARD_UNIT = 500;
+  var PERFORMANCE_REWARD_UNIT = 20000;
+  var REVENUE_UNIT = 100000;
 
   function el(tag, attrs, children) {
     var node = document.createElement(tag);
     if (attrs) Object.keys(attrs).forEach(function (k) {
       if (k === 'class') node.className = attrs[k];
+      else if (k === 'html') node.innerHTML = attrs[k];
       else node.setAttribute(k, attrs[k]);
     });
-    (children || []).forEach(function (c) {
-      node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
-    });
+    (children || []).forEach(function (c) { node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
     return node;
   }
+  function n(value) { var num = Number(value || 0); return Number.isFinite(num) ? num : 0; }
+  function fmt(value) { return new Intl.NumberFormat('ja-JP').format(Math.round(n(value))); }
+  function yen(value) { return fmt(value) + '円'; }
+  function rate(top, bottom) { top = n(top); bottom = n(bottom); return bottom > 0 ? ((top / bottom) * 100).toFixed(1) + '%' : '0.0%'; }
+  function roas(revenue, payout) { revenue = n(revenue); payout = n(payout); return payout > 0 ? (revenue / payout).toFixed(2) + 'x' : '-'; }
+  function rewardUnit(mode) { return mode === 'performance' ? PERFORMANCE_REWARD_UNIT : LIST_REWARD_UNIT; }
+  function rewardLabel(mode) { return mode === 'performance' ? '成果報酬' : 'リスト報酬'; }
+  function payoutFor(row, mode) { return mode === 'performance' ? n(row.purchasesWithin30Days) * PERFORMANCE_REWARD_UNIT : n(row.qualifiedListRewards) * LIST_REWARD_UNIT; }
+  function revenueFor(row) { return n(row.purchasesWithin30Days) * REVENUE_UNIT; }
 
-  function num(value) {
-    var n = Number(value);
-    return Number.isFinite(n) ? String(n) : '0';
+  function metric(label, value, help, muted) {
+    return el('div', { class: 'metric' }, [
+      el('div', { class: 'metric-label' }, [label]),
+      el('div', { class: 'metric-value' }, [value]),
+      help ? el('div', { class: 'metric-help' + (muted ? ' muted' : '') }, [help]) : el('div', { class: 'metric-help muted' }, [' ']),
+    ]);
   }
 
-  function rate(numerator, denominator) {
-    var top = Number(numerator);
-    var bottom = Number(denominator);
-    if (!Number.isFinite(top) || !Number.isFinite(bottom) || bottom <= 0) return '0.0%';
-    return ((top / bottom) * 100).toFixed(1) + '%';
+  function renderOverview(data) {
+    var row = data.partner || data.summary[0];
+    var mode = REWARD_MODE;
+    var payout = payoutFor(row, mode);
+    var revenue = revenueFor(row);
+    var profit = revenue - payout;
+    return el('section', { class: 'panel active', id: 'panel-overview' }, [
+      el('div', { class: 'card' }, [
+        el('div', { class: 'section-head' }, [
+          el('h2', null, ['概要']),
+          el('span', { class: 'note' }, [rewardLabel(mode) + 'で計算中'])
+        ]),
+        el('div', { class: 'metrics' }, [
+          metric('報酬見込み', yen(payout), rewardLabel(mode) + ' / 単価' + yen(rewardUnit(mode))),
+          metric('対象リスト', fmt(row.qualifiedListRewards), '回答済み - 7日以内ブロック'),
+          metric('登録数', fmt(row.registrations), '回答率: ' + rate(row.surveyResponses, row.registrations)),
+          metric('アンケート回答', fmt(row.surveyResponses), rate(row.surveyResponses, row.registrations)),
+          metric('30日以内成約', fmt(row.purchasesWithin30Days), '売上: ' + yen(revenue)),
+          metric('7日以内ブロック', fmt(row.blockedWithin7Days), rate(row.blockedWithin7Days, row.registrations), true),
+        ])
+      ]),
+      el('div', { class: 'grid-2' }, [
+        el('div', { class: 'card' }, [
+          el('h2', null, ['売上/利益']),
+          el('div', { class: 'metrics' }, [
+            metric('代理店売上', yen(revenue), '成約 × ' + yen(REVENUE_UNIT)),
+            metric('代理店報酬', yen(payout), rewardLabel(mode)),
+            metric('ROAS', roas(revenue, payout), null, true),
+            metric('利益額', yen(profit), null, profit <= 0),
+          ])
+        ]),
+        el('div', { class: 'card' }, [
+          el('div', { class: 'section-head' }, [el('h2', null, ['現在の報酬条件']), el('span', { class: 'note' }, [rewardLabel(mode)])]),
+          el('div', { class: 'table-wrap' }, [el('table', null, [
+            el('tbody', null, [
+              el('tr', null, [el('td', null, ['対象']), el('td', null, ['アンケート回答済み、かつ登録7日以内ブロックなし'])]),
+              el('tr', null, [el('td', null, ['単価']), el('td', { class: 'num' }, [yen(rewardUnit(mode)) + ' / 件'])]),
+              el('tr', null, [el('td', null, ['報酬見込み']), el('td', { class: 'num' }, [yen(payout)])]),
+            ])
+          ])])
+        ])
+      ])
+    ]);
   }
 
-  function renderRanking(summary) {
-    var rows = summary.map(function (s, i) {
-      return el('tr', { class: 'rank-' + (i + 1) }, [
-        el('td', null, [el('span', { class: 'rank-badge' }, [String(i + 1)])]),
-        el('td', { class: 'agency-name' }, [s.agency]),
-        el('td', { class: 'num' }, [num(s.registrations)]),
-        el('td', { class: 'num' }, [num(s.blockedWithin7Days)]),
-        el('td', { class: 'num' }, [num(s.surveyResponses)]),
-        el('td', { class: 'num' }, [rate(s.surveyResponses, s.registrations)]),
-        el('td', { class: 'num' }, [num(s.seminarApplications)]),
-        el('td', { class: 'num' }, [rate(s.seminarApplications, s.registrations)]),
-        el('td', { class: 'num' }, [num(s.purchases)]),
-        el('td', { class: 'num' }, [rate(s.purchases, s.registrations)]),
+  function renderDaily(data) {
+    var mode = REWARD_MODE;
+    var rows = (data.daily || []).filter(function (d) { return d.date; }).map(function (d) {
+      return el('tr', null, [
+        el('td', null, [d.date]),
+        el('td', { class: 'agency' }, [d.agency]),
+        el('td', { class: 'num' }, [fmt(d.registrations)]),
+        el('td', { class: 'num' }, [fmt(d.qualifiedListRewards)]),
+        el('td', { class: 'num' }, [fmt(d.surveyResponses)]),
+        el('td', { class: 'num' }, [fmt(d.blockedWithin7Days)]),
+        el('td', { class: 'num' }, [fmt(d.purchasesWithin30Days)]),
+        el('td', { class: 'num' }, [yen(payoutFor(d, mode))]),
       ]);
     });
-    var thead = el('thead', null, [el('tr', null, [
-      el('th', null, ['順位']), el('th', null, ['流入元']),
-      el('th', null, ['登録数']), el('th', null, ['7日以内ブロック']), el('th', null, ['アンケート回答']),
-      el('th', null, ['回答率']), el('th', null, ['セミナー申し込み']),
-      el('th', null, ['申込率']), el('th', null, ['購入']), el('th', null, ['購入率']),
-    ])]);
-    return el('div', { class: 'card' }, [
-      el('h2', null, ['ランキング（累計）']),
-      el('div', { class: 'table-wrap' }, [el('table', null, [thead, el('tbody', null, rows)])]),
+    return tablePanel('panel-daily', '日別実績', ['登録日', '流入元', '登録数', '対象リスト', '回答', '7日以内ブロック', '成約', '報酬見込み'], rows);
+  }
+
+  function renderRanking(data) {
+    var rows = (data.ranking || data.summary || []).map(function (s, i) {
+      return el('tr', null, [
+        el('td', null, [el('span', { class: 'rank' + (i === 0 ? ' top' : '') }, [String(i + 1)])]),
+        el('td', { class: 'agency' }, [s.agency]),
+        el('td', { class: 'num' }, [fmt(s.registrations)]),
+        el('td', { class: 'num' }, [fmt(s.qualifiedListRewards)]),
+        el('td', { class: 'num' }, [fmt(s.surveyResponses)]),
+        el('td', { class: 'num' }, [fmt(s.seminarApplications)]),
+        el('td', { class: 'num' }, [fmt(s.purchasesWithin30Days)]),
+      ]);
+    });
+    return tablePanel('panel-ranking', 'ランキング', ['順位', '流入元', '登録数', '対象リスト', '回答', 'セミナー申込', '成約'], rows);
+  }
+
+  function renderRule() {
+    return el('section', { class: 'panel', id: 'panel-rule' }, [
+      el('div', { class: 'card' }, [
+        el('h2', null, ['報酬ルール']),
+        el('div', { class: 'table-wrap' }, [el('table', null, [
+          el('thead', null, [el('tr', null, [el('th', null, ['種別']), el('th', null, ['条件']), el('th', null, ['単価'])])]),
+          el('tbody', null, [
+            el('tr', null, [el('td', null, ['リスト報酬']), el('td', null, ['アンケート回答済み、かつ登録7日以内ブロックなし']), el('td', { class: 'num' }, [yen(LIST_REWARD_UNIT)])]),
+            el('tr', null, [el('td', null, ['成果報酬']), el('td', null, ['登録から30日以内の購入']), el('td', { class: 'num' }, [yen(PERFORMANCE_REWARD_UNIT)])]),
+            el('tr', null, [el('td', null, ['売上計算']), el('td', null, ['代理店経由の成約']), el('td', { class: 'num' }, [yen(REVENUE_UNIT) + ' / 件'])]),
+          ])
+        ])])
+      ])
     ]);
   }
 
-  function renderDaily(daily) {
-    var rows = daily
-      .filter(function (d) { return d.date; })
-      .map(function (d) {
-        return el('tr', null, [
-          el('td', null, [d.date]),
-          el('td', { class: 'agency-name' }, [d.agency]),
-          el('td', { class: 'num' }, [num(d.registrations)]),
-          el('td', { class: 'num' }, [num(d.blockedWithin7Days)]),
-          el('td', { class: 'num' }, [num(d.surveyResponses)]),
-          el('td', { class: 'num' }, [rate(d.surveyResponses, d.registrations)]),
-          el('td', { class: 'num' }, [num(d.seminarApplications)]),
-          el('td', { class: 'num' }, [rate(d.seminarApplications, d.registrations)]),
-          el('td', { class: 'num' }, [num(d.purchases)]),
-          el('td', { class: 'num' }, [rate(d.purchases, d.registrations)]),
-        ]);
-      });
-    var thead = el('thead', null, [el('tr', null, [
-      el('th', null, ['登録日']), el('th', null, ['流入元']),
-      el('th', null, ['登録数']), el('th', null, ['7日以内ブロック']), el('th', null, ['アンケート回答']),
-      el('th', null, ['回答率']), el('th', null, ['セミナー申し込み']),
-      el('th', null, ['申込率']), el('th', null, ['購入']), el('th', null, ['購入率']),
-    ])]);
-    return el('div', { class: 'card' }, [
-      el('h2', null, ['日別内訳']),
-      el('div', { class: 'table-wrap' }, [el('table', null, [thead, el('tbody', null, rows)])]),
+  function tablePanel(id, title, headers, rows) {
+    return el('section', { class: 'panel', id: id }, [
+      el('div', { class: 'card' }, [
+        el('h2', null, [title]),
+        el('div', { class: 'table-wrap' }, [el('table', null, [
+          el('thead', null, [el('tr', null, headers.map(function (h) { return el('th', null, [h]); }))]),
+          el('tbody', null, rows)
+        ])])
+      ])
     ]);
   }
 
-  fetch(API_URL)
-    .then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    })
-    .then(function (data) {
-      var content = document.getElementById('content');
-      content.innerHTML = '';
-      if (data.updatedAt) {
-        document.getElementById('updated').textContent = 'データ更新日: ' + data.updatedAt;
-      }
-      if (!data.summary || data.summary.length === 0) {
-        content.appendChild(el('div', { class: 'card' }, [
-          el('div', { class: 'empty' }, ['まだ実績データがありません']),
-        ]));
-        return;
-      }
-      content.appendChild(renderRanking(data.summary));
-      content.appendChild(renderDaily(data.daily || []));
-    })
+  function activateTab(name) {
+    document.querySelectorAll('.tab[data-tab]').forEach(function (tab) { tab.classList.toggle('active', tab.getAttribute('data-tab') === name); });
+    document.querySelectorAll('.panel').forEach(function (panel) { panel.classList.toggle('active', panel.id === 'panel-' + name); });
+  }
+
+  function render(data) {
+    window.__agencyData = data;
+    var content = document.getElementById('content');
+    content.innerHTML = '';
+    var partner = data.partner || (data.summary && data.summary[0]);
+    document.getElementById('partner-pill').textContent = partner ? partner.agency + 'さん専用' : 'パートナー専用';
+    document.getElementById('page-title').textContent = partner ? partner.agency + 'さんの成果レポート' : 'パートナー成果レポート';
+    document.getElementById('updated').textContent = data.updatedAt ? 'データ更新日: ' + data.updatedAt : '';
+    if (!partner) {
+      content.appendChild(el('div', { class: 'card' }, [el('div', { class: 'empty' }, ['まだ実績データがありません'])]));
+      return;
+    }
+    content.appendChild(renderOverview(data));
+    content.appendChild(renderDaily(data));
+    content.appendChild(renderRanking(data));
+    content.appendChild(renderRule());
+    activateTab(document.querySelector('.tab.active[data-tab]').getAttribute('data-tab'));
+  }
+
+  document.querySelectorAll('.tab[data-tab]').forEach(function (tab) {
+    tab.addEventListener('click', function () { activateTab(tab.getAttribute('data-tab')); });
+  });
+
+  fetch(API_URL, { cache: 'no-store' })
+    .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+    .then(render)
     .catch(function (err) {
       console.error(err);
-      document.getElementById('content').innerHTML =
-        '<div class="card"><div class="error">データの取得に失敗しました。時間をおいて再度開いてください。</div></div>';
+      document.getElementById('content').innerHTML = '<div class="card"><div class="error">データの取得に失敗しました。時間をおいて再度開いてください。</div></div>';
     });
 })();
 </script>
