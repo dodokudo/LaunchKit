@@ -22,7 +22,7 @@
     color: var(--text);
     line-height: 1.6;
   }
-  .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px 16px 64px; }
   header { margin-bottom: 24px; }
   h1 { font-size: 20px; font-weight: 700; }
   .updated { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
@@ -34,7 +34,8 @@
     margin-bottom: 20px;
   }
   .card h2 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 14px; }
   th, td { padding: 10px 8px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
   th { color: var(--text-sub); font-size: 12px; font-weight: 600; }
   th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
@@ -96,25 +97,37 @@
     return Number.isFinite(n) ? String(n) : '0';
   }
 
+  function rate(numerator, denominator) {
+    var top = Number(numerator);
+    var bottom = Number(denominator);
+    if (!Number.isFinite(top) || !Number.isFinite(bottom) || bottom <= 0) return '0.0%';
+    return ((top / bottom) * 100).toFixed(1) + '%';
+  }
+
   function renderRanking(summary) {
     var rows = summary.map(function (s, i) {
       return el('tr', { class: 'rank-' + (i + 1) }, [
         el('td', null, [el('span', { class: 'rank-badge' }, [String(i + 1)])]),
         el('td', { class: 'agency-name' }, [s.agency]),
         el('td', { class: 'num' }, [num(s.registrations)]),
+        el('td', { class: 'num' }, [num(s.blockedWithin7Days)]),
         el('td', { class: 'num' }, [num(s.surveyResponses)]),
+        el('td', { class: 'num' }, [rate(s.surveyResponses, s.registrations)]),
         el('td', { class: 'num' }, [num(s.seminarApplications)]),
+        el('td', { class: 'num' }, [rate(s.seminarApplications, s.registrations)]),
         el('td', { class: 'num' }, [num(s.purchases)]),
+        el('td', { class: 'num' }, [rate(s.purchases, s.registrations)]),
       ]);
     });
     var thead = el('thead', null, [el('tr', null, [
-      el('th', null, ['順位']), el('th', null, ['名前']),
-      el('th', null, ['登録数']), el('th', null, ['アンケート回答']),
-      el('th', null, ['セミナー申し込み']), el('th', null, ['購入']),
+      el('th', null, ['順位']), el('th', null, ['流入元']),
+      el('th', null, ['登録数']), el('th', null, ['7日以内ブロック']), el('th', null, ['アンケート回答']),
+      el('th', null, ['回答率']), el('th', null, ['セミナー申し込み']),
+      el('th', null, ['申込率']), el('th', null, ['購入']), el('th', null, ['購入率']),
     ])]);
     return el('div', { class: 'card' }, [
       el('h2', null, ['ランキング（累計）']),
-      el('table', null, [thead, el('tbody', null, rows)]),
+      el('div', { class: 'table-wrap' }, [el('table', null, [thead, el('tbody', null, rows)])]),
     ]);
   }
 
@@ -126,19 +139,24 @@
           el('td', null, [d.date]),
           el('td', { class: 'agency-name' }, [d.agency]),
           el('td', { class: 'num' }, [num(d.registrations)]),
+          el('td', { class: 'num' }, [num(d.blockedWithin7Days)]),
           el('td', { class: 'num' }, [num(d.surveyResponses)]),
+          el('td', { class: 'num' }, [rate(d.surveyResponses, d.registrations)]),
           el('td', { class: 'num' }, [num(d.seminarApplications)]),
+          el('td', { class: 'num' }, [rate(d.seminarApplications, d.registrations)]),
           el('td', { class: 'num' }, [num(d.purchases)]),
+          el('td', { class: 'num' }, [rate(d.purchases, d.registrations)]),
         ]);
       });
     var thead = el('thead', null, [el('tr', null, [
-      el('th', null, ['登録日']), el('th', null, ['名前']),
-      el('th', null, ['登録数']), el('th', null, ['アンケート回答']),
-      el('th', null, ['セミナー申し込み']), el('th', null, ['購入']),
+      el('th', null, ['登録日']), el('th', null, ['流入元']),
+      el('th', null, ['登録数']), el('th', null, ['7日以内ブロック']), el('th', null, ['アンケート回答']),
+      el('th', null, ['回答率']), el('th', null, ['セミナー申し込み']),
+      el('th', null, ['申込率']), el('th', null, ['購入']), el('th', null, ['購入率']),
     ])]);
     return el('div', { class: 'card' }, [
-      el('h2', null, ['日別実績']),
-      el('table', null, [thead, el('tbody', null, rows)]),
+      el('h2', null, ['日別内訳']),
+      el('div', { class: 'table-wrap' }, [el('table', null, [thead, el('tbody', null, rows)])]),
     ]);
   }
 

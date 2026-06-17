@@ -19,6 +19,10 @@ function guessName(slug) {
   return slug;
 }
 
+function getPublicUrl(slug) {
+  return `https://lkit.jp/${slug}/`;
+}
+
 // 今日の日付を取得
 function getToday() {
   const d = new Date();
@@ -192,7 +196,8 @@ async function main() {
       name: m.name,
       category: m.category,
       created: m.created,
-      updated: m.updated
+      updated: m.updated,
+      url: getPublicUrl(slug)
     };
   });
 
@@ -314,7 +319,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
         <div class="lp-info">
           <span class="lp-name">${lp.name}</span>
           <input type="text" class="lp-name-input" value="${lp.name}">
-          <span class="lp-slug">/${lp.slug}/</span>
+          <span class="lp-slug">${lp.url}</span>
         </div>
         <span class="lp-category" data-cat="${lp.category}">${lp.category}</span>
         <select class="lp-category-select">
@@ -327,7 +332,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
           <span>作成: ${lp.created}</span>
           <span>更新: ${lp.updated}</span>
         </div>
-        <a href="/${lp.slug}/" class="lp-link" target="_blank">開く</a>
+        <a href="${lp.url}" class="lp-link" target="_blank">開く</a>
       </div>`).join('\n')}
     </div>
   </div>
