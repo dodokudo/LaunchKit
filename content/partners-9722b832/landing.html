@@ -95,13 +95,15 @@
 
 <script>
 (function () {
-  var PARTNER_NAME = '山崎';
+  var REQUESTED_AGENCY = new URLSearchParams(window.location.search).get('agency');
   var TOKEN = '2fda7e77b1cc9090fc5f2ebd4bf574b9';
-  var API_URL = 'https://asto.jp/api/agency/public?token=' + encodeURIComponent(TOKEN) + '&agency=' + encodeURIComponent(PARTNER_NAME);
-  var REWARD_MODE = 'list';
-  var LIST_REWARD_UNIT = 500;
-  var PERFORMANCE_REWARD_UNIT = 20000;
-  var REVENUE_UNIT = 100000;
+  var API_URL = 'https://asto.jp/api/agency/public?token=' + encodeURIComponent(TOKEN) + (REQUESTED_AGENCY ? '&agency=' + encodeURIComponent(REQUESTED_AGENCY) : '');
+  var DEFAULT_REWARD_RULE = {
+    mode: 'list',
+    listRewardUnit: 500,
+    performanceRewardUnit: 20000,
+    revenueUnit: 100000
+  };
 
   function el(tag, attrs, children) {
     var node = document.createElement(tag);
@@ -118,10 +120,27 @@
   function yen(value) { return fmt(value) + '円'; }
   function rate(top, bottom) { top = n(top); bottom = n(bottom); return bottom > 0 ? ((top / bottom) * 100).toFixed(1) + '%' : '0.0%'; }
   function roas(revenue, payout) { revenue = n(revenue); payout = n(payout); return payout > 0 ? (revenue / payout).toFixed(2) + 'x' : '-'; }
-  function rewardUnit(mode) { return mode === 'performance' ? PERFORMANCE_REWARD_UNIT : LIST_REWARD_UNIT; }
+  function rewardUnit(rule) { return rule.mode === 'performance' ? rule.performanceRewardUnit : rule.listRewardUnit; }
   function rewardLabel(mode) { return mode === 'performance' ? '成果報酬' : 'リスト報酬'; }
-  function payoutFor(row, mode) { return mode === 'performance' ? n(row.purchasesWithin30Days) * PERFORMANCE_REWARD_UNIT : n(row.qualifiedListRewards) * LIST_REWARD_UNIT; }
-  function revenueFor(row) { return n(row.purchasesWithin30Days) * REVENUE_UNIT; }
+  function ruleForAgency(data, agency) {
+    var saved = data.rewardSettings && data.rewardSettings[agency];
+    return Object.assign({ agency: agency }, DEFAULT_REWARD_RULE, saved || {});
+  }
+  function payoutFor(row, rule) {
+    return rule.mode === 'performance'
+      ? n(row.purchasesWithin30Days) * n(rule.performanceRewardUnit)
+      : n(row.qualifiedListRewards) * n(rule.listRewardUnit);
+  }
+  function revenueFor(row, rule) { return n(row.purchasesWithin30Days) * n(rule.revenueUnit); }
+  function aggregateRows(rows) {
+    return (rows || []).reduce(function (sum, row) {
+      Object.keys(row).forEach(function (key) {
+        if (key === 'agency') return;
+        sum[key] = n(sum[key]) + n(row[key]);
+      });
+      return sum;
+    }, { agency: '全体' });
+  }
 
   function metric(label, value, help, muted) {
     return el('div', { class: 'metric' }, [
@@ -132,19 +151,25 @@
   }
 
   function renderOverview(data) {
-    var row = data.partner || data.summary[0];
-    var mode = REWARD_MODE;
-    var payout = payoutFor(row, mode);
-    var revenue = revenueFor(row);
+    var rows = data.summary || [];
+    var row = data.partner || (REQUESTED_AGENCY ? rows[0] : aggregateRows(rows));
+    var selectedRule = data.rewardRule || ruleForAgency(data, row.agency);
+    var payout = data.partner
+      ? payoutFor(row, selectedRule)
+      : rows.reduce(function (sum, partnerRow) { return sum + payoutFor(partnerRow, ruleForAgency(data, partnerRow.agency)); }, 0);
+    var revenue = data.partner
+      ? revenueFor(row, selectedRule)
+      : rows.reduce(function (sum, partnerRow) { return sum + revenueFor(partnerRow, ruleForAgency(data, partnerRow.agency)); }, 0);
     var profit = revenue - payout;
+    var rewardNote = data.partner ? rewardLabel(selectedRule.mode) : 'パートナー別ルール';
     return el('section', { class: 'panel active', id: 'panel-overview' }, [
       el('div', { class: 'card' }, [
         el('div', { class: 'section-head' }, [
           el('h2', null, ['概要']),
-          el('span', { class: 'note' }, [rewardLabel(mode) + 'で計算中'])
+          el('span', { class: 'note' }, [rewardNote + 'で計算中'])
         ]),
         el('div', { class: 'metrics' }, [
-          metric('報酬見込み', yen(payout), rewardLabel(mode) + ' / 単価' + yen(rewardUnit(mode))),
+          metric('報酬見込み', yen(payout), data.partner ? rewardLabel(selectedRule.mode) + ' / 単価' + yen(rewardUnit(selectedRule)) : '各パートナーの報酬ルールで合算'),
           metric('対象リスト', fmt(row.qualifiedListRewards), '回答済み - 7日以内ブロック'),
           metric('登録数', fmt(row.registrations), '回答率: ' + rate(row.surveyResponses, row.registrations)),
           metric('アンケート回答', fmt(row.surveyResponses), rate(row.surveyResponses, row.registrations)),
@@ -156,18 +181,18 @@
         el('div', { class: 'card' }, [
           el('h2', null, ['売上/利益']),
           el('div', { class: 'metrics' }, [
-            metric('代理店売上', yen(revenue), '成約 × ' + yen(REVENUE_UNIT)),
-            metric('代理店報酬', yen(payout), rewardLabel(mode)),
+            metric('代理店売上', yen(revenue), data.partner ? '成約 × ' + yen(selectedRule.revenueUnit) : '各パートナーの売上単価で合算'),
+            metric('代理店報酬', yen(payout), rewardNote),
             metric('ROAS', roas(revenue, payout), null, true),
             metric('利益額', yen(profit), null, profit <= 0),
           ])
         ]),
         el('div', { class: 'card' }, [
-          el('div', { class: 'section-head' }, [el('h2', null, ['現在の報酬条件']), el('span', { class: 'note' }, [rewardLabel(mode)])]),
+          el('div', { class: 'section-head' }, [el('h2', null, ['現在の報酬条件']), el('span', { class: 'note' }, [rewardNote])]),
           el('div', { class: 'table-wrap' }, [el('table', null, [
             el('tbody', null, [
-              el('tr', null, [el('td', null, ['対象']), el('td', null, ['アンケート回答済み、かつ登録7日以内ブロックなし'])]),
-              el('tr', null, [el('td', null, ['単価']), el('td', { class: 'num' }, [yen(rewardUnit(mode)) + ' / 件'])]),
+              el('tr', null, [el('td', null, ['対象']), el('td', null, [data.partner && selectedRule.mode === 'performance' ? '登録から30日以内の購入' : 'アンケート回答済み、かつ登録7日以内ブロックなし'])]),
+              el('tr', null, [el('td', null, ['単価']), el('td', { class: 'num' }, [data.partner ? yen(rewardUnit(selectedRule)) + ' / 件' : 'パートナー別'])]),
               el('tr', null, [el('td', null, ['報酬見込み']), el('td', { class: 'num' }, [yen(payout)])]),
             ])
           ])])
@@ -177,8 +202,8 @@
   }
 
   function renderDaily(data) {
-    var mode = REWARD_MODE;
     var rows = (data.daily || []).filter(function (d) { return d.date; }).map(function (d) {
+      var rule = ruleForAgency(data, d.agency);
       return el('tr', null, [
         el('td', null, [d.date]),
         el('td', { class: 'agency' }, [d.agency]),
@@ -187,7 +212,7 @@
         el('td', { class: 'num' }, [fmt(d.surveyResponses)]),
         el('td', { class: 'num' }, [fmt(d.blockedWithin7Days)]),
         el('td', { class: 'num' }, [fmt(d.purchasesWithin30Days)]),
-        el('td', { class: 'num' }, [yen(payoutFor(d, mode))]),
+        el('td', { class: 'num' }, [yen(payoutFor(d, rule))]),
       ]);
     });
     return tablePanel('panel-daily', '日別実績', ['登録日', '流入元', '登録数', '対象リスト', '回答', '7日以内ブロック', '成約', '報酬見込み'], rows);
@@ -208,17 +233,24 @@
     return tablePanel('panel-ranking', 'ランキング', ['順位', '流入元', '登録数', '対象リスト', '回答', 'セミナー申込', '成約'], rows);
   }
 
-  function renderRule() {
+  function renderRule(data) {
+    var rows = (data.partner ? [data.partner] : data.summary || []).map(function (row) {
+      var rule = data.rewardRule && data.partner ? data.rewardRule : ruleForAgency(data, row.agency);
+      var condition = rule.mode === 'performance' ? '登録から30日以内の購入' : 'アンケート回答済み、かつ登録7日以内ブロックなし';
+      return el('tr', null, [
+        el('td', { class: 'agency' }, [row.agency]),
+        el('td', null, [rewardLabel(rule.mode)]),
+        el('td', null, [condition]),
+        el('td', { class: 'num' }, [yen(rewardUnit(rule)) + ' / 件']),
+        el('td', { class: 'num' }, [yen(rule.revenueUnit) + ' / 件']),
+      ]);
+    });
     return el('section', { class: 'panel', id: 'panel-rule' }, [
       el('div', { class: 'card' }, [
         el('h2', null, ['報酬ルール']),
         el('div', { class: 'table-wrap' }, [el('table', null, [
-          el('thead', null, [el('tr', null, [el('th', null, ['種別']), el('th', null, ['条件']), el('th', null, ['単価'])])]),
-          el('tbody', null, [
-            el('tr', null, [el('td', null, ['リスト報酬']), el('td', null, ['アンケート回答済み、かつ登録7日以内ブロックなし']), el('td', { class: 'num' }, [yen(LIST_REWARD_UNIT)])]),
-            el('tr', null, [el('td', null, ['成果報酬']), el('td', null, ['登録から30日以内の購入']), el('td', { class: 'num' }, [yen(PERFORMANCE_REWARD_UNIT)])]),
-            el('tr', null, [el('td', null, ['売上計算']), el('td', null, ['代理店経由の成約']), el('td', { class: 'num' }, [yen(REVENUE_UNIT) + ' / 件'])]),
-          ])
+          el('thead', null, [el('tr', null, [el('th', null, ['流入元']), el('th', null, ['種別']), el('th', null, ['条件']), el('th', null, ['報酬単価']), el('th', null, ['売上単価'])])]),
+          el('tbody', null, rows)
         ])])
       ])
     ]);
@@ -245,18 +277,18 @@
     window.__agencyData = data;
     var content = document.getElementById('content');
     content.innerHTML = '';
-    var partner = data.partner || (data.summary && data.summary[0]);
-    document.getElementById('partner-pill').textContent = partner ? partner.agency + 'さん専用' : 'パートナー専用';
+    var partner = data.partner;
+    document.getElementById('partner-pill').textContent = partner ? partner.agency + 'さん専用' : '全パートナー';
     document.getElementById('page-title').textContent = partner ? partner.agency + 'さんの成果レポート' : 'パートナー成果レポート';
     document.getElementById('updated').textContent = data.updatedAt ? 'データ更新日: ' + data.updatedAt : '';
-    if (!partner) {
+    if (!(data.summary && data.summary.length)) {
       content.appendChild(el('div', { class: 'card' }, [el('div', { class: 'empty' }, ['まだ実績データがありません'])]));
       return;
     }
     content.appendChild(renderOverview(data));
     content.appendChild(renderDaily(data));
     content.appendChild(renderRanking(data));
-    content.appendChild(renderRule());
+    content.appendChild(renderRule(data));
     activateTab(document.querySelector('.tab.active[data-tab]').getAttribute('data-tab'));
   }
 
