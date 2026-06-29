@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KUDO AI Voice Reactor</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07080b;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.14);
+      --line: rgba(255, 255, 255, 0.16);
+      --text: #f6f7fb;
+      --muted: #a8adbb;
+      --cyan: #36e6ff;
+      --green: #44f29a;
+      --orange: #ff9d42;
+      --pink: #ff4fd8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      letter-spacing: 0;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      min-height: 620px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: clamp(18px, 3vw, 40px);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(54, 230, 255, 0.22), transparent 32%),
+        radial-gradient(circle at 78% 26%, rgba(255, 79, 216, 0.18), transparent 28%),
+        radial-gradient(circle at 48% 84%, rgba(68, 242, 154, 0.18), transparent 34%),
+        linear-gradient(135deg, #07080b 0%, #101421 48%, #07080b 100%);
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+    }
+
+    .main {
+      display: grid;
+      place-items: center;
+      min-height: 0;
+    }
+
+    .reactor-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(78vh, 62vw);
+      min-width: 420px;
+      aspect-ratio: 1;
+    }
+
+    .rings {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+
+    .waveform {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(4px, 0.7vw, 10px);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(36%);
+      transition: opacity 180ms ease;
+      z-index: 0;
+    }
+
+    .waveform span {
+      width: clamp(3px, 0.42vw, 7px);
+      height: 16px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(54, 230, 255, 0.95), rgba(255, 79, 216, 0.72));
+      box-shadow: 0 0 18px rgba(54, 230, 255, 0.38);
+      transform-origin: center;
+      opacity: 0.82;
+    }
+
+    .ring {
+      position: absolute;
+      width: 100%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      transform: scale(var(--scale));
+      opacity: var(--alpha);
+    }
+
+    .ring:nth-child(1) { --scale: 0.72; --alpha: 0.9; }
+    .ring:nth-child(2) { --scale: 0.92; --alpha: 0.55; }
+    .ring:nth-child(3) { --scale: 1.14; --alpha: 0.28; }
+
+    .orb {
+      position: relative;
+      width: 58%;
+      min-width: 300px;
+      aspect-ratio: 1;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 38% 28%, rgba(255, 255, 255, 0.96) 0 5%, rgba(255, 255, 255, 0.18) 16%, transparent 30%),
+        radial-gradient(circle at 64% 68%, rgba(255, 79, 216, 0.74), transparent 35%),
+        radial-gradient(circle at 32% 70%, rgba(68, 242, 154, 0.84), transparent 32%),
+        radial-gradient(circle at 60% 34%, rgba(54, 230, 255, 0.92), transparent 38%),
+        #111827;
+      box-shadow:
+        0 0 44px rgba(54, 230, 255, 0.42),
+        0 0 96px rgba(255, 79, 216, 0.24),
+        inset 0 0 38px rgba(255, 255, 255, 0.18);
+      transition: transform 180ms ease, filter 180ms ease;
+      overflow: hidden;
+    }
+
+    .orb::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      filter: blur(0.2px);
+    }
+
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(from 180deg, transparent, rgba(255, 255, 255, 0.2), transparent, rgba(255, 255, 255, 0.14), transparent);
+      animation: spin 6s linear infinite;
+      opacity: 0.72;
+    }
+
+    .orb-label {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      place-items: center;
+      font-weight: 900;
+      text-align: center;
+      text-shadow: 0 3px 22px rgba(0, 0, 0, 0.7);
+    }
+
+    .orb-label strong {
+      font-size: clamp(28px, 3vw, 46px);
+      line-height: 1;
+    }
+
+    .orb-label span {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: clamp(13px, 1.2vw, 18px);
+    }
+
+    .stage.speaking .orb {
+      animation: orb-talk 760ms ease-in-out infinite;
+      filter: saturate(1.28) brightness(1.08);
+    }
+
+    .stage.speaking .ring {
+      animation: ripple 1.3s ease-out infinite;
+    }
+
+    .stage.speaking .ring:nth-child(2) {
+      animation-delay: 180ms;
+    }
+
+    .stage.speaking .ring:nth-child(3) {
+      animation-delay: 360ms;
+    }
+
+    .stage.speaking .waveform {
+      opacity: 1;
+    }
+
+    .stage.speaking .waveform span {
+      animation: wave-pop 620ms ease-in-out infinite;
+      animation-delay: calc(var(--i) * -42ms);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .control-dock {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .control-dock:hover,
+    .control-dock:focus-within {
+      opacity: 1;
+    }
+
+    .prompt-button {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: var(--panel);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .prompt-button:hover,
+    .prompt-button.active {
+      background: var(--panel-strong);
+      border-color: rgba(54, 230, 255, 0.42);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .stage.show-controls .control-dock,
+    .stage.show-controls .controls,
+    .stage:hover .control-dock,
+    .stage:hover .controls,
+    .stage:focus-within .control-dock,
+    .stage:focus-within .controls {
+      opacity: 1;
+    }
+
+    .voice-select {
+      max-width: 260px;
+      min-height: 38px;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0 10px;
+    }
+
+    .fullscreen {
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes orb-talk {
+      0%, 100% {
+        transform: scale(1) translateY(0);
+      }
+      28% {
+        transform: scale(1.025) translateY(-2px);
+      }
+      62% {
+        transform: scale(0.99) translateY(2px);
+      }
+    }
+
+    @keyframes wave-pop {
+      0%, 100% {
+        transform: scaleY(0.42);
+        opacity: 0.46;
+      }
+      18% {
+        transform: scaleY(2.6);
+        opacity: 1;
+      }
+      42% {
+        transform: scaleY(0.82);
+        opacity: 0.68;
+      }
+      68% {
+        transform: scaleY(1.9);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(var(--scale));
+        opacity: var(--alpha);
+      }
+      100% {
+        transform: scale(calc(var(--scale) + 0.24));
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 980px) {
+      html,
+      body {
+        overflow: auto;
+        overflow-x: hidden;
+      }
+
+      .stage {
+        min-height: 100vh;
+        height: auto;
+      }
+
+      .main {
+        min-height: 70vh;
+      }
+
+      .reactor-wrap {
+        width: min(92vw, 560px);
+        min-width: 0;
+      }
+
+      .orb {
+        width: 66vw;
+        min-width: 260px;
+      }
+
+      .control-dock {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" id="stage">
+    <section class="main" aria-label="AI voice reactor">
+      <div class="reactor-wrap">
+        <div class="rings" aria-hidden="true">
+          <span class="ring"></span>
+          <span class="ring"></span>
+          <span class="ring"></span>
+        </div>
+        <div class="waveform" id="waveform" aria-hidden="true"></div>
+        <button class="orb" id="orbButton" type="button" aria-label="AI音声を再生">
+          <span class="orb-label">
+            <strong>AI</strong>
+            <span>Tap to speak</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <p class="sr-only" id="answerText">工藤さん、今日のThreads導線は起動できます。</p>
+    <p class="sr-only" id="subText">番号ボタンかキーボード 1〜5 で、撮影用のAI返答を再生できます。</p>
+    <span class="sr-only" id="statusText">READY</span>
+    <div class="control-dock" id="promptList" aria-label="音声返答を選ぶ"></div>
+    <div class="controls">
+      <select class="voice-select" id="voiceSelect" aria-label="読み上げ音声"></select>
+      <button class="fullscreen" id="fullscreenButton" type="button">FULL SCREEN</button>
+    </div>
+  </main>
+
+  <script>
+    const responses = [
+      {
+        cue: "今日のThreadsどう？",
+        answer: "工藤さん、今日のThreadsはかなり強いです。",
+        sub: "AIで作った投稿から、プロフィール導線まできれいに流れています。",
+        voice: "工藤さん。今日のThreads、かなりいい感じです。AIで作った投稿から、プロフィール導線まで、きれいに流れています。"
+      },
+      {
+        cue: "この導線、何が強い？",
+        answer: "強いのは、Threads、AI、LINE公式の3つがつながっていることです。",
+        sub: "投稿で集めて、固定ポストで登録させて、LINEで販売まで進めます。",
+        voice: "強いのは、Threads、AI、LINE公式。この3つがつながっていることです。投稿で集めて、固定ポストで登録させて、LINEで販売まで進めます。"
+      },
+      {
+        cue: "次に何を出す？",
+        answer: "次は、AIで投稿を量産する型を出しましょう。",
+        sub: "冒頭はスクショを速く切り替えて、簡単そうに見せるのがポイントです。",
+        voice: "次は、AIで投稿を量産する型を出しましょう。冒頭はスクショをテンポよく切り替えて、簡単そうに見せるのがポイントです。"
+      },
+      {
+        cue: "LINE登録は？",
+        answer: "LINE登録につながる鍵は固定ポストです。",
+        sub: "伸びた投稿からプロフィールに飛ばして、無料講座に自然につなげます。",
+        voice: "LINE登録につながる鍵は、固定ポストです。伸びた投稿からプロフィールに飛ばして、無料講座に自然につなげます。"
+      },
+      {
+        cue: "一言でまとめて",
+        answer: "Threadsは投稿する場所ではなく、売れる導線の入口です。",
+        sub: "AIで投稿を作り、LINEで関係を作り、商品販売につなげます。",
+        voice: "Threadsは、ただ投稿する場所ではありません。売れる導線の入口です。AIで投稿を作り、LINEで関係を作り、商品販売につなげます。"
+      }
+    ];
+
+    const stage = document.getElementById("stage");
+    const statusText = document.getElementById("statusText");
+    const answerText = document.getElementById("answerText");
+    const subText = document.getElementById("subText");
+    const promptList = document.getElementById("promptList");
+    const voiceSelect = document.getElementById("voiceSelect");
+    const orbButton = document.getElementById("orbButton");
+    const fullscreenButton = document.getElementById("fullscreenButton");
+    const waveform = document.getElementById("waveform");
+
+    let voices = [];
+    let activeIndex = 0;
+
+    function renderButtons() {
+      promptList.innerHTML = responses.map((item, index) => `
+        <button class="prompt-button${index === activeIndex ? " active" : ""}" type="button" data-index="${index}">
+          ${index + 1}
+        </button>
+      `).join("");
+    }
+
+    function renderWaveform() {
+      waveform.innerHTML = Array.from({ length: 34 }, (_, index) => {
+        const distance = Math.abs(index - 16.5);
+        const base = Math.max(0.56, 1.65 - distance * 0.055);
+        return `<span style="--i:${index}; height:${Math.round(22 * base)}px"></span>`;
+      }).join("");
+    }
+
+    function updatePanel(index) {
+      activeIndex = index;
+      const item = responses[index];
+      answerText.textContent = item.answer;
+      subText.textContent = item.sub;
+      document.querySelectorAll(".prompt-button").forEach((button) => {
+        button.classList.toggle("active", Number(button.dataset.index) === index);
+      });
+    }
+
+    function loadVoices() {
+      voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      const preferred = voices
+        .map((voice, index) => ({ voice, index }))
+        .filter(({ voice }) => voice.lang && (voice.lang.startsWith("ja") || voice.lang.startsWith("en")));
+
+      const options = (preferred.length ? preferred : voices.map((voice, index) => ({ voice, index })))
+        .map(({ voice, index }) => `<option value="${index}">${voice.name} / ${voice.lang}</option>`);
+
+      voiceSelect.innerHTML = options.length ? options.join("") : "<option>Browser voice</option>";
+
+      const natural = voices.findIndex((voice) =>
+        voice.lang && voice.lang.startsWith("ja") && /Premium|Enhanced|Google|Microsoft|Kyoko|Otoya/i.test(voice.name)
+      );
+      if (natural >= 0) {
+        voiceSelect.value = String(natural);
+      }
+    }
+
+    function speak(index = activeIndex) {
+      if (!window.speechSynthesis) {
+        updatePanel(index);
+        statusText.textContent = "NO VOICE";
+        return;
+      }
+
+      const item = responses[index];
+      updatePanel(index);
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(item.voice);
+      const selectedVoice = voices[Number(voiceSelect.value)];
+      if (selectedVoice) utterance.voice = selectedVoice;
+      utterance.lang = selectedVoice ? selectedVoice.lang : "ja-JP";
+      utterance.rate = 0.88;
+      utterance.pitch = 1.03;
+      utterance.volume = 1;
+
+      utterance.onstart = () => {
+        stage.classList.add("speaking");
+        statusText.textContent = "SPEAKING";
+      };
+      utterance.onend = () => {
+        stage.classList.remove("speaking");
+        statusText.textContent = "READY";
+      };
+      utterance.onerror = () => {
+        stage.classList.remove("speaking");
+        statusText.textContent = "VOICE ERROR";
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    promptList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-index]");
+      if (!button) return;
+      speak(Number(button.dataset.index));
+    });
+
+    orbButton.addEventListener("click", () => speak(activeIndex));
+
+    fullscreenButton.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key >= "1" && event.key <= "5") {
+        speak(Number(event.key) - 1);
+      }
+      if (event.key.toLowerCase() === "c") {
+        stage.classList.toggle("show-controls");
+      }
+      if (event.code === "Space") {
+        event.preventDefault();
+        speak(activeIndex);
+      }
+      if (event.key.toLowerCase() === "f") {
+        fullscreenButton.click();
+      }
+    });
+
+    renderButtons();
+    renderWaveform();
+    loadVoices();
+    updatePanel(0);
+
+    if (new URLSearchParams(window.location.search).has("demo")) {
+      stage.classList.add("speaking");
+    }
+
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+  </script>
+</body>
+</html>

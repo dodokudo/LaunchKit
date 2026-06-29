@@ -275,5 +275,113 @@
     "category": "オプト",
     "created": "2026-04-05",
     "updated": "2026-04-05"
+  },
+  "ai-voice-reactor": {
+    "name": "ai-voice-reactor",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "n": {
+    "name": "n",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "n2": {
+    "name": "n2",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-4/ad1": {
+    "name": "opt-4/ad1",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-4/ad2": {
+    "name": "opt-4/ad2",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-4/ad3": {
+    "name": "opt-4/ad3",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-4/ad4": {
+    "name": "opt-4/ad4",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-sub4": {
+    "name": "opt-sub4",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-sub4/th": {
+    "name": "opt-sub4/th",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "opt-sub4/tp": {
+    "name": "opt-sub4/tp",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "seminar-watch": {
+    "name": "seminar-watch",
+    "category": "セミナー",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "test-tracking-e2e": {
+    "name": "test-tracking-e2e",
+    "category": "オプト",
+    "created": "2026-06-10",
+    "updated": "2026-06-10"
+  },
+  "lm": {
+    "name": "ローンチ分析レポート",
+    "category": "セミナー",
+    "created": "2026-06-29",
+    "updated": "2026-06-29"
+  },
+  "6mig": {
+    "name": "6mig",
+    "category": "オプト",
+    "created": "2026-06-29",
+    "updated": "2026-06-29"
+  },
+  "6mth": {
+    "name": "6mth",
+    "category": "オプト",
+    "created": "2026-06-29",
+    "updated": "2026-06-29"
+  },
+  "6mthp": {
+    "name": "6mthp",
+    "category": "オプト",
+    "created": "2026-06-29",
+    "updated": "2026-06-29"
+  },
+  "m6thk": {
+    "name": "m6thk",
+    "category": "オプト",
+    "created": "2026-06-29",
+    "updated": "2026-06-29"
+  },
+  "partners-9722b832": {
+    "name": "パートナー実績ダッシュボード",
+    "category": "管理画面",
+    "created": "2026-06-29",
+    "updated": "2026-06-29"
   }
 }
