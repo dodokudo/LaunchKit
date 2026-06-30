@@ -255,6 +255,9 @@
 
     .table-scroll table { margin-top: 0; min-width: 1180px; }
     .dense-table th, .dense-table td { padding: 8px 7px; font-size: 12px; }
+    .nowrap-table { min-width: 1280px; }
+    .nowrap-table th, .nowrap-table td { white-space: nowrap; }
+    .nowrap-table .read-cell { white-space: normal; min-width: 360px; }
 
     .list { margin: 10px 0 0; padding-left: 20px; }
     .list li { margin: 6px 0; }
@@ -1499,7 +1502,7 @@
           <table>
             <thead><tr><th>流入経路</th><th>LINE登録</th><th>アンケ回答</th><th>回答率</th><th>申込</th><th>登録→申込</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>読み方</th></tr></thead>
             <tbody>
-              <tr class="weak"><td>代理店（山崎）</td><td>177</td><td>153</td><td>86.4%</td><td>再突合中</td><td>-</td><td>再突合中</td><td>-</td><td>再突合中</td><td>-</td><td>-</td><td>BigQueryの流入元=山崎で再集計。申込以降はスプシ名との突合を同じ定義で作り直す。</td></tr>
+              <tr class="weak"><td>代理店（山崎）</td><td>177</td><td>153</td><td>86.4%</td><td>33</td><td>18.6%</td><td>22</td><td>66.7%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>6月登録者だけで見ると申込33・参加22・購入0。</td></tr>
               <tr class="strong"><td>Threads</td><td>126</td><td>108</td><td>85.7%</td><td>49</td><td>38.9%</td><td>33</td><td>67.3%</td><td>5</td><td>10.2%</td><td>15.2%</td><td>申込率・購入率ともに最も強い。</td></tr>
               <tr><td>Instagram</td><td>18</td><td>16</td><td>88.9%</td><td>1</td><td>5.6%</td><td>1</td><td>100.0%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>母数が小さく、購入なし。</td></tr>
               <tr><td>Threads+Instagram</td><td>1</td><td>1</td><td>100.0%</td><td>0</td><td>0.0%</td><td>0</td><td>-</td><td>0</td><td>-</td><td>-</td><td>母数が小さい。</td></tr>
@@ -2031,25 +2034,29 @@
           </tbody>
         </table>
         <h3 style="margin-top:22px">5/1-6/28 現状売上</h3>
-        <table>
+        <div class="table-scroll">
+        <table class="nowrap-table">
           <thead><tr><th>流入</th><th>0円</th><th>1-10万</th><th>10-50万</th><th>50-100万</th><th>100-500万</th><th>500-1000万</th><th>1000万以上</th><th>読み方</th></tr></thead>
           <tbody>
-            <tr><td>全体</td><td>138 / 36.2%</td><td>108 / 28.3%</td><td>63 / 16.5%</td><td>25 / 6.6%</td><td>43 / 11.3%</td><td>9 / 2.4%</td><td>9 / 2.4%</td><td>0-10万が246名で64.6%。</td></tr>
-            <tr><td>Threads（自分集客）</td><td>95 / 38.2%</td><td>72 / 28.9%</td><td>41 / 16.5%</td><td>17 / 6.8%</td><td>27 / 10.8%</td><td>4 / 1.6%</td><td>7 / 2.8%</td><td>Threadsも0-10万が多い。</td></tr>
-            <tr class="weak"><td>代理店（山崎）</td><td>58 / 36.0%</td><td>49 / 30.4%</td><td>22 / 13.7%</td><td>13 / 8.1%</td><td>14 / 8.7%</td><td>4 / 2.5%</td><td>4 / 2.5%</td><td>0-10万が107名で66.5%。代理店だけが極端に悪いというより、全体と同じ低実績寄り。</td></tr>
-            <tr><td>山崎以外</td><td>80 / 36.4%</td><td>59 / 26.8%</td><td>41 / 18.6%</td><td>12 / 5.5%</td><td>29 / 13.2%</td><td>5 / 2.3%</td><td>5 / 2.3%</td><td>山崎以外も0-10万が多いが、10-50万と100-500万は山崎より少し厚い。</td></tr>
+            <tr><td>全体</td><td>138 / 36.2%</td><td>108 / 28.3%</td><td>63 / 16.5%</td><td>25 / 6.6%</td><td>43 / 11.3%</td><td>9 / 2.4%</td><td>9 / 2.4%</td><td class="read-cell">0-10万が246名で64.6%。</td></tr>
+            <tr><td>Threads（自分集客）</td><td>95 / 38.2%</td><td>72 / 28.9%</td><td>41 / 16.5%</td><td>17 / 6.8%</td><td>27 / 10.8%</td><td>4 / 1.6%</td><td>7 / 2.8%</td><td class="read-cell">Threadsも0-10万が多い。</td></tr>
+            <tr class="weak"><td>代理店（山崎）</td><td>58 / 36.0%</td><td>49 / 30.4%</td><td>22 / 13.7%</td><td>13 / 8.1%</td><td>14 / 8.7%</td><td>4 / 2.5%</td><td>4 / 2.5%</td><td class="read-cell">0-10万が107名で66.5%。代理店だけが極端に悪いというより、全体と同じ低実績寄り。</td></tr>
+            <tr><td>山崎以外</td><td>80 / 36.4%</td><td>59 / 26.8%</td><td>41 / 18.6%</td><td>12 / 5.5%</td><td>29 / 13.2%</td><td>5 / 2.3%</td><td>5 / 2.3%</td><td class="read-cell">山崎以外も0-10万が多いが、10-50万と100-500万は山崎より少し厚い。</td></tr>
           </tbody>
         </table>
+        </div>
         <h3 style="margin-top:22px">5/1-6/28 目標売上</h3>
-        <table>
+        <div class="table-scroll">
+        <table class="nowrap-table">
           <thead><tr><th>流入</th><th>10万以上</th><th>50万以上</th><th>100万以上</th><th>300万以上</th><th>500万以上</th><th>1000万以上</th><th>読み方</th></tr></thead>
           <tbody>
-            <tr><td>全体</td><td>109 / 28.6%</td><td>126 / 33.1%</td><td>74 / 19.4%</td><td>39 / 10.2%</td><td>24 / 6.3%</td><td>29 / 7.6%</td><td>10万・50万目標が厚く、100万以上が薄い。</td></tr>
-            <tr><td>Threads（自分集客）</td><td>70 / 28.1%</td><td>88 / 35.3%</td><td>49 / 19.7%</td><td>24 / 9.6%</td><td>18 / 7.2%</td><td>20 / 8.0%</td><td>Threadsも低目標寄り。自分集客側も改善対象。</td></tr>
-            <tr class="weak"><td>代理店（山崎）</td><td>50 / 31.1%</td><td>49 / 30.4%</td><td>33 / 20.5%</td><td>16 / 9.9%</td><td>5 / 3.1%</td><td>11 / 6.8%</td><td>10万目標が最も厚く、500万以上が薄い。BE直結には弱い。</td></tr>
-            <tr><td>山崎以外</td><td>59 / 26.8%</td><td>77 / 35.0%</td><td>41 / 18.6%</td><td>23 / 10.5%</td><td>19 / 8.6%</td><td>18 / 8.2%</td><td>山崎以外は500万以上が少し厚いが、全体として低目標寄り。</td></tr>
+            <tr><td>全体</td><td>109 / 28.6%</td><td>126 / 33.1%</td><td>74 / 19.4%</td><td>39 / 10.2%</td><td>24 / 6.3%</td><td>29 / 7.6%</td><td class="read-cell">10万・50万目標が厚く、100万以上が薄い。</td></tr>
+            <tr><td>Threads（自分集客）</td><td>70 / 28.1%</td><td>88 / 35.3%</td><td>49 / 19.7%</td><td>24 / 9.6%</td><td>18 / 7.2%</td><td>20 / 8.0%</td><td class="read-cell">Threadsも低目標寄り。自分集客側も改善対象。</td></tr>
+            <tr class="weak"><td>代理店（山崎）</td><td>50 / 31.1%</td><td>49 / 30.4%</td><td>33 / 20.5%</td><td>16 / 9.9%</td><td>5 / 3.1%</td><td>11 / 6.8%</td><td class="read-cell">10万目標が最も厚く、500万以上が薄い。BE直結には弱い。</td></tr>
+            <tr><td>山崎以外</td><td>59 / 26.8%</td><td>77 / 35.0%</td><td>41 / 18.6%</td><td>23 / 10.5%</td><td>19 / 8.6%</td><td>18 / 8.2%</td><td class="read-cell">山崎以外は500万以上が少し厚いが、全体として低目標寄り。</td></tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section class="grid two">
@@ -2071,13 +2078,13 @@
             <thead><tr><th>流入経路</th><th>対象者</th><th>回答</th><th>申込</th><th>参加</th><th>購入</th><th>申込率</th><th>参加率</th></tr></thead>
             <tbody>
               <tr><td>Threads</td><td>1004</td><td>921</td><td>104</td><td>66</td><td>8</td><td>10.4%</td><td>63.5%</td></tr>
-              <tr><td>代理店（山崎）</td><td>177</td><td>153</td><td>再突合中</td><td>再突合中</td><td>再突合中</td><td>-</td><td>-</td></tr>
+              <tr class="weak"><td>代理店（山崎）</td><td>177</td><td>153</td><td>26</td><td>19</td><td>1</td><td>14.7%</td><td>73.1%</td></tr>
               <tr><td>Threads+Instagram</td><td>未整備</td><td>未整備</td><td>7</td><td>5</td><td>0</td><td>-</td><td>71.4%</td></tr>
               <tr><td>Instagram</td><td>73</td><td>62</td><td>2</td><td>2</td><td>0</td><td>2.7%</td><td>100.0%</td></tr>
               <tr><td>不明/その他</td><td>未整備</td><td>未整備</td><td>2</td><td>0</td><td>0</td><td>-</td><td>0.0%</td></tr>
             </tbody>
           </table>
-          <p class="small">代理店（山崎）はBigQuery `user_info.流入元=山崎` を正にします。申込・参加・購入は修正版メインスプシとの名前突合を同じ定義で作り直すため、旧値26/19/1はこの表では使いません。</p>
+          <p class="small">代理店（山崎）はBigQuery `user_info.流入元=山崎` を正にします。申込・参加・購入は修正版メインスプシの流入経路別集計で、全申込者141名のうち26申込・19参加・1購入です。</p>
         </div>
       </section>
 
