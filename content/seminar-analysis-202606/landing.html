@@ -1395,33 +1395,25 @@
       </section>
 
       <section>
-        <h2>2. 新規/既存別 セミナー申込・参加・購入</h2>
-        <div class="split-lanes">
-          <div class="lane">
-            <h3>新規: 6/17以降登録</h3>
-            <div class="grid four">
-              <div class="metric compact"><div class="label">LINE登録</div><div class="value">213</div><div class="note">有効: 6/17〜6/28</div></div>
-              <div class="metric compact"><div class="label">セミナー申込</div><div class="value">58</div><div class="note">申込率27.2%</div></div>
-              <div class="metric compact"><div class="label">セミナー参加</div><div class="value">37</div><div class="note">参加率63.8%</div></div>
-              <div class="metric compact good"><div class="label">購入</div><div class="value">2</div><div class="note">参加→FE 5.4%</div></div>
-            </div>
-          </div>
-          <div class="lane">
-            <h3>既存: 6/17より前登録</h3>
-            <div class="grid four">
-              <div class="metric compact"><div class="label">LINE対象</div><div class="value">1,117</div><div class="note">有効: 6/16以前</div></div>
-              <div class="metric compact"><div class="label">セミナー申込</div><div class="value">103</div><div class="note">申込率9.2%</div></div>
-              <div class="metric compact"><div class="label">セミナー参加</div><div class="value">56</div><div class="note">参加率54.4%</div></div>
-              <div class="metric compact good"><div class="label">購入</div><div class="value">5</div><div class="note">参加→FE 8.9%</div></div>
-            </div>
-          </div>
-        </div>
-        <p class="small">このブロックは新規/既存の申込・参加・購入内訳を業者シートから見ています。LINE母数とアンケ回答はBigQuery有効リスト（blocked=0）に差し替え済みです。修正版メインスプシの全体確定値は申込141・参加92・購入9で、業者シート内訳の申込161・参加93・購入7とは差があります。</p>
+        <h2>2. 申込者内訳: 新規/既存</h2>
+        <p class="small">まずセミナー申込者を新規/既存で分けます。ここは業者シートの内訳値です。修正版メインスプシの全体確定値は申込141・参加92・購入9で、業者シート内訳の申込161・参加93・購入7とは差があります。</p>
         <table>
-          <thead><tr><th>区分</th><th>リスト母数</th><th>アンケ回答</th><th>回答率</th><th>セミナー申込</th><th>申込率</th><th>セミナー参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th></tr></thead>
+          <thead><tr><th>区分</th><th>申込</th><th>申込構成比</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>読み方</th></tr></thead>
           <tbody>
-            <tr class="middle"><td>新規</td><td>213</td><td>179</td><td>84.0%</td><td>58</td><td>27.2%</td><td>37</td><td>63.8%</td><td>2</td><td>3.4%</td><td>5.4%</td></tr>
-            <tr class="strong"><td>既存</td><td>1,117</td><td>1,000</td><td>89.5%</td><td>103</td><td>9.2%</td><td>56</td><td>54.4%</td><td>5</td><td>4.9%</td><td>8.9%</td></tr>
+            <tr class="middle"><td>新規</td><td>58</td><td>36.0%</td><td>37</td><td>63.8%</td><td>2</td><td>3.4%</td><td>5.4%</td><td>申込は強いが、参加後購入が弱い。</td></tr>
+            <tr class="strong"><td>既存</td><td>103</td><td>64.0%</td><td>56</td><td>54.4%</td><td>5</td><td>4.9%</td><td>8.9%</td><td>申込の中心。参加後購入は新規より高い。</td></tr>
+            <tr><td>合計</td><td>161</td><td>100.0%</td><td>93</td><td>57.8%</td><td>7</td><td>4.3%</td><td>7.5%</td><td>業者シート内訳の合計。</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top:18px">参加者の流入経路別</h3>
+        <table>
+          <thead><tr><th>流入経路</th><th>参加</th><th>参加者構成比</th><th>申込</th><th>申込→参加</th><th>FE購入</th><th>参加→FE</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr class="strong"><td>Threads</td><td>69</td><td>74.2%</td><td>124</td><td>55.6%</td><td>7</td><td>10.1%</td><td>参加者も購入者も中心。購入7名はすべてThreads。</td></tr>
+            <tr class="weak"><td>代理店/その他</td><td>21</td><td>22.6%</td><td>33</td><td>63.6%</td><td>0</td><td>0.0%</td><td>参加までは来るが購入なし。質確認が必要。</td></tr>
+            <tr><td>Instagram</td><td>3</td><td>3.2%</td><td>4</td><td>75.0%</td><td>0</td><td>0.0%</td><td>母数が小さく、購入なし。</td></tr>
+            <tr><td>合計</td><td>93</td><td>100.0%</td><td>161</td><td>57.8%</td><td>7</td><td>7.5%</td><td>業者シート内訳の合計。</td></tr>
           </tbody>
         </table>
       </section>
@@ -1539,8 +1531,8 @@
         </div>
 
         <div class="panel">
-          <h2>5. セミナー申込者の流入経路別</h2>
-          <p class="small">このブロックは業者シートの流入経路別ファネルです。6月は代理店経由が混在している前提ですが、現シートでは代理店が独立列になっていないため、Instagram/Threads以外の差分を「代理店/その他（差分）」として置いています。</p>
+          <h2>5. 流入経路別の補足</h2>
+          <p class="small">主分析は上の「参加者の流入経路別」です。このブロックは業者シートの対象者・申込ベースの補足です。6月は代理店経由が混在している前提ですが、現シートでは代理店が独立列になっていないため、Instagram/Threads以外の差分を「代理店/その他（差分）」として置いています。</p>
           <div class="visual-grid">
             <div class="chart">
               <h3>流入経路別 対象者</h3>
