@@ -130,6 +130,15 @@
     .panel h2 { font-size: 20px; line-height: 1.35; }
     .panel h3 { font-size: 16px; margin-bottom: 8px; }
 
+    .section-heading {
+      margin: 34px 0 16px;
+      font-size: 30px;
+      line-height: 1.25;
+      font-weight: 850;
+    }
+
+    .section-heading + section { margin-top: 0; }
+
     .lead {
       margin-top: 10px;
       color: #354057;
@@ -214,6 +223,10 @@
     tr.strong td:first-child { border-left: 4px solid var(--green); }
     tr.middle td:first-child { border-left: 4px solid var(--gold); }
     tr.weak td:first-child { border-left: 4px solid var(--red); }
+    tr.total-row td { background: #eef4ff; font-weight: 800; }
+    tr.total-row td:first-child { border-left: 4px solid var(--blue); }
+    tr.be-row td { background: #eaf8ef; }
+    tr.be-row td:first-child { border-left: 4px solid var(--green); }
 
     .pill {
       display: inline-block;
@@ -230,6 +243,18 @@
     .pill.warn { background: #fff3d6; color: #92400e; }
     .pill.bad { background: #fee4e2; color: #991b1b; }
     .pill.block { display: block; width: fit-content; margin-bottom: 5px; }
+    .muted { color: var(--muted); font-size: 12px; }
+
+    .table-scroll {
+      overflow-x: auto;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .table-scroll table { margin-top: 0; min-width: 1180px; }
+    .dense-table th, .dense-table td { padding: 8px 7px; font-size: 12px; }
 
     .list { margin: 10px 0 0; padding-left: 20px; }
     .list li { margin: 6px 0; }
@@ -435,60 +460,166 @@
       <button class="tab-btn" data-tab="mar">2026年3月</button>
       <button class="tab-btn" data-tab="jun">2026年6月</button>
       <button class="tab-btn" data-tab="compare">比較レポート</button>
-      <button class="tab-btn" data-tab="all">購入者35名</button>
+      <button class="tab-btn" data-tab="all">購入者</button>
       <button class="tab-btn" data-tab="core28">6月除外28名</button>
     </div>
   </nav>
 
   <main class="wrap">
     <article id="all" class="tab-panel">
-      <section class="grid">
-        <div class="metric"><div class="label">FE購入者</div><div class="value">35名</div><div class="note">CSV33名 + 追加2名</div></div>
-        <div class="metric"><div class="label">中心年代</div><div class="value">40代</div><div class="note">13名 / 37.1%</div></div>
-        <div class="metric"><div class="label">最多売上帯</div><div class="value">10-50万</div><div class="note">14名 / 40.0%</div></div>
-        <div class="metric"><div class="label">最多目標</div><div class="value">100万+</div><div class="note">17名 / 48.6%</div></div>
+      <section class="grid four">
+        <div class="metric good"><div class="label">FE購入者</div><div class="value">37名</div><div class="note">フロント教材購入</div></div>
+        <div class="metric good"><div class="label">BE購入者</div><div class="value">11名</div><div class="note">29.7% / 緑色の行</div></div>
+        <div class="metric"><div class="label">本命層の定義</div><div class="value">10万+ / 100万+</div><div class="note">現状売上10万円以上 かつ 目標100万円以上</div></div>
+        <div class="metric"><div class="label">登録→FE</div><div class="value">平均23.6日</div><div class="note">中央値17日 / 37名</div></div>
       </section>
-
-      <section class="panel callout">
-        <h2>FE全体の結論</h2>
-        <p class="lead">購入者は「完全初心者」だけではない。中心は30〜50代女性で、講師・フリーランス・経営者・会社員が混在。商品や専門性はありそうだが、集客導線・文章化・クロージングが弱い人が多い。したがって、初心者向けに寄せすぎるより「商品や経験をThreadsとAIで売れる導線に変える」見せ方が合う。</p>
+      <h2 class="section-heading">FE購入者デモグラ（37名）</h2>
+      <section class="grid three">
+        <div class="chart"><h3>FE購入企画</h3><div class="bar-row"><div class="bar-label">個別相談会</div><div class="track"><div class="bar teal" style="width:36%"></div></div><div class="count">4 <span class="pct">10.8%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2025年12月</div><div class="track"><div class="bar teal" style="width:18%"></div></div><div class="count">2 <span class="pct">5.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2026年1月</div><div class="track"><div class="bar teal" style="width:73%"></div></div><div class="count">8 <span class="pct">21.6%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2月エバー</div><div class="track"><div class="bar teal" style="width:18%"></div></div><div class="count">2 <span class="pct">5.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2026年3月</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">11 <span class="pct">29.7%</span></div></div>
+          <div class="bar-row"><div class="bar-label">3月リマーケ</div><div class="track"><div class="bar teal" style="width:9%"></div></div><div class="count">1 <span class="pct">2.7%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2026年6月</div><div class="track"><div class="bar teal" style="width:82%"></div></div><div class="count">9 <span class="pct">24.3%</span></div></div></div>
+        <div class="chart"><h3>セグメント</h3><div class="bar-row"><div class="bar-label">本命層</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">19 <span class="pct">51.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">熱量型</div><div class="track"><div class="bar green" style="width:42%"></div></div><div class="count">8 <span class="pct">21.6%</span></div></div>
+          <div class="bar-row"><div class="bar-label">弱い層</div><div class="track"><div class="bar green" style="width:32%"></div></div><div class="count">6 <span class="pct">16.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">売上あり低目標</div><div class="track"><div class="bar green" style="width:21%"></div></div><div class="count">4 <span class="pct">10.8%</span></div></div></div>
+        <div class="chart"><h3>ジャンル</h3><div class="bar-row"><div class="bar-label">その他</div><div class="track"><div class="bar gold" style="width:100%"></div></div><div class="count">14 <span class="pct">37.8%</span></div></div>
+          <div class="bar-row"><div class="bar-label">SNSマーケ・起業系</div><div class="track"><div class="bar gold" style="width:57%"></div></div><div class="count">8 <span class="pct">21.6%</span></div></div>
+          <div class="bar-row"><div class="bar-label">講師業</div><div class="track"><div class="bar gold" style="width:43%"></div></div><div class="count">6 <span class="pct">16.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">美容・サロン系</div><div class="track"><div class="bar gold" style="width:43%"></div></div><div class="count">6 <span class="pct">16.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">店舗経営</div><div class="track"><div class="bar gold" style="width:21%"></div></div><div class="count">3 <span class="pct">8.1%</span></div></div></div>
       </section>
 
       <section class="grid two">
-        <div class="chart">
-          <h3>年代</h3>
-          <div class="bar-row"><div class="bar-label">20代</div><div class="track"><div class="bar teal" style="width:8%"></div></div><div class="count">1 <span class="pct">2.9%</span></div></div>
-          <div class="bar-row"><div class="bar-label">30代</div><div class="track"><div class="bar teal" style="width:69%"></div></div><div class="count">9 <span class="pct">25.7%</span></div></div>
-          <div class="bar-row"><div class="bar-label">40代</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">13 <span class="pct">37.1%</span></div></div>
-          <div class="bar-row"><div class="bar-label">50代</div><div class="track"><div class="bar teal" style="width:77%"></div></div><div class="count">10 <span class="pct">28.6%</span></div></div>
-          <div class="bar-row"><div class="bar-label">60代</div><div class="track"><div class="bar teal" style="width:23%"></div></div><div class="count">3 <span class="pct">8.6%</span></div></div>
-        </div>
-        <div class="chart">
-          <h3>現状売上</h3>
-          <div class="bar-row"><div class="bar-label">月0円</div><div class="track"><div class="bar blue" style="width:64%"></div></div><div class="count">9 <span class="pct">25.7%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月1-10万</div><div class="track"><div class="bar blue" style="width:71%"></div></div><div class="count">10 <span class="pct">28.6%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月10-50万</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">14 <span class="pct">40.0%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月50-100万</div><div class="track"><div class="bar blue" style="width:43%"></div></div><div class="count">6 <span class="pct">17.1%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月100-500万</div><div class="track"><div class="bar blue" style="width:50%"></div></div><div class="count">7 <span class="pct">20.0%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月500-1000万</div><div class="track"><div class="bar blue" style="width:7%"></div></div><div class="count">1 <span class="pct">2.9%</span></div></div>
-        </div>
-        <div class="chart">
-          <h3>職業</h3>
-          <div class="bar-row"><div class="bar-label">フリーランス</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">15 <span class="pct">42.9%</span></div></div>
-          <div class="bar-row"><div class="bar-label">経営者</div><div class="track"><div class="bar green" style="width:73%"></div></div><div class="count">11 <span class="pct">31.4%</span></div></div>
-          <div class="bar-row"><div class="bar-label">会社員</div><div class="track"><div class="bar green" style="width:73%"></div></div><div class="count">11 <span class="pct">31.4%</span></div></div>
-          <div class="bar-row"><div class="bar-label">主婦</div><div class="track"><div class="bar green" style="width:13%"></div></div><div class="count">2 <span class="pct">5.7%</span></div></div>
-        </div>
-        <div class="chart">
-          <h3>目標売上</h3>
-          <div class="bar-row"><div class="bar-label">月10万+</div><div class="track"><div class="bar rose" style="width:12%"></div></div><div class="count">2 <span class="pct">5.7%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月50万+</div><div class="track"><div class="bar rose" style="width:47%"></div></div><div class="count">8 <span class="pct">22.9%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月100万+</div><div class="track"><div class="bar rose" style="width:100%"></div></div><div class="count">17 <span class="pct">48.6%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月300万+</div><div class="track"><div class="bar rose" style="width:59%"></div></div><div class="count">10 <span class="pct">28.6%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月500万+</div><div class="track"><div class="bar rose" style="width:29%"></div></div><div class="count">5 <span class="pct">14.3%</span></div></div>
-          <div class="bar-row"><div class="bar-label">月1000万+</div><div class="track"><div class="bar rose" style="width:12%"></div></div><div class="count">2 <span class="pct">5.7%</span></div></div>
-        </div>
+        <div class="chart"><h3>年代</h3><div class="bar-row"><div class="bar-label">20代</div><div class="track"><div class="bar teal" style="width:7%"></div></div><div class="count">1 <span class="pct">2.7%</span></div></div>
+          <div class="bar-row"><div class="bar-label">30代</div><div class="track"><div class="bar teal" style="width:64%"></div></div><div class="count">9 <span class="pct">24.3%</span></div></div>
+          <div class="bar-row"><div class="bar-label">40代</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">14 <span class="pct">37.8%</span></div></div>
+          <div class="bar-row"><div class="bar-label">50代</div><div class="track"><div class="bar teal" style="width:71%"></div></div><div class="count">10 <span class="pct">27.0%</span></div></div>
+          <div class="bar-row"><div class="bar-label">60代</div><div class="track"><div class="bar teal" style="width:21%"></div></div><div class="count">3 <span class="pct">8.1%</span></div></div></div>
+        <div class="chart"><h3>現状売上</h3><div class="bar-row"><div class="bar-label">0円</div><div class="track"><div class="bar blue" style="width:55%"></div></div><div class="count">6 <span class="pct">16.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">1から10万円</div><div class="track"><div class="bar blue" style="width:73%"></div></div><div class="count">8 <span class="pct">21.6%</span></div></div>
+          <div class="bar-row"><div class="bar-label">10から50万円</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">11 <span class="pct">29.7%</span></div></div>
+          <div class="bar-row"><div class="bar-label">50から100万円</div><div class="track"><div class="bar blue" style="width:36%"></div></div><div class="count">4 <span class="pct">10.8%</span></div></div>
+          <div class="bar-row"><div class="bar-label">100から500万円</div><div class="track"><div class="bar blue" style="width:64%"></div></div><div class="count">7 <span class="pct">18.9%</span></div></div>
+          <div class="bar-row"><div class="bar-label">500から1000万円</div><div class="track"><div class="bar blue" style="width:9%"></div></div><div class="count">1 <span class="pct">2.7%</span></div></div></div>
+        <div class="chart"><h3>目標売上</h3><div class="bar-row"><div class="bar-label">10万円以上</div><div class="track"><div class="bar rose" style="width:13%"></div></div><div class="count">2 <span class="pct">5.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">50万円以上</div><div class="track"><div class="bar rose" style="width:53%"></div></div><div class="count">8 <span class="pct">21.6%</span></div></div>
+          <div class="bar-row"><div class="bar-label">100万円以上</div><div class="track"><div class="bar rose" style="width:100%"></div></div><div class="count">15 <span class="pct">40.5%</span></div></div>
+          <div class="bar-row"><div class="bar-label">300万円以上</div><div class="track"><div class="bar rose" style="width:33%"></div></div><div class="count">5 <span class="pct">13.5%</span></div></div>
+          <div class="bar-row"><div class="bar-label">500万円以上</div><div class="track"><div class="bar rose" style="width:33%"></div></div><div class="count">5 <span class="pct">13.5%</span></div></div>
+          <div class="bar-row"><div class="bar-label">1000万円以上</div><div class="track"><div class="bar rose" style="width:13%"></div></div><div class="count">2 <span class="pct">5.4%</span></div></div></div>
+        <div class="chart"><h3>職業</h3><div class="bar-row"><div class="bar-label">会社員</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">12 <span class="pct">32.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">フリーランス</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">12 <span class="pct">32.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">経営者</div><div class="track"><div class="bar green" style="width:92%"></div></div><div class="count">11 <span class="pct">29.7%</span></div></div>
+          <div class="bar-row"><div class="bar-label">主婦</div><div class="track"><div class="bar green" style="width:17%"></div></div><div class="count">2 <span class="pct">5.4%</span></div></div></div>
       </section>
+
+      <section class="panel callout">
+        <h2>FE購入者の特徴</h2>
+        <ul class="list">
+          <li>中心は30〜50代で33/37名。年齢だけで見るより、仕事・専門性・売上化意欲があるかを見るべきです。</li>
+          <li>会社員・フリーランス・経営者が35/37名で、主婦層は少数。何かしら仕事や事業の土台がある人が買っています。</li>
+          <li>現状売上10万円以上が23/37名、目標100万円以上が27/37名。完全初心者だけではなく、伸ばしたい層が多いです。</li>
+          <li>FEは0〜10万円層も買います。ただし、BEにつなげるには売上フェーズ・商品/専門性・本気度の見極めが必要です。</li>
+        </ul>
+      </section>
+
+      <h2 class="section-heading">BE購入者デモグラ（11名）</h2>
+      <section class="grid three">
+        <div class="chart"><h3>BE購入企画</h3><div class="bar-row"><div class="bar-label">2026年3月</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">5 <span class="pct">45.5%</span></div></div>
+          <div class="bar-row"><div class="bar-label">個別相談会</div><div class="track"><div class="bar green" style="width:40%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2026年1月</div><div class="track"><div class="bar green" style="width:40%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2025年12月</div><div class="track"><div class="bar green" style="width:20%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div>
+          <div class="bar-row"><div class="bar-label">2月エバー</div><div class="track"><div class="bar green" style="width:20%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div></div>
+        <div class="chart"><h3>セグメント</h3><div class="bar-row"><div class="bar-label">本命層</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">8 <span class="pct">72.7%</span></div></div>
+          <div class="bar-row"><div class="bar-label">弱い層</div><div class="track"><div class="bar green" style="width:25%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">売上あり低目標</div><div class="track"><div class="bar green" style="width:13%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div></div>
+        <div class="chart"><h3>ジャンル</h3><div class="bar-row"><div class="bar-label">その他</div><div class="track"><div class="bar gold" style="width:100%"></div></div><div class="count">4 <span class="pct">36.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">SNSマーケ・起業系</div><div class="track"><div class="bar gold" style="width:75%"></div></div><div class="count">3 <span class="pct">27.3%</span></div></div>
+          <div class="bar-row"><div class="bar-label">美容・サロン系</div><div class="track"><div class="bar gold" style="width:50%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">講師業</div><div class="track"><div class="bar gold" style="width:50%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div></div>
+      </section>
+
+      <section class="grid two">
+        <div class="chart"><h3>年代</h3><div class="bar-row"><div class="bar-label">30代</div><div class="track"><div class="bar teal" style="width:75%"></div></div><div class="count">3 <span class="pct">27.3%</span></div></div>
+          <div class="bar-row"><div class="bar-label">40代</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">4 <span class="pct">36.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">50代</div><div class="track"><div class="bar teal" style="width:75%"></div></div><div class="count">3 <span class="pct">27.3%</span></div></div>
+          <div class="bar-row"><div class="bar-label">60代</div><div class="track"><div class="bar teal" style="width:25%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div></div>
+        <div class="chart"><h3>現状売上</h3><div class="bar-row"><div class="bar-label">0円</div><div class="track"><div class="bar blue" style="width:25%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div>
+          <div class="bar-row"><div class="bar-label">1から10万円</div><div class="track"><div class="bar blue" style="width:25%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div>
+          <div class="bar-row"><div class="bar-label">10から50万円</div><div class="track"><div class="bar blue" style="width:50%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">50から100万円</div><div class="track"><div class="bar blue" style="width:50%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">100から500万円</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">4 <span class="pct">36.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">500から1000万円</div><div class="track"><div class="bar blue" style="width:25%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div></div>
+        <div class="chart"><h3>目標売上</h3><div class="bar-row"><div class="bar-label">50万円以上</div><div class="track"><div class="bar rose" style="width:75%"></div></div><div class="count">3 <span class="pct">27.3%</span></div></div>
+          <div class="bar-row"><div class="bar-label">100万円以上</div><div class="track"><div class="bar rose" style="width:25%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div>
+          <div class="bar-row"><div class="bar-label">300万円以上</div><div class="track"><div class="bar rose" style="width:50%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div>
+          <div class="bar-row"><div class="bar-label">500万円以上</div><div class="track"><div class="bar rose" style="width:100%"></div></div><div class="count">4 <span class="pct">36.4%</span></div></div>
+          <div class="bar-row"><div class="bar-label">1000万円以上</div><div class="track"><div class="bar rose" style="width:25%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div></div>
+        <div class="chart"><h3>職業</h3><div class="bar-row"><div class="bar-label">フリーランス</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">6 <span class="pct">54.5%</span></div></div>
+          <div class="bar-row"><div class="bar-label">会社員</div><div class="track"><div class="bar green" style="width:50%"></div></div><div class="count">3 <span class="pct">27.3%</span></div></div>
+          <div class="bar-row"><div class="bar-label">経営者</div><div class="track"><div class="bar green" style="width:33%"></div></div><div class="count">2 <span class="pct">18.2%</span></div></div></div>
+      </section>
+
+      <section class="panel callout">
+        <h2>BE購入者の特徴</h2>
+        <ul class="list">
+          <li>BE購入者は本命層が8/11名。FE全体の本命層比率51.4%に対して、BEでは72.7%まで上がります。</li>
+          <li>現状売上10万円以上が9/11名。0〜10万円以下でもBE購入はありますが、主戦場はすでに売上の土台がある層です。</li>
+          <li>目標300万円以上が7/11名。FE購入者全体より、目標金額が高い人ほどBEにつながりやすいです。</li>
+          <li>職業はフリーランス6名、会社員3名、経営者2名。会社員でも、専門性や商品化意欲があればBE候補になります。</li>
+          <li>FEからBEにつながりやすい人は「現状売上10万円以上」「目標100万円以上、できれば300万円以上」「自分の専門性や商品化テーマがある」「導線・クロージングに課題がある」人です。</li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2>購入者37名一覧</h2>
+        <p class="small">購入日順です。BE購入者は行全体を緑色にしています。</p>
+        <div class="table-scroll"><table class="dense-table"><thead><tr><th>#</th><th>名前</th><th>購入企画</th><th>LINE登録日</th><th>購入日</th><th>登録→購入</th><th>流入</th><th>デモグラ</th><th>ジャンル</th><th>現状売上</th><th>目標売上</th><th>判定</th></tr></thead><tbody>
+              <tr class="be-row"><td>1</td><td><strong>@ERIKA</strong></td><td>個別相談会</td><td>2025-11-27</td><td>12/1</td><td>4</td><td>Threads</td><td>女 / 40代 / 会社員</td><td>SNSマーケ・起業系</td><td>0円</td><td>50万円以上</td><td><span class="pill bad">弱い層</span></td></tr>
+              <tr class="middle"><td>2</td><td><strong>yoko</strong></td><td>個別相談会</td><td>2025-11-18</td><td>12/1</td><td>13</td><td>Threads</td><td>女 / 30代 / フリーランス</td><td>その他</td><td>1から10万円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="be-row"><td>3</td><td><strong>渚</strong></td><td>個別相談会</td><td>2025-12-04</td><td>12/7</td><td>3</td><td>Threads</td><td>女 / 40代 / 会社員</td><td>その他</td><td>50から100万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="be-row"><td>4</td><td><strong>沙織</strong></td><td>2025年12月</td><td>2025-12-04</td><td>12/21</td><td>17</td><td>Threads</td><td>女 / 30代 / 会社員</td><td>SNSマーケ・起業系</td><td>100から500万円</td><td>500万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="strong"><td>5</td><td><strong>Madoka</strong></td><td>2025年12月</td><td>2025-12-10</td><td>12/22</td><td>12</td><td>Threads</td><td>女 / 40代 / フリーランス</td><td>講師業</td><td>10から50万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="middle"><td>6</td><td><strong>渡辺みさき</strong></td><td>個別相談会</td><td>2025-11-25</td><td>1/3</td><td>39</td><td>Threads</td><td>女 / 30代 / 会社員</td><td>美容・サロン系</td><td>1から10万円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="be-row"><td>7</td><td><strong>かおる</strong></td><td>2026年1月</td><td>2025-11-21</td><td>1/13</td><td>53</td><td>Threads</td><td>女 / 30代 / フリーランス</td><td>その他</td><td>1から10万円</td><td>50万円以上</td><td><span class="pill bad">弱い層</span></td></tr>
+              <tr class="weak"><td>8</td><td><strong>tamayo</strong></td><td>2026年1月</td><td>2025-12-04</td><td>1/14</td><td>41</td><td>Threads</td><td>女 / 50代 / 会社員</td><td>その他</td><td>0円</td><td>10万円以上</td><td><span class="pill bad">弱い層</span></td></tr>
+              <tr class="be-row"><td>9</td><td><strong>みつよ</strong></td><td>2026年1月</td><td>2025-12-13</td><td>1/14</td><td>32</td><td>Threads</td><td>女 / 50代 / フリーランス</td><td>美容・サロン系</td><td>10から50万円</td><td>50万円以上</td><td><span class="pill ">売上あり低目標</span></td></tr>
+              <tr class="strong"><td>10</td><td><strong>隆一</strong></td><td>2026年1月</td><td>2025-12-25</td><td>1/14</td><td>20</td><td>Threads</td><td>男 / 30代 / 経営者</td><td>店舗経営</td><td>50から100万円</td><td>300万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="middle"><td>11</td><td><strong>mizuki</strong></td><td>2026年1月</td><td>2026-01-13</td><td>1/17</td><td>4</td><td>Threads</td><td>女 / 30代 / 会社員</td><td>講師業</td><td>0円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="middle"><td>12</td><td><strong>志織</strong></td><td>2026年1月</td><td>2026-01-14</td><td>1/17</td><td>3</td><td>Threads</td><td>女 / 50代 / フリーランス</td><td>美容・サロン系</td><td>0円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="strong"><td>13</td><td><strong>やべまりこ</strong></td><td>2026年1月</td><td>2025-10-10</td><td>1/18</td><td>100</td><td>Threads</td><td>女 / 40代 / 経営者</td><td>講師業</td><td>100から500万円</td><td>500万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="weak"><td>14</td><td><strong>山本雄也</strong></td><td>2026年1月</td><td>2026-01-16</td><td>1/18</td><td>2</td><td>Threads</td><td>男 / 40代 / 会社員</td><td>その他</td><td>0円</td><td>10万円以上</td><td><span class="pill bad">弱い層</span></td></tr>
+              <tr class="be-row"><td>15</td><td><strong>佐藤 弥生</strong></td><td>2月エバー</td><td>2026-01-17</td><td>2/19</td><td>33</td><td>Threads</td><td>女 / 60代 / フリーランス</td><td>その他</td><td>100から500万円</td><td>500万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="weak"><td>16</td><td><strong>朋味</strong></td><td>2月エバー</td><td>2026-03-01</td><td>3/3</td><td>2</td><td>Threads</td><td>女 / 50代 / 主婦</td><td>その他</td><td>1から10万円</td><td>50万円以上</td><td><span class="pill bad">弱い層</span></td></tr>
+              <tr class="middle"><td>17</td><td><strong>Hiro</strong></td><td>2026年3月</td><td>2026-02-17</td><td>3/14</td><td>25</td><td>Threads</td><td>男 / 40代 / フリーランス</td><td>その他</td><td>10から50万円</td><td>50万円以上</td><td><span class="pill ">売上あり低目標</span></td></tr>
+              <tr class="middle"><td>18</td><td><strong>寺井はるか（てち。）</strong></td><td>2026年3月</td><td>2026-01-18</td><td>3/14</td><td>55</td><td>Threads</td><td>男 / 20代 / フリーランス</td><td>SNSマーケ・起業系</td><td>10から50万円</td><td>50万円以上</td><td><span class="pill ">売上あり低目標</span></td></tr>
+              <tr class="middle"><td>19</td><td><strong>小西紘平</strong></td><td>2026年3月</td><td>2026-02-14</td><td>3/14</td><td>28</td><td>Threads</td><td>男 / 40代 / 会社員</td><td>SNSマーケ・起業系</td><td>1から10万円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="strong"><td>20</td><td><strong>畑田 陽子</strong></td><td>2026年3月</td><td>2026-03-06</td><td>3/14</td><td>8</td><td>Threads</td><td>女 / 40代 / フリーランス</td><td>SNSマーケ・起業系</td><td>10から50万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="be-row"><td>21</td><td><strong>Akira Uchiyama</strong></td><td>2026年3月</td><td>2026-03-10</td><td>3/15</td><td>5</td><td>Threads</td><td>男 / 50代 / 経営者</td><td>その他</td><td>100から500万円</td><td>300万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="be-row"><td>22</td><td><strong>浅野芳子</strong></td><td>2026年3月</td><td>2026-02-17</td><td>3/15</td><td>26</td><td>Threads</td><td>女 / 50代 / フリーランス</td><td>SNSマーケ・起業系</td><td>10から50万円</td><td>300万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="strong"><td>23</td><td><strong>宮塚 祐司</strong></td><td>2026年3月</td><td>2026-03-17</td><td>3/17</td><td>0</td><td>Threads</td><td>男 / 30代 / 経営者</td><td>店舗経営</td><td>100から500万円</td><td>300万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="be-row"><td>24</td><td><strong>AKI</strong></td><td>2026年3月</td><td>2026-03-17</td><td>3/21</td><td>4</td><td>Threads</td><td>女 / 40代 / 経営者</td><td>美容・サロン系</td><td>100から500万円</td><td>500万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="be-row"><td>25</td><td><strong>KeiKo</strong></td><td>2026年3月</td><td>2026-03-06</td><td>3/21</td><td>15</td><td>Threads</td><td>女 / 40代 / フリーランス</td><td>講師業</td><td>500から1000万円</td><td>1000万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="be-row"><td>26</td><td><strong>R</strong></td><td>2026年3月</td><td>2026-02-14</td><td>3/21</td><td>35</td><td>Threads</td><td>男 / 30代 / フリーランス</td><td>講師業</td><td>50から100万円</td><td>500万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="strong"><td>27</td><td><strong>美香</strong></td><td>2026年3月</td><td>2026-03-18</td><td>3/21</td><td>3</td><td>Threads</td><td>女 / 50代 / 経営者</td><td>その他</td><td>50から100万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="strong"><td>28</td><td><strong>木原 奈緒美</strong></td><td>3月リマーケ</td><td>2026-02-17</td><td>2026/4/26</td><td>68</td><td>Threads</td><td>女 / 60代 / 経営者</td><td>その他</td><td>10から50万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="middle"><td>29</td><td><strong>ワタナベ　ユタカ</strong></td><td>2026年6月</td><td>2026-06-02</td><td>6/22</td><td>20</td><td>Threads</td><td>男 / 50代 / 経営者</td><td>美容・サロン系</td><td>10から50万円</td><td>50万円以上</td><td><span class="pill ">売上あり低目標</span></td></tr>
+              <tr class="middle"><td>30</td><td><strong>Satoko.k</strong></td><td>2026年6月</td><td>2026-05-20</td><td>6/23</td><td>34</td><td>Threads</td><td>女 / 40代 / 会社員</td><td>その他</td><td>1から10万円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="strong"><td>31</td><td><strong>田中よしこ</strong></td><td>2026年6月</td><td>2026-06-19</td><td>6/23</td><td>4</td><td>Threads</td><td>女 / 50代 / 経営者</td><td>講師業</td><td>10から50万円</td><td>1000万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="middle"><td>32</td><td><strong>小野寺 こず恵</strong></td><td>2026年6月</td><td>2026-06-22</td><td>6/24</td><td>2</td><td>Threads</td><td>女 / 50代 / 主婦</td><td>SNSマーケ・起業系</td><td>0円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="strong"><td>33</td><td><strong>松本  敏樹</strong></td><td>2026年6月</td><td>2026-05-17</td><td>6/26</td><td>40</td><td>Threads</td><td>男 / 40代 / 経営者</td><td>店舗経営</td><td>100から500万円</td><td>300万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="strong"><td>34</td><td><strong>kuuuni</strong></td><td>2026年6月</td><td>2026-04-27</td><td>6/27</td><td>61</td><td>Threads / Threads ポスト</td><td>女 / 40代 / 会社員</td><td>その他</td><td>10から50万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="middle"><td>35</td><td><strong>荻野優花</strong></td><td>2026年6月</td><td>2026-06-22</td><td>6/27</td><td>5</td><td>Threads</td><td>女 / 30代 / 会社員</td><td>その他</td><td>1から10万円</td><td>100万円以上</td><td><span class="pill warn">熱量型</span></td></tr>
+              <tr class="strong"><td>36</td><td><strong>矢津洋一</strong></td><td>2026年6月</td><td>2026-06-15</td><td>6/28</td><td>13</td><td>代理店（山崎）</td><td>男 / 60代 / 経営者</td><td>美容・サロン系</td><td>10から50万円</td><td>100万円以上</td><td><span class="pill good">本命層</span></td></tr>
+              <tr class="weak"><td>37</td><td><strong>近藤正夫</strong></td><td>2026年6月</td><td>2026-05-16</td><td>6/28</td><td>43</td><td>Threads</td><td>男 / 40代 / 会社員</td><td>SNSマーケ・起業系</td><td>1から10万円</td><td>50万円以上</td><td><span class="pill bad">弱い層</span></td></tr>
+            </tbody></table></div>
+      </section>
+
+      <section class="panel callout"><h2>現時点の読み</h2><ul class="list"><li>FE購入者37名のうち、本命層は19名。定義は「現状売上10万円以上 かつ 目標100万円以上」です。</li><li>購入者は30〜50代、会社員・フリーランス・経営者、現状売上10万円以上、目標100万円以上に寄っています。特にBE購入者はこの傾向がさらに強いです。</li><li>商品有無タグは今回CSVでは全員0のため、画面からは削除しました。正しく見るなら、次のCSV出力かDB突合で商品有無の回答フィールドを追加する必要があります。</li></ul></section>
     </article>
 
     <article id="core28" class="tab-panel">
@@ -1368,7 +1499,7 @@
           <table>
             <thead><tr><th>流入経路</th><th>LINE登録</th><th>アンケ回答</th><th>回答率</th><th>申込</th><th>登録→申込</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>読み方</th></tr></thead>
             <tbody>
-              <tr class="weak"><td>代理店（山崎）</td><td>166</td><td>144</td><td>86.7%</td><td>33</td><td>19.9%</td><td>22</td><td>66.7%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>登録数は最大だが、6月登録者からの購入は出ていない。</td></tr>
+              <tr class="weak"><td>代理店（山崎）</td><td>177</td><td>153</td><td>86.4%</td><td>再突合中</td><td>-</td><td>再突合中</td><td>-</td><td>再突合中</td><td>-</td><td>-</td><td>BigQueryの流入元=山崎で再集計。申込以降はスプシ名との突合を同じ定義で作り直す。</td></tr>
               <tr class="strong"><td>Threads</td><td>126</td><td>108</td><td>85.7%</td><td>49</td><td>38.9%</td><td>33</td><td>67.3%</td><td>5</td><td>10.2%</td><td>15.2%</td><td>申込率・購入率ともに最も強い。</td></tr>
               <tr><td>Instagram</td><td>18</td><td>16</td><td>88.9%</td><td>1</td><td>5.6%</td><td>1</td><td>100.0%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>母数が小さく、購入なし。</td></tr>
               <tr><td>Threads+Instagram</td><td>1</td><td>1</td><td>100.0%</td><td>0</td><td>0.0%</td><td>0</td><td>-</td><td>0</td><td>-</td><td>-</td><td>母数が小さい。</td></tr>
@@ -1687,7 +1818,7 @@
               <tr><td>荻野優花</td><td>新規</td><td>2026-06-22</td><td>2026-06-27</td><td>5日</td><td>Threads / Threads ポスト</td><td>荻野優花</td></tr>
               <tr><td>kuuuni</td><td>既存</td><td>2026-04-27</td><td>2026-06-27</td><td>61日</td><td>Threads / Threads ポスト</td><td>kuuuni</td></tr>
               <tr><td>近藤正夫</td><td>既存</td><td>2026-05-16</td><td>2026-06-28</td><td>43日</td><td>Threads / Threads ポスト / Threads 固定</td><td>近藤正夫</td></tr>
-              <tr><td>矢津洋一</td><td>既存</td><td>2026-06-15</td><td>2026-06-28</td><td>13日</td><td>Threads / Threads ポスト</td><td>矢津洋一</td></tr>
+              <tr><td>矢津洋一</td><td>既存</td><td>2026-06-15</td><td>2026-06-28</td><td>13日</td><td>代理店（山崎）</td><td>矢津洋一</td></tr>
             </tbody>
           </table>
           <table>
@@ -1759,7 +1890,7 @@
             <div class="insight"><strong>参加者92名</strong>本命26、熱量11、弱い49、売上あり低目標3、不明3。参加者の53.3%が弱い層。</div>
             <div class="insight"><strong>未購入者132名</strong>本命42、熱量12、弱い70、売上あり低目標3、不明5。弱い層は多いが購入はほぼ出ていない。</div>
             <div class="insight"><strong>FE購入者9名</strong>本命4、熱量3、弱い1、売上あり低目標1。購入者に本命はいるが、3月ほど本命比率が高くない。</div>
-            <div class="insight"><strong>流入経路</strong>スプシ141名を名前突合すると、Threadsが申込104・参加66・購入8。代理店（山崎）は申込26・参加19・購入1。</div>
+            <div class="insight"><strong>流入経路</strong>代理店はBigQueryのsourceではなく、user_infoの流入元=山崎で見る。旧表の代理店申込/参加/購入は定義混在のため再突合が必要。</div>
           </div>
         </div>
 
@@ -1773,8 +1904,8 @@
               <tr class="strong"><td>参加</td><td>悪くない</td><td>申込141→参加92で参加率65.2%。全体参加率だけ見ると3月より高い。</td></tr>
               <tr class="weak"><td>参加後の購入</td><td>弱い</td><td>参加92→FE購入9で9.8%。本命層だけでも参加26→購入4で15.4%に留まる。</td></tr>
               <tr class="weak"><td>ターゲット</td><td>初心者・弱い層に寄りすぎ</td><td>弱い層が申込71・参加49・購入1。参加者の過半数が売上0-10万かつ目標100万未満/不明寄り。</td></tr>
-              <tr><td>代理店流入</td><td>追加確認が必要</td><td>名前突合では代理店（山崎）が申込26・参加19・購入1。参加率は高いが購入率は低く、ここが質を下げた可能性がある。</td></tr>
-              <tr><td>次に見る点</td><td>代理店列の整備と6月比較</td><td>6月はFE購入9名までスプシで確定。次は代理店（山崎）の中身と、3月の本命層参加→購入30.8%との差を比較する。</td></tr>
+              <tr><td>代理店流入</td><td>定義を修正</td><td>代理店はsource名ではなく、BigQuery `user_info.流入元=山崎` で見る。6/1-6/28は有効登録177・回答153。申込以降はこの定義で再突合する。</td></tr>
+              <tr><td>次に見る点</td><td>直近流入の質</td><td>6月は本命参加26名で3月と同じだが、本命参加→FEが8名から4名へ半減。5/1-6/28の流入が弱い層に寄った影響を見る。</td></tr>
             </tbody>
           </table>
         </div>
@@ -1815,17 +1946,143 @@
         </div>
       </section>
 
+      <section class="panel callout">
+        <h2>セグメント定義</h2>
+        <p class="lead">ここでの「弱い層」は流入元ではなく、アンケート回答の現状売上と目標売上で定義します。購入に直結しにくいのは、現状売上が0-10万円で、目標も10万または50万円に留まる層です。</p>
+        <table>
+          <thead><tr><th>区分</th><th>明確な定義</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr class="strong"><td>本命層</td><td>現状売上10万円以上 かつ 目標売上100万円以上</td><td>FEだけでなくBEまで伸びやすい中心ターゲット。</td></tr>
+            <tr class="middle"><td>熱量型</td><td>現状売上0-10万円 かつ 目標売上100万円以上</td><td>意欲は高いが、実績が浅い。FEは買う可能性があるがBEは育成が必要。</td></tr>
+            <tr class="weak"><td>弱い層</td><td>現状売上0-10万円 かつ 目標売上10万または50万円</td><td>情報収集・初心者寄り。参加しても購入、特にBEには接続しにくい。</td></tr>
+            <tr><td>売上あり低目標</td><td>現状売上10万円以上 かつ 目標売上10万または50万円</td><td>FE向きだが、目標引き上げができないとBE化しにくい。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
       <section class="panel">
         <h2>LINE入口品質 1月/3月/6月</h2>
         <table>
-          <thead><tr><th>月</th><th>LINE流入</th><th>アンケ回答</th><th>回答率</th><th>本命層</th><th>熱量型</th><th>弱い層</th><th>Threads</th><th>Instagram</th><th>広告</th></tr></thead>
+          <thead><tr><th>月</th><th>LINE流入</th><th>アンケ回答</th><th>回答率</th><th>本命層</th><th>熱量型</th><th>弱い層</th><th>Threads</th><th>代理店</th><th>Instagram</th><th>広告</th></tr></thead>
           <tbody>
-            <tr><td>1月</td><td>118</td><td>111</td><td>94.1%</td><td>45 / 40.5%</td><td>13 / 11.7%</td><td>42 / 37.8%</td><td>111</td><td>3</td><td>0</td></tr>
-            <tr><td>3月</td><td>268</td><td>247</td><td>92.2%</td><td>108 / 43.7%</td><td>35 / 14.2%</td><td>85 / 34.4%</td><td>258</td><td>6</td><td>0</td></tr>
-            <tr class="weak"><td>6月</td><td>396</td><td>337</td><td>85.1%</td><td>103 / 30.6%</td><td>33 / 9.8%</td><td>178 / 52.8%</td><td>219</td><td>23</td><td>3</td></tr>
+            <tr><td>1月</td><td>118</td><td>111</td><td>94.1%</td><td>45 / 40.5%</td><td>13 / 11.7%</td><td>42 / 37.8%</td><td>111</td><td>1</td><td>3</td><td>0</td></tr>
+            <tr><td>3月</td><td>268</td><td>247</td><td>92.2%</td><td>108 / 43.7%</td><td>35 / 14.2%</td><td>85 / 34.4%</td><td>258</td><td>1</td><td>6</td><td>0</td></tr>
+            <tr class="weak"><td>6月</td><td>396</td><td>337</td><td>85.1%</td><td>103 / 30.6%</td><td>33 / 9.8%</td><td>178 / 52.8%</td><td>219</td><td>177</td><td>23</td><td>3</td></tr>
           </tbody>
         </table>
-        <p class="small">BigQuery `autostudio_lstep.lstep_friends_raw` 最新スナップショット 2026-06-29。1月は 1/1-1/18、3月は 3/1-3/21、6月は 6/1-6/28 で集計。</p>
+        <p class="small">BigQuery `autostudio_lstep.lstep_friends_raw` 最新スナップショット 2026-06-29。1月は 1/1-1/18、3月は 3/1-3/21、6月は 6/1-6/28 で集計。代理店は `user_info.流入元=山崎`、Threads/Instagram/広告は `user_sources` のため、列同士は合算しません。</p>
+      </section>
+
+      <section class="panel">
+        <h2>直近流入デモグラ: 12/1-1/22 / 2/1-3/21 / 5/1-6/28</h2>
+        <p class="small">BigQuery最新snapshot（2026-06-30）。LINE登録日が各期間内、blocked=false、アンケ回答済みのユーザーを母数にします。1月・3月・6月ローンチ前後の流入を同じ定義で比較します。</p>
+        <table>
+          <thead><tr><th>期間</th><th>回答者</th><th>本命層</th><th>熱量型</th><th>弱い層</th><th>売上あり低目標</th><th>経営者</th><th>会社員</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr><td>12/1-1/22</td><td>156</td><td>73 / 46.8%</td><td>20 / 12.8%</td><td>55 / 35.3%</td><td>15 / 9.6%</td><td>38 / 24.4%</td><td>55 / 35.3%</td><td>1月前後は本命比率が高く、経営者比率も3月と近い。</td></tr>
+            <tr class="strong"><td>2/1-3/21</td><td>329</td><td>146 / 44.4%</td><td>53 / 16.1%</td><td>127 / 38.6%</td><td>24 / 7.3%</td><td>80 / 24.3%</td><td>110 / 33.4%</td><td>本命層が厚く、3月のBE購入に接続しやすい入口だった。</td></tr>
+            <tr class="weak"><td>5/1-6/28</td><td>381</td><td>127 / 33.3%</td><td>43 / 11.3%</td><td>207 / 54.3%</td><td>28 / 7.3%</td><td>66 / 17.3%</td><td>159 / 41.7%</td><td>回答数は増えたが、弱い層と会社員比率が増え、本命・経営者比率が落ちた。</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th>項目</th><th>12/1-1/22</th><th>2/1-3/21</th><th>5/1-6/28</th><th>5月以降の差分</th><th>見方</th></tr></thead>
+          <tbody>
+            <tr class="weak"><td>弱い層</td><td>55 / 35.3%</td><td>127 / 38.6%</td><td>207 / 54.3%</td><td>+80人 / +15.7pt</td><td>6月はセミナーの場に初心者・情報収集層が入りやすい母集団になっていた。</td></tr>
+            <tr class="weak"><td>本命層</td><td>73 / 46.8%</td><td>146 / 44.4%</td><td>127 / 33.3%</td><td>-19人 / -11.1pt</td><td>本命の母数比率が落ちた。参加26名は確保できたが、場全体の重心は弱くなった。</td></tr>
+            <tr><td>売上10万円以上</td><td>96 / 61.5%</td><td>175 / 53.2%</td><td>149 / 39.1%</td><td>-26人 / -14.1pt</td><td>実績あり層が減り、実績なし・低実績層が増えた。</td></tr>
+            <tr><td>目標100万円以上</td><td>101 / 64.7%</td><td>208 / 63.2%</td><td>166 / 43.6%</td><td>-42人 / -19.6pt</td><td>高い目標を持つ人が減ったため、BEへの欲求も弱くなりやすい。</td></tr>
+            <tr><td>経営者</td><td>38 / 24.4%</td><td>80 / 24.3%</td><td>66 / 17.3%</td><td>-14人 / -7.0pt</td><td>BEの即決に必要な事業者比率が下がっている。</td></tr>
+            <tr><td>フリーランス</td><td>60 / 38.5%</td><td>112 / 34.0%</td><td>126 / 33.1%</td><td>+14人 / -0.9pt</td><td>人数は増えたが比率は横ばい。問題はフリーランス比率より、本命層と売上10万円以上の低下。</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:22px">性別・年齢・職業の内訳</h3>
+        <table>
+          <thead><tr><th>項目</th><th>12/1-1/22</th><th>2/1-3/21</th><th>5/1-6/28</th><th>5月以降の差分</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr><td>男性</td><td>74 / 47.4%</td><td>152 / 46.2%</td><td>166 / 43.6%</td><td>+14人 / -2.6pt</td><td>男女比は大きな問題ではない。</td></tr>
+            <tr><td>女性</td><td>80 / 51.3%</td><td>177 / 53.8%</td><td>215 / 56.4%</td><td>+38人 / +2.6pt</td><td>女性比率がやや増加。</td></tr>
+            <tr><td>20代</td><td>18 / 11.5%</td><td>55 / 16.7%</td><td>41 / 10.8%</td><td>-14人 / -5.9pt</td><td>若年層は減少。</td></tr>
+            <tr><td>30代</td><td>56 / 35.9%</td><td>92 / 28.0%</td><td>98 / 25.7%</td><td>+6人 / -2.3pt</td><td>人数は微増だが比率は低下。</td></tr>
+            <tr><td>40代</td><td>49 / 31.4%</td><td>93 / 28.3%</td><td>114 / 29.9%</td><td>+21人 / +1.6pt</td><td>中心年代は40代。</td></tr>
+            <tr><td>50代</td><td>30 / 19.2%</td><td>70 / 21.3%</td><td>85 / 22.3%</td><td>+15人 / +1.0pt</td><td>50代もやや増加。</td></tr>
+            <tr><td>60代</td><td>6 / 3.8%</td><td>24 / 7.3%</td><td>44 / 11.5%</td><td>+20人 / +4.2pt</td><td>6月前は60代が増えているが、主因は年齢より職業と売上。</td></tr>
+            <tr class="weak"><td>会社員</td><td>55 / 35.3%</td><td>110 / 33.4%</td><td>159 / 41.7%</td><td>+49人 / +8.3pt</td><td>6月前に増えた最大の職業。副業・情報収集寄りになりやすい。</td></tr>
+            <tr><td>フリーランス</td><td>60 / 38.5%</td><td>112 / 34.0%</td><td>126 / 33.1%</td><td>+14人 / -0.9pt</td><td>人数は増えたが比率は横ばい。</td></tr>
+            <tr class="weak"><td>経営者</td><td>38 / 24.4%</td><td>80 / 24.3%</td><td>66 / 17.3%</td><td>-14人 / -7.0pt</td><td>BE購入に近い層が減っている。</td></tr>
+            <tr><td>主婦</td><td>10 / 6.4%</td><td>34 / 10.3%</td><td>32 / 8.4%</td><td>-2人 / -1.9pt</td><td>大きな変化なし。</td></tr>
+            <tr><td>学生</td><td>1 / 0.6%</td><td>8 / 2.4%</td><td>4 / 1.0%</td><td>-4人 / -1.4pt</td><td>少数。</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:22px">現状売上の内訳</h3>
+        <table>
+          <thead><tr><th>現状売上</th><th>12/1-1/22</th><th>2/1-3/21</th><th>5/1-6/28</th><th>5月以降の差分</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr class="weak"><td>0円</td><td>45 / 28.8%</td><td>104 / 31.6%</td><td>138 / 36.2%</td><td>+34人 / +4.6pt</td><td>6月前に最も増えた層。購入より情報収集になりやすい。</td></tr>
+            <tr class="weak"><td>1-10万円</td><td>32 / 20.5%</td><td>82 / 24.9%</td><td>108 / 28.3%</td><td>+26人 / +3.4pt</td><td>低実績層も増加。</td></tr>
+            <tr><td>10-50万円</td><td>34 / 21.8%</td><td>65 / 19.8%</td><td>63 / 16.5%</td><td>-2人 / -3.3pt</td><td>人数は横ばいだが比率低下。</td></tr>
+            <tr class="weak"><td>50-100万円</td><td>22 / 14.1%</td><td>40 / 12.2%</td><td>25 / 6.6%</td><td>-15人 / -5.6pt</td><td>BEに近い実績帯が減少。</td></tr>
+            <tr><td>100-500万円</td><td>24 / 15.4%</td><td>46 / 14.0%</td><td>43 / 11.3%</td><td>-3人 / -2.7pt</td><td>高実績層も比率低下。</td></tr>
+            <tr><td>500-1000万円</td><td>11 / 7.1%</td><td>14 / 4.3%</td><td>9 / 2.4%</td><td>-5人 / -1.9pt</td><td>少数だが減少。</td></tr>
+            <tr><td>1000万円以上</td><td>5 / 3.2%</td><td>10 / 3.0%</td><td>9 / 2.4%</td><td>-1人 / -0.6pt</td><td>ほぼ横ばいだが少数。</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:22px">目標売上の内訳</h3>
+        <table>
+          <thead><tr><th>目標売上</th><th>12/1-1/22</th><th>2/1-3/21</th><th>5/1-6/28</th><th>5月以降の差分</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr class="weak"><td>10万円以上</td><td>35 / 22.4%</td><td>67 / 20.4%</td><td>109 / 28.6%</td><td>+42人 / +8.2pt</td><td>目標が低い層が増えている。</td></tr>
+            <tr class="weak"><td>50万円以上</td><td>37 / 23.7%</td><td>90 / 27.4%</td><td>126 / 33.1%</td><td>+36人 / +5.7pt</td><td>ここも増加。弱い層の中心。</td></tr>
+            <tr class="weak"><td>100万円以上</td><td>44 / 28.2%</td><td>96 / 29.2%</td><td>74 / 19.4%</td><td>-22人 / -9.8pt</td><td>BEにつなげたい最低ラインが大きく減少。</td></tr>
+            <tr><td>300万円以上</td><td>27 / 17.3%</td><td>40 / 12.2%</td><td>39 / 10.2%</td><td>-1人 / -2.0pt</td><td>人数はほぼ横ばい、比率低下。</td></tr>
+            <tr><td>500万円以上</td><td>10 / 6.4%</td><td>28 / 8.5%</td><td>24 / 6.3%</td><td>-4人 / -2.2pt</td><td>やや減少。</td></tr>
+            <tr class="weak"><td>1000万円以上</td><td>20 / 12.8%</td><td>44 / 13.4%</td><td>29 / 7.6%</td><td>-15人 / -5.8pt</td><td>強い目標を持つ人が減っている。</td></tr>
+          </tbody>
+        </table>
+        <p class="small">注記: ここはLステップのタグ集計です。複数タグが残るユーザーがいるため、カテゴリ合計は母数と完全一致しない場合があります。比較では同じ抽出条件・同じタグ定義で見ています。</p>
+      </section>
+
+      <section class="panel">
+        <h2>5/1-6/28 流入元別デモグラ</h2>
+        <p class="small">代理店はBigQueryの `user_info.流入元=山崎` で判定します。source名では代理店が取れないため、山崎はsource表ではなく流入元フィールドを正にします。</p>
+        <table>
+          <thead><tr><th>流入</th><th>回答者</th><th>本命層</th><th>熱量型</th><th>弱い層</th><th>経営者</th><th>会社員</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr><td>5/1-6/28 全体</td><td>381</td><td>127 / 33.3%</td><td>43 / 11.3%</td><td>207 / 54.3%</td><td>66 / 17.3%</td><td>159 / 41.7%</td><td>6月前の直近流入全体が弱い層寄り。</td></tr>
+            <tr><td>Threads</td><td>249</td><td>84 / 33.7%</td><td>31 / 12.4%</td><td>140 / 56.2%</td><td>40 / 16.1%</td><td>102 / 41.0%</td><td>Threadsも弱い層比率が高い。代理店だけの問題ではない。</td></tr>
+            <tr class="weak"><td>代理店（山崎）</td><td>161</td><td>49 / 30.4%</td><td>17 / 10.6%</td><td>90 / 55.9%</td><td>26 / 16.1%</td><td>72 / 44.7%</td><td>山崎は本命比率がやや低く、会社員・弱い層が厚い。登録数は作れるがBE直結には弱い。</td></tr>
+            <tr><td>山崎以外</td><td>220</td><td>78 / 35.5%</td><td>26 / 11.8%</td><td>117 / 53.2%</td><td>40 / 18.2%</td><td>87 / 39.5%</td><td>山崎以外も弱い。6月全体の入口設計が初心者寄りだった。</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:22px">5/1-6/28 性別・年齢・職業</h3>
+        <table>
+          <thead><tr><th>流入</th><th>回答者</th><th>男性</th><th>女性</th><th>20代</th><th>30代</th><th>40代</th><th>50代</th><th>60代</th><th>会社員</th><th>フリー</th><th>経営者</th></tr></thead>
+          <tbody>
+            <tr><td>全体</td><td>381</td><td>166 / 43.6%</td><td>215 / 56.4%</td><td>41 / 10.8%</td><td>98 / 25.7%</td><td>114 / 29.9%</td><td>85 / 22.3%</td><td>44 / 11.5%</td><td>159 / 41.7%</td><td>126 / 33.1%</td><td>66 / 17.3%</td></tr>
+            <tr><td>Threads（自分集客）</td><td>249</td><td>104 / 41.8%</td><td>145 / 58.2%</td><td>31 / 12.4%</td><td>67 / 26.9%</td><td>66 / 26.5%</td><td>59 / 23.7%</td><td>27 / 10.8%</td><td>102 / 41.0%</td><td>85 / 34.1%</td><td>40 / 16.1%</td></tr>
+            <tr class="weak"><td>代理店（山崎）</td><td>161</td><td>76 / 47.2%</td><td>85 / 52.8%</td><td>12 / 7.5%</td><td>42 / 26.1%</td><td>53 / 32.9%</td><td>30 / 18.6%</td><td>24 / 14.9%</td><td>72 / 44.7%</td><td>55 / 34.2%</td><td>26 / 16.1%</td></tr>
+            <tr><td>山崎以外</td><td>220</td><td>90 / 40.9%</td><td>130 / 59.1%</td><td>29 / 13.2%</td><td>56 / 25.5%</td><td>61 / 27.7%</td><td>55 / 25.0%</td><td>20 / 9.1%</td><td>87 / 39.5%</td><td>71 / 32.3%</td><td>40 / 18.2%</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:22px">5/1-6/28 現状売上</h3>
+        <table>
+          <thead><tr><th>流入</th><th>0円</th><th>1-10万</th><th>10-50万</th><th>50-100万</th><th>100-500万</th><th>500-1000万</th><th>1000万以上</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr><td>全体</td><td>138 / 36.2%</td><td>108 / 28.3%</td><td>63 / 16.5%</td><td>25 / 6.6%</td><td>43 / 11.3%</td><td>9 / 2.4%</td><td>9 / 2.4%</td><td>0-10万が246名で64.6%。</td></tr>
+            <tr><td>Threads（自分集客）</td><td>95 / 38.2%</td><td>72 / 28.9%</td><td>41 / 16.5%</td><td>17 / 6.8%</td><td>27 / 10.8%</td><td>4 / 1.6%</td><td>7 / 2.8%</td><td>Threadsも0-10万が多い。</td></tr>
+            <tr class="weak"><td>代理店（山崎）</td><td>58 / 36.0%</td><td>49 / 30.4%</td><td>22 / 13.7%</td><td>13 / 8.1%</td><td>14 / 8.7%</td><td>4 / 2.5%</td><td>4 / 2.5%</td><td>0-10万が107名で66.5%。代理店だけが極端に悪いというより、全体と同じ低実績寄り。</td></tr>
+            <tr><td>山崎以外</td><td>80 / 36.4%</td><td>59 / 26.8%</td><td>41 / 18.6%</td><td>12 / 5.5%</td><td>29 / 13.2%</td><td>5 / 2.3%</td><td>5 / 2.3%</td><td>山崎以外も0-10万が多いが、10-50万と100-500万は山崎より少し厚い。</td></tr>
+          </tbody>
+        </table>
+        <h3 style="margin-top:22px">5/1-6/28 目標売上</h3>
+        <table>
+          <thead><tr><th>流入</th><th>10万以上</th><th>50万以上</th><th>100万以上</th><th>300万以上</th><th>500万以上</th><th>1000万以上</th><th>読み方</th></tr></thead>
+          <tbody>
+            <tr><td>全体</td><td>109 / 28.6%</td><td>126 / 33.1%</td><td>74 / 19.4%</td><td>39 / 10.2%</td><td>24 / 6.3%</td><td>29 / 7.6%</td><td>10万・50万目標が厚く、100万以上が薄い。</td></tr>
+            <tr><td>Threads（自分集客）</td><td>70 / 28.1%</td><td>88 / 35.3%</td><td>49 / 19.7%</td><td>24 / 9.6%</td><td>18 / 7.2%</td><td>20 / 8.0%</td><td>Threadsも低目標寄り。自分集客側も改善対象。</td></tr>
+            <tr class="weak"><td>代理店（山崎）</td><td>50 / 31.1%</td><td>49 / 30.4%</td><td>33 / 20.5%</td><td>16 / 9.9%</td><td>5 / 3.1%</td><td>11 / 6.8%</td><td>10万目標が最も厚く、500万以上が薄い。BE直結には弱い。</td></tr>
+            <tr><td>山崎以外</td><td>59 / 26.8%</td><td>77 / 35.0%</td><td>41 / 18.6%</td><td>23 / 10.5%</td><td>19 / 8.6%</td><td>18 / 8.2%</td><td>山崎以外は500万以上が少し厚いが、全体として低目標寄り。</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section class="grid two">
@@ -1847,13 +2104,13 @@
             <thead><tr><th>流入経路</th><th>対象者</th><th>回答</th><th>申込</th><th>参加</th><th>購入</th><th>申込率</th><th>参加率</th></tr></thead>
             <tbody>
               <tr><td>Threads</td><td>1004</td><td>921</td><td>104</td><td>66</td><td>8</td><td>10.4%</td><td>63.5%</td></tr>
-              <tr><td>代理店（山崎）</td><td>未整備</td><td>未整備</td><td>26</td><td>19</td><td>1</td><td>-</td><td>73.1%</td></tr>
+              <tr><td>代理店（山崎）</td><td>177</td><td>153</td><td>再突合中</td><td>再突合中</td><td>再突合中</td><td>-</td><td>-</td></tr>
               <tr><td>Threads+Instagram</td><td>未整備</td><td>未整備</td><td>7</td><td>5</td><td>0</td><td>-</td><td>71.4%</td></tr>
               <tr><td>Instagram</td><td>73</td><td>62</td><td>2</td><td>2</td><td>0</td><td>2.7%</td><td>100.0%</td></tr>
               <tr><td>不明/その他</td><td>未整備</td><td>未整備</td><td>2</td><td>0</td><td>0</td><td>-</td><td>0.0%</td></tr>
             </tbody>
           </table>
-          <p class="small">申込・参加・購入は修正版メインスプシ、流入経路は回答者名で突合したBigQueryのLINE DBを正にしています。対象者/回答の母数が未整備の経路は、申込以降だけ表示しています。</p>
+          <p class="small">代理店（山崎）はBigQuery `user_info.流入元=山崎` を正にします。申込・参加・購入は修正版メインスプシとの名前突合を同じ定義で作り直すため、旧値26/19/1はこの表では使いません。</p>
         </div>
       </section>
 
@@ -1874,15 +2131,15 @@
       </section>
 
       <section class="panel">
-        <h2>入口品質の比較</h2>
+        <h2>入口品質の比較（直近流入）</h2>
         <table>
           <thead><tr><th>期間</th><th>LINE流入</th><th>アンケート回答</th><th>回答率</th><th>本命層</th><th>弱い層</th><th>読み方</th></tr></thead>
           <tbody>
-            <tr><td>3/1-3/21</td><td>268</td><td>247</td><td>92.2%</td><td>108 / 43.7%</td><td>82 / 33.2%</td><td>本命層が厚く、入口の質が高い。</td></tr>
-            <tr><td>6/1-6/28</td><td>396</td><td>337</td><td>85.1%</td><td>103 / 30.6%</td><td>178 / 52.8%</td><td>数は増えたが、弱い層が大きく増えた。</td></tr>
+            <tr><td>2/1-3/21</td><td>-</td><td>329</td><td>-</td><td>146 / 44.4%</td><td>127 / 38.6%</td><td>本命層が厚く、3月のBE購入に接続しやすい入口だった。</td></tr>
+            <tr><td>5/1-6/28</td><td>-</td><td>381</td><td>-</td><td>127 / 33.3%</td><td>207 / 54.3%</td><td>数は増えたが、弱い層が大きく増えた。</td></tr>
           </tbody>
         </table>
-        <p class="small">BigQuery `autostudio_lstep.lstep_friends_raw` 最新スナップショット 2026-06-29 より。属性比率はアンケート回答者を母数に集計。</p>
+        <p class="small">BigQuery最新snapshot（2026-06-30）。LINE登録日が各期間内、blocked=false、アンケ回答済みのユーザーを母数に集計。</p>
       </section>
 
       <section class="grid two">
@@ -1895,7 +2152,7 @@
               <tr><td>参加率</td><td>54.0%</td><td>65.2%</td><td>6月の方が高い。全体参加率だけが問題ではない。</td></tr>
               <tr><td>参加→購入</td><td>15.5%</td><td>9.8%</td><td>ここが大きく悪化。参加者の質か訴求ズレが原因。</td></tr>
               <tr><td>本命層の購入</td><td>8名</td><td>4名</td><td>本命層からの購入が半減。参加後に買っていない問題がある。</td></tr>
-              <tr><td>弱い層の参加</td><td>20名</td><td>49名</td><td>6月は弱い層がかなり多く、購入率を押し下げた。</td></tr>
+              <tr><td>弱い層の参加</td><td>10名</td><td>49名</td><td>6月は弱い層がかなり多く、購入率を押し下げた。</td></tr>
             </tbody>
           </table>
         </div>
@@ -1904,10 +2161,10 @@
           <table>
             <thead><tr><th>層</th><th>3月 参加/購入</th><th>6月 参加/購入</th><th>評価</th></tr></thead>
             <tbody>
-              <tr class="strong"><td>10万以上 + 100万以上目標</td><td>26 / 8</td><td>26 / 4</td><td>参加数は同じだが購入が半減。6月は本命層への刺さりが弱い。</td></tr>
-              <tr class="middle"><td>0-10万 + 100万以上目標</td><td>9 / 1</td><td>13 / 3</td><td>熱量型は6月の方が買っている。</td></tr>
-              <tr class="middle"><td>10万以上 + 100万未満</td><td>7 / 2</td><td>3 / 1</td><td>購入率自体は悪くないが母数が少ない。</td></tr>
-              <tr class="weak"><td>0-10万 + 100万未満/不明</td><td>20 / 1</td><td>47 / 1</td><td>6月はここが増えすぎ。人数は増えても売上に結びつきにくい。</td></tr>
+              <tr class="strong"><td>本命層</td><td>26 / 8</td><td>26 / 4</td><td>参加数は同じだが購入が半減。6月は本命層への刺さりが弱い。</td></tr>
+              <tr class="middle"><td>熱量型</td><td>9 / 1</td><td>13 / 3</td><td>熱量型は6月の方が買っている。</td></tr>
+              <tr class="middle"><td>売上あり低目標</td><td>7 / 2</td><td>3 / 1</td><td>購入率自体は悪くないが母数が少ない。</td></tr>
+              <tr class="weak"><td>弱い層</td><td>10 / 0</td><td>49 / 1</td><td>6月はここが増えすぎ。人数は増えても売上に結びつきにくい。</td></tr>
             </tbody>
           </table>
         </div>
@@ -1918,22 +2175,24 @@
         <table>
           <thead><tr><th>月</th><th>層</th><th>申込</th><th>申込比率</th><th>参加</th><th>参加比率</th><th>参加率</th><th>購入</th><th>参加→購入</th></tr></thead>
           <tbody>
-            <tr class="strong"><td>1月</td><td>10万以上 + 100万以上目標</td><td>12</td><td>33.3%</td><td>3</td><td>37.5%</td><td>25.0%</td><td>2</td><td>66.7%</td></tr>
-            <tr class="middle"><td>1月</td><td>0-10万 + 100万以上目標</td><td>6</td><td>16.7%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>2</td><td>-</td></tr>
-            <tr class="middle"><td>1月</td><td>10万以上 + 100万未満</td><td>7</td><td>19.4%</td><td>1</td><td>12.5%</td><td>14.3%</td><td>1</td><td>100.0%</td></tr>
-            <tr class="weak"><td>1月</td><td>0-10万 + 100万未満/不明</td><td>9</td><td>25.0%</td><td>4</td><td>50.0%</td><td>44.4%</td><td>2</td><td>50.0%</td></tr>
-            <tr><td>1月</td><td>不明</td><td>2</td><td>5.6%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>0</td><td>-</td></tr>
-            <tr class="strong"><td>3月</td><td>本命層</td><td>51</td><td>45.1%</td><td>26</td><td>42.6%</td><td>51.0%</td><td>8</td><td>30.8%</td></tr>
-            <tr class="middle"><td>3月</td><td>熱量型</td><td>18</td><td>15.9%</td><td>9</td><td>14.8%</td><td>50.0%</td><td>1</td><td>11.1%</td></tr>
-            <tr class="weak"><td>3月</td><td>弱い層</td><td>36</td><td>31.9%</td><td>19</td><td>31.1%</td><td>52.8%</td><td>0</td><td>0.0%</td></tr>
+            <tr class="strong"><td>1月</td><td>本命層</td><td>12</td><td>33.3%</td><td>8</td><td>38.1%</td><td>66.7%</td><td>2</td><td>25.0%</td></tr>
+            <tr class="middle"><td>1月</td><td>熱量型</td><td>6</td><td>16.7%</td><td>3</td><td>14.3%</td><td>50.0%</td><td>2</td><td>66.7%</td></tr>
+            <tr class="weak"><td>1月</td><td>弱い層</td><td>9</td><td>25.0%</td><td>6</td><td>28.6%</td><td>66.7%</td><td>3</td><td>50.0%</td></tr>
+            <tr class="middle"><td>1月</td><td>売上あり低目標</td><td>7</td><td>19.4%</td><td>4</td><td>19.0%</td><td>57.1%</td><td>1</td><td>25.0%</td></tr>
+            <tr class="total-row"><td>1月合計</td><td>合計</td><td>36</td><td>100.0%</td><td>21</td><td>100.0%</td><td>58.3%</td><td>8</td><td>38.1%</td></tr>
+            <tr class="strong"><td>3月</td><td>本命層</td><td>53</td><td>46.9%</td><td>26</td><td>42.6%</td><td>49.1%</td><td>8</td><td>30.8%</td></tr>
+            <tr class="middle"><td>3月</td><td>熱量型</td><td>12</td><td>10.6%</td><td>6</td><td>9.8%</td><td>50.0%</td><td>1</td><td>16.7%</td></tr>
+            <tr class="weak"><td>3月</td><td>弱い層</td><td>17</td><td>15.0%</td><td>10</td><td>16.4%</td><td>58.8%</td><td>0</td><td>0.0%</td></tr>
             <tr class="middle"><td>3月</td><td>売上あり低目標</td><td>8</td><td>7.1%</td><td>7</td><td>11.5%</td><td>87.5%</td><td>2</td><td>28.6%</td></tr>
-            <tr class="strong"><td>6月</td><td>10万以上 + 100万以上目標</td><td>47</td><td>33.3%</td><td>26</td><td>28.3%</td><td>55.3%</td><td>4</td><td>15.4%</td></tr>
-            <tr class="middle"><td>6月</td><td>0-10万 + 100万以上目標</td><td>17</td><td>12.1%</td><td>13</td><td>14.1%</td><td>76.5%</td><td>3</td><td>23.1%</td></tr>
-            <tr class="middle"><td>6月</td><td>10万以上 + 100万未満</td><td>8</td><td>5.7%</td><td>3</td><td>3.3%</td><td>37.5%</td><td>1</td><td>33.3%</td></tr>
-            <tr class="weak"><td>6月</td><td>0-10万 + 100万未満/不明</td><td>69</td><td>48.9%</td><td>47</td><td>51.1%</td><td>68.1%</td><td>1</td><td>2.1%</td></tr>
+            <tr class="total-row"><td>3月合計</td><td>合計</td><td>113</td><td>100.0%</td><td>61</td><td>100.0%</td><td>54.0%</td><td>11</td><td>18.0%</td></tr>
+            <tr class="strong"><td>6月</td><td>本命層</td><td>46</td><td>32.6%</td><td>26</td><td>28.3%</td><td>56.5%</td><td>4</td><td>15.4%</td></tr>
+            <tr class="middle"><td>6月</td><td>熱量型</td><td>15</td><td>10.6%</td><td>11</td><td>12.0%</td><td>73.3%</td><td>3</td><td>27.3%</td></tr>
+            <tr class="weak"><td>6月</td><td>弱い層</td><td>71</td><td>50.4%</td><td>49</td><td>53.3%</td><td>69.0%</td><td>1</td><td>2.0%</td></tr>
+            <tr class="middle"><td>6月</td><td>売上あり低目標</td><td>4</td><td>2.8%</td><td>3</td><td>3.3%</td><td>75.0%</td><td>1</td><td>33.3%</td></tr>
+            <tr class="total-row"><td>6月合計</td><td>合計</td><td>141</td><td>100.0%</td><td>92</td><td>100.0%</td><td>65.2%</td><td>9</td><td>9.8%</td></tr>
           </tbody>
         </table>
-        <p class="small">1月は最新スプシの2026.1タブ上で申込36・参加21・購入8として確定。寺井はるか（てち。）は参加に含め、購入には含めない。</p>
+        <p class="small">1月は最新スプシの2026.1タブ上で申込36・参加21・購入8として確定。寺井はるか（てち。）は参加に含め、購入には含めない。不明は内訳行から外し、合計行には含めます。</p>
       </section>
 
       <section class="grid two">
