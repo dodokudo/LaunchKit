@@ -1052,241 +1052,245 @@
         <h2>1. 実績サマリー</h2>
         <div class="grid five" style="margin-top:12px">
           <div class="metric compact good"><div class="label">計算上売上</div><div class="value">610万円</div><div class="note">FE110万 + BE500万</div></div>
-          <div class="metric compact"><div class="label">FE売上</div><div class="value">110万円</div><div class="note">11名 × 10万円</div></div>
-          <div class="metric compact good"><div class="label">BE売上</div><div class="value">500万円</div><div class="note">5名 × 100万円換算</div></div>
-          <div class="metric compact"><div class="label">FE購入者</div><div class="value">11名</div><div class="note">フロントエンド購入</div></div>
-          <div class="metric compact good"><div class="label">BE購入者</div><div class="value">5名</div><div class="note">内山・浅野・AKI・KeiKo・R</div></div>
+          <div class="metric compact"><div class="label">セミナー申込</div><div class="value">113名</div><div class="note">スプシ確定</div></div>
+          <div class="metric compact good"><div class="label">セミナー参加</div><div class="value">61名</div><div class="note">申込→参加 54.0%</div></div>
+          <div class="metric compact"><div class="label">FE購入</div><div class="value">11名</div><div class="note">申込→FE 9.7%</div></div>
+          <div class="metric compact good"><div class="label">BE購入</div><div class="value">5名</div><div class="note">FE→BE 45.5%</div></div>
         </div>
         <h3 style="margin-top:18px">ファネル推移</h3>
         <div class="flow six">
-          <div class="flow-step"><div class="flow-label">LINE対象者</div><div class="flow-value">986</div><div class="flow-note">3/22時点有効リスト</div></div>
-          <div class="flow-step"><div class="flow-label">アンケ回答</div><div class="flow-value">確認中</div><div class="flow-note">3/22時点基準で確認中</div></div>
-          <div class="flow-step"><div class="flow-label">セミナー申込</div><div class="flow-value">113</div><div class="flow-note">申込率11.5%</div></div>
-          <div class="flow-step"><div class="flow-label">セミナー参加</div><div class="flow-value">61</div><div class="flow-note">参加率54.0%</div></div>
-          <div class="flow-step"><div class="flow-label">FE購入</div><div class="flow-value" style="color:var(--green)">11</div><div class="flow-note">参加→FE 18.0%</div></div>
-          <div class="flow-step"><div class="flow-label">BE購入</div><div class="flow-value" style="color:var(--green)">5</div><div class="flow-note">FE→BE 45.5%</div></div>
+          <div class="flow-step"><div class="flow-label">有効LINE対象</div><div class="flow-value">986</div><div class="flow-note">3/22時点 管理画面</div></div>
+          <div class="flow-step"><div class="flow-label">3月登録者</div><div class="flow-value">174</div><div class="flow-note">3/1-3/21 / blocked=0</div></div>
+          <div class="flow-step"><div class="flow-label">セミナー申込</div><div class="flow-value">113</div><div class="flow-note">スプシ確定</div></div>
+          <div class="flow-step"><div class="flow-label">セミナー参加</div><div class="flow-value">61</div><div class="flow-note">申込→参加54.0%</div></div>
+          <div class="flow-step"><div class="flow-label">FE購入</div><div class="flow-value" style="color:var(--green)">11</div><div class="flow-note">参加→FE18.0%</div></div>
+          <div class="flow-step"><div class="flow-label">BE購入</div><div class="flow-value" style="color:var(--green)">5</div><div class="flow-note">FE→BE45.5%</div></div>
         </div>
-        <p class="small">LINE対象者はLステップ管理画面の3/22時点有効友だち数986を正にします。3月の新規/既存別母数とアンケ回答は確認中。セミナー申込・参加・FE購入は最新スプレッドシート、BE購入は指定5名で集計。</p>
+        <p class="small">申込・参加・FE購入はスプレッドシート確定値、BE購入は Akira Uchiyama、浅野芳子、AKI、KeiKo、R の5名です。LINE登録・アンケ・入口属性はBigQueryのLINE DBを正にします。</p>
       </section>
 
       <section>
-        <h2>2. 新規/既存別 セミナー申込・参加・購入</h2>
-        <div class="split-lanes">
-          <div class="lane">
-            <h3>新規: 3/8以降登録</h3>
-            <div class="grid four">
-              <div class="metric compact"><div class="label">LINE登録</div><div class="value">確認中</div><div class="note">3/22時点基準で確認中</div></div>
-              <div class="metric compact"><div class="label">セミナー申込</div><div class="value">47</div><div class="note">申込率確認中</div></div>
-              <div class="metric compact"><div class="label">セミナー参加</div><div class="value">24</div><div class="note">参加率51.1%</div></div>
-              <div class="metric compact good"><div class="label">購入</div><div class="value">4</div><div class="note">参加→FE 16.7%</div></div>
-            </div>
-          </div>
-          <div class="lane">
-            <h3>既存: 3/8より前登録</h3>
-            <div class="grid four">
-              <div class="metric compact"><div class="label">LINE対象</div><div class="value">確認中</div><div class="note">3/22時点基準で確認中</div></div>
-              <div class="metric compact"><div class="label">セミナー申込</div><div class="value">66</div><div class="note">申込率確認中</div></div>
-              <div class="metric compact"><div class="label">セミナー参加</div><div class="value">37</div><div class="note">参加率56.1%</div></div>
-              <div class="metric compact good"><div class="label">購入</div><div class="value">7</div><div class="note">参加→FE 18.9%</div></div>
-            </div>
-          </div>
-        </div>
-        <p class="small">新規/既存はLステップCSVの友だち追加日時で、最新スプレッドシートの113名と全件突合。申込以降はスプシ/CSVの突合値です。3/22時点有効リスト986に対する新規/既存別母数とアンケ回答は確認中です。</p>
+        <h2>2. 申込者内訳: 新規/既存</h2>
+        <p class="small">オプトイン開始は2026/3/8。新規は3/8以降登録、既存は3/8より前登録です。ここは申込者113名全体を、LINE登録日で分けます。</p>
         <table>
-          <thead><tr><th>区分</th><th>リスト母数</th><th>アンケ回答</th><th>回答率</th><th>セミナー申込</th><th>申込率</th><th>セミナー参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>BE購入</th><th>FE→BE</th></tr></thead>
+          <thead><tr><th>区分</th><th>申込</th><th>申込構成比</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>BE購入</th><th>読み方</th></tr></thead>
           <tbody>
-            <tr class="middle"><td>新規</td><td>確認中</td><td>確認中</td><td>確認中</td><td>47</td><td>確認中</td><td>24</td><td>51.1%</td><td>4</td><td>8.5%</td><td>16.7%</td><td>2</td><td>50.0%</td></tr>
-            <tr class="strong"><td>既存</td><td>確認中</td><td>確認中</td><td>確認中</td><td>66</td><td>確認中</td><td>37</td><td>56.1%</td><td>7</td><td>10.6%</td><td>18.9%</td><td>3</td><td>42.9%</td></tr>
+            <tr class="middle"><td>新規（3/8以降登録）</td><td>47</td><td>41.6%</td><td>24</td><td>51.1%</td><td>4</td><td>8.5%</td><td>16.7%</td><td>2</td><td>申込は4割。FE/BEまで出ているが、購入の中心は既存。</td></tr>
+            <tr class="strong"><td>既存（3/8より前登録）</td><td>66</td><td>58.4%</td><td>37</td><td>56.1%</td><td>7</td><td>10.6%</td><td>18.9%</td><td>3</td><td>購入の中心。参加後購入・BE転換とも強い。</td></tr>
+            <tr><td>合計</td><td>113</td><td>100.0%</td><td>61</td><td>54.0%</td><td>11</td><td>9.7%</td><td>18.0%</td><td>5</td><td>スプシ確定値。</td></tr>
           </tbody>
         </table>
       </section>
 
       <section class="grid one">
-        <div class="panel">
-          <h2>3. 日別実績</h2>
-          <p class="small">日別は最新スプレッドシートの日時・参加・購入列を正として見ます。合計は申込113名、参加61名、FE購入11名です。</p>
-          <div class="visual-grid">
-            <div class="chart">
-              <h3>申込数</h3>
-              <div class="mini-bars">
-                <div class="mini-bar"><div>3/14</div><div class="track"><div class="bar blue" style="width:37%"></div></div><div class="count">13</div></div>
-                <div class="mini-bar"><div>3/15</div><div class="track"><div class="bar blue" style="width:63%"></div></div><div class="count">22</div></div>
-                <div class="mini-bar"><div>3/17</div><div class="track"><div class="bar blue" style="width:40%"></div></div><div class="count">14</div></div>
-                <div class="mini-bar"><div>3/18</div><div class="track"><div class="bar blue" style="width:11%"></div></div><div class="count">4</div></div>
-                <div class="mini-bar"><div>3/19</div><div class="track"><div class="bar blue" style="width:71%"></div></div><div class="count">25</div></div>
-                <div class="mini-bar"><div>3/21</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">35</div></div>
-              </div>
-            </div>
-            <div class="chart">
-              <h3>セミナー参加</h3>
-              <div class="mini-bars">
-                <div class="mini-bar"><div>3/14</div><div class="track"><div class="bar teal" style="width:53%"></div></div><div class="count">9</div></div>
-                <div class="mini-bar"><div>3/15</div><div class="track"><div class="bar teal" style="width:94%"></div></div><div class="count">16</div></div>
-                <div class="mini-bar"><div>3/17</div><div class="track"><div class="bar teal" style="width:53%"></div></div><div class="count">9</div></div>
-                <div class="mini-bar"><div>3/18</div><div class="track"><div class="bar teal" style="width:18%"></div></div><div class="count">3</div></div>
-                <div class="mini-bar"><div>3/19</div><div class="track"><div class="bar teal" style="width:41%"></div></div><div class="count">7</div></div>
-                <div class="mini-bar"><div>3/21</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">17</div></div>
-              </div>
-            </div>
-            <div class="chart">
-              <h3>購入数</h3>
-              <div class="mini-bars">
-                <div class="mini-bar"><div>3/14</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">4</div></div>
-                <div class="mini-bar"><div>3/15</div><div class="track"><div class="bar green" style="width:50%"></div></div><div class="count">2</div></div>
-                <div class="mini-bar"><div>3/17</div><div class="track"><div class="bar green" style="width:25%"></div></div><div class="count">1</div></div>
-                <div class="mini-bar"><div>3/18</div><div class="track"><div class="bar green" style="width:0%"></div></div><div class="count">0</div></div>
-                <div class="mini-bar"><div>3/19</div><div class="track"><div class="bar green" style="width:0%"></div></div><div class="count">0</div></div>
-                <div class="mini-bar"><div>3/21</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">4</div></div>
-              </div>
-            </div>
-          </div>
-          <table>
-            <thead><tr><th>日付</th><th>セミナー申込</th><th>セミナー参加</th><th>FE購入</th><th>BE購入</th><th>参加率</th><th>参加→FE</th><th>FE購入者</th><th>BE購入者</th></tr></thead>
-            <tbody>
-              <tr><td>3/14</td><td>13</td><td>9</td><td>4</td><td>0</td><td>69.2%</td><td>44.4%</td><td>Hiro、寺井はるか、小西紘平、畑田 陽子</td><td>-</td></tr>
-              <tr class="strong"><td>3/15</td><td>22</td><td>16</td><td>2</td><td>2</td><td>72.7%</td><td>12.5%</td><td>Akira Uchiyama、浅野芳子</td><td>Akira Uchiyama、浅野芳子</td></tr>
-              <tr><td>3/17</td><td>14</td><td>9</td><td>1</td><td>0</td><td>64.3%</td><td>11.1%</td><td>宮塚 祐司</td><td>-</td></tr>
-              <tr><td>3/18</td><td>4</td><td>3</td><td>0</td><td>0</td><td>75.0%</td><td>0.0%</td><td>-</td><td>-</td></tr>
-              <tr class="weak"><td>3/19</td><td>25</td><td>7</td><td>0</td><td>0</td><td>28.0%</td><td>0.0%</td><td>-</td><td>-</td></tr>
-              <tr class="strong"><td>3/21</td><td>35</td><td>17</td><td>4</td><td>3</td><td>48.6%</td><td>23.5%</td><td>AKI、KeiKo、R、美香</td><td>AKI、KeiKo、R</td></tr>
-            </tbody>
-          </table>
-          <p class="small">確認: セミナー申込113、参加61、FE購入11。購入数が参加数を超える行はありません。</p>
-        </div>
-
         <div class="panel callout">
-          <h2>4. 3月LINE登録者のアンケ回答と属性</h2>
-          <p class="small">ここはセミナー申込者ではなく、LINE DB上の入口品質です。上部ファネルのLINE母数は有効リスト、ここは属性確認用に3/1〜3/21の登録者を見ています。</p>
-          <div class="split-lanes">
-            <div class="lane">
-              <h3>新規: 3/8〜3/21登録</h3>
-              <div class="flow">
-                <div class="flow-step"><div class="flow-label">LINE登録</div><div class="flow-value">191</div><div class="flow-note">回答177 / 92.7%</div></div>
-                <div class="flow-step"><div class="flow-label">本命層</div><div class="flow-value">74</div><div class="flow-note">回答者の41.8%</div></div>
-                <div class="flow-step"><div class="flow-label">熱量型</div><div class="flow-value">27</div><div class="flow-note">回答者の15.3%</div></div>
-                <div class="flow-step"><div class="flow-label">弱い層</div><div class="flow-value">63</div><div class="flow-note">回答者の35.6%</div></div>
-              </div>
-            </div>
-            <div class="lane">
-              <h3>直前流入: 3/1〜3/7登録</h3>
-              <div class="flow">
-                <div class="flow-step"><div class="flow-label">LINE登録</div><div class="flow-value">77</div><div class="flow-note">回答70 / 90.9%</div></div>
-                <div class="flow-step"><div class="flow-label">本命層</div><div class="flow-value">34</div><div class="flow-note">回答者の48.6%</div></div>
-                <div class="flow-step"><div class="flow-label">熱量型</div><div class="flow-value">13</div><div class="flow-note">回答者の18.6%</div></div>
-                <div class="flow-step"><div class="flow-label">弱い層</div><div class="flow-value">22</div><div class="flow-note">回答者の31.4%</div></div>
-              </div>
-            </div>
+          <h2>3. 3月登録者ファネル（3/1-3/21登録）</h2>
+          <p class="small">ここは3月1日から3月21日までにLINE登録し、最新BigQueryでblocked=0のユーザーだけを母数にします。申込以降はスプシ側の申込者をLINE登録日で突合した値です。</p>
+          <div class="flow">
+            <div class="flow-step"><div class="flow-label">LINE登録</div><div class="flow-value">174</div><div class="flow-note">3/1-3/21登録</div></div>
+            <div class="flow-step"><div class="flow-label">アンケ回答</div><div class="flow-value">159</div><div class="flow-note">回答率91.4%</div></div>
+            <div class="flow-step"><div class="flow-label">セミナー申込</div><div class="flow-value">61</div><div class="flow-note">登録→申込35.1%</div></div>
+            <div class="flow-step"><div class="flow-label">セミナー参加</div><div class="flow-value">34</div><div class="flow-note">申込→参加55.7%</div></div>
+            <div class="flow-step"><div class="flow-label">FE購入</div><div class="flow-value" style="color:var(--green)">6</div><div class="flow-note">申込→FE 9.8%</div></div>
           </div>
-          <div class="visual-grid">
-            <div class="chart"><h3>入口セグメント比率</h3><div class="mini-bars">
-              <div class="mini-bar"><div>全体 本命</div><div class="track"><div class="bar green" style="width:44%"></div></div><div class="count">108 / 43.7%</div></div>
-              <div class="mini-bar"><div>新規 本命</div><div class="track"><div class="bar green" style="width:42%"></div></div><div class="count">74 / 41.8%</div></div>
-              <div class="mini-bar"><div>直前 本命</div><div class="track"><div class="bar green" style="width:49%"></div></div><div class="count">34 / 48.6%</div></div>
-              <div class="mini-bar"><div>全体 弱い</div><div class="track"><div class="bar red" style="width:34%"></div></div><div class="count">85 / 34.4%</div></div>
-            </div></div>
-            <div class="chart"><h3>3月登録者の年齢</h3><div class="mini-bars">
-              <div class="mini-bar"><div>20代</div><div class="track"><div class="bar blue" style="width:49%"></div></div><div class="count">35</div></div>
-              <div class="mini-bar"><div>30代</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">72</div></div>
-              <div class="mini-bar"><div>40代</div><div class="track"><div class="bar blue" style="width:96%"></div></div><div class="count">69</div></div>
-              <div class="mini-bar"><div>50代</div><div class="track"><div class="bar blue" style="width:75%"></div></div><div class="count">54</div></div>
-              <div class="mini-bar"><div>60代</div><div class="track"><div class="bar blue" style="width:25%"></div></div><div class="count">18</div></div>
-            </div></div>
-            <div class="chart"><h3>3月登録者の売上</h3><div class="mini-bars">
-              <div class="mini-bar"><div>0円</div><div class="track"><div class="bar gold" style="width:100%"></div></div><div class="count">71</div></div>
-              <div class="mini-bar"><div>1-10万</div><div class="track"><div class="bar gold" style="width:85%"></div></div><div class="count">60</div></div>
-              <div class="mini-bar"><div>10-50万</div><div class="track"><div class="bar green" style="width:72%"></div></div><div class="count">51</div></div>
-              <div class="mini-bar"><div>50-100万</div><div class="track"><div class="bar green" style="width:39%"></div></div><div class="count">28</div></div>
-              <div class="mini-bar"><div>100-500万</div><div class="track"><div class="bar green" style="width:54%"></div></div><div class="count">38</div></div>
-            </div></div>
-          </div>
+
+          <h3 style="margin-top:18px">オプトイン開始日別: 新規 / 既存</h3>
           <table>
-            <thead><tr><th>区分</th><th>LINE登録</th><th>回答</th><th>回答率</th><th>本命</th><th>熱量</th><th>弱い</th><th>年齢</th><th>職業</th><th>現状売上</th><th>目標売上</th></tr></thead>
+            <thead><tr><th>区分</th><th>LINE登録</th><th>アンケ回答</th><th>回答率</th><th>申込</th><th>登録→申込</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>読み方</th></tr></thead>
             <tbody>
-              <tr class="strong"><td>3/1-3/21全体</td><td>268</td><td>247</td><td>92.2%</td><td>108</td><td>40</td><td>85</td><td>20代35 / 30代72 / 40代69 / 50代54 / 60代18</td><td>会社員84 / フリー81 / 経営者61 / 主婦25</td><td>0円71 / 1-10万60 / 10-50万51 / 50-100万28 / 100-500万38</td><td>10万+51 / 50万+63 / 100万+73 / 300万+26 / 500万+20 / 1000万+33</td></tr>
-              <tr><td>新規 3/8-3/21</td><td>191</td><td>177</td><td>92.7%</td><td>74</td><td>27</td><td>63</td><td>20代26 / 30代53 / 40代45 / 50代39 / 60代15</td><td>会社員66 / フリー51 / 経営者45 / 主婦14</td><td>0円56 / 1-10万37 / 10-50万37 / 50-100万16 / 100-500万27</td><td>10万+36 / 50万+50 / 100万+48 / 300万+18 / 500万+12 / 1000万+26</td></tr>
-              <tr><td>直前 3/1-3/7</td><td>77</td><td>70</td><td>90.9%</td><td>34</td><td>13</td><td>22</td><td>20代9 / 30代19 / 40代24 / 50代15 / 60代3</td><td>会社員18 / フリー30 / 経営者16 / 主婦11</td><td>0円15 / 1-10万23 / 10-50万14 / 50-100万12 / 100-500万11</td><td>10万+15 / 50万+13 / 100万+25 / 300万+8 / 500万+8 / 1000万+7</td></tr>
+              <tr class="middle"><td>新規（3/8-3/21登録）</td><td>117</td><td>108</td><td>92.3%</td><td>47</td><td>40.2%</td><td>24</td><td>51.1%</td><td>4</td><td>8.5%</td><td>16.7%</td><td>オプト開始後の登録から申込・購入まで十分に接続している。</td></tr>
+              <tr class="strong"><td>既存（3/1-3/7登録）</td><td>57</td><td>51</td><td>89.5%</td><td>14</td><td>24.6%</td><td>10</td><td>71.4%</td><td>2</td><td>14.3%</td><td>20.0%</td><td>母数は少ないが、参加後の購入率は高い。</td></tr>
+              <tr><td>合計</td><td>174</td><td>159</td><td>91.4%</td><td>61</td><td>35.1%</td><td>34</td><td>55.7%</td><td>6</td><td>9.8%</td><td>17.6%</td><td>3月登録者だけのファネル。</td></tr>
             </tbody>
           </table>
+
+          <h3 style="margin-top:18px">3月登録者の流入経路別</h3>
+          <table>
+            <thead><tr><th>流入経路</th><th>LINE登録</th><th>アンケ回答</th><th>回答率</th><th>申込</th><th>登録→申込</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>読み方</th></tr></thead>
+            <tbody>
+              <tr class="strong"><td>Threads</td><td>166</td><td>154</td><td>92.8%</td><td>60</td><td>36.1%</td><td>34</td><td>56.7%</td><td>6</td><td>10.0%</td><td>17.6%</td><td>3月登録者ファネルのほぼ全体。購入もすべてThreads。</td></tr>
+              <tr><td>Instagram</td><td>4</td><td>3</td><td>75.0%</td><td>1</td><td>25.0%</td><td>0</td><td>0.0%</td><td>0</td><td>0.0%</td><td>-</td><td>母数が小さく購入なし。</td></tr>
+              <tr><td>note</td><td>1</td><td>1</td><td>100.0%</td><td>0</td><td>0.0%</td><td>0</td><td>-</td><td>0</td><td>-</td><td>-</td><td>申込なし。</td></tr>
+              <tr><td>不明/その他</td><td>3</td><td>1</td><td>33.3%</td><td>0</td><td>0.0%</td><td>0</td><td>-</td><td>0</td><td>-</td><td>-</td><td>申込なし。</td></tr>
+              <tr><td>合計</td><td>174</td><td>159</td><td>91.4%</td><td>61</td><td>35.1%</td><td>34</td><td>55.7%</td><td>6</td><td>9.8%</td><td>17.6%</td><td>3月登録者だけの合計。</td></tr>
+            </tbody>
+          </table>
+
+          <h3 style="margin-top:22px">3月登録者の属性分析</h3>
+          <p class="small">属性は3/1-3/21登録者のうち、アンケ回答済み159名を目安に見ます。タグ重複がある項目は合計が回答者数を超える場合があります。</p>
+          <div class="visual-grid">
+            <div class="chart"><h3>性別</h3><div class="mini-bars">
+              <div class="mini-bar"><div>男性</div><div class="track"><div class="bar blue" style="width:89%"></div></div><div class="count">75 <span class="pct">47.2%</span></div></div>
+              <div class="mini-bar"><div>女性</div><div class="track"><div class="bar rose" style="width:100%"></div></div><div class="count">84 <span class="pct">52.8%</span></div></div>
+            </div><p class="small">合計: 159人</p></div>
+            <div class="chart"><h3>年齢層</h3><div class="mini-bars">
+              <div class="mini-bar"><div>20代</div><div class="track"><div class="bar blue" style="width:54%"></div></div><div class="count">26 <span class="pct">16.4%</span></div></div>
+              <div class="mini-bar"><div>30代</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">48 <span class="pct">30.2%</span></div></div>
+              <div class="mini-bar"><div>40代</div><div class="track"><div class="bar blue" style="width:88%"></div></div><div class="count">42 <span class="pct">26.4%</span></div></div>
+              <div class="mini-bar"><div>50代</div><div class="track"><div class="bar blue" style="width:73%"></div></div><div class="count">35 <span class="pct">22.0%</span></div></div>
+              <div class="mini-bar"><div>60代</div><div class="track"><div class="bar blue" style="width:19%"></div></div><div class="count">9 <span class="pct">5.7%</span></div></div>
+            </div></div>
+            <div class="chart"><h3>職業</h3><div class="mini-bars">
+              <div class="mini-bar"><div>会社員</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">51</div></div>
+              <div class="mini-bar"><div>フリーランス</div><div class="track"><div class="bar teal" style="width:96%"></div></div><div class="count">49</div></div>
+              <div class="mini-bar"><div>経営者</div><div class="track"><div class="bar teal" style="width:84%"></div></div><div class="count">43</div></div>
+              <div class="mini-bar"><div>主婦</div><div class="track"><div class="bar teal" style="width:35%"></div></div><div class="count">18</div></div>
+              <div class="mini-bar"><div>学生</div><div class="track"><div class="bar teal" style="width:10%"></div></div><div class="count">5</div></div>
+            </div></div>
+            <div class="chart"><h3>現在の売上（月商）</h3><div class="mini-bars">
+              <div class="mini-bar"><div>0円</div><div class="track"><div class="bar gold" style="width:100%"></div></div><div class="count">45</div></div>
+              <div class="mini-bar"><div>1-10万</div><div class="track"><div class="bar gold" style="width:87%"></div></div><div class="count">39</div></div>
+              <div class="mini-bar"><div>10-50万</div><div class="track"><div class="bar green" style="width:69%"></div></div><div class="count">31</div></div>
+              <div class="mini-bar"><div>50-100万</div><div class="track"><div class="bar green" style="width:40%"></div></div><div class="count">18</div></div>
+              <div class="mini-bar"><div>100-500万</div><div class="track"><div class="bar green" style="width:64%"></div></div><div class="count">29</div></div>
+              <div class="mini-bar"><div>500-1000万</div><div class="track"><div class="bar green" style="width:18%"></div></div><div class="count">8</div></div>
+              <div class="mini-bar"><div>1000万over</div><div class="track"><div class="bar green" style="width:13%"></div></div><div class="count">6</div></div>
+            </div></div>
+            <div class="chart"><h3>目標売上（月商）</h3><div class="mini-bars">
+              <div class="mini-bar"><div>10万over</div><div class="track"><div class="bar blue" style="width:74%"></div></div><div class="count">32</div></div>
+              <div class="mini-bar"><div>50万over</div><div class="track"><div class="bar blue" style="width:95%"></div></div><div class="count">41</div></div>
+              <div class="mini-bar"><div>100万over</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">43</div></div>
+              <div class="mini-bar"><div>300万over</div><div class="track"><div class="bar blue" style="width:44%"></div></div><div class="count">19</div></div>
+              <div class="mini-bar"><div>500万over</div><div class="track"><div class="bar blue" style="width:33%"></div></div><div class="count">14</div></div>
+              <div class="mini-bar"><div>1000万over</div><div class="track"><div class="bar blue" style="width:63%"></div></div><div class="count">27</div></div>
+            </div></div>
+          </div>
         </div>
 
         <div class="panel">
-          <h2>5. セミナー申込者の流入経路別</h2>
-          <p class="small">ここからは最新スプシの申込者113名を母数にします。流入元はLステップCSVタグで突合。タグは重複するため、構成比は排他ではありません。</p>
+          <h2>4. セミナー実績</h2>
+          <p class="small">ここはスプレッドシートのセミナー申込113名を母数にします。日別の実績と、申込者がどのセグメント・売上状況から参加/購入/BEまで進んだかを見ます。</p>
+          <div class="grid five" style="margin-top:12px">
+            <div class="metric compact"><div class="label">セミナー申込</div><div class="value">113名</div><div class="note">スプシ確定</div></div>
+            <div class="metric compact good"><div class="label">セミナー参加</div><div class="value">61名</div><div class="note">申込→参加 54.0%</div></div>
+            <div class="metric compact good"><div class="label">FE購入</div><div class="value">11名</div><div class="note">申込→FE 9.7%</div></div>
+            <div class="metric compact"><div class="label">参加→FE</div><div class="value">18.0%</div><div class="note">11 / 61</div></div>
+            <div class="metric compact good"><div class="label">BE購入</div><div class="value">5名</div><div class="note">FE→BE 45.5%</div></div>
+          </div>
+
+          <h3 style="margin-top:22px">日別実績</h3>
           <div class="visual-grid">
-            <div class="chart">
-              <h3>申込者の流入元</h3>
-              <div class="stackbar"><span class="green" style="width:99.1%"></span></div>
-              <p class="small"><span class="pill good">Threads 112 / 99.1%</span><span class="pill">Threadsポスト 73 / 64.6%</span><span class="pill">Threadsプロフ 15 / 13.3%</span></p>
-              <p class="small"><span class="pill warn">Instagram 3 / 2.7%</span><span class="pill warn">note 2 / 1.8%</span><span class="pill">広告 0</span></p>
-            </div>
-            <div class="chart">
-              <h3>購入者の流入元</h3>
-              <div class="stackbar"><span class="green" style="width:100%"></span></div>
-              <p class="small"><span class="pill good">FE購入者11/11がThreads</span><span class="pill good">BE購入者5/5がThreads</span></p>
-              <p class="small">3月は入口・購入ともThreads文脈がほぼ支配しています。</p>
-            </div>
+            <div class="chart"><h3>申込数</h3><div class="mini-bars">
+              <div class="mini-bar"><div>3/14</div><div class="track"><div class="bar blue" style="width:37%"></div></div><div class="count">13</div></div>
+              <div class="mini-bar"><div>3/15</div><div class="track"><div class="bar blue" style="width:63%"></div></div><div class="count">22</div></div>
+              <div class="mini-bar"><div>3/17</div><div class="track"><div class="bar blue" style="width:40%"></div></div><div class="count">14</div></div>
+              <div class="mini-bar"><div>3/18</div><div class="track"><div class="bar blue" style="width:11%"></div></div><div class="count">4</div></div>
+              <div class="mini-bar"><div>3/19</div><div class="track"><div class="bar blue" style="width:71%"></div></div><div class="count">25</div></div>
+              <div class="mini-bar"><div>3/21</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">35</div></div>
+            </div></div>
+            <div class="chart"><h3>セミナー参加</h3><div class="mini-bars">
+              <div class="mini-bar"><div>3/14</div><div class="track"><div class="bar teal" style="width:53%"></div></div><div class="count">9</div></div>
+              <div class="mini-bar"><div>3/15</div><div class="track"><div class="bar teal" style="width:94%"></div></div><div class="count">16</div></div>
+              <div class="mini-bar"><div>3/17</div><div class="track"><div class="bar teal" style="width:53%"></div></div><div class="count">9</div></div>
+              <div class="mini-bar"><div>3/18</div><div class="track"><div class="bar teal" style="width:18%"></div></div><div class="count">3</div></div>
+              <div class="mini-bar"><div>3/19</div><div class="track"><div class="bar teal" style="width:41%"></div></div><div class="count">7</div></div>
+              <div class="mini-bar"><div>3/21</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">17</div></div>
+            </div></div>
+            <div class="chart"><h3>FE購入</h3><div class="mini-bars">
+              <div class="mini-bar"><div>3/14</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">4</div></div>
+              <div class="mini-bar"><div>3/15</div><div class="track"><div class="bar green" style="width:50%"></div></div><div class="count">2</div></div>
+              <div class="mini-bar"><div>3/17</div><div class="track"><div class="bar green" style="width:25%"></div></div><div class="count">1</div></div>
+              <div class="mini-bar"><div>3/18</div><div class="track"><div class="bar green" style="width:0%"></div></div><div class="count">0</div></div>
+              <div class="mini-bar"><div>3/19</div><div class="track"><div class="bar green" style="width:0%"></div></div><div class="count">0</div></div>
+              <div class="mini-bar"><div>3/21</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">4</div></div>
+            </div></div>
           </div>
           <table>
-            <thead><tr><th>経路タグ</th><th>申込者</th><th>申込者内比率</th><th>FE購入</th><th>購入者内比率</th><th>申込→FE</th><th>見方</th></tr></thead>
+            <thead><tr><th>日付</th><th>セミナー申込</th><th>セミナー参加</th><th>FE購入</th><th>BE購入</th><th>申込→参加</th><th>申込→FE</th><th>参加→FE</th><th>FE購入者</th><th>BE購入者</th></tr></thead>
             <tbody>
-              <tr class="strong"><td>Threads</td><td>112</td><td>99.1%</td><td>11</td><td>100.0%</td><td>9.8%</td><td>3月の主戦場。購入者も全員Threads。</td></tr>
-              <tr><td>Threadsポスト</td><td>73</td><td>64.6%</td><td>9</td><td>81.8%</td><td>12.3%</td><td>ポスト経由は購入寄与が高い。</td></tr>
-              <tr><td>Threadsプロフ</td><td>15</td><td>13.3%</td><td>2</td><td>18.2%</td><td>13.3%</td><td>少数だが購入率は悪くない。</td></tr>
-              <tr><td>Instagram</td><td>3</td><td>2.7%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>3月は影響小。</td></tr>
-              <tr><td>note</td><td>2</td><td>1.8%</td><td>0</td><td>0.0%</td><td>0.0%</td><td>購入にはつながっていない。</td></tr>
-              <tr><td>広告</td><td>0</td><td>0.0%</td><td>0</td><td>0.0%</td><td>-</td><td>3月は広告流入なし。</td></tr>
+              <tr><td>3/14</td><td>13</td><td>9</td><td>4</td><td>0</td><td>69.2%</td><td>30.8%</td><td>44.4%</td><td>Hiro、寺井はるか、小西紘平、畑田 陽子</td><td>-</td></tr>
+              <tr class="strong"><td>3/15</td><td>22</td><td>16</td><td>2</td><td>2</td><td>72.7%</td><td>9.1%</td><td>12.5%</td><td>Akira Uchiyama、浅野芳子</td><td>Akira Uchiyama、浅野芳子</td></tr>
+              <tr><td>3/17</td><td>14</td><td>9</td><td>1</td><td>0</td><td>64.3%</td><td>7.1%</td><td>11.1%</td><td>宮塚 祐司</td><td>-</td></tr>
+              <tr><td>3/18</td><td>4</td><td>3</td><td>0</td><td>0</td><td>75.0%</td><td>0.0%</td><td>0.0%</td><td>-</td><td>-</td></tr>
+              <tr class="weak"><td>3/19</td><td>25</td><td>7</td><td>0</td><td>0</td><td>28.0%</td><td>0.0%</td><td>0.0%</td><td>-</td><td>-</td></tr>
+              <tr class="strong"><td>3/21</td><td>35</td><td>17</td><td>4</td><td>3</td><td>48.6%</td><td>11.4%</td><td>23.5%</td><td>AKI、KeiKo、R、美香</td><td>AKI、KeiKo、R</td></tr>
+              <tr class="strong"><td>合計</td><td>113</td><td>61</td><td>11</td><td>5</td><td>54.0%</td><td>9.7%</td><td>18.0%</td><td>-</td><td>-</td></tr>
             </tbody>
           </table>
-        </div>
 
-        <div class="panel">
-          <h2>6. セミナー申込者の属性分析</h2>
-          <p class="small">最新スプシの申込者113名だけを母数にします。参加者は参加TRUE 61名。購入者の詳細は次の「7. 購入者属性分析」で切り分けます。</p>
+          <h3 style="margin-top:24px">申込者セグメント別 実績</h3>
+          <table>
+            <thead><tr><th>セグメント</th><th>申込</th><th>参加</th><th>FE購入</th><th>BE購入</th><th>申込→参加</th><th>申込→FE</th><th>参加→FE</th><th>FE→BE</th><th>見方</th></tr></thead>
+            <tbody>
+              <tr class="strong"><td>本命層</td><td>53</td><td>26</td><td>8</td><td>5</td><td>49.1%</td><td>15.1%</td><td>30.8%</td><td>62.5%</td><td>売上の中心。BE購入5名は全員ここ。</td></tr>
+              <tr class="middle"><td>熱量型</td><td>12</td><td>6</td><td>1</td><td>0</td><td>50.0%</td><td>8.3%</td><td>16.7%</td><td>0.0%</td><td>FEは出るがBEには届いていない。</td></tr>
+              <tr class="weak"><td>弱い層</td><td>17</td><td>10</td><td>0</td><td>0</td><td>58.8%</td><td>0.0%</td><td>0.0%</td><td>-</td><td>参加しても購入なし。</td></tr>
+              <tr><td>売上あり低目標</td><td>8</td><td>7</td><td>2</td><td>0</td><td>87.5%</td><td>25.0%</td><td>28.6%</td><td>0.0%</td><td>FE接続は良いがBEは出ていない。</td></tr>
+              <tr><td>不明</td><td>23</td><td>12</td><td>0</td><td>0</td><td>52.2%</td><td>0.0%</td><td>0.0%</td><td>-</td><td>購入なし。</td></tr>
+              <tr class="strong"><td>合計</td><td>113</td><td>61</td><td>11</td><td>5</td><td>54.0%</td><td>9.7%</td><td>18.0%</td><td>45.5%</td><td>スプシ確定値。</td></tr>
+            </tbody>
+          </table>
+
           <div class="visual-grid">
-            <div class="donut-card"><div class="donut" style="--p1:46.9%;--p2:57.5%;--p3:72.6%"></div><div><h3>申込者セグメント</h3><p class="small"><span class="pill good">本命53 / 46.9%</span><span class="pill warn">熱量12 / 10.6%</span><span class="pill bad">弱い17 / 15.0%</span><span class="pill">不明23 / 20.4%</span></p></div></div>
-            <div class="donut-card"><div class="donut" style="--p1:42.6%;--p2:52.4%;--p3:68.8%"></div><div><h3>参加者セグメント</h3><p class="small"><span class="pill good">本命26 / 42.6%</span><span class="pill warn">熱量6 / 9.8%</span><span class="pill bad">弱い10 / 16.4%</span><span class="pill">不明12 / 19.7%</span></p></div></div>
-          </div>
-          <div class="visual-grid">
-            <div class="chart"><h3>申込者の年齢</h3><div class="mini-bars">
-              <div class="mini-bar"><div>20代</div><div class="track"><div class="bar blue" style="width:61%"></div></div><div class="count">20 <span class="pct">17.7%</span></div></div>
-              <div class="mini-bar"><div>30代</div><div class="track"><div class="bar blue" style="width:85%"></div></div><div class="count">28 <span class="pct">24.8%</span></div></div>
-              <div class="mini-bar"><div>40代</div><div class="track"><div class="bar blue" style="width:100%"></div></div><div class="count">33 <span class="pct">29.2%</span></div></div>
-              <div class="mini-bar"><div>50代</div><div class="track"><div class="bar blue" style="width:67%"></div></div><div class="count">22 <span class="pct">19.5%</span></div></div>
-              <div class="mini-bar"><div>60代</div><div class="track"><div class="bar blue" style="width:24%"></div></div><div class="count">8 <span class="pct">7.1%</span></div></div>
-            </div></div>
-            <div class="chart"><h3>申込者の職業</h3><div class="mini-bars">
-              <div class="mini-bar"><div>フリー</div><div class="track"><div class="bar teal" style="width:100%"></div></div><div class="count">40 <span class="pct">35.4%</span></div></div>
-              <div class="mini-bar"><div>会社員</div><div class="track"><div class="bar teal" style="width:98%"></div></div><div class="count">39 <span class="pct">34.5%</span></div></div>
-              <div class="mini-bar"><div>経営者</div><div class="track"><div class="bar teal" style="width:48%"></div></div><div class="count">19 <span class="pct">16.8%</span></div></div>
-              <div class="mini-bar"><div>主婦</div><div class="track"><div class="bar teal" style="width:30%"></div></div><div class="count">12 <span class="pct">10.6%</span></div></div>
-            </div></div>
-            <div class="chart"><h3>申込者の現状売上</h3><div class="mini-bars">
+            <div class="chart"><h3>申込者の売上状況</h3><div class="mini-bars">
               <div class="mini-bar"><div>0円</div><div class="track"><div class="bar gold" style="width:64%"></div></div><div class="count">21</div></div>
               <div class="mini-bar"><div>1-10万</div><div class="track"><div class="bar gold" style="width:88%"></div></div><div class="count">29</div></div>
               <div class="mini-bar"><div>10-50万</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">33</div></div>
               <div class="mini-bar"><div>50-100万</div><div class="track"><div class="bar green" style="width:24%"></div></div><div class="count">8</div></div>
-              <div class="mini-bar"><div>100-500万</div><div class="track"><div class="bar green" style="width:30%"></div></div><div class="count">10</div></div>
+              <div class="mini-bar"><div>100万+</div><div class="track"><div class="bar green" style="width:61%"></div></div><div class="count">20</div></div>
+            </div></div>
+            <div class="chart"><h3>参加者の売上状況</h3><div class="mini-bars">
+              <div class="mini-bar"><div>0円</div><div class="track"><div class="bar gold" style="width:48%"></div></div><div class="count">11</div></div>
+              <div class="mini-bar"><div>1-10万</div><div class="track"><div class="bar gold" style="width:70%"></div></div><div class="count">16</div></div>
+              <div class="mini-bar"><div>10-50万</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">23</div></div>
+              <div class="mini-bar"><div>50-100万</div><div class="track"><div class="bar green" style="width:17%"></div></div><div class="count">4</div></div>
+              <div class="mini-bar"><div>100万+</div><div class="track"><div class="bar green" style="width:26%"></div></div><div class="count">6</div></div>
+            </div></div>
+            <div class="chart"><h3>FE購入者の売上状況</h3><div class="mini-bars">
+              <div class="mini-bar"><div>1-10万</div><div class="track"><div class="bar gold" style="width:100%"></div></div><div class="count">4</div></div>
+              <div class="mini-bar"><div>10-50万</div><div class="track"><div class="bar green" style="width:100%"></div></div><div class="count">4</div></div>
+              <div class="mini-bar"><div>50-100万</div><div class="track"><div class="bar green" style="width:25%"></div></div><div class="count">1</div></div>
+              <div class="mini-bar"><div>100-500万</div><div class="track"><div class="bar green" style="width:50%"></div></div><div class="count">2</div></div>
             </div></div>
           </div>
+
+          <h3 style="margin-top:22px">流入経路別 実績</h3>
           <table>
-            <thead><tr><th>区分</th><th>人数</th><th>本命</th><th>熱量</th><th>弱い</th><th>不明</th><th>年齢</th><th>職業</th><th>現状売上</th><th>目標売上</th></tr></thead>
+            <thead><tr><th>流入経路</th><th>申込</th><th>申込構成比</th><th>参加</th><th>申込→参加</th><th>FE購入</th><th>申込→FE</th><th>参加→FE</th><th>読み方</th></tr></thead>
             <tbody>
-              <tr class="strong"><td>申込者</td><td>113</td><td>53</td><td>12</td><td>17</td><td>23</td><td>20代20 / 30代28 / 40代33 / 50代22 / 60代8 / 不明2</td><td>会社員39 / フリー40 / 経営者19 / 主婦12 / 学生1 / 不明2</td><td>0円21 / 1-10万29 / 10-50万33 / 50-100万8 / 100-500万10 / 500万+10 / 不明2</td><td>10万+14 / 50万+27 / 100万+32 / 300万+18 / 500万+7 / 1000万+13 / 不明2</td></tr>
-              <tr><td>参加者</td><td>61</td><td>26</td><td>6</td><td>10</td><td>12</td><td>20代9 / 30代15 / 40代19 / 50代13 / 60代4 / 不明1</td><td>会社員19 / フリー24 / 経営者12 / 主婦4 / 学生1 / 不明1</td><td>0円11 / 1-10万16 / 10-50万23 / 50-100万4 / 100-500万4 / 500-1000万2 / 不明1</td><td>10万+6 / 50万+19 / 100万+19 / 300万+10 / 500万+4 / 1000万+2 / 不明1</td></tr>
-              <tr><td>未購入者</td><td>102</td><td>45</td><td>11</td><td>17</td><td>23</td><td>20代19 / 30代26 / 40代28 / 50代19 / 60代8 / 不明2</td><td>会社員38 / フリー34 / 経営者15 / 主婦12 / 学生1 / 不明2</td><td>0円21 / 1-10万28 / 10-50万29 / 50-100万6 / 100-500万7 / 500万+9 / 不明2</td><td>10万+14 / 50万+25 / 100万+29 / 300万+15 / 500万+5 / 1000万+12 / 不明2</td></tr>
+              <tr class="strong"><td>Threads</td><td>112</td><td>99.1%</td><td>61</td><td>54.5%</td><td>11</td><td>9.8%</td><td>18.0%</td><td>申込・参加・購入のほぼ全て。</td></tr>
+              <tr><td>Instagram</td><td>1</td><td>0.9%</td><td>0</td><td>0.0%</td><td>0</td><td>0.0%</td><td>-</td><td>購入なし。</td></tr>
+              <tr class="strong"><td>合計</td><td>113</td><td>100.0%</td><td>61</td><td>54.0%</td><td>11</td><td>9.7%</td><td>18.0%</td><td>スプシ確定値。</td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="panel">
-          <h2>7. 購入者属性分析</h2>
-          <p class="small">FE購入者11名だけを切り出した詳細です。BE購入者は色付きで表示しています。3月はFE購入者の72.7%が本命層、BE購入者5名は全員本命層です。</p>
-          <div class="grid four" style="margin-top:12px">
+          <h2>5. 購入者属性分析</h2>
+          <p class="small">FE購入者11名だけを切り出した詳細です。このブロックではフロントエンド購入者だけを見ます。</p>
+          <div class="grid five" style="margin-top:12px">
             <div class="metric compact good"><div class="label">FE購入者</div><div class="value">11名</div><div class="note">参加61名中</div></div>
-            <div class="metric compact good"><div class="label">BE購入者</div><div class="value">5名</div><div class="note">FE→BE 45.5%</div></div>
-            <div class="metric compact"><div class="label">本命層購入</div><div class="value">8名</div><div class="note">FE購入の72.7%</div></div>
-            <div class="metric compact"><div class="label">BE購入の属性</div><div class="value">5/5</div><div class="note">全員本命層</div></div>
+            <div class="metric compact"><div class="label">新規購入者</div><div class="value">4名</div><div class="note">平均3.0日で購入</div></div>
+            <div class="metric compact"><div class="label">既存購入者</div><div class="value">7名</div><div class="note">平均27.6日で購入</div></div>
+            <div class="metric compact good"><div class="label">全体平均</div><div class="value">18.9日</div><div class="note">中央値25.0日</div></div>
+            <div class="metric compact warn"><div class="label">最短 / 最長</div><div class="value">0 / 56日</div><div class="note">登録日からFE購入日</div></div>
           </div>
+          <h3 style="margin-top:22px">LINE登録からFE購入までの日数</h3>
+          <p class="small">LINE登録日はBigQuery最新snapshot（2026-06-30）のuser_core.friend_added_at、購入日はスプレッドシートの日別購入日を正として見ます。新規は3/8以降登録、既存は3/7以前登録です。</p>
+          <table>
+            <thead><tr><th>購入者</th><th>区分</th><th>LINE登録日</th><th>FE購入日</th><th>登録→購入</th><th>流入経路</th><th>DB表示名</th></tr></thead>
+            <tbody>
+              <tr><td>Hiro</td><td>既存</td><td>2026-02-17</td><td>2026-03-14</td><td>25日</td><td>Threads / Threads ポスト</td><td>Hiro</td></tr>
+              <tr><td>寺井はるか（てち。）</td><td>既存</td><td>2026-01-18</td><td>2026-03-14</td><td>56日</td><td>Threads / Threads ポスト</td><td>寺井はるか（てち。）</td></tr>
+              <tr><td>小西紘平</td><td>既存</td><td>2026-02-14</td><td>2026-03-14</td><td>28日</td><td>Threads</td><td>小西紘平</td></tr>
+              <tr><td>畑田 陽子</td><td>既存</td><td>2026-03-06</td><td>2026-03-14</td><td>8日</td><td>Threads / Threads ポスト</td><td>畑田 陽子</td></tr>
+              <tr class="strong"><td>Akira Uchiyama</td><td>新規</td><td>2026-03-10</td><td>2026-03-15</td><td>5日</td><td>Threads / Threads ポスト / Threads プロフ</td><td>Akira Uchiyama</td></tr>
+              <tr class="strong"><td>浅野芳子</td><td>既存</td><td>2026-02-17</td><td>2026-03-15</td><td>26日</td><td>Threads / Threads ポスト</td><td>浅野芳子</td></tr>
+              <tr><td>宮塚 祐司</td><td>新規</td><td>2026-03-17</td><td>2026-03-17</td><td>0日</td><td>Threads / Threads プロフ</td><td>宮塚 祐司</td></tr>
+              <tr class="strong"><td>AKI</td><td>新規</td><td>2026-03-17</td><td>2026-03-21</td><td>4日</td><td>Threads / Threads ポスト</td><td>AKI</td></tr>
+              <tr class="strong"><td>KeiKo</td><td>既存</td><td>2026-03-06</td><td>2026-03-21</td><td>15日</td><td>Threads / Threads ポスト</td><td>KeiKo</td></tr>
+              <tr class="strong"><td>R</td><td>既存</td><td>2026-02-14</td><td>2026-03-21</td><td>35日</td><td>Threads / Threads ポスト</td><td>R</td></tr>
+              <tr><td>美香</td><td>新規</td><td>2026-03-18</td><td>2026-03-21</td><td>3日</td><td>Threads / Threads ポスト</td><td>美香</td></tr>
+            </tbody>
+          </table>
+          <table>
+            <thead><tr><th>区分</th><th>購入者数</th><th>平均</th><th>中央値</th><th>最短</th><th>最長</th><th>読み方</th></tr></thead>
+            <tbody>
+              <tr class="middle"><td>新規</td><td>4</td><td>3.0日</td><td>3.5日</td><td>0日</td><td>5日</td><td>3/8以降に入った購入者は、登録から数日以内に購入している。</td></tr>
+              <tr class="strong"><td>既存</td><td>7</td><td>27.6日</td><td>26.0日</td><td>8日</td><td>56日</td><td>既存は事前に温まってから購入しており、3月内だけの登録者分析では拾い切れない。</td></tr>
+              <tr><td>全体</td><td>11</td><td>18.9日</td><td>25.0日</td><td>0日</td><td>56日</td><td>3月は新規の即購入と既存の温まり購入が両方ある。</td></tr>
+            </tbody>
+          </table>
           <div class="visual-grid">
             <div class="chart"><h3>購入者の年齢</h3><div class="mini-bars">
               <div class="mini-bar"><div>20代</div><div class="track"><div class="bar blue" style="width:20%"></div></div><div class="count">1 <span class="pct">9.1%</span></div></div>
@@ -1311,8 +1315,8 @@
             <tbody>
               <tr class="strong"><td>本命層</td><td>8</td><td>72.7%</td><td>5</td><td>畑田 陽子、Akira Uchiyama、浅野芳子、宮塚 祐司、AKI、KeiKo、R、美香</td><td>FE/BE売上の中心。BE購入者は全員ここ。</td></tr>
               <tr class="middle"><td>熱量型</td><td>1</td><td>9.1%</td><td>0</td><td>小西紘平</td><td>FEは買うが、BEは育成・個別判断。</td></tr>
-              <tr><td>売上あり低目標</td><td>2</td><td>18.2%</td><td>0</td><td>Hiro、寺井はるか（てち。）</td><td>FEは買う。BEには目標引き上げが必要。</td></tr>
               <tr class="weak"><td>弱い層</td><td>0</td><td>0.0%</td><td>0</td><td>-</td><td>弱い層は申込17・参加10あるが購入なし。</td></tr>
+              <tr><td>売上あり低目標</td><td>2</td><td>18.2%</td><td>0</td><td>Hiro、寺井はるか（てち。）</td><td>FEは買う。BEには目標引き上げが必要。</td></tr>
             </tbody>
           </table>
           <h3 style="margin-top:22px">確認済み購入者11名</h3>
@@ -1332,8 +1336,8 @@
         </div>
 
         <div class="panel">
-          <h2>8. セグメント別 申込→購入</h2>
-          <p class="small">申込113名からFE購入11名への転換を、セグメント別に比較します。BE購入は本命層からのみ発生しています。</p>
+          <h2>6. セグメント別 申込→購入</h2>
+          <p class="small">スプレッドシートの申込113名からFE購入11名への転換を、セグメント別に比較します。BE購入は本命層からのみ発生しています。</p>
           <div class="visual-grid">
             <div class="chart"><h3>本命層</h3><div class="flow"><div class="flow-step"><div class="flow-label">申込</div><div class="flow-value">53</div></div><div class="flow-step"><div class="flow-label">参加</div><div class="flow-value">26</div></div><div class="flow-step"><div class="flow-label">FE購入</div><div class="flow-value">8</div></div><div class="flow-step"><div class="flow-label">BE購入</div><div class="flow-value">5</div></div></div><p class="small">申込→FE 15.1% / 参加→FE 30.8%</p></div>
             <div class="chart"><h3>熱量型</h3><div class="flow"><div class="flow-step"><div class="flow-label">申込</div><div class="flow-value">12</div></div><div class="flow-step"><div class="flow-label">参加</div><div class="flow-value">6</div></div><div class="flow-step"><div class="flow-label">FE購入</div><div class="flow-value">1</div></div><div class="flow-step"><div class="flow-label">BE購入</div><div class="flow-value">0</div></div></div><p class="small">申込→FE 8.3% / 参加→FE 16.7%</p></div>
@@ -1344,28 +1348,27 @@
         </div>
 
         <div class="panel">
-          <h2>9. 申込者 / 参加者 / 未購入者 / 購入者の違い</h2>
+          <h2>7. 申込者 / 参加者 / 未購入者 / 購入者の違い</h2>
           <div class="insight-grid">
-            <div class="insight"><strong>申込者113名</strong>本命53、熱量12、弱い17、売上あり低目標8、不明23。本命層は46.9%いて、6月比較の基準になる。</div>
-            <div class="insight"><strong>参加者61名</strong>本命26、熱量6、弱い10、売上あり低目標7、不明12。本命参加は26名で、ここからFE8・BE5が出た。</div>
-            <div class="insight"><strong>未購入者102名</strong>本命45、熱量11、弱い17、不明23、売上あり低目標6。本命は残っているが、購入者との差は参加後の刺さり方。</div>
-            <div class="insight"><strong>FE購入者11名</strong>本命8、売上あり低目標2、熱量1。弱い層と不明層からはFE購入が出ていない。</div>
-            <div class="insight"><strong>BE購入者5名</strong>内山アキラ、浅野、AKI、KeiKo、R。全員本命層。FE購入者からのBE転換率45.5%でかなり強い。</div>
+            <div class="insight"><strong>申込者113名</strong>本命53、熱量12、弱い17、売上あり低目標8、不明23。本命層が46.9%で、申込者の中心。</div>
+            <div class="insight"><strong>参加者61名</strong>本命26、熱量6、弱い10、売上あり低目標7、不明12。本命参加26名からFE8・BE5が出た。</div>
+            <div class="insight"><strong>未購入者102名</strong>本命45、熱量11、弱い17、売上あり低目標6、不明23。本命は残るが、購入者との差は参加後の刺さり方。</div>
+            <div class="insight"><strong>FE購入者11名</strong>本命8、売上あり低目標2、熱量1。弱い層・不明層からはFE購入が出ていない。</div>
+            <div class="insight"><strong>BE購入者5名</strong>Akira Uchiyama、浅野芳子、AKI、KeiKo、R。全員本命層で、FE購入者からのBE転換率45.5%。</div>
           </div>
         </div>
 
         <div class="panel callout">
-          <h2>10. 3月の見立て</h2>
+          <h2>8. 3月の見立て</h2>
           <table>
             <thead><tr><th>観点</th><th>判定</th><th>理由</th></tr></thead>
             <tbody>
-              <tr class="strong"><td>入口</td><td>良い</td><td>3/1〜3/21のLINE登録268、回答247、回答率92.2%。本命層108名で、回答者の43.7%。入口の質は悪くない。</td></tr>
-              <tr class="strong"><td>申込</td><td>強い</td><td>スプシ確定で申込113。3/22時点有効リスト986に対して申込率11.5%。新規47・既存66の母数別申込率は確認中。</td></tr>
-              <tr class="middle"><td>参加</td><td>やや弱い</td><td>申込113→参加61で参加率54.0%。3/19は申込25に対して参加7で、ここが大きく落ちている。</td></tr>
-              <tr class="strong"><td>参加後の購入</td><td>良い</td><td>参加61→FE11で18.0%。本命層だけ見ると参加26→FE8で30.8%。</td></tr>
+              <tr class="strong"><td>入口</td><td>強い</td><td>3/1〜3/21の有効LINE登録174、回答159、回答率91.4%。Threadsが166登録で中心。</td></tr>
+              <tr class="strong"><td>申込</td><td>強い</td><td>スプシ確定で申込113。3月登録者だけでも申込61、登録→申込35.1%。</td></tr>
+              <tr class="middle"><td>参加</td><td>日別でばらつき</td><td>全体は申込113→参加61で54.0%。3/19は申込25に対して参加7で落ちている。</td></tr>
+              <tr class="strong"><td>参加後の購入</td><td>強い</td><td>参加61→FE11で18.0%。本命層は参加26→FE8で30.8%。</td></tr>
               <tr class="strong"><td>BE転換</td><td>非常に強い</td><td>FE購入11→BE5で45.5%。BE購入者5名は全員本命層。</td></tr>
-              <tr><td>ターゲット</td><td>ズレていない</td><td>申込者の本命層は53名、購入者11名中8名が本命層。3月は本命層が参加し、FE/BEまで伸びた構造。</td></tr>
-              <tr><td>6月比較で見る点</td><td>本命層の参加率と参加後購入</td><td>3月は本命層が申込53・参加26・FE購入8・BE購入5。6月で悪化しているなら、入口よりも本命層の参加/参加後の刺さり方を先に疑う。</td></tr>
+              <tr><td>6月比較で見る点</td><td>本命層の参加後購入</td><td>3月は本命層が参加後に30.8%でFE購入し、BEまで伸びた。6月との差はこの購入接続。</td></tr>
             </tbody>
           </table>
         </div>
