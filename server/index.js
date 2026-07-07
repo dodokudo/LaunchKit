@@ -12,13 +12,16 @@ const express = require('express');
 const fs = require('fs-extra');
 const path = require('path');
 const { execFile } = require('child_process');
+const crypto = require('crypto');
 
 const app = express();
-app.use(express.json({ limit: '2mb' }));
+app.use(express.json({ limit: '16mb' }));
 
 const projectRoot = path.resolve(__dirname, '..');
 const configsDir = path.join(projectRoot, 'configs');
 const distDir = path.join(projectRoot, 'dist');
+const publicDir = path.join(projectRoot, 'public');
+const publicBaseUrl = process.env.LAUNCHKIT_PUBLIC_BASE_URL || 'https://lkit.jp';
 
 function listConfigFiles() {
   return fs.readdir(configsDir).then((files) => files.filter((f) => f.endsWith('.json')));
@@ -31,6 +34,24 @@ async function readConfig(slug) {
   }
   const json = await fs.readJson(filePath);
   return { json, filePath };
+}
+
+function safeUploadName(originalName) {
+  const parsed = path.parse(originalName || 'image');
+  const base = parsed.name
+    .normalize('NFKC')
+    .replace(/[^a-zA-Z0-9._-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80) || 'image';
+  return base.toLowerCase();
+}
+
+function extensionFromMime(mimeType) {
+  if (mimeType === 'image/png') return 'png';
+  if (mimeType === 'image/jpeg') return 'jpg';
+  if (mimeType === 'image/webp') return 'webp';
+  if (mimeType === 'image/gif') return 'gif';
+  return null;
 }
 
 app.get('/api/projects', async (req, res) => {
@@ -222,6 +243,95 @@ app.get('/api/projects/:slug/dist', async (req, res) => {
   }
 });
 
+app.post('/api/uploads/deploy', async (req, res) => {
+  try {
+    const { spawn } = require('child_process');
+    const deployProcess = spawn('npx', ['vercel', '--prod', '--yes'], {
+      cwd: projectRoot,
+      env: { ...process.env }
+    });
+
+    let stdout = '';
+    let stderr = '';
+    let finished = false;
+
+    deployProcess.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+
+    deployProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+
+    deployProcess.on('close', (code) => {
+      if (finished) return;
+      finished = true;
+      if (code !== 0) {
+        console.error('Upload deploy error:', stderr);
+        return res.status(500).json({ error: 'deploy_failed', detail: stderr });
+      }
+      const urlMatch = stdout.match(/https:\/\/[^\s]+\.vercel\.app/);
+      res.json({ ok: true, url: urlMatch ? urlMatch[0] : null, output: stdout });
+    });
+
+    setTimeout(() => {
+      if (finished) return;
+      finished = true;
+      deployProcess.kill();
+      res.status(500).json({ error: 'deploy_timeout' });
+    }, 180000);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_deploy_uploads' });
+  }
+});
+
+app.post('/api/uploads/images', async (req, res) => {
+  try {
+    const { filename, dataUrl } = req.body || {};
+    if (!filename || typeof filename !== 'string' || !dataUrl || typeof dataUrl !== 'string') {
+      return res.status(400).json({ error: 'invalid_payload' });
+    }
+
+    const match = dataUrl.match(/^data:(image\/(?:png|jpeg|webp|gif));base64,([A-Za-z0-9+/=]+)$/);
+    if (!match) {
+      return res.status(400).json({ error: 'unsupported_image_type' });
+    }
+
+    const mimeType = match[1];
+    const ext = extensionFromMime(mimeType);
+    const buffer = Buffer.from(match[2], 'base64');
+    if (!ext || buffer.length === 0) {
+      return res.status(400).json({ error: 'invalid_image' });
+    }
+    if (buffer.length > 10 * 1024 * 1024) {
+      return res.status(400).json({ error: 'image_too_large' });
+    }
+
+    const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\..+$/, '');
+    const id = crypto.randomUUID().slice(0, 8);
+    const storedName = `${stamp}-${id}-${safeUploadName(filename)}.${ext}`;
+    const relativePath = path.join('uploads', 'images', storedName);
+    const publicPath = path.join(publicDir, relativePath);
+    const distPath = path.join(distDir, relativePath);
+
+    await fs.outputFile(publicPath, buffer);
+    await fs.outputFile(distPath, buffer);
+
+    const urlPath = `/uploads/images/${storedName}`;
+    res.json({
+      ok: true,
+      url: `${publicBaseUrl}${urlPath}`,
+      path: urlPath,
+      bytes: buffer.length,
+      mimeType,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'failed_to_upload_image' });
+  }
+});
+
 app.post('/api/files', async (req, res) => {
   try {
     const { path: targetPath, content = '' } = req.body || {};
@@ -299,6 +409,7 @@ app.post('/api/projects/:slug/save-html-direct', async (req, res) => {
 });
 
 app.use('/admin', express.static(path.join(projectRoot, 'admin')));
+app.use('/uploads', express.static(path.join(distDir, 'uploads')));
 app.use('/preview', express.static(distDir));
 
 Sentry.setupExpressErrorHandler(app);

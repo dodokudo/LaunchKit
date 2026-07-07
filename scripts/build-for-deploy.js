@@ -545,6 +545,13 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
   await fs.ensureDir(path.join(distDir, 'list'));
   await fs.writeFile(path.join(distDir, 'list', 'index.html'), listHtml);
 
+  // 公開アップロード画像をdistへコピー
+  const uploadsSrc = path.join(projectRoot, 'public', 'uploads');
+  if (await fs.pathExists(uploadsSrc)) {
+    await fs.copy(uploadsSrc, path.join(distDir, 'uploads'));
+    console.log('Copied public uploads to dist/uploads');
+  }
+
   // Meta Pixel共通スクリプトをdistルートにコピー
   const pixelSrc = path.join(projectRoot, 'public', 'meta-pixel.js');
   if (await fs.pathExists(pixelSrc)) {
