@@ -586,6 +586,12 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
   }
   console.log(`Meta Pixel auto-inject: injected=${injected}, already=${alreadyHad}, total HTMLs=${htmlFiles.length}`);
 
+  const adminUploaderSrc = path.join(projectRoot, 'admin', 'uploader.html');
+  if (await fs.pathExists(adminUploaderSrc)) {
+    await fs.copy(adminUploaderSrc, path.join(distDir, 'admin', 'uploader.html'));
+    console.log('Copied image uploader to /admin/uploader.html');
+  }
+
   console.log('Build for deployment completed!');
   console.log('- Root (/) -> threads-lp-green (no FV images)');
   console.log('- /threads-lp-green-v2/ -> with FV images');

@@ -154,7 +154,7 @@
     <div class="content">
       <div class="drop" id="dropZone">
         <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-        <p class="note">PNG / JPG / WebP / GIF 対応。最大10MB。共有するのは発行後に表示される https://lkit.jp/... のURLです。</p>
+        <p class="note">PNG / JPG / WebP / GIF 対応。共有するのは発行後に表示される公開URLです。</p>
         <button id="uploadBtn" disabled>画像URLを発行する</button>
       </div>
 
@@ -256,17 +256,19 @@
           throw new Error(data.error || 'upload_failed');
         }
 
-        setStatus('本番へ公開反映中...');
-        const deployRes = await fetch('/api/uploads/deploy', { method: 'POST' });
-        const deployData = await deployRes.json().catch(() => ({}));
-        if (!deployRes.ok) {
-          throw new Error(deployData.detail || deployData.error || 'publish_failed');
-        }
+        if (!data.public) {
+          setStatus('本番へ公開反映中...');
+          const deployRes = await fetch('/api/uploads/deploy', { method: 'POST' });
+          const deployData = await deployRes.json().catch(() => ({}));
+          if (!deployRes.ok) {
+            throw new Error(deployData.detail || deployData.error || 'publish_failed');
+          }
 
-        setStatus('本番URLの反映確認中...');
-        const isPublic = await waitForPublicUrl(data.url);
-        if (!isPublic) {
-          throw new Error('public_url_not_ready');
+          setStatus('本番URLの反映確認中...');
+          const isPublic = await waitForPublicUrl(data.url);
+          if (!isPublic) {
+            throw new Error('public_url_not_ready');
+          }
         }
 
         urlInput.value = data.url;
