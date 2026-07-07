@@ -154,8 +154,8 @@
     <div class="content">
       <div class="drop" id="dropZone">
         <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
-        <p class="note">PNG / JPG / WebP / GIF 対応。最大10MB。アップロード後に公開URLを発行します。</p>
-        <button id="uploadBtn" disabled>URLを発行する</button>
+        <p class="note">PNG / JPG / WebP / GIF 対応。最大10MB。アップロード後、本番で開ける公開URLだけを表示します。</p>
+        <button id="uploadBtn" disabled>画像URLを発行する</button>
       </div>
 
       <div class="status" id="status"></div>
@@ -164,7 +164,6 @@
         <div class="url-row">
           <input id="urlInput" type="text" readonly>
           <button id="copyBtn" type="button">コピー</button>
-          <button id="deployBtn" type="button" class="secondary">公開反映</button>
           <a id="openLink" class="secondary" href="#" target="_blank" rel="noopener noreferrer" style="border:1px solid #cbd5e1;border-radius:10px;padding:11px 16px;text-align:center;">開く</a>
         </div>
         <img id="previewImage" class="preview" alt="アップロード画像プレビュー">
@@ -179,7 +178,6 @@
     const resultEl = document.getElementById('result');
     const urlInput = document.getElementById('urlInput');
     const copyBtn = document.getElementById('copyBtn');
-    const deployBtn = document.getElementById('deployBtn');
     const openLink = document.getElementById('openLink');
     const previewImage = document.getElementById('previewImage');
     const dropZone = document.getElementById('dropZone');
@@ -213,6 +211,23 @@
       });
     }
 
+    function wait(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function waitForPublicUrl(url) {
+      for (let attempt = 1; attempt <= 24; attempt += 1) {
+        const res = await fetch(`/api/uploads/check?url=${encodeURIComponent(url)}`);
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          return true;
+        }
+        setStatus(`本番URLの反映確認中... ${attempt}/24`);
+        await wait(5000);
+      }
+      return false;
+    }
+
     fileInput.addEventListener('change', () => {
       const error = validateFile(selectedFile());
       uploadBtn.disabled = Boolean(error);
@@ -241,14 +256,27 @@
           throw new Error(data.error || 'upload_failed');
         }
 
+        setStatus('本番へ公開反映中...');
+        const deployRes = await fetch('/api/uploads/deploy', { method: 'POST' });
+        const deployData = await deployRes.json().catch(() => ({}));
+        if (!deployRes.ok) {
+          throw new Error(deployData.detail || deployData.error || 'publish_failed');
+        }
+
+        setStatus('本番URLの反映確認中...');
+        const isPublic = await waitForPublicUrl(data.url);
+        if (!isPublic) {
+          throw new Error('public_url_not_ready');
+        }
+
         urlInput.value = data.url;
         openLink.href = data.url;
-        previewImage.src = data.url;
+        previewImage.src = `${data.url}?v=${Date.now()}`;
         resultEl.classList.add('active');
-        setStatus('URLを発行しました');
+        setStatus('公開URLを発行しました。このURLを共有できます。');
       } catch (error) {
         console.error(error);
-        setStatus('アップロードに失敗しました', true);
+        setStatus('公開URLの発行に失敗しました。少し待ってもう一度実行してください。', true);
       } finally {
         uploadBtn.disabled = false;
       }
@@ -258,24 +286,6 @@
       if (!urlInput.value) return;
       await navigator.clipboard.writeText(urlInput.value);
       setStatus('URLをコピーしました');
-    });
-
-    deployBtn.addEventListener('click', async () => {
-      deployBtn.disabled = true;
-      setStatus('公開反映中...');
-      try {
-        const res = await fetch('/api/uploads/deploy', { method: 'POST' });
-        const data = await res.json();
-        if (!res.ok) {
-          throw new Error(data.error || 'deploy_failed');
-        }
-        setStatus('公開反映を開始しました。1〜2分後にURLが開けます。', false);
-      } catch (error) {
-        console.error(error);
-        setStatus('公開反映に失敗しました', true);
-      } finally {
-        deployBtn.disabled = false;
-      }
     });
 
     ['dragenter', 'dragover'].forEach((eventName) => {

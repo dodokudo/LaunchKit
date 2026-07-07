@@ -288,6 +288,41 @@ app.post('/api/uploads/deploy', async (req, res) => {
   }
 });
 
+app.get('/api/uploads/check', async (req, res) => {
+  try {
+    const rawUrl = typeof req.query.url === 'string' ? req.query.url : '';
+    const publicOrigin = new URL(publicBaseUrl).origin;
+    const targetUrl = new URL(rawUrl);
+
+    if (targetUrl.origin !== publicOrigin || !targetUrl.pathname.startsWith('/uploads/images/')) {
+      return res.status(400).json({ ok: false, error: 'invalid_url' });
+    }
+
+    const response = await fetch(targetUrl.href, { method: 'HEAD', cache: 'no-store' });
+    const contentType = response.headers.get('content-type') || '';
+    if (!response.ok) {
+      return res.json({ ok: false, status: response.status });
+    }
+    if (!contentType.startsWith('image/')) {
+      return res.json({
+        ok: false,
+        status: response.status,
+        contentType,
+        error: 'not_image',
+      });
+    }
+
+    res.json({
+      ok: true,
+      status: response.status,
+      contentType,
+      contentLength: response.headers.get('content-length'),
+    });
+  } catch (error) {
+    res.status(400).json({ ok: false, error: 'check_failed' });
+  }
+});
+
 app.post('/api/uploads/images', async (req, res) => {
   try {
     const { filename, dataUrl } = req.body || {};
