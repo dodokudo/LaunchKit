@@ -54,6 +54,20 @@ function extensionFromMime(mimeType) {
   return null;
 }
 
+function runCommand(command, args, options = {}) {
+  return new Promise((resolve, reject) => {
+    execFile(command, args, { cwd: projectRoot, ...options }, (error, stdout, stderr) => {
+      if (error) {
+        error.stdout = stdout;
+        error.stderr = stderr;
+        reject(error);
+        return;
+      }
+      resolve({ stdout, stderr });
+    });
+  });
+}
+
 app.get('/api/projects', async (req, res) => {
   try {
     const files = await listConfigFiles();
@@ -245,44 +259,32 @@ app.get('/api/projects/:slug/dist', async (req, res) => {
 
 app.post('/api/uploads/deploy', async (req, res) => {
   try {
-    const { spawn } = require('child_process');
-    const deployProcess = spawn('npx', ['vercel', '--prod', '--yes'], {
-      cwd: projectRoot,
-      env: { ...process.env }
+    const uploadsDir = path.join(publicDir, 'uploads');
+    if (!(await fs.pathExists(uploadsDir))) {
+      return res.json({ ok: true, message: 'no_uploads' });
+    }
+
+    await runCommand('git', ['add', 'public/uploads']);
+    const staged = await runCommand('git', ['diff', '--cached', '--name-only', '--', 'public/uploads']);
+    const changedFiles = staged.stdout.trim().split('\n').filter(Boolean);
+    if (changedFiles.length === 0) {
+      return res.json({ ok: true, message: 'no_changes' });
+    }
+
+    await runCommand('git', ['commit', '-m', 'Add uploaded LaunchKit images', '--', 'public/uploads']);
+    await runCommand('git', ['push', 'origin', 'HEAD:main']);
+
+    res.json({
+      ok: true,
+      message: 'pushed',
+      files: changedFiles,
     });
-
-    let stdout = '';
-    let stderr = '';
-    let finished = false;
-
-    deployProcess.stdout.on('data', (data) => {
-      stdout += data.toString();
-    });
-
-    deployProcess.stderr.on('data', (data) => {
-      stderr += data.toString();
-    });
-
-    deployProcess.on('close', (code) => {
-      if (finished) return;
-      finished = true;
-      if (code !== 0) {
-        console.error('Upload deploy error:', stderr);
-        return res.status(500).json({ error: 'deploy_failed', detail: stderr });
-      }
-      const urlMatch = stdout.match(/https:\/\/[^\s]+\.vercel\.app/);
-      res.json({ ok: true, url: urlMatch ? urlMatch[0] : null, output: stdout });
-    });
-
-    setTimeout(() => {
-      if (finished) return;
-      finished = true;
-      deployProcess.kill();
-      res.status(500).json({ error: 'deploy_timeout' });
-    }, 180000);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'failed_to_deploy_uploads' });
+    console.error('Upload publish error:', error.stderr || error.message || error);
+    res.status(500).json({
+      error: 'publish_failed',
+      detail: error.stderr || error.message || 'unknown_error',
+    });
   }
 });
 
