@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Meta Pixel (LK) v2 -->
+<script async src="/meta-pixel.js"></script>
+<!-- End Meta Pixel (LK) v2 -->
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex,nofollow" />
+<title>セミナー視聴ページ</title>
+<link rel="preconnect" href="https://www.youtube.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f5f6f8;
+    color: #1a1a1a;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .topbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e6e8eb;
+    padding: 16px 24px;
+    text-align: center;
+  }
+  .topbar .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ff4b3a;
+    letter-spacing: 0.08em;
+  }
+  .topbar .label::before {
+    content: "●";
+    font-size: 10px;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .container {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    flex: 1;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 900;
+    margin: 0 0 12px;
+    color: #0e1a2b;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 .icon {
+    margin-right: 8px;
+  }
+  .hero .subtitle {
+    font-size: clamp(15px, 2vw, 17px);
+    color: #4a5568;
+    margin: 0;
+    font-weight: 500;
+  }
+  .seminar-title {
+    background: #ffffff;
+    border: 1px solid #e6e8eb;
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .seminar-title .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #1a1a1a;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+  }
+  .seminar-title h2 {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 700;
+    margin: 0;
+    color: #1a1a1a;
+  }
+  .seminar-title .note {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 6px;
+  }
+  .video-wrap {
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 20px;
+  }
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .play-guide {
+    text-align: center;
+    font-size: 14px;
+    color: #4a5568;
+    margin: 0 0 24px;
+  }
+  .play-guide .arrow {
+    display: inline-block;
+    animation: bounce 1.6s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+  .notice {
+    background: #fff8e6;
+    border: 1px solid #f5d57a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #5c4a00;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .notice strong {
+    color: #b8860b;
+  }
+  .info {
+    background: #ffffff;
+    border: 1px solid #e6e8eb;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #4a5568;
+    text-align: center;
+  }
+  .info p {
+    margin: 0 0 6px;
+  }
+  .info p:last-child {
+    margin-bottom: 0;
+  }
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #94a3b8;
+    border-top: 1px solid #e6e8eb;
+    background: #ffffff;
+  }
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 40px; }
+    .hero { margin-bottom: 20px; }
+    .seminar-title { padding: 16px; margin-bottom: 16px; }
+    .video-wrap { border-radius: 12px; }
+    .notice, .info { padding: 14px 16px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <span class="label">SEMINAR ON AIR</span>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>セミナー視聴ページ</h1>
+    </section>
+
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/axyyMqGGvag?rel=0&modestbranding=1&controls=1&playsinline=1"
+        title="セミナー動画"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <p class="play-guide"><span class="arrow">▲</span> 上の再生ボタン（▶）を押すとセミナーが始まります</p>
+
+    <div class="notice">
+      <strong>※ Zoomは使用しません。</strong>このページの動画でセミナーが視聴できます。
+    </div>
+
+    <div class="info">
+      <p>📱 スマホ・タブレット・PCどれでも視聴可能です</p>
+      <p>🔊 音声が出ますので、音量にご注意ください</p>
+      <p>⏯ 一時停止・全画面表示は動画プレーヤー内のボタンで操作できます</p>
+    </div>
+  </main>
+
+  <footer>
+    © Seminar Watch Page
+  </footer>
+</div>
+</body>
+</html>
