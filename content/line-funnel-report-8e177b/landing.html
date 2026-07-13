@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7月ローンチ LINE配信 診断・改善レポート</title>
+<style>
+  :root{
+    --ground:#FAFCFB; --surface:#FFFFFF; --surface-2:#F4F7F5;
+    --ink:#14201B; --muted:#5C6D64; --faint:#8A998F;
+    --hair:#E3EAE5; --hair-2:#EEF2F0;
+    --accent:#0F8A7E; --accent-soft:#DCF0ED;
+    --ok:#2F9E5C; --ok-soft:#E1F3E7;
+    --warn:#B9821A; --warn-soft:#F7ECD5;
+    --crit:#CE4640; --crit-soft:#F8E2E1;
+    --shadow:0 1px 2px rgba(20,32,27,.04),0 4px 18px rgba(20,32,27,.05);
+    --maxw:960px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0E1513; --surface:#151F1B; --surface-2:#1B2621;
+      --ink:#EAF1EC; --muted:#9AAAA0; --faint:#748179;
+      --hair:#25302A; --hair-2:#1F2A25;
+      --accent:#33B4A5; --accent-soft:#123029;
+      --ok:#43B36E; --ok-soft:#123021;
+      --warn:#D3A03F; --warn-soft:#2E2513;
+      --crit:#E0645E; --crit-soft:#331B1A;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FAFCFB;--surface:#FFFFFF;--surface-2:#F4F7F5;--ink:#14201B;--muted:#5C6D64;--faint:#8A998F;
+    --hair:#E3EAE5;--hair-2:#EEF2F0;--accent:#0F8A7E;--accent-soft:#DCF0ED;--ok:#2F9E5C;--ok-soft:#E1F3E7;
+    --warn:#B9821A;--warn-soft:#F7ECD5;--crit:#CE4640;--crit-soft:#F8E2E1;
+    --shadow:0 1px 2px rgba(20,32,27,.04),0 4px 18px rgba(20,32,27,.05);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1513;--surface:#151F1B;--surface-2:#1B2621;--ink:#EAF1EC;--muted:#9AAAA0;--faint:#748179;
+    --hair:#25302A;--hair-2:#1F2A25;--accent:#33B4A5;--accent-soft:#123029;--ok:#43B36E;--ok-soft:#123021;
+    --warn:#D3A03F;--warn-soft:#2E2513;--crit:#E0645E;--crit-soft:#331B1A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.72;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(20px,5vw,56px) clamp(16px,4vw,40px);}
+  a{color:var(--accent)}
+
+  .mast{border-bottom:2px solid var(--ink);padding-bottom:20px}
+  .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 10px}
+  h1{font-size:clamp(25px,4.4vw,38px);line-height:1.2;margin:0 0 14px;font-weight:800;letter-spacing:.01em;text-wrap:balance}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 26px;color:var(--muted);font-size:13px}
+  .meta b{color:var(--ink);font-weight:600}
+  .toclient{margin-top:16px;font-size:14px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:13px 16px;color:var(--ink)}
+  .toclient b{color:var(--accent)}
+
+  section{margin-top:46px}
+  .eyebrow{display:flex;align-items:baseline;gap:12px;margin:0 0 18px}
+  .eyebrow .num{font:700 13px/1 ui-monospace,monospace;color:var(--surface);background:var(--ink);padding:5px 8px;border-radius:5px;letter-spacing:.05em}
+  h2{font-size:clamp(19px,2.8vw,24px);margin:0;font-weight:800;letter-spacing:.01em}
+  .lead{color:var(--muted);font-size:15px;margin:-6px 0 22px}
+
+  .verdict{background:var(--surface);border:1px solid var(--hair);border-left:4px solid var(--crit);border-radius:12px;padding:22px 24px;box-shadow:var(--shadow)}
+  .verdict h3{margin:0 0 8px;font-size:17px}
+  .verdict p{margin:0;color:var(--muted);font-size:14.5px}
+  .verdict strong{color:var(--ink)}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:16px}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px 18px 16px;box-shadow:var(--shadow)}
+  .card .big{font:800 30px/1 ui-monospace,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .card .lbl{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+  .card.crit .big{color:var(--crit)} .card.warn .big{color:var(--warn)} .card.ok .big{color:var(--ok)}
+
+  /* flow compare */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:680px){.compare{grid-template-columns:1fr}}
+  .col{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px 18px 20px;box-shadow:var(--shadow)}
+  .col.bad{border-top:3px solid var(--crit)} .col.good{border-top:3px solid var(--ok)}
+  .col h4{margin:0 0 14px;font-size:14px;letter-spacing:.02em}
+  .col h4 .tagsm{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:6px}
+  .col.bad h4 .tagsm{background:var(--crit-soft);color:var(--crit)} .col.good h4 .tagsm{background:var(--ok-soft);color:var(--ok)}
+  .fl{list-style:none;margin:0;padding:0}
+  .fl li{position:relative;padding:0 0 4px 22px;font-size:13.5px}
+  .fl li::before{content:"↓";position:absolute;left:5px;top:18px;color:var(--faint);font-size:11px}
+  .fl li:last-child::before{display:none}
+  .fl .node{background:var(--surface-2);border:1px solid var(--hair-2);border-radius:8px;padding:8px 11px;margin-bottom:6px}
+  .fl .node.brk{background:var(--crit-soft);border-color:var(--crit)}
+  .fl .node.sell{background:var(--ok-soft);border-color:var(--ok)}
+  .fl .node b{font-size:13px} .fl .node span{color:var(--muted);font-size:12px;display:block;margin-top:1px}
+  .xflag{color:var(--crit);font-weight:700;font-size:12px;display:block;margin-top:3px}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;line-height:1.4}
+  .pill::before{content:"";width:6px;height:6px;border-radius:50%}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-ok::before{background:var(--ok)}
+  .p-warn{background:var(--warn-soft);color:var(--warn)} .p-warn::before{background:var(--warn)}
+  .p-crit{background:var(--crit-soft);color:var(--crit)} .p-crit::before{background:var(--crit)}
+
+  .tw{overflow-x:auto;border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:600px;font-size:13.5px}
+  th,td{text-align:left;padding:12px 15px;border-bottom:1px solid var(--hair-2);vertical-align:top}
+  thead th{background:var(--surface-2);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--hair)}
+  tbody tr:last-child td{border-bottom:none}
+  td .sub{color:var(--faint);font-size:12px}
+  .numcell{font-family:ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:600}
+
+  .bars{display:grid;gap:11px;margin-top:6px}
+  .bar{display:grid;grid-template-columns:230px 1fr 54px;gap:14px;align-items:center;font-size:13.5px}
+  .bar .track{background:var(--surface-2);border-radius:6px;height:26px;overflow:hidden;border:1px solid var(--hair-2)}
+  .bar .fill{height:100%;border-radius:6px 0 0 6px;display:block}
+  .bar .val{font-family:ui-monospace,monospace;font-variant-numeric:tabular-nums;text-align:right;color:var(--muted);font-weight:600}
+  .f-crit{background:var(--crit)} .f-warn{background:var(--warn)} .f-accent{background:var(--accent)} .f-mut{background:var(--faint)}
+  @media(max-width:560px){.bar{grid-template-columns:1fr 46px} .bar .track{grid-column:1/-1;order:3}}
+
+  .issue{background:var(--surface);border:1px solid var(--hair);border-radius:12px;margin-top:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .issue .hd{display:flex;gap:13px;align-items:flex-start;padding:17px 20px;border-bottom:1px solid var(--hair-2)}
+  .issue .rank{font:800 15px/1.3 ui-monospace,monospace;color:var(--surface);background:var(--ink);width:26px;height:26px;display:grid;place-items:center;border-radius:7px;flex:none}
+  .issue .htext{flex:1}
+  .issue .htext .ttl{font-weight:800;font-size:15.5px;letter-spacing:.01em}
+  .issue .htext .where{font-size:12.5px;color:var(--faint);margin-top:2px}
+  .issue .grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair-2)}
+  @media(max-width:640px){.issue .grid{grid-template-columns:1fr}}
+  .issue .cell{background:var(--surface);padding:15px 20px}
+  .issue .cell .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+  .cell.now .k{color:var(--crit)} .cell.fix .k{color:var(--ok)}
+  .issue .cell p{margin:0;font-size:13.5px;color:var(--ink)} .issue .cell p+p{margin-top:7px}
+  .tag{font-family:ui-monospace,monospace;font-size:12px;background:var(--surface-2);padding:1px 6px;border-radius:4px;border:1px solid var(--hair);white-space:nowrap}
+
+  .note{font-size:13px;color:var(--muted);background:var(--surface-2);border:1px solid var(--hair);border-radius:10px;padding:14px 17px;margin-top:18px}
+  .note b{color:var(--ink)}
+  ul.clean{margin:10px 0 0;padding-left:20px} ul.clean li{margin:6px 0;font-size:14px}
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--hair);color:var(--faint);font-size:12.5px}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">配信フロー 診断・改善レポート</p>
+    <h1>7月ローンチ・LINE配信の修正依頼</h1>
+    <div class="meta">
+      <span><b>対象</b> 7月ローンチ（シナリオフォルダ【2026.7】）</span>
+      <span><b>作成日</b> 2026-07-13</span>
+      <span><b>確認範囲</b> シナリオ8本の本文・タグ追加時アクション・友だち実挙動</span>
+    </div>
+    <div class="toclient"><b>構築者の方へ：</b>作成済みのシナリオは良くできています。問題は<b>「シナリオ同士の繋ぎ込み（起動トリガーと最終処理）」</b>にあります。本文の作り直しは不要で、<b>タグのアクション設定と各シナリオの最終処理を繋ぎ替える</b>のが今回の依頼です。</div>
+  </header>
+
+  <!-- 01 -->
+  <section>
+    <div class="eyebrow"><span class="num">01</span><h2>結論</h2></div>
+    <div class="verdict">
+      <h3>「アンケート回答〜セミナー申込訴求」までは自動で動くが、その先が繋がっていない。</h3>
+      <p>セミナー<strong>参加者</strong>は、本来の<strong>「参加当日→24時間の商品(講座)販売」</strong>を飛ばして、いきなり個別相談シナリオに入っています。セミナー<strong>未参加者</strong>は、申込訴求が終わると<strong>「停止中」で放置</strong>され、個別相談へ自動で流れません。原因は<strong>タグのアクション設定（起動トリガー）と各シナリオの最終処理の繋ぎ込み漏れ</strong>です。</p>
+    </div>
+    <div class="cards">
+      <div class="card crit"><div class="big">0</div><div class="lbl">商品販売シナリオ（参加当日⑧・参加1日後⑦）の起動回数。作成済みだが一度も動いていない</div></div>
+      <div class="card crit"><div class="big">46<span style="font-size:16px">人</span></div><div class="lbl">7/3以降登録の78人中、いま「停止中」で放置されている人（59%）</div></div>
+      <div class="card warn"><div class="big">9<span style="font-size:16px">人</span></div><div class="lbl">7月登録なのに、誤って5月の古いシナリオが配信されている人（12%）</div></div>
+      <div class="card ok"><div class="big">5</div><div class="lbl">修正すべき配線の数。本文修正は不要（下記05）</div></div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <div class="eyebrow"><span class="num">02</span><h2>本来の設計 と 今の実際</h2></div>
+    <p class="lead">左が本来やりたい流れ、右が今の実際の挙動。赤＝切れている／飛ばされている。</p>
+    <div class="compare">
+      <div class="col good">
+        <h4>本来の設計 <span class="tagsm">あるべき姿</span></h4>
+        <ul class="fl">
+          <li><div class="node"><b>登録 → アンケート回答</b></div></li>
+          <li><div class="node"><b>② セミナー申込を訴求</b><span>稀少性＋実績で無料セミナーへ</span></div></li>
+          <li><div class="node"><b>セミナー参加 → ⑧参加当日</b></div></li>
+          <li><div class="node sell"><b>⑦ 24時間の商品(講座)販売</b><span>参加翌日にLPで直販クロージング</span></div></li>
+          <li><div class="node"><b>⑥前半 個別相談へ誘導</b><span>購入しなかった人を無料個別相談へ</span></div></li>
+          <li><div class="node sell"><b>⑥後半 最後にLP販売</b><span>個別相談も申し込まなかった人へ再度LP</span></div></li>
+        </ul>
+        <div style="border-top:1px dashed var(--hair);margin:12px 0;padding-top:12px">
+        <ul class="fl">
+          <li><div class="node"><b>セミナー未参加（約8割）</b></div></li>
+          <li><div class="node"><b>⑤ 興味づけ → 個別相談 →（未申込）LP販売</b></div></li>
+        </ul></div>
+      </div>
+      <div class="col bad">
+        <h4>今の実際 <span class="tagsm">要修正</span></h4>
+        <ul class="fl">
+          <li><div class="node"><b>登録 → アンケート回答</b><span>✅ 自動で稼働</span></div></li>
+          <li><div class="node"><b>② セミナー申込を訴求</b><span>✅ 自動で稼働</span></div></li>
+          <li><div class="node brk"><b>セミナー参加</b><span class="xflag">✕ ⑧⑦（商品販売24h）を飛ばす</span></div></li>
+          <li><div class="node"><b>⑥ 個別相談誘導へ"直行"</b><span>参加タグで自動起動しているのはコレだけ</span></div></li>
+        </ul>
+        <div style="border-top:1px dashed var(--hair);margin:12px 0;padding-top:12px">
+        <ul class="fl">
+          <li><div class="node"><b>セミナー未参加（約8割）</b></div></li>
+          <li><div class="node brk"><b>②が終わると「停止中」</b><span class="xflag">✕ ⑤へ自動で入らない（手動配信頼み）</span></div></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section>
+    <div class="eyebrow"><span class="num">03</span><h2>シナリオ8本の稼働状況</h2></div>
+    <div class="tw"><table>
+      <thead><tr><th>シナリオ</th><th>役割</th><th>今の起動方法</th><th>購読/読了</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr><td>① アンケート回答後 当日</td><td>回答直後・動画視聴で分岐</td><td>自動（回答時）</td><td class="numcell">0 / 48</td><td><span class="pill p-ok">稼働</span></td></tr>
+        <tr><td>② アンケート回答1日後以降</td><td>セミナー申込を訴求</td><td>①の最終処理から自動</td><td class="numcell">14 / 23</td><td><span class="pill p-ok">稼働</span></td></tr>
+        <tr><td>⑧ セミナー参加 当日</td><td>参加御礼・商品案内の入口</td><td class="sub">— 起動トリガー無し</td><td class="numcell">0 / 0</td><td><span class="pill p-crit">未実行</span></td></tr>
+        <tr><td>⑦ セミナー参加1日後以降</td><td><b>24時間の商品(講座)LP販売</b></td><td class="sub">— 起動トリガー無し</td><td class="numcell">0 / 0</td><td><span class="pill p-crit">未実行</span></td></tr>
+        <tr><td>⑥ リマーケ 参加者（個別相談→LP販売）</td><td>個別相談誘導＋未申込へLP</td><td>参加タグで自動</td><td class="numcell">1 / 73</td><td><span class="pill p-warn">稼働（順番が前倒し）</span></td></tr>
+        <tr><td>⑤ リマーケ 未参加者→個別相談</td><td>未参加者を個別相談へ</td><td class="sub">手動配信のみ</td><td class="numcell">0 / 565</td><td><span class="pill p-crit">自動なし</span></td></tr>
+        <tr><td>③④ 上記の_コピー ×2</td><td>後追い用（開始時刻ちがい）</td><td>手動</td><td class="numcell">4 / 0</td><td><span class="pill p-warn">ほぼ未使用</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 04 -->
+  <section>
+    <div class="eyebrow"><span class="num">04</span><h2>実データ：7/3以降に登録した78人は今どこにいるか</h2></div>
+    <p class="lead">「セミナー誘導の後、何も流れていない」を友だちの実際の購読状況で裏取り。</p>
+    <div class="bars">
+      <div class="bar"><span>停止中（放置）</span><div class="track"><span class="fill f-crit" style="width:59%"></span></div><span class="val">46</span></div>
+      <div class="bar"><span>② 申込訴求 進行中</span><div class="track"><span class="fill f-accent" style="width:18%"></span></div><span class="val">14</span></div>
+      <div class="bar"><span>【5月】古いシナリオに誤流入</span><div class="track"><span class="fill f-warn" style="width:12%"></span></div><span class="val">9</span></div>
+      <div class="bar"><span>⑥ 参加者リマーケ（手動含む）</span><div class="track"><span class="fill f-mut" style="width:6.4%"></span></div><span class="val">5</span></div>
+      <div class="bar"><span>⑤ 未参加者リマーケ（手動）</span><div class="track"><span class="fill f-mut" style="width:3.8%"></span></div><span class="val">3</span></div>
+      <div class="bar"><span>登録直後（挨拶）</span><div class="track"><span class="fill f-mut" style="width:1.3%"></span></div><span class="val">1</span></div>
+    </div>
+    <div class="note"><b>読み方：</b>「停止中46＋申込訴求中14」で6割強。この層は申込訴求が終わると全員停止中に落ち、商品販売にも個別相談にも自動では届きません。自動でリマーケに入った人は<b>0人</b>（⑤⑥の8人はすべて手動配信）。</div>
+  </section>
+
+  <!-- 05 -->
+  <section>
+    <div class="eyebrow"><span class="num">05</span><h2>修正してほしい箇所（優先度順）</h2></div>
+    <p class="lead">「現状」と「やること」を並記。タグ名・シナリオ名は管理画面の実表記です。</p>
+
+    <div class="issue">
+      <div class="hd"><span class="rank">1</span><div class="htext">
+        <div class="ttl">セミナー参加者に「24時間の商品販売」を通す（今スキップされている）</div>
+        <div class="where">タグ「【2026.7】セミナー参加総数」の追加時アクション ／ シナリオ⑧⑦⑥の接続</div>
+      </div><span class="pill p-crit">最優先</span></div>
+      <div class="grid">
+        <div class="cell now"><div class="k">現状</div>
+          <p><span class="tag">【2026.7】セミナー参加総数</span>が付くと、追加時アクションで<b>いきなり「⑥参加者個別相談誘導」を開始</b>している。</p>
+          <p>商品販売の<span class="tag">⑧参加当日</span><span class="tag">⑦参加1日後</span>を起動するアクションが、どのタグにも無い（申込タグ・日程参加タグも確認済みで空）。よって⑦⑧は購読0・読了0。</p></div>
+        <div class="cell fix"><div class="k">やること</div>
+          <p>① 参加総数タグの追加時アクションを<b>「⑥を開始」→「⑧セミナー参加当日を開始」</b>に差し替え。</p>
+          <p>② <b>⑧の最終処理</b>は既に<span class="tag">⑦参加1日後を購読</span>に繋がっている（そのままでOK）。</p>
+          <p>③ <b>⑦の最終処理</b>を<span class="tag">一時停止</span>→<b><span class="tag">⑥参加者個別相談を購読</span></b>に変更。</p>
+          <p>これで <b>参加→⑧→⑦(24hLP販売)→(未購入)→⑥(個別相談→未申込はLP)</b> が自動で繋がる。</p></div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="hd"><span class="rank">2</span><div class="htext">
+        <div class="ttl">セミナー未参加者を「個別相談リマーケ⑤」へ自動で流す（今は手動）</div>
+        <div class="where">シナリオ②「アンケート回答1日後以降」の最終処理 ／ ⑤の起動</div>
+      </div><span class="pill p-crit">高</span></div>
+      <div class="grid">
+        <div class="cell now"><div class="k">現状</div>
+          <p>②の最終処理が<span class="tag">一時停止</span>。申し込まなかった人はそのまま停止中になり、⑤へ入らない（実データで46人が停止中）。⑤は毎回<b>手動で一斉配信</b>して対応している。</p></div>
+        <div class="cell fix"><div class="k">やること</div>
+          <p><b>②の最終処理</b>を<span class="tag">一時停止</span>→<b><span class="tag">⑤未参加者リマーケを購読</span></b>に変更。</p>
+          <p>⑤側の対象条件で<b>「セミナー参加総数を含む人を除外」</b>にしておけば、参加者は⑤に入らず未参加者だけに流れる（＝手動配信が不要になる）。</p></div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="hd"><span class="rank">3</span><div class="htext">
+        <div class="ttl">7月登録者に「5月の古いシナリオ」が配信されている（今すぐ止めたい）</div>
+        <div class="where">登録直後〜アンケート回答まわりのアクション／ボタン設定</div>
+      </div><span class="pill p-warn">中・即対応</span></div>
+      <div class="grid">
+        <div class="cell now"><div class="k">現状</div>
+          <p>7/3以降登録の9人（12%）が<span class="tag">【2026.5】アンケート追いかけ</span><span class="tag">【2026.5】アンケート回答後当日</span>を購読中。7月ローンチなのに<b>5月向けの内容が届いている</b>。</p></div>
+        <div class="cell fix"><div class="k">やること</div>
+          <p>登録直後・アンケート回答時のアクション／ボタンに<b>【2026.5】シナリオを開始する設定が残っていないか点検</b>し、<b>【2026.7】へ差し替え</b>。過去ローンチのコピー時の更新漏れ。</p></div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="hd"><span class="rank">4</span><div class="htext">
+        <div class="ttl">未参加者リマーケ⑤の除外タグが「5月」のまま（月ズレ）</div>
+        <div class="where">シナリオ⑤「セミナー未参加者」の対象の絞り込み</div>
+      </div><span class="pill p-warn">中</span></div>
+      <div class="grid">
+        <div class="cell now"><div class="k">現状</div>
+          <p>⑤の対象条件が<b><span class="tag">【2026.5】セミナー参加総数</span>を除外</b>。7月の参加者を除外できておらず、参加者が未参加者向け配信に混ざりうる。</p></div>
+        <div class="cell fix"><div class="k">やること</div>
+          <p>除外タグを<b>【2026.5】→【2026.7】セミナー参加総数</b>に修正（項目2の除外設定とセットで対応）。</p></div>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="hd"><span class="rank">5</span><div class="htext">
+        <div class="ttl">参加者リマーケ⑥の対象条件に「参加者に絞る条件」を追加（安全策）</div>
+        <div class="where">シナリオ⑥「参加者個別相談誘導」の対象の絞り込み</div>
+      </div><span class="pill p-warn">低〜中</span></div>
+      <div class="grid">
+        <div class="cell now"><div class="k">現状</div>
+          <p>⑥の対象条件は<b>除外6タグのみ・含む条件なし＝1320人該当</b>。項目1で起動を組み替えると、条件だけでは広く当たる。</p></div>
+        <div class="cell fix"><div class="k">やること</div>
+          <p>対象条件に<b><span class="tag">【2026.7】セミナー参加総数を含む</span></b>を追加。フロント購入者の除外は設定済み（＝購入者は⑥に入らない）でOK。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section>
+    <div class="eyebrow"><span class="num">06</span><h2>参考：各シナリオの訴求（本文は修正不要）</h2></div>
+    <div class="tw"><table>
+      <thead><tr><th>シナリオ</th><th>訴求の流れ</th><th>売り物 / ゴール</th></tr></thead>
+      <tbody>
+        <tr><td><b>① セミナー申込</b><div class="sub">②</div></td><td>枠の稀少性（残りわずか）＋実績（1投稿9.5万インプ／LINE+72名）＋「動画を見ただけでは始まらない」の行動喚起を、朝昼夜4日間</td><td>無料セミナーへの申込</td></tr>
+        <tr><td><b>② 商品販売</b><div class="sub">⑦（参加1日後・24h）</div></td><td>講座案内バナー →「あと3時間で販売終了」の締切クロージング → 終了後アンケート</td><td>AI×Threads運用マスター講座（LP直販）</td></tr>
+        <tr><td><b>③ 個別相談→LP販売</b><div class="sub">⑥（参加者・二段構成）</div></td><td><b>前半(7/6-8)：</b>「AIで投稿しても伸びない理由」→無料個別相談へ誘導（先着10名・残り枠を煽る）<br><b>後半(7/9-10)：</b>個別相談に申し込まなかった人へ、同講座を24時間限定でLP販売</td><td>個別相談 → AI×Threads運用マスター講座</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><b>補足（管理上のみ）：</b>⑦は全テンプレが<span class="tag">【2026.5】</span>、②は<span class="tag">【2026.5】</span><span class="tag">【2026.6】</span>が混在。過去ローンチのテンプレ流用で名前が未更新（配信は動くが管理が分かりにくいので、余裕があれば命名を7月へ）。</div>
+  </section>
+
+  <!-- 07 -->
+  <section>
+    <div class="eyebrow"><span class="num">07</span><h2>着手順のおすすめ</h2></div>
+    <ul class="clean">
+      <li><b>即対応：項目3</b>（誤配信の停止。今この瞬間も5月の内容が9人に届いている）</li>
+      <li><b>売上直結：項目1・2</b>（参加者の商品販売を通す／未参加者の個別相談を自動化）</li>
+      <li><b>仕上げ：項目4・5</b>（月ズレ修正／⑥の対象条件を締める）</li>
+    </ul>
+  </section>
+
+  <footer>
+    7月ローンチ LINE配信 診断・改善レポート ／ 確認範囲：シナリオ8本の本文・タグ追加時アクション・友だち実挙動（7/3以降登録78人）。
+    数値・タグ名・シナリオ名は管理画面の実データに基づく。繋ぎ込みの最終実装は構築者にて確認のうえ実施。
+  </footer>
+</div>
+
+</body>
+</html>
