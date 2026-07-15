@@ -1,0 +1,1568 @@
+{
+  "recordingStartsAt": "20:00:36",
+  "importedCount": 223,
+  "skippedCount": 26,
+  "comments": [
+    {
+      "id": "recorded-1",
+      "elapsedSeconds": 10,
+      "name": "工藤（主催者）",
+      "role": "host",
+      "message": "ここです"
+    },
+    {
+      "id": "recorded-2",
+      "elapsedSeconds": 22,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "聞こえています。"
+    },
+    {
+      "id": "recorded-3",
+      "elapsedSeconds": 28,
+      "name": "hiro",
+      "role": "participant",
+      "message": "バッチリ"
+    },
+    {
+      "id": "recorded-4",
+      "elapsedSeconds": 40,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "聴こえてます"
+    },
+    {
+      "id": "recorded-5",
+      "elapsedSeconds": 108,
+      "name": "hiro",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-6",
+      "elapsedSeconds": 109,
+      "name": "sk",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-7",
+      "elapsedSeconds": 110,
+      "name": "Kumiko  Kato",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-8",
+      "elapsedSeconds": 114,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "4"
+    },
+    {
+      "id": "recorded-9",
+      "elapsedSeconds": 117,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "4"
+    },
+    {
+      "id": "recorded-10",
+      "elapsedSeconds": 125,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-11",
+      "elapsedSeconds": 137,
+      "name": "Ｓ",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-12",
+      "elapsedSeconds": 138,
+      "name": "近藤正夫",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-13",
+      "elapsedSeconds": 143,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-14",
+      "elapsedSeconds": 145,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "3️⃣"
+    },
+    {
+      "id": "recorded-15",
+      "elapsedSeconds": 151,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "4"
+    },
+    {
+      "id": "recorded-16",
+      "elapsedSeconds": 163,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-17",
+      "elapsedSeconds": 178,
+      "name": "Kumiko  Kato",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-18",
+      "elapsedSeconds": 192,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "4"
+    },
+    {
+      "id": "recorded-19",
+      "elapsedSeconds": 201,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-20",
+      "elapsedSeconds": 202,
+      "name": "hiro",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-21",
+      "elapsedSeconds": 203,
+      "name": "sk",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-22",
+      "elapsedSeconds": 204,
+      "name": "Ｓ",
+      "role": "participant",
+      "message": "4"
+    },
+    {
+      "id": "recorded-23",
+      "elapsedSeconds": 206,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "1️⃣"
+    },
+    {
+      "id": "recorded-24",
+      "elapsedSeconds": 207,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "② 整体集客"
+    },
+    {
+      "id": "recorded-25",
+      "elapsedSeconds": 208,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "2."
+    },
+    {
+      "id": "recorded-26",
+      "elapsedSeconds": 208,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "1 Codex×note自動化"
+    },
+    {
+      "id": "recorded-27",
+      "elapsedSeconds": 216,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-28",
+      "elapsedSeconds": 223,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "2,スクール集客・コンテンツ販売"
+    },
+    {
+      "id": "recorded-29",
+      "elapsedSeconds": 262,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-30",
+      "elapsedSeconds": 263,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "2️⃣"
+    },
+    {
+      "id": "recorded-31",
+      "elapsedSeconds": 265,
+      "name": "sk",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-32",
+      "elapsedSeconds": 269,
+      "name": "hiro",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-33",
+      "elapsedSeconds": 271,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-34",
+      "elapsedSeconds": 272,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-35",
+      "elapsedSeconds": 273,
+      "name": "Ｓ",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-36",
+      "elapsedSeconds": 275,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-37",
+      "elapsedSeconds": 278,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-38",
+      "elapsedSeconds": 289,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-39",
+      "elapsedSeconds": 293,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "２"
+    },
+    {
+      "id": "recorded-40",
+      "elapsedSeconds": 294,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "3"
+    },
+    {
+      "id": "recorded-41",
+      "elapsedSeconds": 344,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-42",
+      "elapsedSeconds": 346,
+      "name": "sk",
+      "role": "participant",
+      "message": "毎日投稿してるけど、フォロワーは11人"
+    },
+    {
+      "id": "recorded-43",
+      "elapsedSeconds": 351,
+      "name": "hiro",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-44",
+      "elapsedSeconds": 356,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-45",
+      "elapsedSeconds": 359,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "まだ何も出来てないです"
+    },
+    {
+      "id": "recorded-46",
+      "elapsedSeconds": 372,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "毎日投稿　107人"
+    },
+    {
+      "id": "recorded-47",
+      "elapsedSeconds": 381,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "300人くらい"
+    },
+    {
+      "id": "recorded-48",
+      "elapsedSeconds": 381,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "962　4投稿"
+    },
+    {
+      "id": "recorded-49",
+      "elapsedSeconds": 387,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "毎日投稿"
+    },
+    {
+      "id": "recorded-50",
+      "elapsedSeconds": 414,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "個人137人・ほぼ毎日。事業用・これから"
+    },
+    {
+      "id": "recorded-51",
+      "elapsedSeconds": 414,
+      "name": "hiro",
+      "role": "participant",
+      "message": "週3"
+    },
+    {
+      "id": "recorded-52",
+      "elapsedSeconds": 425,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "900フォロワーくらいで不定期です"
+    },
+    {
+      "id": "recorded-53",
+      "elapsedSeconds": 427,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "アカウントのみでまだこれからです。"
+    },
+    {
+      "id": "recorded-54",
+      "elapsedSeconds": 499,
+      "name": "sk",
+      "role": "participant",
+      "message": "2,5,6"
+    },
+    {
+      "id": "recorded-55",
+      "elapsedSeconds": 505,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "１"
+    },
+    {
+      "id": "recorded-56",
+      "elapsedSeconds": 511,
+      "name": "hiro",
+      "role": "participant",
+      "message": "4。2"
+    },
+    {
+      "id": "recorded-57",
+      "elapsedSeconds": 512,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-58",
+      "elapsedSeconds": 515,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-59",
+      "elapsedSeconds": 521,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "2️⃣と6️⃣"
+    },
+    {
+      "id": "recorded-60",
+      "elapsedSeconds": 521,
+      "name": "Ｓ",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-61",
+      "elapsedSeconds": 522,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "245"
+    },
+    {
+      "id": "recorded-62",
+      "elapsedSeconds": 529,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "1 どう商品を作ったらよいか分からない。自分の商品かアフィリエイトか"
+    },
+    {
+      "id": "recorded-63",
+      "elapsedSeconds": 530,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "6..2"
+    },
+    {
+      "id": "recorded-64",
+      "elapsedSeconds": 1409,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "できました！"
+    },
+    {
+      "id": "recorded-65",
+      "elapsedSeconds": 1409,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-66",
+      "elapsedSeconds": 1410,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-67",
+      "elapsedSeconds": 1412,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "できました。"
+    },
+    {
+      "id": "recorded-68",
+      "elapsedSeconds": 1414,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-69",
+      "elapsedSeconds": 1416,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-70",
+      "elapsedSeconds": 1418,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-71",
+      "elapsedSeconds": 1418,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-72",
+      "elapsedSeconds": 1419,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-73",
+      "elapsedSeconds": 1419,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-74",
+      "elapsedSeconds": 1423,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-75",
+      "elapsedSeconds": 1424,
+      "name": "Ｓ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-76",
+      "elapsedSeconds": 1425,
+      "name": "あお",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-77",
+      "elapsedSeconds": 1428,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-78",
+      "elapsedSeconds": 1623,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "遅くなりました、よろしくお願いいたします。"
+    },
+    {
+      "id": "recorded-79",
+      "elapsedSeconds": 1929,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-80",
+      "elapsedSeconds": 1937,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-81",
+      "elapsedSeconds": 1937,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-82",
+      "elapsedSeconds": 1937,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "出来ました！"
+    },
+    {
+      "id": "recorded-83",
+      "elapsedSeconds": 1937,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-84",
+      "elapsedSeconds": 1938,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-85",
+      "elapsedSeconds": 1938,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-86",
+      "elapsedSeconds": 1940,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-87",
+      "elapsedSeconds": 1941,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-88",
+      "elapsedSeconds": 1948,
+      "name": "あお",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-89",
+      "elapsedSeconds": 1958,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-90",
+      "elapsedSeconds": 1961,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "わかった"
+    },
+    {
+      "id": "recorded-91",
+      "elapsedSeconds": 1963,
+      "name": "hiro",
+      "role": "participant",
+      "message": "わかりました"
+    },
+    {
+      "id": "recorded-92",
+      "elapsedSeconds": 1967,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "大事さがわかりました"
+    },
+    {
+      "id": "recorded-93",
+      "elapsedSeconds": 1967,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-94",
+      "elapsedSeconds": 1975,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "今やらなきゃいけない\nわかりました！"
+    },
+    {
+      "id": "recorded-95",
+      "elapsedSeconds": 1975,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "今やりたいと思いました！"
+    },
+    {
+      "id": "recorded-96",
+      "elapsedSeconds": 1980,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "理解しました。"
+    },
+    {
+      "id": "recorded-97",
+      "elapsedSeconds": 1985,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "今がチャンスです！"
+    },
+    {
+      "id": "recorded-98",
+      "elapsedSeconds": 1986,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "速攻で取り組みます‼️"
+    },
+    {
+      "id": "recorded-99",
+      "elapsedSeconds": 1986,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "わかりましたが そこから収益出せるか心配です"
+    },
+    {
+      "id": "recorded-100",
+      "elapsedSeconds": 2103,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "どうした投稿したらいいんですか？"
+    },
+    {
+      "id": "recorded-101",
+      "elapsedSeconds": 2111,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "スクショしました。Theads5月から始めてます"
+    },
+    {
+      "id": "recorded-102",
+      "elapsedSeconds": 2189,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-103",
+      "elapsedSeconds": 2192,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-104",
+      "elapsedSeconds": 2193,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-105",
+      "elapsedSeconds": 2196,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-106",
+      "elapsedSeconds": 2197,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-107",
+      "elapsedSeconds": 2198,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-108",
+      "elapsedSeconds": 2198,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-109",
+      "elapsedSeconds": 2199,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "出来ました！"
+    },
+    {
+      "id": "recorded-110",
+      "elapsedSeconds": 2200,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-111",
+      "elapsedSeconds": 2200,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-112",
+      "elapsedSeconds": 2208,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-113",
+      "elapsedSeconds": 2289,
+      "name": "sk",
+      "role": "participant",
+      "message": "1"
+    },
+    {
+      "id": "recorded-114",
+      "elapsedSeconds": 2313,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-115",
+      "elapsedSeconds": 2321,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-116",
+      "elapsedSeconds": 2322,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-117",
+      "elapsedSeconds": 2325,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-118",
+      "elapsedSeconds": 2325,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-119",
+      "elapsedSeconds": 2325,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-120",
+      "elapsedSeconds": 2328,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-121",
+      "elapsedSeconds": 2329,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-122",
+      "elapsedSeconds": 2333,
+      "name": "あお",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-123",
+      "elapsedSeconds": 2333,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-124",
+      "elapsedSeconds": 2335,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-125",
+      "elapsedSeconds": 2502,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "2"
+    },
+    {
+      "id": "recorded-126",
+      "elapsedSeconds": 2532,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "👏"
+    },
+    {
+      "id": "recorded-127",
+      "elapsedSeconds": 2633,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-128",
+      "elapsedSeconds": 2637,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-129",
+      "elapsedSeconds": 2641,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "出来ました！"
+    },
+    {
+      "id": "recorded-130",
+      "elapsedSeconds": 2642,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-131",
+      "elapsedSeconds": 2642,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-132",
+      "elapsedSeconds": 2642,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-133",
+      "elapsedSeconds": 2644,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-134",
+      "elapsedSeconds": 2647,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-135",
+      "elapsedSeconds": 2649,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "できました。"
+    },
+    {
+      "id": "recorded-136",
+      "elapsedSeconds": 2650,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-137",
+      "elapsedSeconds": 2716,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "わかります"
+    },
+    {
+      "id": "recorded-138",
+      "elapsedSeconds": 3535,
+      "name": "sk",
+      "role": "participant",
+      "message": "ひらけました"
+    },
+    {
+      "id": "recorded-139",
+      "elapsedSeconds": 3537,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "開けました"
+    },
+    {
+      "id": "recorded-140",
+      "elapsedSeconds": 3538,
+      "name": "hiro",
+      "role": "participant",
+      "message": "開けました"
+    },
+    {
+      "id": "recorded-141",
+      "elapsedSeconds": 3545,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "chatgpt"
+    },
+    {
+      "id": "recorded-142",
+      "elapsedSeconds": 3545,
+      "name": "sk",
+      "role": "participant",
+      "message": "claude"
+    },
+    {
+      "id": "recorded-143",
+      "elapsedSeconds": 3548,
+      "name": "S.Toshi",
+      "role": "participant",
+      "message": "チャッピーです"
+    },
+    {
+      "id": "recorded-144",
+      "elapsedSeconds": 3551,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "開きました"
+    },
+    {
+      "id": "recorded-145",
+      "elapsedSeconds": 3553,
+      "name": "hiro",
+      "role": "participant",
+      "message": "Gemini"
+    },
+    {
+      "id": "recorded-146",
+      "elapsedSeconds": 3557,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "Gemini"
+    },
+    {
+      "id": "recorded-147",
+      "elapsedSeconds": 3558,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "開きました"
+    },
+    {
+      "id": "recorded-148",
+      "elapsedSeconds": 3559,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "Claude"
+    },
+    {
+      "id": "recorded-149",
+      "elapsedSeconds": 3562,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "開きました"
+    },
+    {
+      "id": "recorded-150",
+      "elapsedSeconds": 3574,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "claude開きました"
+    },
+    {
+      "id": "recorded-151",
+      "elapsedSeconds": 3575,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "開きました。Gemini"
+    },
+    {
+      "id": "recorded-152",
+      "elapsedSeconds": 3577,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "チャッピー無料版アプリなんです"
+    },
+    {
+      "id": "recorded-153",
+      "elapsedSeconds": 3584,
+      "name": "S.Toshi",
+      "role": "participant",
+      "message": "コーデックスも使ってます"
+    },
+    {
+      "id": "recorded-154",
+      "elapsedSeconds": 3585,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "Chatgpt"
+    },
+    {
+      "id": "recorded-155",
+      "elapsedSeconds": 3647,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-156",
+      "elapsedSeconds": 3652,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-157",
+      "elapsedSeconds": 3657,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-158",
+      "elapsedSeconds": 3658,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "出来ました！"
+    },
+    {
+      "id": "recorded-159",
+      "elapsedSeconds": 3661,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-160",
+      "elapsedSeconds": 3661,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-161",
+      "elapsedSeconds": 3664,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-162",
+      "elapsedSeconds": 3667,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-163",
+      "elapsedSeconds": 3668,
+      "name": "S.Toshi",
+      "role": "participant",
+      "message": "スクショできました"
+    },
+    {
+      "id": "recorded-164",
+      "elapsedSeconds": 3670,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-166",
+      "elapsedSeconds": 3882,
+      "name": "工藤（主催者）",
+      "role": "host",
+      "message": "【メイン投稿】\n「30代女性が痩せない原因の約8割は\"意思の弱さ\"じゃありません。」\n頑張るほど続かないのは、やり方を間違えているだけ。\n私もここを変えたらダイエットが別次元にラクになりました。\n↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-169",
+      "elapsedSeconds": 3967,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "【メイン投稿】退職を言い出せない人の9割は、能力不足じゃなく“怖さ”で止まっています。でも、辞め方を知るだけで別次元にラクになります。↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-173",
+      "elapsedSeconds": 4040,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "【メイン投稿】\n30代から肌の老化は始まっています。\nでも本当に差がつくのは40代。\n私もこの事実を知った時は衝撃受けました。\n間違ったケアを続けると取り戻すのに何年もかかることも…。\n↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-176",
+      "elapsedSeconds": 4048,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "副業6年間で400万円を溶かした僕が、\nAIで記事を自動生成できるようになるまでにかかった時間は、\nたった3日でした。\n↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-177",
+      "elapsedSeconds": 4071,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "【メイン投稿】退職で一番危険なのは「限界まで頑張ってから辞める」ことです。真面目な人ほど、心が折れるまで耐えてしまいます。↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-178",
+      "elapsedSeconds": 4073,
+      "name": "hiro",
+      "role": "participant",
+      "message": "【メイン投稿】（スマホの1画面目で手が止まる衝撃と誘導）\n「50代のダイエットは、20代の3倍のスピードで筋肉が落ちます」\n食事制限だけで痩せようとすると、たるんで老け見えする原因に。\n綺麗にボディラインを整える「大人のリバウンドゼロ黄金法則」をまとめました。\n↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-189",
+      "elapsedSeconds": 4190,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "【メイン投稿】退職を伝えた人の多くがぶつかる壁。それが「引き止め」です。でも、断り方を知らないだけで怖さは別次元に変わります。↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-190",
+      "elapsedSeconds": 4199,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "30代の私に伝えたい。\n「そのスキンケア、40代で後悔するかも。」\n私はもっと早く知りたかった。\nたった1つの思い込みで肌が変わっていました。\n↓コメ欄で全部話します"
+    },
+    {
+      "id": "recorded-194",
+      "elapsedSeconds": 4250,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "眼をとめて読んでみたいと思える投稿が一瞬でできまあした"
+    },
+    {
+      "id": "recorded-195",
+      "elapsedSeconds": 4305,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "魅力的な投稿ができました"
+    },
+    {
+      "id": "recorded-196",
+      "elapsedSeconds": 4307,
+      "name": "sk",
+      "role": "participant",
+      "message": "この型の投稿、今日Threadsでみた。伸びてた(笑)"
+    },
+    {
+      "id": "recorded-197",
+      "elapsedSeconds": 4308,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "AIが作ってくれますが読まれますか？"
+    },
+    {
+      "id": "recorded-198",
+      "elapsedSeconds": 4310,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "スピード感がやはりすごいですね"
+    },
+    {
+      "id": "recorded-199",
+      "elapsedSeconds": 4321,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "自分が書いてないのに、自分が書いたような文章が出来て驚きました。"
+    },
+    {
+      "id": "recorded-200",
+      "elapsedSeconds": 4324,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "Claudeでだしたので　途中要らぬ文言がはいったまま貼り付けしました"
+    },
+    {
+      "id": "recorded-201",
+      "elapsedSeconds": 4330,
+      "name": "hiro",
+      "role": "participant",
+      "message": "時短で出力できました。長文とは何文字くらいでしようか？"
+    },
+    {
+      "id": "recorded-202",
+      "elapsedSeconds": 4354,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "サクッとできますね"
+    },
+    {
+      "id": "recorded-203",
+      "elapsedSeconds": 4362,
+      "name": "hiro",
+      "role": "participant",
+      "message": "ありがとうございます"
+    },
+    {
+      "id": "recorded-204",
+      "elapsedSeconds": 4410,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "該当の悩みがある人が読めば、興味を以って最後まで読みたい、他の投稿も読みたい。という感情が湧く内容になりました。"
+    },
+    {
+      "id": "recorded-205",
+      "elapsedSeconds": 4469,
+      "name": "sk",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-206",
+      "elapsedSeconds": 4477,
+      "name": "hiro",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-207",
+      "elapsedSeconds": 4479,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-208",
+      "elapsedSeconds": 4481,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-209",
+      "elapsedSeconds": 4482,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-210",
+      "elapsedSeconds": 4484,
+      "name": "あお",
+      "role": "participant",
+      "message": "できました"
+    },
+    {
+      "id": "recorded-211",
+      "elapsedSeconds": 4489,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "出来ました。"
+    },
+    {
+      "id": "recorded-212",
+      "elapsedSeconds": 4495,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "出来ました"
+    },
+    {
+      "id": "recorded-214",
+      "elapsedSeconds": 4593,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "新規集客"
+    },
+    {
+      "id": "recorded-215",
+      "elapsedSeconds": 4601,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "自分のコンテンツを販売する"
+    },
+    {
+      "id": "recorded-216",
+      "elapsedSeconds": 4602,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "収益化"
+    },
+    {
+      "id": "recorded-217",
+      "elapsedSeconds": 4607,
+      "name": "hiro",
+      "role": "participant",
+      "message": "集客し、収益化"
+    },
+    {
+      "id": "recorded-218",
+      "elapsedSeconds": 4611,
+      "name": "阿部美和",
+      "role": "participant",
+      "message": "集客・収益化"
+    },
+    {
+      "id": "recorded-219",
+      "elapsedSeconds": 4614,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "収益を上げたい"
+    },
+    {
+      "id": "recorded-220",
+      "elapsedSeconds": 4615,
+      "name": "sk",
+      "role": "participant",
+      "message": "収益アップ"
+    },
+    {
+      "id": "recorded-221",
+      "elapsedSeconds": 4627,
+      "name": "あお",
+      "role": "participant",
+      "message": "自分の講座への集客"
+    },
+    {
+      "id": "recorded-222",
+      "elapsedSeconds": 4630,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "集客と売り上げに繋げる"
+    },
+    {
+      "id": "recorded-223",
+      "elapsedSeconds": 4632,
+      "name": "ちひろ",
+      "role": "participant",
+      "message": "私を知ってもらって集客したい"
+    },
+    {
+      "id": "recorded-225",
+      "elapsedSeconds": 4640,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "売り上げに繋げる　自分の情報資産"
+    },
+    {
+      "id": "recorded-226",
+      "elapsedSeconds": 5385,
+      "name": "事務局",
+      "role": "office",
+      "message": "運営事務局です！\n━━━━━━━━━\nセミナー参加者特典\n━━━━━━━━━\n公式LINEに、セミナー参加特典が届かない方は、こちらのリンクからお受け取りください！\n↓↓↓\nhttps://lstep.app/Fye5L9M"
+    },
+    {
+      "id": "recorded-227",
+      "elapsedSeconds": 5410,
+      "name": "hiro",
+      "role": "participant",
+      "message": "受け取れました"
+    },
+    {
+      "id": "recorded-228",
+      "elapsedSeconds": 5432,
+      "name": "Samsung SC-51D",
+      "role": "participant",
+      "message": "受け取りました"
+    },
+    {
+      "id": "recorded-229",
+      "elapsedSeconds": 5432,
+      "name": "Zoomユーザー",
+      "role": "participant",
+      "message": "受け取れました ありがとうございます"
+    },
+    {
+      "id": "recorded-230",
+      "elapsedSeconds": 5434,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "受け取れました"
+    },
+    {
+      "id": "recorded-231",
+      "elapsedSeconds": 5435,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "受け取りました"
+    },
+    {
+      "id": "recorded-232",
+      "elapsedSeconds": 5440,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "受け取りました"
+    },
+    {
+      "id": "recorded-233",
+      "elapsedSeconds": 5445,
+      "name": "sk",
+      "role": "participant",
+      "message": "受け取れました"
+    },
+    {
+      "id": "recorded-234",
+      "elapsedSeconds": 5452,
+      "name": "堀越　勝",
+      "role": "participant",
+      "message": "受け取りました。"
+    },
+    {
+      "id": "recorded-235",
+      "elapsedSeconds": 5475,
+      "name": "木下拓己a広報貴族",
+      "role": "participant",
+      "message": "受け取りました。"
+    },
+    {
+      "id": "recorded-236",
+      "elapsedSeconds": 5485,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "ありがとうございました"
+    },
+    {
+      "id": "recorded-237",
+      "elapsedSeconds": 6336,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "受け取りました、ありがとうございます。"
+    },
+    {
+      "id": "recorded-238",
+      "elapsedSeconds": 6698,
+      "name": "事務局",
+      "role": "office",
+      "message": "運営事務局です！\n━━━━━━━━━\nThreads × AIマスター講座\n━━━━━━━━━\n公式LINEに、\nご案内が届かない方は、\nこちらのリンクからお進みください！\n↓↓↓\nhttps://lstep.app/w5gHfot"
+    },
+    {
+      "id": "recorded-239",
+      "elapsedSeconds": 6721,
+      "name": "hiro",
+      "role": "participant",
+      "message": "開けた"
+    },
+    {
+      "id": "recorded-240",
+      "elapsedSeconds": 6752,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "開けました"
+    },
+    {
+      "id": "recorded-241",
+      "elapsedSeconds": 6762,
+      "name": "あお",
+      "role": "participant",
+      "message": "開けました"
+    },
+    {
+      "id": "recorded-242",
+      "elapsedSeconds": 6763,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "開きました"
+    },
+    {
+      "id": "recorded-244",
+      "elapsedSeconds": 7025,
+      "name": "TOMO MIU",
+      "role": "participant",
+      "message": "本日はありがとうございました。"
+    },
+    {
+      "id": "recorded-246",
+      "elapsedSeconds": 7090,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "ありがとうございます！ブログを持っているので、組み合わせて収益化したいです"
+    },
+    {
+      "id": "recorded-248",
+      "elapsedSeconds": 7209,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "してます！"
+    },
+    {
+      "id": "recorded-249",
+      "elapsedSeconds": 7318,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "ありがとうございました。"
+    }
+  ]
+}
