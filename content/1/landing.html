@@ -49,6 +49,9 @@
     font-size: 10px;
     animation: pulse 1.6s ease-in-out infinite;
   }
+  .topbar .label[data-status="waiting"] { color: #b7791f; }
+  .topbar .label[data-status="closed"] { color: #64748b; }
+  .topbar .label[data-status="closed"]::before { animation: none; }
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
@@ -357,7 +360,7 @@
 <div class="page">
 
   <div class="topbar">
-    <span class="label">SEMINAR ON AIR</span>
+    <span class="label" id="broadcastLabel">CHECKING SCHEDULE</span>
   </div>
 
   <main class="container">
@@ -423,6 +426,7 @@
 <script>
   (() => {
     const video = document.getElementById('seminarVideo');
+    const broadcastLabel = document.getElementById('broadcastLabel');
     const videoWrap = document.getElementById('videoWrap');
     const videoState = document.getElementById('videoState');
     const stateLabel = document.getElementById('stateLabel');
@@ -477,6 +481,14 @@
       }).format(new Date(isoString));
     }
 
+    function formatJstTime(isoString) {
+      return new Intl.DateTimeFormat('ja-JP', {
+        timeZone: 'Asia/Tokyo',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(new Date(isoString));
+    }
+
     function livePosition() {
       if (!statusData?.session) return 0;
       const startsAt = new Date(statusData.session.startsAt).getTime();
@@ -513,6 +525,8 @@
       const now = trustedNow();
 
       if (statusData.status === 'waiting') {
+        broadcastLabel.dataset.status = 'waiting';
+        broadcastLabel.textContent = 'STARTING SOON';
         const startsAt = new Date(statusData.session.startsAt).getTime();
         const remaining = startsAt - now;
         videoState.hidden = false;
@@ -530,6 +544,8 @@
       }
 
       if (statusData.status === 'live') {
+        broadcastLabel.dataset.status = 'live';
+        broadcastLabel.textContent = 'SEMINAR ON AIR';
         commentFields.disabled = false;
         const endsAt = new Date(statusData.session.endsAt).getTime();
         if (now >= endsAt) {
@@ -549,6 +565,10 @@
       }
 
       if (streamStarted) stopStream();
+      broadcastLabel.dataset.status = 'closed';
+      broadcastLabel.textContent = statusData.nextSession
+        ? `NEXT SEMINAR ${formatJstTime(statusData.nextSession.startsAt)}`
+        : 'SEMINAR OFF AIR';
       videoState.hidden = false;
       videoState.classList.remove('is-live');
       playerControls.hidden = true;
@@ -578,6 +598,8 @@
           refreshComments();
         }
       } catch (error) {
+        broadcastLabel.dataset.status = 'closed';
+        broadcastLabel.textContent = 'SCHEDULE UNAVAILABLE';
         if (!streamStarted) {
           stateLabel.textContent = '動画を読み込めませんでした';
           stateDetail.textContent = '通信状況を確認して、ページを再読み込みしてください';
