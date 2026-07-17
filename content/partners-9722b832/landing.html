@@ -56,10 +56,13 @@
   .rank.top { background: var(--gold); }
   .agency { font-weight: 750; }
   .tabs { display: flex; gap: 4px; overflow-x: auto; margin-bottom: 16px; border-bottom: 1px solid var(--border); }
-  .tab { border: 0; background: transparent; color: var(--text-sub); padding: 12px 14px; font: inherit; font-size: 14px; font-weight: 700; white-space: nowrap; cursor: pointer; border-bottom: 2px solid transparent; }
+  .tab { border: 0; background: transparent; color: var(--text-sub); padding: 12px 14px; font: inherit; font-size: 14px; font-weight: 700; white-space: nowrap; cursor: pointer; border-bottom: 2px solid transparent; text-decoration: none; }
   .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
   .panel { display: none; }
   .panel.active { display: block; }
+  .period-select { border: 1px solid var(--border); border-radius: 8px; padding: 8px 34px 8px 10px; background: #fff; color: var(--text-sub); font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .total-row td { background: var(--accent-soft); font-weight: 750; }
+  #panel-daily th:nth-child(2), #panel-daily td:nth-child(2) { text-align: right; }
   .empty, .error, .loading { text-align: center; color: var(--text-sub); padding: 42px 0; font-size: 14px; }
   footer { margin-top: 28px; color: var(--text-muted); font-size: 11px; text-align: center; }
   @media (min-width: 760px) {
@@ -83,10 +86,9 @@
   </header>
 
   <nav class="tabs" aria-label="レポートタブ">
-    <button class="tab active" type="button" data-tab="overview">概要</button>
-    <button class="tab" type="button" data-tab="daily">日別</button>
-    <button class="tab" type="button" data-tab="ranking">ランキング</button>
-    <button class="tab" type="button" data-tab="rule">報酬ルール</button>
+    <a class="tab active" href="?tab=daily&amp;period=month" data-tab="daily">日別</a>
+    <a class="tab" href="?tab=ranking" data-tab="ranking">ランキング</a>
+    <a class="tab" href="?tab=rule" data-tab="rule">報酬ルール</a>
   </nav>
 
   <main id="content"><div class="card"><div class="loading">読み込み中…</div></div></main>
@@ -95,9 +97,11 @@
 
 <script>
 (function () {
-  var REQUESTED_AGENCY = new URLSearchParams(window.location.search).get('agency');
+  var REQUESTED_AGENCY = '山崎';
   var TOKEN = '2fda7e77b1cc9090fc5f2ebd4bf574b9';
-  var API_URL = 'https://asto.jp/api/agency/public?token=' + encodeURIComponent(TOKEN) + (REQUESTED_AGENCY ? '&agency=' + encodeURIComponent(REQUESTED_AGENCY) : '');
+  var API_URL = 'https://asto.jp/api/agency/public?token=' + encodeURIComponent(TOKEN) + '&agency=' + encodeURIComponent(REQUESTED_AGENCY);
+  var VALID_TABS = ['daily', 'ranking', 'rule'];
+  var VALID_PERIODS = ['today', 'yesterday', 'last-3-days', 'last-7-days', 'last-14-days', 'last-30-days', 'last-60-days', 'last-90-days', 'week', 'last-week', 'month', 'last-month', 'year', 'last-year', 'all'];
   var DEFAULT_REWARD_RULE = {
     mode: 'list',
     listRewardUnit: 500,
@@ -132,6 +136,75 @@
       : n(row.qualifiedListRewards) * n(rule.listRewardUnit);
   }
   function revenueFor(row, rule) { return n(row.purchasesWithin30Days) * n(rule.revenueUnit); }
+  function requestedTab() {
+    var tab = new URLSearchParams(window.location.search).get('tab');
+    return VALID_TABS.indexOf(tab) >= 0 ? tab : 'daily';
+  }
+  function requestedPeriod() {
+    var period = new URLSearchParams(window.location.search).get('period');
+    return VALID_PERIODS.indexOf(period) >= 0 ? period : 'month';
+  }
+  function pageUrl(tab, period) {
+    var params = new URLSearchParams();
+    params.set('tab', tab);
+    if (tab === 'daily') params.set('period', period || requestedPeriod());
+    return window.location.pathname + '?' + params.toString();
+  }
+  function jstToday() {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(new Date());
+    var values = {};
+    parts.forEach(function (part) { values[part.type] = part.value; });
+    return new Date(Date.UTC(Number(values.year), Number(values.month) - 1, Number(values.day)));
+  }
+  function rowDate(value) {
+    var match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+    return match ? new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]))) : null;
+  }
+  function isInPeriod(date, period) {
+    if (period === 'all') return true;
+    var today = jstToday();
+    var start;
+    var end = today;
+    var rollingDays = {
+      'last-3-days': 3,
+      'last-7-days': 7,
+      'last-14-days': 14,
+      'last-30-days': 30,
+      'last-60-days': 60,
+      'last-90-days': 90
+    };
+    if (period === 'today') {
+      start = today;
+    } else if (period === 'yesterday') {
+      start = new Date(today);
+      start.setUTCDate(today.getUTCDate() - 1);
+      end = start;
+    } else if (rollingDays[period]) {
+      start = new Date(today);
+      start.setUTCDate(today.getUTCDate() - rollingDays[period] + 1);
+    } else if (period === 'week') {
+      start = new Date(today);
+      start.setUTCDate(today.getUTCDate() - ((today.getUTCDay() + 6) % 7));
+    } else if (period === 'last-week') {
+      end = new Date(today);
+      end.setUTCDate(today.getUTCDate() - ((today.getUTCDay() + 6) % 7) - 1);
+      start = new Date(end);
+      start.setUTCDate(end.getUTCDate() - 6);
+    } else if (period === 'last-month') {
+      start = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - 1, 1));
+      end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 0));
+    } else if (period === 'year') {
+      start = new Date(Date.UTC(today.getUTCFullYear(), 0, 1));
+    } else if (period === 'last-year') {
+      start = new Date(Date.UTC(today.getUTCFullYear() - 1, 0, 1));
+      end = new Date(Date.UTC(today.getUTCFullYear() - 1, 11, 31));
+    } else {
+      start = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1));
+    }
+    return date >= start && date <= end;
+  }
   function aggregateRows(rows) {
     return (rows || []).reduce(function (sum, row) {
       Object.keys(row).forEach(function (key) {
@@ -202,11 +275,15 @@
   }
 
   function renderDaily(data) {
-    var rows = (data.daily || []).filter(function (d) { return d.date; }).map(function (d) {
+    var period = requestedPeriod();
+    var daily = (data.daily || []).filter(function (d) {
+      var date = rowDate(d.date);
+      return d.agency === REQUESTED_AGENCY && date && isInPeriod(date, period);
+    }).sort(function (a, b) { return b.date.localeCompare(a.date); });
+    var rows = daily.map(function (d) {
       var rule = ruleForAgency(data, d.agency);
       return el('tr', null, [
         el('td', null, [d.date]),
-        el('td', { class: 'agency' }, [d.agency]),
         el('td', { class: 'num' }, [fmt(d.registrations)]),
         el('td', { class: 'num' }, [fmt(d.qualifiedListRewards)]),
         el('td', { class: 'num' }, [fmt(d.surveyResponses)]),
@@ -215,11 +292,59 @@
         el('td', { class: 'num' }, [yen(payoutFor(d, rule))]),
       ]);
     });
-    return tablePanel('panel-daily', '日別実績', ['登録日', '流入元', '登録数', '対象リスト', '回答', '7日以内ブロック', '成約', '報酬見込み'], rows);
+    if (daily.length) {
+      var total = aggregateRows(daily);
+      total.agency = REQUESTED_AGENCY;
+      var totalRule = ruleForAgency(data, REQUESTED_AGENCY);
+      rows.unshift(el('tr', { class: 'total-row' }, [
+        el('td', null, ['合計']),
+        el('td', { class: 'num' }, [fmt(total.registrations)]),
+        el('td', { class: 'num' }, [fmt(total.qualifiedListRewards)]),
+        el('td', { class: 'num' }, [fmt(total.surveyResponses)]),
+        el('td', { class: 'num' }, [fmt(total.blockedWithin7Days)]),
+        el('td', { class: 'num' }, [fmt(total.purchasesWithin30Days)]),
+        el('td', { class: 'num' }, [yen(payoutFor(total, totalRule))]),
+      ]));
+    }
+    if (!rows.length) rows.push(el('tr', null, [el('td', { class: 'empty', colspan: '7' }, ['該当する日別実績はありません'])]));
+    var periods = [
+      { value: 'today', label: '今日' },
+      { value: 'yesterday', label: '昨日' },
+      { value: 'last-3-days', label: '過去3日' },
+      { value: 'last-7-days', label: '過去7日' },
+      { value: 'last-14-days', label: '過去14日' },
+      { value: 'last-30-days', label: '過去30日' },
+      { value: 'last-60-days', label: '過去60日' },
+      { value: 'last-90-days', label: '過去90日' },
+      { value: 'week', label: '今週' },
+      { value: 'last-week', label: '先週' },
+      { value: 'month', label: '今月' },
+      { value: 'last-month', label: '先月' },
+      { value: 'year', label: '今年' },
+      { value: 'last-year', label: '昨年' },
+      { value: 'all', label: '全期間' }
+    ];
+    var periodSelect = el('select', { class: 'period-select', 'aria-label': '表示期間' }, periods.map(function (item) {
+      return el('option', { value: item.value }, [item.label]);
+    }));
+    periodSelect.value = period;
+    periodSelect.addEventListener('change', function () {
+      window.history.pushState(null, '', pageUrl('daily', periodSelect.value));
+      if (window.__agencyData) render(window.__agencyData);
+    });
+    return el('section', { class: 'panel', id: 'panel-daily' }, [
+      el('div', { class: 'card' }, [
+        el('div', { class: 'section-head' }, [el('h2', null, ['日別実績']), periodSelect]),
+        el('div', { class: 'table-wrap' }, [el('table', null, [
+          el('thead', null, [el('tr', null, ['登録日', '登録数', '対象リスト', '回答', '7日以内ブロック', '成約', '報酬見込み'].map(function (h) { return el('th', null, [h]); }))]),
+          el('tbody', null, rows)
+        ])])
+      ])
+    ]);
   }
 
   function renderRanking(data) {
-    var rows = (data.ranking || data.summary || []).map(function (s, i) {
+    var rows = (data.ranking || data.summary || []).filter(function (s) { return s.agency === REQUESTED_AGENCY; }).map(function (s, i) {
       return el('tr', null, [
         el('td', null, [el('span', { class: 'rank' + (i === 0 ? ' top' : '') }, [String(i + 1)])]),
         el('td', { class: 'agency' }, [s.agency]),
@@ -285,15 +410,24 @@
       content.appendChild(el('div', { class: 'card' }, [el('div', { class: 'empty' }, ['まだ実績データがありません'])]));
       return;
     }
-    content.appendChild(renderOverview(data));
     content.appendChild(renderDaily(data));
     content.appendChild(renderRanking(data));
     content.appendChild(renderRule(data));
-    activateTab(document.querySelector('.tab.active[data-tab]').getAttribute('data-tab'));
+    activateTab(requestedTab());
   }
 
   document.querySelectorAll('.tab[data-tab]').forEach(function (tab) {
-    tab.addEventListener('click', function () { activateTab(tab.getAttribute('data-tab')); });
+    tab.addEventListener('click', function (event) {
+      event.preventDefault();
+      var name = tab.getAttribute('data-tab');
+      window.history.pushState(null, '', pageUrl(name, name === 'daily' ? 'month' : null));
+      if (window.__agencyData) render(window.__agencyData);
+      else activateTab(name);
+    });
+  });
+  window.addEventListener('popstate', function () {
+    if (window.__agencyData) render(window.__agencyData);
+    else activateTab(requestedTab());
   });
 
   fetch(API_URL, { cache: 'no-store' })
