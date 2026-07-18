@@ -1,7 +1,7 @@
 {
   "recordingStartsAt": "20:00:36",
-  "importedCount": 223,
-  "skippedCount": 26,
+  "importedCount": 228,
+  "skippedCount": 21,
   "comments": [
     {
       "id": "recorded-1",
@@ -1341,6 +1341,13 @@
       "message": "出来ました"
     },
     {
+      "id": "recorded-213",
+      "elapsedSeconds": 4592,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "申し込みにつなげること"
+    },
+    {
       "id": "recorded-214",
       "elapsedSeconds": 4593,
       "name": "矢津 洋一",
@@ -1409,6 +1416,13 @@
       "name": "ちひろ",
       "role": "participant",
       "message": "私を知ってもらって集客したい"
+    },
+    {
+      "id": "recorded-224",
+      "elapsedSeconds": 4634,
+      "name": "Kumiko",
+      "role": "participant",
+      "message": "申し込みに繋げる為"
     },
     {
       "id": "recorded-225",
@@ -1509,6 +1523,13 @@
       "message": "運営事務局です！\n━━━━━━━━━\nThreads × AIマスター講座\n━━━━━━━━━\n公式LINEに、\nご案内が届かない方は、\nこちらのリンクからお進みください！\n↓↓↓\nhttps://lstep.app/w5gHfot"
     },
     {
+      "id": "recorded-250",
+      "elapsedSeconds": 6720,
+      "name": "なおこ",
+      "role": "participant",
+      "message": "クレカで決済しました！"
+    },
+    {
       "id": "recorded-239",
       "elapsedSeconds": 6721,
       "name": "hiro",
@@ -1537,6 +1558,27 @@
       "message": "開きました"
     },
     {
+      "id": "recorded-251",
+      "elapsedSeconds": 6840,
+      "name": "まい",
+      "role": "participant",
+      "message": "銀行振込完了しました！"
+    },
+    {
+      "id": "recorded-252",
+      "elapsedSeconds": 6960,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "決済完了しました！"
+    },
+    {
+      "id": "recorded-243",
+      "elapsedSeconds": 7024,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "申し込みました。頑張って稼げるように努力しますので、よろしくお願いいたします。"
+    },
+    {
       "id": "recorded-244",
       "elapsedSeconds": 7025,
       "name": "TOMO MIU",
@@ -1544,11 +1586,25 @@
       "message": "本日はありがとうございました。"
     },
     {
+      "id": "recorded-245",
+      "elapsedSeconds": 7046,
+      "name": "takuyan",
+      "role": "participant",
+      "message": "カード決済です"
+    },
+    {
       "id": "recorded-246",
       "elapsedSeconds": 7090,
       "name": "takuyan",
       "role": "participant",
       "message": "ありがとうございます！ブログを持っているので、組み合わせて収益化したいです"
+    },
+    {
+      "id": "recorded-247",
+      "elapsedSeconds": 7169,
+      "name": "矢津 洋一",
+      "role": "participant",
+      "message": "申し込みました。カード分割です。よろしくお願いします"
     },
     {
       "id": "recorded-248",
