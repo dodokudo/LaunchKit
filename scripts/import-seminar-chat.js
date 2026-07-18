@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const HEADER_PATTERN = /^(\d{2}:\d{2}:\d{2})\t From (.+?) : (.*)$/;
-const PRIVATE_CONTACT_PATTERN = /(https?:\/\/|www\.|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\b0\d{1,4}-?\d{2,4}-?\d{3,4}\b)/i;
 function parseClockSeconds(value) {
   const parts = String(value).split(':').map(Number);
   if (parts.length !== 3 || parts.some((part) => !Number.isFinite(part))) {
@@ -26,7 +25,7 @@ function parseZoomChat(text) {
   return comments;
 }
 
-function importZoomChat(text, { recordingStartsAt, maxMessageLength = 200 }) {
+function importZoomChat(text, { recordingStartsAt }) {
   const recordingStartSeconds = parseClockSeconds(recordingStartsAt);
   let previousElapsedSeconds = 0;
   let skippedCount = 0;
@@ -37,9 +36,7 @@ function importZoomChat(text, { recordingStartsAt, maxMessageLength = 200 }) {
     if (elapsedSeconds < -12 * 60 * 60) elapsedSeconds += 24 * 60 * 60;
 
     const shouldSkip = elapsedSeconds < 0
-      || !message
-      || message.length > maxMessageLength
-      || (comment.name !== '事務局' && PRIVATE_CONTACT_PATTERN.test(message));
+      || !message;
 
     if (shouldSkip) {
       skippedCount += 1;

@@ -34,7 +34,7 @@ test('Zoomコメントを動画開始からの経過秒へ変換する', () => {
   assert.equal(imported.comments[3].message, '1行目\n2行目');
 });
 
-test('事務局投稿と申込・決済コメントは残し、参加者のURLと長文を除外する', () => {
+test('URL、申込・決済コメント、長文を含む全コメントを残す', () => {
   const imported = importZoomChat([
     '20:00:40\t From 事務局 : 運営投稿',
     '20:00:41\t From 山田太郎 : https://example.com',
@@ -45,8 +45,11 @@ test('事務局投稿と申込・決済コメントは残し、参加者のURL�
 
   assert.deepEqual(imported.comments.map(({ name, role, message }) => ({ name, role, message })), [
     { name: '事務局', role: 'office', message: '運営投稿' },
+    { name: '山田太郎', role: 'participant', message: 'https://example.com' },
     { name: '山田太郎', role: 'participant', message: 'カード決済で申し込みました' },
+    { name: '山田太郎', role: 'participant', message: '長'.repeat(201) },
     { name: '山田太郎', role: 'participant', message: '参考になりました' },
   ]);
-  assert.doesNotMatch(JSON.stringify(imported), /example\.com|長{201}/);
+  assert.equal(imported.importedCount, 5);
+  assert.equal(imported.skippedCount, 0);
 });
