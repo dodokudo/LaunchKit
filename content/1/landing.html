@@ -617,7 +617,6 @@
       streamPreparing = true;
       startButton.disabled = true;
       startButton.textContent = '動画を読み込んでいます';
-      video.muted = true;
       video.src = statusData.videoUrl;
       video.load();
 
@@ -628,7 +627,6 @@
         });
         streamStarted = true;
         seekToLivePosition(true);
-        await video.play();
         startButton.textContent = '配信を視聴開始する';
       } catch (error) {
         streamStarted = false;
@@ -646,11 +644,16 @@
         prepareStream();
         return;
       }
-      viewerStarted = true;
       video.muted = false;
-      muteButton.textContent = '音声を消す';
-      videoState.hidden = true;
-      playerControls.hidden = false;
+      video.play().then(() => {
+        viewerStarted = true;
+        muteButton.textContent = '音声を消す';
+        videoState.hidden = true;
+        playerControls.hidden = false;
+      }).catch(() => {
+        video.muted = true;
+        startButton.textContent = 'もう一度視聴開始を押す';
+      });
     }
 
     function commentTime(comment) {
@@ -840,13 +843,13 @@
       if (video.playbackRate !== 1) video.playbackRate = 1;
     });
     video.addEventListener('pause', () => {
-      if (streamStarted && statusData?.status === 'live') {
+      if (viewerStarted && streamStarted && statusData?.status === 'live') {
         seekToLivePosition(true);
         video.play().catch(() => {});
       }
     });
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && streamStarted) {
+      if (!document.hidden && viewerStarted && streamStarted) {
         seekToLivePosition(true);
         video.play().catch(() => {});
       }
