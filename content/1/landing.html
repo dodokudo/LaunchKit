@@ -381,7 +381,7 @@
             <p class="state-label" id="stateLabel">開催時刻を確認しています</p>
             <p class="countdown" id="countdown"></p>
             <p class="state-detail" id="stateDetail">しばらくお待ちください</p>
-            <button class="start-button" id="startButton" type="button" hidden>配信を視聴開始する</button>
+            <button class="start-button" id="startButton" type="button" hidden>音声を出して視聴開始する</button>
           </div>
         </div>
         <p class="play-guide">開始10分前から入室できます。途中入室の場合は、その時点の配信位置から始まります。</p>
@@ -615,8 +615,6 @@
     async function prepareStream() {
       if (!statusData?.videoUrl || statusData.status !== 'live' || streamPreparing) return;
       streamPreparing = true;
-      startButton.disabled = true;
-      startButton.textContent = '動画を読み込んでいます';
       video.src = statusData.videoUrl;
       video.load();
 
@@ -627,7 +625,7 @@
         });
         streamStarted = true;
         seekToLivePosition(true);
-        startButton.textContent = '配信を視聴開始する';
+        startButton.textContent = '音声を出して視聴開始する';
       } catch (error) {
         streamStarted = false;
         video.removeAttribute('src');
@@ -635,24 +633,30 @@
         startButton.textContent = '動画を再読み込みする';
       } finally {
         streamPreparing = false;
-        startButton.disabled = false;
       }
     }
 
     function startViewing() {
-      if (!streamStarted) {
-        prepareStream();
-        return;
+      if (!statusData?.videoUrl || statusData.status !== 'live') return;
+      if (!video.getAttribute('src')) {
+        video.src = statusData.videoUrl;
+        video.load();
       }
       video.muted = false;
+      startButton.disabled = true;
+      startButton.textContent = '音声を読み込んでいます';
       video.play().then(() => {
+        streamStarted = true;
+        seekToLivePosition(true);
         viewerStarted = true;
         muteButton.textContent = '音声を消す';
         videoState.hidden = true;
         playerControls.hidden = false;
       }).catch(() => {
-        video.muted = true;
-        startButton.textContent = 'もう一度視聴開始を押す';
+        video.muted = false;
+        startButton.disabled = false;
+        startButton.textContent = '音声を出して再試行する';
+        stateDetail.textContent = '再生できない場合は、もう一度このボタンを押してください';
       });
     }
 
