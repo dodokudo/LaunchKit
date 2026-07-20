@@ -185,6 +185,7 @@
     font: inherit;
     font-size: 16px;
     font-weight: 700;
+    text-decoration: none;
     cursor: pointer;
     box-shadow: 0 8px 24px rgba(255, 75, 58, 0.35);
   }
@@ -376,12 +377,13 @@
     <div class="stage-grid">
       <div class="video-column">
         <div class="video-wrap" id="videoWrap">
-          <video id="seminarVideo" preload="none" playsinline disablepictureinpicture disableremoteplayback></video>
+          <video id="seminarVideo" preload="none" playsinline webkit-playsinline disablepictureinpicture disableremoteplayback></video>
           <div class="video-state" id="videoState">
             <p class="state-label" id="stateLabel">開催時刻を確認しています</p>
             <p class="countdown" id="countdown"></p>
             <p class="state-detail" id="stateDetail">しばらくお待ちください</p>
             <button class="start-button" id="startButton" type="button" hidden>音声を出して視聴開始する</button>
+            <a class="start-button" id="lineExternalButton" hidden>外部ブラウザで音声付き視聴する</a>
           </div>
         </div>
         <p class="play-guide">開始10分前から入室できます。途中入室の場合は、その時点の配信位置から始まります。</p>
@@ -434,6 +436,7 @@
     const stateDetail = document.getElementById('stateDetail');
     const countdown = document.getElementById('countdown');
     const startButton = document.getElementById('startButton');
+    const lineExternalButton = document.getElementById('lineExternalButton');
     const playerControls = document.getElementById('playerControls');
     const muteButton = document.getElementById('muteButton');
     const fullscreenButton = document.getElementById('fullscreenButton');
@@ -446,11 +449,18 @@
     const commentWebsite = document.getElementById('commentWebsite');
     const commentSubmit = document.getElementById('commentSubmit');
     const commentError = document.getElementById('commentError');
+    const isLineInAppBrowser = /\bLine\/[\d.]+/i.test(navigator.userAgent);
+    const shouldOpenExternalBrowser = isLineInAppBrowser
+      && new URLSearchParams(window.location.search).get('openExternalBrowser') !== '1';
+    if (shouldOpenExternalBrowser) {
+      const externalUrl = new URL(window.location.href);
+      externalUrl.searchParams.set('openExternalBrowser', '1');
+      lineExternalButton.href = externalUrl.toString();
+    }
 
     let statusData = null;
     let serverOffsetMs = 0;
     let streamStarted = false;
-    let streamPreparing = false;
     let viewerStarted = false;
     let internalSeek = false;
     let refreshInFlight = false;
@@ -508,7 +518,6 @@
 
     function stopStream(message = 'この回の配信は終了しました') {
       streamStarted = false;
-      streamPreparing = false;
       viewerStarted = false;
       video.pause();
       video.removeAttribute('src');
@@ -517,6 +526,7 @@
       videoState.classList.remove('is-live');
       videoState.hidden = false;
       startButton.hidden = true;
+      lineExternalButton.hidden = true;
       countdown.textContent = '';
       stateLabel.textContent = message;
       stateDetail.textContent = '動画の再視聴はできません';
@@ -535,6 +545,7 @@
         videoState.classList.remove('is-live');
         commentFields.disabled = false;
         startButton.hidden = true;
+        lineExternalButton.hidden = true;
         stateLabel.textContent = '配信開始まであと';
         countdown.textContent = formatCountdown(remaining);
         stateDetail.textContent = `${formatJst(statusData.session.startsAt)} 開始予定`;
@@ -558,10 +569,9 @@
         if (!viewerStarted) {
           videoState.classList.add('is-live');
           videoState.hidden = false;
-          startButton.hidden = false;
-        }
-        if (!streamStarted && !streamPreparing) {
-          prepareStream();
+          startButton.hidden = shouldOpenExternalBrowser;
+          lineExternalButton.hidden = !shouldOpenExternalBrowser;
+          startButton.textContent = '音声を出して視聴開始する';
         }
         return;
       }
@@ -577,6 +587,7 @@
       commentFields.disabled = true;
       renderCommentsClosed();
       startButton.hidden = true;
+      lineExternalButton.hidden = true;
       countdown.textContent = '';
       stateLabel.textContent = '現在は入室時間外です';
       stateDetail.textContent = statusData.nextSession
@@ -609,30 +620,6 @@
         }
       } finally {
         refreshInFlight = false;
-      }
-    }
-
-    async function prepareStream() {
-      if (!statusData?.videoUrl || statusData.status !== 'live' || streamPreparing) return;
-      streamPreparing = true;
-      video.src = statusData.videoUrl;
-      video.load();
-
-      try {
-        await new Promise((resolve, reject) => {
-          video.addEventListener('loadedmetadata', resolve, { once: true });
-          video.addEventListener('error', reject, { once: true });
-        });
-        streamStarted = true;
-        seekToLivePosition(true);
-        startButton.textContent = '音声を出して視聴開始する';
-      } catch (error) {
-        streamStarted = false;
-        video.removeAttribute('src');
-        video.load();
-        startButton.textContent = '動画を再読み込みする';
-      } finally {
-        streamPreparing = false;
       }
     }
 
