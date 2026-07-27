@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AI x Threads 運用マスター講座</title>
+  <style>
+    :root {
+      --page-width: 540px;
+      --float-height: min(31.6667vw, 171px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #f4f7ff;
+    }
+
+    body {
+      margin: 0;
+      color: #111;
+      background: #f4f7ff;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+    }
+
+    .lp {
+      width: 100%;
+      max-width: var(--page-width);
+      margin: 0 auto;
+      background: #fff;
+      padding-bottom: calc(var(--float-height) + env(safe-area-inset-bottom));
+      overflow: hidden;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .section,
+    .cta-link,
+    .video-block,
+    .float-cta {
+      display: block;
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .video-block {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .video-block iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    #cta-area {
+      scroll-margin-top: 0;
+    }
+
+    .float-cta {
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      bottom: 0;
+      max-width: var(--page-width);
+      transform: translateX(-50%);
+      padding-bottom: env(safe-area-inset-bottom);
+      background: #008cff;
+      box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (max-width: 540px) {
+      :root {
+        --float-height: 31.6667vw;
+      }
+
+      .lp {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="lp" aria-label="AI x Threads 運用マスター講座 ランディングページ">
+    <img class="section" src="lp-assets/s01-01.jpg" alt="AI x Threads 運用マスター講座" fetchpriority="high">
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s02-01.jpg" alt="参加はこちらから"></a>
+    <img class="section" src="lp-assets/s03-01.jpg" alt="AIに文章を作らせてThreadsから集客につなげる学習環境" loading="lazy">
+    <img class="section" src="lp-assets/s04-01.jpg" alt="Threads運用教材" loading="lazy">
+    <img class="section" src="lp-assets/s05-01.jpg" alt="実践ノウハウ解説動画" loading="lazy">
+    <img class="section" src="lp-assets/s06-01.jpg" alt="勉強会アーカイブ" loading="lazy">
+    <img class="section" src="lp-assets/s07-01.jpg" alt="実践ワークシート3種" loading="lazy">
+    <img class="section" src="lp-assets/s08-01.jpg" alt="2つのサポート環境" loading="lazy">
+    <img class="section" src="lp-assets/s09-01.jpg" alt="全投稿データ集2000件以上" loading="lazy">
+    <img class="section" src="lp-assets/s10-01.jpg" alt="投稿自動作成GPT" loading="lazy">
+    <img class="section" src="lp-assets/s11-01.jpg" alt="伸びた投稿のフック集50選" loading="lazy">
+    <img class="section" src="lp-assets/s12-01.jpg" alt="長文作成テンプレート10選" loading="lazy">
+    <img class="section" src="lp-assets/s13-01.jpg" alt="投稿添削GPTs" loading="lazy">
+    <img class="section" src="lp-assets/s14-01.jpg" alt="プロフィール作成・添削GPTs" loading="lazy">
+    <img class="section" src="lp-assets/s15-01.jpg" alt="固定ポスト作成GPTs" loading="lazy">
+    <img class="section" src="lp-assets/s16-01.jpg" alt="Threads分析GPTs" loading="lazy">
+    <img class="section" src="lp-assets/s17-01.jpg" alt="教材で学びワークシートで土台を作りAIツールで投稿作成を時短しサポート環境で進める" loading="lazy">
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s18-01.jpg" alt="今だけすべての特典付きでご案内 参加はこちらから" loading="lazy"></a>
+    <img class="section" src="lp-assets/s19-01.jpg" alt="受講生の実績・インタビュー" loading="lazy">
+    <img class="section" src="lp-assets/s20-01.jpg" alt="なぎささん" loading="lazy">
+    <div class="video-block" aria-label="受講生インタビュー動画 なぎささん">
+      <iframe src="https://www.youtube.com/embed/RYFjEkP19X0?list=PLaImU8jLqzaLW98Txlg4tIVyaaaXP0OrT&index=17&rel=0&playsinline=1" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <img class="section" src="lp-assets/s21-01.jpg" alt="なぎささんの実績" loading="lazy">
+    <img class="section" src="lp-assets/s22-01.jpg" alt="さおりさん" loading="lazy">
+    <div class="video-block" aria-label="受講生インタビュー動画 さおりさん">
+      <iframe src="https://www.youtube.com/embed/3AA6DFJBflM?list=PLaImU8jLqzaLW98Txlg4tIVyaaaXP0OrT&index=19&rel=0&playsinline=1" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <img class="section" src="lp-assets/s23-01.jpg" alt="さおりさんの実績" loading="lazy">
+    <img class="section" src="lp-assets/s24-01.jpg" alt="TAKUさん" loading="lazy">
+    <div class="video-block" aria-label="受講生インタビュー動画 TAKUさん">
+      <iframe src="https://www.youtube.com/embed/k0by674DVNw?list=PLaImU8jLqzaLW98Txlg4tIVyaaaXP0OrT&index=22&rel=0&playsinline=1" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <img class="section" src="lp-assets/s25-01.jpg" alt="TAKUさんの実績" loading="lazy">
+    <img class="section" src="lp-assets/s26-01.jpg" alt="サラさん" loading="lazy">
+    <div class="video-block" aria-label="受講生インタビュー動画 サラさん">
+      <iframe src="https://www.youtube.com/embed/3nL7GNNqtzQ?list=PLaImU8jLqzaLW98Txlg4tIVyaaaXP0OrT&index=23&rel=0&playsinline=1" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <img class="section" src="lp-assets/s27-01.jpg" alt="サラさんの実績" loading="lazy">
+    <img class="section" src="lp-assets/s28-01.jpg" alt="あかりさん" loading="lazy">
+    <div class="video-block" aria-label="受講生インタビュー動画 あかりさん">
+      <iframe src="https://www.youtube.com/embed/xl0DP4fcBY8?list=PLaImU8jLqzaLW98Txlg4tIVyaaaXP0OrT&index=21&rel=0&playsinline=1" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <img class="section" src="lp-assets/s29-01.jpg" alt="あかりさんの実績" loading="lazy">
+    <img class="section" src="lp-assets/s31-01.jpg" alt="日々たくさんの成果報告" loading="lazy">
+    <img class="section" src="lp-assets/s32-01.jpg" alt="成果が出ている人たちはただ投稿量を増やしたわけではありません" loading="lazy">
+    <img class="section" src="lp-assets/s33-01.jpg" alt="共通している5つのポイント" loading="lazy">
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s34-01.jpg" alt="Threads x AIで成果を出している受講生が実践した内容を学べる 参加はこちらから" loading="lazy"></a>
+    <img class="section" src="lp-assets/s35-01.jpg" alt="そのやり方を続けるほど集客につながりにくくなります" loading="lazy">
+    <img class="section" src="lp-assets/s36-01.jpg" alt="AIに渡す設計図がないから" loading="lazy">
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s37-01.jpg" alt="24時間限定特典付き 参加はこちらから" loading="lazy"></a>
+    <img class="section" src="lp-assets/s38-01.jpg" alt="講師・工藤からのメッセージ" loading="lazy">
+    <img class="section" src="lp-assets/s39-01.jpg" alt="実践で止まらない環境を用意しています" loading="lazy">
+    <img class="section" src="lp-assets/s40-01.jpg" alt="講座のステップ" loading="lazy">
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s41-01.jpg" alt="参加はこちらから" loading="lazy"></a>
+    <img class="section" src="lp-assets/s42-01.jpg" alt="料金案内" loading="lazy">
+    <a id="cta-area" class="cta-link" href="https://lstep.app/id7u2Pt" data-launchkit-line-cta><img src="lp-assets/s44-01.jpg" alt="銀行振込はこちら" loading="lazy"></a>
+    <a class="cta-link" href="https://analyca.jp/checkout/course?payment=full"><img src="lp-assets/s45-01.jpg" alt="クレジットカード一括決済はこちら" loading="lazy"></a>
+    <a class="cta-link" href="https://analyca.jp/checkout/course?payment=installment"><img src="lp-assets/s46-01.jpg" alt="クレジットカード分割決済はこちら" loading="lazy"></a>
+    <img class="section" src="lp-assets/s47-01.jpg" alt="よくある質問" loading="lazy">
+    <img class="section" src="lp-assets/s48-01.jpg" alt="このまま投稿を続けても売上にはつながらない" loading="lazy">
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s49-01.jpg" alt="24時間限定特典付き 参加はこちらから" loading="lazy"></a>
+  </main>
+
+  <a class="float-cta" href="#cta-area" aria-label="参加はこちらから">
+    <img src="lp-assets/s50-01.png" alt="参加はこちらから">
+  </a>
+  <script>
+    window.LAUNCHKIT_TRACKING = { lpId: "2e6d0250-bd3f-4e35-98f9-7116705e4248", apiBase: "https://autostudio-self.vercel.app" };
+  </script>
+  <script src="/tams/launchkit-tracking.js" defer></script>
+</body>
+</html>
