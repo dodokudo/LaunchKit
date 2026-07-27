@@ -8,7 +8,7 @@
   <style>
     :root {
       --page-width: 540px;
-      --float-height: min(22.1667vw, 119.7px);
+      --float-height: 72px;
     }
 
     * {
@@ -52,16 +52,6 @@
       border: 0;
     }
 
-    .hero-cta img {
-      aspect-ratio: 1080 / 539.7;
-      object-fit: fill;
-    }
-
-    .float-cta img {
-      aspect-ratio: 1080 / 239.4;
-      object-fit: fill;
-    }
-
     a {
       color: inherit;
       text-decoration: none;
@@ -93,18 +83,56 @@
       bottom: 0;
       max-width: var(--page-width);
       transform: translateX(-50%);
-      padding-bottom: env(safe-area-inset-bottom);
-      background: #008cff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+      background: linear-gradient(90deg, #008cff 0%, #2144ea 52%, #6812dc 100%);
       box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .float-cta-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2em;
+      width: 100%;
+      height: 56px;
+      color: #fff;
+      background: linear-gradient(180deg, #ffc451 0%, #ffad2d 100%);
+      border-radius: 12px;
+      border-bottom: 5px solid #ff8900;
+      box-shadow: 0 4px 10px rgba(71, 35, 0, 0.22);
+      font-size: clamp(24px, 5.2vw, 34px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 4px rgba(71, 35, 0, 0.28);
+    }
+
+    .float-cta-arrow {
+      font-size: 1.05em;
+      line-height: 1;
     }
 
     @media (max-width: 540px) {
       :root {
-        --float-height: 22.1667vw;
+        --float-height: 60px;
       }
 
       .lp {
         box-shadow: none;
+      }
+
+      .float-cta {
+        padding: 5px 12px calc(5px + env(safe-area-inset-bottom));
+      }
+
+      .float-cta-button {
+        height: 50px;
+        border-radius: 10px;
+        border-bottom-width: 4px;
+        font-size: clamp(21px, 6.2vw, 25px);
       }
     }
   </style>
@@ -112,7 +140,7 @@
 <body>
   <main class="lp" aria-label="AI x Threads 運用マスター講座 ランディングページ">
     <img class="section" src="lp-assets/s01-01.jpg" alt="AI x Threads 運用マスター講座" fetchpriority="high">
-    <a class="cta-link hero-cta" href="#cta-area"><img src="lp-assets/s02-01.jpg" alt="参加はこちらから"></a>
+    <a class="cta-link" href="#cta-area"><img src="lp-assets/s02-01.jpg" alt="参加はこちらから"></a>
     <img class="section" src="lp-assets/s03-01.jpg" alt="AIに文章を作らせてThreadsから集客につなげる学習環境" loading="lazy">
     <img class="section" src="lp-assets/s04-01.jpg" alt="Threads運用教材" loading="lazy">
     <img class="section" src="lp-assets/s05-01.jpg" alt="実践ノウハウ解説動画" loading="lazy">
@@ -176,7 +204,10 @@
   </main>
 
   <a class="float-cta" href="#cta-area" aria-label="参加はこちらから">
-    <img src="lp-assets/s50-01.png" alt="参加はこちらから">
+    <span class="float-cta-button">
+      参加はこちらから
+      <span class="float-cta-arrow" aria-hidden="true">»</span>
+    </span>
   </a>
   <script>
     window.LAUNCHKIT_TRACKING = { lpId: "2e6d0250-bd3f-4e35-98f9-7116705e4248", apiBase: "https://autostudio-self.vercel.app" };
