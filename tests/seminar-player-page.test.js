@@ -32,6 +32,14 @@ test('secret test mode starts the same stream after a 30 second countdown', () =
   assert.match(page, /fetch\(accessUrl, \{ cache: 'no-store' \}\)/);
 });
 
+test('secret test mode keeps viewer comments enabled and isolated', () => {
+  assert.match(page, /const commentsUrl = isTestMode[\s\S]*?api\/video\/comments\?test=/);
+  assert.match(page, /commentFields\.disabled = false/);
+  assert.match(page, /fetch\(commentsUrl, \{ cache: 'no-store' \}\)/);
+  assert.match(page, /fetch\(commentsUrl, \{\s+method: 'POST'/);
+  assert.doesNotMatch(page, /commentFields\.disabled = isTestMode/);
+});
+
 test('fullscreen keeps LINE and Apple mobile playback in the controlled page player', () => {
   assert.match(page, /if \(isAppleMobile \|\| isLineInAppBrowser\) \{\s+enterPseudoFullscreen\(\)/);
   assert.match(page, /videoWrap\.classList\.add\('is-pseudo-fullscreen'\)/);

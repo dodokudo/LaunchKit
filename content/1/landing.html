@@ -507,6 +507,9 @@
     const accessUrl = isTestMode
       ? `/api/video/access?test=${encodeURIComponent(testToken)}&startsAt=${testStartsAtMs}`
       : '/api/video/access';
+    const commentsUrl = isTestMode
+      ? `/api/video/comments?test=${encodeURIComponent(testToken)}&startsAt=${testStartsAtMs}`
+      : '/api/video/comments';
     const isLineInAppBrowser = /\bLine\/[\d.]+/i.test(navigator.userAgent);
     const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent)
       || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -649,7 +652,7 @@
         const remaining = startsAt - now;
         videoState.hidden = false;
         videoState.classList.remove('is-live');
-        commentFields.disabled = isTestMode;
+        commentFields.disabled = false;
         startButton.hidden = true;
         lineExternalButton.hidden = true;
         stateLabel.textContent = '配信開始まであと';
@@ -665,7 +668,7 @@
       if (statusData.status === 'live') {
         broadcastLabel.dataset.status = 'live';
         broadcastLabel.textContent = 'SEMINAR ON AIR';
-        commentFields.disabled = isTestMode;
+        commentFields.disabled = false;
         const endsAt = new Date(statusData.session.endsAt).getTime();
         if (now >= endsAt) {
           stopStream();
@@ -714,7 +717,7 @@
         renderStatus();
         if (data.status === 'waiting' || data.status === 'live') {
           loadRecordedComments();
-          if (!isTestMode) refreshComments();
+          refreshComments();
         }
       } catch (error) {
         broadcastLabel.dataset.status = 'closed';
@@ -871,10 +874,10 @@
     }
 
     async function refreshComments() {
-      if (isTestMode || commentsRefreshInFlight || !statusData || !['waiting', 'live'].includes(statusData.status)) return;
+      if (commentsRefreshInFlight || !statusData || !['waiting', 'live'].includes(statusData.status)) return;
       commentsRefreshInFlight = true;
       try {
-        const response = await fetch('/api/video/comments', { cache: 'no-store' });
+        const response = await fetch(commentsUrl, { cache: 'no-store' });
         if (!response.ok) throw new Error('comments_request_failed');
         const data = await response.json();
         if (commentsSessionStartsAt !== data.sessionStartsAt) {
@@ -901,7 +904,7 @@
       commentSubmit.disabled = true;
       commentError.textContent = '';
       try {
-        const response = await fetch('/api/video/comments', {
+        const response = await fetch(commentsUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

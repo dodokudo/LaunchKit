@@ -106,3 +106,63 @@ test('入室時間外はコメントを保存しない', async () => {
     Date.now = originalNow;
   }
 });
+
+test('秘密付きテスト回のコメントを本番開催回と分けて保存する', async () => {
+  const originalNow = Date.now;
+  const originalFetch = global.fetch;
+  const originalEnv = {
+    bucket: process.env.SEMINAR_COMMENTS_BUCKET,
+    credentials: process.env.SEMINAR_COMMENTS_CREDENTIALS_JSON,
+    testToken: process.env.SEMINAR_TEST_TOKEN,
+    testExpiresAt: process.env.SEMINAR_TEST_EXPIRES_AT,
+  };
+  const { privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+  const calls = [];
+  const startsAt = Date.parse('2026-08-03T10:00:30.000Z');
+  Date.now = () => Date.parse('2026-08-03T10:00:00.000Z');
+  process.env.SEMINAR_COMMENTS_BUCKET = 'comments-bucket';
+  process.env.SEMINAR_COMMENTS_CREDENTIALS_JSON = JSON.stringify({
+    client_email: 'comments@example.iam.gserviceaccount.com',
+    private_key: privateKey.export({ type: 'pkcs8', format: 'pem' }),
+  });
+  process.env.SEMINAR_TEST_TOKEN = 'test-token';
+  process.env.SEMINAR_TEST_EXPIRES_AT = '2026-08-03T15:00:00.000Z';
+  global.fetch = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    if (String(url).includes('oauth2.googleapis.com/token')) {
+      return new Response(JSON.stringify({ access_token: 'test-token' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    if (options.method === 'POST') {
+      return new Response('{}', { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+    return new Response('{}', { status: 404, headers: { 'Content-Type': 'application/json' } });
+  };
+
+  try {
+    const res = responseRecorder();
+    await commentsHandler({
+      method: 'POST',
+      url: `/api/video/comments?test=test-token&startsAt=${startsAt}`,
+      body: { name: 'テスト視聴者', message: '入力できます', website: '' },
+    }, res);
+    assert.equal(res.statusCode, 201);
+    assert.equal(res.body.comments[0].message, '入力できます');
+    const upload = calls.find((call) => call.options.method === 'POST' && call.url.includes('upload/storage'));
+    assert.ok(upload);
+    assert.match(upload.url, /tests%2Fsessions%2F2026-08-03T10-00-30-000Z\.json/);
+  } finally {
+    Date.now = originalNow;
+    global.fetch = originalFetch;
+    if (originalEnv.bucket === undefined) delete process.env.SEMINAR_COMMENTS_BUCKET;
+    else process.env.SEMINAR_COMMENTS_BUCKET = originalEnv.bucket;
+    if (originalEnv.credentials === undefined) delete process.env.SEMINAR_COMMENTS_CREDENTIALS_JSON;
+    else process.env.SEMINAR_COMMENTS_CREDENTIALS_JSON = originalEnv.credentials;
+    if (originalEnv.testToken === undefined) delete process.env.SEMINAR_TEST_TOKEN;
+    else process.env.SEMINAR_TEST_TOKEN = originalEnv.testToken;
+    if (originalEnv.testExpiresAt === undefined) delete process.env.SEMINAR_TEST_EXPIRES_AT;
+    else process.env.SEMINAR_TEST_EXPIRES_AT = originalEnv.testExpiresAt;
+  }
+});

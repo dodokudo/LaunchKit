@@ -8,6 +8,7 @@ const {
   sessionObjectName,
 } = require('../../lib/seminar-comments');
 const { getSeminarState } = require('../../lib/seminar-schedule');
+const { getTestSeminarState } = require('../../lib/seminar-test-session');
 
 const STORAGE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
@@ -34,7 +35,10 @@ module.exports = async function handler(req, res) {
   }
 
   const nowMs = Date.now();
-  const state = getSeminarState(nowMs);
+  const testResult = getTestSeminarState(req, nowMs);
+  if (testResult?.error) return sendJson(res, 404, { error: testResult.error });
+
+  const state = testResult?.state || getSeminarState(nowMs);
   if (state.status !== 'waiting' && state.status !== 'live') {
     return sendJson(res, 403, { error: 'comments_closed', status: state.status });
   }
@@ -43,7 +47,8 @@ module.exports = async function handler(req, res) {
     const bucket = process.env.SEMINAR_COMMENTS_BUCKET;
     const credentials = JSON.parse(process.env.SEMINAR_COMMENTS_CREDENTIALS_JSON || '{}');
     const token = await getGoogleAccessToken(credentials, STORAGE_SCOPE);
-    const objectName = sessionObjectName(state.session);
+    const sessionPath = sessionObjectName(state.session);
+    const objectName = testResult?.testMode ? `tests/${sessionPath}` : sessionPath;
 
     if (req.method === 'GET') {
       const current = await readComments({ bucket, objectName, token });
