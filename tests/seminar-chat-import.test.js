@@ -3,6 +3,7 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const { importZoomChat } = require('../scripts/import-seminar-chat');
+const seminarChat = require('../content/1/seminar-chat.json');
 
 test('Zoomコメントを動画開始からの経過秒へ変換する', () => {
   const imported = importZoomChat([
@@ -52,4 +53,18 @@ test('URL、申込・決済コメント、長文を含む全コメントを残�
   ]);
   assert.equal(imported.importedCount, 5);
   assert.equal(imported.skippedCount, 0);
+});
+
+test('事務局の音声確認案内を最初の視聴者回答の4秒前に表示する', () => {
+  const officePrompt = seminarChat.comments.find((comment) => comment.id === 'office-audio-check');
+  const firstViewerResponse = seminarChat.comments.find((comment) => comment.id === 'recorded-2');
+
+  assert.deepEqual(officePrompt, {
+    id: 'office-audio-check',
+    elapsedSeconds: 18,
+    name: '事務局',
+    role: 'office',
+    message: '音声が聞こえたらコメントで教えてください',
+  });
+  assert.equal(firstViewerResponse.elapsedSeconds - officePrompt.elapsedSeconds, 4);
 });

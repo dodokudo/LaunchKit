@@ -11,6 +11,13 @@
       "message": "ここです"
     },
     {
+      "id": "office-audio-check",
+      "elapsedSeconds": 18,
+      "name": "事務局",
+      "role": "office",
+      "message": "音声が聞こえたらコメントで教えてください"
+    },
+    {
       "id": "recorded-2",
       "elapsedSeconds": 22,
       "name": "堀越　勝",
