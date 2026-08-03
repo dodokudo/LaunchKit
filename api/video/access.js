@@ -1,7 +1,28 @@
 'use strict';
 
-const { createV4ReadUrl } = require('../../lib/gcs-signed-url');
+const crypto = require('node:crypto');
 const { VIDEO_DURATION_MS, getSeminarState } = require('../../lib/seminar-schedule');
+
+function encodeJwtPart(value) {
+  return Buffer.from(JSON.stringify(value)).toString('base64url');
+}
+
+function createMuxPlaybackToken({ playbackId, signingKeyId, privateKeyBase64, expiresAtSeconds }) {
+  if (!playbackId || !signingKeyId || !privateKeyBase64) {
+    throw new Error('Mux playback signing configuration is incomplete');
+  }
+
+  const encodedHeader = encodeJwtPart({ alg: 'RS256', typ: 'JWT', kid: signingKeyId });
+  const encodedPayload = encodeJwtPart({
+    sub: playbackId,
+    aud: 'v',
+    exp: Math.floor(expiresAtSeconds),
+  });
+  const unsignedToken = `${encodedHeader}.${encodedPayload}`;
+  const privateKey = Buffer.from(privateKeyBase64, 'base64').toString('utf8');
+  const signature = crypto.sign('RSA-SHA256', Buffer.from(unsignedToken), privateKey);
+  return `${unsignedToken}.${signature.toString('base64url')}`;
+}
 
 function sendJson(res, statusCode, body) {
   res.statusCode = statusCode;
@@ -38,16 +59,13 @@ module.exports = async function handler(req, res) {
   if (state.status !== 'live') return sendJson(res, 200, body);
 
   try {
-    const bucket = process.env.SEMINAR_VIDEO_BUCKET;
-    const objectName = process.env.SEMINAR_VIDEO_OBJECT || 'launchkit/1/video1198029083.mp4';
-    const serviceAccount = JSON.parse(process.env.SEMINAR_VIDEO_CREDENTIALS_JSON || '{}');
-    const expiresInSeconds = (state.session.endsAtMs - nowMs) / 1000;
-    body.videoUrl = createV4ReadUrl({
-      bucket,
-      objectName,
-      expiresInSeconds,
-      serviceAccount,
-      now: new Date(nowMs),
+    const playbackId = process.env.MUX_PLAYBACK_ID;
+    body.playbackId = playbackId;
+    body.playbackToken = createMuxPlaybackToken({
+      playbackId,
+      signingKeyId: process.env.MUX_SIGNING_KEY_ID,
+      privateKeyBase64: process.env.MUX_SIGNING_PRIVATE_KEY_BASE64,
+      expiresAtSeconds: (state.session.endsAtMs / 1000) + 300,
     });
     return sendJson(res, 200, body);
   } catch (error) {
@@ -55,3 +73,5 @@ module.exports = async function handler(req, res) {
     return sendJson(res, 500, { error: 'video_unavailable' });
   }
 };
+
+module.exports.createMuxPlaybackToken = createMuxPlaybackToken;

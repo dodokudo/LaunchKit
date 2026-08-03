@@ -127,13 +127,14 @@
     aspect-ratio: 16 / 9;
     margin-bottom: 20px;
   }
-  .video-wrap video {
+  .video-wrap mux-player {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
     background: #000;
+    --controls: none;
+    --media-object-size: contain;
   }
   .video-state {
     position: absolute;
@@ -370,6 +371,7 @@
     }
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player@3.10.1"></script>
 </head>
 <body>
 <div class="page">
@@ -390,7 +392,7 @@
     <div class="stage-grid">
       <div class="video-column">
         <div class="video-wrap" id="videoWrap">
-          <video id="seminarVideo" preload="none" playsinline webkit-playsinline disablepictureinpicture disableremoteplayback></video>
+          <mux-player id="seminarVideo" preload="none" poster="" nohotkeys disable-cookies metadata-video-id="launchkit-1" metadata-video-title="LaunchKit セミナー"></mux-player>
           <div class="video-state" id="videoState">
             <p class="state-label" id="stateLabel">開催時刻を確認しています</p>
             <p class="countdown" id="countdown"></p>
@@ -474,7 +476,6 @@
     let serverOffsetMs = 0;
     let streamStarted = false;
     let viewerStarted = false;
-    let initialLivePositionSet = false;
     let playbackStallTimer = null;
     let refreshInFlight = false;
     let startRefreshRequested = false;
@@ -520,13 +521,6 @@
       return Math.max(0, (trustedNow() - startsAt) / 1000);
     }
 
-    function setInitialLivePosition() {
-      if (initialLivePositionSet || !Number.isFinite(video.duration)) return;
-      const expected = Math.min(video.duration - 0.25, livePosition());
-      video.currentTime = expected;
-      initialLivePositionSet = true;
-    }
-
     function clearPlaybackStallTimer() {
       if (!playbackStallTimer) return;
       window.clearTimeout(playbackStallTimer);
@@ -558,11 +552,11 @@
     function stopStream(message = 'この回の配信は終了しました') {
       streamStarted = false;
       viewerStarted = false;
-      initialLivePositionSet = false;
       clearPlaybackStallTimer();
       video.pause();
-      video.removeAttribute('src');
-      video.load();
+      video.removeAttribute('playback-id');
+      video.removeAttribute('playback-token');
+      video.removeAttribute('start-time');
       playerControls.hidden = true;
       videoState.classList.remove('is-live');
       videoState.hidden = false;
@@ -665,16 +659,13 @@
     }
 
     function startViewing() {
-      if (!statusData?.videoUrl || statusData.status !== 'live') return;
-      if (!video.getAttribute('src')) {
-        video.src = statusData.videoUrl;
-        video.load();
+      if (!statusData?.playbackId || !statusData?.playbackToken || statusData.status !== 'live') return;
+      if (!video.getAttribute('playback-id')) {
+        video.setAttribute('playback-token', statusData.playbackToken);
+        video.setAttribute('start-time', String(livePosition()));
+        video.setAttribute('playback-id', statusData.playbackId);
       }
       video.muted = false;
-      setInitialLivePosition();
-      if (!initialLivePositionSet) {
-        video.addEventListener('loadedmetadata', setInitialLivePosition, { once: true });
-      }
       if (viewerStarted && video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
         video.pause();
       }

@@ -19,6 +19,13 @@ test('audible playback is requested directly from the start button handler', () 
   assert.match(page, /startButton\.addEventListener\('click', startViewing\)/);
 });
 
+test('Mux adaptive HLS is configured before audible playback', () => {
+  assert.match(page, /@mux\/mux-player@3\.10\.1/);
+  assert.match(page, /<mux-player id="seminarVideo"/);
+  assert.match(page, /--controls: none/);
+  assert.match(page, /setAttribute\('playback-token', statusData\.playbackToken\)[\s\S]*setAttribute\('playback-id', statusData\.playbackId\)/);
+});
+
 test('the player does not repeatedly force the live position', () => {
   assert.doesNotMatch(page, /seekToLivePosition/);
   assert.doesNotMatch(page, /addEventListener\('seeking'/);

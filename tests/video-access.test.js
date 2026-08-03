@@ -37,19 +37,18 @@ test('待機中は動画URLを返さない', async () => {
   });
 });
 
-test('配信中だけ終了時刻まで有効な動画URLを返す', async () => {
-  const { privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+test('配信中だけ終了時刻まで有効なMux再生トークンを返す', async () => {
+  const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
   const originalEnv = {
-    bucket: process.env.SEMINAR_VIDEO_BUCKET,
-    object: process.env.SEMINAR_VIDEO_OBJECT,
-    credentials: process.env.SEMINAR_VIDEO_CREDENTIALS_JSON,
+    playbackId: process.env.MUX_PLAYBACK_ID,
+    signingKeyId: process.env.MUX_SIGNING_KEY_ID,
+    privateKey: process.env.MUX_SIGNING_PRIVATE_KEY_BASE64,
   };
-  process.env.SEMINAR_VIDEO_BUCKET = 'private-bucket';
-  process.env.SEMINAR_VIDEO_OBJECT = 'launchkit/1/video.mp4';
-  process.env.SEMINAR_VIDEO_CREDENTIALS_JSON = JSON.stringify({
-    client_email: 'video@example.iam.gserviceaccount.com',
-    private_key: privateKey.export({ type: 'pkcs8', format: 'pem' }),
-  });
+  process.env.MUX_PLAYBACK_ID = 'signed-playback-id';
+  process.env.MUX_SIGNING_KEY_ID = 'signing-key-id';
+  process.env.MUX_SIGNING_PRIVATE_KEY_BASE64 = Buffer.from(
+    privateKey.export({ type: 'pkcs1', format: 'pem' }),
+  ).toString('base64');
 
   try {
     await withNow('2026-07-15T04:10:00.000Z', async () => {
@@ -57,15 +56,27 @@ test('配信中だけ終了時刻まで有効な動画URLを返す', async () =>
       await handler({ method: 'GET' }, res);
       assert.equal(res.statusCode, 200);
       assert.equal(res.body.status, 'live');
-      assert.match(res.body.videoUrl, /^https:\/\/storage\.googleapis\.com\/private-bucket\//);
-      assert.ok(Number(new URL(res.body.videoUrl).searchParams.get('x-goog-expires')) > 0);
+      assert.equal(res.body.playbackId, 'signed-playback-id');
+      const [encodedHeader, encodedPayload, encodedSignature] = res.body.playbackToken.split('.');
+      const header = JSON.parse(Buffer.from(encodedHeader, 'base64url').toString('utf8'));
+      const payload = JSON.parse(Buffer.from(encodedPayload, 'base64url').toString('utf8'));
+      assert.deepEqual(header, { alg: 'RS256', typ: 'JWT', kid: 'signing-key-id' });
+      assert.equal(payload.sub, 'signed-playback-id');
+      assert.equal(payload.aud, 'v');
+      assert.equal(payload.exp, Math.floor(Date.parse(res.body.session.endsAt) / 1000) + 300);
+      assert.equal(crypto.verify(
+        'RSA-SHA256',
+        Buffer.from(`${encodedHeader}.${encodedPayload}`),
+        publicKey,
+        Buffer.from(encodedSignature, 'base64url'),
+      ), true);
     });
   } finally {
-    if (originalEnv.bucket === undefined) delete process.env.SEMINAR_VIDEO_BUCKET;
-    else process.env.SEMINAR_VIDEO_BUCKET = originalEnv.bucket;
-    if (originalEnv.object === undefined) delete process.env.SEMINAR_VIDEO_OBJECT;
-    else process.env.SEMINAR_VIDEO_OBJECT = originalEnv.object;
-    if (originalEnv.credentials === undefined) delete process.env.SEMINAR_VIDEO_CREDENTIALS_JSON;
-    else process.env.SEMINAR_VIDEO_CREDENTIALS_JSON = originalEnv.credentials;
+    if (originalEnv.playbackId === undefined) delete process.env.MUX_PLAYBACK_ID;
+    else process.env.MUX_PLAYBACK_ID = originalEnv.playbackId;
+    if (originalEnv.signingKeyId === undefined) delete process.env.MUX_SIGNING_KEY_ID;
+    else process.env.MUX_SIGNING_KEY_ID = originalEnv.signingKeyId;
+    if (originalEnv.privateKey === undefined) delete process.env.MUX_SIGNING_PRIVATE_KEY_BASE64;
+    else process.env.MUX_SIGNING_PRIVATE_KEY_BASE64 = originalEnv.privateKey;
   }
 });
