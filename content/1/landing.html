@@ -141,10 +141,12 @@
     --controls: none;
     --media-object-size: contain;
   }
-  body.is-pseudo-fullscreen {
+  body.is-pseudo-fullscreen,
+  body.is-mobile-stage {
     overflow: hidden;
   }
-  .stage-grid.is-pseudo-fullscreen {
+  .stage-grid.is-pseudo-fullscreen,
+  body.is-mobile-stage .stage-grid {
     position: fixed;
     inset: 0;
     z-index: 1000;
@@ -160,11 +162,13 @@
     overflow: hidden;
     background: #000000;
   }
-  .stage-grid.is-pseudo-fullscreen .video-column {
+  .stage-grid.is-pseudo-fullscreen .video-column,
+  body.is-mobile-stage .stage-grid .video-column {
     min-height: 0;
     background: #000000;
   }
-  .stage-grid.is-pseudo-fullscreen .video-wrap {
+  .stage-grid.is-pseudo-fullscreen .video-wrap,
+  body.is-mobile-stage .stage-grid .video-wrap {
     width: 100%;
     height: min(56.25vw, 42vh);
     height: min(56.25vw, 42dvh);
@@ -174,13 +178,16 @@
     box-shadow: none;
     aspect-ratio: auto;
   }
-  .stage-grid.is-pseudo-fullscreen .video-wrap mux-player {
+  .stage-grid.is-pseudo-fullscreen .video-wrap mux-player,
+  body.is-mobile-stage .stage-grid .video-wrap mux-player {
     pointer-events: none;
   }
-  .stage-grid.is-pseudo-fullscreen .play-guide {
+  .stage-grid.is-pseudo-fullscreen .play-guide,
+  body.is-mobile-stage .stage-grid .play-guide {
     display: none;
   }
-  .stage-grid.is-pseudo-fullscreen .comment-panel {
+  .stage-grid.is-pseudo-fullscreen .comment-panel,
+  body.is-mobile-stage .stage-grid .comment-panel {
     min-height: 0;
     height: 100%;
     max-height: none;
@@ -188,8 +195,21 @@
     border-radius: 0;
     box-shadow: none;
   }
-  .stage-grid.is-pseudo-fullscreen .comment-list {
+  .stage-grid.is-pseudo-fullscreen .comment-list,
+  body.is-mobile-stage .stage-grid .comment-list {
     max-height: none;
+  }
+  body.is-mobile-stage .hero,
+  body.is-mobile-stage .notice,
+  body.is-mobile-stage .info,
+  body.is-mobile-stage footer {
+    display: none;
+  }
+  body.is-mobile-stage .container {
+    padding: 0;
+  }
+  body.is-mobile-stage .fullscreen-exit-button {
+    display: none !important;
   }
   .fullscreen-exit-button {
     position: absolute;
@@ -364,8 +384,14 @@
     font-size: 13px;
   }
   .comment-name-input { margin-bottom: 7px; }
-  .comment-message-input { min-height: 66px; resize: vertical; line-height: 1.45; }
-  .comment-form-row { display: flex; align-items: center; justify-content: flex-end; margin-top: 7px; }
+  .comment-entry-row { display: flex; align-items: stretch; gap: 8px; }
+  .comment-message-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 44px;
+    resize: none;
+    line-height: 1.45;
+  }
   .comment-submit {
     flex: 0 0 auto;
     border: 0;
@@ -460,13 +486,13 @@
     <div class="stage-grid" id="stageGrid">
       <div class="video-column">
         <div class="video-wrap" id="videoWrap">
-          <mux-player id="seminarVideo" preload="none" poster="" nohotkeys disable-cookies metadata-video-id="launchkit-1" metadata-video-title="LaunchKit セミナー"></mux-player>
+          <mux-player id="seminarVideo" preload="auto" poster="" nohotkeys disable-cookies metadata-video-id="launchkit-1" metadata-video-title="LaunchKit セミナー"></mux-player>
           <button class="fullscreen-exit-button" id="fullscreenExitButton" type="button" hidden>全画面を終了</button>
           <div class="video-state" id="videoState">
             <p class="state-label" id="stateLabel">開催時刻を確認しています</p>
             <p class="countdown" id="countdown"></p>
             <p class="state-detail" id="stateDetail">しばらくお待ちください</p>
-            <button class="start-button" id="startButton" type="button" hidden>音声を出して視聴開始する</button>
+            <button class="start-button" id="startButton" type="button" hidden>視聴を開始する</button>
             <a class="start-button" id="lineExternalButton" hidden>外部ブラウザで音声付き視聴する</a>
           </div>
         </div>
@@ -485,9 +511,9 @@
         <form class="comment-form" id="commentForm">
           <fieldset id="commentFields" disabled>
             <input class="comment-name-input" id="commentName" type="text" maxlength="20" autocomplete="nickname" placeholder="表示名（任意）" />
-            <textarea class="comment-message-input" id="commentMessage" maxlength="200" required placeholder="コメントを入力"></textarea>
             <input class="comment-honeypot" id="commentWebsite" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
-            <div class="comment-form-row">
+            <div class="comment-entry-row">
+              <textarea class="comment-message-input" id="commentMessage" maxlength="200" required placeholder="コメントを入力"></textarea>
               <button class="comment-submit" id="commentSubmit" type="submit">送信</button>
             </div>
             <p class="comment-error" id="commentError"></p>
@@ -549,7 +575,9 @@
     const isLineInAppBrowser = /\bLine\/[\d.]+/i.test(navigator.userAgent);
     const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent)
       || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isMobileDevice = isAppleMobile || /Android/i.test(navigator.userAgent);
     document.body.classList.toggle('is-line-browser', isLineInAppBrowser);
+    document.body.classList.toggle('is-mobile-stage', isMobileDevice);
     if (isLineInAppBrowser) {
       const externalUrl = new URL(window.location.href);
       externalUrl.searchParams.set('openExternalBrowser', '1');
@@ -642,7 +670,7 @@
       if (!viewerStarted || statusData?.status !== 'live') return;
       startButton.disabled = false;
       startButton.hidden = false;
-      startButton.textContent = '音声を出して再開する';
+      startButton.textContent = '再開する';
       lineExternalButton.hidden = !isLineInAppBrowser;
       stateLabel.textContent = '再生が止まっています';
       stateDetail.textContent = message;
@@ -706,6 +734,7 @@
         broadcastLabel.dataset.status = 'live';
         broadcastLabel.textContent = '配信中';
         commentFields.disabled = false;
+        preparePlayback();
         const endsAt = new Date(statusData.session.endsAt).getTime();
         if (now >= endsAt) {
           stopStream();
@@ -717,7 +746,7 @@
           videoState.hidden = false;
           startButton.hidden = false;
           lineExternalButton.hidden = true;
-          startButton.textContent = '音声を出して視聴開始する';
+          startButton.textContent = '視聴を開始する';
         }
         return;
       }
@@ -769,25 +798,30 @@
       }
     }
 
-    function startViewing() {
+    function preparePlayback() {
       if (!statusData?.playbackId || !statusData?.playbackToken || statusData.status !== 'live') return;
       if (!video.getAttribute('playback-id')) {
         video.setAttribute('playback-token', statusData.playbackToken);
         video.setAttribute('start-time', String(livePosition()));
         video.setAttribute('playback-id', statusData.playbackId);
       }
+    }
+
+    function startViewing() {
+      if (!statusData?.playbackId || !statusData?.playbackToken || statusData.status !== 'live') return;
+      preparePlayback();
       video.muted = false;
       if (viewerStarted && video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
         video.pause();
       }
       startButton.disabled = true;
-      startButton.textContent = '音声を読み込んでいます';
+      startButton.textContent = '読み込んでいます';
       video.play().then(() => {
         showPlaybackStarted();
       }).catch(() => {
         video.muted = false;
         startButton.disabled = false;
-        startButton.textContent = '音声を出して再試行する';
+        startButton.textContent = 'もう一度試す';
         lineExternalButton.hidden = !isLineInAppBrowser;
         stateDetail.textContent = isLineInAppBrowser
           ? 'もう一度試してください。再生できない場合のみ外部ブラウザをご利用ください'

@@ -24,11 +24,13 @@ test('mobile header keeps the schedule status compact and only shows recovery he
 test('audible playback is requested directly from the start button handler', () => {
   assert.match(page, /function startViewing\(\)[\s\S]*?video\.muted = false;[\s\S]*?video\.play\(\)/);
   assert.match(page, /startButton\.addEventListener\('click', startViewing\)/);
+  assert.match(page, /function preparePlayback\(\)[\s\S]*?setAttribute\('playback-id', statusData\.playbackId\)/);
+  assert.match(page, /statusData\.status === 'live'[\s\S]*?preparePlayback\(\)/);
 });
 
 test('Mux adaptive HLS is configured before audible playback', () => {
   assert.match(page, /@mux\/mux-player@3\.10\.1/);
-  assert.match(page, /<mux-player id="seminarVideo"/);
+  assert.match(page, /<mux-player id="seminarVideo" preload="auto"/);
   assert.match(page, /--controls: none/);
   assert.match(page, /setAttribute\('playback-token', statusData\.playbackToken\)[\s\S]*setAttribute\('playback-id', statusData\.playbackId\)/);
 });
@@ -58,10 +60,27 @@ test('fullscreen keeps LINE and Apple mobile playback in the controlled page pla
 
 test('pseudo fullscreen keeps the video at the top and comments usable below it', () => {
   assert.match(page, /class="stage-grid" id="stageGrid"/);
-  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \{[\s\S]*?grid-template-rows: auto minmax\(0, 1fr\)/);
-  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.video-wrap \{[\s\S]*?height: min\(56\.25vw, 42dvh\)/);
-  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.comment-panel \{[\s\S]*?min-height: 0/);
-  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.comment-list \{\s+max-height: none/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen,[\s\S]*?grid-template-rows: auto minmax\(0, 1fr\)/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.video-wrap,[\s\S]*?height: min\(56\.25vw, 42dvh\)/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.comment-panel,[\s\S]*?min-height: 0/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.comment-list,[\s\S]*?max-height: none/);
+});
+
+test('mobile devices use the fullscreen-style stage by default without an exit button', () => {
+  assert.match(page, /document\.body\.classList\.toggle\('is-mobile-stage', isMobileDevice\)/);
+  assert.match(page, /body\.is-mobile-stage \.stage-grid/);
+  assert.match(page, /body\.is-mobile-stage \.fullscreen-exit-button \{\s+display: none !important/);
+});
+
+test('comment input and submit button are side by side', () => {
+  assert.match(page, /class="comment-entry-row"[\s\S]*?<textarea[\s\S]*?<button class="comment-submit"/);
+  assert.match(page, /\.comment-entry-row \{ display: flex; align-items: stretch; gap: 8px; \}/);
+});
+
+test('viewer-facing playback buttons use concise labels', () => {
+  assert.match(page, />視聴を開始する<\/button>/);
+  assert.doesNotMatch(page, /音声を出して視聴開始する/);
+  assert.doesNotMatch(page, /音声を読み込んでいます/);
 });
 
 test('the player does not repeatedly force the live position', () => {
