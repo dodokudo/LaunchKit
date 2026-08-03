@@ -56,7 +56,7 @@ test('秘密付きテストURLは30秒後に配信中になる', async () => {
   const testToken = 'test-token';
   const startsAt = Date.parse('2026-08-03T10:00:30.000Z');
   await withEnv({
-    SEMINAR_TEST_TOKEN: testToken,
+    SEMINAR_TEST_TOKEN: `${testToken}\n`,
     SEMINAR_TEST_EXPIRES_AT: '2026-08-03T15:00:00.000Z',
   }, async () => {
     await withNow('2026-08-03T10:00:00.000Z', async () => {

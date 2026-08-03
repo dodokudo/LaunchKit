@@ -56,8 +56,8 @@ function getTestSeminarState(req, nowMs) {
   const testToken = url.searchParams.get('test');
   if (!testToken) return null;
 
-  const configuredToken = process.env.SEMINAR_TEST_TOKEN;
-  const expiresAtMs = Date.parse(process.env.SEMINAR_TEST_EXPIRES_AT || '');
+  const configuredToken = (process.env.SEMINAR_TEST_TOKEN || '').trim();
+  const expiresAtMs = Date.parse((process.env.SEMINAR_TEST_EXPIRES_AT || '').trim());
   const startsAtMs = Number(url.searchParams.get('startsAt'));
   const validStart = Number.isFinite(startsAtMs)
     && startsAtMs <= nowMs + TEST_START_WINDOW_MS
