@@ -57,6 +57,9 @@ test('URL、申込・決済コメント、長文を含む全コメントを残�
 
 test('事務局の音声確認案内を最初の視聴者回答の4秒前に表示する', () => {
   const officePrompt = seminarChat.comments.find((comment) => comment.id === 'office-audio-check');
+  const nakamuraResponse = seminarChat.comments.find(
+    (comment) => comment.id === 'supplemental-nakamura-audio-check',
+  );
   const firstViewerResponse = seminarChat.comments.find((comment) => comment.id === 'recorded-2');
 
   assert.deepEqual(officePrompt, {
@@ -67,4 +70,12 @@ test('事務局の音声確認案内を最初の視聴者回答の4秒前に表�
     message: '音声が聞こえたらコメントで教えてください',
   });
   assert.equal(firstViewerResponse.elapsedSeconds - officePrompt.elapsedSeconds, 4);
+  assert.deepEqual(nakamuraResponse, {
+    id: 'supplemental-nakamura-audio-check',
+    elapsedSeconds: 21.5,
+    name: '中村弘志',
+    role: 'participant',
+    message: '聞こえてます',
+  });
+  assert.equal(firstViewerResponse.elapsedSeconds - nakamuraResponse.elapsedSeconds, 0.5);
 });

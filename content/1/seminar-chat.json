@@ -18,6 +18,13 @@
       "message": "音声が聞こえたらコメントで教えてください"
     },
     {
+      "id": "supplemental-nakamura-audio-check",
+      "elapsedSeconds": 21.5,
+      "name": "中村弘志",
+      "role": "participant",
+      "message": "聞こえてます"
+    },
+    {
       "id": "recorded-2",
       "elapsedSeconds": 22,
       "name": "堀越　勝",
