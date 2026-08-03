@@ -26,6 +26,12 @@ test('Mux adaptive HLS is configured before audible playback', () => {
   assert.match(page, /setAttribute\('playback-token', statusData\.playbackToken\)[\s\S]*setAttribute\('playback-id', statusData\.playbackId\)/);
 });
 
+test('secret test mode starts the same stream after a 30 second countdown', () => {
+  assert.match(page, /const testStartsAtMs = isTestMode \? Date\.now\(\) \+ 30_000 : null/);
+  assert.match(page, /api\/video\/access\?test=\$\{encodeURIComponent\(testToken\)\}&startsAt=\$\{testStartsAtMs\}/);
+  assert.match(page, /fetch\(accessUrl, \{ cache: 'no-store' \}\)/);
+});
+
 test('the player does not repeatedly force the live position', () => {
   assert.doesNotMatch(page, /seekToLivePosition/);
   assert.doesNotMatch(page, /addEventListener\('seeking'/);
