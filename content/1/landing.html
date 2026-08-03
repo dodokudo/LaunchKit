@@ -473,6 +473,8 @@
       ? `/api/video/access?test=${encodeURIComponent(testToken)}&startsAt=${testStartsAtMs}`
       : '/api/video/access';
     const isLineInAppBrowser = /\bLine\/[\d.]+/i.test(navigator.userAgent);
+    const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     if (isLineInAppBrowser) {
       const externalUrl = new URL(window.location.href);
       externalUrl.searchParams.set('openExternalBrowser', '1');
@@ -532,6 +534,28 @@
       if (!playbackStallTimer) return;
       window.clearTimeout(playbackStallTimer);
       playbackStallTimer = null;
+    }
+
+    function enterFullscreen() {
+      const nativeVideo = video.media?.nativeEl;
+      const enterNativeFullscreen = () => {
+        if (typeof nativeVideo?.webkitEnterFullscreen !== 'function') return false;
+        try {
+          nativeVideo.webkitEnterFullscreen();
+          return true;
+        } catch (error) {
+          return false;
+        }
+      };
+
+      if (isAppleMobile && enterNativeFullscreen()) return;
+
+      try {
+        const request = video.requestFullscreen?.() || videoWrap.requestFullscreen?.();
+        request?.catch(() => enterNativeFullscreen());
+      } catch (error) {
+        enterNativeFullscreen();
+      }
     }
 
     function showPlaybackRecovery(message) {
@@ -867,7 +891,7 @@
       if (document.fullscreenElement) {
         document.exitFullscreen?.();
       } else {
-        videoWrap.requestFullscreen?.();
+        enterFullscreen();
       }
     });
     video.addEventListener('contextmenu', (event) => event.preventDefault());
