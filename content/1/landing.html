@@ -144,19 +144,52 @@
   body.is-pseudo-fullscreen {
     overflow: hidden;
   }
-  .video-wrap.is-pseudo-fullscreen {
+  .stage-grid.is-pseudo-fullscreen {
     position: fixed;
     inset: 0;
     z-index: 1000;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 0;
+    align-items: stretch;
     width: 100vw;
     height: 100vh;
     height: 100dvh;
     margin: 0;
+    overflow: hidden;
+    background: #000000;
+  }
+  .stage-grid.is-pseudo-fullscreen .video-column {
+    min-height: 0;
+    background: #000000;
+  }
+  .stage-grid.is-pseudo-fullscreen .video-wrap {
+    width: 100%;
+    height: min(56.25vw, 42vh);
+    height: min(56.25vw, 42dvh);
+    min-height: 0;
+    margin: 0;
     border-radius: 0;
+    box-shadow: none;
     aspect-ratio: auto;
   }
-  .video-wrap.is-pseudo-fullscreen mux-player {
+  .stage-grid.is-pseudo-fullscreen .video-wrap mux-player {
     pointer-events: none;
+  }
+  .stage-grid.is-pseudo-fullscreen .play-guide {
+    display: none;
+  }
+  .stage-grid.is-pseudo-fullscreen .comment-panel {
+    min-height: 0;
+    height: 100%;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .stage-grid.is-pseudo-fullscreen .comment-list {
+    max-height: none;
   }
   .fullscreen-exit-button {
     position: absolute;
@@ -424,7 +457,7 @@
       </div>
     </section>
 
-    <div class="stage-grid">
+    <div class="stage-grid" id="stageGrid">
       <div class="video-column">
         <div class="video-wrap" id="videoWrap">
           <mux-player id="seminarVideo" preload="none" poster="" nohotkeys disable-cookies metadata-video-id="launchkit-1" metadata-video-title="LaunchKit セミナー"></mux-player>
@@ -482,6 +515,7 @@
   (() => {
     const video = document.getElementById('seminarVideo');
     const broadcastLabel = document.getElementById('broadcastLabel');
+    const stageGrid = document.getElementById('stageGrid');
     const videoWrap = document.getElementById('videoWrap');
     const videoState = document.getElementById('videoState');
     const stateLabel = document.getElementById('stateLabel');
@@ -578,14 +612,14 @@
     }
 
     function enterPseudoFullscreen() {
-      videoWrap.classList.add('is-pseudo-fullscreen');
+      stageGrid.classList.add('is-pseudo-fullscreen');
       document.body.classList.add('is-pseudo-fullscreen');
       fullscreenExitButton.hidden = false;
       fullscreenButton.textContent = '全画面を終了';
     }
 
     function exitPseudoFullscreen() {
-      videoWrap.classList.remove('is-pseudo-fullscreen');
+      stageGrid.classList.remove('is-pseudo-fullscreen');
       document.body.classList.remove('is-pseudo-fullscreen');
       fullscreenExitButton.hidden = true;
       fullscreenButton.textContent = '全画面';
@@ -934,7 +968,7 @@
       muteButton.textContent = video.muted ? '音声を出す' : '音声を消す';
     });
     fullscreenButton.addEventListener('click', () => {
-      if (videoWrap.classList.contains('is-pseudo-fullscreen')) {
+      if (stageGrid.classList.contains('is-pseudo-fullscreen')) {
         exitPseudoFullscreen();
       } else if (document.fullscreenElement) {
         document.exitFullscreen?.();

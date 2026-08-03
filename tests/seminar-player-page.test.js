@@ -49,11 +49,19 @@ test('secret test mode keeps viewer comments enabled and isolated', () => {
 
 test('fullscreen keeps LINE and Apple mobile playback in the controlled page player', () => {
   assert.match(page, /if \(isAppleMobile \|\| isLineInAppBrowser\) \{\s+enterPseudoFullscreen\(\)/);
-  assert.match(page, /videoWrap\.classList\.add\('is-pseudo-fullscreen'\)/);
+  assert.match(page, /stageGrid\.classList\.add\('is-pseudo-fullscreen'\)/);
   assert.match(page, /fullscreenExitButton\.addEventListener\('click', exitPseudoFullscreen\)/);
   assert.doesNotMatch(page, /webkitEnterFullscreen/);
   assert.match(page, /video\.requestFullscreen\?\.\(\) \|\| videoWrap\.requestFullscreen\?\.\(\)/);
   assert.match(page, /fullscreenButton\.addEventListener\('click',[\s\S]*?enterFullscreen\(\)/);
+});
+
+test('pseudo fullscreen keeps the video at the top and comments usable below it', () => {
+  assert.match(page, /class="stage-grid" id="stageGrid"/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \{[\s\S]*?grid-template-rows: auto minmax\(0, 1fr\)/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.video-wrap \{[\s\S]*?height: min\(56\.25vw, 42dvh\)/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.comment-panel \{[\s\S]*?min-height: 0/);
+  assert.match(page, /\.stage-grid\.is-pseudo-fullscreen \.comment-list \{\s+max-height: none/);
 });
 
 test('the player does not repeatedly force the live position', () => {
