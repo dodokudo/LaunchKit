@@ -14,6 +14,13 @@ test('LINE in-app browser starts with the normal playback button', () => {
   assert.match(page, /lineExternalButton\.hidden = !isLineInAppBrowser;/);
 });
 
+test('mobile header keeps the schedule status compact and only shows recovery help in LINE', () => {
+  assert.doesNotMatch(page, /class="topbar"/);
+  assert.match(page, /class="hero-heading"[\s\S]*class="broadcast-status" id="broadcastLabel"/);
+  assert.match(page, /body\.is-line-browser \.line-browser-guide/);
+  assert.match(page, /document\.body\.classList\.toggle\('is-line-browser', isLineInAppBrowser\)/);
+});
+
 test('audible playback is requested directly from the start button handler', () => {
   assert.match(page, /function startViewing\(\)[\s\S]*?video\.muted = false;[\s\S]*?video\.play\(\)/);
   assert.match(page, /startButton\.addEventListener\('click', startViewing\)/);

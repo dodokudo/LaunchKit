@@ -29,29 +29,35 @@
     display: flex;
     flex-direction: column;
   }
-  .topbar {
-    background: #ffffff;
-    border-bottom: 1px solid #e6e8eb;
-    padding: 16px 24px;
-    text-align: center;
+  .hero-heading {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
-  .topbar .label {
+  .broadcast-status {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 13px;
+    gap: 6px;
+    flex: 0 0 auto;
+    min-height: 26px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
     font-weight: 700;
-    color: #ff4b3a;
-    letter-spacing: 0.08em;
+    color: #ffffff;
+    background: #ef4444;
+    letter-spacing: 0.04em;
   }
-  .topbar .label::before {
+  .broadcast-status::before {
     content: "●";
-    font-size: 10px;
+    font-size: 8px;
     animation: pulse 1.6s ease-in-out infinite;
   }
-  .topbar .label[data-status="waiting"] { color: #b7791f; }
-  .topbar .label[data-status="closed"] { color: #64748b; }
-  .topbar .label[data-status="closed"]::before { animation: none; }
+  .broadcast-status[data-status="waiting"] { background: #b7791f; }
+  .broadcast-status[data-status="closed"] { background: #64748b; }
+  .broadcast-status[data-status="closed"]::before { animation: none; }
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
@@ -71,7 +77,6 @@
     margin-bottom: 32px;
   }
   .hero h1 {
-    grid-column: 2;
     font-size: clamp(24px, 4vw, 36px);
     font-weight: 900;
     margin: 0;
@@ -381,8 +386,11 @@
     background: #ffffff;
   }
   @media (max-width: 640px) {
-    .container { padding: 24px 16px 40px; }
-    .hero { display: flex; flex-direction: column; margin-bottom: 20px; }
+    .container { padding: 14px 16px 40px; }
+    .hero { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+    .hero-heading { gap: 7px; }
+    .hero h1 { font-size: 20px; }
+    .broadcast-status { min-height: 24px; padding: 2px 8px; font-size: 10px; }
     .player-controls { align-self: center; }
     .stage-grid { grid-template-columns: 1fr; }
     .seminar-title { padding: 16px; margin-bottom: 16px; }
@@ -390,17 +398,12 @@
     .comment-panel { min-height: 390px; }
     .comment-list { max-height: 240px; }
     .notice, .info { padding: 14px 16px; font-size: 13px; }
-    .line-browser-guide {
+    body.is-line-browser .line-browser-guide {
       display: block;
-      margin-top: 10px;
-      padding: 12px 14px;
-      text-align: left;
-      line-height: 1.65;
-      font-weight: 700;
-      color: #92400e;
-      background: #fffbeb;
-      border: 1px solid #fbbf24;
-      border-radius: 10px;
+      margin-top: 5px;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #64748b;
     }
   }
 </style>
@@ -409,13 +412,12 @@
 <body>
 <div class="page">
 
-  <div class="topbar">
-    <span class="label" id="broadcastLabel">CHECKING SCHEDULE</span>
-  </div>
-
   <main class="container">
     <section class="hero">
-      <h1>セミナー視聴ページ</h1>
+      <div class="hero-heading">
+        <h1>セミナー視聴ページ</h1>
+        <span class="broadcast-status" id="broadcastLabel">確認中</span>
+      </div>
       <div class="player-controls" id="playerControls" hidden>
         <button class="control-button" id="muteButton" type="button">音声を消す</button>
         <button class="control-button" id="fullscreenButton" type="button">全画面</button>
@@ -513,6 +515,7 @@
     const isLineInAppBrowser = /\bLine\/[\d.]+/i.test(navigator.userAgent);
     const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent)
       || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    document.body.classList.toggle('is-line-browser', isLineInAppBrowser);
     if (isLineInAppBrowser) {
       const externalUrl = new URL(window.location.href);
       externalUrl.searchParams.set('openExternalBrowser', '1');
@@ -647,7 +650,7 @@
 
       if (statusData.status === 'waiting') {
         broadcastLabel.dataset.status = 'waiting';
-        broadcastLabel.textContent = 'STARTING SOON';
+        broadcastLabel.textContent = '開始前';
         const startsAt = new Date(statusData.session.startsAt).getTime();
         const remaining = startsAt - now;
         videoState.hidden = false;
@@ -667,7 +670,7 @@
 
       if (statusData.status === 'live') {
         broadcastLabel.dataset.status = 'live';
-        broadcastLabel.textContent = 'SEMINAR ON AIR';
+        broadcastLabel.textContent = '配信中';
         commentFields.disabled = false;
         const endsAt = new Date(statusData.session.endsAt).getTime();
         if (now >= endsAt) {
@@ -688,8 +691,8 @@
       if (streamStarted) stopStream();
       broadcastLabel.dataset.status = 'closed';
       broadcastLabel.textContent = statusData.nextSession
-        ? `NEXT SEMINAR ${formatJstTime(statusData.nextSession.startsAt)}`
-        : 'SEMINAR OFF AIR';
+        ? `次回 ${formatJstTime(statusData.nextSession.startsAt)}`
+        : '配信終了';
       videoState.hidden = false;
       videoState.classList.remove('is-live');
       playerControls.hidden = true;
@@ -721,7 +724,7 @@
         }
       } catch (error) {
         broadcastLabel.dataset.status = 'closed';
-        broadcastLabel.textContent = 'SCHEDULE UNAVAILABLE';
+        broadcastLabel.textContent = '確認できません';
         if (!streamStarted) {
           stateLabel.textContent = '動画を読み込めませんでした';
           stateDetail.textContent = '通信状況を確認して、ページを再読み込みしてください';
