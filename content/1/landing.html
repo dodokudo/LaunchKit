@@ -136,6 +136,39 @@
     --controls: none;
     --media-object-size: contain;
   }
+  body.is-pseudo-fullscreen {
+    overflow: hidden;
+  }
+  .video-wrap.is-pseudo-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+    aspect-ratio: auto;
+  }
+  .video-wrap.is-pseudo-fullscreen mux-player {
+    pointer-events: none;
+  }
+  .fullscreen-exit-button {
+    position: absolute;
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+    z-index: 4;
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.68);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .fullscreen-exit-button[hidden] { display: none; }
   .video-state {
     position: absolute;
     inset: 0;
@@ -393,6 +426,7 @@
       <div class="video-column">
         <div class="video-wrap" id="videoWrap">
           <mux-player id="seminarVideo" preload="none" poster="" nohotkeys disable-cookies metadata-video-id="launchkit-1" metadata-video-title="LaunchKit セミナー"></mux-player>
+          <button class="fullscreen-exit-button" id="fullscreenExitButton" type="button" hidden>全画面を終了</button>
           <div class="video-state" id="videoState">
             <p class="state-label" id="stateLabel">開催時刻を確認しています</p>
             <p class="countdown" id="countdown"></p>
@@ -456,6 +490,7 @@
     const playerControls = document.getElementById('playerControls');
     const muteButton = document.getElementById('muteButton');
     const fullscreenButton = document.getElementById('fullscreenButton');
+    const fullscreenExitButton = document.getElementById('fullscreenExitButton');
     const commentList = document.getElementById('commentList');
     const commentCount = document.getElementById('commentCount');
     const commentForm = document.getElementById('commentForm');
@@ -536,25 +571,30 @@
       playbackStallTimer = null;
     }
 
+    function enterPseudoFullscreen() {
+      videoWrap.classList.add('is-pseudo-fullscreen');
+      document.body.classList.add('is-pseudo-fullscreen');
+      fullscreenExitButton.hidden = false;
+      fullscreenButton.textContent = '全画面を終了';
+    }
+
+    function exitPseudoFullscreen() {
+      videoWrap.classList.remove('is-pseudo-fullscreen');
+      document.body.classList.remove('is-pseudo-fullscreen');
+      fullscreenExitButton.hidden = true;
+      fullscreenButton.textContent = '全画面';
+    }
+
     function enterFullscreen() {
-      const nativeVideo = video.media?.nativeEl;
-      const enterNativeFullscreen = () => {
-        if (typeof nativeVideo?.webkitEnterFullscreen !== 'function') return false;
-        try {
-          nativeVideo.webkitEnterFullscreen();
-          return true;
-        } catch (error) {
-          return false;
-        }
-      };
-
-      if (isAppleMobile && enterNativeFullscreen()) return;
-
+      if (isAppleMobile || isLineInAppBrowser) {
+        enterPseudoFullscreen();
+        return;
+      }
       try {
         const request = video.requestFullscreen?.() || videoWrap.requestFullscreen?.();
-        request?.catch(() => enterNativeFullscreen());
+        request?.catch(() => enterPseudoFullscreen());
       } catch (error) {
-        enterNativeFullscreen();
+        enterPseudoFullscreen();
       }
     }
 
@@ -888,11 +928,17 @@
       muteButton.textContent = video.muted ? '音声を出す' : '音声を消す';
     });
     fullscreenButton.addEventListener('click', () => {
-      if (document.fullscreenElement) {
+      if (videoWrap.classList.contains('is-pseudo-fullscreen')) {
+        exitPseudoFullscreen();
+      } else if (document.fullscreenElement) {
         document.exitFullscreen?.();
       } else {
         enterFullscreen();
       }
+    });
+    fullscreenExitButton.addEventListener('click', exitPseudoFullscreen);
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) fullscreenButton.textContent = '全画面';
     });
     video.addEventListener('contextmenu', (event) => event.preventDefault());
     video.addEventListener('ratechange', () => {

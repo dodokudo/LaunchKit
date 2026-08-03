@@ -32,9 +32,11 @@ test('secret test mode starts the same stream after a 30 second countdown', () =
   assert.match(page, /fetch\(accessUrl, \{ cache: 'no-store' \}\)/);
 });
 
-test('fullscreen uses the native video on iPhone and the Mux player elsewhere', () => {
-  assert.match(page, /const nativeVideo = video\.media\?\.nativeEl/);
-  assert.match(page, /nativeVideo\.webkitEnterFullscreen\(\)/);
+test('fullscreen keeps LINE and Apple mobile playback in the controlled page player', () => {
+  assert.match(page, /if \(isAppleMobile \|\| isLineInAppBrowser\) \{\s+enterPseudoFullscreen\(\)/);
+  assert.match(page, /videoWrap\.classList\.add\('is-pseudo-fullscreen'\)/);
+  assert.match(page, /fullscreenExitButton\.addEventListener\('click', exitPseudoFullscreen\)/);
+  assert.doesNotMatch(page, /webkitEnterFullscreen/);
   assert.match(page, /video\.requestFullscreen\?\.\(\) \|\| videoWrap\.requestFullscreen\?\.\(\)/);
   assert.match(page, /fullscreenButton\.addEventListener\('click',[\s\S]*?enterFullscreen\(\)/);
 });
