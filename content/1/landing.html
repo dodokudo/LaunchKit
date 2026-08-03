@@ -400,7 +400,7 @@
           </div>
         </div>
         <p class="play-guide">開始10分前から入室できます。途中入室の場合は、その時点の配信位置から始まります。</p>
-        <p class="play-guide line-browser-guide">LINEのブラウザ内で開いて音が出ない場合は、URLをコピーしてSafari・Chrome などのブラウザで開き直してください！</p>
+        <p class="play-guide line-browser-guide">再生が止まった場合は、画面に表示される再開ボタンを押してください。</p>
       </div>
 
       <aside class="comment-panel" id="commentPanel">
@@ -464,9 +464,7 @@
     const commentSubmit = document.getElementById('commentSubmit');
     const commentError = document.getElementById('commentError');
     const isLineInAppBrowser = /\bLine\/[\d.]+/i.test(navigator.userAgent);
-    const shouldOpenExternalBrowser = isLineInAppBrowser
-      && new URLSearchParams(window.location.search).get('openExternalBrowser') !== '1';
-    if (shouldOpenExternalBrowser) {
+    if (isLineInAppBrowser) {
       const externalUrl = new URL(window.location.href);
       externalUrl.searchParams.set('openExternalBrowser', '1');
       lineExternalButton.href = externalUrl.toString();
@@ -476,7 +474,8 @@
     let serverOffsetMs = 0;
     let streamStarted = false;
     let viewerStarted = false;
-    let internalSeek = false;
+    let initialLivePositionSet = false;
+    let playbackStallTimer = null;
     let refreshInFlight = false;
     let startRefreshRequested = false;
     let commentsRefreshInFlight = false;
@@ -521,18 +520,46 @@
       return Math.max(0, (trustedNow() - startsAt) / 1000);
     }
 
-    function seekToLivePosition(force = false) {
-      if (!streamStarted || !Number.isFinite(video.duration)) return;
+    function setInitialLivePosition() {
+      if (initialLivePositionSet || !Number.isFinite(video.duration)) return;
       const expected = Math.min(video.duration - 0.25, livePosition());
-      if (!force && Math.abs(video.currentTime - expected) < 3) return;
-      internalSeek = true;
       video.currentTime = expected;
-      window.setTimeout(() => { internalSeek = false; }, 0);
+      initialLivePositionSet = true;
+    }
+
+    function clearPlaybackStallTimer() {
+      if (!playbackStallTimer) return;
+      window.clearTimeout(playbackStallTimer);
+      playbackStallTimer = null;
+    }
+
+    function showPlaybackRecovery(message) {
+      if (!viewerStarted || statusData?.status !== 'live') return;
+      startButton.disabled = false;
+      startButton.hidden = false;
+      startButton.textContent = '音声を出して再開する';
+      lineExternalButton.hidden = !isLineInAppBrowser;
+      stateLabel.textContent = '再生が止まっています';
+      stateDetail.textContent = message;
+      countdown.textContent = '';
+      videoState.classList.remove('is-live');
+      videoState.hidden = false;
+    }
+
+    function showPlaybackStarted() {
+      clearPlaybackStallTimer();
+      viewerStarted = true;
+      streamStarted = true;
+      muteButton.textContent = '音声を消す';
+      videoState.hidden = true;
+      playerControls.hidden = false;
     }
 
     function stopStream(message = 'この回の配信は終了しました') {
       streamStarted = false;
       viewerStarted = false;
+      initialLivePositionSet = false;
+      clearPlaybackStallTimer();
       video.pause();
       video.removeAttribute('src');
       video.load();
@@ -583,8 +610,8 @@
         if (!viewerStarted) {
           videoState.classList.add('is-live');
           videoState.hidden = false;
-          startButton.hidden = shouldOpenExternalBrowser;
-          lineExternalButton.hidden = !shouldOpenExternalBrowser;
+          startButton.hidden = false;
+          lineExternalButton.hidden = true;
           startButton.textContent = '音声を出して視聴開始する';
         }
         return;
@@ -644,20 +671,25 @@
         video.load();
       }
       video.muted = false;
+      setInitialLivePosition();
+      if (!initialLivePositionSet) {
+        video.addEventListener('loadedmetadata', setInitialLivePosition, { once: true });
+      }
+      if (viewerStarted && video.readyState < HTMLMediaElement.HAVE_FUTURE_DATA) {
+        video.pause();
+      }
       startButton.disabled = true;
       startButton.textContent = '音声を読み込んでいます';
       video.play().then(() => {
-        streamStarted = true;
-        seekToLivePosition(true);
-        viewerStarted = true;
-        muteButton.textContent = '音声を消す';
-        videoState.hidden = true;
-        playerControls.hidden = false;
+        showPlaybackStarted();
       }).catch(() => {
         video.muted = false;
         startButton.disabled = false;
         startButton.textContent = '音声を出して再試行する';
-        stateDetail.textContent = '再生できない場合は、もう一度このボタンを押してください';
+        lineExternalButton.hidden = !isLineInAppBrowser;
+        stateDetail.textContent = isLineInAppBrowser
+          ? 'もう一度試してください。再生できない場合のみ外部ブラウザをご利用ください'
+          : 'もう一度このボタンを押してください';
       });
     }
 
@@ -841,22 +873,25 @@
       }
     });
     video.addEventListener('contextmenu', (event) => event.preventDefault());
-    video.addEventListener('seeking', () => {
-      if (!internalSeek) seekToLivePosition(true);
-    });
     video.addEventListener('ratechange', () => {
       if (video.playbackRate !== 1) video.playbackRate = 1;
     });
-    video.addEventListener('pause', () => {
-      if (viewerStarted && streamStarted && statusData?.status === 'live') {
-        seekToLivePosition(true);
-        video.play().catch(() => {});
-      }
+    video.addEventListener('playing', showPlaybackStarted);
+    video.addEventListener('waiting', () => {
+      clearPlaybackStallTimer();
+      playbackStallTimer = window.setTimeout(() => {
+        showPlaybackRecovery('通信状況を確認して、再開ボタンを押してください');
+      }, 12000);
+    });
+    video.addEventListener('error', () => {
+      clearPlaybackStallTimer();
+      showPlaybackRecovery('動画を読み込めませんでした。通信状況を確認してください');
     });
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden && viewerStarted && streamStarted) {
-        seekToLivePosition(true);
-        video.play().catch(() => {});
+        video.play().catch(() => {
+          showPlaybackRecovery('再開ボタンを押すと続きから視聴できます');
+        });
       }
     });
 
@@ -864,9 +899,6 @@
 
     refreshStatus();
     window.setInterval(renderStatus, 500);
-    window.setInterval(() => {
-      if (streamStarted) seekToLivePosition();
-    }, 5000);
     window.setInterval(refreshStatus, 15000);
     window.setInterval(refreshComments, 8000);
     window.setInterval(renderMergedComments, 1000);
