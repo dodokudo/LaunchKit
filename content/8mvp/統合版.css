@@ -730,12 +730,12 @@ body {
 }
 
 .source-art-crop--funnel {
-  height: 34cqw;
+  height: 36cqw;
   margin-bottom: 2.35cqw;
 }
 
 .source-art-crop--funnel img {
-  transform: translateY(-40.3cqw);
+  transform: translateY(-39cqw);
 }
 
 .funnel-explainer__caption {
@@ -751,20 +751,16 @@ body {
 }
 
 .funnel-explainer__arrow {
-  width: 10.5cqw;
-  height: 5.4cqw;
-  margin: 0 auto 1.1cqw;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background: var(--grad);
+  display: none;
 }
 
 .source-art-crop--steps {
-  height: 86.5cqw;
+  height: 97cqw;
   margin-bottom: 2.1cqw;
 }
 
 .source-art-crop--steps img {
-  transform: translateY(-103.5cqw);
+  transform: translateY(-96.5cqw);
 }
 
 .funnel-explainer__three {
