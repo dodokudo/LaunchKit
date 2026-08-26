@@ -224,18 +224,22 @@ async function main() {
     .sort-control label { font-size: 13px; color: #666; }
     .sort-control select { padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; background: white; }
 
-    .action-buttons { display: flex; gap: 8px; }
+    .action-buttons { display: flex; gap: 8px; align-items: center; }
     .action-btn { padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer; font-size: 12px; transition: all 0.2s; }
     .action-btn:hover { background: #f0f0f0; }
     .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .action-btn.primary { border-color: #0066cc; color: #0066cc; }
     .action-btn.primary:hover:not(:disabled) { background: #0066cc; color: white; }
+    .edit-action-btn { min-height: 38px; padding: 8px 16px; border: 1px solid #0057b8; border-radius: 6px; background: #0066cc; box-shadow: 0 2px 6px rgba(0, 102, 204, 0.24); color: white; cursor: pointer; font-size: 13px; font-weight: 700; transition: all 0.2s; }
+    .edit-action-btn:hover { background: #0057b8; transform: translateY(-1px); }
+    .edit-action-btn[aria-pressed="true"] { border-color: #333; background: #333; box-shadow: none; }
+    .edit-action-btn:focus-visible { outline: 3px solid rgba(0, 102, 204, 0.3); outline-offset: 2px; }
 
     /* カウント */
+    .edit-guide { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 10px 14px; border-left: 4px solid #0066cc; border-radius: 4px; background: #eaf4ff; color: #31506f; font-size: 13px; line-height: 1.5; }
+    .edit-guide strong { color: #004f9f; white-space: nowrap; }
     .sub-controls { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
     .count { color: #666; font-size: 14px; }
-    .edit-mode-toggle { font-size: 13px; color: #666; display: flex; align-items: center; gap: 6px; cursor: pointer; }
-    .edit-mode-toggle input { cursor: pointer; }
 
     /* LP一覧 */
     .lp-list { display: flex; flex-direction: column; gap: 12px; }
@@ -245,8 +249,10 @@ async function main() {
     .lp-item.hidden { display: none; }
 
     .lp-info { display: flex; flex-direction: column; gap: 4px; }
+    .lp-field-label { margin-top: 3px; color: #999; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
     .lp-name { font-size: 16px; font-weight: 500; color: #333; }
-    .lp-name-input { font-size: 16px; font-weight: 500; color: #333; border: 1px solid #ddd; border-radius: 4px; padding: 4px 8px; width: 100%; display: none; }
+    .lp-name-input { font-size: 16px; font-weight: 500; color: #333; border: 2px solid #0066cc; border-radius: 5px; padding: 7px 9px; width: 100%; display: none; background: white; }
+    .lp-name-input:focus { outline: 3px solid rgba(0, 102, 204, 0.14); outline-offset: 1px; }
     .lp-slug { font-size: 12px; color: #999; font-family: monospace; }
 
     .lp-category { font-size: 12px; padding: 4px 10px; border-radius: 12px; background: #e8e8e8; color: #666; white-space: nowrap; cursor: default; }
@@ -268,6 +274,8 @@ async function main() {
     body.edit-mode .lp-category { display: none; }
     body.edit-mode .lp-category-select { display: block; }
     body.edit-mode .lp-item { background: #fffef0; }
+    body.edit-mode .edit-guide { border-left-color: #d99a00; background: #fff8dc; color: #6d570f; }
+    body.edit-mode .edit-guide strong { color: #805e00; }
 
     .toast { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
     .toast.show { opacity: 1; }
@@ -277,6 +285,9 @@ async function main() {
       .lp-dates { text-align: left; }
       .controls { flex-direction: column; align-items: stretch; }
       .sort-control { margin-left: 0; }
+      .action-buttons { display: grid; grid-template-columns: 1fr; }
+      .edit-action-btn, .action-btn { min-height: 42px; }
+      .edit-guide { align-items: flex-start; flex-direction: column; gap: 2px; }
     }
   </style>
 </head>
@@ -300,25 +311,28 @@ ${categories.map(cat => `        <button class="filter-btn" data-filter="${cat}"
         </select>
       </div>
       <div class="action-buttons">
+        <button class="edit-action-btn" id="edit-mode-btn" type="button" aria-pressed="false">登録名を編集</button>
         <button class="action-btn primary" id="export-btn" disabled>HTMLをダウンロード</button>
-        <button class="action-btn" id="edit-done-btn" style="display:none;">編集終了</button>
       </div>
+    </div>
+
+    <div class="edit-guide" id="edit-guide">
+      <strong>登録名は変更できます</strong>
+      <span>上の「登録名を編集」を押すと、LP名とカテゴリを編集できます。</span>
     </div>
 
     <div class="sub-controls">
       <p class="count">全<span id="visible-count">${lpList.length}</span>件 <span id="selected-count"></span></p>
-      <label class="edit-mode-toggle">
-        <input type="checkbox" id="edit-mode-checkbox">
-        編集モード
-      </label>
     </div>
 
     <div class="lp-list" id="lp-list">
 ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-category="${lp.category}" data-created="${lp.created}" data-updated="${lp.updated}" data-name="${lp.name}">
         <input type="checkbox" class="lp-checkbox">
         <div class="lp-info">
+          <span class="lp-field-label">登録名</span>
           <span class="lp-name">${lp.name}</span>
-          <input type="text" class="lp-name-input" value="${lp.name}">
+          <input type="text" class="lp-name-input" value="${lp.name}" aria-label="${lp.slug}の登録名">
+          <span class="lp-field-label">公開URL</span>
           <span class="lp-slug">${lp.url}</span>
         </div>
         <span class="lp-category" data-cat="${lp.category}">${lp.category}</span>
@@ -418,27 +432,29 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
     });
 
     // 編集モード
-    const editModeCheckbox = document.getElementById('edit-mode-checkbox');
-    const editDoneBtn = document.getElementById('edit-done-btn');
+    const editModeBtn = document.getElementById('edit-mode-btn');
+    const editGuide = document.getElementById('edit-guide');
 
     function setEditMode(enabled) {
       document.body.classList.toggle('edit-mode', enabled);
-      editModeCheckbox.checked = enabled;
-      editDoneBtn.style.display = enabled ? 'inline-block' : 'none';
+      editModeBtn.setAttribute('aria-pressed', String(enabled));
+      editModeBtn.textContent = enabled ? '編集を終了' : '登録名を編集';
+      editGuide.querySelector('strong').textContent = enabled ? '登録名を編集中です' : '登録名は変更できます';
+      editGuide.querySelector('span').textContent = enabled
+        ? '入力欄を変更すると自動で保存されます。終わったら「編集を終了」を押してください。'
+        : '上の「登録名を編集」を押すと、LP名とカテゴリを編集できます。';
     }
 
-    editModeCheckbox.addEventListener('change', () => {
-      setEditMode(editModeCheckbox.checked);
-    });
-
-    editDoneBtn.addEventListener('click', () => {
-      setEditMode(false);
-      showToast('編集を終了しました');
+    editModeBtn.addEventListener('click', () => {
+      const enabled = !document.body.classList.contains('edit-mode');
+      setEditMode(enabled);
+      if (!enabled) showToast('編集を終了しました');
     });
 
     // 名前変更
     document.querySelectorAll('.lp-name-input').forEach(input => {
-      input.addEventListener('change', () => {
+      let saveNoticeTimer;
+      input.addEventListener('input', () => {
         const item = input.closest('.lp-item');
         const slug = item.dataset.slug;
         const newName = input.value.trim();
@@ -449,7 +465,8 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
         if (!lpData[slug]) lpData[slug] = {};
         lpData[slug].name = newName;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(lpData));
-        showToast('保存しました');
+        clearTimeout(saveNoticeTimer);
+        saveNoticeTimer = setTimeout(() => showToast('登録名を保存しました'), 500);
       });
     });
 
@@ -468,7 +485,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
         if (!lpData[slug]) lpData[slug] = {};
         lpData[slug].category = newCategory;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(lpData));
-        showToast('保存しました');
+        showToast('カテゴリを保存しました');
         applyFilter();
       });
     });
