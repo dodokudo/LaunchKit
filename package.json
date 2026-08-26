@@ -17,6 +17,7 @@
     "build:thread-ai-roadmap-v3": "node scripts/build.js configs/thread-ai-roadmap-v3.json",
     "build:seminar-watch": "node scripts/build.js configs/seminar-watch.json",
     "build:8mvp": "node scripts/build.js configs/8mvp.json",
+    "build:threads-guide-3": "node scripts/build.js configs/threads-guide-3.json",
     "build:all": "node scripts/build-all.js",
     "build:deploy": "node scripts/build-for-deploy.js",
     "scaffold": "node scripts/scaffold.js",
