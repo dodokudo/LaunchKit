@@ -68,11 +68,7 @@ img {
   width: 100%;
   aspect-ratio: 1080 / 1767;
   overflow: hidden;
-  background:
-    linear-gradient(146deg, transparent 0 57%, rgb(73 111 255 / 15%) 57.15% 57.35%, transparent 57.5%),
-    radial-gradient(circle at 100% 27%, rgb(112 32 223 / 15%), transparent 27%),
-    radial-gradient(circle at 0% 54%, rgb(7 137 250 / 12%), transparent 31%),
-    linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
+  background: #ffffff url("/8m/assets/fv-background-effects-v2.png") center top / 100% 100% no-repeat;
 }
 
 .target-call {
@@ -86,10 +82,7 @@ img {
   gap: 0.32cqw;
   width: 100%;
   height: 11.12cqw;
-  background:
-    linear-gradient(126deg, transparent 0 6%, rgb(126 40 255 / 92%) 6.18% 6.48%, rgb(48 177 255 / 90%) 6.68% 6.96%, transparent 7.18% 9.7%, rgb(71 127 255 / 62%) 9.9% 10.12%, transparent 10.35% 89%, rgb(89 145 255 / 52%) 89.18% 89.38%, transparent 89.6%),
-    linear-gradient(100deg, #060d4e 0%, #09288f 53%, #29117f 100%);
-  box-shadow: inset 0 -0.18cqw 0 rgb(62 119 255 / 35%), inset 0 0 2.2cqw rgb(69 64 255 / 25%);
+  background: transparent;
   color: #ffffff;
   font-size: 3.24cqw;
   line-height: 1;
@@ -313,20 +306,80 @@ img {
   left: 2.15cqw;
   width: 54.15cqw;
   height: 27.075cqw;
+  display: grid;
+  grid-template-rows: 6.2cqw 1fr;
   overflow: hidden;
-  border-radius: 1.1cqw;
-  background: #ffffff;
+  border: 0.28cqw solid transparent;
+  border-radius: 1.25cqw;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(105deg, var(--blue), var(--violet)) border-box;
   filter: drop-shadow(0 0.7cqw 1.2cqw rgb(7 19 68 / 10%));
 }
 
-.steps-card__image {
-  position: absolute;
-  top: -0.91%;
-  left: -0.23%;
-  display: block;
-  width: 100.46%;
-  max-width: none;
-  height: auto;
+.steps-card__heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15cqw;
+  margin: 0;
+  background: linear-gradient(102deg, var(--blue), var(--violet));
+  color: #ffffff;
+  font-size: 3.15cqw;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.steps-card__heading strong {
+  font-size: 1.42em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.steps-card__list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  margin: 0;
+  padding: 0 1.25cqw;
+  list-style: none;
+}
+
+.steps-card__list li {
+  display: grid;
+  grid-template-columns: 11.5cqw 1fr;
+  align-items: center;
+  gap: 1.35cqw;
+  min-width: 0;
+}
+
+.steps-card__list li + li {
+  border-top: 0.12cqw dashed #6b62e9;
+}
+
+.steps-card__list li > span {
+  display: grid;
+  height: 4.55cqw;
+  background: linear-gradient(105deg, var(--blue), var(--violet));
+  color: #ffffff;
+  font-size: 3.2cqw;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  place-items: center;
+}
+
+.steps-card__list li > strong {
+  min-width: 0;
+  color: #080808;
+  font-size: 3.85cqw;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .offer-card {
@@ -593,7 +646,7 @@ img {
 .seminar-benefits__heading p,
 .seminar-benefits__heading h2 {
   margin: 0;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.36;
   letter-spacing: -0.04em;
 }
@@ -609,7 +662,7 @@ img {
 }
 
 .seminar-benefits__heading h2 {
-  margin-top: 1.6cqw;
+  margin-top: 2.4cqw;
   font-size: 6.4cqw;
   white-space: nowrap;
 }
@@ -618,6 +671,7 @@ img {
   margin: 0 0.07em;
   color: var(--accent);
   font-size: 1.52em;
+  font-weight: 900;
   line-height: 0;
 }
 
