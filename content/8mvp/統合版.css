@@ -1,0 +1,901 @@
+:root {
+  --blue: #0788f6;
+  --indigo: #2949ed;
+  --violet: #7616e7;
+  --green: #35b94a;
+  --green-shadow: #07934a;
+  --lp-width: 750px;
+  --grad: linear-gradient(100deg, var(--blue), var(--indigo) 54%, var(--violet));
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #e9ebf0;
+  color: #080912;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.page-shell {
+  container-type: inline-size;
+  width: min(100%, var(--lp-width));
+  max-width: var(--lp-width);
+  margin: 0 auto;
+  padding-bottom: calc(28cqw + env(safe-area-inset-bottom));
+  overflow: hidden;
+  background: #fff;
+}
+
+.source-image,
+.source-cta,
+.source-cta img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.source-cta {
+  margin: 0;
+  text-decoration: none;
+}
+
+.source-cta:focus-visible,
+.floating-image-cta:focus-visible {
+  outline: 4px solid #fff600;
+  outline-offset: -4px;
+}
+
+/* FV上部のネイビー帯は原稿どおり無地にし、下端のドット装飾を除去 */
+.notice::after {
+  display: none;
+}
+
+/* 04〜07の薄いネオン背景を途切れさせない共通サーフェス */
+.glow-surface,
+.curriculum-canvas {
+  background-color: #fff;
+  background-image:
+    linear-gradient(147deg, transparent 0 20%, rgb(83 140 255 / 8%) 20.15% 20.35%, transparent 20.55%),
+    linear-gradient(151deg, transparent 0 61%, rgb(126 70 242 / 8%) 61.15% 61.4%, transparent 61.6%),
+    radial-gradient(circle at 100% 12%, rgb(122 40 231 / 13%), transparent 29%),
+    radial-gradient(circle at 0% 82%, rgb(0 139 255 / 8%), transparent 29%),
+    linear-gradient(180deg, #fff, #fafbff 54%, #fff);
+}
+
+/* 05: 1080px原稿の文字比率をそのままcqwへ変換 */
+.curriculum-canvas {
+  margin: 0;
+  padding: 0.8cqw 1.2cqw 1.2cqw;
+  border: 0;
+}
+
+.curriculum-canvas::before {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.curriculum-block {
+  margin: 0;
+  border-right: 0.16cqw solid #7022eb;
+  border-left: 0.16cqw solid #087ff5;
+}
+
+.curriculum-block:first-child {
+  padding-top: 1.35cqw;
+  border-top: 0.16cqw solid #3350ec;
+}
+
+.curriculum-block:last-child {
+  border-bottom: 0.16cqw solid #3350ec;
+}
+
+.curriculum-block h2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 15.3cqw;
+  margin: 0 0.55cqw;
+  padding: 1.45cqw 1.55cqw 1.55cqw;
+  overflow: hidden;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.15cqw;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+
+.curriculum-block h2::after {
+  position: absolute;
+  right: 0.4cqw;
+  bottom: -1.1cqw;
+  color: rgb(255 255 255 / 17%);
+  content: attr(data-no);
+  font-family: Arial, sans-serif;
+  font-size: 10.2cqw;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.curriculum-block p {
+  margin: 0;
+  padding: 2.55cqw 3.35cqw 5.1cqw;
+  color: #111;
+  font-size: 3.14cqw;
+  font-weight: 450;
+  line-height: 1.72;
+  letter-spacing: -0.018em;
+  white-space: nowrap;
+}
+
+/* 06: 画像を使わず、4大特典の文言と改行を編集可能なHTMLで再現 */
+.bonus-intro {
+  min-height: 42.04cqw;
+  padding: 2.9cqw 2.7cqw 3.2cqw;
+  text-align: center;
+}
+
+.bonus-intro__label {
+  display: table;
+  margin: 0 auto 1.8cqw;
+  padding: 0.65cqw 2.15cqw 0.75cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4cqw;
+  font-weight: 450;
+  line-height: 1.2;
+}
+
+.bonus-intro h2 {
+  margin: 0;
+  color: #03043d;
+  font-size: 5.25cqw;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+
+.bonus-intro h2 span {
+  color: #f04753;
+}
+
+.bonus-intro h2 b {
+  display: inline-block;
+  margin: -1.5cqw 0 -0.2cqw;
+  font-size: 2.12em;
+  font-weight: 900;
+  line-height: 0.8;
+  vertical-align: -0.1em;
+}
+
+.bonus-intro > p:last-child {
+  margin: 2.4cqw 0 0;
+  color: #111;
+  font-size: 3.55cqw;
+  font-weight: 450;
+  line-height: 1.48;
+  letter-spacing: -0.02em;
+}
+
+/* 07: 基準LPと同じ、HTMLの見出し・説明＋商品モックの細切り画像 */
+.seminar-gifts {
+  margin: 0;
+  padding: 1.25cqw 1.8cqw 2.4cqw;
+}
+
+.gift-card {
+  margin: 0;
+  overflow: hidden;
+  border: 0.22cqw solid #18145f;
+  background: #fff;
+}
+
+.gift-card + .gift-card {
+  margin-top: 2.3cqw;
+}
+
+.gift-card__header {
+  margin: 1.8cqw;
+  padding: 2.1cqw 2.5cqw 2.45cqw;
+  background: var(--grad);
+  color: #fff;
+  text-align: center;
+}
+
+.gift-card__header p {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18cqw;
+  margin: 0 0 1.3cqw;
+  padding: 0.22em 0.75em 0.18em;
+  background: #fff;
+  color: #1769d5;
+  font-size: 2.75cqw;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.gift-card__header h2 {
+  margin: 0;
+  font-size: 4.55cqw;
+  font-weight: 850;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+
+.gift-card__header h2 span {
+  display: block;
+}
+
+.gift-card__crop {
+  position: relative;
+  width: 100%;
+  height: calc(var(--crop-h) * 0.093cqw);
+  margin: 2.8cqw 0 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.gift-card__crop::before,
+.gift-card__crop::after {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 2.4cqw;
+  background: #fff;
+  content: "";
+  pointer-events: none;
+}
+
+.gift-card__crop::before {
+  left: 0;
+}
+
+.gift-card__crop::after {
+  right: 0;
+}
+
+.gift-card__crop img {
+  position: absolute;
+  top: 0;
+  left: -2cqw;
+  display: block;
+  width: calc(100% + 4cqw);
+  max-width: none;
+  height: auto;
+  transform: translateY(calc(var(--crop-y) * -0.093cqw));
+}
+
+.gift-card__visual {
+  width: 100%;
+  margin: 2.8cqw 0 0;
+  padding: 0 3.2cqw;
+  background: #fff;
+}
+
+.gift-card__visual img {
+  display: block;
+  width: 88%;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+
+.gift-card__visual--landscape img {
+  width: 100%;
+}
+
+.gift-card__copy {
+  margin: 0;
+  padding: 2.7cqw 3.1cqw 3.8cqw;
+  font-size: 2.95cqw;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+/* 10: 原稿比率925/1080を維持した軽量HTMLセクション */
+.pivot-section {
+  min-height: 85.65cqw;
+  margin: 0;
+  padding: 4.1cqw 3.6cqw 4.4cqw;
+  overflow: hidden;
+  background: #fff;
+  text-align: center;
+}
+
+.pivot-section__problems {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 2.1cqw 2.2cqw;
+  border: 0.28cqw solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    var(--grad) border-box;
+  list-style: none;
+  text-align: left;
+}
+
+.pivot-section__problems li {
+  display: flex;
+  align-items: center;
+  min-height: 6.8cqw;
+  font-size: 3.35cqw;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+
+.pivot-section__problems b {
+  font-weight: 750;
+}
+
+.pivot-section__problems strong {
+  background: var(--grad);
+  background-clip: text;
+  color: transparent;
+  font-size: 1.08em;
+  font-weight: 950;
+}
+
+.pivot-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 6.9cqw;
+  height: 6.45cqw;
+  margin-right: 0.7cqw;
+  overflow: hidden;
+  background-image: url("./10.jpg");
+  background-repeat: no-repeat;
+  background-size: 100cqw auto;
+}
+
+.pivot-icon--instagram {
+  background-position: -5.55cqw -6.45cqw;
+}
+
+.pivot-icon--threads {
+  background-position: -5.55cqw -14.25cqw;
+}
+
+.pivot-icon--ai {
+  background-position: -5.55cqw -21.35cqw;
+}
+
+.pivot-section__arrow {
+  width: 12.4cqw;
+  height: 6.8cqw;
+  margin: 2.2cqw auto 2.1cqw;
+  background: var(--grad);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.pivot-section__label {
+  display: table;
+  margin: 0 auto 2.4cqw;
+  padding: 1.4cqw 5.4cqw;
+  background: #181818;
+  color: #fff;
+  font-size: 3.9cqw;
+  line-height: 1.2;
+}
+
+.pivot-section__switch,
+.pivot-section__band,
+.pivot-section__result {
+  margin: 0;
+  font-weight: 850;
+  letter-spacing: -0.05em;
+}
+
+.pivot-section__switch {
+  font-size: 4.3cqw;
+  line-height: 1.35;
+}
+
+.pivot-section__switch strong {
+  background: var(--grad);
+  background-clip: text;
+  color: transparent;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 1.55em;
+  font-style: italic;
+}
+
+.pivot-section__band {
+  margin: 1.2cqw 1.4cqw 1.7cqw;
+  padding: 1.6cqw 1.2cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.05cqw;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.pivot-section__band strong {
+  color: #fff600;
+}
+
+.pivot-section__result {
+  background: var(--grad);
+  background-clip: text;
+  color: transparent;
+  font-size: 5.9cqw;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* 11・17・26: 共通の青紫グラデーション見出しをHTML化 */
+.gradient-arrow-heading {
+  width: 100%;
+  height: 31.48cqw;
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.gradient-arrow-heading h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 3cqw 4.7cqw;
+  clip-path: polygon(0 0, 100% 0, 100% 82.9%, 55% 82.9%, 50% 100%, 45% 82.9%, 0 82.9%);
+  background: var(--grad);
+  color: #fff;
+  font-size: 6.8cqw;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.gradient-arrow-heading h2 span {
+  display: block;
+}
+
+.gradient-arrow-heading--reports h2 {
+  flex-direction: column;
+  gap: 1cqw;
+  font-size: 5.25cqw;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.gradient-arrow-heading--inset {
+  height: 31.48cqw;
+  padding: 5cqw 8.35cqw 0;
+}
+
+.gradient-arrow-heading--inset h2 {
+  flex-direction: column;
+  gap: 0.45cqw;
+  height: 26.48cqw;
+  padding: 0 2.6cqw 4cqw;
+  clip-path: polygon(0 0, 100% 0, 100% 83.5%, 55% 83.5%, 50% 100%, 45% 83.5%, 0 83.5%);
+  font-size: 3.95cqw;
+  line-height: 1.22;
+  white-space: nowrap;
+}
+
+/* 12〜16: 原稿上部とBefore/Afterを分け、間へ動画を挿入 */
+.case-hybrid {
+  width: 100%;
+  margin: 0;
+  background: #fff;
+}
+
+.case-profile {
+  position: relative;
+  height: 20.37cqw;
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.case-profile::after {
+  position: absolute;
+  top: 3.05cqw;
+  right: 1.45cqw;
+  left: 25.15cqw;
+  height: 0.15cqw;
+  background: var(--grad);
+  content: "";
+}
+
+.case-profile p {
+  margin: 0;
+}
+
+.case-profile__name {
+  position: relative;
+  z-index: 1;
+  display: table;
+  min-width: 23.8cqw;
+  padding: 0.62cqw 1.9cqw 0.72cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.05cqw;
+  font-weight: 450;
+  line-height: 1.18;
+  text-align: center;
+}
+
+.case-profile__description {
+  padding: 1.75cqw 3.15cqw 0;
+  color: #111;
+  font-size: 3.48cqw;
+  font-weight: 450;
+  line-height: 1.36;
+  letter-spacing: -0.015em;
+}
+
+.case-crop {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+.case-crop img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(var(--crop-y, 0));
+}
+
+.case-body {
+  height: var(--crop-h);
+}
+
+.case-video {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: #050505;
+  box-shadow: none;
+}
+
+.case-video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 0;
+  background: #111;
+}
+
+/* 20: 文章はHTML、中央の3カード図解だけを元画像から切り抜く */
+.flow-explainer {
+  margin: 0;
+  padding: 3.25cqw 0 5cqw;
+  background: #fff;
+  text-align: center;
+}
+
+.flow-explainer p,
+.flow-explainer h2,
+.flow-explainer figure {
+  margin-top: 0;
+}
+
+.flow-explainer__lead {
+  margin-bottom: 4.2cqw;
+  font-size: 3.65cqw;
+  line-height: 1.32;
+}
+
+.flow-explainer__label {
+  display: table;
+  margin-right: auto;
+  margin-bottom: 1.55cqw;
+  margin-left: auto;
+  padding: 1.05cqw 4cqw 1.25cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.7cqw;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.flow-explainer h2 {
+  margin-right: 6cqw;
+  margin-bottom: 5.7cqw;
+  margin-left: 6cqw;
+  padding: 1.2cqw 1cqw 1.35cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.45cqw;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.flow-explainer h2 strong {
+  color: #fff600;
+  font-weight: 900;
+}
+
+.source-art-crop {
+  position: relative;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.source-art-crop img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+.source-art-crop--flow {
+  height: 40.2cqw;
+  margin-bottom: 4.4cqw;
+}
+
+.source-art-crop--flow img {
+  transform: translateY(-37.8cqw);
+}
+
+.flow-explainer__body {
+  margin-bottom: 5.7cqw;
+  font-size: 3.55cqw;
+  line-height: 1.45;
+}
+
+.flow-explainer__close {
+  margin-bottom: 0;
+  font-size: 3.65cqw;
+  line-height: 1.35;
+}
+
+/* 24: 見出しと説明はHTML、導線図と3ステップ図だけをトリミング */
+.funnel-explainer {
+  margin: 0;
+  padding: 3.6cqw 0 4.2cqw;
+  background: #fbfcff;
+  text-align: center;
+}
+
+.funnel-explainer p,
+.funnel-explainer h2,
+.funnel-explainer figure {
+  margin-top: 0;
+}
+
+.funnel-explainer__lead {
+  margin-bottom: 2.1cqw;
+  font-size: 3.65cqw;
+  line-height: 1.3;
+}
+
+.funnel-explainer__band {
+  display: table;
+  margin-right: auto;
+  margin-bottom: 1.1cqw;
+  margin-left: auto;
+  padding: 1.15cqw 2.35cqw 1.35cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.55cqw;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.funnel-explainer h2 {
+  margin-bottom: 3.75cqw;
+  padding: 1.15cqw 1cqw 1.35cqw;
+  background: var(--grad);
+  color: #fff600;
+  font-size: 4.45cqw;
+  font-weight: 850;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.funnel-explainer__bridge {
+  margin-bottom: 1.5cqw;
+  font-size: 3.7cqw;
+  line-height: 1.3;
+}
+
+.source-art-crop--funnel {
+  height: 34cqw;
+  margin-bottom: 2.35cqw;
+}
+
+.source-art-crop--funnel img {
+  transform: translateY(-40.3cqw);
+}
+
+.funnel-explainer__caption {
+  margin-bottom: 4.2cqw;
+  font-size: 3.45cqw;
+  line-height: 1.3;
+}
+
+.funnel-explainer__question {
+  margin-bottom: 1.7cqw;
+  font-size: 3.45cqw;
+  line-height: 1.3;
+}
+
+.funnel-explainer__arrow {
+  width: 10.5cqw;
+  height: 5.4cqw;
+  margin: 0 auto 1.1cqw;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: var(--grad);
+}
+
+.source-art-crop--steps {
+  height: 86.5cqw;
+  margin-bottom: 2.1cqw;
+}
+
+.source-art-crop--steps img {
+  transform: translateY(-103.5cqw);
+}
+
+.funnel-explainer__three {
+  display: table;
+  margin-right: auto;
+  margin-bottom: 5.1cqw;
+  margin-left: auto;
+  padding: 0.75cqw 2.7cqw 1cqw;
+  background: var(--grad);
+  color: #fff;
+  font-size: 4.35cqw;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.funnel-explainer__three strong {
+  color: #fff600;
+  font-size: 1.6em;
+}
+
+.funnel-explainer__seminar {
+  margin: 0 1.7cqw;
+  padding: 2.6cqw 2.1cqw 2.2cqw;
+  border-radius: 1.8cqw;
+  background: var(--grad);
+}
+
+.funnel-explainer__seminar p {
+  margin: 0 0 2.1cqw;
+  color: #fff600;
+  font-size: 4.2cqw;
+  font-weight: 850;
+}
+
+.funnel-explainer__seminar strong {
+  display: block;
+  padding: 2.5cqw 1cqw;
+  border-radius: 1.2cqw;
+  background: #fff;
+  color: #111;
+  font-size: 4.05cqw;
+  line-height: 1.48;
+}
+
+.funnel-explainer__seminar mark {
+  background: linear-gradient(transparent 57%, #fff59a 57%);
+  color: inherit;
+}
+
+/* 29: 原稿の固定改行と余白を維持した編集可能な手紙 */
+.letter-canvas {
+  position: relative;
+  min-height: 266.02cqw;
+  margin: 0;
+  padding: 4.25cqw 4.45cqw 5.2cqw;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, transparent 0 40%, rgb(87 153 255 / 7%) 40.2% 40.45%, transparent 40.7%),
+    linear-gradient(151deg, transparent 0 60%, rgb(155 84 255 / 6%) 60.2% 60.45%, transparent 60.7%),
+    radial-gradient(circle at 100% 33%, rgb(108 40 224 / 8%), transparent 26%),
+    linear-gradient(180deg, #fff, #f9faff 58%, #fff);
+}
+
+.letter-canvas::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16cqw;
+  height: 100%;
+  background-image: radial-gradient(circle, rgb(60 97 225 / 13%) 0 0.26cqw, transparent 0.32cqw);
+  background-size: 1.75cqw 1.75cqw;
+  content: "";
+  mask-image: linear-gradient(90deg, transparent, #000);
+  pointer-events: none;
+}
+
+.letter-canvas h2,
+.letter-canvas p {
+  position: relative;
+  z-index: 1;
+}
+
+.letter-canvas h2 {
+  margin: 0 0 3.8cqw;
+  padding-bottom: 1.1cqw;
+  border-bottom: 0.15cqw solid transparent;
+  border-image: var(--grad) 1;
+  background: var(--grad);
+  background-clip: text;
+  color: transparent;
+  font-size: 4.25cqw;
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.letter-canvas p {
+  margin: 0 0 6.65cqw;
+  color: #111;
+  font-size: 2.72cqw;
+  font-weight: 450;
+  line-height: 1.72;
+  letter-spacing: -0.018em;
+  white-space: nowrap;
+}
+
+.letter-canvas p:last-child {
+  margin-bottom: 0;
+}
+
+.floating-image-cta {
+  position: fixed;
+  z-index: 1000;
+  right: 0;
+  bottom: max(0px, env(safe-area-inset-bottom));
+  left: 0;
+  display: block;
+  width: min(calc(100% - 16px), 540px);
+  margin: 0 auto;
+  text-decoration: none;
+  filter: drop-shadow(0 -4px 12px rgb(0 0 0 / 16%));
+}
+
+.floating-image-cta img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
