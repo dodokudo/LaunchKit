@@ -214,17 +214,12 @@ async function main() {
     h1 { font-size: 24px; color: #333; margin-bottom: 20px; }
 
     /* コントロール */
-    .controls { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #ddd; }
-    .filter-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-btn { padding: 6px 14px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
-    .filter-btn:hover { background: #f0f0f0; border-color: #999; }
-    .filter-btn.active { background: #333; color: white; border-color: #333; }
+    .controls { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #ddd; }
+    .select-control { display: flex; align-items: center; gap: 7px; flex: 0 0 auto; }
+    .select-control label { font-size: 13px; color: #666; white-space: nowrap; }
+    .select-control select { min-height: 38px; padding: 6px 30px 6px 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; background: white; }
 
-    .sort-control { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-    .sort-control label { font-size: 13px; color: #666; }
-    .sort-control select { padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; background: white; }
-
-    .action-buttons { display: flex; gap: 8px; align-items: center; }
+    .action-buttons { display: flex; gap: 8px; align-items: center; margin-left: auto; white-space: nowrap; }
     .action-btn { padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer; font-size: 12px; transition: all 0.2s; }
     .action-btn:hover { background: #f0f0f0; }
     .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -236,8 +231,6 @@ async function main() {
     .edit-action-btn:focus-visible { outline: 3px solid rgba(0, 102, 204, 0.3); outline-offset: 2px; }
 
     /* カウント */
-    .edit-guide { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 10px 14px; border-left: 4px solid #0066cc; border-radius: 4px; background: #eaf4ff; color: #31506f; font-size: 13px; line-height: 1.5; }
-    .edit-guide strong { color: #004f9f; white-space: nowrap; }
     .sub-controls { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
     .count { color: #666; font-size: 14px; }
 
@@ -274,9 +267,6 @@ async function main() {
     body.edit-mode .lp-category { display: none; }
     body.edit-mode .lp-category-select { display: block; }
     body.edit-mode .lp-item { background: #fffef0; }
-    body.edit-mode .edit-guide { border-left-color: #d99a00; background: #fff8dc; color: #6d570f; }
-    body.edit-mode .edit-guide strong { color: #805e00; }
-
     .toast { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
     .toast.show { opacity: 1; }
 
@@ -284,10 +274,10 @@ async function main() {
       .lp-item { grid-template-columns: 1fr; gap: 12px; }
       .lp-dates { text-align: left; }
       .controls { flex-direction: column; align-items: stretch; }
-      .sort-control { margin-left: 0; }
-      .action-buttons { display: grid; grid-template-columns: 1fr; }
+      .select-control { display: grid; grid-template-columns: 74px 1fr; }
+      .select-control select { width: 100%; }
+      .action-buttons { display: grid; grid-template-columns: 1fr 1fr; margin-left: 0; }
       .edit-action-btn, .action-btn { min-height: 42px; }
-      .edit-guide { align-items: flex-start; flex-direction: column; gap: 2px; }
     }
   </style>
 </head>
@@ -296,12 +286,15 @@ async function main() {
     <h1>公開LP一覧</h1>
 
     <div class="controls">
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">すべて</button>
-${categories.map(cat => `        <button class="filter-btn" data-filter="${cat}">${cat}</button>`).join('\n')}
+      <div class="select-control">
+        <label for="filter-select">カテゴリ</label>
+        <select id="filter-select">
+          <option value="all" selected>すべて</option>
+${categories.map(cat => `          <option value="${cat}">${cat}</option>`).join('\n')}
+        </select>
       </div>
-      <div class="sort-control">
-        <label>並び替え:</label>
+      <div class="select-control">
+        <label for="sort-select">並び替え</label>
         <select id="sort-select">
           <option value="created-desc" selected>作成日（新しい順）</option>
           <option value="created-asc">作成日（古い順）</option>
@@ -314,11 +307,6 @@ ${categories.map(cat => `        <button class="filter-btn" data-filter="${cat}"
         <button class="edit-action-btn" id="edit-mode-btn" type="button" aria-pressed="false">登録名を編集</button>
         <button class="action-btn primary" id="export-btn" disabled>HTMLをダウンロード</button>
       </div>
-    </div>
-
-    <div class="edit-guide" id="edit-guide">
-      <strong>登録名は変更できます</strong>
-      <span>上の「登録名を編集」を押すと、LP名とカテゴリを編集できます。</span>
     </div>
 
     <div class="sub-controls">
@@ -378,7 +366,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
     });
 
     // フィルター
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterSelect = document.getElementById('filter-select');
     const lpList = document.getElementById('lp-list');
     const countEl = document.getElementById('visible-count');
     let currentFilter = 'all';
@@ -396,13 +384,9 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
       countEl.textContent = visibleCount;
     }
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = btn.dataset.filter;
-        applyFilter();
-      });
+    filterSelect.addEventListener('change', () => {
+      currentFilter = filterSelect.value;
+      applyFilter();
     });
 
     // ソート
@@ -433,16 +417,11 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
 
     // 編集モード
     const editModeBtn = document.getElementById('edit-mode-btn');
-    const editGuide = document.getElementById('edit-guide');
 
     function setEditMode(enabled) {
       document.body.classList.toggle('edit-mode', enabled);
       editModeBtn.setAttribute('aria-pressed', String(enabled));
       editModeBtn.textContent = enabled ? '編集を終了' : '登録名を編集';
-      editGuide.querySelector('strong').textContent = enabled ? '登録名を編集中です' : '登録名は変更できます';
-      editGuide.querySelector('span').textContent = enabled
-        ? '入力欄を変更すると自動で保存されます。終わったら「編集を終了」を押してください。'
-        : '上の「登録名を編集」を押すと、LP名とカテゴリを編集できます。';
     }
 
     editModeBtn.addEventListener('click', () => {
