@@ -40,11 +40,7 @@ body {
   position: relative;
   height: 20.3cqw;
   overflow: hidden;
-  background:
-    linear-gradient(126deg, transparent 0 5%, rgb(69 118 255 / 90%) 5.2% 5.45%, transparent 5.7% 100%),
-    linear-gradient(132deg, transparent 0 16%, rgb(19 75 222 / 38%) 16.2% 16.55%, transparent 16.8% 100%),
-    radial-gradient(ellipse at 55% 100%, rgb(42 70 202 / 52%), transparent 55%),
-    linear-gradient(100deg, #031055, #09047c 65%, #14047d);
+  background: #061044 url("/8m/assets/fv-background-effects-v2.png") center top / 100% 296cqw no-repeat;
   color: #ffffff;
   text-align: center;
 }
@@ -104,24 +100,11 @@ body {
   position: relative;
   height: 68.05cqw;
   overflow: hidden;
-  background:
-    linear-gradient(148deg, transparent 0 61%, rgb(84 128 255 / 15%) 61.2% 61.45%, transparent 61.7%),
-    radial-gradient(circle at 100% 42%, rgb(112 32 223 / 16%), transparent 28%),
-    radial-gradient(circle at 0% 78%, rgb(7 137 250 / 13%), transparent 31%),
-    linear-gradient(180deg, #ffffff 0%, #f4f7ff 100%);
+  background: #ffffff url("/8m/assets/fv-background-effects-v2.png") center -11.2cqw / 100% auto no-repeat;
 }
 
 .seminar-copy::after {
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  width: 15cqw;
-  height: 100%;
-  background-image: radial-gradient(circle, rgb(70 98 222 / 16%) 0 0.3cqw, transparent 0.38cqw);
-  background-size: 1.8cqw 1.8cqw;
-  content: "";
-  mask-image: linear-gradient(90deg, transparent, #000);
+  display: none;
 }
 
 .seminar-copy p,
