@@ -31,6 +31,19 @@ body {
   background: #ffffff;
 }
 
+.source-image,
+.source-cta,
+.source-cta img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.source-cta {
+  margin: 0;
+  text-decoration: none;
+}
+
 .seminar-hero {
   container-type: inline-size;
   width: 100%;
@@ -42,21 +55,13 @@ body {
   overflow: hidden;
   background:
     linear-gradient(rgb(2 8 62 / 42%), rgb(5 7 76 / 42%)),
-    #061044 url("/8m/assets/fv-background-effects-v2.png") center top / 100% 296cqw no-repeat;
+    #061044 url("../fv-background-effects-v2.webp") center top / 100% 296cqw no-repeat;
   color: #ffffff;
   text-align: center;
 }
 
 .notice::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 4.8cqw;
-  background-image: radial-gradient(circle, rgb(91 121 255 / 22%) 0 0.34cqw, transparent 0.4cqw);
-  background-size: 1.9cqw 1.9cqw;
-  content: "";
-  mask-image: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent);
+  display: none;
 }
 
 .notice p {
@@ -102,7 +107,7 @@ body {
   position: relative;
   height: 68.05cqw;
   overflow: hidden;
-  background: #ffffff url("/8m/assets/fv-background-effects-v2.png") center -11.2cqw / 100% auto no-repeat;
+  background: #ffffff url("../fv-background-effects-v2.webp") center -11.2cqw / 100% auto no-repeat;
 }
 
 .seminar-copy::after {
