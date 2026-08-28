@@ -42,7 +42,11 @@
     </section>
 
     <section class="video-slot" aria-label="セミナー動画">
-      <iframe src="https://www.youtube.com/embed/orFNgE5dHiw?rel=0&amp;playsinline=1" title="Threads×AI 完全攻略セミナー動画" loading="eager" fetchpriority="high" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="youtube-shell" data-youtube-shell data-embed-src="https://www.youtube.com/embed/orFNgE5dHiw?rel=0&amp;playsinline=1" data-video-title="Threads×AI 完全攻略セミナー動画">
+        <img class="youtube-shell__poster" src="./video-poster.webp" alt="Threads×AI 完全攻略セミナー動画" width="960" height="540" decoding="async" fetchpriority="low">
+        <button class="youtube-shell__play" type="button" aria-label="セミナー動画を再生する"><span aria-hidden="true"></span></button>
+        <noscript><iframe src="https://www.youtube.com/embed/orFNgE5dHiw?rel=0&amp;playsinline=1" title="Threads×AI 完全攻略セミナー動画" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></noscript>
+      </div>
     </section>
 
     <!-- 02〜04: 改行・サイズ・色を完全に保持する原稿画像 -->
@@ -240,6 +244,42 @@
 
   <a class="floating-image-cta" href="https://lstep.app/form/86571/SRTuRh/4c6534" data-launchkit-line-cta aria-label="今すぐ無料セミナーの枠を確保する"><img src="./31.webp" alt="" width="1080" height="302" decoding="async"></a>
 
+  <script>
+    (() => {
+      const shell = document.querySelector("[data-youtube-shell]");
+      const playButton = shell?.querySelector(".youtube-shell__play");
+      if (!shell || !playButton) return;
+
+      let frame;
+      const preparePlayer = (autoplay = false) => {
+        if (frame) {
+          if (autoplay && !shell.classList.contains("is-ready")) {
+            frame.src = `${shell.dataset.embedSrc}&autoplay=1`;
+          }
+          return;
+        }
+
+        frame = document.createElement("iframe");
+        frame.src = `${shell.dataset.embedSrc}${autoplay ? "&autoplay=1" : ""}`;
+        frame.title = shell.dataset.videoTitle;
+        frame.loading = "eager";
+        frame.setAttribute("fetchpriority", "high");
+        frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        frame.allowFullscreen = true;
+        frame.addEventListener("load", () => {
+          shell.classList.add("is-ready");
+          playButton.remove();
+        }, { once: true });
+        shell.append(frame);
+      };
+
+      playButton.addEventListener("click", () => preparePlayer(true), { once: true });
+      window.addEventListener("load", () => {
+        window.setTimeout(() => preparePlayer(false), 1200);
+      }, { once: true });
+    })();
+  </script>
   <script>
     window.LAUNCHKIT_TRACKING = { lpId: "cd2e1427-39a1-4461-b2b2-70b6237e6167", apiBase: "https://autostudio-self.vercel.app" };
   </script>
