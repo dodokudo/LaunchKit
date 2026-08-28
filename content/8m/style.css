@@ -85,7 +85,7 @@ img {
   height: 11.12cqw;
   background: transparent;
   color: #ffffff;
-  font-size: 3.24cqw;
+  font-size: 3.75cqw;
   line-height: 1;
   white-space: nowrap;
 }
@@ -99,7 +99,7 @@ img {
   margin: 0;
   text-align: center;
   font-size: 3.84cqw;
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0;
   white-space: nowrap;
@@ -123,6 +123,7 @@ img {
   background: linear-gradient(100deg, var(--blue), #3838e9 62%, var(--violet));
   background-clip: text;
   color: transparent;
+  font-size: 1.2em;
   font-weight: 800;
   -webkit-background-clip: text;
 }
@@ -166,7 +167,7 @@ img {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 0.15cqw;
+  gap: 1.15cqw;
   width: 100%;
   padding: 0 2.2cqw;
   font-size: 13.4cqw;
@@ -177,7 +178,7 @@ img {
 
 .course-title__axis em {
   display: inline-block;
-  margin: 0 -0.9cqw;
+  margin: 0;
   padding: 0.15cqw 1.1cqw 0.55cqw;
   background: linear-gradient(100deg, var(--blue), #3838e9 62%, var(--violet));
   background-clip: text;
@@ -213,6 +214,7 @@ img {
   font-size: 9.8cqw;
   font-weight: 950;
   line-height: 1;
+  letter-spacing: 0.005em;
   white-space: nowrap;
 }
 
@@ -224,14 +226,16 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  column-gap: 0.3cqw;
+  row-gap: 0.45cqw;
   width: 100%;
   margin: 0;
   padding: 0 4cqw;
   text-align: center;
-  font-size: 3.88cqw;
+  font-size: calc(3.88cqw + 2px);
   font-weight: 750;
-  line-height: 1.5;
-  letter-spacing: -0.045em;
+  line-height: 1.62;
+  letter-spacing: 0.008em;
 }
 
 .course-lead span:first-child {
@@ -280,32 +284,32 @@ img {
   z-index: 1;
   top: 3.7cqw;
   left: 3.2cqw;
-  width: 48.2cqw;
+  width: 50.2cqw;
   filter: drop-shadow(0 1.15cqw 1.7cqw rgb(7 19 68 / 17%));
 }
 
 .visual-products__person {
   z-index: 2;
-  top: -0.4cqw;
+  top: -2.6cqw;
   right: -4.8cqw;
-  width: 60.8cqw;
+  width: 61.8cqw;
   filter: drop-shadow(0 1cqw 1.5cqw rgb(7 19 68 / 12%));
 }
 
 .visual-products__guidebook {
   z-index: 3;
-  top: 16.4cqw;
-  left: 45.4cqw;
-  width: 15.2cqw;
-  filter: drop-shadow(0 1.05cqw 1.2cqw rgb(7 19 68 / 25%));
+  top: 7.8cqw;
+  left: 39.8cqw;
+  width: 24.2cqw;
+  filter: drop-shadow(0 1.05cqw 1.2cqw rgb(7 19 68 / 38%));
 }
 
 .steps-card {
   position: absolute;
   z-index: 5;
-  top: 110.1cqw;
+  top: 109.3cqw;
   left: 2.15cqw;
-  width: 54.15cqw;
+  width: 54.8cqw;
   height: 27.075cqw;
   display: grid;
   grid-template-rows: 6.2cqw 1fr;
@@ -386,7 +390,7 @@ img {
 .offer-card {
   position: absolute;
   z-index: 6;
-  top: 142.15cqw;
+  top: 140.45cqw;
   left: 2.15cqw;
   display: block;
   width: 95.7cqw;
