@@ -557,7 +557,7 @@ a:focus-visible{outline:3px solid var(--tech-cyan);outline-offset:4px}
 
 /* ===== User-directed simplification ===== */
 :root{--tech-signal:#145cff}
-.hero{padding:24px 0 30px;background:#f2f3ff;color:var(--tech-ink)}
+.hero{padding:24px 0 12px;background:#f2f3ff;color:var(--tech-ink)}
 .hero::before,.hero::after{display:none}
 .hero .container{max-width:720px;padding:0 20px}
 .hero-message{margin:2px auto 22px;text-align:center}
@@ -565,7 +565,7 @@ a:focus-visible{outline:3px solid var(--tech-cyan);outline-offset:4px}
 .hero-message h1{margin:0;color:var(--tech-ink);font-size:24px;line-height:1.5;letter-spacing:-.015em}
 .hero-message h1 strong{color:var(--tech-blue)}
 .hero-book{display:block;width:68%;height:auto;max-width:420px;margin:0 auto;filter:none}
-.intro{background:#f2f3ff;border-bottom:0}
+.intro{background:#f2f3ff;border-bottom:0;padding-top:16px}
 
 #lesson1 .lesson-intro,#lesson5 .lesson-intro,#lesson6 .lesson-intro{background:var(--tech-ink);border-color:var(--tech-ink);border-left-color:var(--tech-blue);color:#dbe7ff;box-shadow:0 12px 28px rgba(6,26,74,.14)}
 #lesson1 .lesson-intro strong,#lesson5 .lesson-intro strong,#lesson6 .lesson-intro strong{color:#fff}
@@ -597,12 +597,17 @@ a:focus-visible{outline:3px solid var(--tech-cyan);outline-offset:4px}
 .bonus-showcase-item img{width:auto;max-width:100%;max-height:290px;filter:drop-shadow(0 12px 16px rgba(6,26,74,.14))}
 
 @media(max-width:600px){
-  .hero{padding:18px 0 22px}
+  .hero{padding:18px 0 8px}
   .hero .container{padding:0 14px}
   .hero-message{margin-bottom:18px}
   .hero-kicker{font-size:12px}
   .hero-message h1{font-size:18px;line-height:1.5;letter-spacing:-.01em}
   .hero-book{width:72%;max-width:300px}
+  .intro{padding-top:12px}
+  .intro .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:18px 0}
+  .intro .hero-stat{min-width:0}
+  .intro .hero-stat .num{font-size:clamp(20px,6.15vw,24px);white-space:nowrap}
+  .intro .hero-stat .label{display:block;font-size:10px;line-height:1.45;letter-spacing:-.02em}
   .final-cta{padding:48px 20px}
 }
 </style>
