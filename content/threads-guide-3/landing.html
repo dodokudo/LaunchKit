@@ -46,6 +46,13 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .intro .hero-stat .num{font-size:32px;font-weight:800;display:block;line-height:1.2;background:linear-gradient(135deg,#4f5bef,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .intro .hero-stat .label{font-size:13px;color:#64748b;margin-top:4px}
 .intro .hero-screenshot{max-width:100%;border-radius:12px;margin:20px auto;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.account-proof-grid{display:grid;grid-template-columns:1fr;gap:18px;margin:20px 0 24px}
+.account-proof-card{overflow:hidden;background:#fff;border:1px solid #e0e7ff;border-radius:14px;box-shadow:0 8px 24px rgba(79,91,239,.12)}
+.account-proof-head{padding:12px 14px;background:linear-gradient(135deg,#f6f8ff,#faf5ff);border-bottom:1px solid #e0e7ff}
+.account-proof-label{display:inline-block;margin-bottom:7px;padding:3px 10px;border-radius:100px;background:#4f46e5;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em}
+.account-proof-card.sub .account-proof-label{background:#7c3aed}
+.account-proof-result{display:block;color:#1e293b;font-size:14px;font-weight:800;line-height:1.55}
+.account-proof-card img{display:block;width:100%;height:auto}
 
 /* ===== TOC ===== */
 .toc{background:#fff;border:1px solid #e0e7ff;border-radius:16px;padding:32px;margin:-30px 20px 40px;position:relative;z-index:2;max-width:720px;margin-left:auto;margin-right:auto;box-shadow:0 8px 30px rgba(99,102,241,.12)}
@@ -67,7 +74,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 
 .lesson h3{font-size:18px;font-weight:700;color:#1e293b;margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid #e0e7ff;border-image:linear-gradient(90deg,#818cf8,#c084fc,transparent) 1}
 .lesson h4{font-size:16px;font-weight:700;color:#334155;margin:24px 0 8px}
-.lesson p{font-size:15px;color:#374151;margin-bottom:14px}
+.lesson p{font-size:15px;color:#374151;margin-bottom:18px;line-height:1.95}
 .lesson ul,.lesson ol{margin:12px 0 16px 20px;font-size:15px;color:#374151}
 .lesson li{margin-bottom:8px;line-height:1.7}
 .lesson strong{color:#1e293b}
@@ -192,6 +199,8 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .thread-role.cta{color:#d97706}
 .thread-text{font-size:13px;color:#334155;font-weight:500}
 .thread-chars{font-size:11px;color:#94a3b8;margin-top:2px}
+.post-example-thread .thread-text{font-size:12px;line-height:1.65}
+.post-example-thread .thread-text br+br{display:none}
 
 /* ===== Voice/Testimonial ===== */
 .voice-grid{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0}
@@ -205,6 +214,29 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 .ss-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .ss-card img{width:100%;display:block}
 .ss-card .ss-caption{padding:12px 16px;font-size:14px;font-weight:700;color:#1e293b}
+.guide-visual{margin:22px 0 26px;background:#fff;border:1px solid #dbeafe;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.08)}
+.guide-visual img{display:block;width:100%;height:auto}
+
+/* Seminar bonus CTAs */
+.seminar-direct-cta{margin:34px 0;padding:28px 22px;text-align:center;background:#f8fafc;border:1px solid #cbd5e1;border-radius:16px;box-shadow:0 8px 24px rgba(15,23,42,.08)}
+.seminar-direct-cta h3{margin:0 0 10px;padding:0;border:0;font-size:21px;line-height:1.45;color:#172554}
+.seminar-direct-cta p{margin:0 auto 20px;max-width:540px;font-size:14px;line-height:1.8;color:#475569}
+.seminar-bonus-cta{position:relative;margin:38px 0;padding:28px 22px;text-align:center;background:linear-gradient(145deg,#fff 0%,#f5f3ff 54%,#eef2ff 100%);border:2px solid #c4b5fd;border-radius:18px;box-shadow:0 12px 32px rgba(79,70,229,.14);overflow:hidden}
+.seminar-bonus-cta::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 88% 8%,rgba(168,85,247,.14),transparent 34%),radial-gradient(circle at 8% 92%,rgba(59,130,246,.12),transparent 34%);pointer-events:none}
+.seminar-bonus-cta>*{position:relative;z-index:1}
+.seminar-bonus-badge{display:inline-block;margin-bottom:10px;padding:5px 13px;border-radius:999px;background:linear-gradient(135deg,#4f46e5,#8b5cf6);color:#fff;font-size:12px;font-weight:800;letter-spacing:.03em}
+.seminar-bonus-cta h3{margin:0 0 10px;padding:0;border:0;font-size:21px;line-height:1.45;color:#1e1b4b}
+.seminar-bonus-cta p{margin:0 auto 18px;max-width:560px;font-size:14px;line-height:1.8;color:#475569}
+.seminar-bonus-image{display:block;width:100%;max-width:430px;max-height:440px;object-fit:contain;margin:18px auto 20px;border-radius:14px;filter:drop-shadow(0 14px 22px rgba(30,41,59,.12))}
+.seminar-bonus-image.wide{max-width:580px;max-height:340px}
+.bonus-cta-btn{display:block;width:100%;max-width:440px;margin:0 auto;padding:18px 22px;border-radius:999px;background:linear-gradient(180deg,#06c755,#00b900);box-shadow:0 4px 0 #038e3b,0 9px 18px rgba(0,185,0,.24);color:#fff;text-decoration:none;font-size:17px;font-weight:900;line-height:1.45}
+.seminar-bonus-note{display:block;margin-top:12px;color:#6366f1;font-size:12px;font-weight:700}
+.seminar-bonus-showcase{margin:42px 0;padding:30px 20px;text-align:center;background:linear-gradient(145deg,#eef2ff,#faf5ff);border:2px solid #a78bfa;border-radius:20px;box-shadow:0 14px 34px rgba(99,102,241,.16)}
+.seminar-bonus-showcase h3{margin:0 0 8px;padding:0;border:0;font-size:22px;line-height:1.45;color:#312e81}
+.seminar-bonus-showcase>p{margin-bottom:20px;color:#475569;font-size:14px;line-height:1.8}
+.bonus-showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 24px}
+.bonus-showcase-item{display:flex;align-items:center;justify-content:center;min-height:220px;padding:8px;background:#fff;border:1px solid #ddd6fe;border-radius:14px;box-shadow:0 5px 15px rgba(99,102,241,.08)}
+.bonus-showcase-item img{display:block;width:100%;max-height:260px;object-fit:contain}
 
 /* ===== Bonus Tokuten ===== */
 .bonus-tokuten{background:linear-gradient(135deg,#fefce8 0%,#fef9c3 100%);border:2px solid #eab308;border-radius:20px;padding:36px 24px;margin:48px 0;text-align:center}
@@ -224,6 +256,18 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 @media(max-width:600px){
   .bonus-tokuten{padding:28px 16px;margin:36px 0}
   .bonus-tokuten h3{font-size:19px}
+  .seminar-direct-cta{margin:28px 0;padding:24px 16px}
+  .seminar-direct-cta h3{font-size:19px}
+  .seminar-bonus-cta{margin:30px 0;padding:24px 16px}
+  .seminar-bonus-cta h3{font-size:19px}
+  .seminar-bonus-image{max-height:390px}
+  .seminar-bonus-image.wide{max-height:250px}
+  .bonus-cta-btn{font-size:16px;padding:17px 18px}
+  .seminar-bonus-showcase{padding:26px 14px}
+  .seminar-bonus-showcase h3{font-size:20px}
+  .bonus-showcase-grid{gap:8px}
+  .bonus-showcase-item{min-height:180px;padding:5px}
+  .bonus-showcase-item img{max-height:220px}
 }
 
 /* ===== Footer ===== */
@@ -273,6 +317,9 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   .hero-stats{gap:16px}
   .hero-stat .num{font-size:26px}
   .intro .hero-stat .num{font-size:26px}
+  .account-proof-grid{grid-template-columns:1fr;gap:16px}
+  .account-proof-head{min-height:0}
+  .account-proof-result{font-size:13px}
   .toc{margin:16px 12px 32px;padding:24px 20px}
   .lesson{padding:36px 0}
   .lesson-title{font-size:19px}
@@ -296,7 +343,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 <section class="hero">
   <div class="container">
     <p class="hero-pre">＼ リールを頑張っても集客できなかったあなたへ ／</p>
-    <h1><span class="nowrap">リール200本で挫折した僕が、文章だけで</span><br><span class="grad nowrap">6ヶ月フォロワー5,000名・</span><br><span class="nowrap"><span class="grad">LINE登録1,400名</span>を集めた全手順</span></h1>
+    <h1>リール200本で挫折した僕が、<br>AIで投稿を作成し、<br><span class="grad">6ヶ月でフォロワー合計約8,000名・</span><br><span class="grad">LINE登録2,500名</span>を集めた全手順</h1>
     <img src="assets/images/book-cover.png" alt="AI×Threads 完全攻略ガイド" class="hero-book" loading="eager">
   </div>
 </section>
@@ -308,14 +355,29 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <p class="intro-text">この教材は、<strong>ThreadsとAIを使って、見込み客に届く投稿を作り、集客や売上につなげるSNS運用の本質</strong>を、全9章に全部まとめたものです。</p>
     <p class="intro-text">しかも、読み物だけでは終わらせません。後半では、<strong>そのままコピペで使えるAIプロンプト</strong>も配っています。だから、必ず最後まで読んでください。</p>
     <p class="intro-text">「本当にThreadsでそんなに集客できるの？」と思った方のために、まず僕自身の数字を見てください。</p>
-    <img src="assets/images/profile-intro.png" alt="くどう｜AI×Threads売れるマーケ設計士 プロフィール" class="hero-screenshot" loading="eager" width="720">
+    <div class="account-proof-grid" id="account-results">
+      <figure class="account-proof-card">
+        <figcaption class="account-proof-head">
+          <span class="account-proof-label">メインアカウント</span>
+          <strong class="account-proof-result">半年でフォロワー5,000人以上増加</strong>
+        </figcaption>
+        <img src="assets/images/profile-intro.png" alt="メインアカウント：半年でフォロワー5,000人以上増加" loading="eager">
+      </figure>
+      <figure class="account-proof-card sub">
+        <figcaption class="account-proof-head">
+          <span class="account-proof-label">サブアカウント</span>
+          <strong class="account-proof-result">6月のBAN後に新規開設し、1ヶ月でフォロワー1,000人以上増加</strong>
+        </figcaption>
+        <img src="assets/images/profile-intro-sub.png" alt="サブアカウント：BAN後の新規開設から1ヶ月でフォロワー1,000人以上増加" loading="eager">
+      </figure>
+    </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="num">5,000</span>
-        <span class="label">6ヶ月のフォロワー増加</span>
+        <span class="num">約8,000</span>
+        <span class="label">AI投稿でのフォロワー増加（合計）</span>
       </div>
       <div class="hero-stat">
-        <span class="num">1,400</span>
+        <span class="num">2,500</span>
         <span class="label">LINE登録者数</span>
       </div>
       <div class="hero-stat">
@@ -324,7 +386,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       </div>
     </div>
     <p class="intro-text" style="margin-top:24px">しかも、投稿作成のほとんどはAIに任せています。僕が1日にかける時間は、たった<strong>1時間ほど</strong>です。</p>
-    <p class="intro-text">この教材には、僕が<strong>2,500投稿以上を分析して作り上げた「型」</strong>と、<strong>そのままコピペして使えるAIプロンプト</strong>を全部詰め込みました。<br>上から順番に読んで、そのまま実践してください。</p>
+    <p class="intro-text">この教材には、僕が<strong>3,300投稿以上を分析して作り上げた「型」</strong>と、<strong>そのままコピペして使えるAIプロンプト</strong>を全部詰め込みました。<br>上から順番に読んで、そのまま実践してください。</p>
     <div style="background:linear-gradient(135deg,#fefce8,#fef9c3);border:1px solid #eab308;border-radius:12px;margin-top:20px;margin-bottom:8px;padding:16px;font-size:14px;line-height:1.8;text-align:left">
       <strong style="color:#92400e;font-size:15px">特別なご案内</strong><br>
       最後まで読んでいただいた方限定で、追加のボーナスコンテンツを用意しています。<strong>必ず最後まで読んでください。</strong>
@@ -338,7 +400,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <p style="font-size:14px;color:#64748b;margin-bottom:16px">今回の流れはこうです。上から順番に読むだけで、Threads×AI運用の全体像から実践まで一気にわかります。</p>
   <ul class="toc-list">
     <li><a href="#lesson1"><span class="toc-num">01</span>第1章：なぜSNSを頑張っても成果が出ないのか — 9割がハマる5つの失敗</a></li>
-    <li><a href="#lesson2"><span class="toc-num">02</span>第2章：Threadsをやるとこうなる — 週1件だったLINE登録が毎日10件に</a></li>
+    <li><a href="#lesson2"><span class="toc-num">02</span>第2章：受講生インタビューと成果 — 再現できるかを確かめる</a></li>
     <li><a href="#lesson3"><span class="toc-num">03</span>第3章：伸びる投稿は「何」で決まるのか — アルゴリズムの正体と3原則</a></li>
     <li><a href="#lesson4"><span class="toc-num">04</span>第4章：いきなり投稿するな — 成果の8割を決めるアカウント設計</a></li>
     <li><a href="#lesson5"><span class="toc-num">05</span>第5章：スクロールが止まる長文には「型」がある</a></li>
@@ -360,7 +422,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-intro">最初に、一番大事な話をします。<br>今SNS集客で成果が出ていないなら、それは<strong>あなたの努力不足でも、センスがないからでもありません。やり方が、集客につながる構造になっていないだけ</strong>です。まずは自分がどのパターンにハマっているか、確認してください。</div>
 
   <h3>SNS集客で失敗する5つのパターン</h3>
-  <p>2,500投稿以上のデータ分析と、100名以上の集客支援をしてきた中で見えてきた、成果が出ない人の典型パターンが5つあります。この5つのどれかに当てはまっている状態で、どれだけ投稿数を増やしても、AIを使っても、成果は出ません。</p>
+  <p>3,300投稿以上のデータ分析と、100名以上の集客支援をしてきた中で見えてきた、成果が出ない人の典型パターンが5つあります。この5つのどれかに当てはまっている状態で、どれだけ投稿数を増やしても、AIを使っても、成果は出ません。</p>
 
   <div class="hook-cards">
     <div class="hook-card">
@@ -417,37 +479,13 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 <section class="lesson" id="lesson2">
   <div class="lesson-header">
     <div class="lesson-number">02</div>
-    <h2 class="lesson-title">第2章：Threadsをやるとこうなる — 週1件だったLINE登録が毎日10件に</h2>
+    <h2 class="lesson-title">第2章：受講生インタビューと成果 — 再現できるかを確かめる</h2>
   </div>
-  <div class="lesson-intro">「本当にそんなにうまくいくの？」——その疑問、正しいです。<br>だから理論じゃなくて<strong>数字で証明します。</strong>まず僕自身、そしてこのやり方を実践した受講生の、リアルな成果を見てください。</div>
-
-  <h3>僕自身の実績</h3>
-  <p>僕はリール投稿不要・文章だけのThreads運用で、<strong>6ヶ月でフォロワー5,000名、LINE登録者1,400名</strong>を集客しました。SNSを活用した売上は<strong>累計1億円以上</strong>です。</p>
-  <p>でも、最初からうまくいったわけじゃありません。僕は1年半前、Instagramで挫折しています。リールを200本以上投稿するために、台本を書いて、撮影して、編集して、分析して。かなりの時間とお金を使いました。</p>
-  <blockquote>結果は、フォロワー700人ほど。LINE登録は週に1〜2件あればラッキーという状態でした。「毎日頑張ってるのに、数字が伸びない」「自分にはSNSのセンスがないのかな」——毎日そう考えていました。もしかしたら、今のあなたは過去の僕と同じ状況かもしれません。</blockquote>
-  <p>そこから戦う場所をThreadsに変えて、AIを組み合わせた途端、<strong>連日LINE登録が10件以上</strong>入るようになりました。200本のリールで届かなかった人たちに、テキストの投稿があっさり届いた。正直、衝撃でした。今かかっている時間は1日1時間ほど。リール200本の頃より圧倒的に労力は減って、成果は右肩上がりです。</p>
-  <div class="time-compare">
-    <div class="time-card time-before">
-      <div class="time-label">リール時代（200本投稿）</div>
-      <div class="time-value">週1〜2<span>件</span></div>
-      <div class="time-desc">LINE登録 / フォロワー700人</div>
-    </div>
-    <div class="time-arrow">→</div>
-    <div class="time-card time-after">
-      <div class="time-label">Threads×AI（6ヶ月）</div>
-      <div class="time-value">1,400<span>名</span></div>
-      <div class="time-desc">LINE登録 / フォロワー5,000名</div>
-    </div>
-  </div>
-  <div class="ss-card" style="margin:20px 0">
-    <div class="ss-caption">新規Threadsアカウント開始5日間で公式LINE登録122名</div>
-    <img src="assets/images/line-registrations-first-5-days.png" alt="新規Threadsアカウント開始5日間で公式LINE登録122名" loading="lazy">
-  </div>
-  <p>実際に新規で立ち上げたThreadsアカウントでも、開始5日間で公式LINEに122名が登録されています。</p>
-  <p>さらに僕は、感覚でThreadsを語っているわけではありません。<strong>Analyca</strong>というThreadsの分析システムを自社で開発・運用していて、<strong>2,500投稿以上のデータとインサイト</strong>をAIと一緒に分析しながら、「どんな投稿が伸びるのか」「どんな投稿が集客や売上につながるのか」を検証し続けています。この教材の中身は、その<strong>成果実証済みの内容</strong>だけです。</p>
+  <div class="lesson-intro">冒頭では僕自身の数字を紹介しました。<br>ここでは同じ説明を繰り返さず、<strong>この方法が他の人にも再現できているのか</strong>を、受講生のインタビューと成果画像だけで確認します。</div>
 
   <h3>受講生インタビュー</h3>
-  <p>そして、これは僕だけの再現性ではありません。未経験・新規アカウント・フォロワー100人以下から始めた受講生でも、成果が出ています。しかも多くの受講生が、リール時代の半分以下の労力で2倍以上の集客実績を出していて、義務感ではなくSNS運用を楽しんで取り組めています。</p>
+  <p>未経験・新規アカウント・フォロワー100人以下から始めた人でも、成果が出ています。</p>
+  <p>売上だけではなく、何を変えたのか、どこでつまずいていたのかも対談の中で話してもらいました。</p>
 
   <div class="voice-grid">
     <div class="voice-card">
@@ -487,16 +525,6 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       <div class="voice-body">
         <span class="voice-badge">さおりさん</span>
         <p class="voice-result">1ヶ月でフォロワー1,300名・LINE登録400名増加</p>
-      </div>
-    </div>
-
-    <div class="voice-card">
-      <div class="voice-video">
-        <iframe src="https://www.youtube.com/embed/RYFjEkP19X0" title="なぎささんインタビュー" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="voice-body">
-        <span class="voice-badge">なぎささん</span>
-        <p class="voice-result">Threads運用2ヶ月で150万円の収益化</p>
       </div>
     </div>
 
@@ -551,89 +579,42 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     </div>
   </div>
 
-  <h3>他にも成果が続出しています</h3>
-  <p>受講生のリアルなスクリーンショットです。1ヶ月以内、フォロワー100名以下でもこれだけの成果が出ています。</p>
+  <h3 id="latest-results">受講生の成果も続々</h3>
+  <p>新しい報告も、これまでに届いた報告も、すべて同じ受講生成果です。</p>
+  <p>インプレッションやフォロワー数だけでなく、<strong>LINE登録・相談・成約・売上まで確認できる事例</strong>を中心に厳選しました。</p>
 
   <div class="ss-grid">
     <div class="ss-card">
-      <div class="ss-caption">9.5万インプ・フォロワー+66名・LINE+72名</div>
-      <img src="../seminar4/ss02.jpg" alt="9.5万インプ・フォロワー+66名・LINE+72名" loading="lazy">
+      <div class="ss-caption">8月報：売上27万円・LINE370名・Threadsフォロワー+675名</div>
+      <img src="assets/images/latest-result-aug-270k.jpg" alt="8月の受講生成果 売上27万円 LINE370名 Threadsフォロワー675名増加" loading="lazy">
     </div>
     <div class="ss-card">
-      <div class="ss-caption">2週間で60.4万インプ・フォロワー+203名</div>
-      <img src="../seminar4/ss03.jpg" alt="2週間で60.4万インプ・フォロワー+203名" loading="lazy">
+      <div class="ss-caption">8月報：売上90.2万円・LINE+155名・Threadsフォロワー+237名</div>
+      <img src="assets/images/latest-result-aug-902k.jpg" alt="8月の受講生成果 売上90.2万円 LINE155名増加 Threadsフォロワー237名増加" loading="lazy">
+    </div>
+    <div class="ss-card">
+      <div class="ss-caption">7月報：売上94万円・成約3件・Threadsフォロワー+1,159名</div>
+      <img src="assets/images/latest-result-jul-940k.jpg" alt="7月の受講生成果 売上94万円 成約3件 Threadsフォロワー1159名増加" loading="lazy">
+    </div>
+    <div class="ss-card">
+      <div class="ss-caption">7月報：売上120万円・成約4件・LINE348名・Threadsフォロワー+923名</div>
+      <img src="assets/images/latest-result-jul-1200k.jpg" alt="7月の受講生成果 売上120万円 成約4件 LINE348名 Threadsフォロワー923名増加" loading="lazy">
+    </div>
+    <div class="ss-card">
+      <div class="ss-caption">LINE登録319名から、55万円の商品が成約</div>
+      <img src="assets/images/latest-result-line-319-contract-550k.jpg" alt="LINE登録319名から55万円の商品成約" loading="lazy">
+    </div>
+    <div class="ss-card">
+      <div class="ss-caption">わずか3投稿で25万インプ・LINE登録+60名・フォロワー1,000名達成</div>
+      <img src="assets/images/latest-result-three-posts-250k-impressions.jpg" alt="3投稿で25万インプレッション LINE登録60名増加 フォロワー1000名達成" loading="lazy">
     </div>
     <div class="ss-card">
       <div class="ss-caption">37万インプ・LINE登録250名増加</div>
       <img src="../seminar4/ss04.jpg" alt="37万インプ・LINE登録250名増加" loading="lazy">
     </div>
     <div class="ss-card">
-      <div class="ss-caption">フォロワー500人増・LINE登録250人増</div>
-      <img src="../seminar4/ss05.jpg" alt="フォロワー500人増・LINE登録250人増" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">18万インプ・フォロー240名</div>
-      <img src="../seminar4/ss06.jpg" alt="18万インプ・フォロー240名" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">12万インプ・フォロワー400人以上</div>
-      <img src="../seminar4/ss07.jpg" alt="12万インプ・フォロワー400人以上" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">LINE登録45名・フォロワー150名以上</div>
-      <img src="../seminar4/ss08.jpg" alt="LINE登録45名・フォロワー150名以上" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">フォロワー+264人・LINE登録+68人</div>
-      <img src="../seminar4/ss09.jpg" alt="フォロワー+264人・LINE登録+68人" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">1投稿で21万インプ</div>
-      <img src="../seminar4/ss10.jpg" alt="1投稿で21万インプ" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">フォロワー+20名・LINE登録21名・個別相談1名</div>
-      <img src="assets/images/result-01.jpg" alt="フォロワー+20名・LINE登録21名・個別相談1名" loading="lazy">
-    </div>
-    <div class="ss-card">
       <div class="ss-caption">42万インプ・公式LINE登録45名・個別相談1名</div>
       <img src="assets/images/result-02.jpg" alt="42万インプ・公式LINE登録45名・個別相談1名" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">5.9万インプ・3日でフォロワー+100名</div>
-      <img src="assets/images/result-03.jpg" alt="5.9万インプ・3日でフォロワー+100名" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">1週間で初サービス成約・売上10万円</div>
-      <img src="assets/images/result-04.jpg" alt="1週間で初サービス成約・売上10万円" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">約5.9万インプ・Instagramフォロワー+10名</div>
-      <img src="assets/images/result-05.jpg" alt="約5.9万インプ・Instagramフォロワー+10名" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">3週間でフォロワー500名超・10万インプ目前</div>
-      <img src="assets/images/result-06.jpg" alt="3週間でフォロワー500名超・10万インプ目前" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">フォロワー+20名</div>
-      <img src="assets/images/result-07.jpg" alt="フォロワー+20名" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">3万インプ超・フォロワー+50名</div>
-      <img src="assets/images/result-08.jpg" alt="3万インプ超・フォロワー+50名" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">1ヶ月でフォロワー1,000名超・10万インプ2日連続</div>
-      <img src="assets/images/result-09.jpg" alt="1ヶ月でフォロワー1,000名超・10万インプ2日連続" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">1投稿でLINEリスト50件超増加</div>
-      <img src="assets/images/result-10.jpg" alt="1投稿でLINEリスト50件超増加" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">約1ヶ月でフォロワー1,000人超</div>
-      <img src="assets/images/result-11.jpg" alt="約1ヶ月でフォロワー1,000人超" loading="lazy">
     </div>
     <div class="ss-card">
       <div class="ss-caption">月商109万円・公式LINE+55名・フォロワー+166名</div>
@@ -644,10 +625,6 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       <img src="assets/images/result-13.jpg" alt="月商43万円・公式LINE115名・フォロワー+577名" loading="lazy">
     </div>
     <div class="ss-card">
-      <div class="ss-caption">売上35.1万円・個別相談1件成約・LINE+12名</div>
-      <img src="assets/images/result-14.jpg" alt="売上35.1万円・個別相談1件成約・LINE+12名" loading="lazy">
-    </div>
-    <div class="ss-card">
       <div class="ss-caption">売上22万円・個別相談3件成約・LINE+111名</div>
       <img src="assets/images/result-15.jpg" alt="売上22万円・個別相談3件成約・LINE+111名" loading="lazy">
     </div>
@@ -655,44 +632,26 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       <div class="ss-caption">16.4万インプ・LINE登録33件・個別相談2件</div>
       <img src="assets/images/result-16.jpg" alt="16.4万インプ・LINE登録33件・個別相談2件" loading="lazy">
     </div>
-    <div class="ss-card">
-      <div class="ss-caption">サービス申込・支払い完了の報告</div>
-      <img src="assets/images/result-17.jpg" alt="サービス申込・支払い完了の報告" loading="lazy">
-    </div>
-    <div class="ss-card">
-      <div class="ss-caption">法人設立につながった受講生の声</div>
-      <img src="assets/images/result-18.jpg" alt="法人設立につながった受講生の声" loading="lazy">
-    </div>
   </div>
 
-  <h3>僕がこの教材を作った理由</h3>
-  <p>ここで少しだけ、本音の話をさせてください。</p>
-  <div class="highlight-box">今までの努力は、報われなかったんじゃない。方向がズレてただけだった。——これがこの教材で一番伝えたいことです。あなたの努力は、方向を変えれば報われます。</div>
-  <p>本音を言うと、僕は今のSNS業界に違和感があります。「投稿しなきゃ」「インプットしなきゃ」——義務感だけで発信して疲弊していく人が、大量発生しています。そしてその発信の中身は、誰かから聞いた情報の又聞き。例えるなら、<strong>カルピスの原液がどんどん薄まっていくような情報</strong>がタイムラインに溢れています。一方で、表面だけ整えた発信がたまたま伸びて、中身の濃さと関係なく稼げてしまう構造もある。</p>
-  <blockquote>ちゃんと中身がある人、ちゃんとお客さんに向き合っている人が報われずに、それっぽい発信だけが伸びていく。僕はこの構造が、正直悔しいんです。だからこそ、本物の価値を持っている人にこそ、正しい武器を持ってほしい。</blockquote>
-  <p>最近のThreads界隈で言うと、安価なnoteを販売して稼ぐ手法が流行っています。僕も実際にいくつか買って、中身を確かめました。正直に言うと、どこかで聞いた話を薄く並べただけの、価格に見合わない内容がほとんどでした。ああいう教材で学んだ人が成果を出せずに「自分には向いてない」と諦めていく。僕は、これが一番許せないんです。</p>
-  <p>だからこの教材は、その真逆を行くと決めました。</p>
-  <ul>
-    <li><strong>ボリュームと質で圧倒する</strong> — テキストだけで約2万文字。有料で売られているnoteより濃い内容を、無料で配ります。さらに約60分の動画講座もセットです</li>
-    <li><strong>これだけで完結させる</strong> — 中途半端な有料教材に手を出すくらいなら、この無料教材を全部勉強すればそれで完結する。そう言い切れる内容にしました</li>
-  </ul>
-  <p>そもそも僕は、仕事やビジネスは本来楽しいものだと思っています。成果を出す喜び。成長する喜び。自分のやってきたことが、必要な人に届いて感謝される喜び。でも現実には資金繰りがあって、「売上を立てなきゃ」「発信しなきゃ」という義務が先行し、いつの間にかSNSが自分をすり減らす苦行になっていく。</p>
-  <p>だから、僕の提案はこうです。<strong>集客はThreads×AIの仕組みに任せて、義務感の投稿労働から解放される。空いた時間と心の余裕で、目の前のお客さんを勝たせることに集中する。</strong></p>
-  <div class="highlight-box">目指す基準は「お客さんが来すぎて困る」状態です。そこを基準に置けば、「集客できた」は当たり前の通過点になります。まず、その人間になりましょう。そのための方法を、ここから全部解説します。</div>
-
-  <div class="highlight-box">この人たちに特別な才能があったわけじゃないです。正しいやり方で、正しい場所で、数を打っただけ。マジでそれだけ。次はあなたの番です。</div>
-
   <div class="lesson-summary">
-    <h4>まとめ</h4>
+    <h4>成果画像で見るポイント</h4>
     <ul>
-      <li>僕も受講生も、Threads×AIで結果が変わった。成果が出なかったのは方向のズレで、方向を変えれば努力は報われる</li>
-      <li>この教材は約2万文字＋約60分の動画講座。「これだけで完結」させる内容にした</li>
-      <li>目指す基準は「お客さんが来すぎて困る」状態。集客は仕組みに任せ、お客さんを勝たせることに集中する</li>
+      <li>新旧で括り分けず、結果の強さが伝わる順に掲載</li>
+      <li>インプレッションだけでなく、LINE登録・相談・成約・売上まで進んでいる</li>
+      <li>扱う商品や開始時点が違っても、投稿から販売導線まで整えることで結果が出ている</li>
     </ul>
   </div>
 
 
 </section>
+
+<!-- ===== Seminar CTA: after student results ===== -->
+<aside class="seminar-direct-cta" id="seminar-student-cta">
+  <h3>次は、あなたのアカウントで<br>成果を出す番です</h3>
+  <p>自分のジャンルに合わせた投稿設計と導線を、セミナーで具体的に解説します。</p>
+  <a href="https://lstep.app/yeqIFWy" class="bonus-cta-btn" data-launchkit-line-cta>今すぐセミナーに申し込む</a>
+</aside>
 
 <!-- ========== 第3章 ========== -->
 <section class="lesson" id="lesson3">
@@ -700,9 +659,19 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <div class="lesson-number">03</div>
     <h2 class="lesson-title">第3章：伸びる投稿は「何」で決まるのか — アルゴリズムの正体と3原則</h2>
   </div>
-  <div class="lesson-intro">ここから原理原則の解説に入ります。<br>なぜThreadsなのか、なぜ長文なのか、なぜAIなのか。<strong>仕組みを理解しないまま投稿しても、再現性は生まれません。</strong>2,500投稿の分析データをもとに、伸びる構造を解説します。</div>
+  <div class="lesson-intro">ここから原理原則の解説に入ります。<br>なぜThreadsなのか、なぜ長文なのか、なぜAIなのか。<strong>仕組みを理解しないまま投稿しても、再現性は生まれません。</strong>3,300投稿の分析データをもとに、伸びる構造を解説します。</div>
 
-  <h3>なぜ媒体はThreadsなのか</h3>
+  <h3>なぜ今、Threadsなのか — 成長速度が違う</h3>
+  <p>SNSは、投稿の作りやすさだけで選ぶものではありません。</p>
+  <p><strong>今、人が増えている場所か。</strong>ここを外すと、同じ努力でも届き方が変わります。</p>
+  <p>Metaの公式発表では、Threadsの月間利用者数は2024年7月の1.75億人から、2026年6月には5億人へ増加。約2年でおよそ2.9倍です。</p>
+  <p>Instagramも巨大な媒体ですが、同社発表の20億人から30億人への伸びと比べても、Threadsの立ち上がりの速さがわかります。</p>
+
+  <figure class="guide-visual">
+    <img src="assets/images/guide-sns-growth-comparison.jpg" alt="Threads・Instagram・Xの成長速度を比較した資料" loading="lazy">
+  </figure>
+
+  <h3>成長しているだけではない — 集客に向く3つの理由</h3>
   <div class="diagram">
     <div class="sns-grid">
       <div class="sns-card dim">
@@ -732,9 +701,12 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <h4>理由1：文章だけなのに、圧倒的に集客できる</h4>
   <p>Threadsは撮影も編集も不要、顔出しも必須ではありません。スマホ1台で、移動中でもカフェでも家事の合間でも投稿できます。リール1本に3時間かけていた人が、同じ時間で<strong>テキストなら10投稿以上</strong>出せます。どちらが集客しやすいかは明らかです。</p>
   <h4>理由2：悩みが深い「読む人」が集まるから、売上につながる</h4>
-  <p>リールは「ながら見」されますが、文章は「ながら読み」ができません。本を読みながらテレビは見られないですよね。つまり文章を読むという行為は、<strong>そのテーマに興味があり、集中して情報を取りに来ている</strong>ということ。だからThreadsには熱量の高い見込み客が集まります。講座・コンサル・サロン・高単価商品のような「信頼が必要な商品」と圧倒的に相性がいいです。</p>
+  <p>リールは「ながら見」されますが、文章は「ながら読み」ができません。</p>
+  <p>文章を読むという行為は、<strong>そのテーマに興味があり、集中して情報を取りに来ている</strong>ということです。</p>
+  <p>だからThreadsには熱量の高い見込み客が集まります。講座・コンサル・サロンなど、信頼が必要な商品と相性がいい媒体です。</p>
   <h4>理由3：AIで投稿が作りやすい</h4>
-  <p>テキスト媒体だからこそ、AIとの相性が抜群です。伸びている投稿をAIに学習させて、型に沿って量産できる。僕が6ヶ月でフォロワー5,000名を達成できたのは、この仕組みを回しているからです。</p>
+  <p>テキスト媒体だからこそ、AIとの相性が抜群です。</p>
+  <p>伸びている投稿をAIに学習させて、型に沿って作成と改善を繰り返せます。僕がAI投稿を軸に、複数アカウント合計で約8,000名のフォロワー増加を作れたのも、この仕組みを回したからです。</p>
 
   <h3>アルゴリズムの本質は「滞在時間」</h3>
   <p>「コメントが多い投稿が伸びる」とよく言われます。半分正解で、半分間違いです。実際に僕の投稿データで、こういうケースがありました。</p>
@@ -780,7 +752,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>Threadsが優位な理由は3つ：文章だけで簡単・読む人＝濃い見込み客・AIと相性抜群</li>
+      <li>Threadsは約2年で月間利用者が約2.9倍に伸びた成長市場。文章・見込み客の濃さ・AIとの相性でも集客に向いている</li>
       <li>アルゴリズムの本質は滞在時間。長文は「伸び」と「客の質」を両取りできる</li>
       <li>伸びない人の間違いは、短文バズ狙い・いいね回り・表面の真似・分析しない、の4つ</li>
       <li>原則は3つ：悩みから逆算 × 長文の型 × AIに設計図を渡す</li>
@@ -796,7 +768,21 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </div>
   <div class="lesson-intro">原則がわかったら、すぐ投稿……ではありません。<strong>いきなり投稿を書かないでください。</strong><br>「誰のどんな悩みを解決する発信なのか」が決まっていない状態で投稿しても、すべてズレます。投稿の前に、土台を作ります。</div>
 
-  <h3>STEP1：競合リサーチ — 答えはすでにThreadsの中にある</h3>
+  <h3>STEP1：売る商品から逆算する — 投稿より先にゴールを決める</h3>
+  <p>アカウント設計は「今日は何を投稿しよう」から始めません。最初に、<strong>最終的に販売する商品・サービス</strong>を決めます。商品が決まると、誰に買ってほしいのか、その人が抱えている悩みは何か、何を発信すればいいのかが一本につながるからです。</p>
+  <ol>
+    <li><strong>売る商品を決める</strong></li>
+    <li><strong>その商品で解決できる悩みを決める</strong></li>
+    <li><strong>その悩みを持つ人を決める</strong></li>
+    <li><strong>その人に向けてアカウントを設計する</strong></li>
+    <li><strong>その人が読みたい投稿を作る</strong></li>
+  </ol>
+  <p>この順番なら、インプレッションを取るためだけの発信ではなく、<strong>商品に興味のある人を集める発信</strong>になります。</p>
+  <figure class="guide-visual">
+    <img src="assets/images/guide-reverse-design.jpg" alt="売る商品から逆算したThreads設計の5ステップ" loading="lazy">
+  </figure>
+
+  <h3>STEP2：競合リサーチ — 答えはすでにThreadsの中にある</h3>
   <p>「何を書けばいいかわからない」——この悩みの正体は、ただ正解を知らないだけです。ゼロから考える必要はありません。<strong>答えは、すでに伸びている投稿の中にあります。</strong></p>
   <p>Threadsで「AI」「集客」「サロン」「コーチング」「美容」「起業」など、自分のジャンルに近いキーワードで検索して、同じジャンルの発信者を10人ほど見つけてください。</p>
   <p><strong>見るべき投稿の目安：</strong></p>
@@ -813,7 +799,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </ul>
   <blockquote>最初に1〜2時間かけて、20〜30投稿チェックしてください。これだけで「何を書けばいいかわからない」状態からかなり抜け出せます。</blockquote>
 
-  <h3>STEP2：ターゲットを決める — 「みんなに届けたい」は誰にも届かない</h3>
+  <h3>STEP3：ターゲットを決める — 「みんなに届けたい」は誰にも届かない</h3>
   <p>次に、誰に向けて書くのかを決めます。ここが決まっていないと、何を書いても刺さりません。明確にすべきことは3つです。</p>
   <h4>① その人はどんな人なのか</h4>
   <p>年齢、職業、家族構成、今の状況、どんな毎日を過ごしているのか。できるだけ具体的にします。</p>
@@ -837,7 +823,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </div>
   <div class="highlight-box">表面的な悩みではなく、根っこの欲求に刺さる発信ができると、反応がまったく変わります。ターゲットは絞るほど刺さる。売上は「広さ」ではなく「深さ」で決まります。</div>
 
-  <h3>STEP3：ポジションを決める — 掛け合わせで「あなたしか語れない場所」を作る</h3>
+  <h3>STEP4：ポジションを決める — 掛け合わせで「あなたしか語れない場所」を作る</h3>
   <p>1つのジャンルだけだと、競合と差別化できません。<strong>2つ以上のジャンルを掛け合わせる</strong>ことで、あなたしか語れないポジションが生まれます。</p>
   <ul>
     <li>マーケティング × AI → 「AIを使ったマーケ自動化」</li>
@@ -846,7 +832,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </ul>
   <p>そして、キャラクターは「まず専門性と信頼、その後にユニーク」の順番です。面白いキャラはオプション。<strong>専門性という土台がないと、何を載せても崩れます。</strong>目指す認知は「この人、いいこと言ってるな」「なんか知ってそう」——このレベルで十分です。</p>
 
-  <h3>STEP4：プロフィールを整える — 投稿を頑張る前に必ずやる</h3>
+  <h3>STEP5：プロフィールを整える — 投稿を頑張る前に必ずやる</h3>
   <p>投稿を見て興味を持った人は、必ずプロフィールを見に来ます。そこで「何をしている人かわからない」と、せっかくの投稿が全部無駄になります。</p>
   <div class="diagram">
     <div class="funnel">
@@ -857,26 +843,28 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       <div class="funnel-step" style="background:#a855f7;width:50%;max-width:150px;padding:12px 0">フォローする</div>
     </div>
   </div>
-  <p>プロフィールで大事なのは3つです。</p>
+  <p>プロフィールで大事なのは4つです。</p>
   <h4>① 名前 — 何の人か一瞬でわかるように</h4>
   <p>「名前｜キーワード」の形式がおすすめです。例：「AI×Threads集客」「サロン集客アドバイザー」「リール不要のSNS集客」。見た瞬間に何の人かわかることが大事です。</p>
   <h4>② 誰向けなのか</h4>
   <p>どんな人のための発信なのかを明記します。</p>
   <h4>③ 実績 — 数字で信頼を作る</h4>
-  <p>例：「6ヶ月でフォロワー5,000名」「3ヶ月でLINE登録500名」「SNS経由で月商100万円達成」。数字や具体的な成果が信頼の材料になります。</p>
+  <p>例：「複数アカウント合計で約8,000名増加」「LINE登録2,500名」「SNS経由で月商100万円達成」。数字や具体的な成果が信頼の材料になります。</p>
+  <h4>④ 次の行動 — 興味を持った人を迷わせない</h4>
+  <p>「詳しくはプロフィールのリンクへ」「無料ガイドはLINEから」など、次に何をすればいいかを明記します。プロフィールを読んで終わりにせず、LINEやセミナーなど次の接点へ案内してください。</p>
   <p>「まだ実績がない場合は？」と思った方へ。最初は①名前と②誰向けが明確になっていれば十分です。数字は成果が出るたびに更新していけばいい。<strong>完璧なプロフィールを待って投稿しないことが、一番の損失です。</strong></p>
-  <p><strong>Bio全体の例：</strong><br>Threads×AIで集客を自動化｜6ヶ月でフォロワー5,000名増加｜LINE登録1,400名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
+  <p><strong>Bio全体の例：</strong><br>Threads×AIで集客を自動化｜複数アカウント合計約8,000名増加｜LINE登録2,500名｜Instagramに疲れた人向けにThreads運用法を発信｜詳しくはリンクから</p>
   <p><strong>逆にNGなのは</strong>「コーチングやっています」「フォロバします」「仲良くしてください」「DMもお気軽に」のようなプロフィール。誰のどんな悩みを解決する人なのかがわからず、興味を持たれません。</p>
   <p>プロフィール画像は「人」だとわかることが大事ですが、顔出しは必須ではありません。僕自身、Xでは顔出しせずアイコンで運用して4,000万円以上売り上げました。AIでイラスト系のアイコンを作ればOKです。</p>
 
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>いきなり投稿を書かない。リサーチ→ターゲット→ポジション→プロフィールの順で土台を作る</li>
+      <li>いきなり投稿を書かない。商品→悩み→ターゲット→アカウント→投稿の順で売上から逆算する</li>
       <li>競合リサーチは1〜2時間で20〜30投稿。伸びている投稿に答えがある</li>
       <li>ターゲットは「人物像・悩み・理想」の3点を言語化。「なぜ？」で根っこの欲求まで掘る</li>
       <li>ジャンルは掛け合わせで独自ポジションを作る。キャラは専門性が先、ユニークは後</li>
-      <li>プロフィールは名前・誰向け・実績の3点。投稿を頑張る前に必ず整える</li>
+      <li>プロフィールは名前・誰向け・実績・次の行動の4点。投稿を頑張る前に必ず整える</li>
     </ul>
   </div>
 </section>
@@ -888,6 +876,16 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <h2 class="lesson-title">第5章：スクロールが止まる長文には「型」がある</h2>
   </div>
   <div class="lesson-intro">土台ができたら、いよいよ投稿です。<br>第3章で「長文が伸びる」理由は解説しました。ただし、<strong>長ければいいわけではありません。読まれる長文には型があります。</strong>ここを覚えれば、投稿作りで迷うことがなくなります。</div>
+
+  <h3>短文と長文は、役割が違う</h3>
+  <p>短文投稿にもメリットはあります。短くて読まれやすく、共感されれば広く拡散されるので、<strong>あなたを知ってもらう入口</strong>として有効です。ただし、短文だけでは専門知識や解決方法まで伝えにくく、インプレッションが伸びても商品への興味につながらないことがあります。</p>
+  <div class="table-wrap"><table>
+    <tr><th></th><th>短文投稿</th><th>長文投稿</th></tr>
+    <tr><td><strong>主な役割</strong></td><td>認知・共感を広げる</td><td>悩みを深掘りし、信頼を作る</td></tr>
+    <tr><td><strong>伝えられること</strong></td><td>気づき・一言の主張</td><td>悩み・原因・解決策・実例</td></tr>
+    <tr><td><strong>向いている目的</strong></td><td>存在を知ってもらう</td><td>商品に興味のある人を集める</td></tr>
+  </table></div>
+  <div class="highlight-box">短文か長文かの二択ではありません。短文で知ってもらい、長文で理解と信頼を深める。特に商品につながる見込み客を集めたい時は、長文を軸にしてください。</div>
 
   <h3>投稿の基本フォーマット：ツリー形式</h3>
   <p>Threadsの長文投稿は、1投稿で完結させるのではなく、<strong>メイン投稿＋コメント欄（ツリー形式）</strong>で構成します。自分の投稿に自分でコメントをぶら下げていく形式です。</p>
@@ -909,36 +907,41 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </div>
   <p>これで滞在時間が自然と伸びて、アルゴリズムにも評価されます。</p>
 
-  <h3>読まれる長文の5つの流れ</h3>
+  <h3>読まれる長文の6つの流れ</h3>
   <p>中身の流れはこうです。</p>
   <ol>
-    <li><strong>冒頭で悩みを代弁する</strong> — 「それ、私のことです」と思わせる</li>
-    <li><strong>今までのやり方がなぜ成果につながらないのかを伝える</strong></li>
-    <li><strong>新しい考え方を提示する</strong> — 常識を壊して気づきを与える</li>
-    <li><strong>具体例を出す</strong> — 数字や場面で「自分にもできそう」と思わせる</li>
-    <li><strong>次の行動を取りたくなるように締める</strong></li>
+    <li><strong>フック</strong> — 「これは自分の話だ」と手を止めてもらう</li>
+    <li><strong>悩み</strong> — 相手が抱えている状況を具体的に代弁する</li>
+    <li><strong>原因</strong> — うまくいかない理由や、よくある間違いを伝える</li>
+    <li><strong>解決方法</strong> — 具体的に何を変えればいいのかを示す</li>
+    <li><strong>証拠</strong> — 自分の経験・お客様の事例・数字で納得感を作る</li>
+    <li><strong>次の行動（CTA）</strong> — フォローやプロフィールなど、次に進む場所を案内する</li>
   </ol>
   <div class="highlight-box">大事なのは、見込み客の悩みを代弁し、新しい気づきを与え、「もっと知りたい」と思わせること。ただ長いだけの投稿は読まれません。この流れがあるから、長文でも読まれます。</div>
+  <figure class="guide-visual">
+    <img src="assets/images/guide-thread-flow.jpg" alt="メイン投稿 返信1 返信2で作る長文投稿のツリー型構成" loading="lazy">
+  </figure>
 
-  <h3>実例：この型で書くとこうなる</h3>
-  <p>型の説明だけだとイメージしにくいので、実際にこの型で書いた投稿例を見せます。テーマは「リールを頑張っても集客できない理由」です。</p>
+  <h3 id="post-example">実例：この型で書くとこうなる</h3>
+  <p>型の説明だけだとイメージしにくいので、実際の投稿例を見てみましょう。テーマは「ChatGPTのカスタム指示」です。</p>
   <div class="diagram">
-    <div class="thread-diagram">
+    <div class="thread-diagram post-example-thread">
       <div class="thread-post">
         <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
-        <div class="thread-content"><div class="thread-role">メイン投稿（悩みの代弁・問題提起）</div><div class="thread-text">リールを毎日投稿してるのに集客できない人へ。原因は努力不足じゃなくて、媒体選びです。</div></div>
+        <div class="thread-content"><div class="thread-role">メイン投稿</div><div class="thread-text">ChatGPT有料版、月3000円払ってるのに無料版と同じ使い方してる人多すぎます。<br><br>実は「カスタム指示」っていう神機能があって、これ設定するだけで回答精度が別次元になります。<br><br>僕もこれ知らずに半年無駄にしてました。設定後、やり直し作業が90%減った話をすると…</div></div>
       </div>
       <div class="thread-post">
         <div class="thread-line"><div class="thread-dot"></div><div class="thread-connector"></div></div>
-        <div class="thread-content"><div class="thread-role">コメント欄 1（ダメな理由 → 新しい考え方）</div><div class="thread-text">僕は1年半前、リールで集客しようとして200本投稿しました。台本を書いて、撮影して、編集して、テロップを入れて。1本作るのに3時間。それを毎日です。<br><br>結果、フォロワーは700人。LINE登録は週に1〜2件でした。<br><br>原因はシンプルで、リールは「ながら見」される媒体だからです。流れてきたから見る。面白かったらいいねする。でも、行動まではつながらない。<br><br>特に講座やコンサル、サロンのような「信頼が必要な商品」は、一瞬の動画だけでは売れません。<br><br>そこで僕は、戦う場所をThreadsに変えました。文章は「ながら読み」ができません。読んでくれる人は、そのテーマに本気で興味がある人だけ。つまり、最初から見込み度の高い人にしか届かない媒体なんです。</div></div>
+        <div class="thread-content"><div class="thread-role">コメント1</div><div class="thread-text">「カスタム指示」って設定画面の奥底に隠れてるんで、ほとんどの人が気づいてないんですよ。<br><br>これ何かっていうと、毎回のプロンプトに自動で前提条件を追加してくれる機能なんです。<br><br>具体的な設定方法▼<br>①設定→パーソナライズ→カスタム指示を開く<br>②「あなたについて知っておくべきこと」に職業・業界・専門分野を記入<br>③「ChatGPTにどのように応答してほしいか」に出力形式・文体・禁止事項を記入<br><br>例えば僕の場合はこんな感じで設定してます▼<br>【あなたについて】<br>・SNSマーケター、AI活用の専門家<br>・ビジネス文書とSNS投稿を頻繁に作成<br>・簡潔で具体的な回答を好む<br><br>【応答方法】<br>・結論ファーストで回答<br>・箇条書きを多用<br>・専門用語は使わず平易な表現で<br>・曖昧な表現は避けて断定的に<br><br>これ一度設定すれば、毎回「あなたは〜の専門家です」って書く必要なくなります。<br><br>マジで革命ですよ。<br><br>ただし注意点があって、カスタム指示は「新しいチャット」を開始した時だけ適用されるんです。</div></div>
       </div>
       <div class="thread-post">
         <div class="thread-line"><div class="thread-dot cta"></div></div>
-        <div class="thread-content"><div class="thread-role cta">コメント欄 2（具体例 → 次の行動）</div><div class="thread-text">実際に変えてどうなったか。<br><br>リール時代に週1〜2件だったLINE登録が、今は連日10件以上入ります。6ヶ月でフォロワー5,000名、LINE登録1,400名。かけている時間は1日1時間です。<br><br>リール1本に3時間かけるなら、その時間でThreadsの投稿が10本以上作れます。どちらが集客しやすいかは、数字が証明してくれました。<br><br>もしあなたが今、リールで消耗しているなら、頑張る場所を変えるだけで結果は変わります。プロフィールに手順をまとめた特典を置いてあるので、受け取ってみてください。</div></div>
+        <div class="thread-content"><div class="thread-role cta">コメント2</div><div class="thread-text">同じチャット内で続けてると反映されないんで、用途ごとに新規チャット立ち上げるのがコツです。<br><br>あと応用テクニックなんですが、用途別に複数のカスタム指示パターンを作っておくと便利です。<br><br>・ビジネス文書用<br>・SNS投稿用<br>・アイデア出し用<br>・コード生成用<br><br>みたいな感じで、スクショ保存しておいて切り替えて使うと効率爆上がりします。<br><br>設定に5分かかるけど、その後の作業効率が10倍変わるんで、今すぐやらないとマジで損です。<br><br>有料版使ってるのにこの機能知らないのは、フェラーリ買って軽自動車モードで走ってるようなもんですよ。<br><br>今後もこういったAI活用の裏技を見逃したくない方は、僕を（@kudooo_ai）フォローしておいてください。</div></div>
       </div>
     </div>
   </div>
-  <p>ポイントは3つ。冒頭が<strong>「あなたのことです」と特定の人に刺さる書き方</strong>になっていること。自分の失敗談という<strong>AIには書けない実体験</strong>が入っていること。そして最後が<strong>具体的な数字→行動の流れ</strong>で締まっていること。この3つが揃うと、長文でも最後まで読まれます。</p>
+  <p>ポイントは、冒頭で<strong>「有料版なのに使いこなせていない」という損失</strong>を突きつけ、コメント1で設定手順を渡し、コメント2で応用方法とフォローへつないでいることです。</p>
+  <p>自分の失敗期間と「やり直し作業が90%減った」という具体的な数字があるため、長文でも続きを読みたくなる構成になっています。</p>
 
   <h3>フックが9割 — 1行目に時間をかけろ</h3>
   <p>タイムラインには大量の投稿が流れていて、ユーザーは1〜2秒で「読むかどうか」を判断します。その判断基準が<strong>一行目（フック）</strong>です。フックが弱いと、どれだけ良い内容もスルーされる。読まれない投稿は、存在しないのと同じです。</p>
@@ -995,7 +998,8 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <tr><td>ストーリー系</td><td>自分の経験や体験を語る</td><td>20%</td></tr>
     <tr><td>質問系</td><td>読者に問いかけてコメントを促す</td><td>10%</td></tr>
   </table></div>
-  <p>ノウハウ系をメインにする理由はシンプルです。共感系で集まるのは「共感してくれた人」、ノウハウ系で集まるのは「学びたい人」。<strong>学びたい人＝お金を払ってでも解決したい人＝あなたの見込み客</strong>です。実際に受講生の投稿データを分析しても、共感系はインプは取れても集客にはつながりにくいという結果が出ています。</p>
+  <p>ノウハウ系をメインにする理由はシンプルです。共感系で集まるのは「共感してくれた人」、ノウハウ系で集まるのは「学びたい人」です。</p>
+  <p><strong>学びたい人＝お金を払ってでも解決したい人＝あなたの見込み客</strong>です。受講生の投稿データでも、共感系はインプレッションが伸びても集客につながりにくい傾向が出ています。</p>
 
   <h3>投稿タイミングと読みやすさのルール</h3>
   <div class="table-wrap"><table>
@@ -1015,8 +1019,9 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
+      <li>短文は認知、長文は理解・信頼。商品に興味のある人を集める時は長文を軸にする</li>
       <li>長文はツリー形式。メイン50文字＋コメント欄1・2（各400〜500文字）</li>
-      <li>流れは5つ：悩み代弁→今までがダメな理由→新しい考え方→具体例→次の行動</li>
+      <li>流れは6つ：フック→悩み→原因→解決方法→証拠→次の行動</li>
       <li>フックが9割。5〜10案出して「手が止まる1行」だけを使う</li>
       <li>ノウハウ系50%以上。学びたい人＝見込み客を集める</li>
       <li>投稿は朝6〜9時・夜18〜21時</li>
@@ -1025,16 +1030,35 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <p style="margin-top:20px">そうは言っても、「この型で毎日書くのは大変そう」と思いますよね。だから、ここからがAIの出番です。</p>
 </section>
 
-<!-- ===== ミッドポイント：受講生ストーリー ===== -->
-<section class="lesson" style="padding:36px 0">
-  <h3 style="margin-top:0">ここで、ひとつ実話を</h3>
-  <p>受講生の渚さんは、子供の歯並び矯正講座を運営しています。それまで1年間SNSを頑張って、集まったLINEリストは30人。売上は40万円でした。</p>
-  <p>そこから、ここまでの章で話した「土台作り」と「長文の型」に切り替えて、どうなったか。</p>
-  <p><strong>1ヶ月でLINE登録250人。月商100万円。</strong></p>
-  <blockquote>「今までピタリとも鳴らなかったLINEの通知が、鳴り止まなくなりました」——本人の言葉です。</blockquote>
-  <p>彼女に特別な才能があったわけでも、フォロワーが多かったわけでもありません。やったのは、ここまでの内容の実践だけです。</p>
-  <div class="highlight-box">つまり、ここまで読んだあなたは、渚さんが成果を出した時と同じスタート地点に、もう立っています。残りの章は「これをラクに回し続ける方法」です。あと少しだけ、ついてきてください。</div>
+<!-- ===== ミッドポイント：渚さんインタビュー ===== -->
+<section class="lesson" id="nagisa-case" style="padding:36px 0">
+  <h3 style="margin-top:0">渚さん：1年間でLINE30名 → 1ヶ月で250名</h3>
+  <p>子どもの歯並び矯正講座を運営する渚さんは、1年間SNSを続けても、集まったLINEリストは30名でした。</p>
+  <p>そこで変えたのが、ここまで解説した<strong>アカウントの土台と長文投稿の型</strong>です。</p>
+
+  <div class="voice-card" style="margin:24px 0">
+    <div class="voice-video">
+      <iframe src="https://www.youtube.com/embed/RYFjEkP19X0" title="渚さん対談動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="voice-body">
+      <span class="voice-badge">渚さん</span>
+      <p class="voice-result">Threads運用2ヶ月で150万円の収益化</p>
+    </div>
+  </div>
+
+  <p>フォロワー数を追うだけではなく、投稿からLINEまでの導線をつなげたことで、通知が鳴らなかった状態から結果が動き始めました。</p>
+  <div class="highlight-box">この事例で見るべきなのは、特別な才能ではありません。誰に何を届け、どの型で読ませ、次の行動へ案内するか。その順番を整えたことです。</div>
 </section>
+
+<!-- ===== Seminar CTA: AI partner ===== -->
+<aside class="seminar-bonus-cta" id="seminar-bonus-ai-partner">
+  <span class="seminar-bonus-badge">今だけ｜セミナー参加特典</span>
+  <h3>渚さんのように、投稿を<br>一人で考え続けない仕組みを作る</h3>
+  <p>あなたの仕事・商品・言葉を理解し、投稿作成や改善を一緒に進める「専属AIパートナー」の育て方を特典にまとめました。</p>
+  <img src="assets/images/seminar-bonus-ai-partner.png" alt="セミナー参加特典 専属AIパートナー育成マニュアル" class="seminar-bonus-image" loading="lazy">
+  <a href="https://lstep.app/yeqIFWy" class="bonus-cta-btn" data-launchkit-line-cta>今すぐセミナーに申し込んで受け取る</a>
+  <span class="seminar-bonus-note">参加特典はセミナー参加者限定です</span>
+</aside>
 
 <!-- ========== 第6章 ========== -->
 <section class="lesson" id="lesson6">
@@ -1052,21 +1076,30 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <li>「美容サロン向けに投稿を作ってください」</li>
   </ul>
   <p>これだと、AIは「それっぽい投稿」は作ってくれます。でも、見込み客の心を動かす投稿にはなりません。なぜか。<strong>情報が足りないからです。</strong></p>
+  <p>プロンプトとは、単なる「命令文」ではありません。何を作ってほしいかに加えて、<strong>AIが考えるための事前情報と、自分の考えまで含めた指示全体</strong>がプロンプトです。</p>
   <p>AIに渡すべき情報はこれだけあります。</p>
   <ul>
+    <li>あなたが販売している商品・サービスは何か</li>
     <li>誰に向けた投稿なのか</li>
     <li>その人は何に悩んでいるのか</li>
     <li>どんな日常の痛みを感じているのか</li>
     <li>どんな思い込みを持っているのか</li>
     <li>どんな未来を望んでいるのか</li>
+    <li>実際のお客様から届いた質問・相談・使っている言葉</li>
     <li>あなた自身の実績や経験は何か</li>
+    <li>あなたが普段使っている言葉・文体・考え方</li>
     <li>どんな投稿の型で出力するのか</li>
     <li>投稿の目的は何か</li>
     <li>最後にどんな行動をしてほしいのか</li>
   </ul>
+  <figure class="guide-visual">
+    <img src="assets/images/guide-ai-inputs.jpg" alt="AIに読み込ませる投稿作成の土台となる8種類の情報" loading="lazy">
+  </figure>
   <div class="highlight-box">この設計を入れずにAIに投げれば、出てくる文章は薄くなります。そしてその薄い文章をそのまま投稿しているから、集客できないんです。AIが悪いのではなく、渡している設計図が弱いだけです。</div>
   <p>最近は「AIがあればコンサルタントはいらない」とも言われます。でも実際は、同じAIと壁打ちしても、集客の知識がある人とない人とでは、出力に大きな差が出ます。この差は、どれだけAIが優秀になっても埋まりません。<strong>だからこそ、この教材で「正しい設計図の作り方」から学ぶ価値があります。</strong></p>
-  <p>イメージで言うと、AIは超優秀な料理人です。「何か作って」と言えばそれなりの料理は出てきますが、「誰が食べるのか」「アレルギーは」「何の記念日か」を伝えれば、その人のための一皿を作ってくれます。<strong>出てくる料理の質を決めるのは、料理人の腕ではなく、あなたの注文の質</strong>なんです。あなたは今、どっちの注文をしていますか？</p>
+  <p>イメージで言うと、AIは超優秀な料理人です。「何か作って」と言えば、それなりの料理は出てきます。</p>
+  <p>でも、「誰が食べるのか」「アレルギーはあるか」「何の記念日か」まで伝えれば、その人のための一皿を作ってくれます。</p>
+  <p><strong>出てくる料理の質を決めるのは、料理人の腕ではなく、あなたの注文の質</strong>です。</p>
   <p>気づきましたか？　この「渡すべき情報」は、第4章で作った土台そのものです。リサーチして、ターゲットを決めて、ポジションを定めたから、AIに正しい指示が出せる。<strong>土台を作った人だけが、AIを武器にできます。</strong></p>
 
   <h3>AIは「代筆屋」ではなく「相棒」</h3>
@@ -1098,7 +1131,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <div class="lesson-summary">
     <h4>まとめ</h4>
     <ul>
-      <li>「投稿を作って」だけの指示では薄い文章しか出ない。AIには設計図を渡す</li>
+      <li>プロンプトは命令文だけではない。AIが考えるための事前情報と自分の考えまで渡す</li>
       <li>渡すべき設計図は、第4章で作った土台そのもの</li>
       <li>AIは代筆屋ではなく、整理・言語化・構成・分析のパートナー</li>
       <li>AI8割・自分2割。フックの最終判断と自分の経験だけは絶対に自分でやる</li>
@@ -1155,7 +1188,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
 テーマ：【リールを毎日投稿しても集客できない理由】
 ターゲット：【Instagramのリール作成に疲れた30〜40代の個人事業主】
 この投稿で壊したい思い込み：【投稿数を増やせばいつか伸びるはず】
-私の実績・経験：【リール200本で挫折→Threadsに変えて6ヶ月でLINE登録1,400名】
+私の実績・経験：【リール200本で挫折→Threadsに変えてフォロワー合計約8,000名増加・LINE登録2,500名】
 読後にしてほしい行動：【プロフィールを見に行く】
 
 構成（ツリー形式で出力）：
@@ -1216,13 +1249,15 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </div>
 </section>
 
-<!-- ===== CTA 2 (after prompts) ===== -->
-<div class="seminar-cta">
-  <p class="cta-eyebrow">この5本は基本セットです。僕が実際に使っている"完全版"は、セミナーでお渡しします。</p>
-  <h3>1ヶ月でフォロワー1,000人伸ばした<br>AIプロンプト集を、<br>無料セミナーで受け取ってください。</h3>
-  <p>プロンプトは、文章で見るだけだと使い方を間違える人が多いです。<br>セミナーでは実際の使い方まで解説した上で、<strong>投稿生成テンプレート集・アカウント添削GPT・AI投稿分析マニュアル</strong>など6大特典をその場でお渡しします。</p>
-  <a href="https://liff.line.me/2007350099-K9dE2l1E/landing?follow=%40118dgavc&lp=djBIn1&liff_id=2007350099-K9dE2l1E" class="cta-btn" data-launchkit-line-cta>無料セミナーで完全版を受け取る</a>
-</div>
+<!-- ===== Seminar CTA: post prompt ===== -->
+<aside class="seminar-bonus-cta" id="seminar-bonus-prompt">
+  <span class="seminar-bonus-badge">今だけ｜セミナー参加特典</span>
+  <h3>7項目を埋めるだけで<br>Threads投稿の下書きが完成</h3>
+  <p>ターゲット・テーマ・フック・本文・構成・CTA・文体まで、AIへ渡す項目を一つにした「Threads投稿生成プロンプト」をお渡しします。</p>
+  <img src="assets/images/seminar-bonus-post-prompt.png" alt="セミナー参加特典 Threads投稿生成プロンプト" class="seminar-bonus-image" loading="lazy">
+  <a href="https://lstep.app/yeqIFWy" class="bonus-cta-btn" data-launchkit-line-cta>今すぐ申し込んで投稿プロンプトを受け取る</a>
+  <span class="seminar-bonus-note">申込みフォームへ直接移動します</span>
+</aside>
 
 <!-- ========== 第8章 ========== -->
 <section class="lesson" id="lesson8">
@@ -1248,8 +1283,15 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <li><strong>競合チェック</strong> — 伸びている投稿を5〜10本見て、フックの引き出しを増やす</li>
   </ul>
 
-  <h3>集客の入口も忘れずに：3つのLINE導線</h3>
-  <p>投稿が回り始めたら、集客の入口を整えます。やることは3つだけです。</p>
+  <h3>投稿から商品まで、導線を一本につなぐ</h3>
+  <p>導線とは、プロフィールにLINEのリンクを置くことだけではありません。どの商品を誰に届けるのか。その人へThreadsで何を伝え、投稿を読んだ後にプロフィール・LINE・セミナーや個別相談を通じて、どんな順番で商品を理解してもらうのか。<strong>この流れ全体が導線</strong>です。</p>
+  <figure class="guide-visual">
+    <img src="assets/images/guide-sales-funnel.jpg" alt="Threads投稿からプロフィール LINE セミナー個別相談 商品までの導線" loading="lazy">
+  </figure>
+  <p>投稿とプロフィールの内容、LINEで届ける情報、最後に案内する商品がバラバラだと、途中で離脱されます。逆に、同じ悩みと解決策が一貫していれば、フォロワーが少ない段階でも商品に興味のある人が次の行動へ進みやすくなります。</p>
+
+  <h3>集客の入口を作る：3つのLINE導線</h3>
+  <p>全体の流れを理解したうえで、まずはThreadsからLINEへ進む入口を整えます。やることは3つだけです。</p>
   <ol>
     <li><strong>プロフィールリンク</strong> — LINE登録リンクを設置（第4章で設定済み）</li>
     <li><strong>固定ポスト</strong> — プロフィール直下に固定される投稿で、特典と登録メリットを伝える。プロフィールに来た人が必ず目にする場所です</li>
@@ -1265,14 +1307,20 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </ol>
   <p>固定ポストは一度作れば、寝ている間もプロフィールに来た人を案内し続けてくれます。投稿は毎日流れていきますが、固定ポストは資産です。月1回、反応を見て磨いてください。</p>
 
-  <h3>数字は週次でこの4つだけ見る</h3>
+  <h3>数字は「フォロワーの先」まで見る</h3>
+  <p>フォロワー数やインプレッション数が増えると、成果が出たように感じます。でも本当の集客とは、<strong>商品の対象になる人に次の行動へ進んでもらうこと</strong>です。表面的な数字だけで判断せず、投稿から商品までのどこまで進んだかを確認してください。</p>
+  <figure class="guide-visual">
+    <img src="assets/images/guide-vanity-metrics.jpg" alt="フォロワー数やインプレッション数だけを集客と勘違いしないための図解" loading="lazy">
+  </figure>
   <ul>
     <li>インプレッション数</li>
     <li>プロフィールアクセス数（目安：インプの0.5%以上）</li>
     <li>フォロワー増加数（目安：プロフィールアクセスの5%以上）</li>
     <li>LINE登録数</li>
+    <li>セミナー申込・個別相談・予約数</li>
+    <li>成約数・売上</li>
   </ul>
-  <blockquote>どこで離脱されているかが分かれば、直す場所も決まります。インプが少ない→フック。プロフアクセスが少ない→投稿内容とCTA。フォローされない→プロフィール。数字で判断すれば、感覚の運用から卒業できます。</blockquote>
+  <blockquote>どこで離脱されているかが分かれば、直す場所も決まります。インプが少ない→フック。プロフアクセスが少ない→投稿内容とCTA。フォローされない→プロフィール。LINEから先へ進まない→特典・配信内容・商品との一貫性。数字で判断すれば、感覚の運用から卒業できます。</blockquote>
 
   <h3>よくあるつまずきと対処法</h3>
   <h4>Q. ネタが切れたら？</h4>
@@ -1287,11 +1335,22 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <ul>
       <li>毎日60分：テーマ選び→AI下書き→フック磨き→仕上げ→投稿。1時間で3〜5投稿</li>
       <li>週1回：プロンプト⑤で分析＋競合チェック</li>
-      <li>LINE導線は3つ：プロフィールリンク・固定ポスト・投稿内CTA（5〜10投稿に1回）</li>
-      <li>見る数字は4つだけ。離脱箇所がわかれば直す場所も決まる</li>
+      <li>導線は投稿→プロフィール→LINE→セミナー／個別相談→商品まで一本につなぐ</li>
+      <li>LINEへの入口は3つ：プロフィールリンク・固定ポスト・投稿内CTA（5〜10投稿に1回）</li>
+      <li>フォロワーとインプだけでなく、LINE登録・予約・成約・売上まで見る</li>
     </ul>
   </div>
 </section>
+
+<!-- ===== Seminar CTA: funnel guide ===== -->
+<aside class="seminar-bonus-cta" id="seminar-bonus-funnel">
+  <span class="seminar-bonus-badge">今だけ｜セミナー参加特典</span>
+  <h3>投稿で終わらせず、<br>LINE・相談・成約まで一本につなぐ</h3>
+  <p>Threads投稿からプロフィール、LINE、セミナー・個別相談、商品までを迷わせずにつなぐ「売れる導線設計ガイド」を参加者限定でお渡しします。</p>
+  <img src="assets/images/seminar-bonus-funnel-guide.png" alt="セミナー参加特典 売れる導線設計ガイド" class="seminar-bonus-image" loading="lazy">
+  <a href="https://lstep.app/yeqIFWy" class="bonus-cta-btn" data-launchkit-line-cta>参加特典つきで今すぐ申し込む</a>
+  <span class="seminar-bonus-note">今すぐ申込みフォームから日程を選べます</span>
+</aside>
 
 <!-- ========== 第9章 ========== -->
 <section class="lesson" id="lesson9">
@@ -1317,7 +1376,9 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   <p>1週間で結果を求める人は、だいたい途中でやめます。結果を出す人は、最低3ヶ月は継続する前提で始めます。</p>
 
   <h4>5. 「楽しんでいる」</h4>
-  <p>最後はこれです。第2章で話した通り、義務感だけの運用は続きません。結果を出している受講生は、口を揃えて「Threads楽しい」と言います。数字が動く、反応が来る、見込み客とつながる——この手応えがあるから続くし、続くから伸びる。<strong>楽しさは、おまけではなく成果の条件です。</strong></p>
+  <p>最後はこれです。義務感だけの運用は続きません。</p>
+  <p>結果を出している受講生は、口を揃えて「Threads楽しい」と言います。数字が動き、反応が来て、見込み客とつながる。この手応えがあるから続きます。</p>
+  <p><strong>楽しさは、おまけではなく成果の条件です。</strong></p>
 
   <h3>やりがちな失敗とその回避法</h3>
 
@@ -1359,7 +1420,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
     <h4>全章の振り返り</h4>
     <ul>
       <li><strong>第1章</strong>：成果が出ないのは努力不足ではなく構造の問題。失敗5パターンから抜け出す</li>
-      <li><strong>第2章</strong>：僕も受講生も、Threads×AIで結果が変わった。方向を変えれば努力は報われる</li>
+      <li><strong>第2章</strong>：受講生インタビューと成果画像で、投稿からLINE・相談・成約・売上までの再現性を確認した</li>
       <li><strong>第3章</strong>：アルゴリズムの本質は滞在時間。原則は「悩みから逆算×長文の型×AIに設計図」</li>
       <li><strong>第4章</strong>：いきなり投稿しない。リサーチ→ターゲット→ポジション→プロフィールの土台が先</li>
       <li><strong>第5章</strong>：長文はツリー形式。悩み代弁→ダメな理由→新しい考え方→具体例→次の行動</li>
@@ -1370,6 +1431,21 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
   </div>
 
   <div class="highlight-box" style="margin-top:24px">最後に、もう一度だけ。あなたの今までの努力は、無駄だったんじゃない。方向がズレてただけです。方向を変えて、義務感の発信から抜け出して、本来のビジネスの楽しさを取り戻しましょう。あなたが楽しんでいれば、お客さんは勝手に集まってきます。</div>
+</section>
+
+<!-- ===== Seminar CTA: all four bonuses ===== -->
+<section class="seminar-bonus-showcase" id="seminar-bonuses">
+  <span class="seminar-bonus-badge">今だけ｜セミナー参加者限定</span>
+  <h3>今申し込むと、実践に使える<br>4つの参加特典がついてきます</h3>
+  <p>学んで終わりにせず、アカウント設計・投稿作成・AI活用・販売導線まで、そのまま実践できる形でお渡しします。</p>
+  <div class="bonus-showcase-grid">
+    <div class="bonus-showcase-item"><img src="assets/images/seminar-bonus-account-sheet.png" alt="Threadsアカウント設計シート" loading="lazy"></div>
+    <div class="bonus-showcase-item"><img src="assets/images/seminar-bonus-post-prompt.png" alt="Threads投稿生成プロンプト" loading="lazy"></div>
+    <div class="bonus-showcase-item"><img src="assets/images/seminar-bonus-ai-partner.png" alt="専属AIパートナー育成マニュアル" loading="lazy"></div>
+    <div class="bonus-showcase-item"><img src="assets/images/seminar-bonus-funnel-guide.png" alt="売れる導線設計ガイド" loading="lazy"></div>
+  </div>
+  <a href="https://lstep.app/yeqIFWy" class="bonus-cta-btn" data-launchkit-line-cta>4つの参加特典つきで今すぐ申し込む</a>
+  <span class="seminar-bonus-note">ボタンを押すとセミナー申込みフォームへ移動します</span>
 </section>
 
 <!-- ========== BONUS TOKUTEN ========== -->
@@ -1436,24 +1512,23 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
         <span>結局、一人で試行錯誤して3ヶ月無駄にする未来が見える</span>
       </div>
     </div>
-    <p class="lead"><strong>問題は「知っているかどうか」ではなく、自分のアカウントに落とし込めるかどうか。この壁を90分で全部壊すのが、無料セミナーです。</strong><br>あなたのジャンルへの落とし込み方を解説した上で、<br><strong>1ヶ月でフォロワー1,000人伸ばしたAIプロンプト集・投稿生成テンプレート集・伸びるアカウント設計チェックリスト・アカウント添削GPT・AI投稿分析マニュアル・プロフィール生成GPTs</strong>の6大特典をその場でお渡しします。</p>
+    <p class="lead"><strong>問題は「知っているかどうか」ではなく、自分のアカウントに落とし込めるかどうか。</strong><br>この壁を90分で全部壊すのが、無料セミナーです。</p>
+    <p class="lead">あなたのジャンルへの落とし込み方を解説します。さらに、<strong>Threadsアカウント設計シート・Threads投稿生成プロンプト・専属AIパートナー育成マニュアル・売れる導線設計ガイド</strong>の4つの参加特典をお渡しします。</p>
     <div style="background:#fff;border:1px solid #e0e7ff;border-radius:12px;padding:16px 20px;max-width:420px;margin:0 auto 20px;text-align:left;box-shadow:0 2px 12px rgba(99,102,241,.08)">
       <p style="font-size:13px;font-weight:700;color:#4338ca;margin-bottom:8px">参加までの流れ（1分で終わります）</p>
       <p style="font-size:13px;color:#475569;line-height:1.9">STEP 1：下のボタンをタップ<br>STEP 2：参加したい日程を選んで申込（約1分）<br>STEP 3：届いたご案内に従って、当日オンラインで参加</p>
     </div>
-    <a href="https://liff.line.me/2007350099-K9dE2l1E/landing?follow=%40118dgavc&lp=djBIn1&liff_id=2007350099-K9dE2l1E" class="cta-btn-main" data-launchkit-line-cta>今すぐ無料セミナーに参加する</a>
+    <a href="https://lstep.app/yeqIFWy" class="cta-btn-main" data-launchkit-line-cta>4つの参加特典つきで今すぐ申し込む</a>
     <p class="cta-note">※各回の参加枠には限りがあります。満席の回はお選びいただけません。</p>
   </div>
 </section>
 
 <footer class="footer" style="text-align:left;max-width:680px;margin:0 auto">
   <p style="font-size:14px;font-weight:800;color:#475569;margin-bottom:8px">追伸</p>
-  <p style="font-size:13px;color:#64748b;line-height:2">「なんで無料でここまで出すんですか？」とよく聞かれます。<br>
-  答えは第2章で話した通りです。価格に見合わない教材で学んだ人が、成果が出ずに「自分には向いてない」と諦めていく。僕はそれが一番許せない。だから、これだけで完結する内容を無料で出すと決めました。<br><br>
-  そして、ここまで2万文字を読み切ったこと自体が、すでに上位数%の行動力です。ほとんどの人は、受け取った特典を開きもしません。<br>
-  あとは、やるかやらないか。それだけです。<br><br>
-  あなたの今までの努力は、方向を変えれば必ず報われます。次はあなたの番です。<br><br>
-  工藤</p>
+  <p style="font-size:13px;color:#64748b;line-height:2">「なんで無料でここまで出すんですか？」とよく聞かれます。</p>
+  <p style="font-size:13px;color:#64748b;line-height:2">必要な手順を知る前に「自分には向いていない」と諦めてほしくない。だから、実践に必要な内容を無料でまとめました。</p>
+  <p style="font-size:13px;color:#64748b;line-height:2">ここまで読み切ったら、次は一つだけでも実践してみてください。今までの努力も、方向を整えれば結果につながります。</p>
+  <p style="font-size:13px;color:#64748b;line-height:2">工藤</p>
 </footer>
 
 <script>
@@ -1498,7 +1573,7 @@ body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans
       var final = document.querySelector('.final-cta');
       if (final) obs.observe(final), final.id = final.id || 'final-cta';
     }
-    var ctas = document.querySelectorAll('.seminar-cta a.cta-btn, a.cta-btn-main');
+    var ctas = document.querySelectorAll('.seminar-direct-cta a.bonus-cta-btn, .seminar-bonus-cta a.bonus-cta-btn, .seminar-bonus-showcase a.bonus-cta-btn, a.cta-btn-main');
     ctas.forEach(function (a, i) {
       a.addEventListener('click', function () {
         var m = (a.href.match(/utm_content=([^&]+)/) || [])[1] || ('cta' + i);
