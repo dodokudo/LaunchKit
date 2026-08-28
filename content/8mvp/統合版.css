@@ -890,6 +890,58 @@ body {
   height: auto;
 }
 
+/* スマホでは長文の可読性と、各セクションの切れ目を優先する */
+@media (max-width: 560px) {
+  .curriculum-block h2 {
+    min-height: 16.3cqw;
+    font-size: 4.35cqw;
+  }
+
+  .curriculum-block p {
+    padding: 3cqw 3.35cqw 5.4cqw;
+    font-size: 3.65cqw;
+    line-height: 1.67;
+  }
+
+  .bonus-intro {
+    min-height: auto;
+    padding: 3.8cqw 2.7cqw 4.2cqw;
+  }
+
+  .bonus-intro__label {
+    margin-bottom: 4.5cqw;
+  }
+
+  .bonus-intro > p:last-child {
+    margin-top: 3.4cqw;
+  }
+
+  .case-hybrid + .case-hybrid {
+    margin-top: 6cqw;
+  }
+
+  .letter-canvas {
+    min-height: auto;
+    padding: 5cqw 4.8cqw 6cqw;
+  }
+
+  .letter-canvas h2 {
+    margin-bottom: 4.5cqw;
+    font-size: 4.8cqw;
+  }
+
+  .letter-canvas p {
+    margin-bottom: 5.8cqw;
+    font-size: 3.55cqw;
+    line-height: 1.78;
+    white-space: normal;
+  }
+
+  .letter-canvas__mobile-break {
+    display: block;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
