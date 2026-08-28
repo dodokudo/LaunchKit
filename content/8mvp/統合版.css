@@ -147,7 +147,7 @@ body {
 
 .bonus-intro__label {
   display: table;
-  margin: 0 auto 1.8cqw;
+  margin: 0 auto 4.5cqw;
   padding: 0.65cqw 2.15cqw 0.75cqw;
   background: var(--grad);
   color: #fff;
@@ -500,6 +500,10 @@ body {
   width: 100%;
   margin: 0;
   background: #fff;
+}
+
+.case-hybrid + .case-hybrid {
+  margin-top: 6cqw;
 }
 
 .case-profile {
@@ -908,16 +912,8 @@ body {
     padding: 3.8cqw 2.7cqw 4.2cqw;
   }
 
-  .bonus-intro__label {
-    margin-bottom: 4.5cqw;
-  }
-
   .bonus-intro > p:last-child {
     margin-top: 3.4cqw;
-  }
-
-  .case-hybrid + .case-hybrid {
-    margin-top: 6cqw;
   }
 
   .letter-canvas {
