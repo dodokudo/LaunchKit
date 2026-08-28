@@ -38,6 +38,7 @@ img {
 }
 
 .lp {
+  container-type: inline-size;
   width: min(100%, var(--lp-width));
   margin: 0 auto;
   padding-bottom: calc(min(29.537037vw, 221.528px) + env(safe-area-inset-bottom));
@@ -1017,7 +1018,7 @@ img {
 }
 
 .method-explainer {
-  padding: 2.8cqw 1.4cqw 14cqw;
+  padding: 2.8cqw 1.4cqw 8cqw;
   text-align: center;
 }
 
@@ -1464,6 +1465,41 @@ img {
 
   .benefit-card__body {
     line-height: 1.72;
+  }
+
+  .proof-intro__copy,
+  .seminar-benefits__summary,
+  .story-check__lead,
+  .story-check__result,
+  .reason-structure__result,
+  .method-explainer__copy,
+  .method-explainer__copy--small,
+  .audience-fit__intro,
+  .audience-fit__not-for,
+  .audience-fit__promise,
+  .audience-fit__closing {
+    font-size: clamp(0.94rem, 4cqw, 1.04rem);
+    line-height: 1.55;
+  }
+
+  .outlined-checklist li,
+  .method-checklist li {
+    font-size: clamp(0.92rem, 3.8cqw, 1.02rem);
+    line-height: 1.4;
+  }
+
+  .square-checklist li {
+    min-height: 6.2cqw;
+    padding-top: 1cqw;
+    padding-bottom: 1cqw;
+    font-size: clamp(0.88rem, 3.7cqw, 0.98rem);
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .faq-card__answer p {
+    font-size: clamp(0.94rem, 3.9cqw, 1.04rem);
+    line-height: 1.5;
   }
 
   .desktop-only {
