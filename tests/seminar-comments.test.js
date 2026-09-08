@@ -96,7 +96,7 @@ test('待機中の実コメントをGCSへ保存する', async () => {
 
 test('入室時間外はコメントを保存しない', async () => {
   const originalNow = Date.now;
-  Date.now = () => Date.parse('2026-07-15T02:00:00.000Z');
+  Date.now = () => Date.parse('2026-07-15T00:49:59.000Z');
   try {
     const res = responseRecorder();
     await commentsHandler({ method: 'POST', body: { message: 'test' } }, res);
