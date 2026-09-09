@@ -36,7 +36,7 @@ test('コメント保存先を開催回ごとに分離する', () => {
   assert.equal(objectName, 'sessions/2026-07-15T12-00-00-000Z.json');
 });
 
-test('待機中の実コメントをGCSへ保存する', async () => {
+test('20時回の19:55の実コメントを20時開始の保存先へ保存する', async () => {
   const originalNow = Date.now;
   const originalFetch = global.fetch;
   const originalEnv = {
@@ -45,7 +45,7 @@ test('待機中の実コメントをGCSへ保存する', async () => {
   };
   const { privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
   const calls = [];
-  Date.now = () => Date.parse('2026-07-15T03:55:00.000Z');
+  Date.now = () => Date.parse('2026-07-15T10:55:00.000Z');
   process.env.SEMINAR_COMMENTS_BUCKET = 'comments-bucket';
   process.env.SEMINAR_COMMENTS_CREDENTIALS_JSON = JSON.stringify({
     client_email: 'comments@example.iam.gserviceaccount.com',
@@ -83,7 +83,7 @@ test('待機中の実コメントをGCSへ保存する', async () => {
     const upload = calls.find((call) => call.options.method === 'POST' && call.url.includes('upload/storage'));
     assert.ok(upload);
     assert.match(upload.url, /ifGenerationMatch=0/);
-    assert.match(upload.url, /sessions%2F2026-07-15T04-00-00-000Z\.json/);
+    assert.match(upload.url, /sessions%2F2026-07-15T11-00-00-000Z\.json/);
   } finally {
     Date.now = originalNow;
     global.fetch = originalFetch;
