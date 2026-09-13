@@ -83,6 +83,45 @@
             line-height: 1.4;
         }
         .emergency-bar i { margin-right: 5px; color: #d32f2f; }
+        .countdown-heading {
+            margin-top: 12px;
+            font-size: 15px;
+            letter-spacing: 0.08em;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            margin: 8px auto 6px;
+        }
+        .countdown-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 68px;
+            padding: 9px 7px 7px;
+            background: #111;
+            color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .countdown-value {
+            font-size: 30px;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .countdown-unit {
+            margin-top: 5px;
+            font-size: 11px;
+            line-height: 1;
+        }
+        .countdown-deadline {
+            font-size: 13px;
+        }
+        .countdown-timer.is-expired .countdown-segment {
+            background: #555;
+        }
 
         /* --- 2. FVエリア --- */
         .fv-area {
@@ -515,6 +554,11 @@
            ========================================= */
         @media (max-width: 600px) {
             .emergency-bar { font-size: 14px; padding: 12px 10px; }
+            .countdown-heading { margin-top: 10px; font-size: 13px; }
+            .countdown-timer { gap: 4px; margin-top: 6px; }
+            .countdown-segment { min-width: 56px; padding: 8px 5px 6px; }
+            .countdown-value { font-size: 24px; }
+            .countdown-deadline { font-size: 12px; }
             .pc-br { display: none; }
             .sp-br { display: block; }
             .section { padding: 50px 15px; }
@@ -552,7 +596,15 @@
     <!-- 1. 緊急告知バー -->
     <div class="emergency-bar">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        このプレミアム動画は3日間限定公開です。<br>再公開はいたしませんので期限内にご視聴ください
+        アーカイブは2日間限定で公開します。<br>期限内にご視聴ください
+        <div class="countdown-heading" id="countdown-heading">公開終了まで</div>
+        <div class="countdown-timer" id="archive-countdown" data-deadline="2026-09-15T23:59:59+09:00">
+            <span class="countdown-segment"><strong class="countdown-value" id="countdown-days">--</strong><small class="countdown-unit">日</small></span>
+            <span class="countdown-segment"><strong class="countdown-value" id="countdown-hours">--</strong><small class="countdown-unit">時間</small></span>
+            <span class="countdown-segment"><strong class="countdown-value" id="countdown-minutes">--</strong><small class="countdown-unit">分</small></span>
+            <span class="countdown-segment"><strong class="countdown-value" id="countdown-seconds">--</strong><small class="countdown-unit">秒</small></span>
+        </div>
+        <div class="countdown-deadline">9月15日（火）23:59まで</div>
     </div>
 
     <div class="container">
@@ -562,7 +614,7 @@
             
             <!-- メイン動画 -->
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/PMCjUhArfi8" title="ロードマップ作成会ローンチ動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/SKGc6EFGAZg" title="2日間限定の公開です" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <p class="video-caption">▲ 今すぐ再生して「売れる秘密」を確認する ▲</p>
 
@@ -942,6 +994,49 @@
     <!-- スクロール検知用スクリプト -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const countdown = document.getElementById('archive-countdown');
+            const countdownHeading = document.getElementById('countdown-heading');
+            const countdownValues = {
+                days: document.getElementById('countdown-days'),
+                hours: document.getElementById('countdown-hours'),
+                minutes: document.getElementById('countdown-minutes'),
+                seconds: document.getElementById('countdown-seconds')
+            };
+            let countdownIntervalId = null;
+
+            function updateCountdown() {
+                const deadline = new Date(countdown.dataset.deadline).getTime();
+                const remaining = deadline - Date.now();
+
+                if (remaining <= 0) {
+                    Object.values(countdownValues).forEach(function(element) {
+                        element.textContent = '00';
+                    });
+                    countdownHeading.textContent = 'アーカイブ公開は終了しました';
+                    countdown.classList.add('is-expired');
+                    if (countdownIntervalId) {
+                        window.clearInterval(countdownIntervalId);
+                    }
+                    return false;
+                }
+
+                const totalSeconds = Math.floor(remaining / 1000);
+                const days = Math.floor(totalSeconds / 86400);
+                const hours = Math.floor((totalSeconds % 86400) / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+
+                countdownValues.days.textContent = String(days).padStart(2, '0');
+                countdownValues.hours.textContent = String(hours).padStart(2, '0');
+                countdownValues.minutes.textContent = String(minutes).padStart(2, '0');
+                countdownValues.seconds.textContent = String(seconds).padStart(2, '0');
+                return true;
+            }
+
+            if (countdown && updateCountdown()) {
+                countdownIntervalId = window.setInterval(updateCountdown, 1000);
+            }
+
             const stickyFooter = document.querySelector('.sticky-footer');
             const targetSection = document.getElementById('voice-section');
 
