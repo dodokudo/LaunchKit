@@ -117,6 +117,15 @@ async function main() {
     await fs.copy(threadsGuideSrc, threadsGuideDist);
   }
 
+  // 3.85. threads-kata をdist/threads-kata/にコピー
+  console.log('Copying threads-kata...');
+  const threadsKataSrc = path.join(projectRoot, 'threads-kata');
+  const threadsKataDist = path.join(distDir, 'threads-kata');
+  if (await fs.pathExists(threadsKataSrc)) {
+    await fs.ensureDir(threadsKataDist);
+    await fs.copy(threadsKataSrc, threadsKataDist);
+  }
+
   // 3.9. threads-guide-2 をdist/threads-guide-2/にコピー
   console.log('Copying threads-guide-2...');
   const threadsGuide2Src = path.join(projectRoot, 'threads-guide-2');
