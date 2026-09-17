@@ -225,6 +225,12 @@ async function main() {
     /* LP一覧 */
     .lp-list { display: flex; flex-direction: column; gap: 12px; }
     .lp-item { background: white; border-radius: 8px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto auto auto; gap: 16px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: all 0.2s; }
+    .lp-actions { display: flex; align-items: center; gap: 8px; }
+    .favorite-btn { width: 44px; height: 44px; border: 1px solid #ddd; border-radius: 8px; background: white; color: #777; font-size: 28px; cursor: pointer; line-height: 1; }
+    .favorite-btn[aria-pressed="true"] { color: #a66b00; background: #fff3c4; border-color: #d6ad43; }
+    .favorite-btn:focus-visible { outline: 3px solid #0066cc; outline-offset: 2px; }
+    .lp-item.is-favorite { border-left: 4px solid #d6ad43; }
+    .favorite-help { color: #666; font-size: 13px; margin: -8px 0 20px; }
     .lp-checkbox { width: 18px; height: 18px; cursor: pointer; }
     .lp-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
     .lp-item.hidden { display: none; }
@@ -272,6 +278,7 @@ async function main() {
 <body>
   <div class="container">
     <h1>公開LP一覧</h1>
+    <p class="favorite-help">☆を押すとお気に入りとして上に固定されます。このブラウザに保存されます。</p>
 
     <div class="controls">
       <div class="select-control">
@@ -305,7 +312,10 @@ ${categories.map(cat => `          <option value="${cat}">${cat}</option>`).join
 ${lpList.map(page => {
   const lp = Object.fromEntries(Object.entries(page).map(([key, value]) => [key, escapeHtml(value)]));
   return `      <div class="lp-item" data-slug="${lp.slug}" data-category="${lp.category}" data-created="${lp.created}" data-updated="${lp.updated}" data-name="${lp.name}">
-        <input type="checkbox" class="lp-checkbox">
+        <div class="lp-actions">
+          <button type="button" class="favorite-btn" aria-pressed="false" aria-label="${lp.name}をお気に入りに追加" title="お気に入りに追加">☆</button>
+          <input type="checkbox" class="lp-checkbox">
+        </div>
         <div class="lp-info">
           <span class="lp-field-label">登録名</span>
           <span class="lp-name">${lp.name}</span>
@@ -336,6 +346,46 @@ ${lpList.map(page => {
     const STORAGE_KEY = 'launchkit-lp-meta';
     const originalData = ${JSON.stringify(lpList).replace(/</g, '\\u003c')};
     let lpData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+    const FAVORITES_KEY = 'launchkit-lp-favorites';
+    let favorites = new Set();
+    try {
+      const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
+      if (Array.isArray(saved)) favorites = new Set(saved.filter(slug => typeof slug === 'string'));
+    } catch (_) { /* 保存データが壊れていても一覧を表示する */ }
+
+    function updateFavorite(item) {
+      const active = favorites.has(item.dataset.slug);
+      const button = item.querySelector('.favorite-btn');
+      item.classList.toggle('is-favorite', active);
+      button.textContent = active ? '★' : '☆';
+      button.setAttribute('aria-pressed', String(active));
+      const action = active ? 'お気に入りを解除' : 'お気に入りに追加';
+      button.setAttribute('aria-label', item.dataset.name + 'を' + action);
+      button.title = action;
+    }
+
+    document.querySelectorAll('.lp-item').forEach(item => {
+      updateFavorite(item);
+      item.querySelector('.favorite-btn').addEventListener('click', () => {
+        const slug = item.dataset.slug;
+        const wasFavorite = favorites.has(slug);
+        if (wasFavorite) favorites.delete(slug);
+        else favorites.add(slug);
+        try {
+          localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+        } catch (_) {
+          if (wasFavorite) favorites.add(slug);
+          else favorites.delete(slug);
+          showToast('保存できませんでした。ブラウザの保存設定をご確認ください');
+          return;
+        }
+        updateFavorite(item);
+        applySort();
+        item.querySelector('.favorite-btn').focus({ preventScroll: true });
+        showToast(wasFavorite ? 'お気に入りを解除しました' : 'お気に入りを上に固定しました');
+      });
+    });
 
     // ローカルストレージのデータを適用
     document.querySelectorAll('.lp-item').forEach(item => {
@@ -382,11 +432,13 @@ ${lpList.map(page => {
 
     // ソート
     const sortSelect = document.getElementById('sort-select');
-    sortSelect.addEventListener('change', () => {
+    function applySort() {
       const items = Array.from(document.querySelectorAll('.lp-item'));
       const sortBy = sortSelect.value;
 
       items.sort((a, b) => {
+        const favoriteOrder = Number(favorites.has(b.dataset.slug)) - Number(favorites.has(a.dataset.slug));
+        if (favoriteOrder) return favoriteOrder;
         switch (sortBy) {
           case 'name':
             return a.dataset.name.localeCompare(b.dataset.name, 'ja');
@@ -404,7 +456,8 @@ ${lpList.map(page => {
       });
 
       items.forEach(item => lpList.appendChild(item));
-    });
+    }
+    sortSelect.addEventListener('change', applySort);
 
     // 編集モード
     const editModeBtn = document.getElementById('edit-mode-btn');
@@ -511,12 +564,8 @@ ${lpList.map(page => {
       showToast(checkedItems.length + '件ダウンロードしました');
     });
 
-    // 初期ソート（作成日 新しい順）
-    (function initialSort() {
-      const items = Array.from(document.querySelectorAll('.lp-item'));
-      items.sort((a, b) => b.dataset.created.localeCompare(a.dataset.created));
-      items.forEach(item => lpList.appendChild(item));
-    })();
+    // お気に入りを優先して初期表示
+    applySort();
 
     // トースト
     function showToast(message) {
