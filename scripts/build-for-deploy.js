@@ -4,6 +4,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const { execSync } = require('child_process');
+const { discoverPages, escapeHtml } = require('./list-pages');
 
 // カテゴリを自動推測する関数
 function guessCategory(slug) {
@@ -145,32 +146,10 @@ async function main() {
     delete meta._comment; // コメント行を除外
   }
 
-  // distディレクトリのLP一覧を取得（サブディレクトリも含む）
-  const dirs = [];
-  const excludeDirs = ['assets', 'list', '.vercel', 'css', 'js', 'images', 'fonts', 'images-q90', 'images-webp'];
-  const topDirs = (await fs.readdir(distDir, { withFileTypes: true }))
-    .filter(d => d.isDirectory() && !excludeDirs.includes(d.name) && !d.name.startsWith('.'));
-
-  for (const d of topDirs) {
-    // サブディレクトリがあるかチェック（opt-3/ig, opt-3/th など）
-    const subPath = path.join(distDir, d.name);
-    const subDirs = (await fs.readdir(subPath, { withFileTypes: true }))
-      .filter(sd => sd.isDirectory() && !excludeDirs.includes(sd.name) && !sd.name.startsWith('.'));
-
-    if (subDirs.length > 0) {
-      // サブディレクトリがある場合、それぞれを追加
-      for (const sd of subDirs) {
-        dirs.push(`${d.name}/${sd.name}`);
-      }
-      // 親ディレクトリにindex.htmlがあれば親も追加
-      if (await fs.pathExists(path.join(subPath, 'index.html'))) {
-        dirs.push(d.name);
-      }
-    } else {
-      dirs.push(d.name);
-    }
-  }
-  dirs.sort();
+  // デプロイされる index.html を全階層から検出する。
+  const pages = await discoverPages(distDir);
+  const dirs = pages.map(page => page.slug);
+  const titles = new Map(pages.map(page => [page.slug, page.title]));
 
   // 新規LPがあればメタ情報に追加
   let metaUpdated = false;
@@ -178,7 +157,7 @@ async function main() {
   for (const slug of dirs) {
     if (!meta[slug]) {
       meta[slug] = {
-        name: guessName(slug),
+        name: guessName(slug) !== slug ? guessName(slug) : titles.get(slug),
         category: guessCategory(slug),
         created: today,
         updated: today
@@ -202,7 +181,7 @@ async function main() {
     const m = meta[slug] || { name: slug, category: '未分類', created: '-', updated: '-' };
     return {
       slug,
-      name: m.name,
+      name: !m.name || m.name === slug ? titles.get(slug) : m.name,
       category: m.category,
       created: m.created,
       updated: m.updated,
@@ -323,7 +302,9 @@ ${categories.map(cat => `          <option value="${cat}">${cat}</option>`).join
     </div>
 
     <div class="lp-list" id="lp-list">
-${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-category="${lp.category}" data-created="${lp.created}" data-updated="${lp.updated}" data-name="${lp.name}">
+${lpList.map(page => {
+  const lp = Object.fromEntries(Object.entries(page).map(([key, value]) => [key, escapeHtml(value)]));
+  return `      <div class="lp-item" data-slug="${lp.slug}" data-category="${lp.category}" data-created="${lp.created}" data-updated="${lp.updated}" data-name="${lp.name}">
         <input type="checkbox" class="lp-checkbox">
         <div class="lp-info">
           <span class="lp-field-label">登録名</span>
@@ -337,6 +318,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
           <option value="オプト"${lp.category === 'オプト' ? ' selected' : ''}>オプト</option>
           <option value="セミナー"${lp.category === 'セミナー' ? ' selected' : ''}>セミナー</option>
           <option value="個別相談"${lp.category === '個別相談' ? ' selected' : ''}>個別相談</option>
+          <option value="管理画面"${lp.category === '管理画面' ? ' selected' : ''}>管理画面</option>
           <option value="サンプル"${lp.category === 'サンプル' ? ' selected' : ''}>サンプル</option>
         </select>
         <div class="lp-dates">
@@ -344,7 +326,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
           <span>更新: ${lp.updated}</span>
         </div>
         <a href="${lp.url}" class="lp-link" target="_blank">開く</a>
-      </div>`).join('\n')}
+      </div>`; }).join('\n')}
     </div>
   </div>
 
@@ -352,7 +334,7 @@ ${lpList.map(lp => `      <div class="lp-item" data-slug="${lp.slug}" data-categ
 
   <script>
     const STORAGE_KEY = 'launchkit-lp-meta';
-    const originalData = ${JSON.stringify(lpList)};
+    const originalData = ${JSON.stringify(lpList).replace(/</g, '\\u003c')};
     let lpData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
     // ローカルストレージのデータを適用
