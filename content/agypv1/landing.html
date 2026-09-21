@@ -549,41 +549,11 @@
 </head>
 <body>
 
-    <!-- 1. タイマーバー (グラデーション) -->
-    <div id="countdown-timer" style="background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);color:#fff;text-align:center;padding:10px 16px;font-size:14px;font-weight:700;letter-spacing:0.02em;">
-        <span id="timer-display">公開終了まで <span id="timer-days" style="font-size:18px;font-weight:900;margin:0 2px;">0</span>日 <span id="timer-hours" style="font-size:18px;font-weight:900;margin:0 2px;">0</span>時間<span id="timer-mins" style="font-size:18px;font-weight:900;margin:0 2px;">0</span>分<span id="timer-secs" style="font-size:18px;font-weight:900;margin:0 2px;">0</span>秒</span>
-    </div>
-
-    <!-- 2. 緊急告知バー -->
+    <!-- 1. 緊急告知バー -->
     <div class="emergency-bar">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        セミナーアーカイブは2日間限定公開です。<br>再公開いたしませんので期限内にご視聴ください
+        この動画は2日間限定公開です。<br>再公開いたしませんので期限内にご視聴ください
     </div>
-    <script>
-    (function(){
-        var deadline = new Date('2026-03-28T23:59:00+09:00').getTime();
-        function update(){
-            var now = new Date().getTime();
-            var diff = deadline - now;
-            if(diff <= 0){
-                document.getElementById('countdown-timer').style.background='#333';
-                document.getElementById('timer-display').innerHTML='公開は終了しました';
-                document.getElementById('timer-display').style.fontSize='18px';
-                return;
-            }
-            var d = Math.floor(diff/(1000*60*60*24));
-            var h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-            var m = Math.floor((diff%(1000*60*60))/(1000*60));
-            var s = Math.floor((diff%(1000*60))/1000);
-            document.getElementById('timer-days').textContent = d;
-            document.getElementById('timer-hours').textContent = h;
-            document.getElementById('timer-mins').textContent = m;
-            document.getElementById('timer-secs').textContent = s;
-        }
-        update();
-        setInterval(update, 1000);
-    })();
-    </script>
 
     <div class="container">
 
@@ -594,7 +564,7 @@
             <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/xzYC29Uv2X4?modestbranding=1&rel=0&controls=1&showinfo=0&vq=hd1080" title="ロードマップ作成会ローンチ動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
-            <p class="video-caption">▲ セミナーのアーカイブを確認する ▲</p>
+            <p class="video-caption">▲ この動画を確認する ▲</p>
 
             <!-- 3. CTAエリア (赤枠) -->
             <div class="sandwich-cta">
