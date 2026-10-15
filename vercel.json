@@ -23,6 +23,14 @@
   ],
   "rewrites": [
     {
+      "source": "/1/demo",
+      "destination": "/1/index.html"
+    },
+    {
+      "source": "/1/demo/",
+      "destination": "/1/index.html"
+    },
+    {
       "source": "/funnel",
       "destination": "https://funnel-kudos-projects-0bee12bb.vercel.app/funnel/"
     },

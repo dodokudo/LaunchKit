@@ -51,7 +51,12 @@ module.exports = async function handler(req, res) {
   const testResult = getTestSeminarState(req, nowMs);
   if (testResult?.error) return sendJson(res, 404, { error: testResult.error });
 
-  const state = testResult?.state || getSeminarState(nowMs);
+  const demoMode = new URL(req.url || '/', 'https://lkit.jp').searchParams.get('demo') === '1';
+  const state = demoMode ? {
+    status: 'live',
+    session: { startsAtMs: nowMs, joinOpensAtMs: nowMs, endsAtMs: nowMs + VIDEO_DURATION_MS },
+    nextSession: null,
+  } : testResult?.state || getSeminarState(nowMs);
   const body = {
     status: state.status,
     serverNow: new Date(nowMs).toISOString(),
@@ -59,6 +64,7 @@ module.exports = async function handler(req, res) {
     session: publicSession(state.session),
     nextSession: publicSession(state.nextSession),
     testMode: Boolean(testResult?.testMode),
+    demoMode,
   };
 
   if (state.status !== 'live') return sendJson(res, 200, body);
@@ -70,7 +76,7 @@ module.exports = async function handler(req, res) {
       playbackId,
       signingKeyId: process.env.MUX_SIGNING_KEY_ID,
       privateKeyBase64: process.env.MUX_SIGNING_PRIVATE_KEY_BASE64,
-      expiresAtSeconds: (state.session.endsAtMs / 1000) + 300,
+      expiresAtSeconds: demoMode ? (nowMs / 1000) + 86400 : (state.session.endsAtMs / 1000) + 300,
     });
     return sendJson(res, 200, body);
   } catch (error) {

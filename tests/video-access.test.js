@@ -52,6 +52,42 @@ test('待機中は動画URLを返さない', async () => {
   });
 });
 
+test('時間外はデモだけ署名付き動画を返し、通常URLの時間制限を維持する', async () => {
+  const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 2048 });
+  await withEnv({
+    MUX_PLAYBACK_ID: 'demo-playback-id',
+    MUX_SIGNING_KEY_ID: 'demo-signing-key',
+    MUX_SIGNING_PRIVATE_KEY_BASE64: Buffer.from(
+      privateKey.export({ type: 'pkcs1', format: 'pem' }),
+    ).toString('base64'),
+  }, async () => {
+    await withNow('2026-10-15T14:00:00.000Z', async () => {
+      for (const url of ['/api/video/access', '/api/video/access?demo=0']) {
+        const res = responseRecorder();
+        await handler({ method: 'GET', url }, res);
+        assert.equal(res.body.status, 'closed');
+        assert.equal(res.body.demoMode, false);
+        assert.equal(res.body.playbackToken, undefined);
+      }
+
+      const res = responseRecorder();
+      await handler({ method: 'GET', url: '/api/video/access?demo=1' }, res);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.status, 'live');
+      assert.equal(res.body.demoMode, true);
+      assert.equal(res.body.testMode, false);
+      assert.equal(res.body.session.startsAt, res.body.serverNow);
+      assert.equal(res.headers['cache-control'], 'private, no-store, max-age=0');
+      const [header, payload, signature] = res.body.playbackToken.split('.');
+      const claims = JSON.parse(Buffer.from(payload, 'base64url'));
+      assert.equal(claims.sub, 'demo-playback-id');
+      assert.equal(claims.exp, Date.now() / 1000 + 86400);
+      assert.equal(crypto.verify('RSA-SHA256', Buffer.from(`${header}.${payload}`),
+        publicKey, Buffer.from(signature, 'base64url')), true);
+    });
+  });
+});
+
 test('秘密付きテストURLは30秒後に配信中になる', async () => {
   const testToken = 'test-token';
   const startsAt = Date.parse('2026-08-03T10:00:30.000Z');

@@ -141,6 +141,7 @@
     --controls: none;
     --media-object-size: contain;
   }
+  body.is-demo .video-wrap mux-player { --controls: unset; }
   body.is-pseudo-fullscreen,
   body.is-mobile-stage {
     overflow: hidden;
@@ -496,7 +497,7 @@
             <a class="start-button" id="lineExternalButton" hidden>外部ブラウザで音声付き視聴する</a>
           </div>
         </div>
-        <p class="play-guide">開始10分前から入室できます。途中入室の場合は、その時点の配信位置から始まります。</p>
+        <p class="play-guide" id="playGuide">開始10分前から入室できます。途中入室の場合は、その時点の配信位置から始まります。</p>
         <p class="play-guide line-browser-guide">再生が止まった場合は、再開ボタンを押してください。</p>
       </div>
 
@@ -529,7 +530,7 @@
     <div class="info">
       <p>📱 スマホ・タブレット・PCどれでも視聴可能です</p>
       <p>🔊 音声が出ますので、音量にご注意ください</p>
-      <p>⏯ このセミナーはライブ配信のため、一時停止・早送り・巻き戻しはできません</p>
+      <p id="playbackNotice">⏯ このセミナーはライブ配信のため、一時停止・早送り・巻き戻しはできません</p>
     </div>
   </main>
 
@@ -563,10 +564,18 @@
     const commentSubmit = document.getElementById('commentSubmit');
     const commentError = document.getElementById('commentError');
     const pageUrl = new URL(window.location.href);
+    const isDemoMode = /^\/1\/demo\/?$/.test(pageUrl.pathname);
+    document.body.classList.toggle('is-demo', isDemoMode);
+    if (isDemoMode) {
+      document.title = 'セミナー視聴ページ｜デモ';
+      commentMessage.placeholder = 'デモではコメントを送信できません';
+      document.getElementById('playGuide').textContent = '確認用デモです。いつでも最初から視聴できます。コメント送信はできません。';
+      document.getElementById('playbackNotice').textContent = 'デモでは一時停止・早送り・巻き戻しができます。';
+    }
     const testToken = pageUrl.searchParams.get('test');
     const isTestMode = Boolean(testToken);
     const testStartsAtMs = isTestMode ? Date.now() + 30_000 : null;
-    const accessUrl = isTestMode
+    const accessUrl = isDemoMode ? '/api/video/access?demo=1' : isTestMode
       ? `/api/video/access?test=${encodeURIComponent(testToken)}&startsAt=${testStartsAtMs}`
       : '/api/video/access';
     const commentsUrl = isTestMode
@@ -628,6 +637,7 @@
     }
 
     function livePosition() {
+      if (isDemoMode) return video.currentTime || 0;
       if (!statusData?.session) return 0;
       const startsAt = new Date(statusData.session.startsAt).getTime();
       return Math.max(0, (trustedNow() - startsAt) / 1000);
@@ -732,11 +742,11 @@
 
       if (statusData.status === 'live') {
         broadcastLabel.dataset.status = 'live';
-        broadcastLabel.textContent = '配信中';
-        commentFields.disabled = false;
+        broadcastLabel.textContent = isDemoMode ? 'デモ（時間制限なし）' : '配信中';
+        commentFields.disabled = isDemoMode;
         preparePlayback();
         const endsAt = new Date(statusData.session.endsAt).getTime();
-        if (now >= endsAt) {
+        if (!isDemoMode && now >= endsAt) {
           stopStream();
           refreshStatus();
           return;
@@ -777,6 +787,7 @@
         const response = await fetch(accessUrl, { cache: 'no-store' });
         if (!response.ok) throw new Error('status_request_failed');
         const data = await response.json();
+        if (isDemoMode && statusData?.session) data.session = statusData.session;
         serverOffsetMs = new Date(data.serverNow).getTime() - Date.now();
         statusData = data;
         startRefreshRequested = false;
@@ -945,6 +956,7 @@
     }
 
     async function refreshComments() {
+      if (isDemoMode) return;
       if (commentsRefreshInFlight || !statusData || !['waiting', 'live'].includes(statusData.status)) return;
       commentsRefreshInFlight = true;
       try {
@@ -970,6 +982,7 @@
     startButton.addEventListener('click', startViewing);
     commentForm.addEventListener('submit', async (event) => {
       event.preventDefault();
+      if (isDemoMode) return;
       const message = commentMessage.value.trim();
       if (!message) return;
       commentSubmit.disabled = true;
@@ -1016,7 +1029,7 @@
     });
     video.addEventListener('contextmenu', (event) => event.preventDefault());
     video.addEventListener('ratechange', () => {
-      if (video.playbackRate !== 1) video.playbackRate = 1;
+      if (!isDemoMode && video.playbackRate !== 1) video.playbackRate = 1;
     });
     video.addEventListener('playing', showPlaybackStarted);
     video.addEventListener('waiting', () => {
@@ -1030,7 +1043,7 @@
       showPlaybackRecovery('動画を読み込めませんでした。通信状況を確認してください');
     });
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && viewerStarted && streamStarted) {
+      if (!isDemoMode && !document.hidden && viewerStarted && streamStarted) {
         video.play().catch(() => {
           showPlaybackRecovery('再開ボタンを押すと続きから視聴できます');
         });
