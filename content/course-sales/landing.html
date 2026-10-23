@@ -53,8 +53,8 @@
 <p class="handoff-end">この報告で営業担当の対応は完了です。</p>
 <p>以降の案内・グループ作成・契約書の送付は、運営が対応します。</p></article>
 <section id="help"><h2>困ったとき</h2>
-<details><summary>フォームの案内が届かない</summary><p>ステップ2の専用リンクを使ったか、公式LINEをブロックしていないか確認します。解決しない場合は、未回答の状態であることを運営グループへ報告してください。</p></details>
-<details><summary>フォームの入力を間違えた</summary><p>お客さんの氏名・LINE登録名と、訂正する内容を運営グループへ連絡します。</p></details>
+<details><summary>フォームの案内が届かない</summary><p>公式LINEに登録したお客さんに、トークへ漢字2文字で<strong>「契約」</strong>と送ってもらいます。</p><p>フォームが自動返信で届くので、そこから回答を進めてもらいます。</p></details>
+<details><summary>フォームの入力を間違えた</summary><p>お客さんに、フォームに回答した公式LINEのトークへ漢字2文字で<strong>「修正」</strong>と送ってもらいます。</p><p>修正用の案内が自動返信で届きます。その案内に沿って<strong>「お名前・修正したい項目・正しい内容」</strong>を同じLINEへ返信してもらいます。</p><p>届いた内容を運営担当者が確認して対応します。</p></details>
 </section>
 </main></div><dialog id="zoom"><button id="close">閉じる</button><div class="content"></div></dialog><script>document.querySelectorAll('.shot').forEach(b=>b.onclick=()=>{document.querySelector('#zoom .content').innerHTML=b.innerHTML;document.querySelector('#zoom').showModal()});document.querySelector('#close').onclick=()=>document.querySelector('#zoom').close();document.querySelectorAll('.copybtn').forEach(b=>b.onclick=async()=>{let t=b.parentElement.querySelector('pre').innerText;try{await navigator.clipboard.writeText(t);b.textContent='コピーしました'}catch(e){let r=document.createRange();r.selectNodeContents(b.parentElement.querySelector('pre'));let s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='選択しました。コピーしてください'}});
 (()=>{const $=s=>document.querySelector(s);const narrow=window.matchMedia('(max-width:1000px)');
