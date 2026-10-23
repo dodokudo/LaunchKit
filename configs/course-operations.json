@@ -1,5 +1,6 @@
 {
   "slug": "course-operations",
   "copy_raw": true,
-  "raw_html_file": "content/course-operations/landing.html"
+  "raw_html_file": "content/course-operations/landing.html",
+  "assets_source": "content/course-operations"
 }
