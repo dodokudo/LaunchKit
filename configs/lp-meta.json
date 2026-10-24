@@ -383,5 +383,11 @@
     "category": "管理画面",
     "created": "2026-06-29",
     "updated": "2026-06-29"
+  },
+  "business-blueprint": {
+    "name": "事業構想と実行計画｜商品・共通コンサル・構築代行",
+    "category": "管理画面",
+    "created": "2026-10-25",
+    "updated": "2026-10-25"
   }
 }
