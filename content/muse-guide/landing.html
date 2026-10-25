@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<!DOCTYPE html><html lang="ja"><head>
 <!-- Meta Pixel (LK) v2 -->
-<script async src="/meta-pixel.js"></script>
+<script async="" src="/meta-pixel.js"></script>
 <!-- End Meta Pixel (LK) v2 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -171,15 +169,14 @@ html{scroll-padding-top:20px}
 @media(max-width:600px){.setup-grid{grid-template-columns:1fr;gap:16px}.setup-step{padding:18px}.setup-step strong{font-size:16px}.setup-step p{font-size:14px}.image-viewer{padding-left:6px;padding-right:6px}}
 </style>
 
-</head>
-<body>
+<link rel="stylesheet" href="guide-layout.css"></head>
+<body><a class="skip-link" href="#guide-contents">目次へ移動</a>
 
 <header class="hero">
   <div class="container">
     <p class="hero-badge">LINE登録者の方へお届けする特典</p>
     <h1 class="sr-only">【2026年最新版】Muse × Threads 完全攻略マニュアル</h1>
-    <img class="hero-cover" src="assets/muse-threads-cover.png" width="1024" height="678"
-      alt="Muse × Threads 完全攻略マニュアル。分析・ネタ出し・投稿作成を効率化。2026年最新版。" fetchpriority="high">
+    <img class="hero-cover" src="assets/muse-threads-cover.png" width="1024" height="678" alt="Muse × Threads 完全攻略マニュアル。分析・ネタ出し・投稿作成を効率化。2026年最新版。" fetchpriority="high">
     <p class="hero-deck">LINEへのご登録、ありがとうございます。<br>
     このマニュアルで、Museの導入から投稿分析・ネタ出し・下書き作成まで実践できます。</p>
     <p class="guide-summary">全6章・コピーして使えるプロンプト7本</p>
@@ -204,161 +201,14 @@ html{scroll-padding-top:20px}
 
 <section style="padding-top:0">
   <div class="container">
-<section class="intro"><h2>はじめに</h2>
-<p>どーも、工藤です。LINEに登録してくださった方へ、MuseをThreads集客に使う手順をまとめました。</p>
-<p>Threadsで集客したいのに、毎日「今日は何を書こう」で時間が溶ける。AIに書かせても、自分の発信とは別物になる。投稿後に数字を見ても、次に何を変えればいいか分からない。</p>
-<p>この3つを解消し、自分の発信を続けやすくするために作ったのが、このマニュアルです。</p>
-<p>使うのは、InstagramとThreadsを運営しているMetaが作ったAI「Muse」。自分のアカウントとつないで、投稿を読み込ませて、反応を整理して、次のネタを出す。下書きまで作って、プロフィールと案内先も見直す。Threads運用の作業を、まとめて任せます。</p>
-<p><strong>このガイドのゴールは、Museを使ってThreads集客を自分で回せるようになることです。</strong></p>
-<p>投稿分析もネタ出しも、そのための手段です。誰に何を届けるかを決めて、投稿を作って、興味を持った人を次の行動へ案内して、結果を見て直す。この一周を自分で回せる状態を作ります。</p>
-<p>僕が普段のThreadsガイドで書いている、読者の悩みから考えること、AIに前提情報を渡すこと、自分の経験を足すこと。これも全部入れました。Museの操作と集客の考え方を、同時に身につける構成です。</p>
-<p>プロンプトは7本用意しました。順番に使えば、何を頼めばいいか迷いません。プロンプトというのは、AIに送るお願いの文章のことです。【
-】の中を自分の内容に書き換えて、そのままコピーして使ってください。</p>
-<p>まずは自分の投稿を読み込むところから。最後は、次の1本を仕上げて、案内先を決めるところまで進みます。</p>
-<p>「誰に何を発信するか」「投稿からどう商品やサービスにつなげるか」まで具体的に学びたい方は、<a href="#seminar">最後のセミナー案内</a>もご覧ください。このマニュアルの実践を、集客全体の設計へつなげていきましょう。</p>
-</section>
-<section class="chapter" id="ch1"><div class="chapter-head"><span class="chapter-num">CHAPTER 1</span><h2>Museって何ができるの？</h2></div>
-<h3 id="museはmetaが作ったai">1-1　MuseはMetaが作ったAI</h3>
-<p>Museは、InstagramやThreadsを提供しているMetaのパーソナルAIエージェントです。日本では2026年10月23日に提供が始まりました。スマホやWebから、やってほしいことをメッセージで伝えて使います。[1]</p>
-<p>まず押さえてほしいのは、この「Metaが作っている」という点です。MuseにはInstagramやThreadsと連携する仕組みが用意されています。普段の発信をAIと一緒に振り返る入口が、最初から用意されているということです。[5]</p>
-<p>「エージェント」という言葉は難しく考えなくて大丈夫です。調べる、整理する、文章を作る。この作業を会話しながら進めてくれる相手だと思ってください。</p>
-<p>例えば「この投稿の反応を見て、次に扱うテーマを考えて」と頼む。案が出たら「この読者向けに絞って」「僕の経験を加えて下書きにして」と続ける。相談から具体的な作業まで、同じ会話の中で進みます。</p>
-<h3
-id="threadsとinstagramにそのままつながる">1-2　ThreadsとInstagramに、そのままつながる</h3>
-<p>Metaの公式ヘルプには、Facebook・Instagram・Threadsは、アカウントが同じアカウントセンターにある場合、自動的に接続されると書かれています。[5]</p>
-<p>ここが一番大きい。普段使っているSNSの情報を、そのままMuseへ渡せます。自分の投稿を材料にすれば、これまで何を伝えて、どんな反応があったかを踏まえた上で相談できます。</p>
-<p>僕がMuseと話したときも、Threadsの投稿と数値を出してもらい、その結果を見ながら次の依頼へ進められました。自分でデータを集める仕組みを持っていない人ほど、価値が大きい使い方です。</p>
-<p>ただし、接続できることと、すべての指標が取得できることは別です。第4章で自分の投稿を実際に表示して、使えるデータを確認します。</p>
-<h3
-id="threads運用のどの作業を任せられるか">1-3　Threads運用のどの作業を任せられるか</h3>
-<p>Museの公式案内には、Web閲覧、文書や画像の作成、アプリとの連携などが挙げられています。[2]
-これをThreadsの作業に置き換えると、こうなります。</p>
-<div class="table-wrap"><table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr>
-<th>Threads運用の作業</th>
-<th>Museへ頼むこと</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>投稿前の調べもの</td>
-<td>発信テーマについて公式情報を調べ、出典と要点を整理する</td>
-</tr>
-<tr>
-<td>投稿の振り返り</td>
-<td>取得した本文と数字を並べ、反応がよかった内容を比べる</td>
-</tr>
-<tr>
-<td>ネタ出し</td>
-<td>読者の悩みと過去の反応から、次に扱うテーマを出す</td>
-</tr>
-<tr>
-<td>文章作成</td>
-<td>自分の経験や伝えたいことを、読みやすい下書きにする</td>
-</tr>
-<tr>
-<td>集客への案内</td>
-<td>投稿の内容と、プロフィールや特典の説明がつながっているか見直す</td>
-</tr>
-</tbody>
-</table></div>
-<p>集計、候補出し、下書き。この3つにかかる手間が減れば、自分の経験を足したり、お客様に必要な説明を考えたりする時間が増えます。</p>
-<h3
-id="自分の仕事と読者を伝えると出力が変わる">1-4　自分の仕事と読者を伝えると、出力が変わる</h3>
-<p>Museに「集客できる投稿を作って」とだけ頼むと、誰にどんな価値を届けたいかが伝わりません。自分の仕事、読者の悩み、届けたいサービス、普段の言葉。これを先に教えます。</p>
-<p>例えば「サロン向けのネタを出して」ではなく、「一人でサロンを運営していて、施術の合間に発信している人向け。予約案内の負担を減らす情報を届けたい」と伝える。これだけで考える対象がはっきりします。</p>
-<p>さらに「この言い方は普段使わない」「この質問は実際によく受ける」と返せば、次の出力の材料が増えます。自分の読者を知っているのは自分です。その判断と、Museの整理する力を組み合わせます。</p>
-<h3
-id="過去の投稿は全部が分析の材料になる">1-5　過去の投稿は、全部が分析の材料になる</h3>
-<p>伸びた投稿だけでなく、思ったより反応がなかった投稿にも材料があります。同じテーマでも、扱った場面や書き出し、説明の具体性が違うかもしれません。</p>
-<p>Museには、それを並べて整理してもらいます。自分では「いつも同じように書いている」つもりでも、比べると違いが出てきます。</p>
-<p>その違いを、次のネタと下書きに反映する。投稿が増えるほど、振り返りに使える材料も増えます。</p>
-<p>このガイドではThreadsを中心に進めます。Instagramも使っている人は、後から発信内容やプロフィールの一貫性を考える場面に広げられます。まずはThreadsで一周してください。</p>
-</section>
-<section class="chapter" id="ch2"><div class="chapter-head"><span class="chapter-num">CHAPTER 2</span><h2>MuseでThreads運用はどう変わる？</h2></div>
-<figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：Museに任せる3つの作業。投稿分析、ネタ出し、下書き作成。仕上げと公開の判断は自分で行います。"><img src="assets/muse-tasks.webp" width="1536" height="1024" alt="Museに任せる3つの作業。投稿分析、ネタ出し、下書き作成。仕上げと公開の判断は自分で行います。" loading="lazy" decoding="async"></button><figcaption>Museに任せる作業と、自分で仕上げる作業を分けましょう。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure>
-
-<h3
-id="データのコピペ作業がなくなる">2-1　投稿データを集める手間を減らせる</h3>
-<p>投稿を開いて、本文をコピーして、数字をメモして、AIへ貼り付ける。分析の準備だけで疲れてしまうと、改善まで手が回りません。</p>
-<p>Museで自分の投稿と指標を取得できれば、その準備から頼めます。やることは「直近の投稿を一覧にして」と依頼して、返ってきた内容を確認するだけです。</p>
-<p>僕は普段からデータを扱っていますが、専用のデータベースを用意する必要はありません。会話の中に自分の10投稿が並べば、それで十分です。</p>
-<p>浮いた時間は、数字を眺めるのではなく、次に扱う悩みや、読者に伝える具体例を考えることに使ってください。</p>
-<h3
-id="投稿ネタを毎回ゼロから考えなくなる">2-2　投稿ネタを毎回ゼロから考えなくなる</h3>
-<p>投稿するたびにテーマを考えると、忙しい日はそこで止まります。先に候補があれば、今日書けるものを選ぶところから始められます。</p>
-<p>この方法では、過去の投稿分析と読者の悩みを使って、ネタを20個出します。その中から、今週取り組む5案を選びます。</p>
-<p>どれも同じ内容にならないよう、手順、よくある質問、自分の経験と、切り口を広げます。「何となく思いついた案」に頼らず、なぜその話題を選ぶのかも残しておきます。</p>
-<p>ネタがあるだけで、毎日の負担は変わります。自分の具体例までメモしておけば、下書き作成も速くなります。</p>
-<h3
-id="プロフィールと案内先まで見直せる">2-3　プロフィールと案内先まで見直せる</h3>
-<p>Threadsで集客するなら、投稿を読んだ人がその後に何を知りたいかまで考えます。</p>
-<p>予約の悩みを扱う投稿を読んだ人がプロフィールを開いたとき、「誰に何を教えている人か」が分かる。さらに、詳しく学べるガイドや相談方法が案内されている。このつながりが必要です。</p>
-<p>投稿、プロフィール、リンク先で言っていることがバラバラだと、読者は自分に関係する情報なのか判断できません。Museには、この流れの確認も頼めます。</p>
-<p>閲覧数やフォロー数は、途中経過を知るための数字です。LINE登録や問い合わせを増やしたいなら、案内先の内容と、その先で実際に起きた反応も見ます。目的を先に伝えて分析させると、追うべき数字がはっきりします。</p>
-<h3
-id="aiの下書きに自分の経験を足せる">2-4　AIの下書きに、自分の経験を足せる</h3>
-<p>AIに全部書かせると、一般的な話になります。そこに足すのが、自分が実際に見たこと、試したこと、考えていることです。</p>
-<p>「予約案内は分かりやすくしましょう」より、「料金と所要時間を別々の場所に書いていたので、一つの案内にまとめた」の方が、何をしたのか伝わります。当然、本当に経験したことだけを使います。</p>
-<p>構成と下書きはMuseに任せて、自分は経験の正確さと伝えたい意味を確かめる。この分担なら、白紙から書く負担を減らしながら、自分の言葉で発信できます。</p>
-<h3
-id="分析ネタ投稿振り返りを自分で回せる">2-5　分析→ネタ→投稿→振り返りを、自分で回せる</h3>
-<p>このガイドで実践するのは、この流れです。</p>
-<p><strong>データを取る → 読者の反応を知る → ネタを選ぶ → 投稿を作る →
-次の行動へ案内する → 結果を振り返る。</strong></p>
-<p>最初に用意するのは、投稿データの一覧、ネタ候補、下書き1本、プロフィールからの案内。その後、無理のない投稿計画を作って、実際の反応を次へ戻します。</p>
-<p>これが、Museを使ってThreads集客をマスターするということです。一通り回せるようになれば、新しいネタや別のサービスを発信するときにも、そのまま使えます。</p>
-</section>
-<section class="chapter" id="ch3"><div class="chapter-head"><span class="chapter-num">CHAPTER 3</span><h2>まずは、Museをインストールしよう！</h2></div>
-<h3
-id="アプリを入れるiphoneandroidパソコン">3-1　アプリを入れる（iPhone・Android・パソコン）</h3>
-<div class="app-identity"><img src="assets/manual/muse-icon.png" alt="Museの青いMのアプリアイコン" width="500" height="500" loading="lazy"><div><strong>Muse from Meta</strong><span>提供元：Meta Platforms, Inc.</span></div></div>
-<p>下のリンクから、自分のスマホに合うストアを開いてください。アプリのアイコンと提供元を確認してからインストールします。</p>
-<div class="install-links">
+<section class="intro"><h2>「今日は何を書こう」で、止まらないために。</h2><p>どーも、工藤です。LINEに登録してくださった方へ、Museを使ってThreads運用を進める手順をまとめました。</p><div class="concept-grid "><div class="concept-card"><span class="card-index">01</span><strong>数字を見ても、次が決まらない</strong><p>投稿を比べて、反応のよいテーマを見つける。</p></div><div class="concept-card"><span class="card-index">02</span><strong>毎回、ネタ出しで手が止まる</strong><p>読者の悩みから、次に書く候補を用意する。</p></div><div class="concept-card"><span class="card-index">03</span><strong>AIの文章が、自分らしくない</strong><p>自分の経験を渡して、下書きを仕上げる。</p></div></div><aside class="key-point"><span>ここがポイント</span><p>目指すのは、<mark>分析 → ネタ出し → 投稿 → 振り返り</mark>を自分で回せる状態です。</p></aside><p>全6章、コピーして使えるプロンプトは7本。順番に進めて、まずは<strong>次に出す1本</strong>を作りましょう。</p></section>
+<section class="chapter" id="ch1"><div class="chapter-head"><span class="chapter-num">CHAPTER 1</span><h2>Museって何ができるの？</h2></div><div class="chapter-goal"><span>この章でできるようになること</span><p>Museに何を任せられるかを知り、自分のThreads運用に当てはめる。</p></div><h3 id="museはmetaが作ったai">1-1　Museは、Metaが作ったAI</h3><p>Museは、InstagramやThreadsを提供するMetaのパーソナルAIエージェントです。会話で依頼しながら、情報を調べる・整理する・文章を作る作業を進められます。</p><figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：自分のThreadsの投稿をMuseで整理し、傾向・ネタ・下書きに変える流れ。"><img src="assets/muse-overview.webp" alt="自分のThreadsの投稿をMuseで整理し、傾向・ネタ・下書きに変える流れ。" width="1536" height="1024" loading="lazy" decoding="async"></button><figcaption>材料は自分の発信。AIの提案を確かめ、最後は自分で届けます。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure><h3 id="threadsとinstagramにそのままつながる">1-2　自分のThreadsを、相談の材料にできる</h3><p>Museには、InstagramやThreadsと連携する仕組みがあります。同じアカウントセンターにあるアカウントは、自動的に接続される場合があります。</p><div class="visual-block"><h4>連携したら、まず確かめること</h4><div class="visual-body"><ol class="step-flow"><li><strong>Museに接続を確認する</strong><span>対象のThreadsアカウントを伝える</span></li><li><strong>最新の投稿を1件表示する</strong><span>本文・日時・URLを出してもらう</span></li><li><strong>自分の投稿か照合する</strong><span>URLを開き、対象を取り違えていないか確認</span></li></ol></div><p class="visual-foot">接続できても、すべての指標が取得できるとは限りません。</p></div><h3 id="threads運用のどの作業を任せられるか">1-3　任せるのは「比較・候補出し・下書き」</h3><div class="concept-grid "><div class="concept-card"><span class="card-index">01</span><strong>比較する</strong><p>過去の投稿を並べ、テーマ・書き出し・反応の違いを整理する。</p></div><div class="concept-card"><span class="card-index">02</span><strong>候補を出す</strong><p>読者の悩みと過去の反応から、次の投稿ネタを提案してもらう。</p></div><div class="concept-card"><span class="card-index">03</span><strong>下書きを作る</strong><p>伝えたい結論と実体験を、読みやすい文章にまとめてもらう。</p></div></div><aside class="key-point"><span>ここがポイント</span><p>Museが作るのは<strong>判断するための材料</strong>。事実の確認と、何を公開するかは自分で決めます。</p></aside><h3 id="自分の仕事と読者を伝えると出力が変わる">1-4　「誰に届けたいか」まで伝える</h3><div class="compare-grid"><div class="compare-panel muted"><span>情報が足りない依頼</span><p>サロン向けのネタを出して。</p></div><div class="compare-panel focus"><span>前提が伝わる依頼</span><p>一人でサロンを運営し、施術の合間に発信している人向け。予約案内の負担を減らすネタを出して。</p></div></div><p>自分の仕事、読者が困る場面、伝えたいこと。<strong>前提が具体的になるほど、提案を判断しやすくなります。</strong></p><h3 id="過去の投稿は全部が分析の材料になる">1-5　反応がよかった投稿も、伸びなかった投稿も使う</h3><div class="visual-block"><h4>投稿を出した後に、材料が増えていく</h4><div class="visual-body"><ol class="step-flow"><li><strong>実際に発信する</strong><span>自分の経験や知識を届ける</span></li><li><strong>反応と本文を比べる</strong><span>何が届いたか、届かなかったかを考える</span></li><li><strong>次の1本で試す</strong><span>続けるテーマ・変える切り口を決める</span></li></ol></div></div><aside class="lesson-summary"><h4>この章のまとめ</h4><ul class="check-list"><li>Museには、自分の投稿を材料に相談する。</li><li>仕事・読者・目的を先に伝える。</li><li>出力は確認し、自分の判断で使う。</li></ul><a class="next-chapter" href="#ch2">第2章へ進む <span aria-hidden="true">→</span></a></aside></section>
+<section class="chapter" id="ch2"><div class="chapter-head"><span class="chapter-num">CHAPTER 2</span><h2>MuseでThreads運用はどう変わる？</h2></div><div class="chapter-goal"><span>この章でできるようになること</span><p>毎回ゼロから始めていた作業を、Museと分担できるようにする。</p></div><figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：Museに任せる投稿分析、ネタ出し、下書き作成の3つの作業。"><img src="assets/muse-tasks.webp" alt="Museに任せる投稿分析、ネタ出し、下書き作成の3つの作業。" width="1536" height="1024" loading="lazy" decoding="async"></button><figcaption>準備にかけていた時間を、読者に伝える中身の確認へ。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure><h3 id="データのコピペ作業がなくなる">2-1　データ集めを、会話から始める</h3><div class="compare-grid"><div class="compare-panel muted"><span>これまでの準備</span><p>投稿を開く → 本文をコピー → 数字をメモ → AIへ貼り付ける。</p></div><div class="compare-panel focus"><span>Museで取得できる場合</span><p>「直近10投稿を一覧にして」と依頼 → 対象と内容を確認する。</p></div></div><p>専用のデータベースは必要ありません。まずは会話の中に、<strong>自分の投稿が10件並ぶ状態</strong>を作ります。</p><h3 id="投稿ネタを毎回ゼロから考えなくなる">2-2　「今日考える」から「候補から選ぶ」へ</h3><div class="visual-block"><h4>ネタをストックする3ステップ</h4><div class="visual-body"><ol class="step-flow"><li><strong>20案を出す</strong><span>読者の悩み × 過去の反応</span></li><li><strong>今週の5案を選ぶ</strong><span>読者に合い、自分の経験を話せるもの</span></li><li><strong>今日の1案を仕上げる</strong><span>結論と具体例を加えて下書きに</span></li></ol></div></div><h3 id="プロフィールと案内先まで見直せる">2-3　投稿の後に、どこへ進んでもらうか</h3><div class="visual-block"><h4>読者の気持ちを、次の行動につなぐ</h4><div class="visual-body"><ol class="step-flow"><li><strong>投稿</strong><span>自分に関係のある悩みだと分かる</span></li><li><strong>プロフィール</strong><span>誰に何を教えている人か分かる</span></li><li><strong>案内先</strong><span>特典・相談・サービスの内容と進み方が分かる</span></li></ol></div><p class="visual-foot">閲覧数だけでは、登録・問い合わせ・売上までは分かりません。</p></div><h3 id="aiの下書きに自分の経験を足せる">2-4　AIと自分の役割を分ける</h3><div class="visual-block"><h4>この分担なら、自分の言葉を残せる</h4><div class="visual-body"><div class="compare-grid"><div class="compare-panel muted"><span>Museが担当</span><p>情報を並べる／切り口を出す／構成と下書きを作る。</p></div><div class="compare-panel focus"><span>自分が担当</span><p>実体験を足す／事実を確かめる／言葉を直す／公開を決める。</p></div></div></div></div><aside class="key-point"><span>ここがポイント</span><p>「予約案内は分かりやすく」より、<strong>「料金と所要時間を、一つの案内にまとめた」</strong>。本当に行った工夫を足しましょう。</p></aside><h3 id="分析ネタ投稿振り返りを自分で回せる">2-5　最初のゴールは、この4つをそろえる</h3><div class="concept-grid four"><div class="concept-card"><span class="card-index">01</span><strong>投稿データ</strong><p>自分の10投稿を振り返れる一覧</p></div><div class="concept-card"><span class="card-index">02</span><strong>ネタ候補</strong><p>今週試す5つのテーマ</p></div><div class="concept-card"><span class="card-index">03</span><strong>下書き1本</strong><p>自分の経験を入れた文章</p></div><div class="concept-card"><span class="card-index">04</span><strong>次の行動</strong><p>プロフィールから案内する先</p></div></div><aside class="lesson-summary"><h4>この章のまとめ</h4><ul class="check-list"><li>準備・候補出し・下書きをMuseに任せる。</li><li>自分は実体験と内容の確認に時間を使う。</li><li>まずは1本を出せる状態まで進める。</li></ul><a class="next-chapter" href="#ch3">第3章へ進む <span aria-hidden="true">→</span></a></aside></section>
+<section class="chapter" id="ch3"><div class="chapter-head"><span class="chapter-num">CHAPTER 3</span><h2>まずは、Museをインストールしよう！</h2></div><div class="chapter-goal"><span>この章でできるようになること</span><p>アプリを入れ、会話画面を開いて、最初の依頼を送る。</p></div><h3 id="アプリを入れるiphoneandroidパソコン">3-1　まずは、Museをインストールしよう！</h3><div class="app-identity"><img src="assets/manual/muse-icon.png" alt="Museの青いMのアプリアイコン" width="500" height="500" loading="lazy"><div><strong>Muse from Meta</strong><span>提供元：Meta Platforms, Inc.</span></div></div><p>使っているスマホのボタンを押し、アプリ名と提供元を確認してください。</p><div class="install-links">
 <a href="https://apps.apple.com/us/app/muse-from-meta/id6760173601"><strong>iPhoneの方</strong><span>App Storeを開く</span></a>
 <a href="https://play.google.com/store/apps/details?id=com.facebook.aura"><strong>Androidの方</strong><span>Google Playを開く</span></a>
-</div>
-<p>アプリ名「Muse from Meta」と、提供元「Meta Platforms,
-Inc.」を確認します。iPhoneは「入手」、Androidは「インストール」を押して、完了したら「開く」を押してください。[3][4]</p>
-<p>パソコンで使いたい場合は、<a
-href="https://muse.ai/">MuseのWeb版</a>から開けます。基本的な機能には無料で使えるものがあり、追加利用のための有料プランもあります。料金や利用量は、申し込み画面で確認してください。[1]</p>
-<h3
-id="アカウントを作って会話画面を開く">3-2　アカウントを作って、会話画面を開く</h3>
-<p>アプリを開いたら、表示された登録・ログインの案内に沿って進みます。使える方法は画面の選択肢で確認してください。</p>
-<p>確認メールや認証用の数字を求められたら、案内どおりに入力します。この認証用の数字は、次に出てくる紹介コードとは別物です。パスワードや認証コードを、Museとの会話へ貼り付ける必要はありません。</p>
-<p>メッセージを入力できる会話画面が出たら、準備完了です。人にメッセージを送るのと同じ感覚で、Museに頼める状態になりました。</p>
-<h3
-id="紹介コード2dt76wを入力する">3-3　紹介コード「2DT76W」を入力する</h3>
-<p>僕の紹介コードは、こちらです。</p>
-<p><strong>2DT76W</strong></p>
-<p>紹介制度の対象であれば、Museで使えるトークンの特典を受け取れます。紹介した側にも特典が付きます。トークンというのは、Museを利用するときに使う単位のことです。</p>
-<p>導入マニュアルの画面では、登録後48時間以内の入力が案内されています。付与量と利用条件は、自分の入力画面で確認してください。</p>
-<p>スマホでの操作は、この4ステップです。導入マニュアルの実際の画面を見ながら進めてください。</p>
-<div class="setup-grid"><figure class="setup-step"><figcaption><span class="step-number">1</span><strong>左上のメニューを押す</strong><p>会話画面の左上にある二本線のボタンを押します。画像の赤丸が目印です。</p></figcaption><button type="button" class="image-zoom" aria-label="手順1の操作画面を拡大：左上のメニューを押す"><img src="assets/manual/open-menu.jpg" alt="手順1：左上のメニューを押す。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure><figure class="setup-step"><figcaption><span class="step-number">2</span><strong>左下の歯車を押す</strong><p>メニューが開いたら、左下の歯車マークから「設定」を開きます。</p></figcaption><button type="button" class="image-zoom" aria-label="手順2の操作画面を拡大：左下の歯車を押す"><img src="assets/manual/open-settings.jpg" alt="手順2：左下の歯車を押す。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure><figure class="setup-step"><figcaption><span class="step-number">3</span><strong>「紹介コードを利用」を押す</strong><p>設定の一覧から、プレゼントのマークが付いた「紹介コードを利用」を選びます。</p></figcaption><button type="button" class="image-zoom" aria-label="手順3の操作画面を拡大：「紹介コードを利用」を押す"><img src="assets/manual/referral-setting.jpg" alt="手順3：「紹介コードを利用」を押す。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure><figure class="setup-step"><figcaption><span class="step-number">4</span><strong>「2DT76W」を入れて確認</strong><p>6つの欄に1文字ずつ入力し、画面の下の「確認」を押します。</p></figcaption><button type="button" class="image-zoom" aria-label="手順4の操作画面を拡大：「2DT76W」を入れて確認"><img src="assets/manual/enter-code.jpg" alt="手順4：「2DT76W」を入れて確認。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure></div><p class="image-note">操作画像は元の導入マニュアルより掲載。画像をタップすると拡大できます。画面内の付与量や利用条件は撮影時点の表示です。現在の条件はご自身のアプリで確認してください。</p>
-<p>入力できたら、適用されたことを示す表示を確認します。受け付けられない場合は、余分な空白、文字の間違い、利用期限や使用上限を確認してください。画面が違う場合は、設定内の紹介コードに関する項目か、ヘルプから探します。</p>
-<h3 id="最初のメッセージを送る">3-4　最初のメッセージを送る</h3>
-<p>会話画面に戻ったら、この文章を送ってみてください。</p>
-<blockquote>
-<p>Threadsで自分の仕事やサービスに関心のある人を集めたいです。投稿分析、ネタ出し、下書き作成、振り返りを手伝ってください。私はMuseを使い始めたばかりなので、操作は一つずつ分かりやすく説明してください。</p>
-</blockquote>
-<p>返答が来たら、第4章の接続確認へ進みます。このガイドの7つのプロンプトは、同じ会話で順番に使う前提です。別の会話へ移る場合は、アカウント、取得データ、決めた読者や目的も伝え直してください。</p>
-<h3
-id="頼み方のコツは目的材料作るものの3つ">3-5　頼み方のコツは「目的・材料・作るもの」の3つ</h3>
-<p>「Threadsを分析して」で止めず、何のために分析するかまで伝えます。</p>
-<p>例えば「次の投稿ネタを考えるために、私の直近10投稿を使って、読者が反応した共通点を3つ整理してください」。目的、材料、完成形が全部入っています。</p>
-<p>下書きも同じです。「予約の案内を分かりやすくするために、この実体験を使って、サロンオーナー向けの投稿を一本作って」と頼みます。</p>
-<p>この後のプロンプトには、必要な条件を全部入れてあります。最初はそのまま使って、慣れたら自分の目的に合わせて変えてください。</p>
-</section>
-<section class="chapter" id="ch4"><div class="chapter-head"><span class="chapter-num">CHAPTER 4</span><h2>自分のThreadsをMuseに読み込ませよう</h2></div>
-<h3
-id="museとthreadsがつながっているか確認する">4-1　MuseとThreadsがつながっているか確認する</h3>
-<p>まず、Museが自分のThreadsを読めるか確かめます。アカウントが同じアカウントセンターにまとまっていれば、すでに連携されている場合があります。設定を探し回る前に、Museに確認を頼んでください。[5]</p>
-<div class="prompt"><div class="prompt-label">プロンプト①：自分のThreadsを読み込む</div><pre><code>Threads集客の改善に使いたいので、私のThreadsアカウントを実際に読み取れるか確認してください。
+</div><div class="visual-block"><h4>ストアを開いたら、この順番</h4><div class="visual-body"><ol class="step-flow"><li><strong>Muse from Metaを確認</strong><span>青いMのアイコン・提供元Meta Platforms, Inc.</span></li><li><strong>入手／インストールを押す</strong><span>完了したら「開く」</span></li><li><strong>画面の案内で登録・ログイン</strong><span>使える方法はアプリ内の選択肢に従う</span></li></ol></div></div><p>パソコンでは<a href="https://muse.ai/">MuseのWeb版</a>を利用できます。料金や利用量は、アプリの申込み画面で確認してください。</p><h3 id="アカウントを作って会話画面を開く">3-2　メッセージを入力できたら、準備完了</h3><aside class="try-now"><span>ここまでできたらOK</span><strong>「メッセージ」の入力欄が見える</strong><p>会話画面が開けば、Museへ依頼できます。登録時の認証コードは、会話へ貼り付けません。</p></aside><h3 id="紹介コード2dt76wを入力する">3-3　紹介コードを入れる</h3><div class="referral-code"><span>工藤の紹介コード</span><strong>2DT76W</strong><small>半角英数字6文字</small></div><p>紹介制度の対象であれば、利用できるトークンの特典があります。紹介した側にも特典が付きます。<strong>付与量・期限などの条件は、自分の画面で確認</strong>してください。</p><div class="setup-grid"><figure class="setup-step"><figcaption><span class="step-number">1</span><strong>左上のメニューを押す</strong><p>会話画面の左上にある二本線のボタンを押します。画像の赤丸が目印です。</p></figcaption><button type="button" class="image-zoom" aria-label="手順1の操作画面を拡大：左上のメニューを押す"><img src="assets/manual/open-menu.jpg" alt="手順1：左上のメニューを押す。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure><figure class="setup-step"><figcaption><span class="step-number">2</span><strong>左下の歯車を押す</strong><p>メニューが開いたら、左下の歯車マークから「設定」を開きます。</p></figcaption><button type="button" class="image-zoom" aria-label="手順2の操作画面を拡大：左下の歯車を押す"><img src="assets/manual/open-settings.jpg" alt="手順2：左下の歯車を押す。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure><figure class="setup-step"><figcaption><span class="step-number">3</span><strong>「紹介コードを利用」を押す</strong><p>設定の一覧から、プレゼントのマークが付いた「紹介コードを利用」を選びます。</p></figcaption><button type="button" class="image-zoom" aria-label="手順3の操作画面を拡大：「紹介コードを利用」を押す"><img src="assets/manual/referral-setting.jpg" alt="手順3：「紹介コードを利用」を押す。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure><figure class="setup-step"><figcaption><span class="step-number">4</span><strong>「2DT76W」を入れて確認</strong><p>6つの欄に1文字ずつ入力し、画面の下の「確認」を押します。</p></figcaption><button type="button" class="image-zoom" aria-label="手順4の操作画面を拡大：「2DT76W」を入れて確認"><img src="assets/manual/enter-code.jpg" alt="手順4：「2DT76W」を入れて確認。元のMuse導入マニュアルから抽出した操作画面。" width="1260" height="2736" loading="lazy" decoding="async"></button></figure></div><p><span class="image-note">元の導入マニュアルの操作画像です。赤丸・赤枠が目印。タップで拡大できます。画面内の条件は撮影時点のものです。</span></p><h3 id="最初のメッセージを送る">3-4　最初のメッセージを送ってみよう</h3><div class="message-example"><span>そのまま入力してOK</span><p>Threadsで自分の仕事やサービスに関心のある人を集めたいです。投稿分析、ネタ出し、下書き作成、振り返りを手伝ってください。操作は一つずつ分かりやすく説明してください。</p></div><aside class="try-now"><span>ここまでできたらOK</span><strong>Museから返答が来る</strong><p>返答が来たら、第4章で自分のThreadsとの接続を確かめます。7つのプロンプトは、同じ会話で順番に使ってください。</p></aside><h3 id="頼み方のコツは目的材料作るものの3つ">3-5　依頼は「目的・材料・作るもの」で伝える</h3><div class="visual-block"><h4>この3つがそろうと、頼む内容が明確になる</h4><div class="visual-body"><div class="concept-grid "><div class="concept-card"><span class="card-index">01</span><strong>目的</strong><p>次の投稿ネタを考えたい</p></div><div class="concept-card"><span class="card-index">02</span><strong>材料</strong><p>自分の直近10投稿を使う</p></div><div class="concept-card"><span class="card-index">03</span><strong>作るもの</strong><p>反応の共通点を3つに整理</p></div></div></div></div><aside class="lesson-summary"><h4>この章のまとめ</h4><ul class="check-list"><li>アプリのアイコンと提供元を確かめる。</li><li>会話画面を開き、最初の依頼を送る。</li><li>これからの実践は、同じ会話で進める。</li></ul><a class="next-chapter" href="#ch4">第4章へ進む <span aria-hidden="true">→</span></a></aside></section>
+<section class="chapter" id="ch4"><div class="chapter-head"><span class="chapter-num">CHAPTER 4</span><h2>自分のThreadsをMuseに読み込ませよう</h2></div><div class="chapter-goal"><span>この章でできるようになること</span><p>自分の投稿を正しく読み込み、分析に使う一覧をそろえる。</p></div><figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：分析する前に確認する4つのポイント"><img src="assets/data-check.webp" alt="分析前に、自分のアカウントか、本文とURLは合っているか、数字の取得日時、取得件数の4つを確認する。" width="1536" height="1024" loading="lazy" decoding="async"></button><figcaption>最初にこの4つを確認すると、違うアカウントや足りないデータで分析することを防げます。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure><h3 id="museとthreadsがつながっているか確認する">4-1　最初は「自分の投稿が読めるか」を確認</h3><p>接続済みの表示だけで進めず、<mark>最新の親投稿1件</mark>を出してもらいます。親投稿とは、自分が新しく立てた投稿のことです。</p><div class="prompt prompt-card"><div class="prompt-label">プロンプト①：自分のThreadsを読み込む</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>初めてThreadsを読み込ませるとき</dd></div><div><dt>得られるもの</dt><dd>自分のユーザーネーム・最新の投稿・URL</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>Threads集客の改善に使いたいので、私のThreadsアカウントを実際に読み取れるか確認してください。
 
 ユーザーネームと、最新の自分の親投稿1件の本文・投稿日時・URLを表示してください。
 親投稿とは、自分が新しく立てた投稿のことです。
@@ -366,17 +216,7 @@ id="museとthreadsがつながっているか確認する">4-1　MuseとThreads�
 未連携なら、現在利用できる接続方法を案内してください。
 接続済みと推測せず、実際に読めた投稿を示してください。
 複数のアカウントがある場合は、分析対象を私に確認してください。
-この段階では読み取りだけを行ってください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<p>自分のユーザーネームと、見覚えのある投稿が表示されたら、URLも開いて確かめます。複数アカウントを使っている場合は、今回集客したいアカウントかどうかを必ず見てください。</p>
-<p>未連携のときは、Museの案内に沿って接続します。公式ヘルプには、Museへ接続を頼む方法と、「設定→コネクター」から対象を選んで接続する方法が載っています。[5]
-接続できたら、もう一度投稿を表示してもらってから次へ進みます。</p>
-<h3 id="最初は直近10投稿だけにする">4-2　最初は直近10投稿だけにする</h3>
-<p>最初に取得するのは直近10投稿です。自分でも内容を覚えている範囲なら、返ってきた一覧をすぐ確認できます。</p>
-<p>僕がMuseで大量の投稿を取得しようとしたときは、途中で取得制限にかかりました。まず小さく始めて使い方を覚えて、必要に応じて対象を広げる方が速いです。</p>
-<p>10件は、操作を覚えて最初の改善を考えるための出発点です。この件数でアカウント全体の成功法則を決める必要はありません。まず一周させて、次に出す投稿を作るところまで進みます。</p>
-<h3
-id="投稿本文と数字を一覧にしてもらう">4-3　投稿本文と数字を一覧にしてもらう</h3>
-<div class="prompt"><div class="prompt-label">プロンプト②：直近10投稿を一覧にする</div><pre><code>今確認した私のThreadsアカウントから、直近10件の親投稿を取得してください。
+この段階では読み取りだけを行ってください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><div class="visual-block"><h4>返答が来たら、ここで分かれる</h4><div class="visual-body"><div class="branch-grid"><div><strong>自分の投稿が表示された</strong><p>URLを開き、本文と日時を照合する。</p><a href="#最初は直近10投稿だけにする">合っていれば、10投稿の取得へ</a></div><div><strong>未連携・別の投稿が出た</strong><p>Museに接続方法を聞く。必要なら「設定 → コネクター」で対象を接続する。</p><span>同じ確認をもう一度行う</span></div></div></div></div><h3 id="最初は直近10投稿だけにする">4-2　いきなり全部取らない。まずは10投稿</h3><aside class="key-point"><span>ここがポイント</span><p>最初の10件は、<strong>操作を覚えて、次に試すことを決めるための材料</strong>です。アカウント全体の成功法則を決める件数ではありません。</p></aside><div class="compare-grid"><div class="compare-panel muted"><span>大量にまとめて取得</span><p>途中で取得制限にかかり、確認する量も増えやすい。</p></div><div class="compare-panel focus"><span>直近10件から始める</span><p>見覚えのある投稿で照合しやすく、分析まで進めやすい。</p></div></div><h3 id="投稿本文と数字を一覧にしてもらう">4-3　本文と数字を、同じ投稿番号で並べる</h3><div class="prompt prompt-card"><div class="prompt-label">プロンプト②：直近10投稿を一覧にする</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>接続と対象アカウントを確認できたとき</dd></div><div><dt>得られるもの</dt><dd>本文・URL・日時・取得できた指標の一覧</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>今確認した私のThreadsアカウントから、直近10件の親投稿を取得してください。
 返信と再投稿は対象から外し、10件未満しかない場合は、ある分で進めてください。
 
 各投稿に番号を付け、次の情報をまとめてください。
@@ -395,121 +235,8 @@ id="投稿本文と数字を一覧にしてもらう">4-3　投稿本文と数�
 取得日時、タイムゾーン、取得できた件数を添えてください。
 
 本文が長い場合は「本文一覧」と「数値の表」を分け、同じ投稿番号で対応させてください。
-取得制限が出たら中断し、取得済みと未取得の件数を報告してください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<p>表ができたら、数件のURLを開いて、本文と対象が合っているか確認します。日時も残しておけば、いつの数値で考えたかが後から分かります。</p>
-<p>この取得では、自分の続きの返信は対象に入れていません。親投稿に書いた内容だけで分析します。返信まで読めた前提で、投稿全体の構成を評価しないようにしてください。</p>
-<h3 id="一覧に出てくる数字の見方">4-4　一覧に出てくる数字の見方</h3>
-<p>出てきた数字は、それぞれ違う段階を知るために使います。</p>
-<div class="table-wrap"><table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr>
-<th>数字</th>
-<th>運用で考えること</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>閲覧数</td>
-<td>多く見られたテーマや書き出しは何か</td>
-</tr>
-<tr>
-<td>いいね・返信</td>
-<td>どんな話題に反応があったか。返信には自分のものが含まれる場合もある</td>
-</tr>
-<tr>
-<td>再投稿・引用</td>
-<td>共有したいと思われた内容は何か</td>
-</tr>
-<tr>
-<td>プロフィール訪問数</td>
-<td>発信者自身に関心を持ってもらえたかを考える材料</td>
-</tr>
-<tr>
-<td>投稿経由のフォロー数</td>
-<td>続けて読みたいと思われた内容を考える材料</td>
-</tr>
-</tbody>
-</table></div>
-<p>僕がMuseと話したときは、プロフィール訪問数や投稿経由のフォロー数も数値付きで返ってきました。取得できる項目は自分の環境で確認して、取れた数字で進めてください。</p>
-<p>「取得不可」は「成果が0」ではありません。閲覧数を読者の人数と同じに扱ったり、アカウント全体のフォロワー増加を一つの投稿の成果にしたりするのもNGです。</p>
-<p>問い合わせやLINE登録を見たい場合は、そのサービス側の数字を別に用意します。Threadsの閲覧数だけから、登録や売上は推測できません。</p>
-<h3
-id="取得できたら確認する4つのこと">4-5　取得できたら確認する4つのこと</h3>
-<p>確認するのは、対象アカウント、投稿本文、取得日時、取得件数の4つです。数値がない項目は、欠けていることが分かれば大丈夫です。</p>
-<p>フォロー数が取れなくても、閲覧数や反応から考えられることはあります。途中で止まった場合も、取得できた件数を書いた上で分析します。</p>
-<p>ここまでで、これまでの発信を振り返る材料がそろいました。次は、数字の順位から一歩進んで、読者に何が届いたのかを言葉にします。</p>
-</section>
-<section class="chapter" id="ch5"><div class="chapter-head"><span class="chapter-num">CHAPTER 5</span><h2>伸びている投稿の傾向を見つけよう</h2></div>
-<figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：閲覧数は広く見られたテーマを探す指標。投稿経由のフォロー数は継続した関心を考える材料。取得できた指標だけで比較します。"><img src="assets/metrics-comparison.webp" width="1536" height="1024" alt="閲覧数は広く見られたテーマを探す指標。投稿経由のフォロー数は継続した関心を考える材料。取得できた指標だけで比較します。" loading="lazy" decoding="async"></button><figcaption>投稿経由のフォロー数は、取得できた場合だけ比較します。数字だけで反応の理由を断定しません。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure>
-
-<h3
-id="見られた投稿とフォローされた投稿は別物">5-1　「見られた投稿」と「フォローされた投稿」は別物</h3>
-<p>集客の参考にする投稿は、閲覧数が一番多い投稿とは限りません。知ってもらうことと、その後も関心を持ってもらうことを、分けて見ます。</p>
-<p>次は、数字の読み方を説明するための架空例です。実際の運用結果ではありません。</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>投稿</th>
-<th>内容</th>
-<th style="text-align: right;">閲覧数</th>
-<th style="text-align: right;">投稿経由のフォロー数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td>発信を続ける難しさへの共感</td>
-<td style="text-align: right;">20,000</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr>
-<td>B</td>
-<td>予約案内を分かりやすくする手順</td>
-<td style="text-align: right;">8,000</td>
-<td style="text-align: right;">14</td>
-</tr>
-<tr>
-<td>C</td>
-<td>日常の短い気づき</td>
-<td style="text-align: right;">12,000</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr>
-<td>D</td>
-<td>よく聞かれる質問への回答</td>
-<td style="text-align: right;">5,000</td>
-<td style="text-align: right;">8</td>
-</tr>
-</tbody>
-</table></div>
-<p>広く読まれた内容を探すならA、フォローにつながった内容ならBやDが参考候補です。目的が決まると、見る投稿が変わります。</p>
-<p>ここから「Bなら必ず売れる」とは言えません。まずは、自分の専門分野に関心を持ってもらうために、どの内容を掘り下げるかを決めてください。</p>
-<h3
-id="見るのはテーマ悩み切り口書き出し構成">5-2　見るのは、テーマ・悩み・切り口・書き出し・構成</h3>
-<p>数字の次に見るのは、投稿に何を書いたかです。既存のThreadsガイドで伝えている読者設計と文章の考え方を、ここでは振り返りに使います。</p>
-<p><strong>テーマ。</strong>
-予約、片付け、時短料理など、何について話しているか。</p>
-<p><strong>読者の悩み。</strong>
-そのテーマの中で、どんな場面に困っている人へ書いたか。「予約を増やしたい」ではなく、「案内を見た人から、同じ質問が何度も来る」まで具体的に捉えます。</p>
-<p><strong>切り口。</strong>
-手順を教えたのか、質問に答えたのか、自分の経験を話したのか。同じ悩みでも、伝え方は変えられます。</p>
-<p><strong>書き出し。</strong>
-最初の1〜2行で、誰に役立つ話か、続きを読むと何が分かるかが伝わっているか。</p>
-<p><strong>構成。</strong>
-結論、理由、手順、具体例がどう並んでいるか。取得した本文の範囲で見ます。</p>
-<p>「AIを使いましょう」という広い話より、「投稿前に毎回同じ説明を入力している人へ、前提情報をまとめる方法を伝える」の方が、読む人の持ち帰る内容が具体的になります。自分の投稿にも、こういう違いがないか探してください。</p>
-<h3
-id="上位投稿だけを見ても伸びた理由は分からない">5-3　上位投稿だけを見ても、伸びた理由は分からない</h3>
-<p>上位投稿に共通点があっても、それが伸びた理由とは限りません。上位にもそれ以外にも数字を使った書き出しがあるなら、「数字を入れたから」という説明では足りません。</p>
-<p>Museには、上位以外の投稿とも比べてもらいます。読者の悩みが具体的か、実際の手順があるか、内容と書き出しが合っているか。複数の観点で整理すると、次に試すことが見えてきます。</p>
-<p>投稿からの経過時間も確認します。昨日の投稿と先月の投稿では、読まれている時間が違います。一つの結果で断定せず、次の投稿で確かめる仮説として扱ってください。</p>
-<h3
-id="次に増やすテーマを3つ出してもらう">5-4　次に増やすテーマを3つ出してもらう</h3>
-<div class="prompt"><div class="prompt-label">プロンプト③：読者に届いた内容と、次に試すことを見つける</div><pre><code>取得した私のThreads投稿とデータを使って、集客に向けた発信の改善を考えたいです。
+取得制限が出たら中断し、取得済みと未取得の件数を報告してください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><div class="visual-block"><h4>一覧で必要なのは、この3グループ</h4><div class="visual-body"><div class="concept-grid "><div class="concept-card"><span class="card-index">01</span><strong>どの投稿？</strong><p>本文の全文／URL／投稿日時</p></div><div class="concept-card"><span class="card-index">02</span><strong>どんな反応？</strong><p>閲覧・いいね・返信・再投稿・引用</p></div><div class="concept-card"><span class="card-index">03</span><strong>いつの数字？</strong><p>取得日時／タイムゾーン／件数</p></div></div></div><p class="visual-foot">プロフィール訪問・投稿経由のフォロー数は、取得できる場合だけ追加します。</p></div><h3 id="一覧に出てくる数字の見方">4-4　数字ごとに、分かることが違う</h3><div class="visual-block"><h4>数字は「読者のどの段階か」で読む</h4><div class="visual-body"><dl class="metric-list"><div><dt>閲覧数</dt><dd>広く見られたテーマ・書き出しを探す</dd></div><div><dt>いいね・返信</dt><dd>どんな話題に反応があったかを見る</dd></div><div><dt>再投稿・引用</dt><dd>共有された内容を確かめる</dd></div><div><dt>プロフィール訪問</dt><dd>発信者への関心を考える材料にする</dd></div><div><dt>投稿経由のフォロー</dt><dd>継続した関心につながった内容を探す</dd></div></dl></div></div><aside class="key-point"><span>ここがポイント</span><p><mark>「取得できない」と「成果が0」は別です。</mark>閲覧数から登録数や売上を推測せず、各サービスの実際の数字を使ってください。</p></aside><h3 id="取得できたら確認する4つのこと">4-5　分析前に、この4項目をチェック</h3><div class="visual-block"><h4>データの確認リスト</h4><div class="visual-body"><ul class="check-list"><li>対象アカウントが、自分のものになっている</li><li>投稿本文とURLが一致している</li><li>取得日時とタイムゾーンが書かれている</li><li>取得件数と、未取得・取得不可が分かれている</li></ul></div></div><p>返信・再投稿は今回の取得対象に含めません。親投稿しか読んでいない段階で、続きの返信まで評価しないようにします。</p><aside class="lesson-summary"><h4>この章のまとめ</h4><ul class="check-list"><li>接続の確認は、実際の投稿で行う。</li><li>まずは直近10件。取得できた分から進める。</li><li>欠けた数値を0で埋めない。</li></ul><a class="next-chapter" href="#ch5">第5章へ進む <span aria-hidden="true">→</span></a></aside></section>
+<section class="chapter" id="ch5"><div class="chapter-head"><span class="chapter-num">CHAPTER 5</span><h2>伸びている投稿の傾向を見つけよう</h2></div><div class="chapter-goal"><span>この章でできるようになること</span><p>数字の順位を見て終わらず、次に試すテーマを3つ決める。</p></div><figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：閲覧数と投稿経由のフォロー数を目的に応じて使い分ける。"><img src="assets/metrics-comparison.webp" alt="閲覧数と投稿経由のフォロー数を目的に応じて使い分ける。" width="1536" height="1024" loading="lazy" decoding="async"></button><figcaption>取得できた指標だけで比較します。数字の差だけで理由を断定しません。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure><h3 id="見られた投稿とフォローされた投稿は別物">5-1　「一番見られた投稿」が、いつも正解とは限らない</h3><p>何を増やしたいかで、参考にする投稿が変わります。下は<strong>数字の読み方を説明する架空例</strong>です。</p><div class="visual-block"><h4>同じ投稿でも、目的によって評価が変わる</h4><div class="visual-body"><div class="sample-metrics"><div><span>投稿A：発信の難しさへの共感</span><dl><div><dt>閲覧数</dt><dd>20,000</dd></div><div><dt>投稿経由のフォロー</dt><dd>4</dd></div></dl><p>広く見られた話題の参考に</p></div><div><span>投稿B：予約案内を整える手順</span><dl><div><dt>閲覧数</dt><dd>8,000</dd></div><div><dt>投稿経由のフォロー</dt><dd>14</dd></div></dl><p>続けて読みたい内容の参考に</p></div></div></div><p class="visual-foot">説明用の架空データです。これだけで登録・売上への効果は分かりません。</p></div><h3 id="見るのはテーマ悩み切り口書き出し構成">5-2　伸びた投稿を、この5つに分解する</h3><div class="visual-block"><h4>「何がよかったか」を言葉にする5つの視点</h4><div class="visual-body"><div class="concept-grid lenses"><div class="concept-card"><span class="card-index">01</span><strong>テーマ</strong><p>何について話している？</p></div><div class="concept-card"><span class="card-index">02</span><strong>読者の悩み</strong><p>どんな場面で困る人に向けた？</p></div><div class="concept-card"><span class="card-index">03</span><strong>切り口</strong><p>手順・質問・体験のどれ？</p></div><div class="concept-card"><span class="card-index">04</span><strong>書き出し</strong><p>最初の1〜2行で何を約束した？</p></div><div class="concept-card"><span class="card-index">05</span><strong>構成</strong><p>結論・理由・具体例がどう並ぶ？</p></div></div></div></div><h3 id="上位投稿だけを見ても伸びた理由は分からない">5-3　伸びなかった投稿とも比べる</h3><div class="compare-grid"><div class="compare-panel muted"><span>上位の共通点だけ見る</span><p>「数字を使った書き出しが多い。だから数字が効く」と決めてしまう。</p></div><div class="compare-panel focus"><span>上位以外も並べる</span><p>反応が低い投稿にも数字があるなら、悩みの具体性や内容の違いも調べる。</p></div></div><aside class="key-point"><span>ここがポイント</span><p>公開からの経過時間や題材も違います。分析結果は<strong>次に試す仮説</strong>として扱いましょう。</p></aside><h3 id="次に増やすテーマを3つ出してもらう">5-4　Museに「根拠と次の一手」まで出してもらう</h3><div class="prompt prompt-card"><div class="prompt-label">プロンプト③：読者に届いた内容と、次に試すことを見つける</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>投稿の本文と指標を一覧にできたとき</dd></div><div><dt>得られるもの</dt><dd>根拠の投稿と、次に試すテーマ・切り口3つ</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>取得した私のThreads投稿とデータを使って、集客に向けた発信の改善を考えたいです。
 
 分析対象の件数・投稿期間・使える指標を示してください。
 閲覧数の上位を最大5件、投稿番号・URL・数値付きで挙げてください。
@@ -531,34 +258,8 @@ id="次に増やすテーマを3つ出してもらう">5-4　次に増やすテ�
 分かった事実と仮説を分け、判断できないことも明記してください。
 Threadsの数字から、LINE登録・問い合わせ・売上を推測しないでください。
 
-最後に、次に増やして試すテーマや切り口を3つ、理由付きで提案してください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<h3
-id="分析を次の投稿の方針に変える">5-5　分析を、次の投稿の方針に変える</h3>
-<p>いい分析とは、次に何を書くかが決まる分析です。</p>
-<p>「手順を見せた投稿に反応がある」なら、読者が順番を知りたい別の場面を探す。「初めての人からよく聞かれる質問に反応がある」なら、その前後の疑問へ広げる。これで分析が行動になります。</p>
-<p>逆に「もっと共感を増やす」だけでは、次の投稿は決まりません。「どの投稿が根拠で、どんな場面を扱うとよいかまで具体化して」と聞き直してください。</p>
-<p>ここで選ぶ方針は3つまでで十分です。例えば「読者の場面を絞る」「手順を見せる」「実際によく聞かれる質問を扱う」。この方針を持って、第6章でネタと投稿に仕上げます。</p>
-</section>
-<section class="chapter" id="ch6"><div class="chapter-head"><span class="chapter-num">CHAPTER 6</span><h2>分析結果から、次の投稿ネタを作ろう</h2></div>
-<figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：投稿を集める、傾向を見つける、ネタを広げる、下書きにする、確かめて投稿、反応を振り返る。この6段階で運用します。"><img src="assets/operation-flow.webp" width="1254" height="1254" alt="投稿を集める、傾向を見つける、ネタを広げる、下書きにする、確かめて投稿、反応を振り返る。この6段階で運用します。" loading="lazy" decoding="async"></button><figcaption>まずは10投稿の分析から、次に出す1本まで進めましょう。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure>
-
-<h3 id="誰に何を届けるかを決める">6-1　誰に何を届けるかを決める</h3>
-<p>ここから、分析を実際の集客につなげます。最初に決めるのは、誰に何を届けたいかです。</p>
-<p>既存のThreadsガイドでも、商品やサービスで解決できる悩みから発信を考えると書いています。予約のサポートをしているなら、予約に困る人へ役立つ内容を書く。片付けを教えているなら、片付けに困る場面からテーマを考える。このつながりを作ります。</p>
-<p>過去に伸びた投稿でも、届けたい相手から離れているなら、同じ話題を増やす必要はありません。分析結果と、これからの集客目的を合わせて判断します。</p>
-<p>Museに伝えるために、この4つをメモしてください。</p>
-<ul>
-<li>自分が提供している仕事・サービス。</li>
-<li>どんな状況の人に役立ちたいか。</li>
-<li>その人が困っている具体的な場面。</li>
-<li>読んだ後に、どうなってほしいか。</li>
-</ul>
-<p>商品がまだ決まっていない場合は、発信分野と届けたい人から始めて構いません。今の活動に合う目的を決めます。</p>
-<h3 id="投稿ネタを20個出してもらう">6-2　投稿ネタを20個出してもらう</h3>
-<p>一つのテーマでも、扱う場面を変えれば違うネタになります。</p>
-<p>「予約案内を分かりやすくする」というテーマなら、初めての人が予約前に知りたいこと、メニューを選べない人への説明、予約後に伝えること。ここまで広げられます。これは説明用の作例です。</p>
-<p>手順を教える、よくある質問に答える、自分が工夫したことを話す。この切り口も組み合わせて、言い換えだけにならないようにします。</p>
-<div class="prompt"><div class="prompt-label">プロンプト④：読者の悩みから、投稿ネタを20個作る</div><pre><code>今の投稿分析を使って、集客につながる発信を考えるための投稿ネタを20個提案してください。
+最後に、次に増やして試すテーマや切り口を3つ、理由付きで提案してください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><h3 id="分析を次の投稿の方針に変える">5-5　分析結果を、そのまま次のネタへつなぐ</h3><div class="visual-block"><h4>分析 → 次の行動への変え方</h4><div class="visual-body"><div class="action-pairs"><div><span>手順を見せた投稿に反応</span><b aria-hidden="true">→</b><strong>別の困りごとも、手順で伝える</strong></div><div><span>よくある質問への回答に反応</span><b aria-hidden="true">→</b><strong>その前後で出る疑問を扱う</strong></div><div><span>自分の経験に反応</span><b aria-hidden="true">→</b><strong>別の実体験と工夫を紹介する</strong></div></div></div></div><aside class="try-now"><span>ここまでできたらOK</span><strong>次に試す方針が、3つ決まっている</strong><p>「もっと共感を増やす」で止まらず、誰のどんな場面を扱うかまで具体的にします。</p></aside><aside class="lesson-summary"><h4>この章のまとめ</h4><ul class="check-list"><li>目的に合わせて、参考にする投稿を選ぶ。</li><li>本文を5つの視点で比べる。</li><li>次の投稿で試すことを3つに絞る。</li></ul><a class="next-chapter" href="#ch6">第6章へ進む <span aria-hidden="true">→</span></a></aside></section>
+<section class="chapter" id="ch6"><div class="chapter-head"><span class="chapter-num">CHAPTER 6</span><h2>分析結果から、次の投稿ネタを作ろう</h2></div><div class="chapter-goal"><span>この章でできるようになること</span><p>投稿ネタを選び、自分の経験を入れた下書きと運用計画を作る。</p></div><figure class="guide-figure"><button type="button" class="image-zoom" aria-label="図解を拡大：投稿収集、分析、ネタ出し、下書き、確認と投稿、振り返りの6段階。"><img src="assets/operation-flow.webp" alt="投稿収集、分析、ネタ出し、下書き、確認と投稿、振り返りの6段階。" width="1254" height="1254" loading="lazy" decoding="async"></button><figcaption>この流れを、一度に完璧にせず、1本ずつ回していきます。<span class="zoom-hint">タップすると拡大できます</span></figcaption></figure><h3 id="誰に何を届けるかを決める">6-1　売りたい商品から、読者とテーマを決める</h3><div class="visual-block"><h4>投稿より先に、ここをつなげる</h4><div class="visual-body"><ol class="step-flow"><li><strong>自分の商品・サービス</strong><span>何を提供しているか</span></li><li><strong>解決できる悩み</strong><span>どんな場面で役立つか</span></li><li><strong>届けたい読者</strong><span>今、そのことで困っているのは誰か</span></li><li><strong>発信するテーマ</strong><span>その人が読みたい内容は何か</span></li></ol></div></div><p>商品がまだ決まっていなければ、発信分野と届けたい相手から始めて構いません。過去に伸びた話題でも、<strong>読者や商品から離れるなら増やす必要はありません。</strong></p><h3 id="投稿ネタを20個出してもらう">6-2　一つの悩みを、いろいろな切り口へ広げる</h3><div class="visual-block"><h4>例：「予約前の質問が多い」をネタにする</h4><div class="visual-body"><div class="concept-grid "><div class="concept-card"><span class="card-index">01</span><strong>手順で伝える</strong><p>予約前に伝える項目のまとめ方</p></div><div class="concept-card"><span class="card-index">02</span><strong>質問に答える</strong><p>料金だけでなく時間も書くべき？</p></div><div class="concept-card"><span class="card-index">03</span><strong>経験を話す</strong><p>案内を1か所にまとめたときの工夫</p></div></div></div><p class="visual-foot">説明用のネタ例です。経験談には、自分が実際に行ったことだけを使います。</p></div><div class="prompt prompt-card"><div class="prompt-label">プロンプト④：読者の悩みから、投稿ネタを20個作る</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>分析結果と、届けたい読者が決まったとき</dd></div><div><dt>得られるもの</dt><dd>投稿ネタ20案と、先に試す5案</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>今の投稿分析を使って、集客につながる発信を考えるための投稿ネタを20個提案してください。
 
 私の仕事・サービス：【内容。まだ決まっていなければ未定】
 発信テーマ：【テーマ】
@@ -577,14 +278,7 @@ id="分析を次の投稿の方針に変える">5-5　分析を、次の投稿�
 
 最後に、読者との相性、過去の反応、内容の重複、経験を添えやすいかを考え、先に試す5案と理由を示してください。
 前提が不足する場合は、先に最大3つ質問してください。
-この段階ではネタと書き出しまでを作ってください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<p>案が出たら、実際によく聞く悩みや、自分が具体的に話せるテーマを選びます。Museが付けた順番は参考程度で構いません。自分の読者に合っているかで判断してください。</p>
-<h3
-id="自分の経験を足して下書きを1本作る">6-3　自分の経験を足して、下書きを1本作る</h3>
-<p>次は、選んだネタを文章にします。</p>
-<p>まず、自分が伝えたい結論と、実際に経験したことを箇条書きで渡します。きれいな文章にする必要はありません。何に困って、何を変えて、どうなったか。これが分かれば下書きの材料になります。</p>
-<p>例えば「予約方法を毎回聞かれた」「案内が複数の場所に分かれていた」「料金・時間・申し込み方法を一つにまとめた」。実際の経験なら、このまま渡して大丈夫です。実績の数字がなくても、具体的な工夫は書けます。</p>
-<div class="prompt"><div class="prompt-label">プロンプト⑤：自分の経験を生かした投稿の下書きを作る</div><pre><code>先ほどのネタ番号【番号】で、Threads投稿の下書きを一本作ってください。
+この段階ではネタと書き出しまでを作ってください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><h3 id="自分の経験を足して下書きを1本作る">6-3　自分の経験を足して、下書きを1本作る</h3><div class="visual-block"><h4>下書きに渡す材料は、箇条書きでOK</h4><div class="visual-body"><ol class="step-flow"><li><strong>何に困った？</strong><span>予約方法を何度も聞かれていた</span></li><li><strong>何を変えた？</strong><span>料金・時間・申込み方法を1つの案内にまとめた</span></li><li><strong>何を伝えたい？</strong><span>予約前の情報を同じ場所で確認できるようにする</span></li></ol></div></div><div class="prompt prompt-card"><div class="prompt-label">プロンプト⑤：自分の経験を生かした投稿の下書きを作る</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>試すネタと実体験を選べたとき</dd></div><div><dt>得られるもの</dt><dd>自分の経験を生かした投稿の下書き</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>先ほどのネタ番号【番号】で、Threads投稿の下書きを一本作ってください。
 
 届けたい相手：【読者】
 一番伝えたい結論：【結論】
@@ -600,17 +294,7 @@ id="自分の経験を足して下書きを1本作る">6-3　自分の経験を�
 実績・体験・数字を創作せず、過剰な断定や不安を煽る表現は使わないでください。
 不足する事実があれば、書く前に質問してください。
 最後に、投稿前に私が確認する事実を短くまとめてください。
-下書きだけを作り、公開や予約投稿はしないでください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<p>返ってきた下書きは、一度声に出して読んでください。「自分ならこう言わない」と感じたところを直して、実際の経験と合っているか確認します。</p>
-<p>書き出しで約束したことを、本文で説明できているかも見ます。「誰でも予約が増える」と言い切るより、「予約前によく聞かれる質問を整理する方法」と書いた方が、中身と合います。</p>
-<p>最後に投稿画面で、文字量、改行、リンクを確認して公開します。下書きが長ければ、一投稿で伝えたいことを絞ります。普段使っている投稿テンプレがあるなら、その形式をMuseへ渡して仕上げても構いません。</p>
-<h3
-id="プロフィールと案内先をつなげる">6-4　プロフィールと案内先をつなげる</h3>
-<p>投稿ができたら、興味を持った人が次に進む場所を確認します。</p>
-<p>予約の悩みを扱った投稿の最後に「予約案内を見直すチェックリストは、プロフィールから受け取れます」と案内する。その先に、本当にそのチェックリストの説明と受け取り方法がある。これで読者は、何が得られるか分かった上で進めます。</p>
-<p>紹介する特典は、実際に用意してあるものだけにします。相談へ案内する場合も、対象者と相談で扱う内容を書いておきます。</p>
-<p>プロフィールで伝えるのは、誰に役立つ人か、何を発信しているか、次に何ができるか。実績がある人は、確認できる範囲で加えます。数字がなくても、提供している内容は明確にできます。</p>
-<div class="prompt"><div class="prompt-label">プロンプト⑥：投稿・プロフィール・案内先のつながりを整える</div><pre><code>Threadsの投稿を読んだ人が、私のサービスや特典を理解し、次の行動を選びやすいか確認してください。
+下書きだけを作り、公開や予約投稿はしないでください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><div class="visual-block"><h4>返ってきた文章を、この順番で確認</h4><div class="visual-body"><ol class="step-flow"><li><strong>書き出し</strong><span>誰のどんな悩みに役立つ？</span></li><li><strong>結論と理由</strong><span>何を伝え、なぜそう考える？</span></li><li><strong>自分の具体例</strong><span>本当に経験した内容になっている？</span></li><li><strong>読者の次の一歩</strong><span>読んだ後に何をすればいい？</span></li></ol></div></div><aside class="key-point"><span>ここがポイント</span><p>声に出して読み、<mark>「自分ならこう言わない」</mark>と感じた言葉を直します。文字量・改行・リンクも、投稿画面で確認してください。</p></aside><h3 id="プロフィールと案内先をつなげる">6-4　投稿・プロフィール・案内先をそろえる</h3><div class="visual-block"><h4>読者が迷わず進める、つながりの例</h4><div class="visual-body"><ol class="step-flow"><li><strong>投稿</strong><span>予約前に多い質問を減らす方法を紹介</span></li><li><strong>プロフィール</strong><span>サロン向けに予約案内の整え方を発信していると伝える</span></li><li><strong>リンク先</strong><span>実際に用意したチェックリストの内容と受け取り方を説明</span></li></ol></div><p class="visual-foot">存在しない特典・実績・締切は書きません。</p></div><div class="prompt prompt-card"><div class="prompt-label">プロンプト⑥：投稿・プロフィール・案内先のつながりを整える</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>下書きと、現在のプロフィール・案内先があるとき</dd></div><div><dt>得られるもの</dt><dd>読者が迷う点と、プロフィール・案内文の修正案</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>Threadsの投稿を読んだ人が、私のサービスや特典を理解し、次の行動を選びやすいか確認してください。
 
 届けたい相手：【読者】
 提供する仕事・サービス：【内容】
@@ -626,13 +310,7 @@ id="プロフィールと案内先をつなげる">6-4　プロフィールと�
 存在しない特典、実績、料金、締切は作らないでください。
 この情報だけでは確認できないことは明記してください。
 リンク先の情報が足りない場合は、必要な部分を質問してください。
-提案と文章案だけを作り、プロフィール変更や投稿は行わないでください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<p>案内は、毎回同じものを機械的に付ける必要はありません。読んだ内容をさらに学べる場所や、次に必要になる情報へつなぐと自然です。</p>
-<p>案内文ができたら、「自分がこの読者だったら、何がもらえるか分かるか」「どこを押すか分かるか」を確認します。LINE登録や相談の数字が動いたときも、どの投稿が原因かは、計測で確認できる範囲で判断してください。</p>
-<h3 id="週間の投稿計画を作る">6-5　1週間の投稿計画を作る</h3>
-<p>ネタと下書きができたら、自分が使える時間に合わせて計画を組みます。</p>
-<p>最初から毎日何本も投稿する計画にする必要はありません。ネタを選ぶ日、下書きを作る日、見直して投稿する日を分けておけば、毎回すべてを一度にやらずに済みます。</p>
-<div class="prompt"><div class="prompt-label">プロンプト⑦：投稿と振り返りを続ける1週間の計画を作る</div><pre><code>ここまで決めた読者、投稿ネタ、下書き、案内先を使って、無理なく続ける1週間のThreads運用計画を作ってください。
+提案と文章案だけを作り、プロフィール変更や投稿は行わないでください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><p>ここで整えるのは、<strong>あなた自身の読者が進む導線</strong>です。このマニュアルを受け取ったあなたが、再度LINE登録をする必要はありません。</p><h3 id="週間の投稿計画を作る">6-5　無理のない1週間の計画にする</h3><div class="visual-block"><h4>たとえば、週3本ならこう分ける</h4><div class="visual-body"><ol class="week-plan"><li><span>月</span><strong>分析・ネタ選び</strong><small>今週の候補を決める</small></li><li><span>火</span><strong>下書きを準備</strong><small>実体験を足す</small></li><li><span>水・金・日</span><strong>確認して投稿</strong><small>1本ずつ仕上げる</small></li><li><span>翌週</span><strong>反応を確認</strong><small>次に試すことを決める</small></li></ol></div><p class="visual-foot">作業の分け方の例です。投稿本数と時間は、自分の生活に合わせて調整します。</p></div><div class="prompt prompt-card"><div class="prompt-label">プロンプト⑦：投稿と振り返りを続ける1週間の計画を作る</div><dl class="prompt-purpose"><div><dt>使うとき</dt><dd>読者・ネタ・下書き・案内先がそろったとき</dd></div><div><dt>得られるもの</dt><dd>使える時間に合った、投稿と振り返りの週間計画</dd></div></dl><button class="prompt-copy" type="button" aria-live="polite">コピーする</button><details class="prompt-full"><summary>プロンプト全文を見る</summary><pre><code>ここまで決めた読者、投稿ネタ、下書き、案内先を使って、無理なく続ける1週間のThreads運用計画を作ってください。
 
 運用に使える時間：【例：平日20分、週末60分】
 今週投稿できそうな本数：【本数】
@@ -645,53 +323,20 @@ id="プロフィールと案内先をつなげる">6-4　プロフィールと�
 
 振り返りで見る数字と、次に判断することも示してください。
 確認できない登録数・問い合わせ数・売上は推測しないでください。
-計画だけを作り、投稿予約や定期実行は設定しないでください。</code></pre><button class="prompt-copy" type="button" aria-live="polite">コピーする</button></div>
-<p>この計画は、実際にやってみて調整するためのものです。書くのに時間がかかるなら、本数やテーマを減らして構いません。自分が確認して出せる量にしてください。</p>
-<h3
-id="投稿したらまたmuseと振り返る">6-6　投稿したら、またMuseと振り返る</h3>
-<p>一周したら、もう一度プロンプト②でデータを取得して、③で分析します。前回選んだ方針と、実際に出した投稿が分かるように伝えてください。</p>
-<p>「今回は予約前の疑問を一つずつ扱った」「書き出しを読者の生活場面から始めた」と添えます。これで、何を試した結果なのかが分かる振り返りになります。</p>
-<p>見るのは、数字が増えたかだけではありません。伝えたい相手に合うテーマだったか、投稿と案内先はつながっていたか、作成にかけた時間は続けられる範囲か。ここまで確認します。</p>
-<p>そこから、続けるテーマ、変える切り口、新しく試すネタを決めます。一度に全部変えず、次に確かめたいことを選んでください。</p>
-<p><strong>分析をMuseへ頼み、ネタと下書きを作り、自分で確かめて届ける。読者の反応を、また次の発信へ戻す。</strong>
-この流れが身につけば、Threads×AIを日々の集客に使えるようになります。</p>
-</section>
-<section class="appendix"><h2>巻末付録　困ったときの聞き直しとプロンプト一覧</h2>
-<h3
-id="a-自分のthreadsが出てこないとき">A　自分のThreadsが出てこないとき</h3>
-<p>対象アカウントを確認して、実際の投稿を表示できるまでは、数字の分析に進みません。</p>
-<blockquote>
+計画だけを作り、投稿予約や定期実行は設定しないでください。</code></pre></details><p class="prompt-hint">【 】がある場合は、自分の内容に書き換えて送ります。</p></div><h3 id="投稿したらまたmuseと振り返る">6-6　投稿後の反応を、次の改善へ戻す</h3><div class="visual-block"><h4>2周目は、ここから再開する</h4><div class="visual-body"><ol class="step-flow"><li><strong>プロンプト②で更新</strong><span>前回以降の投稿データを集める</span></li><li><strong>プロンプト③で分析</strong><span>今回、何を試したかも伝える</span></li><li><strong>続ける・変えるを決める</strong><span>テーマ、切り口、作業量を見直す</span></li></ol></div></div><aside class="try-now"><span>ここまでできたらOK</span><strong>下書き1本と、今週の動きが決まっている</strong><p>Museに任せる作業、自分で確認すること、読者の次の行動までそろえば実践の準備完了です。</p></aside><aside class="lesson-summary"><h4>この章のまとめ</h4><ul class="check-list"><li>分析だけで終わらず、ネタと下書きにする。</li><li>自分の経験を加え、事実と言葉を確認する。</li><li>投稿後の反応を、次の分析へ戻す。</li></ul></aside></section>
+<section class="appendix"><h2>困ったときは、ここを開く</h2><details class="help-item"><summary>自分のThreadsが出てこないとき</summary><div><p>対象アカウントを確認して、実際の投稿を表示できるまでは、数字の分析に進みません。</p><blockquote>
 <p>分析したい自分の投稿がまだ表示されません。接続状況を確認し、次に操作することを一つずつ案内してください。画面を確認できない場合は、ボタン名や位置を推測せず、必要な画面を教えてください。</p>
-</blockquote>
-<h3
-id="b-データ取得が途中で止まったとき">B　データ取得が途中で止まったとき</h3>
-<p>「制限」「429」などが出たら、まず取得済みのデータを使います。</p>
-<blockquote>
+</blockquote></div></details><details class="help-item"><summary>データ取得が途中で止まったとき</summary><div><p>「制限」「429」などが出たら、まず取得済みのデータを使います。</p><blockquote>
 <p>追加取得はいったん止め、取得済みと未取得を分けてください。今あるデータで分析し、件数が足りず判断できないことは明記してください。</p>
-</blockquote>
-<h3
-id="c-数字が合わない項目が取れないとき">C　数字が合わない・項目が取れないとき</h3>
-<blockquote>
+</blockquote></div></details><details class="help-item"><summary>数字が合わない・項目が取れないとき</summary><div><blockquote>
 <p>この数値の投稿URL、取得日時、指標名、取得元を説明してください。確認できない部分は不明とし、確認が済むまでその数値を使った判断から外してください。</p>
-</blockquote>
-<p>取得不可は0ではありません。使える項目で分析を進めます。</p>
-<h3
-id="d-分析やネタがどこかで見た一般論になるとき">D　分析やネタが、どこかで見た一般論になるとき</h3>
-<blockquote>
+</blockquote><p>取得不可は0ではありません。使える項目で分析を進めます。</p></div></details><details class="help-item"><summary>分析やネタが、どこかで見た一般論になるとき</summary><div><blockquote>
 <p>私の投稿と読者の具体的な悩みに当てはめてください。分析なら根拠の投稿と次に試すこと、ネタなら困る場面と伝える内容まで具体化してください。</p>
-</blockquote>
-<h3
-id="e-下書きが自分の言葉になっていないとき">E　下書きが自分の言葉になっていないとき</h3>
-<blockquote>
+</blockquote></div></details><details class="help-item"><summary>下書きが自分の言葉になっていないとき</summary><div><blockquote>
 <p>次の文章が私の普段の言い方です。【自分の文章】。下書きの意味を保ちながら、言葉遣いや文の長さを近づけてください。私が話していない経験や数字は加えないでください。</p>
-</blockquote>
-<h3 id="f-まだ投稿も実績も少ないとき">F　まだ投稿も実績も少ないとき</h3>
-<blockquote>
+</blockquote></div></details><details class="help-item"><summary>まだ投稿も実績も少ないとき</summary><div><blockquote>
 <p>実績から判断できることと、できないことを分けてください。投稿がない場合は、私の仕事と届けたい相手を確認し、最初に試すネタを10個提案してください。実績に基づく成功パターンとは扱わないでください。</p>
-</blockquote>
-<p>自分が答えられる質問や、実際に試したことから1本作ります。その投稿が、次の振り返りの材料になります。</p>
-<h3 id="g-7つのプロンプト早見表">G　7つのプロンプト早見表</h3>
-<div class="table-wrap"><table>
+</blockquote><p>自分が答えられる質問や、実際に試したことから1本作ります。その投稿が、次の振り返りの材料になります。</p></div></details><details class="help-item"><summary>7つのプロンプト早見表</summary><div><div class="table-wrap"><table>
 <thead>
 <tr>
 <th>順番</th>
@@ -736,17 +381,8 @@ id="e-下書きが自分の言葉になっていないとき">E　下書きが�
 <td>投稿と振り返りの週間計画</td>
 </tr>
 </tbody>
-</table></div>
-<p>2回目以降は、対象アカウントを確かめて、②でデータを更新してから振り返ります。これらのプロンプトは、依頼した時点の作業を進めるものです。投稿の自動公開や毎週の定期実行は設定されません。</p>
-</section>
-<section class="outro"><h2>おわりに</h2>
-<p>Threadsの集客でやることは、誰のどんな悩みに役立つかを決めて、内容を届けて、次の行動へ案内して、結果を見て直すこと。この4つです。Museを使えば、そのための情報整理と文章作成を任せられます。</p>
-<p>最初から完璧な分析や大量の投稿を目指さなくて大丈夫です。自分のThreadsを読み込んで、反応を確かめて、ネタを1つ下書きにする。プロフィールと案内先まで確認して、実際に届ける。ここまでで一周です。</p>
-<p>自分の仕事と読者を知っているのは自分です。そこにAIの整理する力と文章を作る力を足す。この組み合わせが、Threads×AIの運用です。</p>
-<p>まずはプロンプト①から。次に出す1本を作るところまで、進めてください。</p>
-<p>実践してみて、「誰に届けるべきか」「どんな発信が自分の商品につながるか」で迷ったら、次は集客の流れ全体を整理する番です。セミナーでは、自分のジャンルに合わせた投稿設計と、プロフィールから商品・サービスまでの導線を学べます。</p>
-
-</section>
+</table></div><p>2回目以降は、対象アカウントを確かめて、②でデータを更新してから振り返ります。これらのプロンプトは、依頼した時点の作業を進めるものです。投稿の自動公開や毎週の定期実行は設定されません。</p></div></details></section>
+<section class="outro"><h2>まずは、次の1本を作ろう。</h2><p>自分の投稿を読み込む。反応のよいテーマを見つける。ネタを選び、自分の経験を足して仕上げる。<strong>この一周を、まずは一度やってみてください。</strong></p><aside class="key-point"><span>ここがポイント</span><p>操作ができたら、次は<mark>「誰に届けて、どう商品につなげるか」</mark>。自分のジャンルに合わせた設計を、セミナーで整理していきましょう。</p></aside></section>
     <section class="cta" id="seminar" aria-labelledby="seminar-heading">
       <p class="cta-kicker">次は、自分のアカウントで集客につなげる</p>
       <h2 id="seminar-heading">AIで作った投稿を、<br>集客につなげる設計を学ぼう</h2>
@@ -757,32 +393,16 @@ id="e-下書きが自分の言葉になっていないとき">E　下書きが�
         <li>AIを使いながら、自分の経験が伝わる投稿を作る考え方</li>
         <li>投稿・プロフィールから、相談や申込みにつなぐ導線</li>
       </ul>
-      <a class="cta-btn" href="https://lstep.app/T1czt9O" data-launchkit-line-cta>セミナーの案内・申込みへ進む</a>
+      <a class="cta-btn" href="https://lstep.app/T1czt9O" data-launchkit-line-cta="">セミナーの案内・申込みへ進む</a>
       <p class="cta-note">LINEでお届けしているセミナーの申込みフォームが開きます。</p>
     </section>
-<section class="refs"><h2>参考情報</h2>
-<p>機能・画面の説明は2026年10月25日時点の確認に基づきます。利用環境や更新によって表示・取得項目が変わる場合があります。</p>
-<p>[1] <a
-href="https://about.fb.com/ja/news/2026/10/muse-personal-ai-agent-launches-in-japan/">Meta「パーソナルAIエージェント『Muse』を日本で提供開始」</a></p>
-<p>[2] <a
-href="https://ai.meta.com/muse/">Meta「Muse：機能と活用」</a></p>
-<p>[3] <a
-href="https://apps.apple.com/us/app/muse-from-meta/id6760173601">App
-Store「Muse from Meta」</a></p>
-<p>[4] <a
-href="https://play.google.com/store/apps/details?id=com.facebook.aura">Google
-Play「Muse from Meta」</a></p>
-<p>[5] <a
-href="https://www.meta.com/help/superintelligence/1687253048996149/">Meta公式ヘルプ「Museとコネクターの連携」</a></p>
-<p>運用の考え方は、工藤の<a
-href="https://lkit.jp/threads-guide-3/">既存のAI×Threads攻略ガイド</a>の読者設計・AIへの前提情報・投稿作成・集客への案内・振り返りを、Museで実践する手順へ再構成しました。</p>
-</section>
+
 
 
   </div>
 </section>
 
-<dialog class="image-viewer" aria-label="拡大画像"><button class="close-image" type="button" autofocus>閉じる</button><img alt=""></dialog>
+<dialog class="image-viewer" aria-label="拡大画像"><button class="close-image" type="button" autofocus="">閉じる</button><img alt=""></dialog>
 <script>
 (function(){
   var dialog=document.querySelector('.image-viewer');
@@ -796,14 +416,14 @@ href="https://lkit.jp/threads-guide-3/">既存のAI×Threads攻略ガイド</a>�
   dialog.addEventListener('click',function(e){if(e.target===dialog){var r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 })();
 </script>
-<footer>&copy; 工藤</footer>
+<footer>© 工藤</footer>
 
 <script>
 document.querySelectorAll('.prompt-copy').forEach(function(btn){
   btn.addEventListener('click', function(){
     var code = btn.parentElement.querySelector('code');
     if (!code) return;
-    Promise.resolve().then(function(){ return navigator.clipboard.writeText(code.innerText); }).then(function(){
+    Promise.resolve().then(function(){ return navigator.clipboard.writeText(code.textContent); }).then(function(){
       btn.textContent = 'コピーしました';
       btn.classList.add('done');
       setTimeout(function(){ btn.textContent = 'コピーする'; btn.classList.remove('done'); }, 1800);
@@ -816,6 +436,7 @@ document.querySelectorAll('.prompt-copy').forEach(function(btn){
 <script>
   window.LAUNCHKIT_TRACKING = { lpId: "aa0ed119-f136-4395-9a2b-d795bb8c9258", apiBase: "https://autostudio-self.vercel.app" };
 </script>
-<script src="/muse-guide/launchkit-tracking.js" defer></script>
-</body>
-</html>
+<script src="/muse-guide/launchkit-tracking.js" defer=""></script>
+
+
+</body></html>
