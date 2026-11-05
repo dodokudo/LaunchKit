@@ -612,6 +612,8 @@ ${lpList.map(page => {
   let alreadyHad = 0;
   for (const file of htmlFiles) {
     const html = fs.readFileSync(file, 'utf8');
+    // Course work and admin pages can opt out of advertising tracking.
+    if (html.includes('<meta name="launchkit:tracking" content="off">')) continue;
     if (html.includes(PIXEL_MARKER)) { alreadyHad += 1; continue; }
     const headIdx = html.search(/<head[^>]*>/i);
     if (headIdx < 0) continue;
